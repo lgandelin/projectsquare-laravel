@@ -1,5 +1,5 @@
 <div class="col-3">
-    <nav>
+    <nav class="left-bar">
         <ul>
             <li><h3><a href="{{ route('dashboard') }}">Tableau de bord</a></h3></li>
             <li>
@@ -7,13 +7,13 @@
                 <ul>
                     @foreach ($user->projects as $project)
                     <li>
-                        <a href="#">{{ $project->client->name }}</a>
+                        {{ $project->client->name }}
                     </li>
                     @endforeach
                 </ul>
             </li>
             <li>
-                <h3><a href="#">Utilitaires</a></h3>
+                <h3>Utilitaires</h3>
                 <ul>
                     <li><a href="{{ route('tickets') }}">Tickets</a></li>
                     <li><a href="{{ route('messages') }}">Messages</a></li>
@@ -24,11 +24,11 @@
             <li>
                 <h3><a href="{{ route('agency_index') }}">Agence</a></h3>
                 <ul>
-                    <li><a href="#">Clients</a></li>
+                    <li>Clients</li>
                     <li><a href="{{ route('agency_projects_index') }}">Projets</a></li>
-                    <li><a href="#">Utilisateurs</a></li>
-                    <li><a href="#">Profils</a></li>
-                    <li><a href="#">Réglages</a></li>
+                    <li><a href="{{ route('agency_users_index') }}">Utilisateurs</a></li>
+                    <li><a href="{{ route('agency_profiles_index') }}">Profils</a></li>
+                    <li>Réglages</li>
                 </ul>
             </li>
         </ul>

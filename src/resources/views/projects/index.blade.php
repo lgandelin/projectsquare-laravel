@@ -6,5 +6,7 @@
         <li class="active">Projets</li>
     </ol>
 
-    <h1>Projets</h1>
+    <div class="page-header">
+        <h1>Projets</h1>
+    </div>
 @endsection

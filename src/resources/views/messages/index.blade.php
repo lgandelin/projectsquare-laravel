@@ -6,5 +6,7 @@
         <li class="active">Messages</li>
     </ol>
 
-    <h1>Messages</h1>
+    <div class="page-header">
+        <h1>Messages</h1>
+    </div>
 @endsection

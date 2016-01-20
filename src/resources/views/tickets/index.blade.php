@@ -6,5 +6,7 @@
         <li class="active">Tickets</li>
     </ol>
 
-    <h1>Tickets</h1>
+    <div class="page-header">
+        <h1>Tickets</h1>
+    </div>
 @endsection

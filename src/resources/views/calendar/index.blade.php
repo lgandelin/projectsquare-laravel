@@ -6,5 +6,7 @@
         <li class="active">Calendrier</li>
     </ol>
 
-    <h1>Calendrier</h1>
+    <div class="page-header">
+        <h1>Calendrier</h1>
+    </div>
 @endsection

@@ -1,6 +1,5 @@
 <div class="pull-left">
-    <h2><a href="{{ route('dashboard') }}">GATEWAY</a></h2>
-
+    <h1 class="logo"><a href="{{ route('dashboard') }}">GATEWAY</a></h1>
 </div>
 
 <nav class="pull-right">
