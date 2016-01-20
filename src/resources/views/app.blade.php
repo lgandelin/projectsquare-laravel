@@ -1,5 +1,5 @@
 @include('gateway::includes.header')
 
-@yield('content')
+@yield('main-content')
 
 @include('gateway::includes.footer')

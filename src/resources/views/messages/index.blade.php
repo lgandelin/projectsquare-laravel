@@ -1,5 +1,5 @@
 @extends('gateway::default')
 
 @section('content')
-    <h1>Projets</h1>
+    <h1>Messages</h1>
 @endsection
