@@ -11,6 +11,18 @@
         <h1>Gestion des profils</h1>
     </div>
 
+    @if (isset($error))
+        <div class="info bg-danger">
+            {{ $error }}
+        </div>
+    @endif
+
+    @if (isset($confirmation))
+        <div class="info bg-success">
+            {{ $confirmation }}
+        </div>
+    @endif
+
     <table class="table table-striped">
         <thead>
         <tr>
@@ -26,13 +38,13 @@
                     <td>{{ $role->id }}</td>
                     <td>{{ $role->name }}</td>
                     <td>
-                        <a href="#" class="btn btn-primary">Editer</a>
-                        <a href="#" class="btn btn-danger">Supprimer</a>
+                        <a href="{{ route('roles_edit', ['id' => $role->id]) }}" class="btn btn-primary">Editer</a>
+                        <a href="{{ route('roles_delete', ['id' => $role->id]) }}" class="btn btn-danger">Supprimer</a>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 
-    <a href="#" class="btn btn-success">Ajouter un profil</a>
+    <a href="{{ route('roles_add') }}" class="btn btn-success">Ajouter un profil</a>
 @endsection
