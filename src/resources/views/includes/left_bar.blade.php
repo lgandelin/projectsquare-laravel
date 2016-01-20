@@ -22,10 +22,10 @@
                 </ul>
             </li>
             <li>
-                <h3><a href="#">Agence</a></h3>
+                <h3><a href="{{ route('agency_index') }}">Agence</a></h3>
                 <ul>
                     <li><a href="#">Clients</a></li>
-                    <li><a href="{{ route('projects') }}">Projets</a></li>
+                    <li><a href="{{ route('agency_projects_index') }}">Projets</a></li>
                     <li><a href="#">Utilisateurs</a></li>
                     <li><a href="#">Profils</a></li>
                     <li><a href="#">Réglages</a></li>

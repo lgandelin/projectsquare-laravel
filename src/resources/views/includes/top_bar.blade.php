@@ -4,7 +4,7 @@
 </div>
 
 <nav class="pull-right">
-    <ul>
+    <ul class="notifications">
         <li>
             {{ $user->first_name }} {{ $user->last_name }} <a href="#">Se déconnecter</a>
         </li>
