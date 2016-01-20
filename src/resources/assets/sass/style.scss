@@ -6,6 +6,17 @@ ul {
     margin-left: 0;
     padding-left: 2rem;
 }
+
+.table {
+    > tbody {
+        > tr {
+            > td {
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
 .block {
     padding: 1rem 2rem;
     margin-bottom: 2rem;
