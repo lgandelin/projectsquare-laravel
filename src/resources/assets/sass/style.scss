@@ -1,0 +1,9 @@
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "_variables";
+
+.block {
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+
+    background: $light-gray;
+}
