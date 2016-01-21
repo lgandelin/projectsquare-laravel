@@ -24,7 +24,7 @@
             <li>
                 <h3><a href="{{ route('agency_index') }}">Agence</a></h3>
                 <ul>
-                    <li>Clients</li>
+                    <li><a href="{{ route('clients_index') }}">Clients</a></li>
                     <li><a href="{{ route('projects_index') }}">Projets</a></li>
                     <li><a href="{{ route('users_index') }}">Utilisateurs</a></li>
                     <li><a href="{{ route('roles_index') }}">Profils</a></li>
