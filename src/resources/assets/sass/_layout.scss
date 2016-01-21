@@ -1,0 +1,47 @@
+.top-bar {
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+
+    .logo {
+        font-size: 3rem;
+
+        a {
+            color: $black;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+    }
+
+    .notifications {
+        li {
+            display: inline-block;
+            margin-right: 2rem;
+        }
+    }
+}
+
+.left-bar {
+    padding: 2rem 0 2rem 0;
+
+    background: $light-gray;
+    border-radius: 4px;
+
+    > ul {
+        > li {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        > li:first-child {
+            h3 {
+                margin-top: 0;
+            }
+        }
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+}

@@ -2,5 +2,4 @@
 
 return [
     'panel_title' => 'Agence',
-
 ];
