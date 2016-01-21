@@ -15,6 +15,11 @@
     </div>
 
     <div class="form-group">
+        <label for="password">{{ trans('gateway::users.password') }}</label>
+        <input class="form-control" type="password" placeholder="{{ trans('gateway::users.password_placeholder') }}" name="password" />
+    </div>
+
+    <div class="form-group">
         <label for="name">{{ trans('gateway::users.client') }}</label>
         @if (isset($clients))
             <select class="form-control" name="client_id">
