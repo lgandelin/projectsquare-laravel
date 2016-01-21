@@ -2,9 +2,9 @@
 
 @section('content')
     <ol class="breadcrumb">
-        <li><a href="{{ route('dashboard') }}">Tableau de bord</a></li>
-        <li><a href="{{ route('agency_index') }}">Agence</a></li>
-        <li><a href="{{ route('roles_index') }}">{{ trans('gateway::roles.list_role') }}</a></li>
+        <li><a href="{{ route('dashboard') }}">{{ trans('gateway::dashboard.panel_title') }}</a></li>
+        <li><a href="{{ route('agency_index') }}">{{ trans('gateway::agency.panel_title') }}</a></li>
+        <li><a href="{{ route('roles_index') }}">{{ trans('gateway::roles.roles_list') }}</a></li>
         <li class="active">{{ trans('gateway::roles.edit_role') }}</li>
     </ol>
 
@@ -24,19 +24,10 @@
         </div>
     @endif
 
-    <form action="{{ route('roles_update') }}" method="post">
-        <div class="form-group">
-            <label for="name">{{ trans('gateway::roles.label') }}</label>
-            <input class="form-control" type="text" placeholder="{{ trans('gateway::roles.name_placeholder') }}" name="name" value="{{ $role->name }}" />
-        </div>
+    @include('gateway::agency.roles.form', [
+        'form_action' => route('roles_update'),
+        'role_id' => $role->id,
+        'role_name' => $role->name
+    ])
 
-        <div class="form-group">
-            <input type="submit" class="btn btn-success" value="{{ trans('gateway::generic.valid') }}" />
-            <a href="{{ route('roles_index') }}" class="btn btn-default">{{ trans('gateway::generic.back') }}</a>
-        </div>
-
-        <input type="hidden" name="role_id" value="{{ $role->id }}" />
-
-        {!! csrf_field() !!}
-    </form>
 @endsection

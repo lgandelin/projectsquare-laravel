@@ -2,13 +2,13 @@
 
 @section('content')
     <ol class="breadcrumb">
-        <li><a href="{{ route('dashboard') }}">Tableau de bord</a></li>
-        <li><a href="{{ route('agency_index') }}">Agence</a></li>
-        <li class="active">{{ trans('gateway::roles.list_role') }}</li>
+        <li><a href="{{ route('dashboard') }}">{{ trans('gateway::dashboard.panel_title') }}</a></li>
+        <li><a href="{{ route('agency_index') }}">{{ trans('gateway::agency.panel_title') }}</a></li>
+        <li class="active">{{ trans('gateway::roles.roles_list') }}</li>
     </ol>
 
     <div class="page-header">
-        <h1>{{ trans('gateway::roles.list_role') }}</h1>
+        <h1>{{ trans('gateway::roles.roles_list') }}</h1>
     </div>
 
     @if (isset($error))
