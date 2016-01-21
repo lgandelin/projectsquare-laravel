@@ -6,4 +6,5 @@ return [
     'edit' => 'Editer',
     'delete' => 'Supprimer',
     'valid' => 'Valider',
+    'choose_value' => 'Choisissez une valeur',
 ];

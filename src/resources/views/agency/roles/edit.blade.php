@@ -29,5 +29,4 @@
         'role_id' => $role->id,
         'role_name' => $role->name
     ])
-
 @endsection

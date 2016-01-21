@@ -15,5 +15,4 @@
     @include('gateway::agency.roles.form', [
         'form_action' => route('roles_store'),
     ])
-
 @endsection

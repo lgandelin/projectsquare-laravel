@@ -16,5 +16,6 @@ return [
 
     'project' => 'Projet',
     'label' => 'Libellé',
+    'client' => 'Client',
     'name_placeholder' => 'Nom de votre projet',
 ];

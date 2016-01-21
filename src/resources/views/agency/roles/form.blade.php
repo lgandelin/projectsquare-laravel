@@ -10,7 +10,7 @@
     </div>
 
     @if (isset($role_id))
-    <input type="hidden" name="role_id" value="{{ $role_id }}" />
+        <input type="hidden" name="role_id" value="{{ $role_id }}" />
     @endif
 
     {!! csrf_field() !!}
