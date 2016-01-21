@@ -26,7 +26,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th width="50">#</th>
+            <th>#</th>
             <th>{{ trans('gateway::projects.project') }}</th>
             <th>{{ trans('gateway::projects.client') }}</th>
             <th>{{ trans('gateway::generic.action') }}</th>

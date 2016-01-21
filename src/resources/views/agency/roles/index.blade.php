@@ -26,7 +26,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th width="50">#</th>
+                <th>#</th>
                 <th>{{ trans('gateway::roles.role') }}</th>
                 <th>{{ trans('gateway::generic.action') }}</th>
             </tr>

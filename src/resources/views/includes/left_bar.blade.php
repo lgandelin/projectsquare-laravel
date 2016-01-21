@@ -5,7 +5,7 @@
             <li>
                 <h3><a href="{{ route('projects') }}">Projets</a></h3>
                 <ul>
-                    @foreach ($user->projects as $project)
+                    @foreach ($logged_in_user->projects as $project)
                     <li>
                         {{ $project->client->name }}
                     </li>
