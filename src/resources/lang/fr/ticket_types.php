@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'panel_title' => 'Gestion des type de tickets',
+    'panel_title' => 'Gestion des types de tickets',
 
     'add_ticket_type_success' => 'Type de ticket ajouté avec succès',
     'add_ticket_type_error' => 'Une erreur est survenue lors de l\'ajout du type de ticket',
@@ -12,9 +12,9 @@ return [
 
     'add_ticket_type' => 'Ajouter un type de ticket',
     'edit_ticket_type' => 'Editer un type de ticket',
-    'ticket_types_list' => 'Liste des type de tickets',
+    'ticket_types_list' => 'Liste des types de tickets',
 
     'ticket_type' => 'Type de ticket',
     'label' => 'Libellé',
-    'name_placeholder' => 'ex : bug, évolution, ...',
+    'name_placeholder' => 'ex : Bug, Evolution, ...',
 ];
