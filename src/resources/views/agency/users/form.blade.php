@@ -11,12 +11,12 @@
 
     <div class="form-group">
         <label for="email">{{ trans('gateway::users.email') }}</label>
-        <input class="form-control" type="text" placeholder="{{ trans('gateway::users.email') }}" name="email" @if (isset($user_email))value="{{ $user_email }}"@endif />
+        <input class="form-control" type="text" placeholder="{{ trans('gateway::users.email') }}" name="email" @if (isset($user_email))value="{{ $user_email }}"@endif autocomplete="off" />
     </div>
 
     <div class="form-group">
         <label for="password">{{ trans('gateway::users.password') }}</label>
-        <input class="form-control" type="password" placeholder="{{ trans('gateway::users.password_placeholder') }}" name="password" />
+        <input class="form-control" type="password" placeholder="{{ trans('gateway::users.password_placeholder') }}" name="password" autocomplete="off" />
     </div>
 
     <div class="form-group">
