@@ -7,7 +7,7 @@
             </div>
 
             <div class="form-group">
-                <label for="name">{{ trans('gateway::tickets.project') }}</label>
+                <label for="project_id">{{ trans('gateway::tickets.project') }}</label>
                 @if (isset($projects))
                     <select class="form-control" name="project_id">
                         <option value="">{{ trans('gateway::generic.choose_value') }}</option>
@@ -26,19 +26,31 @@
             </div>
 
             <div class="form-group">
-                <label for="title">{{ trans('gateway::tickets.due_date') }}</label>
-                <input class="form-control" type="text" placeholder="{{ trans('gateway::tickets.due_date_placeholder') }}" name="due_date" @if (isset($ticket_due_date))value="{{ $ticket_due_date }}"@endif />
-            </div>
-
-            <div class="form-group">
                 <input type="submit" class="btn btn-success" value="{{ trans('gateway::generic.valid') }}" />
                 <a href="{{ route('tickets_index') }}" class="btn btn-default">{{ trans('gateway::generic.back') }}</a>
             </div>
         </div>
 
         <div class="col-md-6">
-            <!-- Priorité -->
-            <!-- Type -->
+            <div class="form-group">
+                <label for="type_id">{{ trans('gateway::tickets.type') }}</label>
+                @if (isset($ticket_types))
+                <select class="form-control" name="type_id">
+                    <option value="">{{ trans('gateway::generic.choose_value') }}</option>
+                    @foreach ($ticket_types as $ticket_type)
+                    <option value="{{ $ticket_type->id }}" @if (isset($ticket) && $ticket->type_id == $ticket_type->id)selected="selected"@endif>{{ $ticket_type->name }}</option>
+                    @endforeach
+                </select>
+                @else
+                <div class="info bg-info">{{ trans('gateway::tickets.no_ticket_type_yet') }}</div>
+                @endif
+            </div>
+
+            <div class="form-group">
+                <label for="title">{{ trans('gateway::tickets.due_date') }}</label>
+                <input class="form-control" type="text" placeholder="{{ trans('gateway::tickets.due_date_placeholder') }}" name="due_date" @if (isset($ticket_due_date))value="{{ $ticket_due_date }}"@endif />
+            </div>
+
             <!-- Statut -->
             <!-- Commentaires -->
         </div>

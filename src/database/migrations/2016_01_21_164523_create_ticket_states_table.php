@@ -17,7 +17,7 @@ class CreateTicketStatesTable extends Migration
             $table->integer('ticket_id')->nullable();
             $table->integer('author_user_id')->nullable();
             $table->integer('allocated_user_id')->nullable();
-            $table->integer('ticket_status_id')->nullable();
+            $table->integer('status_id')->nullable();
             $table->string('duration')->nullable();
             $table->integer('priority')->nullable();
             $table->text('comments')->nullable();
