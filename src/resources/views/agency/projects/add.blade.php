@@ -4,15 +4,15 @@
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard') }}">{{ trans('gateway::dashboard.panel_title') }}</a></li>
         <li><a href="{{ route('agency_index') }}">{{ trans('gateway::agency.panel_title') }}</a></li>
-        <li><a href="{{ route('roles_index') }}">{{ trans('gateway::roles.roles_list') }}</a></li>
-        <li class="active">{{ trans('gateway::roles.add_role') }}</li>
+        <li><a href="{{ route('projects_index') }}">{{ trans('gateway::projects.projects_list') }}</a></li>
+        <li class="active">{{ trans('gateway::projects.add_project') }}</li>
     </ol>
 
     <div class="page-header">
-        <h1>{{ trans('gateway::roles.add_role') }}</h1>
+        <h1>{{ trans('gateway::projects.add_project') }}</h1>
     </div>
 
-    @include('gateway::agency.roles.form', [
-        'form_action' => route('roles_store'),
+    @include('gateway::agency.projects.form', [
+        'form_action' => route('projects_store'),
     ])
 @endsection

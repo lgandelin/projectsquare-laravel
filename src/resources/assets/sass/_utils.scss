@@ -1,0 +1,22 @@
+.table {
+    > tbody {
+        > tr {
+            > td {
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.block {
+    padding: 2rem;
+    margin-bottom: 2rem;
+
+    background: $light-gray;
+    border-radius: 4px;
+}
+
+.info {
+    padding: 1rem;
+    margin-bottom: 2rem;
+}

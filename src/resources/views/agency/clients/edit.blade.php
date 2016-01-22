@@ -4,12 +4,12 @@
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard') }}">{{ trans('gateway::dashboard.panel_title') }}</a></li>
         <li><a href="{{ route('agency_index') }}">{{ trans('gateway::agency.panel_title') }}</a></li>
-        <li><a href="{{ route('roles_index') }}">{{ trans('gateway::roles.roles_list') }}</a></li>
-        <li class="active">{{ trans('gateway::roles.edit_role') }}</li>
+        <li><a href="{{ route('clients_index') }}">{{ trans('gateway::clients.clients_list') }}</a></li>
+        <li class="active">{{ trans('gateway::clients.edit_client') }}</li>
     </ol>
 
     <div class="page-header">
-        <h1>{{ trans('gateway::roles.edit_role') }}</h1>
+        <h1>{{ trans('gateway::clients.edit_client') }}</h1>
     </div>
 
     @if (isset($error))
@@ -24,9 +24,9 @@
         </div>
     @endif
 
-    @include('gateway::agency.roles.form', [
-        'form_action' => route('roles_update'),
-        'role_id' => $role->id,
-        'role_name' => $role->name
+    @include('gateway::agency.clients.form', [
+        'form_action' => route('clients_update'),
+        'client_id' => $client->id,
+        'client_name' => $client->name
     ])
 @endsection
