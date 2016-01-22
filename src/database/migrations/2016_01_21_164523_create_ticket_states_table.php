@@ -21,6 +21,7 @@ class CreateTicketStatesTable extends Migration
             $table->string('duration')->nullable();
             $table->integer('priority')->nullable();
             $table->text('comments')->nullable();
+            $table->timestamps();
         });
     }
 

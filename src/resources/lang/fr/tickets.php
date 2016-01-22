@@ -17,6 +17,11 @@ return [
     'ticket' => 'Ticket',
     'project' => 'Projet',
     'title' => 'Titre',
-    'client' => 'Client',
     'title_placeholder' => 'Intitulé de votre ticket',
+    'description' => 'Description',
+    'due_date' => 'Echéance',
+    'due_date_placeholder' => 'ex : 14/05/2016',
+
+    'ticket_not_found' => 'Ticket non trouvé',
+    'no_project_yet' => 'Vous n\'avez pas encore créé de projet',
 ];

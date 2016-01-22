@@ -26,6 +26,8 @@
     @include('gateway::tickets.form', [
         'form_action' => route('tickets_update'),
         'ticket_id' => $ticket->id,
-        'ticket_name' => $ticket->name
+        'ticket_title' => $ticket->title,
+        'ticket_description' => $ticket->description,
+        'ticket_due_date' => $ticket->due_date
     ])
 @endsection

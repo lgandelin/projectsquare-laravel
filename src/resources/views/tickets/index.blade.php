@@ -27,7 +27,7 @@
         <tr>
             <th>#</th>
             <th>{{ trans('gateway::tickets.ticket') }}</th>
-            <th>{{ trans('gateway::tickets.client') }}</th>
+            <th>{{ trans('gateway::tickets.project') }}</th>
             <th>{{ trans('gateway::generic.action') }}</th>
         </tr>
         </thead>
@@ -36,8 +36,8 @@
         @foreach ($tickets as $ticket)
         <tr>
             <td>{{ $ticket->id }}</td>
-            <td>{{ $ticket->name }}</td>
-            <td>{{ $ticket->client->name }}</td>
+            <td>{{ $ticket->title }}</td>
+            <td><span class="label label-primary">{{ $ticket->project->client->name }}</span> {{ $ticket->project->name }}</td>
             <td>
                 <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}" class="btn btn-primary">{{ trans('gateway::generic.edit') }}</a>
                 <a href="{{ route('tickets_delete', ['id' => $ticket->id]) }}" class="btn btn-danger">{{ trans('gateway::generic.delete') }}</a>
