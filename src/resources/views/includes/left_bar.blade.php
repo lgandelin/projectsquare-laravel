@@ -28,6 +28,7 @@
                     <li><a href="{{ route('projects_index') }}">Projets</a></li>
                     <li><a href="{{ route('users_index') }}">Utilisateurs</a></li>
                     <li><a href="{{ route('roles_index') }}">Profils</a></li>
+                    <li><a href="{{ route('ticket_types_index') }}">Types de tickets</a></li>
                     <li>Réglages</li>
                 </ul>
             </li>
