@@ -20,4 +20,5 @@ return [
     'name_placeholder' => 'Nom de votre projet',
 
     'no_client_yet' => 'Vous n\'avez pas encore créé de client',
+    'project_not_found' => 'Une erreur est survenue lors de la récupération de ce projet',
 ];

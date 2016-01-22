@@ -17,4 +17,6 @@ return [
     'ticket_type' => 'Type de ticket',
     'label' => 'Libellé',
     'name_placeholder' => 'ex : Bug, Evolution, ...',
+
+    'ticket_type_not_found' => 'Une erreur est survenue lors de la récupération de ce type de ticket',
 ];

@@ -22,4 +22,6 @@ return [
     'password_placeholder' => 'Laisser vide pour ne pas modifier le mot de passe',
     'user' => 'Utilisateur',
     'client' => 'Client',
+
+    'user_not_found' => 'Une erreur est survenue lors de la récupération de cet utilisateur',
 ];

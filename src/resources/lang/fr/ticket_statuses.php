@@ -17,4 +17,6 @@ return [
     'ticket_status' => 'Statuts de ticket',
     'label' => 'Libellé',
     'name_placeholder' => 'ex : A valider, A recetter ...',
+
+    'ticket_status_not_found' => 'Une erreur est survenue lors de la récupération de ce statut de ticket',
 ];
