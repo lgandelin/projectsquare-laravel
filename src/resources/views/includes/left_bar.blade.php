@@ -15,7 +15,7 @@
             <li>
                 <h3>Utilitaires</h3>
                 <ul>
-                    <li><a href="{{ route('tickets') }}">Tickets</a></li>
+                    <li><a href="{{ route('tickets_index') }}">Tickets</a></li>
                     <li><a href="{{ route('messages') }}">Messages</a></li>
                     <li><a href="{{ route('calendar') }}">Calendrier</a></li>
                     <li><a href="{{ route('todo') }}">To do</a></li>
