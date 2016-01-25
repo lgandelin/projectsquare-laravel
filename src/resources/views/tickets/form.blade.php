@@ -51,7 +51,30 @@
                 <input class="form-control datepicker" type="text" placeholder="{{ trans('gateway::tickets.due_date_placeholder') }}" name="due_date" @if (isset($ticket_due_date))value="{{ $ticket_due_date }}"@endif />
             </div>
 
-            <!-- Statut -->
+            <div class="form-group">
+                <label for="status_id">{{ trans('gateway::tickets.status') }}</label>
+                @if (isset($ticket_status))
+                    <select class="form-control" name="status_id">
+                        <option value="">{{ trans('gateway::generic.choose_value') }}</option>
+                        @foreach ($ticket_status as $ticket_status)
+                            <option value="{{ $ticket_status->id }}">{{ $ticket_status->name }}</option>
+                        @endforeach
+                    </select>
+                @else
+                    <div class="info bg-info">{{ trans('gateway::tickets.no_ticket_status_yet') }}</div>
+                @endif
+            </div>
+
+            <div class="form-group">
+                <label for="priority">{{ trans('gateway::tickets.priority') }}</label>
+                <select class="form-control" name="priority">
+                    <option value="">{{ trans('gateway::generic.choose_value') }}</option>
+                    @for ($i = 1; $i <= 5; $i++)
+                        <option value="{{ $i }}" @if (isset($ticket) && $ticket->priority == $i)selected="selected"@endif>{{ $i }}</option>
+                    @endfor
+                </select>
+            </div>
+
             <!-- Commentaires -->
         </div>
     </div>
