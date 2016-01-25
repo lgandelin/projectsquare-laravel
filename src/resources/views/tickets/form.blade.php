@@ -48,7 +48,7 @@
 
             <div class="form-group">
                 <label for="title">{{ trans('gateway::tickets.due_date') }}</label>
-                <input class="form-control" type="text" placeholder="{{ trans('gateway::tickets.due_date_placeholder') }}" name="due_date" @if (isset($ticket_due_date))value="{{ $ticket_due_date }}"@endif />
+                <input class="form-control datepicker" type="text" placeholder="{{ trans('gateway::tickets.due_date_placeholder') }}" name="due_date" @if (isset($ticket_due_date))value="{{ $ticket_due_date }}"@endif />
             </div>
 
             <!-- Statut -->
