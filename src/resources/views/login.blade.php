@@ -14,6 +14,13 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
+
+                    @if (isset($error))
+                        <div class="info bg-danger">
+                            {{ $error }}
+                        </div>
+                    @endif
+
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('login_handler') }}">
                         {!! csrf_field() !!}
 
@@ -21,7 +28,7 @@
                             <label class="col-md-4 control-label">Adresse email</label>
 
                             <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" />
+                                <input type="email" class="form-control" name="email" autocomplete="off" />
                             </div>
                         </div>
 
@@ -29,7 +36,7 @@
                             <label class="col-md-4 control-label">Mot de passe</label>
 
                             <div class="col-md-6">
-                                <input type="password" class="form-control" name="password" />
+                                <input type="password" class="form-control" name="password" autocomplete="off" />
                             </div>
                         </div>
 
