@@ -57,7 +57,7 @@
                     <select class="form-control" name="status_id">
                         <option value="">{{ trans('gateway::generic.choose_value') }}</option>
                         @foreach ($ticket_status as $ticket_status)
-                            <option value="{{ $ticket_status->id }}" @if (isset($ticket) && $ticket->states[count($ticket->states) - 1]->status_id == $ticket_status->id)selected="selected"@endif>{{ $ticket_status->name }}</option>
+                            <option value="{{ $ticket_status->id }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->status_id == $ticket_status->id)selected="selected"@endif>{{ $ticket_status->name }}</option>
                         @endforeach
                     </select>
                 @else
@@ -68,14 +68,14 @@
             <div class="form-group">
                 <label for="allocated_user_id">{{ trans('gateway::tickets.allocated_user') }}</label>
                 @if (isset($users))
-                <select class="form-control" name="allocated_user_id">
-                    <option value="">{{ trans('gateway::generic.choose_value') }}</option>
-                    @foreach ($users as $user)
-                        <option value="{{ $user->id }}" @if (isset($ticket) && $ticket->states[count($ticket->states) - 1]->allocated_user_id == $user->id)selected="selected"@endif>{{ $user->first_name }} {{ $user->last_name }}</option>
-                    @endforeach
-                </select>
+                    <select class="form-control" name="allocated_user_id">
+                        <option value="">{{ trans('gateway::generic.choose_value') }}</option>
+                        @foreach ($users as $user)
+                            <option value="{{ $user->id }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->allocated_user_id == $user->id)selected="selected"@endif>{{ $user->first_name }} {{ $user->last_name }}</option>
+                        @endforeach
+                    </select>
                 @else
-                <div class="info bg-info">{{ trans('gateway::tickets.no_user_yet') }}</div>
+                    <div class="info bg-info">{{ trans('gateway::tickets.no_user_yet') }}</div>
                 @endif
             </div>
 
@@ -84,12 +84,10 @@
                 <select class="form-control" name="priority">
                     <option value="">{{ trans('gateway::generic.choose_value') }}</option>
                     @for ($i = 1; $i <= 5; $i++)
-                        <option value="{{ $i }}" @if (isset($ticket) && $ticket->states[count($ticket->states) - 1]->priority == $i)selected="selected"@endif>{{ $i }}</option>
+                        <option value="{{ $i }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->priority == $i)selected="selected"@endif>{{ $i }}</option>
                     @endfor
                 </select>
             </div>
-
-            <!-- Commentaires -->
         </div>
     </div>
 

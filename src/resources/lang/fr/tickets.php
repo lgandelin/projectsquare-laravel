@@ -25,7 +25,10 @@ return [
     'type' => 'Type de ticket',
     'status' => 'Statut du ticket',
     'priority' => 'Priorité',
+    'author_user' => 'Créateur du ticket',
     'allocated_user' => 'Utilisateur assigné',
+
+    'ticket_history' => 'Historique du ticket',
 
     'ticket_not_found' => 'Une erreur est survenue lors de la récupération de ce ticket',
     'no_project_yet' => 'Vous n\'avez pas encore créé de projet',
