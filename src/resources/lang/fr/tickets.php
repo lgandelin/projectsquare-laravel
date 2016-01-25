@@ -16,6 +16,7 @@ return [
 
     'ticket' => 'Ticket',
     'project' => 'Projet',
+    'client' => 'Client',
     'title' => 'Titre',
     'title_placeholder' => 'Intitulé de votre ticket',
     'description' => 'Description',
