@@ -14,7 +14,7 @@
                 @endforeach
             </select>
         @else
-            <div class="info bg-info">Vous n'avez pas encore créé de clients</div>
+            <div class="info bg-info">{{ trans('gateway::no_client_yet') }}</div>
         @endif
     </div>
 

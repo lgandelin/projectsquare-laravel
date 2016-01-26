@@ -16,7 +16,7 @@
 
     <div class="form-group">
         <label for="password">{{ trans('gateway::users.password') }}</label>
-        <input class="form-control" type="password" placeholder="{{ trans('gateway::users.password_placeholder') }}" name="password" autocomplete="off" />
+        <input class="form-control" type="password" placeholder="@if (isset($user_id)){{ trans('gateway::users.password_leave_empty') }}@else{{ trans('gateway::users.password') }}@endif" name="password" autocomplete="off" />
     </div>
 
     <div class="form-group">
