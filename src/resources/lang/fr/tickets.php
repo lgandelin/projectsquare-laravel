@@ -25,7 +25,7 @@ return [
     'type' => 'Type de ticket',
     'status' => 'Statut du ticket',
     'priority' => 'Priorité',
-    'author_user' => 'Créateur du ticket',
+    'author_user' => 'Auteur',
     'allocated_user' => 'Utilisateur assigné',
     'comments' => 'Commentaires',
 
