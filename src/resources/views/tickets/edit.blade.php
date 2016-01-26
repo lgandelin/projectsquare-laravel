@@ -68,7 +68,7 @@
 
                 <div class="form-group">
                     <label for="description">{{ trans('gateway::tickets.description') }}</label>
-                    <textarea class="form-control" placeholder="{{ trans('gateway::tickets.description') }}" name="description">@if (isset($ticket->description)){{ $ticket->description }}@endif</textarea>
+                    <textarea class="form-control" rows="4" placeholder="{{ trans('gateway::tickets.description') }}" name="description">@if (isset($ticket->description)){{ $ticket->description }}@endif</textarea>
                 </div>
             </div>
         </div>
@@ -96,7 +96,7 @@
                         @endforeach
                     </select>
                     @else
-                    <div class="info bg-info">{{ trans('gateway::tickets.no_ticket_status_yet') }}</div>
+                        <div class="info bg-info">{{ trans('gateway::tickets.no_ticket_status_yet') }}</div>
                     @endif
                 </div>
 
@@ -110,8 +110,13 @@
                         @endforeach
                     </select>
                     @else
-                    <div class="info bg-info">{{ trans('gateway::tickets.no_user_yet') }}</div>
+                        <div class="info bg-info">{{ trans('gateway::tickets.no_user_yet') }}</div>
                     @endif
+                </div>
+
+                <div class="form-group">
+                    <label for="comments">{{ trans('gateway::tickets.comments') }}</label>
+                    <textarea class="form-control" rows="4" placeholder="{{ trans('gateway::tickets.comments') }}" name="comments"></textarea>
                 </div>
 
                 <div class="form-group">
@@ -160,6 +165,7 @@
             <th>{{ trans('gateway::tickets.due_date') }}</th>
             <th>{{ trans('gateway::tickets.priority') }}</th>
             <th>{{ trans('gateway::tickets.status') }}</th>
+            <th>{{ trans('gateway::tickets.comments') }}</th>
         </thead>
         <tbody>
             @foreach ($ticket->states as $i => $ticket_state)
@@ -170,6 +176,7 @@
                     <td>@if ($ticket_state->due_date){{ $ticket_state->due_date }}</span>@endif</td>
                     <td><span class="badge priority{{ $ticket_state->priority }}">{{ $ticket_state->priority }}</span></td>
                     <td>@if ($ticket_state->status)<span class="label label-primary">{{ $ticket_state->status->name }}</span>@endif</td>
+                    <td>{{ $ticket_state->comments }}</td>
                 </tr>
             @endforeach
         </tbody>

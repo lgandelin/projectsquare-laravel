@@ -27,6 +27,7 @@ return [
     'priority' => 'Priorité',
     'author_user' => 'Créateur du ticket',
     'allocated_user' => 'Utilisateur assigné',
+    'comments' => 'Commentaires',
 
     'ticket_history' => 'Historique du ticket',
     'ticket_state' => 'Etat du ticket',
