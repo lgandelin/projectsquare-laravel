@@ -92,7 +92,7 @@
                     <select class="form-control" name="status_id">
                         <option value="">{{ trans('gateway::generic.choose_value') }}</option>
                         @foreach ($ticket_status as $ticket_status)
-                        <option value="{{ $ticket_status->id }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->status_id == $ticket_status->id)selected="selected"@endif>{{ $ticket_status->name }}</option>
+                            <option value="{{ $ticket_status->id }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->status_id == $ticket_status->id)selected="selected"@endif>{{ $ticket_status->name }}</option>
                         @endforeach
                     </select>
                     @else
@@ -106,7 +106,7 @@
                     <select class="form-control" name="allocated_user_id">
                         <option value="">{{ trans('gateway::generic.choose_value') }}</option>
                         @foreach ($users as $user)
-                        <option value="{{ $user->id }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->allocated_user_id == $user->id)selected="selected"@endif>{{ $user->first_name }} {{ $user->last_name }}</option>
+                            <option value="{{ $user->id }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->allocated_user_id == $user->id)selected="selected"@endif>{{ $user->first_name }} {{ $user->last_name }}</option>
                         @endforeach
                     </select>
                     @else
@@ -123,7 +123,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="title">{{ trans('gateway::tickets.due_date') }}</label>
-                    <input class="form-control datepicker" type="text" placeholder="{{ trans('gateway::tickets.due_date_placeholder') }}" name="due_date" @if (isset($ticket->due_date))value="{{ $ticket->due_date }}"@endif autocomplete="off" />
+                    <input class="form-control datepicker" type="text" placeholder="{{ trans('gateway::tickets.due_date_placeholder') }}" name="due_date" @if (isset($ticket->states[0]->due_date))value="{{ $ticket->states[0]->due_date }}"@endif autocomplete="off" />
                 </div>
 
                 <div class="form-group">
@@ -157,8 +157,9 @@
             <th>{{ trans('gateway::generic.creation_date') }}</th>
             <th>{{ trans('gateway::tickets.author_user') }}</th>
             <th>{{ trans('gateway::tickets.allocated_user') }}</th>
-            <th>{{ trans('gateway::tickets.status') }}</th>
+            <th>{{ trans('gateway::tickets.due_date') }}</th>
             <th>{{ trans('gateway::tickets.priority') }}</th>
+            <th>{{ trans('gateway::tickets.status') }}</th>
         </thead>
         <tbody>
             @foreach ($ticket->states as $i => $ticket_state)
@@ -166,8 +167,9 @@
                     <td>{{ date('d/m/Y H:i', strtotime($ticket_state->created_at)) }}</td>
                     <td>@if ($ticket_state->author_user){{ $ticket_state->author_user->first_name }} {{ $ticket_state->author_user->last_name }}@endif</td>
                     <td>@if ($ticket_state->allocated_user){{ $ticket_state->allocated_user->first_name }} {{ $ticket_state->allocated_user->last_name }}@endif</td>
-                    <td>@if ($ticket_state->status)<span class="label label-primary">{{ $ticket_state->status->name }}</span>@endif</td>
+                    <td>@if ($ticket_state->due_date){{ $ticket_state->due_date }}</span>@endif</td>
                     <td><span class="badge priority{{ $ticket_state->priority }}">{{ $ticket_state->priority }}</span></td>
+                    <td>@if ($ticket_state->status)<span class="label label-primary">{{ $ticket_state->status->name }}</span>@endif</td>
                 </tr>
             @endforeach
         </tbody>

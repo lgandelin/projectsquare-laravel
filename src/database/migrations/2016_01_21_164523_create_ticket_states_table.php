@@ -19,6 +19,7 @@ class CreateTicketStatesTable extends Migration
             $table->integer('allocated_user_id')->nullable();
             $table->integer('status_id')->nullable();
             $table->integer('priority')->nullable();
+            $table->date('due_date')->nullable();
             $table->text('comments')->nullable();
             $table->timestamps();
         });

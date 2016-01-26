@@ -17,7 +17,6 @@ class CreateTicketsTable extends Migration
             $table->integer('project_id')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
-            $table->date('due_date')->nullable();
             $table->integer('type_id')->nullable();
             $table->timestamps();
         });
