@@ -19,7 +19,7 @@ return [
     'last_name' => 'Nom',
     'email' => 'Email',
     'password' => 'Mot de passe',
-    'password_placeholder' => 'Laisser vide pour ne pas modifier le mot de passe',
+    'password_leave_empty' => 'Laisser vide pour ne pas modifier le mot de passe',
     'user' => 'Utilisateur',
     'client' => 'Client',
 
