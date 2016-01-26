@@ -29,6 +29,8 @@ return [
     'allocated_user' => 'Utilisateur assigné',
 
     'ticket_history' => 'Historique du ticket',
+    'ticket_state' => 'Etat du ticket',
+    'ticket_data' => 'Informations générales',
 
     'ticket_not_found' => 'Une erreur est survenue lors de la récupération de ce ticket',
     'no_project_yet' => 'Vous n\'avez pas encore créé de projet',

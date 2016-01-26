@@ -23,6 +23,7 @@
         </div>
     @endif
 
+    <h3>{{ trans('gateway::tickets.ticket_data') }}</h3>
     <form action="{{ route('tickets_update_infos') }}" method="post">
         <div class="row">
             <div class="col-md-6">
@@ -79,7 +80,8 @@
         {!! csrf_field() !!}
     </form>
 
-    <hr/>
+    <p>&nbsp;</p>
+    <h3>{{ trans('gateway::tickets.ticket_state') }}</h3>
 
     <form action="{{ route('tickets_update') }}" method="post">
         <div class="row">
@@ -149,7 +151,7 @@
 
     <p>&nbsp;</p>
 
-    <h2 class="page-header">{{ trans('gateway::tickets.ticket_history') }}</h2>
+    <h3>{{ trans('gateway::tickets.ticket_history') }}</h3>
     <table class="table table-striped table-bordered">
         <thead>
             <th>{{ trans('gateway::generic.creation_date') }}</th>

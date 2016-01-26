@@ -3,7 +3,7 @@
         <ul>
             <li><h3><a href="{{ route('dashboard') }}">Tableau de bord</a></h3></li>
             <li>
-                <h3><a href="{{ route('projects') }}">Projets</a></h3>
+                <h3><!--<a href="{{ route('projects') }}">Projets</a>-->Projets</h3>
                 <ul>
                     @foreach ($logged_in_user->projects as $project)
                     <li>
@@ -16,13 +16,13 @@
                 <h3>Utilitaires</h3>
                 <ul>
                     <li><a href="{{ route('tickets_index') }}">Tickets</a></li>
-                    <li><a href="{{ route('messages') }}">Messages</a></li>
-                    <li><a href="{{ route('calendar') }}">Calendrier</a></li>
-                    <li><a href="{{ route('todo') }}">To do</a></li>
+                    <li><!--<a href="{{ route('messages') }}">Messages</a>-->Messages</li>
+                    <li><!--<a href="{{ route('calendar') }}">Calendrier</a>-->Calendrier</li>
+                    <li><!--<a href="{{ route('todo') }}">To do</a>-->To do</li>
                 </ul>
             </li>
             <li>
-                <h3><a href="{{ route('agency_index') }}">Agence</a></h3>
+                <h3><!--<a href="{{ route('agency_index') }}">Agence</a>-->Agence</h3>
                 <ul>
                     <li><a href="{{ route('clients_index') }}">Clients</a></li>
                     <li><a href="{{ route('projects_index') }}">Projets</a></li>
