@@ -6,7 +6,7 @@
     <nav class="pull-right">
         <ul class="notifications">
             <li>
-                {{ $logged_in_user->first_name }} {{ $logged_in_user->last_name }} <a href="{{ route('logout') }}">Se déconnecter</a>
+                {{ $logged_in_user->complete_name }} <a href="{{ route('logout') }}">Se déconnecter</a>
             </li>
             <li>
                 <a href="#">Derniers messages (3)</a>

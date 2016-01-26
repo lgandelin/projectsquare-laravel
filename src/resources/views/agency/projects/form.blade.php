@@ -44,7 +44,7 @@
         <tbody>
             @foreach ($project->users as $user)
                 <tr>
-                    <td>{{ $user->first_name }} {{ $user->last_name }}</td>
+                    <td>{{ $user->complete_name }}</td>
                     <td>{{ $user->role->name }}</td>
                     <td><a href="{{ route('projects_delete_user', ['project_id' => $project_id, 'user_id' => $user->id]) }}" class="btn btn-danger">{{ trans('gateway::generic.delete') }}</a></td>
                 </tr>
@@ -61,7 +61,7 @@
                     <select class="form-control" name="user_id">
                         <option value="">{{ trans('gateway::generic.choose_value') }}</option>
                         @foreach ($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->first_name }} {{ $user->last_name }}</option>
+                            <option value="{{ $user->id }}">{{ $user->complete_name }}</option>
                         @endforeach
                     </select>
                 @endif
@@ -85,10 +85,9 @@
                 <input type="submit" class="btn btn-success" value="{{ trans('gateway::generic.add') }}" style="margin-top: 2.5rem"/>
             </div>
         </div>
-    </div>
 
-    <input type="hidden" name="project_id" value="{{ $project_id }}" />
+        <input type="hidden" name="project_id" value="{{ $project_id }}" />
 
-    {!! csrf_field() !!}
+        {!! csrf_field() !!}
     </form>
 @endif

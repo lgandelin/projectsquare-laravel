@@ -84,7 +84,7 @@
                         <select class="form-control" name="allocated_user_id">
                             <option value="">{{ trans('gateway::generic.choose_value') }}</option>
                             @foreach ($users as $user)
-                            <option value="{{ $user->id }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->allocated_user_id == $user->id)selected="selected"@endif>{{ $user->first_name }} {{ $user->last_name }}</option>
+                            <option value="{{ $user->id }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->allocated_user_id == $user->id)selected="selected"@endif>{{ $user->complete_name }}</option>
                             @endforeach
                         </select>
                     @else

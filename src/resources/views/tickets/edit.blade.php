@@ -106,7 +106,7 @@
                     <select class="form-control" name="allocated_user_id">
                         <option value="">{{ trans('gateway::generic.choose_value') }}</option>
                         @foreach ($users as $user)
-                            <option value="{{ $user->id }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->allocated_user_id == $user->id)selected="selected"@endif>{{ $user->first_name }} {{ $user->last_name }}</option>
+                            <option value="{{ $user->id }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->allocated_user_id == $user->id)selected="selected"@endif>{{ $user->complete_name }}</option>
                         @endforeach
                     </select>
                     @else
@@ -171,8 +171,8 @@
             @foreach ($ticket->states as $i => $ticket_state)
                 <tr>
                     <td>{{ date('d/m/Y H:i', strtotime($ticket_state->created_at)) }}</td>
-                    <td>@if ($ticket_state->author_user){{ $ticket_state->author_user->first_name }} {{ $ticket_state->author_user->last_name }}@endif</td>
-                    <td>@if ($ticket_state->allocated_user){{ $ticket_state->allocated_user->first_name }} {{ $ticket_state->allocated_user->last_name }}@endif</td>
+                    <td>@if ($ticket_state->author_user){{ $ticket_state->author_user->complete_name }}@endif</td>
+                    <td>@if ($ticket_state->allocated_user){{ $ticket_state->allocated_user->complete_name }}@endif</td>
                     <td>@if ($ticket_state->due_date){{ $ticket_state->due_date }}</span>@endif</td>
                     <td><span class="badge priority{{ $ticket_state->priority }}">{{ $ticket_state->priority }}</span></td>
                     <td>@if ($ticket_state->status)<span class="label label-primary">{{ $ticket_state->status->name }}</span>@endif</td>
