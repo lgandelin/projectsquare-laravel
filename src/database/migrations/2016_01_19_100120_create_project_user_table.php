@@ -15,6 +15,7 @@ class CreateProjectUserTable extends Migration
         Schema::create('user_projects', function (Blueprint $table) {
             $table->integer('user_id');
             $table->integer('project_id');
+            $table->integer('role_id');
         });
     }
 
