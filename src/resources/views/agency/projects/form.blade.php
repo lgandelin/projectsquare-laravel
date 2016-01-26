@@ -29,3 +29,66 @@
 
     {!! csrf_field() !!}
 </form>
+
+@if (isset($project_id))
+    <p>&nbsp;</p>
+    <h3>{{ trans('gateway::projects.project_resources') }}</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>{{ trans('gateway::users.user') }}</th>
+                <th>{{ trans('gateway::roles.role') }}</th>
+                <th>{{ trans('gateway::generic.action') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($project->users as $user)
+                <tr>
+                    <td>{{ $user->first_name }} {{ $user->last_name }}</td>
+                    <td>{{ $user->role->name }}</td>
+                    <td><a href="{{ route('projects_delete_user', ['project_id' => $project_id, 'user_id' => $user->id]) }}" class="btn btn-danger">{{ trans('gateway::generic.delete') }}</a></td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <h3>{{ trans('gateway::projects.add_resource') }}</h3>
+    <form action="{{ route('projects_add_user') }}" method="post">
+        <div class="row">
+            <div class="col-md-3">
+                <label for="user_id">{{ trans('gateway::users.user') }}</label>
+                @if (isset($users))
+                    <select class="form-control" name="user_id">
+                        <option value="">{{ trans('gateway::generic.choose_value') }}</option>
+                        @foreach ($users as $user)
+                            <option value="{{ $user->id }}">{{ $user->first_name }} {{ $user->last_name }}</option>
+                        @endforeach
+                    </select>
+                @endif
+            </div>
+
+            <div class="col-md-3">
+                <label for="role_id">{{ trans('gateway::roles.role') }}</label>
+                @if (isset($roles))
+                    <select class="form-control" name="role_id">
+                        <option value="">{{ trans('gateway::generic.choose_value') }}</option>
+                        @foreach ($roles as $role)
+                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        @endforeach
+                    </select>
+                @else
+                    <div class="info bg-info">{{ trans('gateway::no_role_yet') }}</div>
+                @endif
+            </div>
+
+            <div class="col-md-3">
+                <input type="submit" class="btn btn-success" value="{{ trans('gateway::generic.add') }}" style="margin-top: 2.5rem"/>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" name="project_id" value="{{ $project_id }}" />
+
+    {!! csrf_field() !!}
+    </form>
+@endif
