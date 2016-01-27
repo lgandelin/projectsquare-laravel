@@ -34,19 +34,23 @@
         </thead>
 
         <tbody>
-        @foreach ($projects as $project)
-        <tr>
-            <td>{{ $project->id }}</td>
-            <td>{{ $project->name }}</td>
-            <td>{{ $project->client->name }}</td>
-            <td>
-                <a href="{{ route('projects_edit', ['id' => $project->id]) }}" class="btn btn-primary">{{ trans('gateway::generic.edit') }}</a>
-                <a href="{{ route('projects_delete', ['id' => $project->id]) }}" class="btn btn-danger">{{ trans('gateway::generic.delete') }}</a>
-            </td>
-        </tr>
-        @endforeach
+            @foreach ($projects as $project)
+                <tr>
+                    <td>{{ $project->id }}</td>
+                    <td>{{ $project->name }}</td>
+                    <td>{{ $project->client->name }}</td>
+                    <td>
+                        <a href="{{ route('projects_edit', ['id' => $project->id]) }}" class="btn btn-primary">{{ trans('gateway::generic.edit') }}</a>
+                        <a href="{{ route('projects_delete', ['id' => $project->id]) }}" class="btn btn-danger">{{ trans('gateway::generic.delete') }}</a>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
+
+    <div class="text-center">
+        {!! $projects->render() !!}
+    </div>
 
     <a href="{{ route('projects_add') }}" class="btn btn-success">{{ trans('gateway::projects.add_project') }}</a>
 @endsection

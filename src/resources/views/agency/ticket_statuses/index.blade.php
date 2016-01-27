@@ -46,5 +46,9 @@
         </tbody>
     </table>
 
+    <div class="text-center">
+        {!! $ticket_statuses->render() !!}
+    </div>
+
     <a href="{{ route('ticket_statuses_add') }}" class="btn btn-success">{{ trans('gateway::ticket_statuses.add_ticket_status') }}</a>
 @endsection

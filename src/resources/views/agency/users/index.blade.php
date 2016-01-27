@@ -50,5 +50,9 @@
         </tbody>
     </table>
 
+    <div class="text-center">
+        {!! $users->render() !!}
+    </div>
+
     <a href="{{ route('users_add') }}" class="btn btn-success">{{ trans('gateway::users.add_user') }}</a>
 @endsection

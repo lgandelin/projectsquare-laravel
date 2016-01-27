@@ -46,5 +46,9 @@
         </tbody>
     </table>
 
+    <div class="text-center">
+        {!! $roles->render() !!}
+    </div>
+
     <a href="{{ route('roles_add') }}" class="btn btn-success">{{ trans('gateway::roles.add_role') }}</a>
 @endsection

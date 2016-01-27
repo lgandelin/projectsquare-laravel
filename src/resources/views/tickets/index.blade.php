@@ -59,5 +59,9 @@
         </tbody>
     </table>
 
+    <div class="text-center">
+        {!! $tickets->render() !!}
+    </div>
+
     <a href="{{ route('tickets_add') }}" class="btn btn-success">{{ trans('gateway::tickets.add_ticket') }}</a>
 @endsection
