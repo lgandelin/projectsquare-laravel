@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+                <div class="panel-heading">{{ trans('gateway::login.panel_title') }}</div>
                 <div class="panel-body">
 
                     @if (isset($error))
@@ -53,7 +53,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i>Se connecter
+                                    <i class="fa fa-btn fa-sign-in"></i>Se connecter <span class="glyphicon glyphicon-log-in" style="margin-left: 1rem"></span>
                                 </button>
 
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">Mot de passe oublié ?</a>
