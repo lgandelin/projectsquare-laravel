@@ -6,14 +6,15 @@
     <nav class="pull-right">
         <ul class="notifications">
             <li>
-                {{ $logged_in_user->first_name }} {{ $logged_in_user->last_name }} <a href="{{ route('logout') }}">Se déconnecter</a>
-            </li>
-            <li>
-                <a href="#">Derniers messages (3)</a>
+                <a href="#">Derniers messages <span class="badge" style="background: #DF5A49;">3</span></a>
             </li>
 
             <li>
-                <a href="#">Calendrier (2)</a>
+                <a href="#">Calendrier <span class="badge" style="background: #DF5A49;">2</span></a>
+            </li>
+
+            <li>
+                <a href="{{ route('logout') }}">Se déconnecter <span class="glyphicon glyphicon-log-out"</a>
             </li>
         </ul>
     </nav>

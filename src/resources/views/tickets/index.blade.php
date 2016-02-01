@@ -46,9 +46,9 @@
                     <td><span class="label label-primary">{{ $ticket->project->client->name }}</span></td>
                     <td>{{ $ticket->project->name }}</td>
                     <td><span class="badge">@if (isset($ticket->type)){{ $ticket->type->name }}@endif</span></td>
-                    <td>@if (isset($ticket->states[count($ticket->states) - 1])){{ $ticket->states[count($ticket->states) - 1]->author_user->first_name }} {{ $ticket->states[count($ticket->states) - 1]->author_user->last_name }}@endif</td>
-                    <td>@if (isset($ticket->states[0])){{ $ticket->states[0]->allocated_user->first_name }} {{ $ticket->states[0]->allocated_user->last_name }}@endif</td>
-                    <td>@if (isset($ticket->states[0])){{ $ticket->states[0]->status->name}}@endif</td>
+                    <td>@if (isset($ticket->states[count($ticket->states) - 1])){{ $ticket->states[count($ticket->states) - 1]->author_user->complete_name }}@endif</td>
+                    <td>@if (isset($ticket->states[0]) && $ticket->states[0]->allocated_user){{ $ticket->states[0]->allocated_user->complete_name }}@endif</td>
+                    <td>@if (isset($ticket->states[0]) && $ticket->states[0]->status){{ $ticket->states[0]->status->name}}@endif</td>
                     <td>@if (isset($ticket->states[0]))<span class="badge priority{{ $ticket->states[0]->priority }}">{{ $ticket->states[0]->priority }}</span>@endif</td>
                     <td>
                         <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}" class="btn btn-primary">{{ trans('gateway::generic.edit') }}</a>
@@ -58,6 +58,10 @@
             @endforeach
         </tbody>
     </table>
+
+    <div class="text-center">
+        {!! $tickets->render() !!}
+    </div>
 
     <a href="{{ route('tickets_add') }}" class="btn btn-success">{{ trans('gateway::tickets.add_ticket') }}</a>
 @endsection

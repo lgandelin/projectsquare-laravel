@@ -7,7 +7,7 @@
                 <ul>
                     @foreach ($logged_in_user->projects as $project)
                     <li>
-                        {{ $project->client->name }}
+                        <span class="label label-primary">{{ $project->client->name }}</span> {{ $project->name }}
                     </li>
                     @endforeach
                 </ul>

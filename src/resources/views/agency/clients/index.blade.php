@@ -33,18 +33,22 @@
         </thead>
 
         <tbody>
-        @foreach ($clients as $client)
-            <tr>
-                <td>{{ $client->id }}</td>
-                <td>{{ $client->name }}</td>
-                <td>
-                    <a href="{{ route('clients_edit', ['id' => $client->id]) }}" class="btn btn-primary">{{ trans('gateway::generic.edit') }}</a>
-                    <a href="{{ route('clients_delete', ['id' => $client->id]) }}" class="btn btn-danger">{{ trans('gateway::generic.delete') }}</a>
-                </td>
-            </tr>
-        @endforeach
+            @foreach ($clients as $client)
+                <tr>
+                    <td>{{ $client->id }}</td>
+                    <td>{{ $client->name }}</td>
+                    <td>
+                        <a href="{{ route('clients_edit', ['id' => $client->id]) }}" class="btn btn-primary">{{ trans('gateway::generic.edit') }}</a>
+                        <a href="{{ route('clients_delete', ['id' => $client->id]) }}" class="btn btn-danger">{{ trans('gateway::generic.delete') }}</a>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
+
+    <div class="text-center">
+        {!! $clients->render() !!}
+    </div>
 
     <a href="{{ route('clients_add') }}" class="btn btn-success">{{ trans('gateway::clients.add_client') }}</a>
 @endsection

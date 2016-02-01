@@ -3,6 +3,7 @@
 return [
     'back' => 'Retour',
     'action' => 'Action',
+    'add' => 'Ajouter',
     'edit' => 'Editer',
     'delete' => 'Supprimer',
     'valid' => 'Valider',
