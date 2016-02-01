@@ -6576,16 +6576,6 @@ ul {
   .left-bar a:hover {
     text-decoration: none; }
 
-.dashboard-content .block h3 {
-  margin-bottom: 2rem; }
-
-.dashboard-content .block .block-content {
-  display: block;
-  width: 100%;
-  min-height: 250px;
-  padding: 1rem 2rem;
-  background: #fefefe; }
-
 .table > tbody > tr > td {
   vertical-align: middle; }
 
@@ -6613,3 +6603,13 @@ ul {
 
 .priority5 {
   background: #DF5A49; }
+
+.dashboard-content .block h3 {
+  margin-bottom: 2rem; }
+
+.dashboard-content .block .block-content {
+  display: block;
+  width: 100%;
+  min-height: 250px;
+  padding: 1rem 2rem;
+  background: #fefefe; }

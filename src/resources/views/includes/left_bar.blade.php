@@ -3,11 +3,11 @@
         <ul>
             <li><h3><a href="{{ route('dashboard') }}">Tableau de bord</a></h3></li>
             <li>
-                <h3><!--<a href="{{ route('projects') }}">Projets</a>-->Projets</h3>
+                <h3>Projets</h3>
                 <ul>
                     @foreach ($logged_in_user->projects as $project)
                     <li>
-                        <span class="label label-primary">{{ $project->client->name }}</span> {{ $project->name }}
+                        <a href="{{ route('project_index', ['id' => $project->id]) }}"><span class="label label-primary">{{ $project->client->name }}</span> {{ $project->name }}</a>
                     </li>
                     @endforeach
                 </ul>
