@@ -26,7 +26,7 @@
                     <li><a href="{{ route('tickets_index') }}">Tickets</a></li>
                     <li><!--<a href="{{ route('messages') }}">Messages</a>-->Messages</li>
                     <li><!--<a href="{{ route('calendar') }}">Calendrier</a>-->Calendrier</li>
-                    <li><!--<a href="{{ route('todo') }}">To do</a>-->To do</li>
+                    <li>To do</li>
                 </ul>
             </li>
             <li>
