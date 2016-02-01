@@ -1,3 +1,15 @@
-.project-bar {
+.project-template {
+    .project-bar {
 
+    }
+
+    .cms-iframe {
+        width: 100%;
+        height: 950px;
+        background: url('../img/loading.gif') center 400px no-repeat;
+    }
+
+    .project-name {
+        font-size: 1.4rem;
+    }
 }

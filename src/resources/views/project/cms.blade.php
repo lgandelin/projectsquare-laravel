@@ -1,14 +1,19 @@
 @extends('gateway::default')
 
 @section('content')
-@include('gateway::includes.project_bar')
+    @include('gateway::includes.project_bar', ['active' => 'cms'])
 
-<h1 class="page-header">{{ $project->client->name }} - {{ $project->name }}</h1>
+    <div class="project-template">
+        <h1 class="page-header">{{ trans('gateway::project.cms') }} <div class="pull-right project-name"><span class="label label-primary">{{ $project->client->name }}</span> {{ $project->name }}</div></h1>
 
-<div class="col-md-12">
-    <h3>{{ trans('gateway::project.cms') }}</h3>
-
-    {{ $content }}
-</div>
-
+        <iframe id="cms-iframe" class="cms-iframe" src="{{ $cms_url }}" frameborder="0"></iframe>
+    </div>
 @endsection
+
+<script type="text/javascript">
+    function resize()
+    {
+        var iframe = document.getElementById('cms-iframe');
+        iframe.height = iframe.contentWindow.document.body.scrollHeight;
+    }
+</script>
