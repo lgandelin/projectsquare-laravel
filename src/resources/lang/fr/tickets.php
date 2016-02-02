@@ -9,6 +9,7 @@ return [
     'edit_ticket_error' => 'Une erreur est survenue lors de la modification du ticket',
     'delete_ticket_success' => 'Ticket supprimé avec succès',
     'delete_ticket_error' => 'Une erreur est survenue lors de la suppression du ticket',
+    'user_not_authorized_error' => 'Vous n\'êtes pas autorisés à consulter ce ticket. Veuillez vérifier que vous appartenez au projet',
 
     'add_ticket' => 'Ajouter un ticket',
     'edit_ticket' => 'Editer un ticket',
