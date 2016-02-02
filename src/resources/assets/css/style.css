@@ -6649,15 +6649,18 @@ ul {
 .btn .glyphicon {
   margin-right: 0.5rem; }
 
-.dashboard-content .block h3 {
-  margin-bottom: 2rem; }
-
-.dashboard-content .block .block-content {
+.block-content {
   display: block;
   width: 100%;
   min-height: 250px;
   padding: 1rem 2rem;
   background: #fefefe; }
+
+.task-status-completed {
+  text-decoration: line-through; }
+
+.dashboard-content .block h3 {
+  margin-bottom: 2rem; }
 
 .project-template .cms-iframe {
   width: 100%;
