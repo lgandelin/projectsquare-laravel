@@ -6568,6 +6568,8 @@ ul {
   padding: 2rem 0 2rem 0;
   background: #f7f7f7;
   border-radius: 4px; }
+  .left-bar h3 {
+    font-size: 1.9rem; }
   .left-bar > ul > li {
     list-style: none;
     margin-bottom: 2rem; }

@@ -45,7 +45,7 @@
                             </tbody>
                         </table>
                         <a href="{{ route('tickets_add') }}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> {{ trans('gateway::tickets.add_ticket') }}</a>
-                        <a href="{{ route('tickets_index') }}" class="pull-right"><span class="glyphicon glyphicon-list-alt"></span> {{ trans('gateway::tickets.see_tickets') }}</a>
+                        <a href="{{ route('tickets_index') }}" class="btn btn-default pull-right"><span class="glyphicon glyphicon-list-alt"></span> {{ trans('gateway::tickets.see_tickets') }}</a>
                     </div>
                 </div>
             </div>
