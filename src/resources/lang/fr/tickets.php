@@ -22,8 +22,8 @@ return [
     'description' => 'Description',
     'due_date' => 'Echéance',
     'due_date_placeholder' => 'ex : 14/05/2016',
-    'type' => 'Type de ticket',
-    'status' => 'Statut du ticket',
+    'type' => 'Type',
+    'status' => 'Statut',
     'priority' => 'Priorité',
     'author_user' => 'Auteur',
     'allocated_user' => 'Utilisateur assigné',
@@ -32,6 +32,9 @@ return [
     'ticket_history' => 'Historique du ticket',
     'ticket_state' => 'Etat du ticket',
     'ticket_data' => 'Informations générales',
+
+    'see_ticket' => 'voir le ticket',
+    'see_tickets' => 'voir tous les tickets',
 
     'ticket_not_found' => 'Une erreur est survenue lors de la récupération de ce ticket',
     'no_project_yet' => 'Vous n\'avez pas encore créé de projet',

@@ -48,11 +48,11 @@
                     <td><span class="badge">@if (isset($ticket->type)){{ $ticket->type->name }}@endif</span></td>
                     <td>@if (isset($ticket->states[count($ticket->states) - 1])){{ $ticket->states[count($ticket->states) - 1]->author_user->complete_name }}@endif</td>
                     <td>@if (isset($ticket->states[0]) && $ticket->states[0]->allocated_user){{ $ticket->states[0]->allocated_user->complete_name }}@endif</td>
-                    <td>@if (isset($ticket->states[0]) && $ticket->states[0]->status){{ $ticket->states[0]->status->name}}@endif</td>
+                    <td>@if (isset($ticket->states[0]) && $ticket->states[0]->status)<span class="status status-{{ $ticket->states[0]->status->id }}">{{ $ticket->states[0]->status->name}}</span>@endif</td>
                     <td>@if (isset($ticket->states[0]))<span class="badge priority{{ $ticket->states[0]->priority }}">{{ $ticket->states[0]->priority }}</span>@endif</td>
                     <td>
-                        <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}" class="btn btn-primary">{{ trans('gateway::generic.edit') }}</a>
-                        <a href="{{ route('tickets_delete', ['id' => $ticket->id]) }}" class="btn btn-danger">{{ trans('gateway::generic.delete') }}</a>
+                        <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> {{ trans('gateway::generic.edit') }}</a>
+                        <a href="{{ route('tickets_delete', ['id' => $ticket->id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ trans('gateway::generic.delete') }}</a>
                     </td>
                 </tr>
             @endforeach
@@ -63,5 +63,5 @@
         {!! $tickets->render() !!}
     </div>
 
-    <a href="{{ route('tickets_add') }}" class="btn btn-success">{{ trans('gateway::tickets.add_ticket') }}</a>
+    <a href="{{ route('tickets_add') }}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> {{ trans('gateway::tickets.add_ticket') }}</a>
 @endsection

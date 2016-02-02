@@ -7,7 +7,9 @@
                 <ul>
                     @foreach ($logged_in_user->projects as $project)
                     <li>
-                        <a href="{{ route('project_index', ['id' => $project->id]) }}"><span class="label @if (isset($current_project_id) && $current_project_id == $project->id)label-primary @else label-default @endif">{{ $project->client->name }}</span> {{ $project->name }}</a>
+                        <a href="{{ route('project_index', ['id' => $project->id]) }}">
+                            <span class="label @if (isset($current_project_id) && $current_project_id == $project->id)label-success @else label-default @endif">{{ $project->client->name }}</span> {{ $project->name }}
+                        </a>
                     </li>
                     @endforeach
                 </ul>

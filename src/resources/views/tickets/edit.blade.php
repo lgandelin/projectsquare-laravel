@@ -47,8 +47,10 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" class="btn btn-success" value="{{ trans('gateway::generic.valid') }}" />
-                    <a href="{{ route('tickets_index') }}" class="btn btn-default">{{ trans('gateway::generic.back') }}</a>
+                    <button type="submit" class="btn btn-success">
+                        <i class="glyphicon glyphicon-ok"></i> {{ trans('gateway::generic.valid') }}
+                    </button>
+                    <a href="{{ route('tickets_index') }}" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('gateway::generic.back') }}</a>
                 </div>
             </div>
             <div class="col-md-6">
@@ -120,8 +122,10 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" class="btn btn-success" value="{{ trans('gateway::generic.valid') }}" />
-                    <a href="{{ route('tickets_index') }}" class="btn btn-default">{{ trans('gateway::generic.back') }}</a>
+                    <button type="submit" class="btn btn-success">
+                        <i class="glyphicon glyphicon-ok"></i> {{ trans('gateway::generic.valid') }}
+                    </button>
+                    <a href="{{ route('tickets_index') }}" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('gateway::generic.back') }}</a>
                 </div>
             </div>
 
@@ -175,7 +179,7 @@
                     <td>@if ($ticket_state->allocated_user){{ $ticket_state->allocated_user->complete_name }}@endif</td>
                     <td>@if ($ticket_state->due_date){{ $ticket_state->due_date }}</span>@endif</td>
                     <td><span class="badge priority{{ $ticket_state->priority }}">{{ $ticket_state->priority }}</span></td>
-                    <td>@if ($ticket_state->status)<span class="label label-primary">{{ $ticket_state->status->name }}</span>@endif</td>
+                    <td>@if ($ticket_state->status)<span class="status status-{{ $ticket_state->status->id }}">{{ $ticket_state->status->name }}</span>@endif</td>
                     <td>{{ $ticket_state->comments }}</td>
                 </tr>
             @endforeach

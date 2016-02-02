@@ -38,8 +38,8 @@
                     <td>{{ $role->id }}</td>
                     <td>{{ $role->name }}</td>
                     <td>
-                        <a href="{{ route('roles_edit', ['id' => $role->id]) }}" class="btn btn-primary">{{ trans('gateway::generic.edit') }}</a>
-                        <a href="{{ route('roles_delete', ['id' => $role->id]) }}" class="btn btn-danger">{{ trans('gateway::generic.delete') }}</a>
+                        <a href="{{ route('roles_edit', ['id' => $role->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> {{ trans('gateway::generic.edit') }}</a>
+                        <a href="{{ route('roles_delete', ['id' => $role->id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ trans('gateway::generic.delete') }}</a>
                     </td>
                 </tr>
             @endforeach

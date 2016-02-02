@@ -3,6 +3,8 @@
         > tr {
             > td {
                 vertical-align: middle;
+                padding: 1.5rem 1rem;
+
             }
         }
     }
@@ -39,4 +41,10 @@
 
 .priority5 {
     background: #DF5A49;
+}
+
+.btn {
+    .glyphicon {
+        margin-right: 0.5rem;
+    }
 }
