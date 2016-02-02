@@ -10,7 +10,7 @@
 
         <div class="row">
             <div class="col-md-2">
-                @include('gateway::includes.left_bar')
+                @include('gateway::includes.left_bar', ['current_project_id' => $current_project->id])
             </div>
 
             <div class="col-md-10">

@@ -6568,6 +6568,8 @@ ul {
   padding: 2rem 0 2rem 0;
   background: #f7f7f7;
   border-radius: 4px; }
+  .left-bar h3 {
+    font-size: 1.9rem; }
   .left-bar > ul > li {
     list-style: none;
     margin-bottom: 2rem; }
@@ -6576,18 +6578,9 @@ ul {
   .left-bar a:hover {
     text-decoration: none; }
 
-.dashboard-content .block h3 {
-  margin-bottom: 2rem; }
-
-.dashboard-content .block .block-content {
-  display: block;
-  width: 100%;
-  min-height: 250px;
-  padding: 1rem 2rem;
-  background: #fefefe; }
-
 .table > tbody > tr > td {
-  vertical-align: middle; }
+  vertical-align: middle;
+  padding: 1.5rem 1rem; }
 
 .block {
   padding: 2rem;
@@ -6613,3 +6606,54 @@ ul {
 
 .priority5 {
   background: #DF5A49; }
+
+.btn .glyphicon {
+  margin-right: 0.5rem; }
+
+.dashboard-content .block h3 {
+  margin-bottom: 2rem; }
+
+.dashboard-content .block .block-content {
+  display: block;
+  width: 100%;
+  min-height: 250px;
+  padding: 1rem 2rem;
+  background: #fefefe; }
+
+.project-template .cms-iframe {
+  width: 100%;
+  height: 950px;
+  background: url("../img/loading.gif") center 400px no-repeat; }
+
+.project-template .project-name {
+  font-size: 1.4rem; }
+
+.status {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.3rem 1rem;
+  border-radius: 0.3rem; }
+
+.status-1 {
+  background: #DF5A49;
+  color: white; }
+
+.status-2 {
+  background: #E27A3F;
+  color: white; }
+
+.status-3 {
+  background: #7ce0ff;
+  color: white; }
+
+.status-4 {
+  background: #45B29D;
+  color: white; }
+
+.status-5 {
+  background: #a1e647;
+  color: white; }
+
+.status-6 {
+  background: #3745ff;
+  color: white; }

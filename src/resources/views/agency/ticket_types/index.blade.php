@@ -38,8 +38,8 @@
                     <td>{{ $ticket_type->id }}</td>
                     <td>{{ $ticket_type->name }}</td>
                     <td>
-                        <a href="{{ route('ticket_types_edit', ['id' => $ticket_type->id]) }}" class="btn btn-primary">{{ trans('gateway::generic.edit') }}</a>
-                        <a href="{{ route('ticket_types_delete', ['id' => $ticket_type->id]) }}" class="btn btn-danger">{{ trans('gateway::generic.delete') }}</a>
+                        <a href="{{ route('ticket_types_edit', ['id' => $ticket_type->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> {{ trans('gateway::generic.edit') }}</a>
+                        <a href="{{ route('ticket_types_delete', ['id' => $ticket_type->id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ trans('gateway::generic.delete') }}</a>
                     </td>
                 </tr>
             @endforeach

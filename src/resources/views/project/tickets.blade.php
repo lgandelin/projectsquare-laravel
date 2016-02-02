@@ -1,34 +1,17 @@
 @extends('gateway::default')
 
 @section('content')
-    <ol class="breadcrumb">
-        <li><a href="{{ route('dashboard') }}">{{ trans('gateway::dashboard.panel_title') }}</a></li>
-        <li class="active">{{ trans('gateway::tickets.tickets_list') }}</li>
-    </ol>
+@include('gateway::includes.project_bar', ['active' => 'tickets'])
 
-    <div class="page-header">
-        <h1>{{ trans('gateway::tickets.tickets_list') }}</h1>
-    </div>
+<div class="project-template">
+    <h1 class="page-header">{{ trans('gateway::project.summary') }} <div class="pull-right project-name"><span class="label label-primary">{{ $project->client->name }}</span> {{ $project->name }}</div></h1>
 
-    @if (isset($error))
-        <div class="info bg-danger">
-            {{ $error }}
-        </div>
-    @endif
-
-    @if (isset($confirmation))
-        <div class="info bg-success">
-            {{ $confirmation }}
-        </div>
-    @endif
-
+    <h3>{{ trans('gateway::project.tickets') }}</h3>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>#</th>
                 <th>{{ trans('gateway::tickets.ticket') }}</th>
-                <th>{{ trans('gateway::tickets.client') }}</th>
-                <th>{{ trans('gateway::tickets.project') }}</th>
                 <th>{{ trans('gateway::tickets.type') }}</th>
                 <th>{{ trans('gateway::tickets.author_user') }}</th>
                 <th>{{ trans('gateway::tickets.allocated_user') }}</th>
@@ -42,13 +25,11 @@
             @foreach ($tickets as $ticket)
                 <tr>
                     <td>{{ $ticket->id }}</td>
-                    <td>{{ $ticket->title }}</td>
-                    <td><span class="label label-primary">{{ $ticket->project->client->name }}</span></td>
-                    <td>{{ $ticket->project->name }}</td>
+                    <td width="40%">{{ $ticket->title }}</td>
                     <td><span class="badge">@if (isset($ticket->type)){{ $ticket->type->name }}@endif</span></td>
-                    <td>@if (isset($ticket->states[count($ticket->states) - 1])){{ $ticket->states[count($ticket->states) - 1]->author_user->complete_name }}@endif</td>
-                    <td>@if (isset($ticket->states[0]) && $ticket->states[0]->allocated_user){{ $ticket->states[0]->allocated_user->complete_name }}@endif</td>
-                    <td>@if (isset($ticket->states[0]) && $ticket->states[0]->status)<span class="status status-{{ $ticket->states[0]->status->id }}">{{ $ticket->states[0]->status->name}}</span>@endif</td>
+                    <td>@if (isset($ticket->states[0])){{ $ticket->states[0]->author_user->complete_name }}@endif</td>
+                    <td>@if (isset($ticket->states[0])){{ $ticket->states[0]->allocated_user->complete_name }}@endif</td>
+                    <td>@if (isset($ticket->states[0]))<span class="status status-{{ $ticket->states[0]->status->id }}">{{ $ticket->states[0]->status->name }}</span>@endif</td>
                     <td>@if (isset($ticket->states[0]))<span class="badge priority{{ $ticket->states[0]->priority }}">{{ $ticket->states[0]->priority }}</span>@endif</td>
                     <td>
                         <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> {{ trans('gateway::generic.edit') }}</a>
@@ -58,10 +39,7 @@
             @endforeach
         </tbody>
     </table>
-
-    <div class="text-center">
-        {!! $tickets->render() !!}
-    </div>
-
     <a href="{{ route('tickets_add') }}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> {{ trans('gateway::tickets.add_ticket') }}</a>
+</div>
+
 @endsection
