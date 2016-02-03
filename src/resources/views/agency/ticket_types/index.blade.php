@@ -50,5 +50,5 @@
         {!! $ticket_types->render() !!}
     </div>
 
-    <a href="{{ route('ticket_types_add') }}" class="btn btn-success">{{ trans('gateway::ticket_types.add_ticket_type') }}</a>
+    <a href="{{ route('ticket_types_add') }}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> {{ trans('gateway::ticket_types.add_ticket_type') }}</a>
 @endsection

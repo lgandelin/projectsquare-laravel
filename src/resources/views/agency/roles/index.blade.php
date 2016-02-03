@@ -50,5 +50,5 @@
         {!! $roles->render() !!}
     </div>
 
-    <a href="{{ route('roles_add') }}" class="btn btn-success">{{ trans('gateway::roles.add_role') }}</a>
+    <a href="{{ route('roles_add') }}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> {{ trans('gateway::roles.add_role') }}</a>
 @endsection
