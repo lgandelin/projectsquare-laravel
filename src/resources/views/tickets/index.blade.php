@@ -10,6 +10,49 @@
         <h1>{{ trans('gateway::tickets.tickets_list') }}</h1>
     </div>
 
+    <div class="row">
+        <div class="form-group col-md-2">
+            <label for="filter_project">{{ trans('gateway::tickets.filters.by_project') }}</label>
+            <select class="form-control" name="filter_project" id="filter_project">
+                <option value="">{{ trans('gateway::generic.choose_value') }}</option>
+                @foreach ($projects as $project)
+                    <option value="{{ $project->id }}">{{ $project->client->name }} - {{ $project->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group col-md-2">
+            <label for="filter_allocated_user">{{ trans('gateway::tickets.filters.by_allocated_user') }}</label>
+            <select class="form-control" name="filter_allocated_user" id="filter_allocated_user">
+                <option value="">{{ trans('gateway::generic.choose_value') }}</option>
+                @foreach ($users as $user)
+                    <option value="{{ $user->id }}">{{ $user->complete_name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group col-md-2">
+            <label for="filter_status">{{ trans('gateway::tickets.filters.by_status') }}</label>
+            <select class="form-control" name="filter_status" id="filter_status">
+                <option value="">{{ trans('gateway::generic.choose_value') }}</option>
+                @foreach ($ticket_statuses as $ticket_status)
+                    <option value="{{ $ticket_status->id }}">{{ $ticket_status->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group col-md-2">
+            <label for="filter_type">{{ trans('gateway::tickets.filters.by_type') }}</label>
+            <select class="form-control" name="filter_type" id="filter_type">
+                <option value="">{{ trans('gateway::generic.choose_value') }}</option>
+                @foreach ($ticket_types as $ticket_type)
+                    <option value="{{ $ticket_type->id }}">{{ $ticket_type->name }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <hr/>
+
     @if (isset($error))
         <div class="info bg-danger">
             {{ $error }}
