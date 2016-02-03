@@ -19,6 +19,11 @@
     </div>
 
     <div class="form-group">
+        <label for="name">{{ trans('gateway::projects.site_url') }}</label>
+        <input class="form-control" type="text" placeholder="{{ trans('gateway::projects.site_url') }}" name="site_url" @if (isset($project_site_url))value="{{ $project_site_url }}"@endif />
+    </div>
+
+    <div class="form-group">
         <input type="submit" class="btn btn-success" value="{{ trans('gateway::generic.valid') }}" />
         <a href="{{ route('projects_index') }}" class="btn btn-default">{{ trans('gateway::generic.back') }}</a>
     </div>
