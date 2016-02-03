@@ -23,6 +23,7 @@ return [
     'label' => 'Libellé',
     'client' => 'Client',
     'site_url' => 'URL de l\'interface d\'administration du site',
+    'status' => 'Statut',
     'name_placeholder' => 'Nom de votre projet',
     'project_resources' => 'Ressources assignées',
     'add_resource' => 'Ajouter une ressource',

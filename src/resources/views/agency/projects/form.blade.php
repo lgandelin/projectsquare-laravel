@@ -24,6 +24,16 @@
     </div>
 
     <div class="form-group">
+        <label for="name">{{ trans('gateway::projects.status') }}</label>
+        <select class="form-control" name="status">
+            <option value="">{{ trans('gateway::generic.choose_value') }}</option>
+            <option value="1" @if (isset($project) && $project->status == 1)selected="selected"@endif>En développement</option>
+            <option value="2" @if (isset($project) && $project->status == 2)selected="selected"@endif>En pré-production</option>
+            <option value="3" @if (isset($project) && $project->status == 3)selected="selected"@endif>En production</option>
+        </select>
+    </div>
+
+    <div class="form-group">
         <button type="submit" class="btn btn-success">
             <i class="glyphicon glyphicon-ok"></i> {{ trans('gateway::generic.valid') }}
         </button>
@@ -94,7 +104,7 @@
             </div>
 
             <div class="col-md-3">
-                <button type="submit" class="btn btn-success"style="margin-top: 2.5rem">
+                <button type="submit" class="btn btn-success" style="margin-top: 2.5rem">
                     <i class="glyphicon glyphicon-plus"></i> {{ trans('gateway::generic.add') }}
                 </button>
             </div>
