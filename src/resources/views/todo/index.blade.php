@@ -23,16 +23,14 @@
                 <ul>
                     @foreach ($tasks as $task)
                         <li>
-                            <span class="@if($task->status == true)task-status-completed @endif">{{ $task->name }}</span>
+                            <span class="name @if($task->status == true)task-status-completed @endif">{{ $task->name }}</span>
                             <div>
-                                @if($task->status == true)
-                                    <a href="{{ route('to_do_update', ['id' => $task->id]) }}">Ouvrir</a>
-                                 @else
-                                    <a href="{{ route('to_do_update', ['id' => $task->id]) }}">Terminer</a>
-                                @endif
+                                <form method="post" action="{{ route('to_do_update') }}">
+                                    <input class="status" type="checkbox" name="status" @if($task->status == true) checked @endif>
+                                    <input type="hidden" name="id" value="{{ $task->id }}" />
+                                    {!! csrf_field() !!}
+                                </form>
                             </div>
-
-
 
 
                             <a href="{{ route('to_do_delete', ['id' => $task->id]) }}">Supprimer</a>
@@ -45,4 +43,12 @@
 
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.status').click(function() {
+                $(this).parent().submit();
+            });
+        })
+    </script>
 @endsection
