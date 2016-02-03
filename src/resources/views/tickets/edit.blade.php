@@ -178,7 +178,7 @@
                     <td>@if ($ticket_state->author_user){{ $ticket_state->author_user->complete_name }}@endif</td>
                     <td>@if ($ticket_state->allocated_user){{ $ticket_state->allocated_user->complete_name }}@endif</td>
                     <td>@if ($ticket_state->due_date){{ $ticket_state->due_date }}</span>@endif</td>
-                    <td><span class="badge priority{{ $ticket_state->priority }}">{{ $ticket_state->priority }}</span></td>
+                    <td><span class="badge priority-{{ $ticket_state->priority }}">{{ $ticket_state->priority }}</span></td>
                     <td>@if ($ticket_state->status)<span class="status status-{{ $ticket_state->status->id }}">{{ $ticket_state->status->name }}</span>@endif</td>
                     <td>{{ $ticket_state->comments }}</td>
                 </tr>

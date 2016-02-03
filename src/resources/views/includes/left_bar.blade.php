@@ -4,11 +4,17 @@
             <li><h3><a href="{{ route('dashboard') }}">Tableau de bord</a></h3></li>
             <li>
                 <h3>Projets</h3>
-                <ul>
+                <ul class="projects-list">
                     @foreach ($logged_in_user->projects as $project)
-                    <li>
+                    <li class="@if (isset($current_project_id) && $current_project_id == $project->id) current @endif">
                         <a href="{{ route('project_index', ['id' => $project->id]) }}">
-                            <span class="label @if (isset($current_project_id) && $current_project_id == $project->id)label-success @else label-default @endif">{{ $project->client->name }}</span> {{ $project->name }}
+                            <span class="client">
+                                <span class="label project-status-{{ $project->status }}">{{ $project->client->name }}</span>
+                            </span>
+                            {{ $project->name }}
+                            @if (isset($current_project_id) && $current_project_id == $project->id)
+                                <i class="pull-right glyphicon glyphicon-ok"></i>
+                            @endif
                         </a>
                     </li>
                     @endforeach

@@ -27,9 +27,9 @@
         <label for="name">{{ trans('gateway::projects.status') }}</label>
         <select class="form-control" name="status">
             <option value="">{{ trans('gateway::generic.choose_value') }}</option>
-            <option value="1" @if (isset($project) && $project->status == 1)selected="selected"@endif>En développement</option>
-            <option value="2" @if (isset($project) && $project->status == 2)selected="selected"@endif>En pré-production</option>
-            <option value="3" @if (isset($project) && $project->status == 3)selected="selected"@endif>En production</option>
+            @for ($i = 1; $i <= 3; $i++)
+                <option value="{{ $i }}" @if (isset($project) && $project->status == $i)selected="selected"@endif>{{ trans('gateway::projects.status_' . $i) }}</option>
+            @endfor
         </select>
     </div>
 

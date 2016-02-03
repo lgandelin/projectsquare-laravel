@@ -4,7 +4,7 @@
     @include('gateway::includes.project_bar', ['active' => 'index'])
 
     <div class="project-template">
-        <h1 class="page-header">{{ trans('gateway::project.summary') }} <div class="pull-right project-name"><span class="label label-primary">{{ $project->client->name }}</span> {{ $project->name }}</div></h1>
+        <h1 class="page-header">{{ trans('gateway::project.summary') }}</h1>
 
         <h3>{{ trans('gateway::project.last_tickets') }}</h3>
         <table class="table table-striped">
@@ -30,7 +30,7 @@
                         <td>@if (isset($ticket->states[0])){{ $ticket->states[0]->author_user->complete_name }}@endif</td>
                         <td>@if (isset($ticket->states[0])){{ $ticket->states[0]->allocated_user->complete_name }}@endif</td>
                         <td>@if (isset($ticket->states[0]))<span class="status status-{{ $ticket->states[0]->status->id }}">{{ $ticket->states[0]->status->name }}</span>@endif</td>
-                        <td>@if (isset($ticket->states[0]))<span class="badge priority{{ $ticket->states[0]->priority }}">{{ $ticket->states[0]->priority }}</span>@endif</td>
+                        <td>@if (isset($ticket->states[0]))<span class="badge priority-{{ $ticket->states[0]->priority }}">{{ $ticket->states[0]->priority }}</span>@endif</td>
                         <td>
                             <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt"></span>{{ trans('gateway::tickets.see_ticket') }}</a>
                         </td>

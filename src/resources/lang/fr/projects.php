@@ -28,6 +28,10 @@ return [
     'project_resources' => 'Ressources assignées',
     'add_resource' => 'Ajouter une ressource',
 
+    'status_1' => 'En développement',
+    'status_2' => 'En pré-production',
+    'status_3' => 'En production',
+
     'no_client_yet' => 'Vous n\'avez pas encore créé de client',
     'project_not_found' => 'Une erreur est survenue lors de la récupération de ce projet',
     'user_not_found' => 'Une erreur est survenue lors de la récupération de cet utilisateur',
