@@ -10,6 +10,55 @@
         <h1>{{ trans('gateway::tickets.tickets_list') }}</h1>
     </div>
 
+    <form method="get">
+        <div class="row">
+            <div class="form-group col-md-2">
+                <label for="filter_project">{{ trans('gateway::tickets.filters.by_project') }}</label>
+                <select class="form-control" name="filter_project" id="filter_project">
+                    <option value="">{{ trans('gateway::generic.choose_value') }}</option>
+                    @foreach ($projects as $project)
+                        <option value="{{ $project->id }}" @if ($filters['project'] == $project->id)selected="selected" @endif>{{ $project->client->name }} - {{ $project->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="filter_allocated_user">{{ trans('gateway::tickets.filters.by_allocated_user') }}</label>
+                <select class="form-control" name="filter_allocated_user" id="filter_allocated_user">
+                    <option value="">{{ trans('gateway::generic.choose_value') }}</option>
+                    @foreach ($users as $user)
+                        <option value="{{ $user->id }}" @if ($filters['allocated_user'] == $user->id)selected="selected" @endif>{{ $user->complete_name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="filter_status">{{ trans('gateway::tickets.filters.by_status') }}</label>
+                <select class="form-control" name="filter_status" id="filter_status">
+                    <option value="">{{ trans('gateway::generic.choose_value') }}</option>
+                    @foreach ($ticket_statuses as $ticket_status)
+                        <option value="{{ $ticket_status->id }}" @if ($filters['status'] == $ticket_status->id)selected="selected" @endif>{{ $ticket_status->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="filter_type">{{ trans('gateway::tickets.filters.by_type') }}</label>
+                <select class="form-control" name="filter_type" id="filter_type">
+                    <option value="">{{ trans('gateway::generic.choose_value') }}</option>
+                    @foreach ($ticket_types as $ticket_type)
+                        <option value="{{ $ticket_type->id }}" @if ($filters['type'] == $ticket_type->id)selected="selected" @endif>{{ $ticket_type->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <input class="btn btn-success" type="submit" value="{{ trans('gateway::generic.valid') }}" style="margin-top: 2.5rem"/>
+            </div>
+        </div>
+    </form>
+    <hr/>
+
     @if (isset($error))
         <div class="info bg-danger">
             {{ $error }}
@@ -47,9 +96,9 @@
                     <td>{{ $ticket->project->name }}</td>
                     <td><span class="badge">@if (isset($ticket->type)){{ $ticket->type->name }}@endif</span></td>
                     <td>@if (isset($ticket->states[count($ticket->states) - 1])){{ $ticket->states[count($ticket->states) - 1]->author_user->complete_name }}@endif</td>
-                    <td>@if (isset($ticket->states[0]) && $ticket->states[0]->allocated_user){{ $ticket->states[0]->allocated_user->complete_name }}@endif</td>
-                    <td>@if (isset($ticket->states[0]) && $ticket->states[0]->status)<span class="status status-{{ $ticket->states[0]->status->id }}">{{ $ticket->states[0]->status->name}}</span>@endif</td>
-                    <td>@if (isset($ticket->states[0]))<span class="badge priority{{ $ticket->states[0]->priority }}">{{ $ticket->states[0]->priority }}</span>@endif</td>
+                    <td>@if (isset($ticket->last_state) && $ticket->last_state->allocated_user){{ $ticket->last_state->allocated_user->complete_name }}@endif</td>
+                    <td>@if (isset($ticket->last_state) && $ticket->last_state->status)<span class="status status-{{ $ticket->last_state->status->id }}">{{ $ticket->last_state->status->name}}</span>@endif</td>
+                    <td>@if (isset($ticket->last_state))<span class="badge priority-{{ $ticket->last_state->priority }}">{{ $ticket->last_state->priority }}</span>@endif</td>
                     <td>
                         <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> {{ trans('gateway::generic.edit') }}</a>
                         <a href="{{ route('tickets_delete', ['id' => $ticket->id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ trans('gateway::generic.delete') }}</a>

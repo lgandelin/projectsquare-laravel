@@ -27,6 +27,7 @@
     @include('gateway::agency.projects.form', [
         'form_action' => route('projects_update'),
         'project_id' => $project->id,
-        'project_name' => $project->name
+        'project_name' => $project->name,
+        'project_site_url' => $project->site_url,
     ])
 @endsection

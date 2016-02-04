@@ -40,4 +40,11 @@ return [
     'ticket_not_found' => 'Une erreur est survenue lors de la récupération de ce ticket',
     'no_project_yet' => 'Vous n\'avez pas encore créé de projet',
     'no_ticket_type_yet' => 'Vous n\'avez pas encore créé de type de ticket',
+
+    'filters' => [
+        'by_project' => 'par projet',
+        'by_allocated_user' => 'par utilisateur',
+        'by_status' => 'par statut',
+        'by_type' => 'par type',
+    ],
 ];

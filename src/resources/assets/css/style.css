@@ -6552,6 +6552,7 @@ ul {
   padding-left: 2rem; }
 
 .top-bar {
+  overflow: hidden;
   padding-top: 2rem;
   padding-bottom: 1rem; }
   .top-bar .logo {
@@ -6570,11 +6571,40 @@ ul {
   border-radius: 4px; }
   .left-bar h3 {
     font-size: 1.9rem; }
-  .left-bar > ul > li {
-    list-style: none;
-    margin-bottom: 2rem; }
-  .left-bar > ul > li:first-child h3 {
-    margin-top: 0; }
+  .left-bar > ul {
+    margin-right: 2rem;
+    list-style: none; }
+    .left-bar > ul li {
+      padding: 1rem;
+      list-style: none;
+      background: white;
+      border-bottom: 1px solid rgba(100, 100, 100, 0.15); }
+      .left-bar > ul li li:hover {
+        background: whitesmoke; }
+      .left-bar > ul li a {
+        display: block; }
+    .left-bar > ul > li {
+      margin-bottom: 2rem;
+      padding: 2rem; }
+      .left-bar > ul > li ul {
+        margin-left: 0;
+        padding-left: 0; }
+    .left-bar > ul > li:first-child h3 {
+      margin-top: 0; }
+    .left-bar > ul li:last-child {
+      border-bottom: none; }
+  .left-bar .projects-list {
+    padding-left: 0;
+    margin-left: 0;
+    list-style: none; }
+    .left-bar .projects-list li {
+      padding: 1rem;
+      background: white;
+      border-bottom: 1px solid rgba(100, 100, 100, 0.15); }
+      .left-bar .projects-list li .client {
+        margin-right: 1rem; }
+    .left-bar .projects-list .current {
+      background: whitesmoke; }
   .left-bar a:hover {
     text-decoration: none; }
 
@@ -6592,33 +6622,45 @@ ul {
   padding: 1rem;
   margin-bottom: 2rem; }
 
-.priority1 {
+.priority-1 {
   background: #334D5C; }
 
-.priority2 {
+.priority-2 {
   background: #45B29D; }
 
-.priority3 {
+.priority-3 {
   background: #EFC94C; }
 
-.priority4 {
+.priority-4 {
   background: #E27A3F; }
 
-.priority5 {
+.priority-5 {
   background: #DF5A49; }
+
+.project-status-1 {
+  background: #e24f87; }
+
+.project-status-2 {
+  background: #b237e2; }
+
+.project-status-3 {
+  background: #6c3ce2; }
 
 .btn .glyphicon {
   margin-right: 0.5rem; }
 
-.dashboard-content .block h3 {
-  margin-bottom: 2rem; }
-
-.dashboard-content .block .block-content {
+.block-content {
   display: block;
   width: 100%;
   min-height: 250px;
   padding: 1rem 2rem;
   background: #fefefe; }
+
+.task-status-completed {
+  text-decoration: line-through; }
+
+.dashboard-content .block h3 {
+  margin-bottom: 2rem; }
 
 .project-template .cms-iframe {
   width: 100%;
@@ -6657,3 +6699,25 @@ ul {
 .status-6 {
   background: #3745ff;
   color: white; }
+
+.task-template form {
+  overflow: hidden; }
+  .task-template form .new-task {
+    width: 30%;
+    margin-bottom: 15px; }
+  .task-template form .sent {
+    margin-bottom: 15px; }
+
+.task-template .tasks {
+  list-style: none;
+  display: block;
+  padding-left: 0; }
+  .task-template .tasks .task {
+    overflow: hidden; }
+    .task-template .tasks .task .name {
+      float: left;
+      margin-right: 10px;
+      font-weight: bold; }
+    .task-template .tasks .task form {
+      float: left;
+      margin-right: 10px; }

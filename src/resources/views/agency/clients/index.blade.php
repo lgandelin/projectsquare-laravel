@@ -50,5 +50,5 @@
         {!! $clients->render() !!}
     </div>
 
-    <a href="{{ route('clients_add') }}" class="btn btn-success">{{ trans('gateway::clients.add_client') }}</a>
+    <a href="{{ route('clients_add') }}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> {{ trans('gateway::clients.add_client') }}</a>
 @endsection

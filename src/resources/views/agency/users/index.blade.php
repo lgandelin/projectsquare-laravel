@@ -54,5 +54,5 @@
         {!! $users->render() !!}
     </div>
 
-    <a href="{{ route('users_add') }}" class="btn btn-success">{{ trans('gateway::users.add_user') }}</a>
+    <a href="{{ route('users_add') }}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> {{ trans('gateway::users.add_user') }}</a>
 @endsection

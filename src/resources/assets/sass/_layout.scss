@@ -1,4 +1,5 @@
 .top-bar {
+    overflow: hidden;
     padding-top: 2rem;
     padding-bottom: 1rem;
 
@@ -33,15 +34,64 @@
     }
 
     > ul {
-        > li {
+        margin-right: 2rem;
+        list-style: none;
+
+        li {
+            padding: 1rem;
             list-style: none;
+
+            background: white;
+            border-bottom: 1px solid rgba(100, 100, 100, 0.15);
+
+            li:hover {
+                background: rgb(245, 245, 245);
+            }
+
+            a {
+                display: block;
+            }
+        }
+
+        > li {
             margin-bottom: 2rem;
+            padding: 2rem;
+
+            ul {
+                margin-left: 0;
+                padding-left: 0;
+            }
         }
 
         > li:first-child {
             h3 {
                 margin-top: 0;
             }
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+    }
+
+    .projects-list {
+        padding-left: 0;
+        margin-left: 0;
+        list-style: none;
+
+        li {
+            padding: 1rem;
+
+            background: white;
+            border-bottom: 1px solid rgba(100, 100, 100, 0.15);
+
+            .client {
+                margin-right: 1rem;
+            }
+        }
+
+        .current {
+            background: rgb(245, 245, 245);
         }
     }
 

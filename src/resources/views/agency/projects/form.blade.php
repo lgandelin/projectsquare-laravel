@@ -19,8 +19,26 @@
     </div>
 
     <div class="form-group">
-        <input type="submit" class="btn btn-success" value="{{ trans('gateway::generic.valid') }}" />
-        <a href="{{ route('projects_index') }}" class="btn btn-default">{{ trans('gateway::generic.back') }}</a>
+        <label for="name">{{ trans('gateway::projects.site_url') }}</label>
+        <input class="form-control" type="text" placeholder="{{ trans('gateway::projects.site_url') }}" name="site_url" @if (isset($project_site_url))value="{{ $project_site_url }}"@endif />
+    </div>
+
+    <div class="form-group">
+        <label for="name">{{ trans('gateway::projects.status') }}</label>
+        <select class="form-control" name="status">
+            <option value="">{{ trans('gateway::generic.choose_value') }}</option>
+            @for ($i = 1; $i <= 3; $i++)
+                <option value="{{ $i }}" @if (isset($project) && $project->status == $i)selected="selected"@endif>{{ trans('gateway::projects.status_' . $i) }}</option>
+            @endfor
+        </select>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">
+            <i class="glyphicon glyphicon-ok"></i> {{ trans('gateway::generic.valid') }}
+        </button>
+
+        <a href="{{ route('projects_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('gateway::generic.back') }}</a>
     </div>
 
     @if (isset($project_id))
@@ -46,7 +64,11 @@
                 <tr>
                     <td>{{ $user->complete_name }}</td>
                     <td>{{ $user->role->name }}</td>
-                    <td><a href="{{ route('projects_delete_user', ['project_id' => $project_id, 'user_id' => $user->id]) }}" class="btn btn-danger">{{ trans('gateway::generic.delete') }}</a></td>
+                    <td>
+                        <a href="{{ route('projects_delete_user', ['project_id' => $project_id, 'user_id' => $user->id]) }}" class="btn btn-danger">
+                            <i class="glyphicon glyphicon-remove"></i> {{ trans('gateway::generic.delete') }}
+                        </a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -82,7 +104,9 @@
             </div>
 
             <div class="col-md-3">
-                <input type="submit" class="btn btn-success" value="{{ trans('gateway::generic.add') }}" style="margin-top: 2.5rem"/>
+                <button type="submit" class="btn btn-success" style="margin-top: 2.5rem">
+                    <i class="glyphicon glyphicon-plus"></i> {{ trans('gateway::generic.add') }}
+                </button>
             </div>
         </div>
 

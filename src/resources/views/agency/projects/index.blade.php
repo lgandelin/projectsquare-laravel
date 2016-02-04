@@ -52,5 +52,5 @@
         {!! $projects->render() !!}
     </div>
 
-    <a href="{{ route('projects_add') }}" class="btn btn-success">{{ trans('gateway::projects.add_project') }}</a>
+    <a href="{{ route('projects_add') }}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> {{ trans('gateway::projects.add_project') }}</a>
 @endsection

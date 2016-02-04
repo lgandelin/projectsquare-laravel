@@ -32,8 +32,10 @@
     </div>
 
     <div class="form-group">
-        <input type="submit" class="btn btn-success" value="{{ trans('gateway::generic.valid') }}" />
-        <a href="{{ route('users_index') }}" class="btn btn-default">{{ trans('gateway::generic.back') }}</a>
+        <button type="submit" class="btn btn-success">
+            <i class="glyphicon glyphicon-ok"></i> {{ trans('gateway::generic.valid') }}
+        </button>
+        <a href="{{ route('users_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('gateway::generic.back') }}</a>
     </div>
 
     @if (isset($user_id))
