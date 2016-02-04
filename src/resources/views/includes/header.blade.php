@@ -8,6 +8,8 @@
     <title>Gateway</title>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+    <link href="{{ asset('css/vendor/jquery.fileupload.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/vendor/jquery.fileupload-ui.css') }}" rel="stylesheet">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
