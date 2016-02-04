@@ -16,7 +16,7 @@
             <div class="block">
                 <div class="block-content">
                     <form method="post" action="{{ route('to_do_store') }}">
-                        <label for="name">Nouvelle tâche</label> : <input type="text" class="form-control new-task"  name="name" id="name"/>
+                        <label for="name">Nouvelle tâche</label> : <input type="text" class="form-control new-task"  name="name" id="name" required />
                         <div class="sent">
                             <input type="submit" class="btn btn-success" value="Ajouter" />
                         </div>
