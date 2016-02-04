@@ -160,7 +160,7 @@
 
     <p>&nbsp;</p>
 
-    <h3>{{ trans('gateway::tickets.ticket_history') }}</h3>
+    <h3>{{ trans('gateway::tickets.ticket_history') }} <span class="badge badge-primary" style="margin-left: 1rem; margin-bottom: 2px;">{{ count($ticket->states) }}</span></h3>
     <table class="table table-striped table-bordered">
         <thead>
             <th>{{ trans('gateway::generic.creation_date') }}</th>
@@ -172,7 +172,7 @@
             <th>{{ trans('gateway::tickets.comments') }}</th>
         </thead>
         <tbody>
-            @foreach ($ticket->states as $i => $ticket_state)
+            @foreach ($ticket_states as $i => $ticket_state)
                 <tr>
                     <td>{{ date('d/m/Y H:i', strtotime($ticket_state->created_at)) }}</td>
                     <td>@if ($ticket_state->author_user){{ $ticket_state->author_user->complete_name }}@endif</td>
@@ -185,4 +185,8 @@
             @endforeach
         </tbody>
     </table>
+
+    <div class="text-center">
+        {!! $ticket_states->render() !!}
+    </div>
 @endsection
