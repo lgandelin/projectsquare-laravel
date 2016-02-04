@@ -1,11 +1,11 @@
 <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
     <div class="row fileupload-buttonbar">
-        <div class="col-lg-7">
-        <span class="btn btn-success fileinput-button">
-            <i class="glyphicon glyphicon-plus"></i>
-            <span>Ajouter</span>
-            <input type="file" name="files[]" multiple>
-        </span>
+        <div class="col-lg-6">
+            <span class="btn btn-success fileinput-button">
+                <i class="glyphicon glyphicon-plus"></i>
+                <span>Ajouter</span>
+                <input type="file" name="files[]" multiple>
+            </span>
             <button type="submit" class="btn btn-primary start">
                 <i class="glyphicon glyphicon-upload"></i>
                 <span>Démarrer l'upload</span>
@@ -21,14 +21,20 @@
             <input type="checkbox" class="toggle">-->
             <span class="fileupload-process"></span>
         </div>
-        <div class="col-lg-5 fileupload-progress fade">
+    </div>
+    <div class="row">
+        <div class="col-md-6 fileupload-progress fade" style="margin-top: 2rem;">
             <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
                 <div class="progress-bar progress-bar-success" style="width:0%;"></div>
             </div>
             <div class="progress-extended">&nbsp;</div>
         </div>
     </div>
-    <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+    <div class="row">
+        <div class="col-md-6" style="margin-top: 2rem;">
+            <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+        </div>
+    </div>
 </form>
 
 @include('gateway::tickets.fileupload')
