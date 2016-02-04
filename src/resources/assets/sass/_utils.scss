@@ -60,3 +60,16 @@
         margin-right: 0.5rem;
     }
 }
+
+.block-content {
+    display: block;
+    width: 100%;
+    min-height: 250px;
+    padding: 1rem 2rem;
+
+    background: #fefefe;
+}
+
+.task-status-completed {
+    text-decoration: line-through;
+}

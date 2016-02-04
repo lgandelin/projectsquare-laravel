@@ -6649,15 +6649,18 @@ ul {
 .btn .glyphicon {
   margin-right: 0.5rem; }
 
-.dashboard-content .block h3 {
-  margin-bottom: 2rem; }
-
-.dashboard-content .block .block-content {
+.block-content {
   display: block;
   width: 100%;
   min-height: 250px;
   padding: 1rem 2rem;
   background: #fefefe; }
+
+.task-status-completed {
+  text-decoration: line-through; }
+
+.dashboard-content .block h3 {
+  margin-bottom: 2rem; }
 
 .project-template .cms-iframe {
   width: 100%;
@@ -6696,3 +6699,25 @@ ul {
 .status-6 {
   background: #3745ff;
   color: white; }
+
+.task-template form {
+  overflow: hidden; }
+  .task-template form .new-task {
+    width: 30%;
+    margin-bottom: 15px; }
+  .task-template form .sent {
+    margin-bottom: 15px; }
+
+.task-template .tasks {
+  list-style: none;
+  display: block;
+  padding-left: 0; }
+  .task-template .tasks .task {
+    overflow: hidden; }
+    .task-template .tasks .task .name {
+      float: left;
+      margin-right: 10px;
+      font-weight: bold; }
+    .task-template .tasks .task form {
+      float: left;
+      margin-right: 10px; }
