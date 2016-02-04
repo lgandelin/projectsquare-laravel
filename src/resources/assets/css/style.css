@@ -6699,3 +6699,25 @@ ul {
 .status-6 {
   background: #3745ff;
   color: white; }
+
+.task-template form {
+  overflow: hidden; }
+  .task-template form .new-task {
+    width: 30%;
+    margin-bottom: 15px; }
+  .task-template form .sent {
+    margin-bottom: 15px; }
+
+.task-template .tasks {
+  list-style: none;
+  display: block;
+  padding-left: 0; }
+  .task-template .tasks .task {
+    overflow: hidden; }
+    .task-template .tasks .task .name {
+      float: left;
+      margin-right: 10px;
+      font-weight: bold; }
+    .task-template .tasks .task form {
+      float: left;
+      margin-right: 10px; }
