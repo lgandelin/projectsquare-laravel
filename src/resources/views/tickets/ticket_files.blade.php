@@ -1,22 +1,23 @@
-<div class="row">
-    <div class="col-md-6">
-        <br/>
-        <h4>Liste des fichiers</h4>
-        <table class="table table-striped">
-            @foreach($files as $file)
-                <tr>
-                    <td><img src="{{ asset('uploads' . $file->thumbnail_path) }}" alt="{{ $file->name }}" width="135" height="80" /></td>
-                    <td>{{ $file->name }}</td>
-                    <td>{{ $file->size }}</td>
-                </tr>
-            @endforeach
-        </table>
-    </div>
-    <br/>
+<form id="fileupload" action="" method="POST" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-6">
+            <br/>
+            <h4>Liste des fichiers</h4>
+            <table class="table table-striped">
+                @foreach($files as $file)
+                    <tr>
+                        <td><img src="{{ asset('uploads' . $file->thumbnail_path) }}" alt="{{ $file->name }}" width="135" height="80" /></td>
+                        <td>{{ $file->name }}</td>
+                        <td>{{ $file->size }}</td>
+                        <td><a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Supprimer</a></td>
+                    </tr>
+                @endforeach
+            </table>
+            <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+        </div>
 
-    <div class="col-md-6">
-        <h4>Ajouter un ou plusieurs fichiers</h4>
-        <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
+        <div class="col-md-6">
+            <h4>Ajouter un ou plusieurs fichiers</h4>
             <div class="row fileupload-buttonbar">
                 <div class="col-lg-12">
                     <span class="btn btn-success fileinput-button">
@@ -50,12 +51,12 @@
             </div>
             <div class="row">
                 <div class="col-md-12" style="margin-top: 2rem;">
-                    <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</form>
+
 @include('gateway::tickets.fileupload')
 
 <script src="{{ asset('js/vendor/jquery.fileupload/vendor/jquery.ui.widget.js') }}"></script>
@@ -83,7 +84,7 @@
         $('#fileupload').fileupload({
             // Uncomment the following to send cross-domain cookies:
             //xhrFields: {withCredentials: true},
-            url: "{{ route('tickets_edit_file_upload') }}",
+            url: "{{ route('tickets_edit_upload_file') }}",
             formData: {
                 _token: $('input[name="_token"]').val(),
                 ticket_id: $('input[name="ticket_id"]').val()
@@ -111,8 +112,7 @@
         }).always(function () {
             $(this).removeClass('fileupload-processing');
         }).done(function (result) {
-            $(this).fileupload('option', 'done')
-                .call(this, $.Event('done'), {result: result});
+            $(this).fileupload('option', 'done').call(this, $.Event('done'), {result: result});
         });
     });
 </script>
