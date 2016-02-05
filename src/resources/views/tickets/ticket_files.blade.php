@@ -1,42 +1,61 @@
-<form id="fileupload" action="" method="POST" enctype="multipart/form-data">
-    <div class="row fileupload-buttonbar">
-        <div class="col-lg-6">
-            <span class="btn btn-success fileinput-button">
-                <i class="glyphicon glyphicon-plus"></i>
-                <span>Ajouter</span>
-                <input type="file" name="files[]" multiple>
-            </span>
-            <button type="submit" class="btn btn-primary start">
-                <i class="glyphicon glyphicon-upload"></i>
-                <span>Démarrer l'upload</span>
-            </button>
-            <button type="reset" class="btn btn-warning cancel">
-                <i class="glyphicon glyphicon-ban-circle"></i>
-                <span>Annuler l'upload</span>
-            </button>
-            <!--<button type="button" class="btn btn-danger delete">
-                <i class="glyphicon glyphicon-trash"></i>
-                <span>Supprimer</span>
-            </button>
-            <input type="checkbox" class="toggle">-->
-            <span class="fileupload-process"></span>
-        </div>
+<div class="row">
+    <div class="col-md-6">
+        <br/>
+        <h4>Liste des fichiers</h4>
+        <table class="table table-striped">
+            @foreach($files as $file)
+                <tr>
+                    <td><img src="{{ asset('uploads' . $file->thumbnail_path) }}" alt="{{ $file->name }}" width="135" height="80" /></td>
+                    <td>{{ $file->name }}</td>
+                    <td>{{ $file->size }}</td>
+                </tr>
+            @endforeach
+        </table>
     </div>
-    <div class="row">
-        <div class="col-md-6 fileupload-progress fade" style="margin-top: 2rem;">
-            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar progress-bar-success" style="width:0%;"></div>
-            </div>
-            <div class="progress-extended">&nbsp;</div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6" style="margin-top: 2rem;">
-            <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
-        </div>
-    </div>
-</form>
+    <br/>
 
+    <div class="col-md-6">
+        <h4>Ajouter un ou plusieurs fichiers</h4>
+        <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
+            <div class="row fileupload-buttonbar">
+                <div class="col-lg-12">
+                    <span class="btn btn-success fileinput-button">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span>Ajouter</span>
+                        <input type="file" name="files[]" multiple>
+                    </span>
+                    <button type="submit" class="btn btn-primary start">
+                        <i class="glyphicon glyphicon-upload"></i>
+                        <span>Démarrer l'upload</span>
+                    </button>
+                    <button type="reset" class="btn btn-warning cancel">
+                        <i class="glyphicon glyphicon-ban-circle"></i>
+                        <span>Annuler l'upload</span>
+                    </button>
+                    <!--<button type="button" class="btn btn-danger delete">
+                        <i class="glyphicon glyphicon-trash"></i>
+                        <span>Supprimer</span>
+                    </button>
+                    <input type="checkbox" class="toggle">-->
+                    <span class="fileupload-process"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 fileupload-progress fade" style="margin-top: 2rem;">
+                    <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                    </div>
+                    <div class="progress-extended">&nbsp;</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 2rem;">
+                    <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 @include('gateway::tickets.fileupload')
 
 <script src="{{ asset('js/vendor/jquery.fileupload/vendor/jquery.ui.widget.js') }}"></script>
