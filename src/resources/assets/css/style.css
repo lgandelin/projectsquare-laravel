@@ -6533,6 +6533,68 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.focus {
   margin-left: -5px;
   margin-right: -5px; }
 
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-block; }
+
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer; }
+
+/* Fixes for IE < 8 */
+@media screen\9 {
+  .fileinput-button input {
+    filter: alpha(opacity=0);
+    font-size: 100%;
+    height: 100%; } }
+
+.fileupload-buttonbar .btn,
+.fileupload-buttonbar .toggle {
+  margin-bottom: 5px; }
+
+.progress-animated .progress-bar,
+.progress-animated .bar {
+  -webkit-filter: none;
+  filter: none; }
+
+.fileupload-process {
+  float: right;
+  display: none; }
+
+.fileupload-processing .fileupload-process,
+.files .processing .preview {
+  display: block;
+  width: 32px;
+  height: 32px;
+  background-size: contain; }
+
+.files audio,
+.files video {
+  max-width: 300px; }
+
+@media (max-width: 767px) {
+  .fileupload-buttonbar .toggle,
+  .files .toggle,
+  .files .btn span {
+    display: none; }
+  .files .name {
+    width: 80px;
+    word-wrap: break-word; }
+  .files audio,
+  .files video {
+    max-width: 80px; }
+  .files img,
+  .files canvas {
+    max-width: 100%; } }
+
 html {
   font-size: 62.5%; }
 
@@ -6699,6 +6761,9 @@ ul {
 .status-6 {
   background: #3745ff;
   color: white; }
+
+#fileupload .thumbnail {
+  margin-bottom: 0; }
 
 .task-template form {
   overflow: hidden; }

@@ -3,17 +3,20 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateToDoTable extends Migration
+class CreateFilesTable extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up()
     {
-        Schema::create('to_do', function (Blueprint $table) {
+        Schema::create('files', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
-            $table->boolean('status')->nullable();
+            $table->string('path')->nullable();
+            $table->string('thumbnail_path')->nullable();
+            $table->string('mime_type')->nullable();
+            $table->integer('size')->nullable();
             $table->timestamps();
         });
     }
@@ -23,6 +26,6 @@ class CreateToDoTable extends Migration
      */
     public function down()
     {
-        Schema::drop('to_do');
+        Schema::drop('files');
     }
 }

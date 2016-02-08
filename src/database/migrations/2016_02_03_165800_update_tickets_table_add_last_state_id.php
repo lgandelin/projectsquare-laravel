@@ -7,8 +7,6 @@ class UpdateTicketsTableAddLastStateId extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -19,8 +17,6 @@ class UpdateTicketsTableAddLastStateId extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

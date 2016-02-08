@@ -47,4 +47,10 @@ return [
         'by_status' => 'par statut',
         'by_type' => 'par type',
     ],
+
+    'files' => 'Pièces jointes',
+    'file_list' => 'Liste des fichiers',
+    'add_files' => 'Ajouter des fichiers',
+    'start_file_upload' => 'Démarrer l\'upload',
+    'cancel_file_upload' => 'Annuler l\'upload',
 ];
