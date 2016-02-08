@@ -2,14 +2,18 @@
     <div class="row">
         <div class="col-md-6">
             <br/>
-            <h4>Liste des fichiers</h4>
+            <h4>{{ trans('gateway::tickets.file_list') }}</h4>
             <table class="table table-striped">
                 @foreach($files as $file)
                     <tr>
-                        <td><img src="{{ asset('uploads' . $file->thumbnail_path) }}" alt="{{ $file->name }}" width="135" height="80" /></td>
-                        <td>{{ $file->name }}</td>
-                        <td>{{ $file->size }}</td>
-                        <td><a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Supprimer</a></td>
+                        <td width="250">
+                            <a href="{{ asset('uploads' . $file->path) }}" title="{{ $file->name }}" download="{{ $file->name }}">
+                                <img class="thumbnail" src="{{ asset('uploads' . $file->thumbnail_path) }}" alt="{{ $file->name }}" width="135" height="80" />
+                            </a>
+                        </td>
+                        <td><a href="{{ asset('uploads' . $file->path) }}" title="{{ $file->name }}" download="{{ $file->name }}">{{ $file->name }}</a></td>
+                        <td width="150">{{ \Webaccess\GatewayLaravel\Services\FileManager::convertFileSize($file->size) }}</td>
+                        <td width="200"><a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> {{ trans('gateway::generic.delete') }}</a></td>
                     </tr>
                 @endforeach
             </table>
@@ -17,21 +21,21 @@
         </div>
 
         <div class="col-md-6">
-            <h4>Ajouter un ou plusieurs fichiers</h4>
+            <h4>{{ trans('gateway::tickets.add_files') }}</h4>
             <div class="row fileupload-buttonbar">
                 <div class="col-lg-12">
                     <span class="btn btn-success fileinput-button">
                         <i class="glyphicon glyphicon-plus"></i>
-                        <span>Ajouter</span>
+                        <span>{{ trans('gateway::generic.add') }}</span>
                         <input type="file" name="files[]" multiple>
                     </span>
                     <button type="submit" class="btn btn-primary start">
                         <i class="glyphicon glyphicon-upload"></i>
-                        <span>Démarrer l'upload</span>
+                        <span>{{ trans('gateway::tickets.start_file_upload') }}</span>
                     </button>
                     <button type="reset" class="btn btn-warning cancel">
                         <i class="glyphicon glyphicon-ban-circle"></i>
-                        <span>Annuler l'upload</span>
+                        <span>{{ trans('gateway::tickets.cancel_file_upload') }}</span>
                     </button>
                     <!--<button type="button" class="btn btn-danger delete">
                         <i class="glyphicon glyphicon-trash"></i>

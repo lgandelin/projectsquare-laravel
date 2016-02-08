@@ -33,7 +33,7 @@
 
     <hr/>
 
-    <h3>Pièces jointes</h3>
+    <h3>{{ trans('gateway::tickets.files') }} <span class="badge badge-primary" style="margin-left: 1rem; margin-bottom: 2px;">{{ count($ticket->files) }}</span></h3>
     @include('gateway::tickets.ticket_files')
 
     <hr/>
