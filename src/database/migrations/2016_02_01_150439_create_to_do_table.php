@@ -7,8 +7,6 @@ class CreateToDoTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -22,11 +20,9 @@ class CreateToDoTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
-         Schema::drop('to_do');
+        Schema::drop('to_do');
     }
 }
