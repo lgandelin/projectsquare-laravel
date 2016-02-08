@@ -6,7 +6,7 @@
             <li @if ($active == 'tickets')class="active"@endif><a href="{{ route('project_tickets', ['id' => $project->id]) }}">{{ trans('gateway::project.tickets') }}</a></li>
             <li><a>Référencement</a></li>
             <li><a>Planning</a></li>
-            <li><a>Monitoring</a></li>
+            <li @if ($active == 'monitoring')class="active"@endif><a href="{{ route('project_monitoring', ['id' => $project->id]) }}">Monitoring</a></li>
             <li><a>Messages</a></li>
         </ul>
     </nav>
