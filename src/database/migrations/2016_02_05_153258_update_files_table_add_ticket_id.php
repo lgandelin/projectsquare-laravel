@@ -3,15 +3,15 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateToDoTableAddUserId extends Migration
+class UpdateFilesTableAddTicketId extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up()
     {
-        Schema::table('to_do', function (Blueprint $table) {
-            $table->string('user_id')->after('status')->nullable();
+        Schema::table('files', function (Blueprint $table) {
+            $table->integer('ticket_id')->after('size')->nullable();
         });
     }
 
@@ -20,8 +20,8 @@ class UpdateToDoTableAddUserId extends Migration
      */
     public function down()
     {
-        Schema::table('to_do', function (Blueprint $table) {
-            $table->dropColumn('user_id');
+        Schema::table('files', function (Blueprint $table) {
+            $table->dropColumn('ticket_id');
         });
     }
 }
