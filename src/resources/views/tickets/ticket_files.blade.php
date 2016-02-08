@@ -7,13 +7,16 @@
                 @foreach($files as $file)
                     <tr>
                         <td width="250">
-                            <a href="{{ asset('uploads' . $file->path) }}" title="{{ $file->name }}" download="{{ $file->name }}">
+                            <a href="{{ asset('uploads' . $file->path) }}" title="{{ $file->name }}" target="_blank">
                                 <img class="thumbnail" src="{{ asset('uploads' . $file->thumbnail_path) }}" alt="{{ $file->name }}" width="135" height="80" />
                             </a>
                         </td>
-                        <td><a href="{{ asset('uploads' . $file->path) }}" title="{{ $file->name }}" download="{{ $file->name }}">{{ $file->name }}</a></td>
+                        <td><a href="{{ asset('uploads' . $file->path) }}" title="{{ $file->name }}" target="_blank">{{ $file->name }}</a></td>
                         <td width="150">{{ \Webaccess\GatewayLaravel\Services\FileManager::convertFileSize($file->size) }}</td>
-                        <td width="200"><a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> {{ trans('gateway::generic.delete') }}</a></td>
+                        <td width="275">
+                            <a href="{{ asset('uploads' . $file->path) }}" class="btn btn-success" download="{{ $file->name }}"><i class="glyphicon glyphicon-download"></i> {{ trans('gateway::generic.download') }}</a>
+                            <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> {{ trans('gateway::generic.delete') }}</a>
+                        </td>
                     </tr>
                 @endforeach
             </table>
@@ -71,9 +74,6 @@
 <script src="{{ asset('js/vendor/jquery.fileupload/jquery.iframe-transport.js') }}"></script>
 <script src="{{ asset('js/vendor/jquery.fileupload/jquery.fileupload.js') }}"></script>
 <script src="{{ asset('js/vendor/jquery.fileupload/jquery.fileupload-process.js') }}"></script>
-<script src="{{ asset('js/vendor/jquery.fileupload/jquery.fileupload-image.js') }}"></script>
-<script src="{{ asset('js/vendor/jquery.fileupload/jquery.fileupload-audio.js') }}"></script>
-<script src="{{ asset('js/vendor/jquery.fileupload/jquery.fileupload-video.js') }}"></script>
 <script src="{{ asset('js/vendor/jquery.fileupload/jquery.fileupload-validate.js') }}"></script>
 <script src="{{ asset('js/vendor/jquery.fileupload/jquery.fileupload-ui.js') }}"></script>
 
