@@ -6732,6 +6732,37 @@ ul {
 .project-template .project-name {
   font-size: 1.4rem; }
 
+.monitoring-template #loading_time {
+  min-width: 310px;
+  height: 400px;
+  margin: 0 auto; }
+
+.monitoring-template #status_codes {
+  height: 350px; }
+
+.monitoring-template #key_numbers span {
+  font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+  font-size: 18px;
+  margin-top: 0.5rem;
+  display: block; }
+
+.monitoring-template #key_numbers .content {
+  margin-top: 2rem;
+  font-size: 1.5rem; }
+  .monitoring-template #key_numbers .content .number {
+    font-size: 25px;
+    font-weight: bold; }
+  .monitoring-template #key_numbers .content ul {
+    padding-left: 0;
+    list-style: none; }
+    .monitoring-template #key_numbers .content ul li {
+      text-align: center;
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #ddd; }
+    .monitoring-template #key_numbers .content ul li:last-child {
+      border-bottom: none; }
+
 .status {
   font-size: 1.2rem;
   font-weight: bold;
