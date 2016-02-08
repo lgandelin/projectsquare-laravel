@@ -70,7 +70,6 @@
 <script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
 <script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
 <script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
-<!--<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>-->
 <script src="{{ asset('js/vendor/jquery.fileupload/jquery.iframe-transport.js') }}"></script>
 <script src="{{ asset('js/vendor/jquery.fileupload/jquery.fileupload.js') }}"></script>
 <script src="{{ asset('js/vendor/jquery.fileupload/jquery.fileupload-process.js') }}"></script>
