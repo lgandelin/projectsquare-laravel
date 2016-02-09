@@ -9,14 +9,14 @@
         <div class="row" style="margin-top: 5rem">
             <div id="loading_time" class="col-md-8"></div>
             <div id="key_numbers" class="col-md-2 col-md-offset-1">
-                <span>Synthèse</span>
+                <span>{{ trans('gateway::projects.synthesis') }}</span>
 
                 <div class="content">
                     <ul>
-                        <li>Pourcentage de disponibilité : <span class="number" style="color: #57c17b">{{ number_format($status_codes['20x'], 2) }}%</span></li>
-                        <li>Temps de chargement moyen : <span class="number" style="color: #57c17b">{{ number_format($average_loading_time, 2) }}s</span></li>
-                        <li>Plus long temps de chargement : <span class="number" style="color: #fc9a24">{{ number_format($max_loading_time, 2) }}s</span></li>
-                        <li>Nombre de requêtes : <span class="number">{{ count($requests) }}</span></li>
+                        <li>{{ trans('gateway::projects.synthesis') }} : <span class="number" style="color: #57c17b">{{ number_format($status_codes['20x'], 2) }}%</span></li>
+                        <li>{{ trans('gateway::average_loading_time') }} : <span class="number" style="color: #57c17b">{{ number_format($average_loading_time, 2) }}s</span></li>
+                        <li>{{ trans('gateway::longest_loading_time') }} : <span class="number" style="color: #fc9a24">{{ number_format($max_loading_time, 2) }}s</span></li>
+                        <li>{{ trans('gateway::requests_number') }} : <span class="number">{{ count($requests) }}</span></li>
                     </ul>
                 </div>
             </div>
@@ -46,15 +46,15 @@
                     zoomType: 'x'
                 },
                 title: {
-                    text: 'Performances du site http://web-access.fr'
+                    text: "{!! trans('gateway::monitoring.website_loading_time') !!} http://web-access.fr"
                 },
                 subtitle: {
-                    text: 'Temps de chargement de la page d\'accueil'
+                    text: "{!! trans('gateway::monitoring.last_24h') !!}"
                 },
                 xAxis: { type: 'datetime' },
                 yAxis: {
                     title: {
-                        text: 'Temps de chargement (en s)'
+                        text: "{{ trans('gateway::monitoring.loading_time_in_seconds') }}"
                     },
                     min: 0
                 },
@@ -88,7 +88,7 @@
                     type: 'pie'
                 },
                 title: {
-                    text: 'Code statuts de réponse du serveur'
+                    text: "{!! trans('gateway::monitoring.statuses_codes') !!}"
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -136,7 +136,7 @@
                     type: 'pie'
                 },
                 title: {
-                    text: 'Temps de chargement de la page d\'accueil'
+                    text: "{{ trans('gateway::monitoring.website_loading_time') }}"
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -156,7 +156,7 @@
                     }
                 },
                 series: [{
-                    name: 'Temps de chargement',
+                    name: "{{ trans('gateway::monitoring.loading_time_in_seconds') }}",
                     colorByPoint: true,
                     data: [{
                         name: 'Moins de 1s',
