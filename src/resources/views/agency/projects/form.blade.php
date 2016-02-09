@@ -19,8 +19,13 @@
     </div>
 
     <div class="form-group">
-        <label for="name">{{ trans('gateway::projects.site_url') }}</label>
-        <input class="form-control" type="text" placeholder="{{ trans('gateway::projects.site_url') }}" name="site_url" @if (isset($project_site_url))value="{{ $project_site_url }}"@endif />
+        <label for="name">{{ trans('gateway::projects.website_front_url') }}</label>
+        <input class="form-control" type="text" placeholder="{{ trans('gateway::projects.website_front_url') }}" name="website_front_url" @if (isset($project_website_front_url))value="{{ $project_website_front_url }}"@endif />
+    </div>
+
+    <div class="form-group">
+        <label for="name">{{ trans('gateway::projects.website_back_url') }}</label>
+        <input class="form-control" type="text" placeholder="{{ trans('gateway::projects.website_back_url') }}" name="website_back_url" @if (isset($project_website_back_url))value="{{ $project_website_back_url }}"@endif />
     </div>
 
     <div class="form-group">

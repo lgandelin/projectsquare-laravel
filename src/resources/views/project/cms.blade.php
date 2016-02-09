@@ -6,7 +6,7 @@
     <div class="project-template">
         <h1 class="page-header">{{ trans('gateway::project.cms') }}</h1>
 
-        <iframe id="cms-iframe" class="cms-iframe" src="{{ $project->site_url }}" frameborder="0"></iframe>
+        <iframe id="cms-iframe" class="cms-iframe" src="{{ $project->website_back_url }}" frameborder="0"></iframe>
     </div>
 @endsection
 
