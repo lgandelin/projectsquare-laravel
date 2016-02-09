@@ -2,7 +2,7 @@
 
 return [
     'synthesis' => 'Synthèse',
-    'availability_synthesis' => 'Pourcentage de disponibilité',
+    'availability_percentage' => 'Pourcentage de disponibilité',
     'average_loading_time' => 'Temps de chargement moyen',
     'longest_loading_time' => 'Plus long temps de chargement',
     'requests_number' => 'Nombre de requêtes',

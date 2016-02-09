@@ -9,14 +9,14 @@
         <div class="row" style="margin-top: 5rem">
             <div id="loading_time" class="col-md-8"></div>
             <div id="key_numbers" class="col-md-2 col-md-offset-1">
-                <span>{{ trans('gateway::projects.synthesis') }}</span>
+                <span>{{ trans('gateway::monitoring.synthesis') }}</span>
 
                 <div class="content">
                     <ul>
-                        <li>{{ trans('gateway::projects.synthesis') }} : <span class="number" style="color: #57c17b">{{ number_format($status_codes['20x'], 2) }}%</span></li>
-                        <li>{{ trans('gateway::average_loading_time') }} : <span class="number" style="color: #57c17b">{{ number_format($average_loading_time, 2) }}s</span></li>
-                        <li>{{ trans('gateway::longest_loading_time') }} : <span class="number" style="color: #fc9a24">{{ number_format($max_loading_time, 2) }}s</span></li>
-                        <li>{{ trans('gateway::requests_number') }} : <span class="number">{{ count($requests) }}</span></li>
+                        <li>{{ trans('gateway::monitoring.availability_percentage') }} : <span class="number" style="color: #57c17b">{{ number_format($status_codes['20x'], 2) }}%</span></li>
+                        <li>{{ trans('gateway::monitoring.average_loading_time') }} : <span class="number" style="color: #57c17b">{{ number_format($average_loading_time, 2) }}s</span></li>
+                        <li>{{ trans('gateway::monitoring.longest_loading_time') }} : <span class="number" style="color: #fc9a24">{{ number_format($max_loading_time, 2) }}s</span></li>
+                        <li>{{ trans('gateway::monitoring.requests_number') }} : <span class="number">{{ count($requests) }}</span></li>
                     </ul>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                     zoomType: 'x'
                 },
                 title: {
-                    text: "{!! trans('gateway::monitoring.website_loading_time') !!} http://web-access.fr"
+                    text: "{!! trans('gateway::monitoring.website_loading_time') !!} {{ $project->website_front_url }}"
                 },
                 subtitle: {
                     text: "{!! trans('gateway::monitoring.last_24h') !!}"
