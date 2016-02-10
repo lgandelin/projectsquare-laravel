@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'ping_request_frequency' => 'Fréquence de ping',
+    'acceptable_loading_time' => 'Temps de chargement du site acceptable (en secondes)',
+    'acceptable_loading_time_placeholder' => 'ex: 1.5',
 ];
