@@ -6,6 +6,18 @@
     <div class="settings-template">
         <h1 class="page-header">{{ trans('gateway::project.settings') }}</h1>
 
+        @if (isset($error))
+            <div class="info bg-danger">
+                {{ $error }}
+            </div>
+        @endif
+
+        @if (isset($confirmation))
+            <div class="info bg-success">
+                {{ $confirmation }}
+            </div>
+        @endif
+
         <form action="{{ route('project_settings', ['id' => $project->id]) }}" method="post">
             <div class="form-group">
                 <label for="value">{{ trans('gateway::settings.acceptable_loading_time') }}</label>
