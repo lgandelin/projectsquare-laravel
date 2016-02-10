@@ -38,7 +38,7 @@
                 <tr>
                     <td>{{ $project->id }}</td>
                     <td>{{ $project->name }}</td>
-                    <td>{{ $project->client->name }}</td>
+                    <td>@if (isset($project->client)){{ $project->client->name }}@endif</td>
                     <td>
                         <a href="{{ route('projects_edit', ['id' => $project->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> {{ trans('gateway::generic.edit') }}</a>
                         <a href="{{ route('projects_delete', ['id' => $project->id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ trans('gateway::generic.delete') }}</a>
