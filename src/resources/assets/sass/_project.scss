@@ -13,3 +13,51 @@
         font-size: 1.4rem;
     }
 }
+
+.monitoring-template {
+
+    #loading_time {
+        min-width: 310px;
+        height: 400px;
+        margin: 0 auto;
+    }
+
+    #status_codes {
+        height: 350px;
+    }
+
+    #key_numbers {
+        span {
+            font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+            font-size: 18px;
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        .content {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+
+            .number {
+                font-size: 25px;
+                font-weight: bold;
+            }
+
+            ul {
+                padding-left: 0;
+                list-style: none;
+                
+                li {
+                    text-align: center;
+                    padding-bottom: 2rem;
+                    margin-bottom: 2rem;
+                    border-bottom: 1px solid #ddd;
+                }
+                
+                li:last-child {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+}
