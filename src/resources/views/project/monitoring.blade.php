@@ -54,7 +54,7 @@
                 xAxis: { type: 'datetime' },
                 yAxis: {
                     title: {
-                        text: "{{ trans('gateway::monitoring.loading_time_in_seconds') }}"
+                        text: "{!! trans('gateway::monitoring.loading_time_in_seconds') !!}"
                     },
                     min: 0
                 },
@@ -136,7 +136,7 @@
                     type: 'pie'
                 },
                 title: {
-                    text: "{{ trans('gateway::monitoring.website_loading_time') }}"
+                    text: "{!! trans('gateway::monitoring.website_loading_time') !!}"
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -156,7 +156,7 @@
                     }
                 },
                 series: [{
-                    name: "{{ trans('gateway::monitoring.loading_time_in_seconds') }}",
+                    name: "{!! trans('gateway::monitoring.loading_time_in_seconds') !!}",
                     colorByPoint: true,
                     data: [{
                         name: 'Moins de 1s',
