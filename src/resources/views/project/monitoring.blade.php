@@ -23,8 +23,8 @@
         </div>
 
         <div class="row" style="margin-top: 5rem">
-            <div id="status_codes_pie" class="col-md-3"></div>
-            <div id="loading_times_pie" class="col-md-3"></div>
+            <div id="status_codes_pie" class="col-md-4"></div>
+            <div id="loading_times_pie" class="col-md-4"></div>
         </div>
     </div>
 
