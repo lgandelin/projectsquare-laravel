@@ -5,10 +5,10 @@
             <li @if ($active == 'cms')class="active"@endif><a href="{{ route('project_cms', ['id' => $project->id]) }}">{{ trans('gateway::project.cms') }}</a></li>
             <li @if ($active == 'tickets')class="active"@endif><a href="{{ route('project_tickets', ['id' => $project->id]) }}">{{ trans('gateway::project.tickets') }}</a></li>
             <li @if ($active == 'monitoring')class="active"@endif><a href="{{ route('project_monitoring', ['id' => $project->id]) }}">{{ trans('gateway::project.monitoring') }}</a></li>
-            <li @if ($active == 'settings')class="active"@endif><a href="{{ route('project_settings', ['id' => $project->id]) }}">{{ trans('gateway::project.settings') }}</a></li>
             <li><a>Référencement</a></li>
             <li><a>Planning</a></li>
             <li><a>Messages</a></li>
+            <li @if ($active == 'settings')class="active"@endif><a href="{{ route('project_settings', ['id' => $project->id]) }}">{{ trans('gateway::project.settings') }}</a></li>
         </ul>
     </nav>
 </div>
