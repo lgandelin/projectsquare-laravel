@@ -28,6 +28,7 @@
         'form_action' => route('projects_update'),
         'project_id' => $project->id,
         'project_name' => $project->name,
-        'project_site_url' => $project->site_url,
+        'project_website_front_url' => $project->website_front_url,
+        'project_website_back_url' => $project->website_back_url,
     ])
 @endsection

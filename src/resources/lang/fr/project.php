@@ -5,4 +5,6 @@ return [
     'summary' => 'Résumé',
     'cms' => 'CMS',
     'tickets' => 'Tickets',
+    'monitoring' => 'Monitoring',
+    'settings' => 'Réglages',
 ];
