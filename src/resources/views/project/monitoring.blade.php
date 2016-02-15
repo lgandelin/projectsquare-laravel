@@ -13,7 +13,7 @@
 
                 <div class="content">
                     <ul>
-                        <li>{{ trans('gateway::monitoring.availability_percentage') }} : <span class="number" style="color: #57c17b">{{ number_format($status_codes['20x'], 2) }}%</span></li>
+                        <li>{{ trans('gateway::monitoring.availability_percentage') }} : <span class="number" style="color: #57c17b">{{ number_format($availability_percentage, 2) }}%</span></li>
                         <li>{{ trans('gateway::monitoring.average_loading_time') }} : <span class="number" style="color: #57c17b">{{ number_format($average_loading_time, 2) }}s</span></li>
                         <li>{{ trans('gateway::monitoring.longest_loading_time') }} : <span class="number" style="color: #fc9a24">{{ number_format($max_loading_time, 2) }}s</span></li>
                         <li>{{ trans('gateway::monitoring.requests_number') }} : <span class="number">{{ count($requests) }}</span></li>
