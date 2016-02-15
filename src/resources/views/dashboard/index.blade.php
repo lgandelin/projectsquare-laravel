@@ -89,7 +89,7 @@
                                         <td>{{ date('d/m/Y H:i', strtotime($alert->created_at)) }}</td>
                                         <td><span class="badge">{{ $alert->type }}</span></td>
                                         <td><a href="{{ route('project_index', ['id' => $ticket->project->id]) }}"><span class="label label-primary">{{ $ticket->project->client->name }}</span> {{ $ticket->project->name }}</a></td>
-                                        <td>{{ $alert->variables->loading_time }}s</td>
+                                        <td>{{ number_format($alert->variables->loading_time, 2) }}s</td>
                                         <td>
                                             <a href="{{ route('project_monitoring', ['id' => $alert->project->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt"></span> voir le projet</a>
                                         </td>
