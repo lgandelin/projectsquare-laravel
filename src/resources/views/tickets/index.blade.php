@@ -109,7 +109,7 @@
             </tbody>
         </table>
     </div>
-    
+
     <div class="text-center">
         {!! $tickets->render() !!}
     </div>
