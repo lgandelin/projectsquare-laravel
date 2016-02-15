@@ -11,10 +11,10 @@
 
     <div class="dashboard-content">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-lg-8 col-md-12">
                 <div class="block">
                     <h3>Derniers tickets</h3>
-                    <div class="block-content">
+                    <div class="block-content table-responsive">
                         <table class="table table-striped">
                             <thead>
                             <tr>
@@ -50,7 +50,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-lg-4 col-md-12">
                 <div class="block">
                     <h3>Derniers messages</h3>
                     <div class="block-content"></div>
@@ -59,14 +59,14 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-lg-6 col-md-12">
                 <div class="block">
                     <h3>Planning</h3>
                     <div class="block-content"></div>
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-lg-6 col-md-12">
                 <div class="block">
                     <h3>Alertes monitoring</h3>
                     <div class="block-content"></div>
