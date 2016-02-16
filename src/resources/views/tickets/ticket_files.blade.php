@@ -12,7 +12,7 @@
                             </a>
                         </td>
                         <td><a href="{{ asset('uploads' . $file->path) }}" title="{{ $file->name }}" target="_blank">{{ $file->name }}</a></td>
-                        <td width="150">{{ \Webaccess\GatewayLaravel\Services\FileManager::convertFileSize($file->size) }}</td>
+                        <td width="150">{{ \Webaccess\GatewayLaravel\Tools\FileTool::convertFileSize($file->size) }}</td>
                         <td width="275">
                             <a href="{{ asset('uploads' . $file->path) }}" class="btn btn-success" download="{{ $file->name }}"><i class="glyphicon glyphicon-download"></i> {{ trans('gateway::generic.download') }}</a>
                             <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> {{ trans('gateway::generic.delete') }}</a>
