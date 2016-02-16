@@ -53,7 +53,27 @@
             <div class="col-lg-4 col-md-12">
                 <div class="block">
                     <h3>Derniers messages</h3>
-                    <div class="block-content"></div>
+                    <div class="block-content table-responsive">
+                        <table class="table table-striped">
+                            <tbody>
+                                @foreach ($conversations as $conversation)
+                                    <tr>
+                                        <td>
+                                            <a href="{{ route('project_index', ['id' => $conversation->project->id]) }}"><span class="label label-primary">{{ $conversation->project->client->name }}</span> {{ $conversation->project->name }}</a><br>
+                                            <strong>{{ $conversation->title }}</strong> par {{ $conversation->messages[0]->user->complete_name }}<br><br>
+
+                                            <span class="badge">{{ date('d/m/Y H:i', strtotime($conversation->created_at)) }}</span> <br/>
+                                            <p>{{ $conversation->messages[0]->content }}</p>
+                                            <a href="{{ route('project_messages', ['id' => $conversation->project->id]) }}" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-share-alt"></span> voir</a>
+                                            <a href="{{ route('messages_reply', ['id' => $conversation->messages[0]->id]) }}" class="btn btn-success pull-right" style="margin-right: 1rem;"><span class="glyphicon glyphicon-envelope"></span> {{ trans('gateway::messages.reply_message') }}</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <a href="{{ route('messages_add') }}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> {{ trans('gateway::messages.add_conversation') }}</a>
+                        <a href="{{ route('messages_index') }}" class="btn btn-default pull-right"><span class="glyphicon glyphicon-list-alt"></span> {{ trans('gateway::messages.see_messages') }}</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -97,6 +117,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <a href="{{ route('monitoring_index') }}" class="btn btn-default pull-right"><span class="glyphicon glyphicon-list-alt"></span> {{ trans('gateway::monitoring.see_alerts') }}</a>
                     </div>
                 </div>
             </div>
