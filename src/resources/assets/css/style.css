@@ -6767,7 +6767,8 @@ ul {
   font-size: 1.2rem;
   font-weight: bold;
   padding: 0.3rem 1rem;
-  border-radius: 0.3rem; }
+  border-radius: 0.3rem;
+  display: inline-block; }
 
 .status-1 {
   background: #DF5A49;

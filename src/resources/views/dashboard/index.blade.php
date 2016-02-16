@@ -11,10 +11,10 @@
 
     <div class="dashboard-content">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-lg-8 col-md-12">
                 <div class="block">
                     <h3>Derniers tickets</h3>
-                    <div class="block-content">
+                    <div class="block-content table-responsive">
                         <table class="table table-striped">
                             <thead>
                             <tr>
@@ -50,7 +50,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-lg-4 col-md-12">
                 <div class="block">
                     <h3>Derniers messages</h3>
                     <div class="block-content"></div>
@@ -59,17 +59,45 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-lg-6 col-md-12">
                 <div class="block">
                     <h3>Planning</h3>
                     <div class="block-content"></div>
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-lg-6 col-md-12">
                 <div class="block">
                     <h3>Alertes monitoring</h3>
-                    <div class="block-content"></div>
+                    <div class="block-content table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Variables</th>
+                                <th>Temps de chargement</th>
+                                <th>{{ trans('gateway::generic.action') }}</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach ($alerts as $alert)
+                                    <tr>
+                                        <td>{{ $alert->id }}</td>
+                                        <td>{{ date('d/m/Y H:i', strtotime($alert->created_at)) }}</td>
+                                        <td><span class="badge">{{ $alert->type }}</span></td>
+                                        <td><a href="{{ route('project_index', ['id' => $alert->project->id]) }}"><span class="label label-primary">{{ $alert->project->client->name }}</span> {{ $alert->project->name }}</a></td>
+                                        <td>{{ number_format($alert->variables->loading_time, 2) }}s</td>
+                                        <td>
+                                            <a href="{{ route('project_monitoring', ['id' => $alert->project->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt"></span> voir le projet</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
