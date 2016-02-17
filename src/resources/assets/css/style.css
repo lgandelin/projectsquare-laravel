@@ -6724,6 +6724,30 @@ ul {
 .dashboard-content .block h3 {
   margin-bottom: 2rem; }
 
+.dashboard-content .last-messages .count {
+  background: #e2c44b; }
+
+.dashboard-content .last-messages .message {
+  overflow: hidden;
+  margin-bottom: 1rem; }
+  .dashboard-content .last-messages .message .glyphicon-user {
+    margin-left: 1rem; }
+  .dashboard-content .last-messages .message .user_name {
+    font-weight: bold;
+    color: #cc6057; }
+  .dashboard-content .last-messages .message .content {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem; }
+
+.dashboard-content .last-messages .wrapper {
+  height: 400px;
+  overflow-y: scroll;
+  margin-bottom: 2rem; }
+  .dashboard-content .last-messages .wrapper table tbody tr:first-child td {
+    border-top: none; }
+  .dashboard-content .last-messages .wrapper table tbody tr:last-child .message {
+    margin-bottom: 0; }
+
 .project-template .cms-iframe {
   width: 100%;
   height: 950px;

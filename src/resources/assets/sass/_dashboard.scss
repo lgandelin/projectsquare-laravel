@@ -4,4 +4,51 @@
             margin-bottom: 2rem;
         }
     }
+
+    .last-messages {
+        .count {
+            background: #e2c44b;
+        }
+
+        .message {
+            overflow: hidden;
+            margin-bottom: 1rem;
+
+            .glyphicon-user {
+                margin-left: 1rem;
+            }
+
+            .user_name {
+                font-weight: bold;
+                color:#cc6057;
+            }
+
+            .content {
+                margin-top:0.5rem;
+                margin-bottom: 1rem;
+            }
+        }
+
+        .wrapper {
+            height: 400px;
+            overflow-y: scroll;
+            margin-bottom: 2rem;
+
+            table {
+                tbody {
+                    tr:first-child {
+                        td {
+                            border-top: none;
+                        }
+                    }
+
+                    tr:last-child {
+                        .message {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
