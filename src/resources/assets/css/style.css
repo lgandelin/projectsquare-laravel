@@ -6743,7 +6743,8 @@ ul {
 
 .dashboard-content .last-messages .submit {
   margin-top: 1rem;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+  overflow: hidden; }
 
 .dashboard-content .last-messages .new-message {
   margin-bottom: 0; }
@@ -6850,5 +6851,6 @@ ul {
       float: left;
       margin-right: 10px; }
 
-.message-view-template {
-  overflow: hidden; }
+.message-view-template .header {
+  overflow: hidden;
+  margin-bottom: 1.5rem; }

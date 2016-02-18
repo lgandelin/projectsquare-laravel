@@ -3,6 +3,8 @@ $(document).ready(function() {
         var conversation = $(this).closest('.conversation');
         conversation.find('.new-message').show();
         conversation.find('.new-message textarea').focus();
+
+        conversation.find('.submit').hide();
     });
 
     //DASHBOARD - REPLY TO MESSAGE
@@ -10,6 +12,8 @@ $(document).ready(function() {
         var conversation = $(this).closest('.conversation');
         conversation.find('.new-message textarea').val('');
         conversation.find('.new-message').hide();
+
+        conversation.find('.submit').show();
     });
 
     $('.conversation').on('click', '.valid-message', function() {
@@ -32,6 +36,8 @@ $(document).ready(function() {
                 $(conversation).find('.message-inserted').prepend(html);
 
                 conversation.find('.count .number').text(data.message.count);
+
+                conversation.find('.submit').show();
             }
         });
     });

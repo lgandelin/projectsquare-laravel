@@ -1,3 +1,6 @@
 .message-view-template {
-    overflow: hidden;
+    .header {
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+    }
 }
