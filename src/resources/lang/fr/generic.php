@@ -11,4 +11,5 @@ return [
     'download' => 'Télécharger',
     'choose_value' => 'Choisissez une valeur',
     'creation_date' => 'Date de création',
+    'see' => 'Voir',
 ];
