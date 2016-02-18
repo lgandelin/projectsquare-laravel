@@ -16,25 +16,23 @@ $(document).ready(function() {
         var conversation = $(this).closest('.conversation');
         var data = {
             conversation_id: $(this).data('id'),
-            message: conversation.find('.new-message textarea').val()
+            message: conversation.find('.new-message textarea').val(),
+            _token: $('#csrf_token').val()
         };
 
-        //TODO : send Ajax request
+        $.ajax({
+            type: "POST",
+            url: route_message_reply,
+            data: data,
+            success: function(data) {
+                conversation.find('.new-message textarea').val('');
+                conversation.find('.new-message').hide();
 
-        var result = {
-            datetime: '18/02/2016 18:24',
-            username: 'Louis Gandelin',
-            message: 'Il faut aller sur https://www.google.com/analytics/web.',
-            count: 2,
-            id: 2
-        };
+                var html = loadTemplate('message-template', data.message);
+                $(conversation).find('.message-inserted').prepend(html);
 
-        conversation.find('.new-message textarea').val('');
-        conversation.find('.new-message').hide();
-
-        var html = loadTemplate('message-template', result);
-        $(conversation).find('.message-inserted').prepend(html);
-
-        conversation.find('.count .number').text(result.count);
+                conversation.find('.count .number').text(data.message.count);
+            }
+        });
     });
 });

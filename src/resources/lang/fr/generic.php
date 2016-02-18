@@ -3,12 +3,12 @@
 return [
     'back' => 'Retour',
     'action' => 'Action',
-    'add' => 'ajouter',
-    'edit' => 'editer',
-    'delete' => 'supprimer',
-    'valid' => 'valider',
-    'cancel' => 'annuler',
-    'download' => 'télécharger',
+    'add' => 'Ajouter',
+    'edit' => 'Editer',
+    'delete' => 'Supprimer',
+    'valid' => 'Valider',
+    'cancel' => 'Annuler',
+    'download' => 'Télécharger',
     'choose_value' => 'Choisissez une valeur',
     'creation_date' => 'Date de création',
 ];
