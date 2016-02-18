@@ -89,7 +89,7 @@
                             </table>
                         </div>
                     </div>
-                    <a href="{{ route('messages_add') }}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> {{ trans('gateway::messages.add_conversation') }}</a>
+                    <button class="btn btn-success create-conversation"><span class="glyphicon glyphicon-plus"></span> {{ trans('gateway::messages.add_conversation') }}</button>
                     <a href="{{ route('messages_index') }}" class="btn btn-default pull-right"><span class="glyphicon glyphicon-list-alt"></span> {{ trans('gateway::messages.see_messages') }}</a>
                 </div>
             </div>
@@ -142,4 +142,5 @@
     </div>
 
     @include('gateway::dashboard.new-message')
+    @include('gateway::dashboard.create-conversation-modal')
 @endsection

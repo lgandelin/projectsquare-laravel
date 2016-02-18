@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+    //DASHBOARD - REPLY TO MESSAGE
     $('.conversation').on('click', '.reply-message', function() {
         var conversation = $(this).closest('.conversation');
         conversation.find('.new-message').show();
@@ -7,7 +9,7 @@ $(document).ready(function() {
         conversation.find('.submit').hide();
     });
 
-    //DASHBOARD - REPLY TO MESSAGE
+    //DASHBOARD - CANCEL MESSAGE
     $('.conversation').on('click', '.cancel-message', function() {
         var conversation = $(this).closest('.conversation');
         conversation.find('.new-message textarea').val('');
@@ -16,6 +18,7 @@ $(document).ready(function() {
         conversation.find('.submit').show();
     });
 
+    //DASHBOARD - VALID MESSAGE
     $('.conversation').on('click', '.valid-message', function() {
         var conversation = $(this).closest('.conversation');
         var data = {
@@ -40,5 +43,10 @@ $(document).ready(function() {
                 conversation.find('.submit').show();
             }
         });
+    });
+
+    //DASHBOARD - CREATE CONVERSATION
+    $('body').on('click', '.create-conversation', function() {
+        $('#create-conversation-modal').modal('show');
     });
 });
