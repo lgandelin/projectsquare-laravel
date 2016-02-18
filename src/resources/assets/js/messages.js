@@ -49,4 +49,21 @@ $(document).ready(function() {
     $('body').on('click', '.create-conversation', function() {
         $('#create-conversation-modal').modal('show');
     });
+
+    $('.valid-create-conversation').click(function() {
+        var data = {
+            title: $('input[name="title"]').val(),
+            message: $('textarea[name="message"]').val(),
+            _token: $('#csrf_token').val()
+        };
+
+        $.ajax({
+            type: "POST",
+            url: route_add_conversation,
+            data: data,
+            success: function(data) {
+                window.location.reload();
+            }
+        });
+    });
 });

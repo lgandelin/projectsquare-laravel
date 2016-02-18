@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i> Valider</button>
+                    <button type="button" class="btn btn-success valid-create-conversation"><i class="glyphicon glyphicon-ok"></i> Valider</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
                 </div>
             </form>

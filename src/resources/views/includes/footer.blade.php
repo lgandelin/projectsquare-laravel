@@ -6,6 +6,7 @@
     <script src="{{ asset('js/messages.js') }}"></script>
     <script>
         var route_message_reply = "{{ route('messages_reply') }}";
+        var route_add_conversation = "{{ route('add_conversation') }}";
     </script>
     <input type="hidden" id="csrf_token" value="{!! csrf_token() !!}" />
 </body>
