@@ -6729,7 +6729,7 @@ ul {
 
 .dashboard-content .last-messages .message {
   overflow: hidden;
-  margin-bottom: 1rem; }
+  margin-bottom: 2rem; }
   .dashboard-content .last-messages .message .glyphicon-user {
     margin-left: 1rem; }
   .dashboard-content .last-messages .message .user_name {
