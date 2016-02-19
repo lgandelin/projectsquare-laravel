@@ -86,7 +86,7 @@
                                                 </div>
 
                                                 <div class="submit">
-                                                    <a href="{{ route('message', ['id' => $conversation->id]) }}" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-share-alt"></span> Voir</a>
+                                                    <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-share-alt"></span> Voir</a>
                                                     <button class="btn btn-success pull-right reply-message" data-id="{{ $message->id }}" style="margin-right: 1rem;"><span class="glyphicon glyphicon-comment"></span> {{ trans('gateway::messages.reply_message') }}</button>
                                                 </div>
                                             </td>

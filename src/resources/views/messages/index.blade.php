@@ -28,7 +28,7 @@
                     <td>{{ $conversation->messages[0]->user->complete_name }}</td>
                     <td>{{ $conversation->title }}</td>
                     <td>
-                        <a href="{{ route('message', ['id' => $conversation->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt"></span> {{ trans('gateway::generic.see') }}</a>
+                        <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt"></span> {{ trans('gateway::generic.see') }}</a>
                     </td>
                 </tr>
             @endforeach
