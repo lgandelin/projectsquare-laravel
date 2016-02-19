@@ -6727,15 +6727,19 @@ ul {
 .dashboard-content .last-messages .count {
   background: #e2c44b; }
 
-.dashboard-content .last-messages .message {
+.dashboard-content .last-messages .conversation .users {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem; }
+
+.dashboard-content .last-messages .conversation .message {
   overflow: hidden;
   margin-bottom: 1rem; }
-  .dashboard-content .last-messages .message .glyphicon-user {
+  .dashboard-content .last-messages .conversation .message .glyphicon-user {
     margin-left: 1rem; }
-  .dashboard-content .last-messages .message .user_name {
+  .dashboard-content .last-messages .conversation .message .user_name {
     font-weight: bold;
     color: #cc6057; }
-  .dashboard-content .last-messages .message .content {
+  .dashboard-content .last-messages .conversation .message .content {
     margin-top: 1rem;
     margin-bottom: 1rem;
     background: white;

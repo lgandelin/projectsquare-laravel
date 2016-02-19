@@ -61,9 +61,16 @@
                                         <tr class="conversation">
                                             <td>
                                                 <span class="badge pull-right count"><span class="number">{{ count($conversation->messages) }}</span> @if (count($conversation->messages) > 1)messages @else message @endif</span>
-                                                <a href="{{ route('project_index', ['id' => $conversation->project->id]) }}"><span class="label label-primary">{{ $conversation->project->client->name }}</span> {{ $conversation->project->name }}</a> - <strong>{{ $conversation->title }}</strong><br><br/>
+                                                <a href="{{ route('project_index', ['id' => $conversation->project->id]) }}"><span class="label label-primary">{{ $conversation->project->client->name }}</span> {{ $conversation->project->name }}</a> - <strong>{{ $conversation->title }}</strong><br>
 
-                                                @foreach ($conversation->messages as $i => $message)
+                                                <div class="users">
+                                                    <u>Participants</u> :
+                                                    @foreach ($conversation->users as $i => $user)
+                                                        @if ($i > 0),@endif {{ $user->complete_name }}
+                                                    @endforeach
+                                                </div>
+
+                                                @foreach ($conversation->messages as $message)
                                                     <div class="message">
                                                         <span class="badge">{{ date('d/m/Y H:i', strtotime($message->created_at)) }}</span> <span class="glyphicon glyphicon-user"></span> <span class="user_name">{{ $message->user->complete_name }}</span><br/>
                                                         <p class="content">{{ $message->content }}</p>
