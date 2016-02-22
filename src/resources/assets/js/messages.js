@@ -36,7 +36,7 @@ $(document).ready(function() {
                 conversation.find('.new-message').hide();
 
                 var html = loadTemplate('message-template', data.message);
-                $(conversation).find('.message-inserted').prepend(html);
+                $(conversation).find('.message-inserted').append(html);
 
                 conversation.find('.count .number').text(data.message.count);
 
