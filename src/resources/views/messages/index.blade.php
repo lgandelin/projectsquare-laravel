@@ -33,5 +33,8 @@
                 </tr>
             @endforeach
         </table>
+        <div class="text-center">
+            {!! $conversations->render() !!}
+        </div>
     </div>
 @endsection
