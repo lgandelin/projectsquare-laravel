@@ -6728,8 +6728,8 @@ ul {
   background: #e2c44b; }
 
 .dashboard-content .last-messages .conversation .users {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem; }
+  margin-top: 1rem;
+  margin-bottom: 1.5rem; }
 
 .dashboard-content .last-messages .conversation .message {
   overflow: hidden;
