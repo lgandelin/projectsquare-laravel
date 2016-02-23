@@ -7,7 +7,7 @@
             <li @if ($active == 'monitoring')class="active"@endif><a href="{{ route('project_monitoring', ['id' => $project->id]) }}">{{ trans('gateway::project.monitoring') }}</a></li>
             <li><a>Référencement</a></li>
             <li><a>Planning</a></li>
-            <li><a>Messages</a></li>
+            <li @if ($active == 'messages')class="active"@endif><a href="{{ route('project_messages', ['id' => $project->id]) }}">{{ trans('gateway::project.messages') }}</a></li>
             <li @if ($active == 'settings')class="active"@endif><a href="{{ route('project_settings', ['id' => $project->id]) }}">{{ trans('gateway::project.settings') }}</a></li>
         </ul>
     </nav>
