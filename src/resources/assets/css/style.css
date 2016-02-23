@@ -6724,6 +6724,42 @@ ul {
 .dashboard-content .block h3 {
   margin-bottom: 2rem; }
 
+.dashboard-content .last-messages .count {
+  background: #e2c44b; }
+
+.dashboard-content .last-messages .conversation .users {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem; }
+
+.dashboard-content .last-messages .conversation .message {
+  overflow: hidden;
+  margin-bottom: 1rem; }
+  .dashboard-content .last-messages .conversation .message .glyphicon-user {
+    margin-left: 1rem; }
+  .dashboard-content .last-messages .conversation .message .user_name {
+    font-weight: bold;
+    color: #cc6057; }
+  .dashboard-content .last-messages .conversation .message .content {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background: white;
+    padding: 1rem; }
+
+.dashboard-content .last-messages .submit {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  overflow: hidden; }
+
+.dashboard-content .last-messages .new-message {
+  margin-bottom: 0; }
+
+.dashboard-content .last-messages .wrapper {
+  height: 400px;
+  overflow-y: scroll;
+  margin-bottom: 2rem; }
+  .dashboard-content .last-messages .wrapper table tbody tr:first-child td {
+    border-top: none; }
+
 .project-template .cms-iframe {
   width: 100%;
   height: 950px;
@@ -6818,3 +6854,7 @@ ul {
     .task-template .tasks .task form {
       float: left;
       margin-right: 10px; }
+
+.message-view-template .header {
+  overflow: hidden;
+  margin-bottom: 1.5rem; }
