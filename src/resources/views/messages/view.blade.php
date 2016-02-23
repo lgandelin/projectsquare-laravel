@@ -12,7 +12,7 @@
             <h1>{{ $conversation->title }}</h1>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="header">
                 <a href="{{ route('project_index', ['id' => $conversation->project->id]) }}"><span class="label label-primary">{{ $conversation->project->client->name }}</span> {{ $conversation->project->name }}</a>
                 <span class="badge pull-right count"><span class="number">{{ count($conversation->messages) }}</span> @if (count($conversation->messages) > 1)messages @else message @endif</span>
@@ -37,6 +37,7 @@
                 </div>
 
                 <div class="submit">
+                    <a href="{{ route('messages_index') }}" class="btn btn-default pull-right"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('gateway::generic.back') }}</a>
                     <button class="btn btn-success pull-right reply-message" data-id="{{ $message->id }}" style="margin-right: 1rem;"><span class="glyphicon glyphicon-comment"></span> {{ trans('gateway::messages.reply_message') }}</button>
                 </div>
             </div>
