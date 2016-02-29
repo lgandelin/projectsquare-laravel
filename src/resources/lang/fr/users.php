@@ -24,4 +24,7 @@ return [
     'client' => 'Client',
 
     'user_not_found' => 'Une erreur est survenue lors de la récupération de cet utilisateur',
+    'ticket_creation_not_allowed' => 'Vous n\'êtes pas autorisés à créer un ticket pour ce projet',
+    'ticket_update_not_allowed' => 'Vous n\'êtes pas autorisés à modifier ce ticket',
+    'ticket_deletion_not_allowed' => 'Vous n\'êtes pas autorisés à supprimer ce ticket',
 ];

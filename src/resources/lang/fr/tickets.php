@@ -53,4 +53,7 @@ return [
     'add_files' => 'Ajouter des fichiers',
     'start_file_upload' => 'Démarrer l\'upload',
     'cancel_file_upload' => 'Annuler l\'upload',
+
+    'title_required' => 'Vous devez renseignez un titre pour ce ticket',
+    'due_date_already_passed' => 'L\'échéance de ce ticket est déjà passée',
 ];
