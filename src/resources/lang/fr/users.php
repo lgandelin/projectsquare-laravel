@@ -27,4 +27,5 @@ return [
     'ticket_creation_not_allowed' => 'Vous n\'êtes pas autorisés à créer un ticket pour ce projet',
     'ticket_update_not_allowed' => 'Vous n\'êtes pas autorisés à modifier ce ticket',
     'ticket_deletion_not_allowed' => 'Vous n\'êtes pas autorisés à supprimer ce ticket',
+    'message_reply_not_allowed' => 'Vous n\'êtes pas autorisés à répondre à cette conversation',
 ];
