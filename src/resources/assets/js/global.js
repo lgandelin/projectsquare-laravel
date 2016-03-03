@@ -4,3 +4,9 @@ $('input.datepicker').datepicker({
     autoclose: true,
     forceParse: false
 });
+
+function loadTemplate(templateID, params) {
+    var template = Handlebars.compile($('#' + templateID).html());
+
+    return template(params);
+}

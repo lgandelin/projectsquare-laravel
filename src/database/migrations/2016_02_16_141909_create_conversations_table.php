@@ -3,17 +3,16 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAlertsTable extends Migration
+class CreateConversationsTable extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up()
     {
-        Schema::create('alerts', function (Blueprint $table) {
+        Schema::create('conversations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type')->nullable();
-            $table->string('variables')->nullable();
+            $table->string('title')->nullable();
             $table->integer('project_id')->nullable();
             $table->timestamps();
         });
@@ -24,6 +23,6 @@ class CreateAlertsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('alerts');
+        Schema::drop('conversations');
     }
 }

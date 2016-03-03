@@ -7,4 +7,5 @@ return [
     'tickets' => 'Tickets',
     'monitoring' => 'Monitoring',
     'settings' => 'Réglages',
+    'messages' => 'Messages',
 ];
