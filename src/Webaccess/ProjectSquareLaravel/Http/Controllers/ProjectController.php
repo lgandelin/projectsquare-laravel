@@ -97,7 +97,14 @@ class ProjectController extends BaseController
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'steps' => app()->make('GetStepsInteractor')->execute(new GetStepsRequest([
                 'projectID' => $projectID
-            ])),
+            ]))
+        ]);
+    }
+
+    public function seo($projectID)
+    {
+        return view('projectsquare::project.seo', [
+            'project' => app()->make('ProjectManager')->getProject($projectID),
         ]);
     }
 }
