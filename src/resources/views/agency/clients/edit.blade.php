@@ -1,15 +1,15 @@
-@extends('gateway::default')
+@extends('projectsquare::default')
 
 @section('content')
     <ol class="breadcrumb">
-        <li><a href="{{ route('dashboard') }}">{{ trans('gateway::dashboard.panel_title') }}</a></li>
-        <li><a href="{{ route('agency_index') }}">{{ trans('gateway::agency.panel_title') }}</a></li>
-        <li><a href="{{ route('clients_index') }}">{{ trans('gateway::clients.clients_list') }}</a></li>
-        <li class="active">{{ trans('gateway::clients.edit_client') }}</li>
+        <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
+        <li><a href="{{ route('agency_index') }}">{{ trans('projectsquare::agency.panel_title') }}</a></li>
+        <li><a href="{{ route('clients_index') }}">{{ trans('projectsquare::clients.clients_list') }}</a></li>
+        <li class="active">{{ trans('projectsquare::clients.edit_client') }}</li>
     </ol>
 
     <div class="page-header">
-        <h1>{{ trans('gateway::clients.edit_client') }}</h1>
+        <h1>{{ trans('projectsquare::clients.edit_client') }}</h1>
     </div>
 
     @if (isset($error))
@@ -24,7 +24,7 @@
         </div>
     @endif
 
-    @include('gateway::agency.clients.form', [
+    @include('projectsquare::agency.clients.form', [
         'form_action' => route('clients_update'),
         'client_id' => $client->id,
         'client_name' => $client->name

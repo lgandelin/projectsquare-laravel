@@ -1,13 +1,13 @@
 <div class="table-responsive">
     <table class="table table-striped table-bordered">
         <thead>
-        <th>{{ trans('gateway::generic.creation_date') }}</th>
-        <th>{{ trans('gateway::tickets.author_user') }}</th>
-        <th>{{ trans('gateway::tickets.allocated_user') }}</th>
-        <th>{{ trans('gateway::tickets.due_date') }}</th>
-        <th>{{ trans('gateway::tickets.priority') }}</th>
-        <th>{{ trans('gateway::tickets.status') }}</th>
-        <th>{{ trans('gateway::tickets.comments') }}</th>
+        <th>{{ trans('projectsquare::generic.creation_date') }}</th>
+        <th>{{ trans('projectsquare::tickets.author_user') }}</th>
+        <th>{{ trans('projectsquare::tickets.allocated_user') }}</th>
+        <th>{{ trans('projectsquare::tickets.due_date') }}</th>
+        <th>{{ trans('projectsquare::tickets.priority') }}</th>
+        <th>{{ trans('projectsquare::tickets.status') }}</th>
+        <th>{{ trans('projectsquare::tickets.comments') }}</th>
         </thead>
         <tbody>
             @foreach ($ticket_states as $i => $ticket_state)

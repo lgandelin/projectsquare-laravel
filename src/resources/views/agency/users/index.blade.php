@@ -1,14 +1,14 @@
-@extends('gateway::default')
+@extends('projectsquare::default')
 
 @section('content')
     <ol class="breadcrumb">
-        <li><a href="{{ route('dashboard') }}">{{ trans('gateway::dashboard.panel_title') }}</a></li>
-        <li><a href="{{ route('agency_index') }}">{{ trans('gateway::agency.panel_title') }}</a></li>
-        <li class="active">{{ trans('gateway::users.users_list') }}</li>
+        <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
+        <li><a href="{{ route('agency_index') }}">{{ trans('projectsquare::agency.panel_title') }}</a></li>
+        <li class="active">{{ trans('projectsquare::users.users_list') }}</li>
     </ol>
 
     <div class="page-header">
-        <h1>{{ trans('gateway::users.users_list') }}</h1>
+        <h1>{{ trans('projectsquare::users.users_list') }}</h1>
     </div>
 
     @if (isset($error))
@@ -27,10 +27,10 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>{{ trans('gateway::users.name') }}</th>
-            <th>{{ trans('gateway::users.email') }}</th>
-            <th>{{ trans('gateway::users.client') }}</th>
-            <th>{{ trans('gateway::generic.action') }}</th>
+            <th>{{ trans('projectsquare::users.name') }}</th>
+            <th>{{ trans('projectsquare::users.email') }}</th>
+            <th>{{ trans('projectsquare::users.client') }}</th>
+            <th>{{ trans('projectsquare::generic.action') }}</th>
         </tr>
         </thead>
 
@@ -42,8 +42,8 @@
                     <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                     <td>@if (isset($user->client)){{ $user->client->name }}@endif</td>
                     <td>
-                        <a href="{{ route('users_edit', ['id' => $user->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> {{ trans('gateway::generic.edit') }}</a>
-                        <a href="{{ route('users_delete', ['id' => $user->id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ trans('gateway::generic.delete') }}</a>
+                        <a href="{{ route('users_edit', ['id' => $user->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> {{ trans('projectsquare::generic.edit') }}</a>
+                        <a href="{{ route('users_delete', ['id' => $user->id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ trans('projectsquare::generic.delete') }}</a>
                     </td>
                 </tr>
             @endforeach
@@ -54,5 +54,5 @@
         {!! $users->render() !!}
     </div>
 
-    <a href="{{ route('users_add') }}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> {{ trans('gateway::users.add_user') }}</a>
+    <a href="{{ route('users_add') }}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> {{ trans('projectsquare::users.add_user') }}</a>
 @endsection

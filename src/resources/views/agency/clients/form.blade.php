@@ -1,14 +1,14 @@
 <form action="{{ $form_action }}" method="post">
     <div class="form-group">
-        <label for="name">{{ trans('gateway::clients.label') }}</label>
-        <input class="form-control" type="text" placeholder="{{ trans('gateway::clients.name_placeholder') }}" name="name" @if (isset($client_name))value="{{ $client_name }}"@endif />
+        <label for="name">{{ trans('projectsquare::clients.label') }}</label>
+        <input class="form-control" type="text" placeholder="{{ trans('projectsquare::clients.name_placeholder') }}" name="name" @if (isset($client_name))value="{{ $client_name }}"@endif />
     </div>
 
     <div class="form-group">
         <button type="submit" class="btn btn-success">
-            <i class="glyphicon glyphicon-ok"></i> {{ trans('gateway::generic.valid') }}
+            <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
         </button>
-        <a href="{{ route('clients_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i>{{ trans('gateway::generic.back') }}</a>
+        <a href="{{ route('clients_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i>{{ trans('projectsquare::generic.back') }}</a>
     </div>
 
     @if (isset($client_id))

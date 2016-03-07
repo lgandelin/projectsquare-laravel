@@ -1,10 +1,10 @@
-@extends('gateway::default')
+@extends('projectsquare::default')
 
 @section('content')
-    @include('gateway::includes.project_bar', ['active' => 'settings'])
+    @include('projectsquare::includes.project_bar', ['active' => 'settings'])
 
     <div class="settings-template">
-        <h1 class="page-header">{{ trans('gateway::project.settings') }}</h1>
+        <h1 class="page-header">{{ trans('projectsquare::project.settings') }}</h1>
 
         @if (isset($error))
             <div class="info bg-danger">
@@ -18,20 +18,20 @@
             </div>
         @endif
 
-        <h3>{{ trans('gateway::project.monitoring') }}</h3>
+        <h3>{{ trans('projectsquare::project.monitoring') }}</h3>
 
         <form action="{{ route('project_settings', ['id' => $project->id]) }}" method="post">
             <div class="form-group">
-                <label for="value">{{ trans('gateway::settings.acceptable_loading_time') }}</label>
-                <input class="form-control" type="text" placeholder="{{ trans('gateway::settings.acceptable_loading_time_placeholder') }}" name="value" @if (isset($acceptable_loading_time))value="{{ $acceptable_loading_time }}"@endif />
+                <label for="value">{{ trans('projectsquare::settings.acceptable_loading_time') }}</label>
+                <input class="form-control" type="text" placeholder="{{ trans('projectsquare::settings.acceptable_loading_time_placeholder') }}" name="value" @if (isset($acceptable_loading_time))value="{{ $acceptable_loading_time }}"@endif />
             </div>
 
             <div class="form-group">
                 <button type="submit" class="btn btn-success">
-                    <i class="glyphicon glyphicon-ok"></i> {{ trans('gateway::generic.valid') }}
+                    <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                 </button>
 
-                <a href="{{ route('project_index', ['id' => $project->id]) }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('gateway::generic.back') }}</a>
+                <a href="{{ route('project_index', ['id' => $project->id]) }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
             </div>
 
             @if (isset($project->id))
@@ -45,16 +45,16 @@
 
         <form action="{{ route('project_settings', ['id' => $project->id]) }}" method="post">
             <div class="form-group">
-                <label for="value">{{ trans('gateway::settings.alert_loading_time_email') }}</label>
-                <input class="form-control" type="text" placeholder="{{ trans('gateway::settings.alert_loading_time_email') }}" name="value" @if (isset($alert_loading_time_email))value="{{ $alert_loading_time_email }}"@endif />
+                <label for="value">{{ trans('projectsquare::settings.alert_loading_time_email') }}</label>
+                <input class="form-control" type="text" placeholder="{{ trans('projectsquare::settings.alert_loading_time_email') }}" name="value" @if (isset($alert_loading_time_email))value="{{ $alert_loading_time_email }}"@endif />
             </div>
 
             <div class="form-group">
                 <button type="submit" class="btn btn-success">
-                    <i class="glyphicon glyphicon-ok"></i> {{ trans('gateway::generic.valid') }}
+                    <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                 </button>
 
-                <a href="{{ route('project_index', ['id' => $project->id]) }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('gateway::generic.back') }}</a>
+                <a href="{{ route('project_index', ['id' => $project->id]) }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
             </div>
 
             @if (isset($project->id))
@@ -68,16 +68,16 @@
 
         <form action="{{ route('project_settings', ['id' => $project->id]) }}" method="post">
             <div class="form-group">
-                <label for="value">{{ trans('gateway::settings.slack_channel') }}</label>
-                <input class="form-control" type="text" placeholder="{{ trans('gateway::settings.slack_channel_placeholder') }}" name="value" @if (isset($slack_channel))value="{{ $slack_channel }}"@endif />
+                <label for="value">{{ trans('projectsquare::settings.slack_channel') }}</label>
+                <input class="form-control" type="text" placeholder="{{ trans('projectsquare::settings.slack_channel_placeholder') }}" name="value" @if (isset($slack_channel))value="{{ $slack_channel }}"@endif />
             </div>
 
             <div class="form-group">
                 <button type="submit" class="btn btn-success">
-                    <i class="glyphicon glyphicon-ok"></i> {{ trans('gateway::generic.valid') }}
+                    <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                 </button>
 
-                <a href="{{ route('project_index', ['id' => $project->id]) }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('gateway::generic.back') }}</a>
+                <a href="{{ route('project_index', ['id' => $project->id]) }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
             </div>
 
             @if (isset($project->id))

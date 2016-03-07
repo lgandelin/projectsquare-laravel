@@ -1,14 +1,14 @@
-@extends('gateway::default')
+@extends('projectsquare::default')
 
 @section('content')
     <ol class="breadcrumb">
-        <li><a href="{{ route('dashboard') }}">{{ trans('gateway::dashboard.panel_title') }}</a></li>
-        <li><a href="{{ route('agency_index') }}">{{ trans('gateway::agency.panel_title') }}</a></li>
-        <li class="active">{{ trans('gateway::roles.roles_list') }}</li>
+        <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
+        <li><a href="{{ route('agency_index') }}">{{ trans('projectsquare::agency.panel_title') }}</a></li>
+        <li class="active">{{ trans('projectsquare::roles.roles_list') }}</li>
     </ol>
 
     <div class="page-header">
-        <h1>{{ trans('gateway::roles.roles_list') }}</h1>
+        <h1>{{ trans('projectsquare::roles.roles_list') }}</h1>
     </div>
 
     @if (isset($error))
@@ -27,8 +27,8 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>{{ trans('gateway::roles.role') }}</th>
-                <th>{{ trans('gateway::generic.action') }}</th>
+                <th>{{ trans('projectsquare::roles.role') }}</th>
+                <th>{{ trans('projectsquare::generic.action') }}</th>
             </tr>
         </thead>
 
@@ -38,8 +38,8 @@
                     <td>{{ $role->id }}</td>
                     <td>{{ $role->name }}</td>
                     <td>
-                        <a href="{{ route('roles_edit', ['id' => $role->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> {{ trans('gateway::generic.edit') }}</a>
-                        <a href="{{ route('roles_delete', ['id' => $role->id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ trans('gateway::generic.delete') }}</a>
+                        <a href="{{ route('roles_edit', ['id' => $role->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> {{ trans('projectsquare::generic.edit') }}</a>
+                        <a href="{{ route('roles_delete', ['id' => $role->id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ trans('projectsquare::generic.delete') }}</a>
                     </td>
                 </tr>
             @endforeach
@@ -50,5 +50,5 @@
         {!! $roles->render() !!}
     </div>
 
-    <a href="{{ route('roles_add') }}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> {{ trans('gateway::roles.add_role') }}</a>
+    <a href="{{ route('roles_add') }}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> {{ trans('projectsquare::roles.add_role') }}</a>
 @endsection

@@ -1,14 +1,14 @@
-@extends('gateway::default')
+@extends('projectsquare::default')
 
 @section('content')
     <ol class="breadcrumb">
-        <li><a href="{{ route('dashboard') }}">{{ trans('gateway::dashboard.panel_title') }}</a></li>
-        <li><a href="{{ route('agency_index') }}">{{ trans('gateway::agency.panel_title') }}</a></li>
-        <li class="active">{{ trans('gateway::ticket_types.ticket_types_list') }}</li>
+        <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
+        <li><a href="{{ route('agency_index') }}">{{ trans('projectsquare::agency.panel_title') }}</a></li>
+        <li class="active">{{ trans('projectsquare::ticket_types.ticket_types_list') }}</li>
     </ol>
 
     <div class="page-header">
-        <h1>{{ trans('gateway::ticket_types.ticket_types_list') }}</h1>
+        <h1>{{ trans('projectsquare::ticket_types.ticket_types_list') }}</h1>
     </div>
 
     @if (isset($error))
@@ -27,8 +27,8 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>{{ trans('gateway::ticket_types.ticket_type') }}</th>
-                <th>{{ trans('gateway::generic.action') }}</th>
+                <th>{{ trans('projectsquare::ticket_types.ticket_type') }}</th>
+                <th>{{ trans('projectsquare::generic.action') }}</th>
             </tr>
         </thead>
 
@@ -38,8 +38,8 @@
                     <td>{{ $ticket_type->id }}</td>
                     <td>{{ $ticket_type->name }}</td>
                     <td>
-                        <a href="{{ route('ticket_types_edit', ['id' => $ticket_type->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> {{ trans('gateway::generic.edit') }}</a>
-                        <a href="{{ route('ticket_types_delete', ['id' => $ticket_type->id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ trans('gateway::generic.delete') }}</a>
+                        <a href="{{ route('ticket_types_edit', ['id' => $ticket_type->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> {{ trans('projectsquare::generic.edit') }}</a>
+                        <a href="{{ route('ticket_types_delete', ['id' => $ticket_type->id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ trans('projectsquare::generic.delete') }}</a>
                     </td>
                 </tr>
             @endforeach
@@ -50,5 +50,5 @@
         {!! $ticket_types->render() !!}
     </div>
 
-    <a href="{{ route('ticket_types_add') }}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> {{ trans('gateway::ticket_types.add_ticket_type') }}</a>
+    <a href="{{ route('ticket_types_add') }}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> {{ trans('projectsquare::ticket_types.add_ticket_type') }}</a>
 @endsection

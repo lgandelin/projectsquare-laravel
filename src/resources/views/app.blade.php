@@ -1,5 +1,5 @@
-@include('gateway::includes.header')
+@include('projectsquare::includes.header')
 
 @yield('main-content')
 
-@include('gateway::includes.footer')
+@include('projectsquare::includes.footer')

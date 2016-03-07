@@ -1,6 +1,6 @@
 <div class="top-bar">
     <div class="pull-left">
-        <h1 class="logo"><a href="{{ route('dashboard') }}">GATEWAY</a></h1>
+        <h1 class="logo"><a href="{{ route('dashboard') }}">ProjectSquare</a></h1>
     </div>
 
     <nav class="pull-right">
@@ -14,7 +14,7 @@
             </li>
 
             <li>
-                <a href="{{ route('logout') }}">Se déconnecter <span class="glyphicon glyphicon-log-out"</a>
+                <a href="{{ route('logout') }}">Se déconnecter <span class="glyphicon glyphicon-log-out"></span></a>
             </li>
         </ul>
     </nav>

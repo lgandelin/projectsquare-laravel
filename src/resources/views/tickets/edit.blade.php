@@ -1,14 +1,14 @@
-@extends('gateway::default')
+@extends('projectsquare::default')
 
 @section('content')
     <ol class="breadcrumb">
-        <li><a href="{{ route('dashboard') }}">{{ trans('gateway::dashboard.panel_title') }}</a></li>
-        <li><a href="{{ route('tickets_index') }}">{{ trans('gateway::tickets.tickets_list') }}</a></li>
-        <li class="active">{{ trans('gateway::tickets.edit_ticket') }}</li>
+        <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
+        <li><a href="{{ route('tickets_index') }}">{{ trans('projectsquare::tickets.tickets_list') }}</a></li>
+        <li class="active">{{ trans('projectsquare::tickets.edit_ticket') }}</li>
     </ol>
 
     <div class="page-header">
-        <h1>{{ trans('gateway::tickets.edit_ticket') }}</h1>
+        <h1>{{ trans('projectsquare::tickets.edit_ticket') }}</h1>
     </div>
 
     @if (isset($error))
@@ -23,21 +23,21 @@
         </div>
     @endif
 
-    <h3>{{ trans('gateway::tickets.ticket_data') }}</h3>
-    @include('gateway::tickets.ticket_infos')
+    <h3>{{ trans('projectsquare::tickets.ticket_data') }}</h3>
+    @include('projectsquare::tickets.ticket_infos')
 
     <hr/>
 
-    <h3>{{ trans('gateway::tickets.ticket_state') }}</h3>
-    @include('gateway::tickets.ticket_state')
+    <h3>{{ trans('projectsquare::tickets.ticket_state') }}</h3>
+    @include('projectsquare::tickets.ticket_state')
 
     <hr/>
 
-    <h3>{{ trans('gateway::tickets.files') }} <span class="badge badge-primary" style="margin-left: 1rem; margin-bottom: 2px;">{{ count($ticket->files) }}</span></h3>
-    @include('gateway::tickets.ticket_files')
+    <h3>{{ trans('projectsquare::tickets.files') }} <span class="badge badge-primary" style="margin-left: 1rem; margin-bottom: 2px;">{{ count($ticket->files) }}</span></h3>
+    @include('projectsquare::tickets.ticket_files')
 
     <hr/>
 
-    <h3>{{ trans('gateway::tickets.ticket_history') }} <span class="badge badge-primary" style="margin-left: 1rem; margin-bottom: 2px;">{{ count($ticket->states) }}</span></h3>
-    @include('gateway::tickets.ticket_history')
+    <h3>{{ trans('projectsquare::tickets.ticket_history') }} <span class="badge badge-primary" style="margin-left: 1rem; margin-bottom: 2px;">{{ count($ticket->states) }}</span></h3>
+    @include('projectsquare::tickets.ticket_history')
 @endsection

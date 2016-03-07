@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-6">
             <br/>
-            <h4>{{ trans('gateway::tickets.file_list') }}</h4>
+            <h4>{{ trans('projectsquare::tickets.file_list') }}</h4>
             <table class="table table-striped">
                 @foreach($files as $file)
                     <tr>
@@ -12,10 +12,10 @@
                             </a>
                         </td>
                         <td><a href="{{ asset('uploads' . $file->path) }}" title="{{ $file->name }}" target="_blank">{{ $file->name }}</a></td>
-                        <td width="150">{{ \Webaccess\GatewayLaravel\Tools\FileTool::convertFileSize($file->size) }}</td>
+                        <td width="150">{{ \Webaccess\ProjectSquareLaravel\Tools\FileTool::convertFileSize($file->size) }}</td>
                         <td width="275">
-                            <a href="{{ asset('uploads' . $file->path) }}" class="btn btn-success" download="{{ $file->name }}"><i class="glyphicon glyphicon-download"></i> {{ trans('gateway::generic.download') }}</a>
-                            <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> {{ trans('gateway::generic.delete') }}</a>
+                            <a href="{{ asset('uploads' . $file->path) }}" class="btn btn-success" download="{{ $file->name }}"><i class="glyphicon glyphicon-download"></i> {{ trans('projectsquare::generic.download') }}</a>
+                            <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> {{ trans('projectsquare::generic.delete') }}</a>
                         </td>
                     </tr>
                 @endforeach
@@ -24,21 +24,21 @@
         </div>
 
         <div class="col-md-6">
-            <h4>{{ trans('gateway::tickets.add_files') }}</h4>
+            <h4>{{ trans('projectsquare::tickets.add_files') }}</h4>
             <div class="row fileupload-buttonbar">
                 <div class="col-lg-12">
                     <span class="btn btn-success fileinput-button">
                         <i class="glyphicon glyphicon-plus"></i>
-                        <span>{{ trans('gateway::generic.add') }}</span>
+                        <span>{{ trans('projectsquare::generic.add') }}</span>
                         <input type="file" name="files[]" multiple>
                     </span>
                     <button type="submit" class="btn btn-primary start">
                         <i class="glyphicon glyphicon-upload"></i>
-                        <span>{{ trans('gateway::tickets.start_file_upload') }}</span>
+                        <span>{{ trans('projectsquare::tickets.start_file_upload') }}</span>
                     </button>
                     <button type="reset" class="btn btn-warning cancel">
                         <i class="glyphicon glyphicon-ban-circle"></i>
-                        <span>{{ trans('gateway::tickets.cancel_file_upload') }}</span>
+                        <span>{{ trans('projectsquare::tickets.cancel_file_upload') }}</span>
                     </button>
                     <!--<button type="button" class="btn btn-danger delete">
                         <i class="glyphicon glyphicon-trash"></i>
@@ -64,7 +64,7 @@
     </div>
 </form>
 
-@include('gateway::tickets.fileupload')
+@include('projectsquare::tickets.fileupload')
 
 <script src="{{ asset('js/vendor/jquery.fileupload/vendor/jquery.ui.widget.js') }}"></script>
 <script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>

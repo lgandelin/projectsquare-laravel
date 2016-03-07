@@ -1,4 +1,4 @@
-@extends('gateway::default')
+@extends('projectsquare::default')
 
 @section('content')
     <ol class="breadcrumb">
@@ -32,17 +32,17 @@
 
                 <div class="message new-message" style="display:none">
                     <textarea class="form-control" placeholder="Votre message"></textarea>
-                    <button class="btn btn-default pull-right cancel-message" data-id="{{ $conversation->id }}" style="margin-top:1.5rem"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('gateway::generic.cancel') }}</button>
-                    <button class="btn btn-success pull-right valid-message" data-id="{{ $conversation->id }}" style="margin-top:1.5rem; margin-right: 1rem"><span class="glyphicon glyphicon-ok"></span> {{ trans('gateway::generic.valid') }}</button>
+                    <button class="btn btn-default pull-right cancel-message" data-id="{{ $conversation->id }}" style="margin-top:1.5rem"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.cancel') }}</button>
+                    <button class="btn btn-success pull-right valid-message" data-id="{{ $conversation->id }}" style="margin-top:1.5rem; margin-right: 1rem"><span class="glyphicon glyphicon-ok"></span> {{ trans('projectsquare::generic.valid') }}</button>
                 </div>
 
                 <div class="submit">
-                    <a href="{{ route('messages_index') }}" class="btn btn-default pull-right"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('gateway::generic.back') }}</a>
-                    <button class="btn btn-success pull-right reply-message" data-id="{{ $message->id }}" style="margin-right: 1rem;"><span class="glyphicon glyphicon-comment"></span> {{ trans('gateway::messages.reply_message') }}</button>
+                    <a href="{{ route('messages_index') }}" class="btn btn-default pull-right"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.back') }}</a>
+                    <button class="btn btn-success pull-right reply-message" data-id="{{ $message->id }}" style="margin-right: 1rem;"><span class="glyphicon glyphicon-comment"></span> {{ trans('projectsquare::messages.reply_message') }}</button>
                 </div>
             </div>
         </div>
     </div>
 
-    @include('gateway::dashboard.new-message')
+    @include('projectsquare::dashboard.new-message')
 @endsection
