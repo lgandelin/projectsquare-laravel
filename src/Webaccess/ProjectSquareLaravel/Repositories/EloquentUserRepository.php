@@ -3,6 +3,7 @@
 namespace Webaccess\ProjectSquareLaravel\Repositories;
 
 use Webaccess\ProjectSquare\Entities\User as UserEntity;
+use Webaccess\ProjectSquareLaravel\Models\Message;
 use Webaccess\ProjectSquareLaravel\Models\User;
 use Webaccess\ProjectSquare\Repositories\UserRepository;
 
@@ -64,5 +65,21 @@ class EloquentUserRepository implements UserRepository
     {
         $user = self::getUser($userID);
         $user->delete();
+    }
+
+    public function getUnreadMessages($userID)
+    {
+        $user = User::with('unread_messages')->find($userID);
+
+        return $user->unread_messages()->where('read', '=', false)->get();
+    }
+
+    public function setReadFlagMessage($userID, $messageID, $read)
+    {
+        $user = User::find($userID);
+        $message = Message::find($messageID);
+        $user->unread_messages->associate($message);
+
+        $user->save();
     }
 }
