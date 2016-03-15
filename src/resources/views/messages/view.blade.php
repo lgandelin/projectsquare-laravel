@@ -23,7 +23,7 @@
                     <tr>
                         <div class="message">
                             <span class="badge">{{ date('d/m/Y H:i', strtotime($message->created_at)) }}</span> <span class="glyphicon glyphicon-user"></span> <span class="user_name">{{ $message->user->complete_name }}</span><br/>
-                            <p class="content" style="margin-top: 1rem">{{ $message->content }}</p>
+                            <p class="content" style="margin-top: 1rem; @if ($message->read == false) font-weight: bold;@endif">{{ $message->content }}</p>
                         </div>
                     </tr>
                 @endforeach
