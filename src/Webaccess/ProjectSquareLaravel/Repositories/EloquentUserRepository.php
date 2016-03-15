@@ -3,6 +3,8 @@
 namespace Webaccess\ProjectSquareLaravel\Repositories;
 
 use Webaccess\ProjectSquare\Entities\User as UserEntity;
+use Webaccess\ProjectSquareLaravel\Models\Message;
+use Webaccess\ProjectSquareLaravel\Models\Project;
 use Webaccess\ProjectSquareLaravel\Models\User;
 use Webaccess\ProjectSquare\Repositories\UserRepository;
 
@@ -26,7 +28,7 @@ class EloquentUserRepository implements UserRepository
     public function getUser($userID)
     {
         if ($userModel = User::find($userID)) {
-            $user = new UserEntity;
+            $user = new UserEntity();
             $user->id = $userModel->id;
             $user->email = $userModel->email;
             $user->firstName = $userModel->first_name;
@@ -38,6 +40,11 @@ class EloquentUserRepository implements UserRepository
         }
 
         return false;
+    }
+
+    public function getUsersByProject($projectID)
+    {
+        return Project::find($projectID)->users;
     }
 
     public function createUser($firstName, $lastName, $email, $password, $clientID)
@@ -64,5 +71,26 @@ class EloquentUserRepository implements UserRepository
     {
         $user = self::getUser($userID);
         $user->delete();
+    }
+
+    public function getUnreadMessages($userID)
+    {
+        $user = User::with('unread_messages')->find($userID);
+
+        return $user->unread_messages()->where('read', '=', false)->get();
+    }
+
+    public function setReadFlagMessage($userID, $messageID, $read)
+    {
+        $user = User::find($userID);
+        $message = Message::find($messageID);
+
+        if (!$user->unread_messages->contains($messageID)) {
+            $user->unread_messages()->attach($message, ['read' => $read]);
+        } else {
+            $user->unread_messages()->sync([$messageID => ['read' => $read]]);
+        }
+
+        $user->save();
     }
 }

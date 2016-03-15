@@ -6,7 +6,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/login', array('as' => 'login_handler', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\LoginController@authenticate'));
     Route::get('/logout', array('as' => 'logout', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\LoginController@logout'));
 
-    Route::get('/messages', array('as' => 'messages', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MessageController@index'));
     Route::get('/calendar', array('as' => 'calendar', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@index'));
     Route::get('/to-do', array('as' => 'Task', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@index'));
 

@@ -10,7 +10,7 @@ class ProjectManager
     {
         $this->repository = new EloquentProjectRepository();
     }
-    
+
     public function getProject($projectID)
     {
         if (!$project = $this->repository->getProject($projectID)) {

@@ -8,9 +8,9 @@ class ConversationManager
 {
     public function __construct()
     {
-        $this->repository = new EloquentConversationRepository();    
+        $this->repository = new EloquentConversationRepository();
     }
-    
+
     public function getConversation($conversationID)
     {
         if (!$conversation = $this->repository->getConversation($conversationID)) {

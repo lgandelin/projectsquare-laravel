@@ -11,7 +11,7 @@ class MessageCreatedSlackNotification
     public function handle(CreateMessageEvent $event)
     {
         $message = $event->message;
-        $message = (new EloquentMessageRepository())->getMessage($message->id);
+        $message = (new EloquentMessageRepository())->getMessageModel($message->id);
 
         $lines = [
             'Projet : *['.$message->conversation->project->client->name.'] '.$message->conversation->project->name.'*',

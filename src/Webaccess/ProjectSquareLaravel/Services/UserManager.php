@@ -9,9 +9,9 @@ class UserManager
 {
     public function __construct()
     {
-        $this->repository = new EloquentUserRepository();    
+        $this->repository = new EloquentUserRepository();
     }
-    
+
     public function getUsersPaginatedList()
     {
         return $this->repository->getUsersPaginatedList(env('USERS_PER_PAGE', 10));

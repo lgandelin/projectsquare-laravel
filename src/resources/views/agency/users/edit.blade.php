@@ -27,8 +27,8 @@
     @include('projectsquare::agency.users.form', [
         'form_action' => route('users_update'),
         'user_id' => $user->id,
-        'user_first_name' => $user->first_name,
-        'user_last_name' => $user->last_name,
+        'user_first_name' => $user->firstName,
+        'user_last_name' => $user->lastName,
         'user_email' => $user->email,
     ])
 @endsection

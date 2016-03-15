@@ -19,14 +19,16 @@ class EloquentConversationRepository implements ConversationRepository
 
     public function getConversation($conversationID)
     {
-        $conversationModel = $this->getConversationModel($conversationID);
+        if ($conversationModel = $this->getConversationModel($conversationID)) {
+            $conversation = new ConversationEntity();
+            $conversation->id = $conversationModel->id;
+            $conversation->title = $conversationModel->title;
+            $conversation->projectID = $conversationModel->project_id;
 
-        $conversation = new ConversationEntity();
-        $conversation->id = $conversationModel->id;
-        $conversation->title = $conversationModel->title;
-        $conversation->projectID = $conversationModel->project_id;
+            return $conversation;
+        }
 
-        return $conversation;
+        return false;
     }
 
     public function getConversationModel($conversationID)

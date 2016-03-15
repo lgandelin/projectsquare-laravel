@@ -69,9 +69,9 @@ class TicketController extends BaseController
                 'authorUserID' => Input::get('author_user_id'),
                 'allocatedUserID' => Input::get('allocated_user_id'),
                 'priority' => Input::get('priority'),
-                'dueDate' => \DateTime::createFromFormat("d/m/Y", Input::get('due_date')),
+                'dueDate' => \DateTime::createFromFormat('d/m/Y', Input::get('due_date')),
                 'comments' => Input::get('comments'),
-                'requesterUserID' => $this->getUser()->id
+                'requesterUserID' => $this->getUser()->id,
             ]));
 
             $this->request->session()->flash('confirmation', trans('projectsquare::tickets.add_ticket_success'));
@@ -118,7 +118,7 @@ class TicketController extends BaseController
                 'projectID' => Input::get('project_id'),
                 'typeID' => Input::get('type_id'),
                 'description' => Input::get('description'),
-                'requesterUserID' => $this->getUser()->id
+                'requesterUserID' => $this->getUser()->id,
             ]));
 
             $this->request->session()->flash('confirmation', trans('projectsquare::tickets.edit_ticket_success'));
@@ -141,9 +141,9 @@ class TicketController extends BaseController
                 'authorUserID' => Input::get('author_user_id'),
                 'allocatedUserID' => Input::get('allocated_user_id'),
                 'priority' => Input::get('priority'),
-                'dueDate' => \DateTime::createFromFormat("d/m/Y", Input::get('due_date')),
+                'dueDate' => \DateTime::createFromFormat('d/m/Y', Input::get('due_date')),
                 'comments' => Input::get('comments'),
-                'requesterUserID' => $this->getUser()->id
+                'requesterUserID' => $this->getUser()->id,
             ]));
 
             $this->request->session()->flash('confirmation', trans('projectsquare::tickets.edit_ticket_success'));
@@ -162,7 +162,7 @@ class TicketController extends BaseController
                 new EloquentProjectRepository()
             ))->execute(new DeleteTicketRequest([
                 'ticketID' => $ticketID,
-                'requesterUserID' => $this->getUser()->id
+                'requesterUserID' => $this->getUser()->id,
             ]));
             $this->request->session()->flash('confirmation', trans('projectsquare::tickets.delete_ticket_success'));
         } catch (\Exception $e) {

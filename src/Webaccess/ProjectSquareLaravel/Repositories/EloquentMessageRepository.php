@@ -10,6 +10,19 @@ class EloquentMessageRepository implements MessageRepository
 {
     public function getMessage($messageID)
     {
+        $messageModel = $this->getMessageModel($messageID);
+
+        $message = new MessageEntity();
+        $message->id = $messageModel->id;
+        $message->content = $messageModel->content;
+        $message->userID = $messageModel->user_id;
+        $message->conversationID = $messageModel->conversation_id;
+
+        return $message;
+    }
+
+    public function getMessageModel($messageID)
+    {
         return Message::find($messageID);
     }
 
@@ -24,7 +37,7 @@ class EloquentMessageRepository implements MessageRepository
             $message->content = $messageModel->content;
             $message->userID = $messageModel->user_id;
 
-            $result[]= $message;
+            $result[] = $message;
         }
 
         return $result;
@@ -39,6 +52,7 @@ class EloquentMessageRepository implements MessageRepository
         $messageModel->save();
 
         $message->id = $messageModel->id;
+
         return $message;
     }
 }

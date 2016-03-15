@@ -5,8 +5,11 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Webaccess\ProjectSquare\Interactors\Messages\GetUnreadMessagesInteractor;
+use Webaccess\ProjectSquare\Requests\Messages\GetUnreadMessagesRequest;
 use Webaccess\ProjectSquareLaravel\Models\Project;
 use Webaccess\ProjectSquareLaravel\Models\User;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentUserRepository;
 
 class BaseController extends Controller
 {
@@ -28,8 +31,15 @@ class BaseController extends Controller
     protected function getUser()
     {
         $user = Auth::user();
+        $user = User::with('projects.client')->find($user->id);
 
-        return User::with('projects.client')->find($user->id);
+        $unreadMessages = (new GetUnreadMessagesInteractor(new EloquentUserRepository()))->execute(new GetUnreadMessagesRequest([
+            'userID' => $user->id,
+        ]))->messages;
+
+        $user->unread_messages_count = count($unreadMessages);
+
+        return $user;
     }
 
     protected function getCurrentProject()
