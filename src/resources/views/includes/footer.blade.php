@@ -9,5 +9,6 @@
         var route_add_conversation = "{{ route('add_conversation') }}";
     </script>
     <input type="hidden" id="csrf_token" value="{!! csrf_token() !!}" />
+    @yield('scripts')
 </body>
 </html>
