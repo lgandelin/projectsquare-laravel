@@ -11,7 +11,6 @@ use Webaccess\ProjectSquare\Requests\Conversations\CreateConversationRequest;
 use Webaccess\ProjectSquare\Requests\Messages\CreateMessageRequest;
 use Webaccess\ProjectSquare\Requests\Messages\GetUnreadMessagesRequest;
 use Webaccess\ProjectSquare\Requests\Messages\ReadMessageRequest;
-use Webaccess\ProjectSquareLaravel\Models\Conversation;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentConversationRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentMessageRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
@@ -37,15 +36,15 @@ class MessageController extends BaseController
             ))->execute(new CreateMessageRequest([
                 'content' => Input::get('message'),
                 'conversationID' => Input::get('conversation_id'),
-                'requesterUserID' => $this->getUser()->id
+                'requesterUserID' => $this->getUser()->id,
             ]));
 
             $data = [
                 'id' => $response->message->id,
                 'datetime' => $response->createdAt->format('d/m/Y H:i:s'),
-                'username' => $response->user->firstName . ' ' . $response->user->lastName,
+                'username' => $response->user->firstName.' '.$response->user->lastName,
                 'message' => $response->message->content,
-                'count' => $response->count
+                'count' => $response->count,
             ];
 
             return response()->json(['message' => $data], 200);
@@ -57,11 +56,13 @@ class MessageController extends BaseController
     public function view($conversationID)
     {
         $conversation = app()->make('ConversationManager')->getConversationModel($conversationID);
-        $unreadMessages = (new GetUnreadMessagesInteractor(new EloquentUserRepository()))->execute(new GetUnreadMessagesRequest([
-            'userID' => $this->getUser()->id
+        $unreadMessages = (new GetUnreadMessagesInteractor(
+            new EloquentUserRepository()
+        ))->execute(new GetUnreadMessagesRequest([
+            'userID' => $this->getUser()->id,
         ]))->messages;
 
-        foreach($conversation->messages as $message) {
+        foreach ($conversation->messages as $message) {
             $message->read = true;
 
             if ($unreadMessages->contains($message->id)) {
@@ -74,7 +75,7 @@ class MessageController extends BaseController
                     new EloquentProjectRepository()
                 ))->execute(new ReadMessageRequest([
                     'messageID' => $message->id,
-                    'requesterUserID' => $this->getUser()->id
+                    'requesterUserID' => $this->getUser()->id,
                 ]));
             }
         }
@@ -96,7 +97,7 @@ class MessageController extends BaseController
                 'title' => Input::get('title'),
                 'message' => Input::get('message'),
                 'projectID' => ($this->getCurrentProject()) ? $this->getCurrentProject()->id : null,
-                'requesterUserID' => $this->getUser()->id
+                'requesterUserID' => $this->getUser()->id,
             ]));
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'error' => $e->getMessage()], 500);

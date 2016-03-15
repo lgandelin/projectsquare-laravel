@@ -144,6 +144,7 @@ class EloquentTicketRepository implements TicketRepository
         $ticketModel->save();
 
         $ticket->id = $ticketModel->id;
+
         return $ticket;
     }
 
@@ -156,7 +157,7 @@ class EloquentTicketRepository implements TicketRepository
         $ticketStateModel->status_id = $ticketState->statusID;
         $ticketStateModel->priority = $ticketState->priority;
         if ($ticketState->dueDate) {
-            $ticketStateModel->due_date = $ticketState->dueDate->format("Y-m-d");
+            $ticketStateModel->due_date = $ticketState->dueDate->format('Y-m-d');
         }
         $ticketStateModel->comments = $ticketState->comments;
         $ticketStateModel->save();

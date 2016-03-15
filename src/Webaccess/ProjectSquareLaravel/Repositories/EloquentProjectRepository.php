@@ -2,7 +2,6 @@
 
 namespace Webaccess\ProjectSquareLaravel\Repositories;
 
-use DebugBar\DebugBar;
 use Webaccess\ProjectSquareLaravel\Models\Project;
 use Webaccess\ProjectSquareLaravel\Models\User;
 use Webaccess\ProjectSquare\Repositories\ProjectRepository;

@@ -34,7 +34,7 @@ class BaseController extends Controller
         $user = User::with('projects.client')->find($user->id);
 
         $unreadMessages = (new GetUnreadMessagesInteractor(new EloquentUserRepository()))->execute(new GetUnreadMessagesRequest([
-            'userID' => $user->id
+            'userID' => $user->id,
         ]))->messages;
 
         $user->unread_messages_count = count($unreadMessages);

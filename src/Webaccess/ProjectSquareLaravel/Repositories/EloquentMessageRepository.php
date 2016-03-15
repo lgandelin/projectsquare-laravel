@@ -37,7 +37,7 @@ class EloquentMessageRepository implements MessageRepository
             $message->content = $messageModel->content;
             $message->userID = $messageModel->user_id;
 
-            $result[]= $message;
+            $result[] = $message;
         }
 
         return $result;
@@ -52,6 +52,7 @@ class EloquentMessageRepository implements MessageRepository
         $messageModel->save();
 
         $message->id = $messageModel->id;
+
         return $message;
     }
 }

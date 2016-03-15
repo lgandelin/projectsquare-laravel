@@ -28,7 +28,7 @@ class EloquentUserRepository implements UserRepository
     public function getUser($userID)
     {
         if ($userModel = User::find($userID)) {
-            $user = new UserEntity;
+            $user = new UserEntity();
             $user->id = $userModel->id;
             $user->email = $userModel->email;
             $user->firstName = $userModel->first_name;
