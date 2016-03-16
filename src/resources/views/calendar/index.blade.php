@@ -9,7 +9,9 @@
     <div class="page-header">
         <h1>Calendrier</h1>
 
-        <div id='calendar'></div>
+        <div class="row">
+            <div id="calendar" class="col-md-9"></div>
+        </div>
     </div>
 @endsection
 
