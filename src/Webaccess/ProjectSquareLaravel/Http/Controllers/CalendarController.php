@@ -3,9 +3,11 @@
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
 use Illuminate\Support\Facades\Input;
+use Webaccess\ProjectSquare\Interactors\Calendar\CreateEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\DeleteEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\GetUserEventsInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\UpdateEventInteractor;
+use Webaccess\ProjectSquare\Requests\Calendar\CreateEventRequest;
 use Webaccess\ProjectSquare\Requests\Calendar\DeleteEventRequest;
 use Webaccess\ProjectSquare\Requests\Calendar\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Calendar\UpdateEventRequest;
@@ -20,6 +22,25 @@ class CalendarController extends BaseController
                 'userID' => $this->getUser()->id
             ]))
         ]);
+    }
+
+    public function create()
+    {
+        try {
+            $response = (new CreateEventInteractor(
+                new EloquentEventRepository()
+            ))->execute(new CreateEventRequest([
+                'name' => Input::get('name'),
+                'userID' => $this->getUser()->id,
+                'startTime' => new \DateTime(Input::get('start_time')),
+                'endTime' => new \DateTime(Input::get('end_time')),
+                'requesterUserID' => $this->getUser()->id,
+            ]));
+
+            return response()->json(['message' => trans('projectsquare::events.create_event_success'), 'event' => $response->event], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
     public function update()

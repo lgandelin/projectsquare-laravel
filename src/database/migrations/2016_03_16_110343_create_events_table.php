@@ -18,8 +18,8 @@ class CreateEventsTable extends Migration
             $table->string('name');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
-            $table->integer('ticket_id');
-            $table->integer('project_id');
+            $table->integer('ticket_id')->nullable();
+            $table->integer('project_id')->nullable();
             $table->timestamps();
         });
     }

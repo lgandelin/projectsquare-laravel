@@ -31,6 +31,7 @@
                     right: 'month,agendaWeek,agendaDay'
                 },
                 defaultDate: "{{ date('Y-m-d') }}",
+                defaultView: "agendaWeek",
                 editable: true,
                 lang: 'fr',
                 aspectRatio: 2,
@@ -101,6 +102,43 @@
 
                         }
                     });
+                },
+                selectable: true,
+                selectHelper: true,
+                select: function(start, end, allDay) {
+
+                    var temporaryID = uniqid();
+
+                    var event = {
+                        id: temporaryID,
+                        title: 'Nouvel evenement',
+                        start: start,
+                        end: end,
+                        allDay: false
+                    };
+
+                    $('#calendar').fullCalendar('renderEvent', event, true);
+
+                    var data = {
+                        name: 'Nouvel evenement',
+                        start_time: start.format(),
+                        end_time: end.format(),
+                        _token: $('#csrf_token').val()
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        url: route_event_create,
+                        data: data,
+                        success: function(data) {
+                            var events = $('#calendar').fullCalendar( 'clientEvents', temporaryID);
+                            var event = events[0];
+                            event._id = data.event.id;
+                            $('#calendar').fullCalendar('updateEvent', event);
+                        }
+                    });
+
+                    $('#calendar').fullCalendar('unselect');
                 }
             });
 
