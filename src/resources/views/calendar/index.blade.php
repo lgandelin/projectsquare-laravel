@@ -30,8 +30,7 @@
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay'
                 },
-                defaultDate: '2016-03-12',
-                eventColor: '#378006',
+                defaultDate: "{{ date('Y-m-d') }}",
                 editable: true,
                 lang: 'fr',
                 aspectRatio: 2,
@@ -40,73 +39,24 @@
                 minTime: '07:00',
                 maxTime: '21:00',
                 events: [
+                 @foreach ($events as $event)
                     {
-                        title: 'All Day Event',
-                        start: '2016-03-01'
+                        id: {{ $event->id }},
+                        title: "{{ $event->name }}",
+                        start: "{{ $event->startTime->format(DATE_ISO8601) }}",
+                        end: "{{ $event->endTime->format(DATE_ISO8601) }}",
                     },
-                    {
-                        title: 'Long Event',
-                        start: '2016-03-07',
-                        end: '2016-03-10',
-                        backgroundColor: '#ff0000',
-                        borderColor: '#ff0000'
-                    },
-                    {
-                        id: 999,
-                        title: 'Repeating Event',
-                        start: '2016-03-09T16:00:00'
-                    },
-                    {
-                        id: 999,
-                        title: 'Repeating Event',
-                        start: '2016-03-16T16:00:00'
-                    },
-                    {
-                        title: 'Conference',
-                        start: '2016-03-11',
-                        end: '2016-03-13',
-                        backgroundColor: '#ff0000',
-                        borderColor: '#ff0000'
-                    },
-                    {
-                        title: 'Meeting',
-                        start: '2016-03-12T10:30:00',
-                        end: '2016-03-12T12:30:00'
-                    },
-                    {
-                        title: 'Lunch',
-                        start: '2016-03-12T12:00:00'
-                    },
-                    {
-                        title: 'Meeting',
-                        start: '2016-03-12T14:30:00'
-                    },
-                    {
-                        title: 'Happy Hour',
-                        start: '2016-03-12T17:30:00'
-                    },
-                    {
-                        title: 'Dinner',
-                        start: '2016-03-12T20:00:00'
-                    },
-                    {
-                        title: 'Birthday Party',
-                        start: '2016-03-13T07:00:00'
-                    },
-                    {
-                        title: 'Click for Google',
-                        url: 'http://google.com/',
-                        start: '2016-03-28'
-                    }
+                 @endforeach
                 ],
                 eventRender: function(event, element) {
                     element.append( "<span class='delete'>X</span>" );
                     element.find(".delete").click(function() {
-                        console.log(event.title)
-                        $('#calendar').fullCalendar('removeEvents',event._id);
+                        console.log(event._id)
+                        $('#calendar').fullCalendar('removeEvents', event._id);
                     });
                 },
                 eventDrop: function(event, delta, revertFunc) {
+                    console.log(event._id);
                     console.log(event.title);
                     console.log(event.start.format());
                 },
