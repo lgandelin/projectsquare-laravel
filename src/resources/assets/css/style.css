@@ -7824,3 +7824,7 @@ ul {
 .message-view-template .header {
   overflow: hidden;
   margin-bottom: 1.5rem; }
+
+.current-event {
+  background: #DF5A49 !important;
+  border: 1px solid #DF5A49 !important; }

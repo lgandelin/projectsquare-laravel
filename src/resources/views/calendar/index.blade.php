@@ -11,6 +11,29 @@
 
         <div class="row">
             <div id="calendar" class="col-md-9"></div>
+            <div id="event-infos" class="col-md-3" style="display: none;">
+                <h3>Informations</h3>
+
+                <div class="form-group">
+                    <label for="name">Nom</label>
+                    <input type="text" class="form-control name" placeholder="Nom de l'évenement" value="" />
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Date de début</label><br/>
+                    <input type="text" class="form-control start_time datepicker" placeholder="dd/mm/YYYY" value="" style="width: 200px; display: inline-block" />
+                    <input type="text" class="form-control start_time_hour" placeholder="hh:mm" style="width: 100px; display: inline-block;"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Date de fin</label><br/>
+                    <input type="text" class="form-control end_time datepicker" placeholder="dd/mm/YYYY" value="" style="width: 200px; display: inline-block" />
+                    <input type="text" class="form-control start_time_hour" placeholder="hh:mm" style="width: 100px; display: inline-block;"/>
+                </div>
+
+                <input type="hidden" class="id" value="" />
+                <input type="button" class="btn btn-success btn-valid" value="{{ trans('projectsquare::generic.valid') }}">
+            </div>
         </div>
     </div>
 @endsection
@@ -19,6 +42,7 @@
     <script src="{{ asset('js/vendor/fullcalendar/lib/moment.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/lang-all.js') }}"></script>
+    <script src="{{ asset('js/calendar.js') }}"></script>
 
     <script>
 
@@ -103,12 +127,24 @@
                         }
                     });
                 },
+                eventClick: function(event, jsEvent, view) {
+
+                    $('#calendar .fc-event').removeClass('current-event');
+                    $(this).addClass('current-event');
+
+                    //Get infos from ajax
+
+                    $('#event-infos').find('.id').val(event._id);
+                    $('#event-infos').find('.name').val(event.title);
+                    $('#event-infos').find('.start_time').val(event.start.format());
+                    $('#event-infos').find('.end_time').val(event.end.format());
+                    $('#event-infos').show();
+                },
                 selectable: true,
                 selectHelper: true,
                 select: function(start, end, allDay) {
 
                     var temporaryID = uniqid();
-
                     var event = {
                         id: temporaryID,
                         title: 'Nouvel evenement',
@@ -142,10 +178,20 @@
                 }
             });
 
+            //VALID UPDATE EVENT
+            $('#event-infos .btn-valid').click(function() {
+                var data = {
+                    id: $('#event-infos .id').val(),
+                    name: $('#event-infos .name').val(),
+                    start_time: $('#event-infos .start_time').val(),
+                    start_time_hour: $('#event-infos .start_time_hour').val(),
+                    end_time: $('#event-infos .end_time').val(),
+                    end_time_hour: $('#event-infos .end_time_hour').val(),
+                };
+            });
         });
 
     </script>
-
 @endsection
 
 @section('stylesheets')
