@@ -38,12 +38,25 @@ class EloquentEventRepository implements EventRepository
 
     public function persistEvent(EventEntity $event)
     {
-        // TODO: Implement persistEvent() method.
+        $eventModel = (!isset($event->id)) ? new Event() : Event::find($event->id);
+        $eventModel->name = $event->name;
+        $eventModel->start_time = $event->startTime->format('Y-m-d H:i:s');
+        $eventModel->end_time = $event->endTime->format('Y-m-d H:i:s');
+        $eventModel->user_id = $event->userID;
+        $eventModel->ticket_id = $event->ticketID;
+        $eventModel->project_id = $event->projectID;
+
+        $eventModel->save();
+
+        $event->id = $eventModel->id;
+
+        return $event;
     }
 
     public function removeEvent($eventID)
     {
-        // TODO: Implement removeEvent() method.
+        $event = $this->getEventModel($eventID);
+        $event->delete();
     }
 
     private function getEventEntity($eventModel)

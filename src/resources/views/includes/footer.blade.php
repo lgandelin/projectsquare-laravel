@@ -7,6 +7,8 @@
     <script>
         var route_message_reply = "{{ route('messages_reply') }}";
         var route_add_conversation = "{{ route('add_conversation') }}";
+        var route_event_update = "{{ route('events_update') }}";
+        var route_event_delete = "{{ route('events_delete') }}";
     </script>
     <input type="hidden" id="csrf_token" value="{!! csrf_token() !!}" />
     @yield('scripts')

@@ -51,15 +51,57 @@
                 eventRender: function(event, element) {
                     element.append( "<span class='delete'>X</span>" );
                     element.find(".delete").click(function() {
-                        console.log(event._id)
-                        $('#calendar').fullCalendar('removeEvents', event._id);
+                        var data = {
+                            event_id: event._id,
+                            _token: $('#csrf_token').val()
+                        };
+
+                        $.ajax({
+                            type: "POST",
+                            url: route_event_delete,
+                            data: data,
+                            success: function(data) {
+                                $('#calendar').fullCalendar('removeEvents', event._id);
+                            }
+                        });
                     });
                 },
                 eventDrop: function(event, delta, revertFunc) {
-                    console.log(event._id);
-                    console.log(event.title);
-                    console.log(event.start.format());
+
+                    var data = {
+                        event_id: event._id,
+                        start_time: event.start.format(),
+                        end_time: event.end.format(),
+                        _token: $('#csrf_token').val()
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        url: route_event_update,
+                        data: data,
+                        success: function(data) {
+
+                        }
+                    });
                 },
+                eventResize: function(event, delta, revertFunc) {
+
+                    var data = {
+                        event_id: event._id,
+                        start_time: event.start.format(),
+                        end_time: event.end.format(),
+                        _token: $('#csrf_token').val()
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        url: route_event_update,
+                        data: data,
+                        success: function(data) {
+
+                        }
+                    });
+                }
             });
 
         });
