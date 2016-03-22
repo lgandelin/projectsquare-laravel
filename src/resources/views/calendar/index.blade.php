@@ -45,6 +45,15 @@
                 <input type="button" class="btn btn-success btn-valid" value="{{ trans('projectsquare::generic.valid') }}">
                 <input type="button" class="btn btn-default btn-close" value="{{ trans('projectsquare::generic.close') }}">
             </div>
+
+            <div id="tickets-list" class="col-md-3">
+                <h3>Liste des tickets</h3>
+                @foreach ($tickets as $ticket)
+                    <div data-event='{"title":"#{{ $ticket->id }} - {{ $ticket->title }}"}' data-duration='02:00' class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: {{ $ticket->project->color }}; margin-bottom: 1rem; width: 50%; border: none !important;">
+                        <div class="fc-content"><div class="fc-title">#{{ $ticket->id }} - {{ $ticket->title }}</div></div>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
 @endsection
@@ -54,6 +63,7 @@
     <script src="{{ asset('js/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/lang-all.js') }}"></script>
     <script src="{{ asset('js/calendar.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
     <script>
 
@@ -74,6 +84,7 @@
                 weekends: false,
                 minTime: '07:00',
                 maxTime: '21:00',
+                droppable: true,
                 events: [
                  @foreach ($events as $event)
                     {
@@ -213,6 +224,49 @@
                     });
 
                     $('#calendar').fullCalendar('unselect');
+                },
+                drop: function(date, allDay) {
+                    $(this).remove();
+
+                    /*var temporaryID = uniqid();
+                    var event = {
+                        id: temporaryID,
+                        title: 'Nouvel evenement',
+                        start: date.format(),
+                        allDay: false
+                    };
+
+                    $('#calendar').fullCalendar('renderEvent', event, true);
+
+                    var data = {
+                        id: temporaryID,
+                        name: 'Nouvel evenement',
+                        start_time: date.format(),
+                        _token: $('#csrf_token').val()
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        url: route_event_create,
+                        data: data,
+                        success: function(data) {
+                            var events = $('#calendar').fullCalendar( 'clientEvents', temporaryID);
+                            var event = events[0];
+                            event._id = data.event.id;
+                            $('#calendar').fullCalendar('updateEvent', event);
+
+                            $('#event-infos').find('.id').val(data.event.id);
+                            $('#event-infos').find('.name').val('');
+                            $('#event-infos').find('.start_time').val(moment(data.event.start_time).format('DD/MM/YYYY'));
+                            $('#event-infos').find('.start_time_hour').val(moment(data.event.start_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
+                            $('#event-infos').find('.end_time').val(moment(data.event.end_time).format('DD/MM/YYYY'));
+                            $('#event-infos').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
+                            $('#event-infos').find('.project_id').val(data.event.project_id);
+                            $('#event-infos').show();
+
+                            $('#event-infos').find('.name').focus();
+                        }
+                    });*/
                 }
             });
 
@@ -249,11 +303,26 @@
             $('#event-infos .btn-close').click(function() {
                 $(this).parent().hide();
             });
+
+            //DRAG AND DROP TICKETS
+            $('#tickets-list .ticket').each(function() {
+
+                // store data so the calendar knows to render an event upon drop
+                $(this).data('event', {
+                    title: $.trim($(this).text()), // use the element's text as the event title
+                    stick: true // maintain when user navigates (see docs on the renderEvent method)
+                });
+
+                // make the event draggable using jQuery UI
+                $(this).draggable({
+                    zIndex: 999,
+                    revert: true,      // will cause the event to go back to its
+                    revertDuration: 0  //  original position after the drag
+                });
+
+            });
+
         });
 
     </script>
-@endsection
-
-@section('stylesheets')
-    <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.css" rel="stylesheet">
 @endsection

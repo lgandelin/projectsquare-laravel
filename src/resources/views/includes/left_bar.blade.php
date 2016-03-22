@@ -8,7 +8,7 @@
                 <li class="@if (isset($current_project_id) && $current_project_id == $project->id) current @endif">
                     <a href="{{ route('project_index', ['id' => $project->id]) }}">
                         <span class="client">
-                            <span class="label project-status-{{ $project->status }}">{{ $project->client->name }}</span>
+                            <span class="label" style="background:{{ $project->color }}">{{ $project->client->name }}</span>
                         </span>
                         {{ $project->name }}
                         @if (isset($current_project_id) && $current_project_id == $project->id)

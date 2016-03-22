@@ -10,6 +10,7 @@ use Webaccess\ProjectSquare\Interactors\Calendar\GetUserEventsInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\UpdateEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectsInteractor;
+use Webaccess\ProjectSquare\Interactors\Tickets\GetTicketInteractor;
 use Webaccess\ProjectSquare\Requests\Calendar\CreateEventRequest;
 use Webaccess\ProjectSquare\Requests\Calendar\DeleteEventRequest;
 use Webaccess\ProjectSquare\Requests\Calendar\GetEventRequest;
@@ -17,6 +18,7 @@ use Webaccess\ProjectSquare\Requests\Calendar\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Calendar\UpdateEventRequest;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentEventRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
 
 class CalendarController extends BaseController
 {
@@ -28,15 +30,18 @@ class CalendarController extends BaseController
         $projects = (new GetProjectsInteractor(new EloquentProjectRepository()))->getProjects($this->getUser()->id);
 
         foreach ($events as $i => $event) {
-            $project = (new GetProjectInteractor(new EloquentProjectRepository()))->getProject($event->projectID);
-            if ($event->projectID == $project->id && isset($project->color)) {
-                $event->color = $project->color;
+            if (isset($event->projectID)) {
+                $project = (new GetProjectInteractor(new EloquentProjectRepository()))->getProject($event->projectID);
+                if ($event->projectID == $project->id && isset($project->color)) {
+                    $event->color = $project->color;
+                }
             }
         }
 
         return view('projectsquare::calendar.index', [
             'projects' => $projects,
-            'events' => $events
+            'events' => $events,
+            'tickets' => (new GetTicketInteractor(new EloquentTicketRepository()))->getTicketsPaginatedList($this->getUser()->id, env('TICKETS_PER_PAGE'))
         ]);
     }
 
@@ -97,9 +102,11 @@ class CalendarController extends BaseController
             $event = $response->event;
             $event->start_time = $event->startTime->format(DATE_ISO8601);
             $event->end_time = $event->endTime->format(DATE_ISO8601);
-            $project = (new GetProjectInteractor(new EloquentProjectRepository()))->getProject($event->projectID);
-            if ($event->projectID == $project->id && isset($project->color)) {
-                $event->color = $project->color;
+            if (isset($event->projectID)) {
+                $project = (new GetProjectInteractor(new EloquentProjectRepository()))->getProject($event->projectID);
+                if ($event->projectID == $project->id && isset($project->color)) {
+                    $event->color = $project->color;
+                }
             }
 
             return response()->json(['message' => trans('projectsquare::events.edit_event_success'), 'event' => $event], 200);

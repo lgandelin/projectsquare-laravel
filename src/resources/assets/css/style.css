@@ -7351,13 +7351,14 @@ temporary rendered events).
   /* the generic .fc-bg already does position */
   z-index: 1;
   background: #fff;
-  opacity: .25;
-  filter: alpha(opacity=25);
+  opacity: .15;
+  filter: alpha(opacity=15);
   /* for IE */ }
 
 .fc-event .fc-content {
   position: relative;
-  z-index: 2; }
+  z-index: 2;
+  padding: 0.25rem; }
 
 .fc-event .fc-resizer {
   position: absolute;
@@ -7771,8 +7772,10 @@ be a descendant of the grid when it is being dragged.
   padding: 0 1px; }
 
 .fc-time-grid-event .fc-time {
-  font-size: .85em;
-  white-space: nowrap; }
+  font-size: 1em;
+  white-space: nowrap;
+  font-weight: bold;
+  margin-bottom: 0.5rem; }
 
 /* short mode, where time and title are on the same line */
 .fc-time-grid-event.fc-short .fc-content {
@@ -7955,15 +7958,6 @@ ul {
 
 .priority-5 {
   background: #DF5A49; }
-
-.project-status-1 {
-  background: #e24f87; }
-
-.project-status-2 {
-  background: #b237e2; }
-
-.project-status-3 {
-  background: #6c3ce2; }
 
 .btn .glyphicon {
   margin-right: 0.5rem; }

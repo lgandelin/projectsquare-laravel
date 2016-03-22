@@ -538,13 +538,14 @@ temporary rendered events).
 .fc-event .fc-bg { /* the generic .fc-bg already does position */
 	z-index: 1;
 	background: #fff;
-	opacity: .25;
-	filter: alpha(opacity=25); /* for IE */
+	opacity: .15;
+	filter: alpha(opacity=15); /* for IE */
 }
 
 .fc-event .fc-content {
 	position: relative;
 	z-index: 2;
+	padding: 0.25rem;
 }
 
 .fc-event .fc-resizer {
@@ -1037,8 +1038,10 @@ be a descendant of the grid when it is being dragged.
 }
 
 .fc-time-grid-event .fc-time {
-	font-size: .85em;
+	font-size: 1em;
 	white-space: nowrap;
+	font-weight: bold;
+	margin-bottom: 0.5rem;
 }
 
 /* short mode, where time and title are on the same line */
