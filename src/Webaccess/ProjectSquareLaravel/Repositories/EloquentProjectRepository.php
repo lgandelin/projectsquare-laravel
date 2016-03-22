@@ -34,14 +34,14 @@ class EloquentProjectRepository implements ProjectRepository
         return Project::orderBy('updated_at', 'DESC')->paginate($limit);
     }
 
-    public function createProject($name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status)
+    public function createProject($name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color)
     {
         $project = new Project();
         $project->save();
-        $this->updateProject($project->id, $name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status);
+        $this->updateProject($project->id, $name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color);
     }
 
-    public function updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status)
+    public function updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color)
     {
         $project = $this->getProject($projectID);
         $project->name = $name;
@@ -52,6 +52,7 @@ class EloquentProjectRepository implements ProjectRepository
             $project->referer_id = $refererID;
         }
         $project->status = $status;
+        $project->color = $color;
         $project->save();
     }
 

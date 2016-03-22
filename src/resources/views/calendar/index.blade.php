@@ -81,6 +81,7 @@
                         title: "{{ $event->name }}",
                         start: "{{ $event->startTime->format(DATE_ISO8601) }}",
                         end: "{{ $event->endTime->format(DATE_ISO8601) }}",
+                        color: "{{ isset($event->color) ? $event->color : null }}"
                     },
                  @endforeach
                 ],
@@ -142,18 +143,10 @@
                         url: route_event_update,
                         data: data,
                         success: function(data) {
-                            $('#event-infos').find('.name').val(data.event.name);
-                            $('#event-infos').find('.start_time').val(moment(data.event.start_time).format('DD/MM/YYYY'));
-                            $('#event-infos').find('.start_time_hour').val(moment(data.event.start_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
-                            $('#event-infos').find('.end_time').val(moment(data.event.end_time).format('DD/MM/YYYY'));
-                            $('#event-infos').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
-                            $('#event-infos').find('.project_id').val(data.event.project_id);
-                            $('#event-infos').show();
                         }
                     });
                 },
                 eventClick: function(event, jsEvent, view) {
-
                     var data = {
                         id: event._id,
                         _token: $('#csrf_token').val()
@@ -178,7 +171,6 @@
                 selectable: true,
                 selectHelper: true,
                 select: function(start, end, allDay) {
-
                     var temporaryID = uniqid();
                     var event = {
                         id: temporaryID,
@@ -246,6 +238,7 @@
                         event.title = data.event.name;
                         event.start = data.event.start_time;
                         event.end = data.event.end_time;
+                        event.color = data.event.color;
 
                         $('#calendar').fullCalendar('updateEvent', event);
                     }

@@ -38,7 +38,8 @@ class ProjectController extends BaseController
                 Input::get('website_front_url'),
                 Input::get('website_back_url'),
                 $this->getUser()->id,
-                Input::get('status')
+                Input::get('status'),
+                Input::get('color')
             );
             $this->request->session()->flash('confirmation', trans('projectsquare::projects.add_project_success'));
         } catch (\Exception $e) {
@@ -77,7 +78,8 @@ class ProjectController extends BaseController
                 Input::get('client_id'),
                 Input::get('website_front_url'),
                 Input::get('website_back_url'),
-                Input::get('status')
+                Input::get('status'),
+                Input::get('color')
             );
             $this->request->session()->flash('confirmation', trans('projectsquare::projects.edit_project_success'));
         } catch (\Exception $e) {
