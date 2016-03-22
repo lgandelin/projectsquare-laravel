@@ -31,6 +31,16 @@
                     <input type="time" class="form-control end_time_hour" placeholder="hh:mm" style="width: 100px; display: inline-block;"/>
                 </div>
 
+                <div class="form-group">
+                    <label for="project_id">Projet</label><br/>
+                    <select name="project_id" class="form-control project_id">
+                        <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+                        @foreach ($projects as $project)
+                            <option value="{{ $project->id }}">{{ $project->client->name }} - {{ $project->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <input type="hidden" class="id" value="" />
                 <input type="button" class="btn btn-success btn-valid" value="{{ trans('projectsquare::generic.valid') }}">
                 <input type="button" class="btn btn-default btn-close" value="{{ trans('projectsquare::generic.close') }}">
@@ -78,7 +88,7 @@
                     element.append( "<span class='delete'>X</span>" );
                     element.find(".delete").click(function() {
                         $('#event-infos').hide();
-                        
+
                         var data = {
                             event_id: event._id,
                             _token: $('#csrf_token').val()
@@ -90,6 +100,7 @@
                             data: data,
                             success: function(data) {
                                 $('#calendar').fullCalendar('removeEvents', event._id);
+                                $('#event-infos').hide();
                             }
                         });
                     });
@@ -136,6 +147,7 @@
                             $('#event-infos').find('.start_time_hour').val(moment(data.event.start_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
                             $('#event-infos').find('.end_time').val(moment(data.event.end_time).format('DD/MM/YYYY'));
                             $('#event-infos').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
+                            $('#event-infos').find('.project_id').val(data.event.project_id);
                             $('#event-infos').show();
                         }
                     });
@@ -158,6 +170,7 @@
                             $('#event-infos').find('.start_time_hour').val(moment(data.event.start_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
                             $('#event-infos').find('.end_time').val(moment(data.event.end_time).format('DD/MM/YYYY'));
                             $('#event-infos').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
+                            $('#event-infos').find('.project_id').val(data.event.project_id);
                             $('#event-infos').show();
                         }
                     });
@@ -195,12 +208,15 @@
                             $('#calendar').fullCalendar('updateEvent', event);
 
                             $('#event-infos').find('.id').val(data.event.id);
-                            $('#event-infos').find('.name').val(data.event.name);
+                            $('#event-infos').find('.name').val('');
                             $('#event-infos').find('.start_time').val(moment(data.event.start_time).format('DD/MM/YYYY'));
                             $('#event-infos').find('.start_time_hour').val(moment(data.event.start_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
                             $('#event-infos').find('.end_time').val(moment(data.event.end_time).format('DD/MM/YYYY'));
                             $('#event-infos').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
+                            $('#event-infos').find('.project_id').val(data.event.project_id);
                             $('#event-infos').show();
+
+                            $('#event-infos').find('.name').focus();
                         }
                     });
 
@@ -215,6 +231,7 @@
                     name: $('#event-infos .name').val(),
                     start_time: moment($('#event-infos .start_time').val(), 'DD/MM/YYYY').format('YYYY-MM-DD') + ' ' + $('#event-infos .start_time_hour').val() + ':00',
                     end_time: moment($('#event-infos .end_time').val(), 'DD/MM/YYYY').format('YYYY-MM-DD') + ' ' + $('#event-infos .end_time_hour').val() + ':00',
+                    project_id: $('#event-infos .project_id').val(),
                     _token: $('#csrf_token').val()
                 };
 

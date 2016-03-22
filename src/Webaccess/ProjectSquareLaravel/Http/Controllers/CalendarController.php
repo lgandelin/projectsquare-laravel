@@ -8,18 +8,21 @@ use Webaccess\ProjectSquare\Interactors\Calendar\DeleteEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\GetEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\GetUserEventsInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\UpdateEventInteractor;
+use Webaccess\ProjectSquare\Interactors\Projects\GetProjectsInteractor;
 use Webaccess\ProjectSquare\Requests\Calendar\CreateEventRequest;
 use Webaccess\ProjectSquare\Requests\Calendar\DeleteEventRequest;
 use Webaccess\ProjectSquare\Requests\Calendar\GetEventRequest;
 use Webaccess\ProjectSquare\Requests\Calendar\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Calendar\UpdateEventRequest;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentEventRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
 
 class CalendarController extends BaseController
 {
     public function index()
     {
         return view('projectsquare::calendar.index', [
+            'projects' => (new GetProjectsInteractor(new EloquentProjectRepository()))->getProjects($this->getUser()->id),
             'events' => (new GetUserEventsInteractor(new EloquentEventRepository()))->execute(new GetEventsRequest([
                 'userID' => $this->getUser()->id
             ]))
@@ -35,6 +38,7 @@ class CalendarController extends BaseController
             ]));
             $event->start_time = $event->startTime->format(DATE_ISO8601);
             $event->end_time = $event->endTime->format(DATE_ISO8601);
+            $event->project_id = $event->projectID;
 
             return response()->json(['event' => $event], 200);
         } catch (\Exception $e) {
@@ -75,6 +79,7 @@ class CalendarController extends BaseController
                 'name' => Input::get('name'),
                 'startTime' => new \DateTime(Input::get('start_time')),
                 'endTime' => new \DateTime(Input::get('end_time')),
+                'projectID' => Input::get('project_id'),
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
