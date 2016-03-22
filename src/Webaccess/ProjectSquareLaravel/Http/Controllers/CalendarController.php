@@ -5,10 +5,12 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Interactors\Calendar\CreateEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\DeleteEventInteractor;
+use Webaccess\ProjectSquare\Interactors\Calendar\GetEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\GetUserEventsInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\UpdateEventInteractor;
 use Webaccess\ProjectSquare\Requests\Calendar\CreateEventRequest;
 use Webaccess\ProjectSquare\Requests\Calendar\DeleteEventRequest;
+use Webaccess\ProjectSquare\Requests\Calendar\GetEventRequest;
 use Webaccess\ProjectSquare\Requests\Calendar\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Calendar\UpdateEventRequest;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentEventRepository;
@@ -24,6 +26,22 @@ class CalendarController extends BaseController
         ]);
     }
 
+    public function get_event()
+    {
+        try {
+            $event = (new GetEventInteractor(new EloquentEventRepository()))->execute(new GetEventRequest([
+                'eventID' => Input::get('id'),
+                'requesterUserID' => $this->getUser()->id,
+            ]));
+            $event->start_time = $event->startTime->format(DATE_ISO8601);
+            $event->end_time = $event->endTime->format(DATE_ISO8601);
+
+            return response()->json(['event' => $event], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
     public function create()
     {
         try {
@@ -37,7 +55,11 @@ class CalendarController extends BaseController
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
-            return response()->json(['message' => trans('projectsquare::events.create_event_success'), 'event' => $response->event], 200);
+            $event = $response->event;
+            $event->start_time = $event->startTime->format(DATE_ISO8601);
+            $event->end_time = $event->endTime->format(DATE_ISO8601);
+
+            return response()->json(['message' => trans('projectsquare::events.create_event_success'), 'event' => $event], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
@@ -46,7 +68,7 @@ class CalendarController extends BaseController
     public function update()
     {
         try {
-            (new UpdateEventInteractor(
+            $response = (new UpdateEventInteractor(
                 new EloquentEventRepository()
             ))->execute(new UpdateEventRequest([
                 'eventID' => Input::get('event_id'),
@@ -56,7 +78,11 @@ class CalendarController extends BaseController
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
-            return response()->json(['message' => trans('projectsquare::events.edit_event_success')], 200);
+            $event = $response->event;
+            $event->start_time = $event->startTime->format(DATE_ISO8601);
+            $event->end_time = $event->endTime->format(DATE_ISO8601);
+
+            return response()->json(['message' => trans('projectsquare::events.edit_event_success'), 'event' => $event], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }

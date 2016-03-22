@@ -10,6 +10,7 @@
         var route_event_create = "{{ route('events_create') }}";
         var route_event_update = "{{ route('events_update') }}";
         var route_event_delete = "{{ route('events_delete') }}";
+        var route_event_get_infos = "{{ route('events_get_infos') }}";
     </script>
     <input type="hidden" id="csrf_token" value="{!! csrf_token() !!}" />
     @yield('scripts')

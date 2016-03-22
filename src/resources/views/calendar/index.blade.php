@@ -22,17 +22,18 @@
                 <div class="form-group">
                     <label for="name">Date de début</label><br/>
                     <input type="text" class="form-control start_time datepicker" placeholder="dd/mm/YYYY" value="" style="width: 200px; display: inline-block" />
-                    <input type="text" class="form-control start_time_hour" placeholder="hh:mm" style="width: 100px; display: inline-block;"/>
+                    <input type="time" class="form-control start_time_hour" placeholder="hh:mm" style="width: 100px; display: inline-block;"/>
                 </div>
 
                 <div class="form-group">
                     <label for="name">Date de fin</label><br/>
                     <input type="text" class="form-control end_time datepicker" placeholder="dd/mm/YYYY" value="" style="width: 200px; display: inline-block" />
-                    <input type="text" class="form-control start_time_hour" placeholder="hh:mm" style="width: 100px; display: inline-block;"/>
+                    <input type="time" class="form-control end_time_hour" placeholder="hh:mm" style="width: 100px; display: inline-block;"/>
                 </div>
 
                 <input type="hidden" class="id" value="" />
                 <input type="button" class="btn btn-success btn-valid" value="{{ trans('projectsquare::generic.valid') }}">
+                <input type="button" class="btn btn-default btn-close" value="{{ trans('projectsquare::generic.close') }}">
             </div>
         </div>
     </div>
@@ -76,6 +77,8 @@
                 eventRender: function(event, element) {
                     element.append( "<span class='delete'>X</span>" );
                     element.find(".delete").click(function() {
+                        $('#event-infos').hide();
+                        
                         var data = {
                             event_id: event._id,
                             _token: $('#csrf_token').val()
@@ -105,7 +108,12 @@
                         url: route_event_update,
                         data: data,
                         success: function(data) {
-
+                            $('#event-infos').find('.name').val(data.event.name);
+                            $('#event-infos').find('.start_time').val(moment(data.event.start_time).format('DD/MM/YYYY'));
+                            $('#event-infos').find('.start_time_hour').val(moment(data.event.start_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
+                            $('#event-infos').find('.end_time').val(moment(data.event.end_time).format('DD/MM/YYYY'));
+                            $('#event-infos').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
+                            $('#event-infos').show();
                         }
                     });
                 },
@@ -123,22 +131,36 @@
                         url: route_event_update,
                         data: data,
                         success: function(data) {
-
+                            $('#event-infos').find('.name').val(data.event.name);
+                            $('#event-infos').find('.start_time').val(moment(data.event.start_time).format('DD/MM/YYYY'));
+                            $('#event-infos').find('.start_time_hour').val(moment(data.event.start_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
+                            $('#event-infos').find('.end_time').val(moment(data.event.end_time).format('DD/MM/YYYY'));
+                            $('#event-infos').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
+                            $('#event-infos').show();
                         }
                     });
                 },
                 eventClick: function(event, jsEvent, view) {
 
-                    $('#calendar .fc-event').removeClass('current-event');
-                    $(this).addClass('current-event');
+                    var data = {
+                        id: event._id,
+                        _token: $('#csrf_token').val()
+                    };
 
-                    //Get infos from ajax
-
-                    $('#event-infos').find('.id').val(event._id);
-                    $('#event-infos').find('.name').val(event.title);
-                    $('#event-infos').find('.start_time').val(event.start.format());
-                    $('#event-infos').find('.end_time').val(event.end.format());
-                    $('#event-infos').show();
+                    $.ajax({
+                        type: "POST",
+                        url: route_event_get_infos,
+                        data: data,
+                        success: function(data) {
+                            $('#event-infos').find('.id').val(data.event.id);
+                            $('#event-infos').find('.name').val(data.event.name);
+                            $('#event-infos').find('.start_time').val(moment(data.event.start_time).format('DD/MM/YYYY'));
+                            $('#event-infos').find('.start_time_hour').val(moment(data.event.start_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
+                            $('#event-infos').find('.end_time').val(moment(data.event.end_time).format('DD/MM/YYYY'));
+                            $('#event-infos').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
+                            $('#event-infos').show();
+                        }
+                    });
                 },
                 selectable: true,
                 selectHelper: true,
@@ -171,6 +193,14 @@
                             var event = events[0];
                             event._id = data.event.id;
                             $('#calendar').fullCalendar('updateEvent', event);
+
+                            $('#event-infos').find('.id').val(data.event.id);
+                            $('#event-infos').find('.name').val(data.event.name);
+                            $('#event-infos').find('.start_time').val(moment(data.event.start_time).format('DD/MM/YYYY'));
+                            $('#event-infos').find('.start_time_hour').val(moment(data.event.start_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
+                            $('#event-infos').find('.end_time').val(moment(data.event.end_time).format('DD/MM/YYYY'));
+                            $('#event-infos').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
+                            $('#event-infos').show();
                         }
                     });
 
@@ -181,13 +211,33 @@
             //VALID UPDATE EVENT
             $('#event-infos .btn-valid').click(function() {
                 var data = {
-                    id: $('#event-infos .id').val(),
+                    event_id: $('#event-infos .id').val(),
                     name: $('#event-infos .name').val(),
-                    start_time: $('#event-infos .start_time').val(),
-                    start_time_hour: $('#event-infos .start_time_hour').val(),
-                    end_time: $('#event-infos .end_time').val(),
-                    end_time_hour: $('#event-infos .end_time_hour').val(),
+                    start_time: moment($('#event-infos .start_time').val(), 'DD/MM/YYYY').format('YYYY-MM-DD') + ' ' + $('#event-infos .start_time_hour').val() + ':00',
+                    end_time: moment($('#event-infos .end_time').val(), 'DD/MM/YYYY').format('YYYY-MM-DD') + ' ' + $('#event-infos .end_time_hour').val() + ':00',
+                    _token: $('#csrf_token').val()
                 };
+
+                $.ajax({
+                    type: "POST",
+                    url: route_event_update,
+                    data: data,
+                    success: function(data) {
+
+                        var events = $('#calendar').fullCalendar( 'clientEvents', data.event.id);
+                        var event = events[0];
+                        event.title = data.event.name;
+                        event.start = data.event.start_time;
+                        event.end = data.event.end_time;
+
+                        $('#calendar').fullCalendar('updateEvent', event);
+                    }
+                });
+            });
+
+            //CLOSE EVENT INFOS
+            $('#event-infos .btn-close').click(function() {
+                $(this).parent().hide();
             });
         });
 
