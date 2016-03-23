@@ -7351,8 +7351,8 @@ temporary rendered events).
   /* the generic .fc-bg already does position */
   z-index: 1;
   background: #fff;
-  opacity: .15;
-  filter: alpha(opacity=15);
+  opacity: 0;
+  filter: alpha(opacity=0);
   /* for IE */ }
 
 .fc-event .fc-content {

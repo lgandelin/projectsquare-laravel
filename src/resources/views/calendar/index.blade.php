@@ -2,37 +2,37 @@
 
 @section('content')
     <ol class="breadcrumb">
-        <li><a href="{{ route('dashboard') }}">Tableau de bord</a></li>
-        <li class="active">Calendrier</li>
+        <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
+        <li class="active">{{ trans('projectsquare::calendar.calendar') }}</li>
     </ol>
 
     <div class="page-header">
-        <h1>Calendrier</h1>
+        <h1>{{ trans('projectsquare::calendar.calendar') }}</h1>
 
         <div class="row">
             <div id="calendar" class="col-md-9"></div>
             <div id="event-infos" class="col-md-3" style="display: none;">
-                <h3>Informations</h3>
+                <h3>{{ trans('projectsquare::calendar.informations') }}</h3>
 
                 <div class="form-group">
-                    <label for="name">Nom</label>
-                    <input type="text" class="form-control name" placeholder="Nom de l'évenement" value="" />
+                    <label for="name">{{ trans('projectsquare::calendar.name') }}</label>
+                    <input type="text" class="form-control name" placeholder="{{ trans('projectsquare::calendar.name') }}" value="" />
                 </div>
 
                 <div class="form-group">
-                    <label for="name">Date de début</label><br/>
+                    <label for="name">{{ trans('projectsquare::calendar.start_time') }}</label><br/>
                     <input type="text" class="form-control start_time datepicker" placeholder="dd/mm/YYYY" value="" style="width: 200px; display: inline-block" />
                     <input type="time" class="form-control start_time_hour" placeholder="hh:mm" style="width: 100px; display: inline-block;"/>
                 </div>
 
                 <div class="form-group">
-                    <label for="name">Date de fin</label><br/>
+                    <label for="name">{{ trans('projectsquare::calendar.end_time') }}</label><br/>
                     <input type="text" class="form-control end_time datepicker" placeholder="dd/mm/YYYY" value="" style="width: 200px; display: inline-block" />
                     <input type="time" class="form-control end_time_hour" placeholder="hh:mm" style="width: 100px; display: inline-block;"/>
                 </div>
 
                 <div class="form-group">
-                    <label for="project_id">Projet</label><br/>
+                    <label for="project_id">{{ trans('projectsquare::calendar.project') }}</label><br/>
                     <select name="project_id" class="form-control project_id">
                         <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
                         @foreach ($projects as $project)
@@ -46,10 +46,10 @@
                 <input type="button" class="btn btn-default btn-close" value="{{ trans('projectsquare::generic.close') }}">
             </div>
 
-            <div id="tickets-list" class="col-md-3">
-                <h3>Liste des tickets</h3>
+            <div id="tickets-list" class="col-md-3" style="display: none; margin-top: 5rem;">
+                <h3>{{ trans('projectsquare::calendar.tickets_list') }}</h3>
                 @foreach ($tickets as $ticket)
-                    <div data-event='{"title":"#{{ $ticket->id }} - {{ $ticket->title }}"}' data-duration='02:00' class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: {{ $ticket->project->color }}; margin-bottom: 1rem; width: 50%; border: none !important;">
+                    <div id="ticket-{{ $ticket->id }}" data-project="{{ $ticket->project->id }}" data-event='{"id":"{{ $ticket->id }}","title":"#{{ $ticket->id }} - {{ $ticket->title }}","color":"{{ $ticket->project->color }}","url": "http:\/\/www.google.fr"}' data-duration="02:00" class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: {{ $ticket->project->color }}; margin-bottom: 1rem; width: 50%; border: none !important;">
                         <div class="fc-content"><div class="fc-title">#{{ $ticket->id }} - {{ $ticket->title }}</div></div>
                     </div>
                 @endforeach
@@ -62,7 +62,6 @@
     <script src="{{ asset('js/vendor/fullcalendar/lib/moment.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/lang-all.js') }}"></script>
-    <script src="{{ asset('js/calendar.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
     <script>
@@ -92,7 +91,8 @@
                         title: "{{ $event->name }}",
                         start: "{{ $event->startTime->format(DATE_ISO8601) }}",
                         end: "{{ $event->endTime->format(DATE_ISO8601) }}",
-                        color: "{{ isset($event->color) ? $event->color : null }}"
+                        color: "{{ isset($event->color) ? $event->color : null }}",
+                        project_id: "{{ isset($event->project_id) ? $event->project_id : null }}",
                     },
                  @endforeach
                 ],
@@ -118,7 +118,6 @@
                     });
                 },
                 eventDrop: function(event, delta, revertFunc) {
-
                     var data = {
                         event_id: event._id,
                         start_time: event.start.format(),
@@ -131,17 +130,16 @@
                         url: route_event_update,
                         data: data,
                         success: function(data) {
-                            $('#event-infos').find('.name').val(data.event.name);
-                            $('#event-infos').find('.start_time').val(moment(data.event.start_time).format('DD/MM/YYYY'));
-                            $('#event-infos').find('.start_time_hour').val(moment(data.event.start_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
-                            $('#event-infos').find('.end_time').val(moment(data.event.end_time).format('DD/MM/YYYY'));
-                            $('#event-infos').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
-                            $('#event-infos').show();
+                            if ($('#event-infos').is(':visible') && data.event.projectID == $('#event-infos').find('.project_id').val()) {
+                                $('#event-infos').find('.start_time').val(moment(data.event.start_time).format('DD/MM/YYYY'));
+                                $('#event-infos').find('.start_time_hour').val(moment(data.event.start_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
+                                $('#event-infos').find('.end_time').val(moment(data.event.end_time).format('DD/MM/YYYY'));
+                                $('#event-infos').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
+                            }
                         }
                     });
                 },
                 eventResize: function(event, delta, revertFunc) {
-
                     var data = {
                         event_id: event._id,
                         start_time: event.start.format(),
@@ -162,7 +160,6 @@
                         id: event._id,
                         _token: $('#csrf_token').val()
                     };
-
                     $.ajax({
                         type: "POST",
                         url: route_event_get_infos,
@@ -185,7 +182,7 @@
                     var temporaryID = uniqid();
                     var event = {
                         id: temporaryID,
-                        title: 'Nouvel evenement',
+                        title: "{{ trans('projectsquare::calendar.new_event') }}",
                         start: start,
                         end: end,
                         allDay: false
@@ -194,7 +191,7 @@
                     $('#calendar').fullCalendar('renderEvent', event, true);
 
                     var data = {
-                        name: 'Nouvel evenement',
+                        name: "{{ trans('projectsquare::calendar.new_event') }}",
                         start_time: start.format(),
                         end_time: end.format(),
                         _token: $('#csrf_token').val()
@@ -225,23 +222,17 @@
 
                     $('#calendar').fullCalendar('unselect');
                 },
-                drop: function(date, allDay) {
+                drop: function(date, jsEvent, ui, resourceId) {
                     $(this).remove();
-
-                    /*var temporaryID = uniqid();
-                    var event = {
-                        id: temporaryID,
-                        title: 'Nouvel evenement',
-                        start: date.format(),
-                        allDay: false
-                    };
-
-                    $('#calendar').fullCalendar('renderEvent', event, true);
+                },
+                eventReceive: function(event, delta, revertFunc) {
 
                     var data = {
-                        id: temporaryID,
-                        name: 'Nouvel evenement',
-                        start_time: date.format(),
+                        event_id: event.id,
+                        name: event.title,
+                        start_time: event.start.format(),
+                        end_time: event.end.format(),
+                        project_id: $('#ticket-' + event._id).data('project'),
                         _token: $('#csrf_token').val()
                     };
 
@@ -250,24 +241,21 @@
                         url: route_event_create,
                         data: data,
                         success: function(data) {
-                            var events = $('#calendar').fullCalendar( 'clientEvents', temporaryID);
-                            var event = events[0];
                             event._id = data.event.id;
+                            event.color = data.event.color;
                             $('#calendar').fullCalendar('updateEvent', event);
 
                             $('#event-infos').find('.id').val(data.event.id);
-                            $('#event-infos').find('.name').val('');
+                            $('#event-infos').find('.name').val(data.event.name);
                             $('#event-infos').find('.start_time').val(moment(data.event.start_time).format('DD/MM/YYYY'));
                             $('#event-infos').find('.start_time_hour').val(moment(data.event.start_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
                             $('#event-infos').find('.end_time').val(moment(data.event.end_time).format('DD/MM/YYYY'));
                             $('#event-infos').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
                             $('#event-infos').find('.project_id').val(data.event.project_id);
                             $('#event-infos').show();
-
-                            $('#event-infos').find('.name').focus();
                         }
-                    });*/
-                }
+                    });
+                },
             });
 
             //VALID UPDATE EVENT
@@ -319,9 +307,9 @@
                     revert: true,      // will cause the event to go back to its
                     revertDuration: 0  //  original position after the drag
                 });
-
             });
 
+            $('#tickets-list').show();
         });
 
     </script>

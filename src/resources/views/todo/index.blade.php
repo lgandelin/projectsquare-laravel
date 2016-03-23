@@ -2,12 +2,12 @@
 
 @section('content')
     <ol class="breadcrumb">
-        <li><a href="{{ route('dashboard') }}">Tableau de bord</a></li>
-        <li class="active">Tickets</li>
+        <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
+        <li class="active">{{ trans('projectsquare::tasks.tasks') }}</li>
     </ol>
-    
+
     <div class="page-header">
-        <h1>Todo</h1>
+        <h1>{{ trans('projectsquare::tasks.todo-list') }}</h1>
     </div>
 
     <div class="task-template">
@@ -16,9 +16,9 @@
             <div class="block">
                 <div class="block-content">
                     <form method="post" action="{{ route('to_do_store') }}">
-                        <label for="name">Nouvelle tâche</label> : <input type="text" class="form-control new-task"  name="name" id="name" required />
+                        <label for="name">{{ trans('projectsquare::tasks.new-task') }}</label> : <input type="text" class="form-control new-task"  name="name" id="name" required />
                         <div class="sent">
-                            <input type="submit" class="btn btn-success" value="Ajouter" />
+                            <input type="submit" class="btn btn-success" value="{{ trans('projectsquare::generic.add') }}" />
                         </div>
                         {!! csrf_field() !!}
                     </form>
@@ -34,15 +34,12 @@
                                     </form>
                                 </div>
 
-
-                                <a href="{{ route('to_do_delete', ['id' => $task->id]) }}">Supprimer</a>
+                                <a href="{{ route('to_do_delete', ['id' => $task->id]) }}">{{ trans('projectsquare::generic.delete') }}</a>
                             </li>
 
                         @endforeach
                     </ul>
                 </div>
-
-
             </div>
         </div>
     </div>

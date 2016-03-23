@@ -72,12 +72,19 @@ class CalendarController extends BaseController
                 'userID' => $this->getUser()->id,
                 'startTime' => new \DateTime(Input::get('start_time')),
                 'endTime' => new \DateTime(Input::get('end_time')),
+                'projectID' => Input::get('project_id'),
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
             $event = $response->event;
             $event->start_time = $event->startTime->format(DATE_ISO8601);
             $event->end_time = $event->endTime->format(DATE_ISO8601);
+            if (isset($event->projectID)) {
+                $project = (new GetProjectInteractor(new EloquentProjectRepository()))->getProject($event->projectID);
+                if ($event->projectID == $project->id && isset($project->color)) {
+                    $event->color = $project->color;
+                }
+            }
 
             return response()->json(['message' => trans('projectsquare::events.create_event_success'), 'event' => $event], 200);
         } catch (\Exception $e) {
