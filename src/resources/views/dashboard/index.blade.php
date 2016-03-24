@@ -4,11 +4,6 @@
     <ol class="breadcrumb">
         <li class="active">Tableau de bord</li>
     </ol>
-
-    <div class="page-header">
-        <h1>Tableau de bord</h1>
-    </div>
-
     <div class="dashboard-content">
         <div class="row">
             <div class="col-lg-8 col-md-12">
@@ -33,9 +28,9 @@
                                     <tr>
                                         <td>{{ $ticket->id }}</td>
                                         <td width="40%">{{ $ticket->title }}</td>
-                                        <td><a href="{{ route('project_index', ['id' => $ticket->project->id]) }}"><span class="label label-primary">{{ $ticket->project->client->name }}</span> {{ $ticket->project->name }}</a></td>
+                                        <td><a href="{{ route('project_index', ['id' => $ticket->project->id]) }}"><span class="label" style="background: {{ $ticket->project->color }}">{{ $ticket->project->client->name }}</span> {{ $ticket->project->name }}</a></td>
                                         <td><span class="badge">@if (isset($ticket->type)){{ $ticket->type->name }}@endif</span></td>
-                                        <td>@if (isset($ticket->states[0]))<span class="status status-{{ $ticket->states[0]->status->id }}">{{ $ticket->states[0]->status->name }}</span>@endif</td>
+                                        <td width="10%">@if (isset($ticket->states[0]))<span class="status status-{{ $ticket->states[0]->status->id }}">{{ $ticket->states[0]->status->name }}</span>@endif</td>
                                         <td>@if (isset($ticket->states[0]))<span class="badge priority-{{ $ticket->states[0]->priority }}">{{ $ticket->states[0]->priority }}</span>@endif</td>
                                         <td>
                                             <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt"></span> {{ trans('projectsquare::tickets.see_ticket') }}</a>
@@ -61,7 +56,7 @@
                                         <tr class="conversation">
                                             <td>
                                                 <span class="badge pull-right count"><span class="number">{{ count($conversation->messages) }}</span> @if (count($conversation->messages) > 1)messages @else message @endif</span>
-                                                <a href="{{ route('project_index', ['id' => $conversation->project->id]) }}"><span class="label label-primary">{{ $conversation->project->client->name }}</span> {{ $conversation->project->name }}</a> - <strong>{{ $conversation->title }}</strong><br>
+                                                <a href="{{ route('project_index', ['id' => $conversation->project->id]) }}"><span class="label" style="background: {{ $conversation->project->color }}">{{ $conversation->project->client->name }}</span> {{ $conversation->project->name }}</a> - <strong>{{ $conversation->title }}</strong><br>
 
                                                 <div class="users">
                                                     <u>Participants</u> :
@@ -105,14 +100,16 @@
         <div class="row">
             <div class="col-lg-6 col-md-12">
                 <div class="block">
-                    <h3>Planning</h3>
-                    <div class="block-content"></div>
+                    <h3>Calendrier <a style="float:right" href="{{ route('calendar') }}" class="btn btn-default pull-right"><span class="glyphicon glyphicon-list-alt"></span> {{ trans('projectsquare::calendar.see_calendar') }}</a></h3>
+                    <div class="block-content loading">
+                        <div id="calendar"></div>
+                    </div>
                 </div>
             </div>
 
             <div class="col-lg-6 col-md-12">
                 <div class="block">
-                    <h3>Alertes monitoring</h3>
+                    <h3>Alertes monitoring <a style="float: right" href="{{ route('monitoring_index') }}" class="btn btn-default pull-right"><span class="glyphicon glyphicon-list-alt"></span> {{ trans('projectsquare::monitoring.see_alerts') }}</a></h3>
                     <div class="block-content table-responsive">
                         <table class="table table-striped">
                             <thead>
@@ -132,7 +129,7 @@
                                         <td>{{ $alert->id }}</td>
                                         <td>{{ date('d/m/Y H:i', strtotime($alert->created_at)) }}</td>
                                         <td><span class="badge">{{ $alert->type }}</span></td>
-                                        <td><a href="{{ route('project_index', ['id' => $alert->project->id]) }}"><span class="label label-primary">{{ $alert->project->client->name }}</span> {{ $alert->project->name }}</a></td>
+                                        <td><a href="{{ route('project_index', ['id' => $alert->project->id]) }}"><span class="label" style="background: {{ $ticket->project->color }}">{{ $alert->project->client->name }}</span> {{ $alert->project->name }}</a></td>
                                         <td>{{ number_format($alert->variables->loading_time, 2) }}s</td>
                                         <td>
                                             <a href="{{ route('project_monitoring', ['id' => $alert->project->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt"></span> voir le projet</a>
@@ -141,7 +138,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <a href="{{ route('monitoring_index') }}" class="btn btn-default pull-right"><span class="glyphicon glyphicon-list-alt"></span> {{ trans('projectsquare::monitoring.see_alerts') }}</a>
                     </div>
                 </div>
             </div>
@@ -150,4 +146,49 @@
 
     @include('projectsquare::dashboard.new-message')
     @include('projectsquare::dashboard.create-conversation-modal')
+@endsection
+
+@section('scripts')
+
+    <script src="{{ asset('js/vendor/fullcalendar/lib/moment.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/fullcalendar/lang-all.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                defaultDate: "{{ date('Y-m-d') }}",
+                defaultView: "agendaWeek",
+                editable: false,
+                lang: 'fr',
+                aspectRatio: 2,
+                weekNumbers: true,
+                weekends: false,
+                minTime: '08:00',
+                maxTime: '21:00',
+                droppable: false,
+                events: [
+                        @foreach ($events as $event)
+                            {
+                        id: {{ $event->id }},
+                        title: "{{ $event->name }}",
+                        start: "{{ $event->startTime->format(DATE_ISO8601) }}",
+                        end: "{{ $event->endTime->format(DATE_ISO8601) }}",
+                        color: "{{ isset($event->color) ? $event->color : null }}",
+                        project_id: "{{ isset($event->project_id) ? $event->project_id : null }}",
+                        url: "{{ isset($event->ticketID) ? route('tickets_edit', ['id' => $event->ticketID]) : null }}"
+                    },
+                    @endforeach
+                ]
+            });
+            $('.block-content').removeClass('loading');
+        });
+    </script>
 @endsection

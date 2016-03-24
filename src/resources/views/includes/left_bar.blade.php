@@ -8,7 +8,7 @@
                 <li class="@if (isset($current_project_id) && $current_project_id == $project->id) current @endif">
                     <a href="{{ route('project_index', ['id' => $project->id]) }}">
                         <span class="client">
-                            <span class="label project-status-{{ $project->status }}">{{ $project->client->name }}</span>
+                            <span class="label" style="background:{{ $project->color }}">{{ $project->client->name }}</span>
                         </span>
                         {{ $project->name }}
                         @if (isset($current_project_id) && $current_project_id == $project->id)
@@ -24,7 +24,7 @@
             <ul>
                 <li><a href="{{ route('tickets_index') }}">Tickets</a></li>
                 <li><a href="{{ route('messages_index') }}">Messages</a></li>
-                <li><!--<a href="{{ route('calendar') }}">Calendrier</a>-->Calendrier</li>
+                <li><a href="{{ route('calendar') }}">Calendrier</a></li>
                 <li><a href="{{ route('to_do_index') }}">To do</a></li>
             </ul>
         </li>

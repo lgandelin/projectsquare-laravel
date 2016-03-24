@@ -48,14 +48,14 @@ class ProjectManager
         return $this->repository->getProjectsPaginatedList(env('PROJECTS_PER_PAGE', 10));
     }
 
-    public function createProject($name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status)
+    public function createProject($name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color)
     {
-        $this->repository->createProject($name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status);
+        $this->repository->createProject($name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color);
     }
 
-    public function updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, $status)
+    public function updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, $status, $color)
     {
-        $this->repository->updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, null, $status);
+        $this->repository->updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, null, $status, $color);
     }
 
     public function deleteProject($projectID)

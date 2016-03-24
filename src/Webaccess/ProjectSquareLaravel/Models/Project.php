@@ -13,7 +13,7 @@ class Project extends Model
         'status',
         'website_front_url',
         'website_back_url',
-        'slack_channel',
+        'color',
     ];
 
     public function client()

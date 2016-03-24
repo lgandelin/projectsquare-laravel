@@ -7,6 +7,7 @@
     <meta name="robots" content="noindex, nofollow">
     <title>ProjectSquare</title>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    @yield('stylesheets')
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 

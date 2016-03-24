@@ -39,6 +39,11 @@
     </div>
 
     <div class="form-group">
+        <label for="name">{{ trans('projectsquare::projects.color') }}</label>
+        <input type="text" name="color" class="form-control colorpicker" data-control="saturation" placeholder="{{ trans('projectsquare::projects.color') }}"  @if (isset($project_color))value="{{ $project_color }}"@endif size="7">
+    </div>
+
+    <div class="form-group">
         <button type="submit" class="btn btn-success">
             <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
         </button>
@@ -120,3 +125,11 @@
         {!! csrf_field() !!}
     </form>
 @endif
+
+@section('scripts')
+    <script>
+        $('.colorpicker').minicolors({
+            theme: 'bootstrap'
+        });
+    </script>
+@endsection

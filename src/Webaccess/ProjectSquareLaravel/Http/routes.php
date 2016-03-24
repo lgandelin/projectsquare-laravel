@@ -92,4 +92,9 @@ Route::group(['middleware' => ['web']], function () {
 
     //MONITORING
     Route::get('/monitoring', array('as' => 'monitoring_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@index'));
+
+    Route::post('/calendar/create', array('as' => 'events_create', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@create'));
+    Route::post('/calendar/update', array('as' => 'events_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@update'));
+    Route::post('/calendar/delete', array('as' => 'events_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@delete'));
+    Route::post('/calendar/get_event', array('as' => 'events_get_infos', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@get_event'));
 });

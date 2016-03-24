@@ -30,5 +30,6 @@
         'project_name' => $project->name,
         'project_website_front_url' => $project->website_front_url,
         'project_website_back_url' => $project->website_back_url,
+        'project_color' => $project->color,
     ])
 @endsection
