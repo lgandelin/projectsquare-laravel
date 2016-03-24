@@ -12,6 +12,7 @@
         <div class="row">
             <div id="calendar" class="col-md-9"></div>
             <div id="event-infos" class="col-md-3" style="display: none;">
+                <div class="loading" style="display: none"></div>
                 <h3>{{ trans('projectsquare::calendar.informations') }}</h3>
 
                 <div class="form-group">
@@ -54,6 +55,8 @@
                     </div>
                 @endforeach
             </div>
+
+            <input type="hidden" class="tickets-current-project" />
         </div>
     </div>
 @endsection
@@ -85,7 +88,7 @@
                 maxTime: '21:00',
                 droppable: true,
                 events: [
-                 @foreach ($events as $event)
+                @foreach ($events as $event)
                     {
                         id: {{ $event->id }},
                         title: "{{ $event->name }}",
@@ -94,7 +97,7 @@
                         color: "{{ isset($event->color) ? $event->color : null }}",
                         project_id: "{{ isset($event->project_id) ? $event->project_id : null }}",
                     },
-                 @endforeach
+                @endforeach
                 ],
                 eventRender: function(event, element) {
                     element.append( "<span class='delete'>X</span>" );
@@ -118,6 +121,7 @@
                     });
                 },
                 eventDrop: function(event, delta, revertFunc) {
+
                     var data = {
                         event_id: event._id,
                         start_time: event.start.format(),
@@ -140,6 +144,8 @@
                     });
                 },
                 eventResize: function(event, delta, revertFunc) {
+                    $('#event-infos .loading').show();
+
                     var data = {
                         event_id: event._id,
                         start_time: event.start.format(),
@@ -152,10 +158,19 @@
                         url: route_event_update,
                         data: data,
                         success: function(data) {
+                            if ($('#event-infos').is(':visible') && data.event.projectID == $('#event-infos').find('.project_id').val()) {
+                                $('#event-infos').find('.name').val(data.event.name);
+                                $('#event-infos').find('.start_time').val(moment(data.event.start_time).format('DD/MM/YYYY'));
+                                $('#event-infos').find('.start_time_hour').val(moment(data.event.start_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
+                                $('#event-infos').find('.end_time').val(moment(data.event.end_time).format('DD/MM/YYYY'));
+                                $('#event-infos').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
+                            }
+                            $('#event-infos .loading').hide();
                         }
                     });
                 },
                 eventClick: function(event, jsEvent, view) {
+                    $('#event-infos .loading').show();
                     var data = {
                         id: event._id,
                         _token: $('#csrf_token').val()
@@ -173,6 +188,7 @@
                             $('#event-infos').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
                             $('#event-infos').find('.project_id').val(data.event.project_id);
                             $('#event-infos').show();
+                            $('#event-infos .loading').hide();
                         }
                     });
                 },
@@ -197,6 +213,8 @@
                         _token: $('#csrf_token').val()
                     };
 
+                    $('#event-infos .loading').show();
+
                     $.ajax({
                         type: "POST",
                         url: route_event_create,
@@ -217,13 +235,16 @@
                             $('#event-infos').show();
 
                             $('#event-infos').find('.name').focus();
+                            $('#event-infos .loading').hide();
                         }
                     });
 
                     $('#calendar').fullCalendar('unselect');
                 },
                 drop: function(date, jsEvent, ui, resourceId) {
-                    $(this).remove();
+                    $('.tickets-current-project').val($(this).data('project'));
+
+                    $(this).hide();
                 },
                 eventReceive: function(event, delta, revertFunc) {
 
@@ -232,7 +253,7 @@
                         name: event.title,
                         start_time: event.start.format(),
                         end_time: event.end.format(),
-                        project_id: $('#ticket-' + event._id).data('project'),
+                        project_id: $('.tickets-current-project').val(),
                         _token: $('#csrf_token').val()
                     };
 
@@ -243,6 +264,7 @@
                         success: function(data) {
                             event._id = data.event.id;
                             event.color = data.event.color;
+                            event.project_id = $('.tickets-current-project').val();
                             $('#calendar').fullCalendar('updateEvent', event);
 
                             $('#event-infos').find('.id').val(data.event.id);
@@ -251,8 +273,10 @@
                             $('#event-infos').find('.start_time_hour').val(moment(data.event.start_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
                             $('#event-infos').find('.end_time').val(moment(data.event.end_time).format('DD/MM/YYYY'));
                             $('#event-infos').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
-                            $('#event-infos').find('.project_id').val(data.event.project_id);
+                            $('#event-infos').find('.project_id').val(event.project_id);
                             $('#event-infos').show();
+
+                            $('.tickets-current-project').val('');
                         }
                     });
                 },
@@ -260,6 +284,7 @@
 
             //VALID UPDATE EVENT
             $('#event-infos .btn-valid').click(function() {
+                $('#event-infos .loading').show();
                 var data = {
                     event_id: $('#event-infos .id').val(),
                     name: $('#event-infos .name').val(),
@@ -283,6 +308,7 @@
                         event.color = data.event.color;
 
                         $('#calendar').fullCalendar('updateEvent', event);
+                        $('#event-infos .loading').hide();
                     }
                 });
             });
@@ -309,7 +335,7 @@
                 });
             });
 
-            $('#tickets-list').show();
+            //$('#tickets-list').show();
         });
 
     </script>
