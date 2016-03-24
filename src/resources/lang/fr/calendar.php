@@ -8,5 +8,6 @@ return [
     'project' => 'Projet',
     'tickets_list' => 'Liste des tickets',
     'informations' => 'Informations',
-    'new_event' => 'Nouvel évenement',
+    'new_event' => 'Nouvel evenement',
+    'see_calendar' => 'voir le calendrier',
 ];

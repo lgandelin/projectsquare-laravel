@@ -67,7 +67,7 @@ class EloquentEventRepository implements EventRepository
         $event->startTime = new \DateTime($eventModel->start_time);
         $event->endTime = new \DateTime($eventModel->end_time);
         $event->userID = $eventModel->user_id;
-        $event->ticketID = $eventModel->tickect_id;
+        $event->ticketID = $eventModel->ticket_id;
         $event->projectID = $eventModel->project_id;
 
         return $event;

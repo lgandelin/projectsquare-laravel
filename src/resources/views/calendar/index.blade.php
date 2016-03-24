@@ -84,7 +84,7 @@
                 aspectRatio: 2,
                 weekNumbers: true,
                 weekends: false,
-                minTime: '07:00',
+                minTime: '08:00',
                 maxTime: '21:00',
                 droppable: true,
                 events: [

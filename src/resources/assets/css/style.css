@@ -8008,6 +8008,9 @@ ul {
   .dashboard-content .last-messages .wrapper table tbody tr:first-child td {
     border-top: none; }
 
+.dashboard-content .loading {
+  background: rgba(255, 255, 255, 0.75) url("../img/loading.gif") center center no-repeat; }
+
 .project-template .cms-iframe {
   width: 100%;
   height: 950px;
@@ -8117,3 +8120,6 @@ ul {
   z-index: 9999;
   width: 100%;
   height: 100%; }
+
+#calendar a[href]:hover {
+  text-decoration: underline; }
