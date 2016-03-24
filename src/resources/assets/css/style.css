@@ -8114,12 +8114,18 @@ ul {
   background: #DF5A49 !important;
   border: 1px solid #DF5A49 !important; }
 
-#event-infos .loading {
-  background: rgba(255, 255, 255, 0.75) url("../img/loading.gif") center center no-repeat;
-  position: absolute;
-  z-index: 9999;
-  width: 100%;
-  height: 100%; }
+#event-infos {
+  height: 350px;
+  margin-bottom: 4rem; }
+  #event-infos .loading {
+    background: rgba(255, 255, 255, 0.75) url("../img/loading.gif") center center no-repeat;
+    position: absolute;
+    z-index: 9999;
+    width: 100%;
+    height: 100%; }
+
+#tickets-list .ticket {
+  min-height: 35px; }
 
 #calendar a[href]:hover {
   text-decoration: underline; }

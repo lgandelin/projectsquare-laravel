@@ -73,6 +73,7 @@ class CalendarController extends BaseController
                 'startTime' => new \DateTime(Input::get('start_time')),
                 'endTime' => new \DateTime(Input::get('end_time')),
                 'projectID' => Input::get('project_id'),
+                'ticketID' => Input::get('ticket_id'),
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
