@@ -26,20 +26,31 @@ class BaseController extends Controller
         }
 
         view()->share('current_project', $this->getCurrentProject());
+        view()->share('unread_messages_count', $this->getUnreadMessagesCount());
     }
 
     protected function getUser()
     {
-        $user = Auth::user();
-        $user = User::with('projects.client')->find($user->id);
+        if (!$user = $this->request->session()->has('current_user')) {
+            $user = Auth::user();
+            $user = User::with('projects.client')->find($user->id);
+            $this->request->session()->set('current_user', $user);
+        }
 
-        $unreadMessages = (new GetUnreadMessagesInteractor(new EloquentUserRepository()))->execute(new GetUnreadMessagesRequest([
-            'userID' => $user->id,
-        ]))->messages;
+        return $this->request->session()->get('current_user');
+    }
 
-        $user->unread_messages_count = count($unreadMessages);
+    protected function getUnreadMessagesCount()
+    {
+        if (Auth::user()) {
+            $unreadMessages = (new GetUnreadMessagesInteractor(new EloquentUserRepository()))->execute(new GetUnreadMessagesRequest([
+                'userID' => Auth::user()->id,
+            ]))->messages;
 
-        return $user;
+            return count($unreadMessages);
+        }
+
+        return 0;
     }
 
     protected function getCurrentProject()

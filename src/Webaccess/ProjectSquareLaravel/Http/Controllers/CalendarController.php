@@ -24,23 +24,11 @@ class CalendarController extends BaseController
 {
     public function index()
     {
-        $events = (new GetUserEventsInteractor(new EloquentEventRepository()))->execute(new GetEventsRequest([
-            'userID' => $this->getUser()->id
-        ]));
-        $projects = (new GetProjectsInteractor(new EloquentProjectRepository()))->getProjects($this->getUser()->id);
-
-        foreach ($events as $i => $event) {
-            if (isset($event->projectID)) {
-                $project = (new GetProjectInteractor(new EloquentProjectRepository()))->getProject($event->projectID);
-                if ($event->projectID == $project->id && isset($project->color)) {
-                    $event->color = $project->color;
-                }
-            }
-        }
-
         return view('projectsquare::calendar.index', [
-            'projects' => $projects,
-            'events' => $events,
+            'projects' => (new GetProjectsInteractor(new EloquentProjectRepository()))->getProjects($this->getUser()->id),
+            'events' => (new GetUserEventsInteractor(new EloquentEventRepository()))->execute(new GetEventsRequest([
+                'userID' => $this->getUser()->id
+            ])),
             'tickets' => (new GetTicketInteractor(new EloquentTicketRepository()))->getTicketsPaginatedList($this->getUser()->id, env('TICKETS_PER_PAGE'))
         ]);
     }

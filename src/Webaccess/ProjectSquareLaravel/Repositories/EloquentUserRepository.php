@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Repositories;
 
+use Illuminate\Support\Facades\Cache;
 use Webaccess\ProjectSquare\Entities\User as UserEntity;
 use Webaccess\ProjectSquareLaravel\Models\Message;
 use Webaccess\ProjectSquareLaravel\Models\Project;
@@ -27,19 +28,22 @@ class EloquentUserRepository implements UserRepository
 
     public function getUser($userID)
     {
-        if ($userModel = User::find($userID)) {
-            $user = new UserEntity();
-            $user->id = $userModel->id;
-            $user->email = $userModel->email;
-            $user->firstName = $userModel->first_name;
-            $user->lastName = $userModel->last_name;
-            $user->password = $userModel->password;
-            //TODO : client_id
+        $user = null;
+        if (!$user = Cache::has('user-' . $userID)) {
+            if ($userModel = User::find($userID)) {
+                $user = new UserEntity();
+                $user->id = $userModel->id;
+                $user->email = $userModel->email;
+                $user->firstName = $userModel->first_name;
+                $user->lastName = $userModel->last_name;
+                $user->password = $userModel->password;
+                //TODO : client_id
 
-            return $user;
+                Cache::put('user-' . $userID, $user, 10);
+            }
         }
 
-        return false;
+        return $user;
     }
 
     public function getUsersByProject($projectID)

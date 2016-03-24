@@ -22,7 +22,7 @@ class EloquentTicketRepository implements TicketRepository
     public function getTicketsPaginatedList($userID, $limit, $projectID = null, $allocatedUserID = null, $statusID = null, $typeID = null)
     {
         $projectIDs = User::find($userID)->projects->pluck('id')->toArray();
-        $tickets = Ticket::whereIn('project_id', $projectIDs)->with('type', 'last_state', 'states', 'states.author_user', 'last_state.author_user', 'last_state.allocated_user', 'last_state.status', 'project', 'project.client');
+        $tickets = Ticket::whereIn('project_id', $projectIDs)->with('type', 'last_state', 'states', 'states.author_user', 'states.status', 'last_state.author_user', 'last_state.allocated_user', 'last_state.status', 'project', 'project.client');
 
         if ($projectID) {
             $tickets->where('project_id', '=', $projectID);

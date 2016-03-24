@@ -6,7 +6,7 @@
     <nav class="pull-right">
         <ul class="notifications">
             <li>
-                <a href="{{ route('messages_index') }}">Derniers messages @if ($logged_in_user->unread_messages_count > 0)<span class="badge" style="background: #DF5A49;">{{ $logged_in_user->unread_messages_count }}</span>@endif</a>
+                <a href="{{ route('messages_index') }}">Derniers messages @if ($unread_messages_count > 0)<span class="badge" style="background: #DF5A49;">{{ $unread_messages_count }}</span>@endif</a>
             </li>
 
             <li>

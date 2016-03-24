@@ -28,9 +28,13 @@ class EloquentEventRepository implements EventRepository
     public function getEventsByUser($userID)
     {
         $events = [];
-        $eventsModel = Event::where('user_id', '=', $userID)->get();
+        $eventsModel = Event::with('project')->where('user_id', '=', $userID)->get();
         foreach ($eventsModel as $eventModel) {
-            $events[]= $this->getEventEntity($eventModel);
+            $event = $this->getEventEntity($eventModel);
+            if ($eventModel->project) {
+                $event->color = $eventModel->project->color;
+            }
+            $events[]= $event;
         }
 
         return $events;
