@@ -31,7 +31,7 @@ class EloquentProjectRepository implements ProjectRepository
 
     public function getProjectsPaginatedList($limit)
     {
-        return Project::orderBy('updated_at', 'DESC')->paginate($limit);
+        return Project::with('client')->orderBy('updated_at', 'DESC')->paginate($limit);
     }
 
     public function createProject($name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color)
