@@ -24,7 +24,7 @@
                 <tr>
                     <td>{{ $conversation->id }}</td>
                     <td>{{ date('d/m/Y H:i', strtotime($conversation->created_at)) }}</td>
-                    <td><span class="label label-primary">{{ $conversation->project->client->name }}</span> {{ $conversation->project->name }}</td>
+                    <td><span class="label" style="background: {{ $conversation->project->color }}">{{ $conversation->project->client->name }}</span> {{ $conversation->project->name }}</td>
                     <td>@if (isset($conversation->messages[0])){{ $conversation->messages[0]->user->complete_name }}@endif</td>
                     <td>{{ $conversation->title }}</td>
                     <td>

@@ -93,7 +93,7 @@
                     <tr>
                         <td>{{ $ticket->id }}</td>
                         <td>{{ $ticket->title }}</td>
-                        <td><span class="label label-primary">{{ $ticket->project->client->name }}</span></td>
+                        <td><span class="label" style="background: {{ $ticket->project->color }}">{{ $ticket->project->client->name }}</span></td>
                         <td>{{ $ticket->project->name }}</td>
                         <td><span class="badge">@if (isset($ticket->type)){{ $ticket->type->name }}@endif</span></td>
                         <td>@if (isset($ticket->states[count($ticket->states) - 1])){{ $ticket->states[count($ticket->states) - 1]->author_user->complete_name }}@endif</td>
