@@ -8,4 +8,5 @@ return [
     'author' => 'Auteur',
     'title' => 'Titre',
     'last_message' => 'Dernier message',
+    'last_messages' => 'Derniers messages',
 ];
