@@ -29,18 +29,14 @@ class EloquentUserRepository implements UserRepository
     public function getUser($userID)
     {
         $user = null;
-        if (!$user = Cache::has('user-' . $userID)) {
-            if ($userModel = User::find($userID)) {
-                $user = new UserEntity();
-                $user->id = $userModel->id;
-                $user->email = $userModel->email;
-                $user->firstName = $userModel->first_name;
-                $user->lastName = $userModel->last_name;
-                $user->password = $userModel->password;
-                //TODO : client_id
-
-                Cache::put('user-' . $userID, $user, 10);
-            }
+        if ($userModel = User::find($userID)) {
+            $user = new UserEntity();
+            $user->id = $userModel->id;
+            $user->email = $userModel->email;
+            $user->firstName = $userModel->first_name;
+            $user->lastName = $userModel->last_name;
+            $user->password = $userModel->password;
+            //TODO : client_id
         }
 
         return $user;

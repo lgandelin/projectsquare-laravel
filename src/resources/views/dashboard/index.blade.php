@@ -109,7 +109,6 @@
 
             <div class="col-lg-6 col-md-12">
                 <div class="block">
-                    <h3>Alertes monitoring <a style="float: right" href="{{ route('monitoring_index') }}" class="btn btn-default pull-right"><span class="glyphicon glyphicon-list-alt"></span> {{ trans('projectsquare::monitoring.see_alerts') }}</a></h3>
                     <div class="block-content table-responsive">
                         <table class="table table-striped">
                             <thead>
