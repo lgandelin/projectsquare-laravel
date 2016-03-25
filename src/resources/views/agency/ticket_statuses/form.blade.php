@@ -1,14 +1,14 @@
 <form action="{{ $form_action }}" method="post">
     <div class="form-group">
-        <label for="name">{{ trans('gateway::ticket_statuses.label') }}</label>
-        <input class="form-control" type="text" placeholder="{{ trans('gateway::ticket_statuses.name_placeholder') }}" name="name" @if (isset($ticket_status_name))value="{{ $ticket_status_name }}"@endif />
+        <label for="name">{{ trans('projectsquare::ticket_statuses.label') }}</label>
+        <input class="form-control" type="text" placeholder="{{ trans('projectsquare::ticket_statuses.name_placeholder') }}" name="name" @if (isset($ticket_status_name))value="{{ $ticket_status_name }}"@endif />
     </div>
 
     <div class="form-group">
         <button type="submit" class="btn btn-success">
-            <i class="glyphicon glyphicon-ok"></i> {{ trans('gateway::generic.valid') }}
+            <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
         </button>
-        <a href="{{ route('ticket_statuses_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('gateway::generic.back') }}</a>
+        <a href="{{ route('ticket_statuses_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
     </div>
 
     @if (isset($ticket_status_id))

@@ -25,6 +25,7 @@ return [
     'website_front_url' => 'URL du site',
     'website_back_url' => 'URL de l\'interface d\'administration du site',
     'status' => 'Statut',
+    'color' => 'Couleur associée',
     'name_placeholder' => 'Nom de votre projet',
     'project_resources' => 'Ressources assignées',
     'add_resource' => 'Ajouter une ressource',

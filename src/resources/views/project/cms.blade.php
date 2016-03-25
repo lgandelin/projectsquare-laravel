@@ -1,10 +1,10 @@
-@extends('gateway::default')
+@extends('projectsquare::default')
 
 @section('content')
-    @include('gateway::includes.project_bar', ['active' => 'cms'])
+    @include('projectsquare::includes.project_bar', ['active' => 'cms'])
 
     <div class="project-template">
-        <h1 class="page-header">{{ trans('gateway::project.cms') }}</h1>
+        <h1 class="page-header">{{ trans('projectsquare::project.cms') }}</h1>
 
         <iframe id="cms-iframe" class="cms-iframe" src="{{ $project->website_back_url }}" frameborder="0"></iframe>
     </div>

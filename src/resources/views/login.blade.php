@@ -1,18 +1,18 @@
-@extends('gateway::app')
+@extends('projectsquare::app')
 
 @section('main-content')
 <div class="container">
     <div class="row">
         <div class="col-md-12 top-bar">
             <div class="pull-left">
-                <h1 class="logo"><a href="{{ route('dashboard') }}">GATEWAY</a></h1>
+                <h1 class="logo"><a href="{{ route('dashboard') }}">ProjectSquare</a></h1>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">{{ trans('gateway::login.panel_title') }}</div>
+                <div class="panel-heading">{{ trans('projectsquare::login.panel_title') }}</div>
                 <div class="panel-body">
 
                     @if (isset($error))

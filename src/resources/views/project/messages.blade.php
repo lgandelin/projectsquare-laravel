@@ -1,11 +1,10 @@
-@extends('gateway::default')
+@extends('projectsquare::default')
 
 @section('content')
-    @include('gateway::includes.project_bar', ['active' => 'messages
-    '])
+    @include('projectsquare::includes.project_bar', ['active' => 'messages'])
 
     <div class="settings-template">
-        <h1 class="page-header">{{ trans('gateway::project.messages') }}</h1>
+        <h1 class="page-header">{{ trans('projectsquare::project.messages') }}</h1>
 
         @if (isset($error))
             <div class="info bg-danger">
@@ -23,11 +22,11 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>Date</th>
-                <th>Auteur</th>
-                <th>Titre</th>
-                <th>Dernier message</th>
-                <th>Action</th>
+                <th>{{ trans('projectsquare::messages.date') }}</th>
+                <th>{{ trans('projectsquare::messages.author') }}</th>
+                <th>{{ trans('projectsquare::messages.title') }}</th>
+                <th>{{ trans('projectsquare::messages.last_message') }}</th>
+                <th>{{ trans('projectsquare::generic.action') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -39,7 +38,7 @@
                         <td>{{ $conversation->title }}</td>
                         <td>@if (isset($conversation->messages[count($conversation->messages) - 1])){{ $conversation->messages[count($conversation->messages) - 1]->content }}@endif</td>
                         <td>
-                            <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt"></span> {{ trans('gateway::generic.see') }}</a>
+                            <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt"></span> {{ trans('projectsquare::generic.see') }}</a>
                         </td>
                     </tr>
                 @endforeach

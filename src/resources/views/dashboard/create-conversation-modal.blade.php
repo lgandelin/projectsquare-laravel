@@ -9,12 +9,12 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="title">Titre</label>
-                        <input class="form-control" type="text" placeholder="{{ trans('gateway::conversations.title') }}" name="title" />
+                        <input class="form-control" type="text" placeholder="{{ trans('projectsquare::conversations.title') }}" name="title" />
                     </div>
 
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea class="form-control" placeholder="{{ trans('gateway::conversations.message') }}" name="message" rows="10"></textarea>
+                        <textarea class="form-control" placeholder="{{ trans('projectsquare::conversations.message') }}" name="message" rows="10"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
