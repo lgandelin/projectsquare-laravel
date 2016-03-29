@@ -70,6 +70,7 @@ class TicketController extends BaseController
                 'allocatedUserID' => Input::get('allocated_user_id'),
                 'priority' => Input::get('priority'),
                 'dueDate' => \DateTime::createFromFormat('d/m/Y', Input::get('due_date')),
+                'estimatedTime' => Input::get('estimated_time'),
                 'comments' => Input::get('comments'),
                 'requesterUserID' => $this->getUser()->id,
             ]));
@@ -142,6 +143,7 @@ class TicketController extends BaseController
                 'allocatedUserID' => Input::get('allocated_user_id'),
                 'priority' => Input::get('priority'),
                 'dueDate' => \DateTime::createFromFormat('d/m/Y', Input::get('due_date')),
+                'estimatedTime' => Input::get('estimated_time'),
                 'comments' => Input::get('comments'),
                 'requesterUserID' => $this->getUser()->id,
             ]));
