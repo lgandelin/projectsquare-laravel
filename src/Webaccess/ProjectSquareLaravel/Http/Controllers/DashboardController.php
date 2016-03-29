@@ -2,7 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
-use Webaccess\ProjectSquare\Interactors\Calendar\GetUserEventsInteractor;
+use Webaccess\ProjectSquare\Interactors\Calendar\GetEventsInteractor;
 use Webaccess\ProjectSquare\Interactors\Tickets\GetTicketInteractor;
 use Webaccess\ProjectSquare\Requests\Calendar\GetEventsRequest;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentEventRepository;
@@ -16,7 +16,7 @@ class DashboardController extends BaseController
             'tickets' => (new GetTicketInteractor(new EloquentTicketRepository()))->getTicketsPaginatedList($this->getUser()->id, env('TICKETS_PER_PAGE', 10)),
             'conversations' => app()->make('ConversationManager')->getLastConversations(5),
             'alerts' => app()->make('AlertManager')->getLastAlerts(5),
-            'events' => (new GetUserEventsInteractor(new EloquentEventRepository()))->execute(new GetEventsRequest([
+            'events' => (new GetEventsInteractor(new EloquentEventRepository()))->execute(new GetEventsRequest([
                 'userID' => $this->getUser()->id
             ])),
         ]);

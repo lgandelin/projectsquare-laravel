@@ -8,60 +8,89 @@
 
     <div class="page-header">
         <h1>{{ trans('projectsquare::calendar.calendar') }}</h1>
+    </div>
 
+    <form method="get">
         <div class="row">
-            <div id="calendar" class="col-md-9"></div>
-            <div id="event-infos" class="col-md-3">
-                <h3>{{ trans('projectsquare::calendar.informations') }}</h3>
-
-                <div class="wrapper" style="display: none">
-                    <div class="loading" style="display: none"></div>
-
-                    <div class="form-group">
-                        <label for="name">{{ trans('projectsquare::calendar.name') }}</label>
-                        <input type="text" class="form-control name" placeholder="{{ trans('projectsquare::calendar.name') }}" value="" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name">{{ trans('projectsquare::calendar.start_time') }}</label><br/>
-                        <input type="text" class="form-control start_time datepicker" placeholder="dd/mm/YYYY" value="" style="width: 200px; display: inline-block" />
-                        <input type="time" class="form-control start_time_hour" placeholder="hh:mm" style="width: 100px; display: inline-block;"/>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name">{{ trans('projectsquare::calendar.end_time') }}</label><br/>
-                        <input type="text" class="form-control end_time datepicker" placeholder="dd/mm/YYYY" value="" style="width: 200px; display: inline-block" />
-                        <input type="time" class="form-control end_time_hour" placeholder="hh:mm" style="width: 100px; display: inline-block;"/>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="project_id">{{ trans('projectsquare::calendar.project') }}</label><br/>
-                        <select name="project_id" class="form-control project_id">
-                            <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
-                            @foreach ($projects as $project)
-                                <option value="{{ $project->id }}">{{ $project->client->name }} - {{ $project->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <input type="hidden" class="id" value="" />
-                    <input type="button" class="btn btn-success btn-valid" value="{{ trans('projectsquare::generic.valid') }}">
-                    <input type="button" class="btn btn-default btn-close" value="{{ trans('projectsquare::generic.close') }}">
-                </div>
+            <div class="form-group col-md-2">
+                <label for="filter_project">{{ trans('projectsquare::tickets.filters.by_project') }}</label>
+                <select class="form-control" name="filter_project" id="filter_project">
+                    <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+                    @foreach ($projects as $project)
+                        <option value="{{ $project->id }}" @if ($filters['project'] == $project->id)selected="selected" @endif>{{ $project->client->name }} - {{ $project->name }}</option>
+                    @endforeach
+                </select>
             </div>
 
-            <div id="tickets-list" class="col-md-3" style="display: none; margin-top: 5rem;">
-                <h3>{{ trans('projectsquare::calendar.tickets_list') }}</h3>
-                @foreach ($tickets as $ticket)
-                    <div id="ticket-{{ $ticket->id }}" data-project="{{ $ticket->project->id }}" data-ticket="{{ $ticket->id }}" data-color="{{ $ticket->project->color }}" data-event='{"title":"#{{ $ticket->id }} - {{ $ticket->title }}"}' data-duration="02:00" class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: {{ $ticket->project->color }}; margin-bottom: 1rem; width: 50%; border: none !important;">
-                        <div class="fc-content"><div class="fc-title">#{{ $ticket->id }} - {{ $ticket->title }}</div></div>
-                    </div>
-                @endforeach
+            <div class="form-group col-md-2">
+                <label for="filter_allocated_user">{{ trans('projectsquare::tickets.filters.by_allocated_user') }}</label>
+                <select class="form-control" name="filter_user" id="filter_user">
+                    @foreach ($users as $user)
+                        <option value="{{ $user->id }}" @if ($filters['user'] == $user->id || (!$filters['user'] && $user->id == $currentUserID))selected="selected" @endif>{{ $user->complete_name }}</option>
+                    @endforeach
+                </select>
             </div>
 
-            <input type="hidden" class="tickets-current-project" />
-            <input type="hidden" class="tickets-current-ticket" />
+            <div class="col-md-2">
+                <input class="btn btn-success" type="submit" value="{{ trans('projectsquare::generic.valid') }}" style="margin-top: 2.5rem"/>
+            </div>
         </div>
+    </form>
+    <hr/>
+
+    <div class="row">
+        <div id="calendar" class="col-md-9"></div>
+        <div id="event-infos" class="col-md-3">
+            <h3>{{ trans('projectsquare::calendar.informations') }}</h3>
+
+            <div class="wrapper" style="display: none">
+                <div class="loading" style="display: none"></div>
+
+                <div class="form-group">
+                    <label for="name">{{ trans('projectsquare::calendar.name') }}</label>
+                    <input type="text" class="form-control name" placeholder="{{ trans('projectsquare::calendar.name') }}" value="" />
+                </div>
+
+                <div class="form-group">
+                    <label for="name">{{ trans('projectsquare::calendar.start_time') }}</label><br/>
+                    <input type="text" class="form-control start_time datepicker" placeholder="dd/mm/YYYY" value="" style="width: 200px; display: inline-block" />
+                    <input type="time" class="form-control start_time_hour" placeholder="hh:mm" style="width: 100px; display: inline-block;"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">{{ trans('projectsquare::calendar.end_time') }}</label><br/>
+                    <input type="text" class="form-control end_time datepicker" placeholder="dd/mm/YYYY" value="" style="width: 200px; display: inline-block" />
+                    <input type="time" class="form-control end_time_hour" placeholder="hh:mm" style="width: 100px; display: inline-block;"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="project_id">{{ trans('projectsquare::calendar.project') }}</label><br/>
+                    <select name="project_id" class="form-control project_id">
+                        <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+                        @foreach ($projects as $project)
+                            <option value="{{ $project->id }}">{{ $project->client->name }} - {{ $project->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <input type="hidden" class="id" value="" />
+                <input type="button" class="btn btn-success btn-valid" value="{{ trans('projectsquare::generic.valid') }}">
+                <input type="button" class="btn btn-default btn-close" value="{{ trans('projectsquare::generic.close') }}">
+            </div>
+        </div>
+
+        <div id="tickets-list" class="col-md-3" style="display: none; margin-top: 5rem;">
+            <h3>{{ trans('projectsquare::calendar.tickets_list') }}</h3>
+            @foreach ($tickets as $ticket)
+                <div id="ticket-{{ $ticket->id }}" data-project="{{ $ticket->project->id }}" data-ticket="{{ $ticket->id }}" data-color="{{ $ticket->project->color }}" data-event='{"title":"#{{ $ticket->id }} - {{ $ticket->title }}"}' data-duration="02:00" class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: {{ $ticket->project->color }}; margin-bottom: 1rem; width: 50%; border: none !important;">
+                    <div class="fc-content"><div class="fc-title">#{{ $ticket->id }} - {{ $ticket->title }}</div></div>
+                </div>
+            @endforeach
+        </div>
+
+        <input type="hidden" class="tickets-current-project" />
+        <input type="hidden" class="tickets-current-ticket" />
+        <input type="hidden" id="user_id" value="{{ $userID }}" />
     </div>
 @endsection
 
@@ -219,6 +248,7 @@
                         name: "{{ trans('projectsquare::calendar.new_event') }}",
                         start_time: start.format(),
                         end_time: end.format(),
+                        user_id: $('#user_id').val(),
                         _token: $('#csrf_token').val()
                     };
 
@@ -261,6 +291,7 @@
                         name: event.title,
                         start_time: event.start.format(),
                         end_time: event.end.format(),
+                        user_id: $('#user_id').val(),
                         project_id: $('.tickets-current-project').val(),
                         ticket_id: $('.tickets-current-ticket').val(),
                         _token: $('#csrf_token').val()

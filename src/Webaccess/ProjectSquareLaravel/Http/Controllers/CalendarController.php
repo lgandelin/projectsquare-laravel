@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Interactors\Calendar\CreateEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\DeleteEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\GetEventInteractor;
-use Webaccess\ProjectSquare\Interactors\Calendar\GetUserEventsInteractor;
+use Webaccess\ProjectSquare\Interactors\Calendar\GetEventsInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\UpdateEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectsInteractor;
@@ -24,12 +24,25 @@ class CalendarController extends BaseController
 {
     public function index()
     {
+        $userID = (Input::get('filter_user')) ? Input::get('filter_user') : $this->getUser()->id;
+
         return view('projectsquare::calendar.index', [
             'projects' => (new GetProjectsInteractor(new EloquentProjectRepository()))->getProjects($this->getUser()->id),
-            'events' => (new GetUserEventsInteractor(new EloquentEventRepository()))->execute(new GetEventsRequest([
-                'userID' => $this->getUser()->id
+            'events' => (new GetEventsInteractor(new EloquentEventRepository()))->execute(new GetEventsRequest([
+                'userID' => $userID,
+                'projectID' => Input::get('filter_project'),
             ])),
-            'tickets' => (new GetTicketInteractor(new EloquentTicketRepository()))->getTicketsPaginatedList($this->getUser()->id, env('TICKETS_PER_PAGE'))
+            'tickets' => (new GetTicketInteractor(new EloquentTicketRepository()))->getTicketsPaginatedList(
+                $userID,
+                env('TICKETS_PER_PAGE'),
+                Input::get('filter_project')),
+            'filters' => [
+                'project' => Input::get('filter_project'),
+                'user' => Input::get('filter_user'),
+            ],
+            'users' => app()->make('UserManager')->getAgencyUsers(),
+            'userID' => $userID,
+            'currentUserID' => $this->getUser()->id,
         ]);
     }
 
@@ -57,7 +70,7 @@ class CalendarController extends BaseController
                 new EloquentEventRepository()
             ))->execute(new CreateEventRequest([
                 'name' => Input::get('name'),
-                'userID' => $this->getUser()->id,
+                'userID' => Input::get('user_id') ? Input::get('user_id') : $this->getUser()->id,
                 'startTime' => new \DateTime(Input::get('start_time')),
                 'endTime' => new \DateTime(Input::get('end_time')),
                 'projectID' => Input::get('project_id'),
