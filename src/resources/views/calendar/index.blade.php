@@ -251,8 +251,6 @@
                 drop: function(date, jsEvent, ui, resourceId) {
                     $('.tickets-current-project').val($(this).data('project'));
                     $('.tickets-current-ticket').val($(this).data('ticket'));
-
-                    $(this).hide();
                 },
                 eventReceive: function(event, delta, revertFunc) {
                     $('#event-infos .wrapper').show();
