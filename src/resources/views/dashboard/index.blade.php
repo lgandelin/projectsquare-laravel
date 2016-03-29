@@ -109,6 +109,7 @@
 
             <div class="col-lg-6 col-md-12">
                 <div class="block">
+                    <h3>Alertes monitoring</h3>
                     <div class="block-content table-responsive">
                         <table class="table table-striped">
                             <thead>
