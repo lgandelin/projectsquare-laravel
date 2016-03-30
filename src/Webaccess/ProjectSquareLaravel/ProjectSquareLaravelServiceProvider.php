@@ -199,7 +199,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
 
         App::bind('CreateEventInteractor', function() {
             return new CreateEventInteractor(
-                new EloquentEventRepository()
+                new EloquentEventRepository(),
+                new EloquentNotificationRepository()
             );
         });
 

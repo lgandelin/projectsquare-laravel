@@ -21,8 +21,6 @@ class CreateConversationUsers extends Migration
      */
     public function down()
     {
-        Schema::table('conversation_users', function (Blueprint $table) {
-            //
-        });
+        Schema::drop('conversation_users');
     }
 }
