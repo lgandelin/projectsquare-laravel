@@ -6,7 +6,7 @@
     <nav class="pull-right">
         <ul class="notifications">
             <li>
-                <a href="{{ route('messages_index') }}">{{ trans('projectsquare::messages.last_messages') }} @if ($unread_messages_count > 0)<span class="badge" style="background: #DF5A49;">{{ $unread_messages_count }}</span>@endif</a>
+                <a href="{{ route('messages_index') }}">{{ trans('projectsquare::messages.messages') }} @if ($unread_messages_count > 0)<span class="badge" style="background: #DF5A49;">{{ $unread_messages_count }}</span>@endif</a>
             </li>
 
             <li>

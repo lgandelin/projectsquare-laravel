@@ -3,6 +3,7 @@
 namespace Webaccess\ProjectSquareLaravel\Services;
 
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentConversationRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
 
 class ConversationManager
 {
@@ -36,11 +37,13 @@ class ConversationManager
 
     public function getConversationsByProject($projectID)
     {
-        return $this->repository->getConversationsByProject($projectID);
+        return $this->repository->getConversationsByProject([$projectID]);
     }
 
-    public function getLastConversations($limit)
+    public function getLastConversations($userID, $limit)
     {
-        return $this->repository->getLastConversations($limit);
+        $projectsID = (new EloquentProjectRepository())->getUserProjects($userID)->pluck('id')->toArray();
+
+        return $this->repository->getConversationsByProject($projectsID, $limit);
     }
 }

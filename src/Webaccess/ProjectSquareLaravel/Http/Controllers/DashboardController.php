@@ -14,7 +14,7 @@ class DashboardController extends BaseController
     {
         return view('projectsquare::dashboard.index', [
             'tickets' => (new GetTicketInteractor(new EloquentTicketRepository()))->getTicketsPaginatedList($this->getUser()->id, env('TICKETS_PER_PAGE', 10)),
-            'conversations' => app()->make('ConversationManager')->getLastConversations(5),
+            'conversations' => app()->make('ConversationManager')->getLastConversations($this->getUser()->id, 5),
             'alerts' => app()->make('AlertManager')->getLastAlerts(5),
             'events' => (new GetEventsInteractor(new EloquentEventRepository()))->execute(new GetEventsRequest([
                 'userID' => $this->getUser()->id

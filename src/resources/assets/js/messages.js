@@ -32,15 +32,19 @@ $(document).ready(function() {
             url: route_message_reply,
             data: data,
             success: function(data) {
-                conversation.find('.new-message textarea').val('');
-                conversation.find('.new-message').hide();
+                    conversation.find('.new-message textarea').val('');
+                    conversation.find('.new-message').hide();
 
-                var html = loadTemplate('message-template', data.message);
-                $(conversation).find('.message-inserted').append(html);
+                    var html = loadTemplate('message-template', data.message);
+                    $(conversation).find('.message-inserted').append(html);
 
-                conversation.find('.count .number').text(data.message.count);
+                    conversation.find('.count .number').text(data.message.count);
 
-                conversation.find('.submit').show();
+                    conversation.find('.submit').show();
+            },
+            error: function(data) {
+                data = $.parseJSON(data.responseText);
+                alert(data.message)
             }
         });
     });
