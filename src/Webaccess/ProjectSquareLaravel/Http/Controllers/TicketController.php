@@ -3,17 +3,10 @@
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
 use Illuminate\Support\Facades\Input;
-use Webaccess\ProjectSquare\Interactors\Tickets\CreateTicketInteractor;
-use Webaccess\ProjectSquare\Interactors\Tickets\DeleteTicketInteractor;
-use Webaccess\ProjectSquare\Interactors\Tickets\GetTicketInteractor;
-use Webaccess\ProjectSquare\Interactors\Tickets\UpdateTicketInfosInteractor;
-use Webaccess\ProjectSquare\Interactors\Tickets\UpdateTicketInteractor;
 use Webaccess\ProjectSquare\Requests\Tickets\CreateTicketRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\DeleteTicketRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\UpdateTicketInfosRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\UpdateTicketRequest;
-use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
-use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
 use Webaccess\ProjectSquareLaravel\Tools\UploadTool;
 
 class TicketController extends BaseController
@@ -21,7 +14,7 @@ class TicketController extends BaseController
     public function index()
     {
         return view('projectsquare::tickets.index', [
-            'tickets' => (new GetTicketInteractor(new EloquentTicketRepository()))->getTicketsPaginatedList(
+            'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
                 $this->getUser()->id,
                 env('TICKETS_PER_PAGE', 10),
                 Input::get('filter_project'),
@@ -58,10 +51,7 @@ class TicketController extends BaseController
     public function store()
     {
         try {
-            (new CreateTicketInteractor(
-                new EloquentTicketRepository(),
-                new EloquentProjectRepository()
-            ))->execute(new CreateTicketRequest([
+            app()->make('CreateTicketInteractor')->execute(new CreateTicketRequest([
                 'title' => Input::get('title'),
                 'projectID' => Input::get('project_id'),
                 'typeID' => Input::get('type_id'),
@@ -88,7 +78,7 @@ class TicketController extends BaseController
     public function edit($ticketID)
     {
         try {
-            $ticket = (new GetTicketInteractor(new EloquentTicketRepository()))->getTicketWithStates($ticketID, $this->getUser()->id);
+            $ticket = app()->make('GetTicketInteractor')->getTicketWithStates($ticketID, $this->getUser()->id);
         } catch (\Exception $e) {
             $this->request->session()->flash('error', $e->getMessage());
 
@@ -98,7 +88,7 @@ class TicketController extends BaseController
         return view('projectsquare::tickets.edit', [
             'ticket' => $ticket,
             'projects' => app()->make('ProjectManager')->getProjects(),
-            'ticket_states' => (new GetTicketInteractor(new EloquentTicketRepository()))->getTicketStatesPaginatedList($ticket, env('TICKET_STATES_PER_PAGE', 10)),
+            'ticket_states' => app()->make('GetTicketInteractor')->getTicketStatesPaginatedList($ticket, env('TICKET_STATES_PER_PAGE', 10)),
             'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
             'ticket_status' => app()->make('TicketStatusManager')->getTicketStatuses(),
             'users' => app()->make('UserManager')->getAgencyUsers(),
@@ -111,10 +101,7 @@ class TicketController extends BaseController
     public function updateInfos()
     {
         try {
-            (new UpdateTicketInfosInteractor(
-                new EloquentTicketRepository(),
-                new EloquentProjectRepository()
-            ))->execute(new UpdateTicketInfosRequest([
+            app()->make('UpdateTicketInfosInteractor')->execute(new UpdateTicketInfosRequest([
                 'ticketID' => Input::get('ticket_id'),
                 'title' => Input::get('title'),
                 'projectID' => Input::get('project_id'),
@@ -134,10 +121,7 @@ class TicketController extends BaseController
     public function update()
     {
         try {
-            (new UpdateTicketInteractor(
-                new EloquentTicketRepository(),
-                new EloquentProjectRepository()
-            ))->execute(new UpdateTicketRequest([
+            app()->make('UpdateTicketInteractor')->execute(new UpdateTicketRequest([
                 'ticketID' => Input::get('ticket_id'),
                 'statusID' => Input::get('status_id'),
                 'authorUserID' => Input::get('author_user_id'),
@@ -160,10 +144,7 @@ class TicketController extends BaseController
     public function delete($ticketID)
     {
         try {
-            (new DeleteTicketInteractor(
-                new EloquentTicketRepository(),
-                new EloquentProjectRepository()
-            ))->execute(new DeleteTicketRequest([
+            app()->make('DeleteTicketInteractor')->execute(new DeleteTicketRequest([
                 'ticketID' => $ticketID,
                 'requesterUserID' => $this->getUser()->id,
             ]));
