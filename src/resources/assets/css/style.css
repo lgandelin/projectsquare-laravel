@@ -7970,7 +7970,8 @@ ul {
   text-decoration: line-through; }
 
 .dashboard-content .block h3 {
-  margin-bottom: 2rem; }
+  margin-bottom: 2rem;
+  font-size: 1.8rem; }
 
 .dashboard-content .last-messages .count {
   background: #e2c44b; }
@@ -8002,7 +8003,7 @@ ul {
   margin-bottom: 0; }
 
 .dashboard-content .last-messages .wrapper {
-  height: 400px;
+  height: 322px;
   overflow-y: scroll;
   margin-bottom: 2rem; }
   .dashboard-content .last-messages .wrapper table tbody tr:first-child td {
@@ -8083,6 +8084,10 @@ ul {
 
 #fileupload .thumbnail {
   margin-bottom: 0; }
+
+.table > tbody > tr > td {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important; }
 
 .task-template form {
   overflow: hidden; }
