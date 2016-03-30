@@ -3,7 +3,6 @@
 @section('content')
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
-        <li><a href="{{ route('agency_index') }}">{{ trans('projectsquare::agency.panel_title') }}</a></li>
         <li><a href="{{ route('ticket_statuses_index') }}">{{ trans('projectsquare::ticket_statuses.ticket_statuses_list') }}</a></li>
         <li class="active">{{ trans('projectsquare::ticket_statuses.add_ticket_status') }}</li>
     </ol>

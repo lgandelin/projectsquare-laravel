@@ -30,7 +30,7 @@
             </ul>
         </li>
         <li>
-            <h3><!--<a href="{{ route('agency_index') }}">Agence</a>-->Agence</h3>
+            <h3>Agence</h3>
             <ul>
                 <li><a href="{{ route('clients_index') }}">Clients</a></li>
                 <li><a href="{{ route('projects_index') }}">Projets</a></li>

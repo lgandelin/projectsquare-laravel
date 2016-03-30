@@ -30,7 +30,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/project/{id}/settings', array('as' => 'project_settings', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@update_settings'));
 
     //AGENCY
-    Route::get('/agency', array('as' => 'agency_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\AgencyController@index'));
     Route::get('/agency/users', array('as' => 'users_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\UserController@index'));
     Route::get('/agency/roles', array('as' => 'roles_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\RoleController@index'));
     Route::get('/agency/add_role', array('as' => 'roles_add', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\RoleController@add'));
