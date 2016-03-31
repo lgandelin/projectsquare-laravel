@@ -149,46 +149,25 @@
 @endsection
 
 @section('scripts')
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="{{ asset('js/vendor/fullcalendar/lib/moment.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/lang-all.js') }}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-
     <script>
-        $(document).ready(function() {
-
-            $('#calendar').fullCalendar({
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,agendaWeek,agendaDay'
-                },
-                defaultDate: "{{ date('Y-m-d') }}",
-                defaultView: "agendaWeek",
-                editable: false,
-                lang: 'fr',
-                aspectRatio: 2,
-                weekNumbers: true,
-                weekends: false,
-                minTime: '08:00',
-                maxTime: '21:00',
-                droppable: false,
-                events: [
-                        @foreach ($events as $event)
-                            {
-                        id: {{ $event->id }},
-                        title: "{{ $event->name }}",
-                        start: "{{ $event->startTime->format(DATE_ISO8601) }}",
-                        end: "{{ $event->endTime->format(DATE_ISO8601) }}",
-                        color: "{{ isset($event->color) ? $event->color : null }}",
-                        project_id: "{{ isset($event->project_id) ? $event->project_id : null }}",
-                        url: "{{ isset($event->ticketID) ? route('tickets_edit', ['id' => $event->ticketID]) : null }}"
-                    },
-                    @endforeach
-                ]
-            });
-            $('.block-content').removeClass('loading');
-        });
+        var defaultDate = "{{ date('Y-m-d') }}";
+        var events = [
+            @foreach ($events as $event)
+            {
+                id: {{ $event->id }},
+                title: "{{ $event->name }}",
+                start: "{{ $event->startTime->format(DATE_ISO8601) }}",
+                end: "{{ $event->endTime->format(DATE_ISO8601) }}",
+                color: "{{ isset($event->color) ? $event->color : null }}",
+                project_id: "{{ isset($event->project_id) ? $event->project_id : null }}",
+                url: "{{ isset($event->ticketID) ? route('tickets_edit', ['id' => $event->ticketID]) : null }}"
+            },
+            @endforeach
+        ];
     </script>
+    <script src="{{ asset('js/dashboard.js') }}"></script>
 @endsection

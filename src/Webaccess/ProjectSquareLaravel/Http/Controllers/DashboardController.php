@@ -2,7 +2,9 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Webaccess\ProjectSquare\Requests\Calendar\GetEventsRequest;
+use Webaccess\ProjectSquare\Requests\Notifications\GetUnreadNotificationsRequest;
 
 class DashboardController extends BaseController
 {
@@ -16,5 +18,21 @@ class DashboardController extends BaseController
                 'userID' => $this->getUser()->id
             ])),
         ]);
+    }
+
+    public function refresh_notifications()
+    {
+        try {
+            $notifications = [];
+            if (Auth::user()) {
+                $notifications = app()->make('GetNotificationsInteractor')->getUnreadNotifications(new GetUnreadNotificationsRequest([
+                    'userID' => Auth::user()->id,
+                ]))->notifications;
+            }
+
+            return response()->json(['notifications' => $notifications], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 }

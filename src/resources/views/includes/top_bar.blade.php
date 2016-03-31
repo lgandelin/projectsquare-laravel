@@ -6,7 +6,7 @@
     <nav class="pull-right">
         <ul class="notifications">
             <li>
-                <a href="{{ route('notifications') }}">{{ trans('projectsquare::notifications.notifications') }} @if ($notifications_count > 0)<span class="badge" style="background: #DF5A49;">{{ $notifications_count }}</span>@endif</a>
+                <a href="{{ route('notifications') }}">{{ trans('projectsquare::notifications.notifications') }} <span class="badge @if($notifications_count > 0) new-notifications @endif">{{ $notifications_count }}</span></a>
             </li>
 
             <li>

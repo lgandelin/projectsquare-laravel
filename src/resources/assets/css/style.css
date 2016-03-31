@@ -7883,6 +7883,8 @@ ul {
   .top-bar .notifications li {
     display: inline-block;
     margin-right: 2rem; }
+    .top-bar .notifications li .new-notifications {
+      background: #DF5A49; }
 
 .left-bar {
   padding: 2rem 0 2rem 0;

@@ -97,7 +97,7 @@ $(document).ready(function() {
                 _token: $('#csrf_token').val()
             };
             $.ajax({
-                type: "POST",
+                type: "GET",
                 url: route_event_get_infos,
                 data: data,
                 success: function(data) {

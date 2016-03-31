@@ -1,7 +1,10 @@
 <?php
 
 Route::group(['middleware' => ['web']], function () {
+    //DASHBOARD
     Route::get('/', array('as' => 'dashboard', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\DashboardController@index'));
+    Route::get('/refresh_notifications', array('as' => 'refresh_notifications', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\DashboardController@refresh_notifications'));
+
     Route::get('/login', array('as' => 'login', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\LoginController@login'));
     Route::post('/login', array('as' => 'login_handler', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\LoginController@authenticate'));
     Route::get('/logout', array('as' => 'logout', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\LoginController@logout'));
@@ -92,10 +95,10 @@ Route::group(['middleware' => ['web']], function () {
     //MONITORING
     Route::get('/monitoring', array('as' => 'monitoring_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@index'));
 
+    Route::get('/calendar/get_event', array('as' => 'events_get_infos', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@get_event'));
     Route::post('/calendar/create', array('as' => 'events_create', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@create'));
     Route::post('/calendar/update', array('as' => 'events_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@update'));
     Route::post('/calendar/delete', array('as' => 'events_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@delete'));
-    Route::post('/calendar/get_event', array('as' => 'events_get_infos', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@get_event'));
 
     //NOTIFICATIONS
     Route::get('/notifications', array('as' => 'notifications', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@index'));
