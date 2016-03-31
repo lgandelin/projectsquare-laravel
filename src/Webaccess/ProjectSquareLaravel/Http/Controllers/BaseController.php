@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Webaccess\ProjectSquare\Interactors\Messages\GetUnreadMessagesInteractor;
+use Webaccess\ProjectSquare\Interactors\Notifications\GetNotificationsInteractor;
 use Webaccess\ProjectSquare\Requests\Messages\GetUnreadMessagesRequest;
+use Webaccess\ProjectSquare\Requests\Notifications\GetUnreadNotificationsRequest;
 use Webaccess\ProjectSquareLaravel\Models\Project;
 use Webaccess\ProjectSquareLaravel\Models\User;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentNotificationRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentUserRepository;
 
 class BaseController extends Controller
@@ -26,7 +29,7 @@ class BaseController extends Controller
         }
 
         view()->share('current_project', $this->getCurrentProject());
-        view()->share('unread_messages_count', $this->getUnreadMessagesCount());
+        view()->share('notifications_count', count($this->getUnreadNotifications()));
     }
 
     protected function getUser()
@@ -36,14 +39,12 @@ class BaseController extends Controller
         return User::with('projects.client')->find($user->id);
     }
 
-    protected function getUnreadMessagesCount()
+    protected function getUnreadNotifications()
     {
         if (Auth::user()) {
-            $unreadMessages = (new GetUnreadMessagesInteractor(new EloquentUserRepository()))->execute(new GetUnreadMessagesRequest([
+            return app()->make('GetNotificationsInteractor')->execute(new GetUnreadNotificationsRequest([
                 'userID' => Auth::user()->id,
-            ]))->messages;
-
-            return count($unreadMessages);
+            ]))->notifications;
         }
 
         return 0;

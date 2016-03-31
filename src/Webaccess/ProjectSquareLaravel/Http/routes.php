@@ -96,4 +96,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/calendar/update', array('as' => 'events_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@update'));
     Route::post('/calendar/delete', array('as' => 'events_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@delete'));
     Route::post('/calendar/get_event', array('as' => 'events_get_infos', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@get_event'));
+
+    //NOTIFICATIONS
+    Route::get('/notifications', array('as' => 'notifications', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@index'));
 });

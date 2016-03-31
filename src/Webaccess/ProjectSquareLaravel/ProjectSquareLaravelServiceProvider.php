@@ -21,6 +21,7 @@ use Webaccess\ProjectSquare\Interactors\Messages\CreateConversationInteractor;
 use Webaccess\ProjectSquare\Interactors\Messages\CreateMessageInteractor;
 use Webaccess\ProjectSquare\Interactors\Messages\GetUnreadMessagesInteractor;
 use Webaccess\ProjectSquare\Interactors\Messages\ReadMessageInteractor;
+use Webaccess\ProjectSquare\Interactors\Notifications\GetNotificationsInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectsInteractor;
 use Webaccess\ProjectSquare\Interactors\Tickets\CreateTicketInteractor;
@@ -36,6 +37,7 @@ use Webaccess\ProjectSquareLaravel\Listeners\TicketUpdatedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentConversationRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentEventRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentMessageRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentNotificationRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentUserRepository;
@@ -253,6 +255,13 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             return new DeleteTicketInteractor(
                 new EloquentTicketRepository(),
                 new EloquentProjectRepository()
+            );
+        });
+
+        App::bind('GetNotificationsInteractor', function() {
+            return new GetNotificationsInteractor(
+                new EloquentNotificationRepository(),
+                new EloquentUserRepository()
             );
         });
 
