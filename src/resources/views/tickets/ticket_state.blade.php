@@ -57,6 +57,11 @@
                     @endfor
                 </select>
             </div>
+
+            <div class="form-group">
+                <label for="estimated_time">{{ trans('projectsquare::tickets.estimated_time') }}</label>
+                <input class="form-control" type="time" name="estimated_time" placeholder="{{ trans('projectsquare::tickets.estimated_time') }}" value="@if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->estimated_time){{ $ticket->states[0]->estimated_time }}@endif" />
+            </div>
         </div>
 
         @if (isset($ticket->id))

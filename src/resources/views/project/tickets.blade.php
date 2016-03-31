@@ -4,9 +4,8 @@
     @include('projectsquare::includes.project_bar', ['active' => 'tickets'])
 
     <div class="project-template">
-        <h1 class="page-header">{{ trans('projectsquare::project.summary') }}</h1>
+        <h1 class="page-header">{{ trans('projectsquare::project.tickets') }}</h1>
 
-        <h3>{{ trans('projectsquare::project.tickets') }}</h3>
         <table class="table table-striped">
             <thead>
                 <tr>

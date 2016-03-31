@@ -5,6 +5,7 @@
         <th>{{ trans('projectsquare::tickets.author_user') }}</th>
         <th>{{ trans('projectsquare::tickets.allocated_user') }}</th>
         <th>{{ trans('projectsquare::tickets.due_date') }}</th>
+        <th>{{ trans('projectsquare::tickets.estimated_time') }}</th>
         <th>{{ trans('projectsquare::tickets.priority') }}</th>
         <th>{{ trans('projectsquare::tickets.status') }}</th>
         <th>{{ trans('projectsquare::tickets.comments') }}</th>
@@ -16,6 +17,7 @@
                 <td>@if ($ticket_state->author_user){{ $ticket_state->author_user->complete_name }}@endif</td>
                 <td>@if ($ticket_state->allocated_user){{ $ticket_state->allocated_user->complete_name }}@endif</td>
                 <td>@if ($ticket_state->due_date){{ $ticket_state->due_date }}@endif</td>
+                <td>@if ($ticket_state->estimated_time){{ $ticket_state->estimated_time }}@endif</td>
                 <td><span class="badge priority-{{ $ticket_state->priority }}">{{ $ticket_state->priority }}</span></td>
                 <td>@if ($ticket_state->status)<span class="status status-{{ $ticket_state->status->id }}">{{ $ticket_state->status->name }}</span>@endif</td>
                 <td>{{ $ticket_state->comments }}</td>

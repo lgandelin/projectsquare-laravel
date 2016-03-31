@@ -29,6 +29,7 @@ return [
     'author_user' => 'Auteur',
     'allocated_user' => 'Utilisateur assigné',
     'comments' => 'Commentaires',
+    'estimated_time' => 'Temps estimé',
 
     'ticket_history' => 'Historique du ticket',
     'ticket_state' => 'Etat du ticket',

@@ -36,49 +36,19 @@ class EloquentConversationRepository implements ConversationRepository
         return Conversation::with('messages')->with('messages.user')->find($conversationID);
     }
 
-    public function getLastConversations($limit)
-    {
-        return Conversation::with('messages')->with('users')->with('messages.user')->with('project')->orderBy('created_at', 'DESC')->limit($limit)->get();
-    }
-
     public function getConversationsPaginatedList($limit)
     {
-        return Conversation::with('messages')->orderBy('created_at', 'DESC')->paginate($limit);
+        return Conversation::with('messages')->with('messages.user')->with('project')->with('project.client')->orderBy('created_at', 'DESC')->paginate($limit);
     }
 
-    public function getConversationsByProject($projectID)
+    public function getConversationsByProject($projectsID, $limit = null)
     {
-        return Conversation::with('messages')->orderBy('created_at', 'DESC')->where('project_id', '=', $projectID)->get();
-    }
-
-    public function createConversation($projectID, $title, $userID, $content, $attachedUserIDs)
-    {
-        $conversation = new Conversation();
-        $conversation->title = $title;
-        $conversation->project_id = $projectID;
-        $conversation->save();
-
-        $message = new Message();
-        $message->content = $content;
-        $message->user_id = $userID;
-        $message->save();
-
-        $message->conversation()->associate($conversation);
-        $message->save();
-
-        //Attach the author to the conversation
-        if ($user = UserManager::getUser($userID)) {
-            $conversation->users()->attach($user);
+        $conversations = Conversation::with('messages')->with('messages.user')->with('project')->with('project.client')->orderBy('created_at', 'DESC')->whereIn('project_id', $projectsID);
+        if ($limit) {
+            $conversations->limit($limit);
         }
 
-        //Attach the other users to the conversation
-        foreach ($attachedUserIDs as $userID) {
-            if ($user = UserManager::getUser($userID) && !self::isUserAlreadyAttachedToConversation($user, $conversation)) {
-                $conversation->users()->attach($user);
-            }
-        }
-
-        return $conversation;
+        return $conversations->get();
     }
 
     public function persistConversation(ConversationEntity $conversation)
@@ -93,14 +63,5 @@ class EloquentConversationRepository implements ConversationRepository
         $conversation->id = $conversationModel->id;
 
         return $conversation;
-    }
-
-    private function isUserAlreadyAttachedToConversation($user, $conversation)
-    {
-        foreach ($conversation->users as $userInConversation) {
-            return $userInConversation->id == $user->id;
-        }
-
-        return false;
     }
 }

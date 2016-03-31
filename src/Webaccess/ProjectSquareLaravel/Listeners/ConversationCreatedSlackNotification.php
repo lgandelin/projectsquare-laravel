@@ -2,7 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Listeners;
 
-use Webaccess\ProjectSquare\Events\Conversations\CreateConversationEvent;
+use Webaccess\ProjectSquare\Events\Messages\CreateConversationEvent;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentConversationRepository;
 use Webaccess\ProjectSquareLaravel\Tools\SlackTool;
 

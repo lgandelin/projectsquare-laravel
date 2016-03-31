@@ -6,7 +6,8 @@
             <ul class="projects-list">
                 @foreach ($logged_in_user->projects as $project)
                 <li class="@if (isset($current_project_id) && $current_project_id == $project->id) current @endif">
-                    <a href="{{ route('project_index', ['id' => $project->id]) }}">
+                    <?php $route = preg_match('/project_/', Route::current()->getName()) ? Route::current()->getName() : 'project_index'; ?>
+                    <a href="{{ route($route, ['id' => $project->id]) }}">
                         <span class="client">
                             <span class="label" style="background:{{ $project->color }}">{{ $project->client->name }}</span>
                         </span>
@@ -29,7 +30,7 @@
             </ul>
         </li>
         <li>
-            <h3><!--<a href="{{ route('agency_index') }}">Agence</a>-->Agence</h3>
+            <h3>Agence</h3>
             <ul>
                 <li><a href="{{ route('clients_index') }}">Clients</a></li>
                 <li><a href="{{ route('projects_index') }}">Projets</a></li>

@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12 top-bar">
             <div class="pull-left">
-                <h1 class="logo"><a href="{{ route('dashboard') }}">ProjectSquare</a></h1>
+                <h1 class="logo"><a href="{{ route('dashboard') }}">projectsquare</a></h1>
             </div>
         </div>
     </div>

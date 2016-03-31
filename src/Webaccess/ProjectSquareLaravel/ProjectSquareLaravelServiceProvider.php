@@ -12,11 +12,34 @@ use Webaccess\ProjectSquare\Context;
 use Webaccess\ProjectSquare\Contracts\EventManager;
 use Webaccess\ProjectSquare\Contracts\Translator;
 use Webaccess\ProjectSquare\Events\Events;
+use Webaccess\ProjectSquare\Interactors\Calendar\CreateEventInteractor;
+use Webaccess\ProjectSquare\Interactors\Calendar\DeleteEventInteractor;
+use Webaccess\ProjectSquare\Interactors\Calendar\GetEventInteractor;
+use Webaccess\ProjectSquare\Interactors\Calendar\GetEventsInteractor;
+use Webaccess\ProjectSquare\Interactors\Calendar\UpdateEventInteractor;
+use Webaccess\ProjectSquare\Interactors\Messages\CreateConversationInteractor;
+use Webaccess\ProjectSquare\Interactors\Messages\CreateMessageInteractor;
+use Webaccess\ProjectSquare\Interactors\Messages\ReadMessageInteractor;
+use Webaccess\ProjectSquare\Interactors\Notifications\GetNotificationsInteractor;
+use Webaccess\ProjectSquare\Interactors\Projects\GetProjectInteractor;
+use Webaccess\ProjectSquare\Interactors\Projects\GetProjectsInteractor;
+use Webaccess\ProjectSquare\Interactors\Tickets\CreateTicketInteractor;
+use Webaccess\ProjectSquare\Interactors\Tickets\DeleteTicketInteractor;
+use Webaccess\ProjectSquare\Interactors\Tickets\GetTicketInteractor;
+use Webaccess\ProjectSquare\Interactors\Tickets\UpdateTicketInfosInteractor;
+use Webaccess\ProjectSquare\Interactors\Tickets\UpdateTicketInteractor;
 use Webaccess\ProjectSquareLaravel\Listeners\ConversationCreatedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\MessageCreatedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\TicketCreatedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\TicketDeletedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\TicketUpdatedSlackNotification;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentConversationRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentEventRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentMessageRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentNotificationRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentUserRepository;
 use Webaccess\ProjectSquareLaravel\Services\AlertManager;
 use Webaccess\ProjectSquareLaravel\Services\ClientManager;
 use Webaccess\ProjectSquareLaravel\Services\ConversationManager;
@@ -122,6 +145,117 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
 
         App::bind('Image', function () {
             return new Image();
+        });
+
+        App::bind('CreateConversationInteractor', function() {
+            return new CreateConversationInteractor(
+                new EloquentConversationRepository(),
+                new EloquentMessageRepository(),
+                new EloquentUserRepository(),
+                new EloquentProjectRepository()
+            );
+        });
+
+        App::bind('CreateMessageInteractor', function() {
+            return new CreateMessageInteractor(
+                new EloquentMessageRepository(),
+                new EloquentConversationRepository(),
+                new EloquentUserRepository(),
+                new EloquentProjectRepository()
+            );
+        });
+
+        App::bind('ReadMessageInteractor', function() {
+            return new ReadMessageInteractor(
+                new EloquentMessageRepository(),
+                new EloquentConversationRepository(),
+                new EloquentUserRepository(),
+                new EloquentProjectRepository()
+            );
+        });
+
+        App::bind('GetProjectsInteractor', function() {
+            return new GetProjectsInteractor(
+                new EloquentProjectRepository()
+            );
+        });
+
+        App::bind('GetEventsInteractor', function() {
+            return new GetEventsInteractor(
+                new EloquentEventRepository()
+            );
+        });
+
+        App::bind('GetEventInteractor', function() {
+            return new GetEventInteractor(
+                new EloquentEventRepository()
+            );
+        });
+
+        App::bind('CreateEventInteractor', function() {
+            return new CreateEventInteractor(
+                new EloquentEventRepository(),
+                new EloquentNotificationRepository()
+            );
+        });
+
+        App::bind('UpdateEventInteractor', function() {
+            return new UpdateEventInteractor(
+                new EloquentEventRepository()
+            );
+        });
+
+        App::bind('DeleteEventInteractor', function() {
+            return new DeleteEventInteractor(
+                new EloquentEventRepository()
+            );
+        });
+
+        App::bind('GetProjectInteractor', function() {
+            return new GetProjectInteractor(
+                new EloquentProjectRepository()
+            );
+        });
+
+        App::bind('GetTicketInteractor', function() {
+            return new GetTicketInteractor(
+                new EloquentTicketRepository()
+            );
+        });
+
+        App::bind('CreateTicketInteractor', function() {
+            return new CreateTicketInteractor(
+                new EloquentTicketRepository(),
+                new EloquentProjectRepository()
+            );
+        });
+
+        App::bind('UpdateTicketInfosInteractor', function() {
+            return new UpdateTicketInfosInteractor(
+                new EloquentTicketRepository(),
+                new EloquentProjectRepository()
+            );
+        });
+
+        App::bind('UpdateTicketInteractor', function() {
+            return new UpdateTicketInteractor(
+                new EloquentTicketRepository(),
+                new EloquentProjectRepository()
+            );
+        });
+
+        App::bind('DeleteTicketInteractor', function() {
+            return new DeleteTicketInteractor(
+                new EloquentTicketRepository(),
+                new EloquentProjectRepository()
+            );
+        });
+
+        App::bind('GetNotificationsInteractor', function() {
+            return new GetNotificationsInteractor(
+                new EloquentNotificationRepository(),
+                new EloquentUserRepository()
+            );
         });
 
         App::register('Intervention\Image\ImageServiceProvider');

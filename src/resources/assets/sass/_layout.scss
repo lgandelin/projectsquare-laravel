@@ -19,6 +19,10 @@
         li {
             display: inline-block;
             margin-right: 2rem;
+
+            .new-notifications {
+                background: #DF5A49;
+            }
         }
     }
 }

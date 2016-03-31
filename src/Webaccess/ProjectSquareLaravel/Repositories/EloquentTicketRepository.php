@@ -159,6 +159,7 @@ class EloquentTicketRepository implements TicketRepository
         if ($ticketState->dueDate) {
             $ticketStateModel->due_date = $ticketState->dueDate->format('Y-m-d');
         }
+        $ticketStateModel->estimated_time = $ticketState->estimatedTime;
         $ticketStateModel->comments = $ticketState->comments;
         $ticketStateModel->save();
     }
