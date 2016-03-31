@@ -19,7 +19,6 @@ use Webaccess\ProjectSquare\Interactors\Calendar\GetEventsInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\UpdateEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Messages\CreateConversationInteractor;
 use Webaccess\ProjectSquare\Interactors\Messages\CreateMessageInteractor;
-use Webaccess\ProjectSquare\Interactors\Messages\GetUnreadMessagesInteractor;
 use Webaccess\ProjectSquare\Interactors\Messages\ReadMessageInteractor;
 use Webaccess\ProjectSquare\Interactors\Notifications\GetNotificationsInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectInteractor;
@@ -172,12 +171,6 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
                 new EloquentConversationRepository(),
                 new EloquentUserRepository(),
                 new EloquentProjectRepository()
-            );
-        });
-
-        App::bind('GetUnreadMessagesInteractor', function() {
-            return new GetUnreadMessagesInteractor(
-                new EloquentUserRepository()
             );
         });
 
