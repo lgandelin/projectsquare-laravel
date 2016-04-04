@@ -5,8 +5,6 @@ namespace Webaccess\ProjectSquareLaravel\Repositories;
 use Webaccess\ProjectSquare\Entities\Conversation as ConversationEntity;
 use Webaccess\ProjectSquare\Repositories\ConversationRepository;
 use Webaccess\ProjectSquareLaravel\Models\Conversation;
-use Webaccess\ProjectSquareLaravel\Models\Message;
-use Webaccess\ProjectSquareLaravel\Services\UserManager;
 
 class EloquentConversationRepository implements ConversationRepository
 {

@@ -31,11 +31,6 @@ class User extends Model
         return $this->belongsTo('Webaccess\ProjectSquareLaravel\Models\Client');
     }
 
-    public function unread_messages()
-    {
-        return $this->belongsToMany('Webaccess\ProjectSquareLaravel\Models\Message', 'messages_read', 'user_id', 'message_id')->withPivot('read');
-    }
-
     public function getCompleteNameAttribute()
     {
         return $this->attributes['first_name'].' '.$this->attributes['last_name'];

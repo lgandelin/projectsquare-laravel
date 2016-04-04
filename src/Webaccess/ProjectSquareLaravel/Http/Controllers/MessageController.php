@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Exceptions\Messages\MessageReplyNotAuthorizedException;
 use Webaccess\ProjectSquare\Requests\Messages\CreateConversationRequest;
 use Webaccess\ProjectSquare\Requests\Messages\CreateMessageRequest;
-use Webaccess\ProjectSquare\Requests\Messages\ReadMessageRequest;
 
 class MessageController extends BaseController
 {
@@ -44,19 +43,8 @@ class MessageController extends BaseController
 
     public function view($conversationID)
     {
-        $conversation = app()->make('ConversationManager')->getConversationModel($conversationID);
-
-        foreach ($conversation->messages as $message) {
-            $message->read = true;
-
-            app()->make('ReadMessageInteractor')->execute(new ReadMessageRequest([
-                'messageID' => $message->id,
-                'requesterUserID' => $this->getUser()->id,
-            ]));
-        }
-
         return view('projectsquare::messages.view', [
-            'conversation' => $conversation,
+            'conversation' => app()->make('ConversationManager')->getConversationModel($conversationID),
         ]);
     }
 

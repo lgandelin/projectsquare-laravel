@@ -19,7 +19,6 @@ use Webaccess\ProjectSquare\Interactors\Calendar\GetEventsInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\UpdateEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Messages\CreateConversationInteractor;
 use Webaccess\ProjectSquare\Interactors\Messages\CreateMessageInteractor;
-use Webaccess\ProjectSquare\Interactors\Messages\ReadMessageInteractor;
 use Webaccess\ProjectSquare\Interactors\Notifications\GetNotificationsInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectsInteractor;
@@ -43,7 +42,6 @@ use Webaccess\ProjectSquareLaravel\Repositories\EloquentUserRepository;
 use Webaccess\ProjectSquareLaravel\Services\AlertManager;
 use Webaccess\ProjectSquareLaravel\Services\ClientManager;
 use Webaccess\ProjectSquareLaravel\Services\ConversationManager;
-use Webaccess\ProjectSquareLaravel\Services\MessageManager;
 use Webaccess\ProjectSquareLaravel\Services\ProjectManager;
 use Webaccess\ProjectSquareLaravel\Services\RequestManager;
 use Webaccess\ProjectSquareLaravel\Services\RoleManager;
@@ -139,10 +137,6 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             return new ConversationManager();
         });
 
-        App::bind('MessageManager', function () {
-            return new MessageManager();
-        });
-
         App::bind('Image', function () {
             return new Image();
         });
@@ -164,15 +158,6 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
                 new EloquentUserRepository(),
                 new EloquentProjectRepository(),
                 new EloquentNotificationRepository()
-            );
-        });
-
-        App::bind('ReadMessageInteractor', function() {
-            return new ReadMessageInteractor(
-                new EloquentMessageRepository(),
-                new EloquentConversationRepository(),
-                new EloquentUserRepository(),
-                new EloquentProjectRepository()
             );
         });
 
