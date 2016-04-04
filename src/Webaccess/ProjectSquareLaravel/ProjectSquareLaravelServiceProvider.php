@@ -152,7 +152,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
                 new EloquentConversationRepository(),
                 new EloquentMessageRepository(),
                 new EloquentUserRepository(),
-                new EloquentProjectRepository()
+                new EloquentProjectRepository(),
+                new EloquentNotificationRepository()
             );
         });
 
@@ -161,7 +162,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
                 new EloquentMessageRepository(),
                 new EloquentConversationRepository(),
                 new EloquentUserRepository(),
-                new EloquentProjectRepository()
+                new EloquentProjectRepository(),
+                new EloquentNotificationRepository()
             );
         });
 
