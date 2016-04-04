@@ -2,13 +2,13 @@
 
 @section('content')
     <ol class="breadcrumb">
-        <li class="active">Tableau de bord</li>
+        <li class="active">{{ trans('projectsquare::dashboard.panel_title') }}</li>
     </ol>
     <div class="dashboard-content">
         <div class="row">
             <div class="col-lg-8 col-md-12">
                 <div class="block">
-                    <h3>Derniers tickets</h3>
+                    <h3>{{ trans('projectsquare::dashboard.last_tickets') }}</h3>
                     <div class="block-content table-responsive">
                         <table class="table table-striped">
                             <thead>
@@ -47,7 +47,7 @@
 
             <div class="col-lg-4 col-md-12">
                 <div class="block last-messages">
-                    <h3>Derniers messages</h3>
+                    <h3>{{ trans('projectsquare::dashboard.last_messages') }}</h3>
                     <div class="wrapper">
                         <div class="block-content table-responsive">
                             <table class="table table-striped">
@@ -55,11 +55,11 @@
                                 @foreach ($conversations as $conversation)
                                     <tr class="conversation">
                                         <td>
-                                            <span class="badge pull-right count"><span class="number">{{ count($conversation->messages) }}</span> @if (count($conversation->messages) > 1)messages @else message @endif</span>
+                                            <span class="badge pull-right count"><span class="number">{{ count($conversation->messages) }}</span> @if (count($conversation->messages) > 1){{ trans('projectsquare::dashboard.messages') }} @else {{ trans('projectsquare::dashboard.message') }} @endif</span>
                                             <a href="{{ route('project_index', ['id' => $conversation->project->id]) }}"><span class="label" style="background: {{ $conversation->project->color }}">{{ $conversation->project->client->name }}</span> {{ $conversation->project->name }}</a> - <strong>{{ $conversation->title }}</strong><br>
 
                                             <div class="users">
-                                                <u>Participants</u> :
+                                                <u>{{ trans('projectsquare::dashboard.conversation_participants') }}</u> :
                                                 @foreach ($conversation->users as $i => $user)
                                                     @if ($i > 0),@endif {{ $user->complete_name }}
                                                 @endforeach
@@ -75,13 +75,13 @@
                                             <div class="message-inserted"></div>
 
                                             <div class="message new-message" style="display:none">
-                                                <textarea class="form-control" placeholder="Votre message" rows="4"></textarea>
+                                                <textarea class="form-control" placeholder="{{ trans('projectsquare::dashboard.your_message') }}" rows="4"></textarea>
                                                 <button class="btn btn-sm btn-default pull-right cancel-message" data-id="{{ $conversation->id }}" style="margin-top:1.5rem"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.cancel') }}</button>
                                                 <button class="btn btn-sm btn-success pull-right valid-message" data-id="{{ $conversation->id }}" style="margin-top:1.5rem; margin-right: 1rem"><span class="glyphicon glyphicon-ok"></span> {{ trans('projectsquare::generic.valid') }}</button>
                                             </div>
 
                                             <div class="submit">
-                                                <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-sm btn-primary pull-right"><span class="glyphicon glyphicon-share-alt"></span> Voir</a>
+                                                <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-sm btn-primary pull-right"><span class="glyphicon glyphicon-share-alt"></span> {{ trans('projectsquare::messages.reply_message') }}</a>
                                                 <button class="btn btn-sm btn-success pull-right reply-message" data-id="{{ $message->id }}" style="margin-right: 1rem;"><span class="glyphicon glyphicon-comment"></span> {{ trans('projectsquare::messages.reply_message') }}</button>
                                             </div>
                                         </td>
@@ -100,7 +100,7 @@
         <div class="row">
             <div class="col-lg-6 col-md-12">
                 <div class="block">
-                    <h3>Calendrier <a style="float:right" href="{{ route('calendar') }}" class="btn btn-default pull-right"><span class="glyphicon glyphicon-list-alt"></span> {{ trans('projectsquare::calendar.see_calendar') }}</a></h3>
+                    <h3>{{ trans('projectsquare::calendar.calendar') }} <a style="float:right" href="{{ route('calendar') }}" class="btn btn-default pull-right"><span class="glyphicon glyphicon-list-alt"></span> {{ trans('projectsquare::calendar.see_calendar') }}</a></h3>
                     <div class="block-content loading">
                         <div id="calendar"></div>
                     </div>
@@ -109,16 +109,16 @@
 
             <div class="col-lg-6 col-md-12">
                 <div class="block">
-                    <h3>Alertes monitoring</h3>
+                    <h3>{{ trans('projectsquare::dashboard.monitoring_alerts') }}</h3>
                     <div class="block-content table-responsive">
                         <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Date</th>
-                                <th>Type</th>
-                                <th>Variables</th>
-                                <th>Temps de chargement</th>
+                                <th>{{ trans('projectsquare::dashboard.alert_date') }}</th>
+                                <th>{{ trans('projectsquare::dashboard.alert_type') }}</th>
+                                <th>{{ trans('projectsquare::dashboard.alert_project') }}</th>
+                                <th>{{ trans('projectsquare::monitoring.loading_time_in_seconds') }}</th>
                                 <th>{{ trans('projectsquare::generic.action') }}</th>
                             </tr>
                             </thead>
@@ -132,7 +132,7 @@
                                         <td><a href="{{ route('project_index', ['id' => $alert->project->id]) }}"><span class="label" style="background: {{ $alert->project->color }}">{{ $alert->project->client->name }}</span> {{ $alert->project->name }}</a></td>
                                         <td>{{ number_format($alert->variables->loading_time, 2) }}s</td>
                                         <td>
-                                            <a href="{{ route('project_monitoring', ['id' => $alert->project->id]) }}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-share-alt"></span> voir le projet</a>
+                                            <a href="{{ route('project_monitoring', ['id' => $alert->project->id]) }}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-share-alt"></span> {{ trans('projectsquare::dashboard.see_project') }}</a>
                                         </td>
                                     </tr>
                                 @endforeach
