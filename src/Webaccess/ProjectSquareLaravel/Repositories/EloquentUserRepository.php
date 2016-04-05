@@ -2,7 +2,6 @@
 
 namespace Webaccess\ProjectSquareLaravel\Repositories;
 
-use Illuminate\Support\Facades\Cache;
 use Webaccess\ProjectSquare\Entities\User as UserEntity;
 use Webaccess\ProjectSquareLaravel\Models\Message;
 use Webaccess\ProjectSquareLaravel\Models\Project;
