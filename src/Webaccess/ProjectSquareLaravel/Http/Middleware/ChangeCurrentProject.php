@@ -19,8 +19,10 @@ class ChangeCurrentProject
         $path = str_replace('/project/', '', $request->getPathInfo());
         $projectID = substr($path, 0, 1);
 
-        if ($request->session()->has('current_project') && $projectID != $request->session()->get('current_project')->id && $project = app()->make('ProjectManager')->getProject($projectID)) {
-            $request->session()->set('current_project', $project);
+        if (!$request->session()->has('current_project') || ($request->session()->has('current_project') && $projectID != $request->session()->get('current_project')->id)) {
+            if ($project = app()->make('ProjectManager')->getProject($projectID)) {
+                $request->session()->set('current_project', $project);
+            }
         }
 
         return $next($request);
