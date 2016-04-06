@@ -44,6 +44,7 @@ $(document).ready(function() {
                 step_id: event._id,
                 start_time: event.start.format(),
                 end_time: event.end.format(),
+                project_id: $('#project_id').val(),
                 _token: $('#csrf_token').val()
             };
 
@@ -52,12 +53,8 @@ $(document).ready(function() {
                 url: route_step_update,
                 data: data,
                 success: function(data) {
-                    if ($('#step-infos .wrapper').is(':visible') && data.step.projectID == $('#step-infos .wrapper').find('.project_id').val()) {
-                        $('#step-infos .wrapper').find('.start_time').val(moment(data.step.start_time).format('DD/MM/YYYY'));
-                        $('#step-infos .wrapper').find('.start_time_hour').val(moment(data.step.start_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
-                        $('#step-infos .wrapper').find('.end_time').val(moment(data.step.end_time).format('DD/MM/YYYY'));
-                        $('#step-infos .wrapper').find('.end_time_hour').val(moment(data.step.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
-                    }
+                    $('#step-infos .wrapper').find('.start_time').val(moment(data.step.start_time).format('DD/MM/YYYY'));
+                    $('#step-infos .wrapper').find('.end_time').val(moment(data.step.end_time).format('DD/MM/YYYY'));
                 }
             });
         },
@@ -69,6 +66,7 @@ $(document).ready(function() {
                 step_id: event._id,
                 start_time: event.start.format(),
                 end_time: event.end.format(),
+                project_id: $('#project_id').val(),
                 _token: $('#csrf_token').val()
             };
 
@@ -77,13 +75,9 @@ $(document).ready(function() {
                 url: route_step_update,
                 data: data,
                 success: function(data) {
-                    if ($('#step-infos .wrapper').is(':visible') && data.step.projectID == $('#step-infos .wrapper').find('.project_id').val()) {
-                        $('#step-infos .wrapper').find('.name').val(data.step.name);
-                        $('#step-infos .wrapper').find('.start_time').val(moment(data.step.start_time).format('DD/MM/YYYY'));
-                        $('#step-infos .wrapper').find('.start_time_hour').val(moment(data.step.start_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
-                        $('#step-infos .wrapper').find('.end_time').val(moment(data.step.end_time).format('DD/MM/YYYY'));
-                        $('#step-infos .wrapper').find('.end_time_hour').val(moment(data.step.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
-                    }
+                    $('#step-infos .wrapper').find('.name').val(data.step.name);
+                    $('#step-infos .wrapper').find('.start_time').val(moment(data.step.start_time).format('DD/MM/YYYY'));
+                    $('#step-infos .wrapper').find('.end_time').val(moment(data.step.end_time).format('DD/MM/YYYY'));
                     $('#step-infos .loading').hide();
                 }
             });
@@ -103,9 +97,7 @@ $(document).ready(function() {
                     $('#step-infos .wrapper').find('.id').val(data.step.id);
                     $('#step-infos .wrapper').find('.name').val(data.step.name);
                     $('#step-infos .wrapper').find('.start_time').val(moment(data.step.start_time).format('DD/MM/YYYY'));
-                    $('#step-infos .wrapper').find('.start_time_hour').val(moment(data.step.start_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
                     $('#step-infos .wrapper').find('.end_time').val(moment(data.step.end_time).format('DD/MM/YYYY'));
-                    $('#step-infos .wrapper').find('.end_time_hour').val(moment(data.step.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
                     $('#step-infos .wrapper').find('.project_id').val(data.step.project_id);
                     $('#step-infos .wrapper').show();
                     $('#step-infos .loading').hide();
@@ -119,7 +111,7 @@ $(document).ready(function() {
             $('#step-infos .loading').show();
 
             var temporaryID = uniqid();
-            var event = {
+            var step = {
                 id: temporaryID,
                 title: "Nouvel evenement",
                 start: start,
@@ -133,7 +125,7 @@ $(document).ready(function() {
                 name: "Nouvel evenement",
                 start_time: start.format(),
                 end_time: end.format(),
-                user_id: $('#user_id').val(),
+                project_id: $('#project_id').val(),
                 _token: $('#csrf_token').val()
             };
 
@@ -173,7 +165,7 @@ $(document).ready(function() {
             name: $('#step-infos .name').val(),
             start_time: moment($('#step-infos .start_time').val(), 'DD/MM/YYYY').format('YYYY-MM-DD'),
             end_time: moment($('#step-infos .end_time').val(), 'DD/MM/YYYY').format('YYYY-MM-DD'),
-            project_id: $('#step-infos .project_id').val(),
+            project_id: $('#project_id').val(),
             _token: $('#csrf_token').val()
         };
 
