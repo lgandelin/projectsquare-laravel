@@ -4,6 +4,7 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Interactors\Tickets\GetTicketInteractor;
+use Webaccess\ProjectSquare\Requests\Planning\GetStepsRequest;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
 
 class ProjectController extends BaseController
@@ -87,6 +88,16 @@ class ProjectController extends BaseController
             'conversations' => app()->make('ConversationManager')->getConversationsByProject($projectID),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
             'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,
+        ]);
+    }
+
+    public function planning($projectID)
+    {
+        return view('projectsquare::project.planning', [
+            'project' => app()->make('ProjectManager')->getProject($projectID),
+            'steps' => app()->make('GetStepsInteractor')->execute(new GetStepsRequest([
+                'projectID' => $projectID
+            ])),
         ]);
     }
 }
