@@ -34,13 +34,11 @@
                     <div class="form-group">
                         <label for="name">{{ trans('projectsquare::planning.start_time') }}</label><br/>
                         <input type="text" class="form-control start_time datepicker" placeholder="dd/mm/YYYY" value="" style="width: 200px; display: inline-block" />
-                        <input type="time" class="form-control start_time_hour" placeholder="hh:mm" style="width: 100px; display: inline-block;"/>
                     </div>
 
                     <div class="form-group">
                         <label for="name">{{ trans('projectsquare::planning.end_time') }}</label><br/>
                         <input type="text" class="form-control end_time datepicker" placeholder="dd/mm/YYYY" value="" style="width: 200px; display: inline-block" />
-                        <input type="time" class="form-control end_time_hour" placeholder="hh:mm" style="width: 100px; display: inline-block;"/>
                     </div>
 
                     <input type="hidden" class="id" value="" />
@@ -62,13 +60,14 @@
             <script>
                 var defaultDate = "{{ date('Y-m-d') }}";
                 var steps = [
-                        @foreach ($steps as $step)
+                    @foreach ($steps as $step)
                             {
                         id: {{ $step->id }},
                         title: "{{ $step->name }}",
                         start: "{{ $step->startTime->format(DATE_ISO8601) }}",
                         end: "{{ $step->endTime->format(DATE_ISO8601) }}",
                         project_id: "{{ isset($step->project_id) ? $step->project_id : null }}",
+                        allDay: true
                     },
                     @endforeach
                 ];

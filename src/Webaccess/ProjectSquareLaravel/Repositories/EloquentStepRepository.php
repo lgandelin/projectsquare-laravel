@@ -8,60 +8,60 @@ use Webaccess\ProjectSquareLaravel\Models\Step;
 
 class EloquentStepRepository implements StepRepository
 {
-    public function getStep($eventID)
+    public function getStep($stepID)
     {
-        $eventModel = $this->getStepModel($eventID);
+        $stepModel = $this->getStepModel($stepID);
 
-        return $this->getStepEntity($eventModel);
+        return $this->getStepEntity($stepModel);
     }
 
-    public function getStepModel($eventID)
+    public function getStepModel($stepID)
     {
-        return Step::find($eventID);
+        return Step::find($stepID);
     }
 
     public function getSteps($projectID)
     {
-        $events = [];
-        $eventsModel = Step::where('project_id', '=', $projectID);
-        foreach ($eventsModel->get() as $eventModel) {
-            $event = $this->getStepEntity($eventModel);
-            $events[]= $event;
+        $steps = [];
+        $stepsModel = Step::where('project_id', '=', $projectID);
+        foreach ($stepsModel->get() as $stepModel) {
+            $step = $this->getStepEntity($stepModel);
+            $steps[]= $step;
         }
 
-        return $events;
+        return $steps;
     }
 
-    public function persistStep(StepEntity $event)
+    public function persistStep(StepEntity $step)
     {
-        $eventModel = (!isset($event->id)) ? new Step() : Step::find($event->id);
-        $eventModel->name = $event->name;
-        $eventModel->project_id = $event->projectID;
-        $eventModel->start_time = $event->startTime->format('Y-m-d H:i:s');
-        $eventModel->end_time = $event->endTime->format('Y-m-d H:i:s');
+        $stepModel = (!isset($step->id)) ? new Step() : Step::find($step->id);
+        $stepModel->name = $step->name;
+        $stepModel->project_id = $step->projectID;
+        $stepModel->start_time = $step->startTime->format('Y-m-d H:i:s');
+        $stepModel->end_time = $step->endTime->format('Y-m-d H:i:s');
 
-        $eventModel->save();
+        $stepModel->save();
 
-        $event->id = $eventModel->id;
+        $step->id = $stepModel->id;
 
-        return $event;
+        return $step;
     }
 
-    public function removeStep($eventID)
+    public function removeStep($stepID)
     {
-        $event = $this->getStepModel($eventID);
-        $event->delete();
+        $step = $this->getStepModel($stepID);
+        $step->delete();
     }
 
-    private function getStepEntity($eventModel)
+    private function getStepEntity($stepModel)
     {
-        $event = new StepEntity();
-        $event->id = $eventModel->id;
-        $event->name = $eventModel->name;
-        $event->projectID = $eventModel->project_id;
-        $event->startTime = new \DateTime($eventModel->start_time);
-        $event->endTime = new \DateTime($eventModel->end_time);
+        $step = new StepEntity();
+        $step->id = $stepModel->id;
+        $step->name = $stepModel->name;
+        $step->projectID = $stepModel->project_id;
+        $step->startTime = new \DateTime($stepModel->start_time);
+        $step->endTime = new \DateTime($stepModel->end_time);
 
-        return $event;
+        return $step;
     }
 }

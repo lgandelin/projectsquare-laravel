@@ -16,14 +16,14 @@ $(document).ready(function() {
         minTime: '08:00',
         maxTime: '21:00',
         droppable: true,
-        steps: steps,
-        stepRender: function(step, element) {
+        events: steps,
+        eventRender: function(event, element) {
             element.append( "<span class='delete'>X</span>" );
             element.find(".delete").click(function() {
                 $('#step-infos .wrapper').hide();
 
                 var data = {
-                    step_id: step._id,
+                    step_id: event._id,
                     _token: $('#csrf_token').val()
                 };
 
@@ -32,18 +32,18 @@ $(document).ready(function() {
                     url: route_step_delete,
                     data: data,
                     success: function(data) {
-                        $('#planning').fullCalendar('removeEvents', step._id);
+                        $('#planning').fullCalendar('removeEvents', event._id);
                         $('#step-infos .wrapper').hide();
                     }
                 });
             });
         },
-        stepDrop: function(step, delta, revertFunc) {
+        eventDrop: function(event, delta, revertFunc) {
 
             var data = {
-                step_id: step._id,
-                start_time: step.start.format(),
-                end_time: step.end.format(),
+                step_id: event._id,
+                start_time: event.start.format(),
+                end_time: event.end.format(),
                 _token: $('#csrf_token').val()
             };
 
@@ -61,14 +61,14 @@ $(document).ready(function() {
                 }
             });
         },
-        stepResize: function(step, delta, revertFunc) {
+        eventResize: function(event, delta, revertFunc) {
             $('#step-infos .wrapper').show();
             $('#step-infos .loading').show();
 
             var data = {
-                step_id: step._id,
-                start_time: step.start.format(),
-                end_time: step.end.format(),
+                step_id: event._id,
+                start_time: event.start.format(),
+                end_time: event.end.format(),
                 _token: $('#csrf_token').val()
             };
 
@@ -88,11 +88,11 @@ $(document).ready(function() {
                 }
             });
         },
-        stepClick: function(step, jsEvent, view) {
+        eventClick: function(event, jsEvent, view) {
             $('#step-infos .wrapper').show();
             $('#step-infos .loading').show();
             var data = {
-                id: step._id,
+                id: event._id,
                 _token: $('#csrf_token').val()
             };
             $.ajax({
@@ -119,12 +119,12 @@ $(document).ready(function() {
             $('#step-infos .loading').show();
 
             var temporaryID = uniqid();
-            var step = {
+            var event = {
                 id: temporaryID,
                 title: "Nouvel evenement",
                 start: start,
                 end: end,
-                allDay: false
+                allDay: true
             };
 
             $('#planning').fullCalendar('renderEvent', step, true);
