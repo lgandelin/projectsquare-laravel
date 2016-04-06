@@ -20,6 +20,11 @@ use Webaccess\ProjectSquare\Interactors\Calendar\UpdateEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Messages\CreateConversationInteractor;
 use Webaccess\ProjectSquare\Interactors\Messages\CreateMessageInteractor;
 use Webaccess\ProjectSquare\Interactors\Notifications\GetNotificationsInteractor;
+use Webaccess\ProjectSquare\Interactors\Planning\GetStepInteractor;
+use Webaccess\ProjectSquare\Interactors\Planning\GetStepsInteractor;
+use Webaccess\ProjectSquare\Interactors\Planning\CreateStepInteractor;
+use Webaccess\ProjectSquare\Interactors\Planning\DeleteStepInteractor;
+use Webaccess\ProjectSquare\Interactors\Planning\UpdateStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectsInteractor;
 use Webaccess\ProjectSquare\Interactors\Tickets\CreateTicketInteractor;
@@ -37,6 +42,7 @@ use Webaccess\ProjectSquareLaravel\Repositories\EloquentEventRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentMessageRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentNotificationRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentStepRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentUserRepository;
 use Webaccess\ProjectSquareLaravel\Services\AlertManager;
@@ -242,6 +248,39 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             return new GetNotificationsInteractor(
                 new EloquentNotificationRepository(),
                 new EloquentUserRepository()
+            );
+        });
+
+        App::bind('GetStepsInteractor', function() {
+            return new GetStepsInteractor(
+                new EloquentStepRepository()
+            );
+        });
+
+        App::bind('GetStepInteractor', function() {
+            return new GetStepInteractor(
+                new EloquentStepRepository()
+            );
+        });
+
+        App::bind('CreateStepInteractor', function() {
+            return new CreateStepInteractor(
+                new EloquentStepRepository(),
+                new EloquentProjectRepository()
+            );
+        });
+
+        App::bind('UpdateStepInteractor', function() {
+            return new UpdateStepInteractor(
+                new EloquentStepRepository(),
+                new EloquentProjectRepository()
+            );
+        });
+
+        App::bind('DeleteStepInteractor', function() {
+            return new DeleteStepInteractor(
+                new EloquentStepRepository(),
+                new EloquentProjectRepository()
             );
         });
 

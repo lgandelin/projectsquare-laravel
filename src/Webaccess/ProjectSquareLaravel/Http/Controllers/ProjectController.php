@@ -4,7 +4,7 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Interactors\Tickets\GetTicketInteractor;
-use Webaccess\ProjectSquare\Requests\Calendar\GetEventsRequest;
+use Webaccess\ProjectSquare\Requests\Planning\GetStepsRequest;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
 
 class ProjectController extends BaseController
@@ -95,8 +95,8 @@ class ProjectController extends BaseController
     {
         return view('projectsquare::project.planning', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
-            'events' => app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
-                
+            'steps' => app()->make('GetStepsInteractor')->execute(new GetStepsRequest([
+                'projectID' => $projectID
             ])),
         ]);
     }
