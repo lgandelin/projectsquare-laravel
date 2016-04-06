@@ -41,6 +41,11 @@
                         <input type="text" class="form-control end_time datepicker" placeholder="dd/mm/YYYY" value="" style="width: 200px; display: inline-block" />
                     </div>
 
+                    <div class="form-group">
+                        <label for="name">{{ trans('projectsquare::planning.color') }}</label>
+                        <input type="text" name="color" class="form-control colorpicker" data-control="saturation" placeholder="{{ trans('projectsquare::planning.color') }}" value="" size="7">
+                    </div>
+
                     <input type="hidden" class="id" value="" />
                     <input type="button" class="btn btn-success btn-valid" value="{{ trans('projectsquare::generic.valid') }}">
                     <input type="button" class="btn btn-default btn-close" value="{{ trans('projectsquare::generic.close') }}">
@@ -49,27 +54,35 @@
 
             <input type="hidden" id="project_id" value="{{ $project->id }}" />
         </div>
-        @endsection
+    </div>
+@endsection
 
-        @section('scripts')
-            <script src="{{ asset('js/vendor/fullcalendar/lib/moment.min.js') }}"></script>
-            <script src="{{ asset('js/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
-            <script src="{{ asset('js/vendor/fullcalendar/lang-all.js') }}"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-            <script src="{{ asset('js/planning.js') }}"></script>
-            <script>
-                var defaultDate = "{{ date('Y-m-d') }}";
-                var steps = [
-                    @foreach ($steps as $step)
-                            {
-                        id: {{ $step->id }},
-                        title: "{{ $step->name }}",
-                        start: "{{ $step->startTime->format(DATE_ISO8601) }}",
-                        end: "{{ $step->endTime->format(DATE_ISO8601) }}",
-                        project_id: "{{ isset($step->project_id) ? $step->project_id : null }}",
-                        allDay: true
-                    },
-                    @endforeach
-                ];
-            </script>
+@section('scripts')
+    <script src="{{ asset('js/vendor/fullcalendar/lib/moment.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/fullcalendar/lang-all.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="{{ asset('js/planning.js') }}"></script>
+    <script>
+        var defaultDate = "{{ date('Y-m-d') }}";
+        var steps = [
+            @foreach ($steps as $step)
+            {
+                id: {{ $step->id }},
+                title: "{{ $step->name }}",
+                start: "{{ $step->startTime->format(DATE_ISO8601) }}",
+                end: "{{ $step->endTime->format(DATE_ISO8601) }}",
+                project_id: "{{ isset($step->project_id) ? $step->project_id : null }}",
+                color: "{{ isset($step->color) ? $step->color : null }}",
+                allDay: true
+            },
+            @endforeach
+        ];
+    </script>
+
+    <script>
+        $('.colorpicker').minicolors({
+            theme: 'bootstrap',
+        });
+    </script>
 @endsection

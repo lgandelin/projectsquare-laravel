@@ -12,6 +12,7 @@ class Step extends Model
         'name',
         'start_time',
         'end_time',
+        'color',
     ];
 
     public function project()

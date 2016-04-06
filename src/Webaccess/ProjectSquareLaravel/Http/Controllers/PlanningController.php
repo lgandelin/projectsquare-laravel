@@ -34,6 +34,7 @@ class PlanningController extends BaseController
                 'projectID' => Input::get('project_id'),
                 'startTime' => new \DateTime(Input::get('start_time')),
                 'endTime' => new \DateTime(Input::get('end_time')),
+                'color' => Input::get('color'),
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
@@ -56,6 +57,7 @@ class PlanningController extends BaseController
                 'startTime' => new \DateTime(Input::get('start_time')),
                 'endTime' => new \DateTime(Input::get('end_time')),
                 'projectID' => Input::get('project_id'),
+                'color' => Input::get('color'),
                 'requesterUserID' => $this->getUser()->id,
             ]));
 

@@ -39,6 +39,7 @@ class EloquentStepRepository implements StepRepository
         $stepModel->project_id = $step->projectID;
         $stepModel->start_time = $step->startTime->format('Y-m-d H:i:s');
         $stepModel->end_time = $step->endTime->format('Y-m-d H:i:s');
+        $stepModel->color = $step->color;
 
         $stepModel->save();
 
@@ -61,6 +62,7 @@ class EloquentStepRepository implements StepRepository
         $step->projectID = $stepModel->project_id;
         $step->startTime = new \DateTime($stepModel->start_time);
         $step->endTime = new \DateTime($stepModel->end_time);
+        $step->color = $stepModel->color;
 
         return $step;
     }

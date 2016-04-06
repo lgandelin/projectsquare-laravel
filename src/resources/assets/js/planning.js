@@ -78,6 +78,9 @@ $(document).ready(function() {
                     $('#step-infos .wrapper').find('.name').val(data.step.name);
                     $('#step-infos .wrapper').find('.start_time').val(moment(data.step.start_time).format('DD/MM/YYYY'));
                     $('#step-infos .wrapper').find('.end_time').val(moment(data.step.end_time).format('DD/MM/YYYY'));
+                    $('#step-infos .wrapper').find('input[name="color"]').val(data.step.color).minicolors('settings', {
+                        value: data.step.color
+                    });
                     $('#step-infos .loading').hide();
                 }
             });
@@ -99,6 +102,10 @@ $(document).ready(function() {
                     $('#step-infos .wrapper').find('.start_time').val(moment(data.step.start_time).format('DD/MM/YYYY'));
                     $('#step-infos .wrapper').find('.end_time').val(moment(data.step.end_time).format('DD/MM/YYYY'));
                     $('#step-infos .wrapper').find('.project_id').val(data.step.project_id);
+                    $('#step-infos .wrapper').find('input[name="color"]').val(data.step.color).minicolors('settings', {
+                        value: data.step.color
+                    });
+
                     $('#step-infos .wrapper').show();
                     $('#step-infos .loading').hide();
                 }
@@ -166,6 +173,7 @@ $(document).ready(function() {
             start_time: moment($('#step-infos .start_time').val(), 'DD/MM/YYYY').format('YYYY-MM-DD'),
             end_time: moment($('#step-infos .end_time').val(), 'DD/MM/YYYY').format('YYYY-MM-DD'),
             project_id: $('#project_id').val(),
+            color: $('#step-infos input[name="color"]').val(),
             _token: $('#csrf_token').val()
         };
 
@@ -180,6 +188,7 @@ $(document).ready(function() {
                 step.title = data.step.name;
                 step.start = data.step.start_time;
                 step.end = data.step.end_time;
+                step.color = data.step.color;
 
                 $('#planning').fullCalendar('updateEvent', step);
                 $('#step-infos .loading').hide();
