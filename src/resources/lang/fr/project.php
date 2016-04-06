@@ -8,4 +8,5 @@ return [
     'monitoring' => 'Monitoring',
     'settings' => 'Réglages',
     'messages' => 'Messages',
+    'planning' => 'Planning',
 ];

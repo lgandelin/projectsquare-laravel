@@ -47,10 +47,6 @@ class BaseController extends Controller
 
     protected function getCurrentProject()
     {
-        if (!$this->request->session()->has('current_project')) {
-            $this->request->session()->set('current_project', Project::find(env('DEFAULT_PROJECT_ID', 1)));
-        }
-
         return $this->request->session()->get('current_project');
     }
 }

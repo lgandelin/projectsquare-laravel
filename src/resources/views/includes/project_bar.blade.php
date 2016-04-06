@@ -6,7 +6,7 @@
             <li @if ($active == 'tickets')class="active"@endif><a href="{{ route('project_tickets', ['id' => $project->id]) }}">{{ trans('projectsquare::project.tickets') }}</a></li>
             <li @if ($active == 'monitoring')class="active"@endif><a href="{{ route('project_monitoring', ['id' => $project->id]) }}">{{ trans('projectsquare::project.monitoring') }}</a></li>
             <li><a>Référencement</a></li>
-            <li><a>Planning</a></li>
+            <li @if ($active == 'planning')class="active"@endif><a href="{{ route('project_planning', ['id' => $project->id]) }}">{{ trans('projectsquare::project.planning') }}</a></li>
             <li @if ($active == 'messages')class="active"@endif><a href="{{ route('project_messages', ['id' => $project->id]) }}">{{ trans('projectsquare::project.messages') }}</a></li>
             <li @if ($active == 'settings')class="active"@endif><a href="{{ route('project_settings', ['id' => $project->id]) }}">{{ trans('projectsquare::project.settings') }}</a></li>
         </ul>
