@@ -59,6 +59,16 @@ $(document).ready(function() {
                         $('#event-infos .wrapper').find('.end_time').val(moment(data.event.end_time).format('DD/MM/YYYY'));
                         $('#event-infos .wrapper').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
                     }
+                },
+                error: function(data) {
+                    status = data.status
+                    data = $.parseJSON(data.responseText);
+                    revertFunc();
+                    if (status == 301) {
+                        alert(data.error);
+                    } else {
+                        alert('Une erreur est survenue. Veuillez nous excuser pour la gêne occasionnée');
+                    }
                 }
             });
         },

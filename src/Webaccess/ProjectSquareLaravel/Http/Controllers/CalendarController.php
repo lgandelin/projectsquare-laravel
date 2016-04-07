@@ -3,6 +3,7 @@
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
 use Illuminate\Support\Facades\Input;
+use Webaccess\ProjectSquare\Exceptions\Events\EventUpdateNotAuthorizedException;
 use Webaccess\ProjectSquare\Requests\Calendar\CreateEventRequest;
 use Webaccess\ProjectSquare\Requests\Calendar\DeleteEventRequest;
 use Webaccess\ProjectSquare\Requests\Calendar\GetEventRequest;
@@ -104,6 +105,8 @@ class CalendarController extends BaseController
             }
 
             return response()->json(['message' => trans('projectsquare::events.edit_event_success'), 'event' => $event], 200);
+        } catch (EventUpdateNotAuthorizedException $e) {
+            return response()->json(['error' => $e->getMessage()], 301);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
