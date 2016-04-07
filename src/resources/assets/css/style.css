@@ -7880,10 +7880,10 @@ ul {
       color: #444; }
     .top-bar .logo a:hover {
       text-decoration: none; }
-  .top-bar .notifications li {
+  .top-bar .top-right-menu li {
     display: inline-block;
     margin-right: 2rem; }
-    .top-bar .notifications li .new-notifications {
+    .top-bar .top-right-menu li .new-notifications {
       background: #DF5A49; }
 
 .left-bar {
