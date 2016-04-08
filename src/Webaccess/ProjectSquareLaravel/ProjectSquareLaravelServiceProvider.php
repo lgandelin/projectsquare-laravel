@@ -20,6 +20,7 @@ use Webaccess\ProjectSquare\Interactors\Calendar\UpdateEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Messages\CreateConversationInteractor;
 use Webaccess\ProjectSquare\Interactors\Messages\CreateMessageInteractor;
 use Webaccess\ProjectSquare\Interactors\Notifications\GetNotificationsInteractor;
+use Webaccess\ProjectSquare\Interactors\Notifications\ReadNotificationInteractor;
 use Webaccess\ProjectSquare\Interactors\Planning\GetStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Planning\GetStepsInteractor;
 use Webaccess\ProjectSquare\Interactors\Planning\CreateStepInteractor;
@@ -246,6 +247,13 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
 
         App::bind('GetNotificationsInteractor', function() {
             return new GetNotificationsInteractor(
+                new EloquentNotificationRepository(),
+                new EloquentUserRepository()
+            );
+        });
+
+        App::bind('ReadNotificationInteractor', function() {
+            return new ReadNotificationInteractor(
                 new EloquentNotificationRepository(),
                 new EloquentUserRepository()
             );

@@ -11,17 +11,20 @@
                 <div class="notifications" style="display: none;">
                     <span class="glyphicon glyphicon-remove close"></span>
                     <span class="title">Nouvelles notifications</span>
-                    @foreach ($notifications as $notification)
-                        <div class="notification">
-                            <span class="date">{{ $notification->time->format('d/m/Y H:i') }}</span>
-                            <span class="badge badge-primary type">{{ $notification->type }}</span>
-                            <span class="description">
-                                Nouvelle notification sur l'entité : <a href="#">{{ $notification->entityID }}</a>
-
-                                <span class="glyphicon glyphicon-eye-open pull-right status not-read"></span>
-                            </span>
-                        </div>
-                    @endforeach
+                    @if (sizeof($notifications) > 0)
+                        @foreach ($notifications as $notification)
+                            <div class="notification" data-id="{{ $notification->id }}">
+                                <span class="date">{{ $notification->time->format('d/m/Y H:i') }}</span>
+                                <span class="badge badge-primary type">{{ $notification->type }}</span>
+                                <span class="description">
+                                    Nouvelle notification sur l'entité : <a href="#">{{ $notification->entityID }}</a>
+                                    <span class="glyphicon glyphicon-eye-open pull-right status not-read"></span>
+                                </span>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="no-new-notifications">Aucune nouvelle notification !</div>
+                    @endif
                 </div>
             </li>
 
@@ -31,3 +34,5 @@
         </ul>
     </nav>
 </div>
+
+@include ('projectsquare::templates.new-notification')

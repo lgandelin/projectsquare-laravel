@@ -1,9 +1,11 @@
 <?php
 
 Route::group(['middleware' => ['web']], function () {
+
     //DASHBOARD
     Route::get('/', array('as' => 'dashboard', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\DashboardController@index'));
     Route::get('/refresh_notifications', array('as' => 'refresh_notifications', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\DashboardController@refresh_notifications'));
+    Route::post('/read_notification', array('as' => 'read_notification', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\DashboardController@read_notification'));
 
     Route::get('/login', array('as' => 'login', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\LoginController@login'));
     Route::post('/login', array('as' => 'login_handler', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\LoginController@authenticate'));
@@ -79,7 +81,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/ticket_statuses', array('as' => 'ticket_statuses_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\TicketStatusController@update'));
     Route::get('/delete_ticket_status/{id}', array('as' => 'ticket_statuses_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\TicketStatusController@delete'));
 
-    //TODO
+    //TO-DO LIST
     Route::get('/to_do/', array('as' => 'to_do_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@index'));
     Route::post('/add_to_do', array('as' => 'to_do_store', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@store'));
     Route::post('/update', array('as' => 'to_do_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@update'));
@@ -107,7 +109,5 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/planning/create', array('as' => 'steps_create', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\PlanningController@create'));
     Route::post('/planning/update', array('as' => 'steps_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\PlanningController@update'));
     Route::post('/planning/delete', array('as' => 'steps_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\PlanningController@delete'));
-
-    //NOTIFICATIONS
 
 });
