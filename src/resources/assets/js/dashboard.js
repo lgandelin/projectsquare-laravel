@@ -23,9 +23,8 @@ $(document).ready(function() {
     $('.block-content').removeClass('loading');
 
     setTimeout(function() {
-        setInterval(reloadNotificationsPanel, 30000);
-    }, 30000);
-
+        setInterval(reloadNotificationsPanel, 15000);
+    }, 15000);
 
 
     //NOTIFICATIONS BOX
@@ -53,8 +52,8 @@ $(document).ready(function() {
                 $('.notifications-link').find('.new-notifications').text(notifications_count);
 
                 if (notifications_count == 0) {
+                    $('.notifications .title').text('Aucune nouvelle notification');
                     $('.notifications-link').find('.badge').removeClass('new-notifications');
-                    $('.no-new-notifications').show();
                 }
             }
         });

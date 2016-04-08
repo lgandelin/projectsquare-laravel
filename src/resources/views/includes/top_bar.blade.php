@@ -10,20 +10,30 @@
 
                 <div class="notifications" style="display: none;">
                     <span class="glyphicon glyphicon-remove close"></span>
-                    <span class="title">Nouvelles notifications</span>
+                    <span class="title">
+                        @if (sizeof($notifications) > 0)
+                            Nouvelles notifications
+                        @else
+                            Aucune nouvelle notification !
+                        @endif
+                    </span>
                     @if (sizeof($notifications) > 0)
                         @foreach ($notifications as $notification)
                             <div class="notification" data-id="{{ $notification->id }}">
-                                <span class="date">{{ $notification->time->format('d/m/Y H:i') }}</span>
+                                <span class="date">{{ $notification->time }}</span>
                                 <span class="badge badge-primary type">{{ $notification->type }}</span>
                                 <span class="description">
-                                    Nouvelle notification sur l'entité : <a href="#">{{ $notification->entityID }}</a>
+                                    @if ($notification->type == 'MESSAGE_CREATED')
+                                        Nouveau message créé par : <strong>{{ $notification->author_name }}</strong>
+                                    @elseif ($notification->type == 'EVENT_CREATED')
+                                        Nouvel évènement créé : <strong>{{ $notification->event_name }}</strong>
+                                    @endif
+                                    <br/>
+                                    <a class="btn btn-sm btn-success" href="{{ $notification->link }}">voir</a>
                                     <span class="glyphicon glyphicon-eye-open pull-right status not-read"></span>
                                 </span>
                             </div>
                         @endforeach
-                    @else
-                        <div class="no-new-notifications">Aucune nouvelle notification !</div>
                     @endif
                 </div>
             </li>

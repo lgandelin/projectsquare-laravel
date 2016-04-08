@@ -47,7 +47,6 @@
                 .title {
                     font-size: 1.75rem;
                     font-weight: bold;
-                    margin-bottom: 2rem;
                     display: block;
                 }
 
@@ -71,6 +70,10 @@
                     .description {
                         clear: both;
                         display: block;
+
+                        .btn {
+                           margin-top: 1rem;
+                        }
                     }
 
                     .not-read {
@@ -84,6 +87,10 @@
                     .status {
                         cursor: pointer;
                     }
+                }
+                
+                .notification:first-child {
+                    margin-top: 2rem;
                 }
 
                 .notification:last-child {

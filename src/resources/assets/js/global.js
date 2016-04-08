@@ -11,6 +11,13 @@ function loadTemplate(templateID, params) {
     return template(params);
 }
 
+Handlebars.registerHelper('ifCond', function(v1, v2, options) {
+    if(v1 === v2) {
+        return options.fn(this);
+    }
+    return options.inverse(this);
+});
+
 function uniqid() {
     var n=Math.floor(Math.random()*11);
     var k = Math.floor(Math.random()* 1000000);

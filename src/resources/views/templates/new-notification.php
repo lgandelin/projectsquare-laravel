@@ -3,7 +3,15 @@
         <span class="date">{{time}}</span>
         <span class="badge badge-primary type">{{type}}</span>
         <span class="description">
-            Nouvelle notification sur l'entité : <a href="#">{{entityID}}</a>
+            {{#ifCond type 'MESSAGE_CREATED'}}
+                Nouveau message créé par : <strong>{{ author_name }}</strong>
+            {{/ifCond}}
+
+            {{#ifCond type 'EVENT_CREATED'}}
+                Nouvel évènement créé : <strong>{{ event_name }}</strong>
+            {{/ifCond}}
+            <br/>
+            <a class="btn btn-sm btn-success" href="{{ link }}">voir</a>
             <span class="glyphicon glyphicon-eye-open pull-right status not-read"></span>
         </span>
     </div>

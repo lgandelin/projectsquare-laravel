@@ -7905,7 +7905,6 @@ ul {
         .top-bar .top-right-menu li .notifications .title {
           font-size: 1.75rem;
           font-weight: bold;
-          margin-bottom: 2rem;
           display: block; }
         .top-bar .top-right-menu li .notifications .notification {
           margin-bottom: 1rem;
@@ -7922,12 +7921,16 @@ ul {
           .top-bar .top-right-menu li .notifications .notification .description {
             clear: both;
             display: block; }
+            .top-bar .top-right-menu li .notifications .notification .description .btn {
+              margin-top: 1rem; }
           .top-bar .top-right-menu li .notifications .notification .not-read {
             color: #dadada; }
           .top-bar .top-right-menu li .notifications .notification .read {
             color: #313131; }
           .top-bar .top-right-menu li .notifications .notification .status {
             cursor: pointer; }
+        .top-bar .top-right-menu li .notifications .notification:first-child {
+          margin-top: 2rem; }
         .top-bar .top-right-menu li .notifications .notification:last-child {
           border: none; }
 
