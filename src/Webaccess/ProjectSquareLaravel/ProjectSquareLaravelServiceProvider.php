@@ -292,6 +292,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             );
         });
 
+        Context::set('GetProjectInteractor', app()->make('GetProjectInteractor'));
+
         App::register('Intervention\Image\ImageServiceProvider');
 
         $this->commands([

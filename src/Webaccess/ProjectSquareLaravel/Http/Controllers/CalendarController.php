@@ -3,6 +3,7 @@
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
 use Illuminate\Support\Facades\Input;
+use Webaccess\ProjectSquare\Decorators\EventDecorator;
 use Webaccess\ProjectSquare\Exceptions\Events\EventUpdateNotAuthorizedException;
 use Webaccess\ProjectSquare\Requests\Calendar\CreateEventRequest;
 use Webaccess\ProjectSquare\Requests\Calendar\DeleteEventRequest;
@@ -43,13 +44,14 @@ class CalendarController extends BaseController
                 'eventID' => Input::get('id'),
                 'requesterUserID' => $this->getUser()->id,
             ]));
-            $event->start_time = $event->startTime->format(DATE_ISO8601);
-            $event->end_time = $event->endTime->format(DATE_ISO8601);
-            $event->project_id = $event->projectID;
 
-            return response()->json(['event' => $event], 200);
+            return response()->json([
+                'event' => (new EventDecorator())->decorate($event)
+            ], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
         }
     }
 
@@ -66,19 +68,14 @@ class CalendarController extends BaseController
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
-            $event = $response->event;
-            $event->start_time = $event->startTime->format(DATE_ISO8601);
-            $event->end_time = $event->endTime->format(DATE_ISO8601);
-            if (isset($event->projectID)) {
-                $project = app()->make('GetProjectInteractor')->getProject($event->projectID);
-                if ($event->projectID == $project->id && isset($project->color)) {
-                    $event->color = $project->color;
-                }
-            }
-
-            return response()->json(['message' => trans('projectsquare::events.create_event_success'), 'event' => $event], 200);
+            return response()->json([
+                'message' => trans('projectsquare::events.create_event_success'),
+                'event' => (new EventDecorator())->decorate($response->event)
+            ], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
         }
     }
 
@@ -94,21 +91,18 @@ class CalendarController extends BaseController
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
-            $event = $response->event;
-            $event->start_time = $event->startTime->format(DATE_ISO8601);
-            $event->end_time = $event->endTime->format(DATE_ISO8601);
-            if (isset($event->projectID)) {
-                $project = app()->make('GetProjectInteractor')->getProject($event->projectID);
-                if ($event->projectID == $project->id && isset($project->color)) {
-                    $event->color = $project->color;
-                }
-            }
-
-            return response()->json(['message' => trans('projectsquare::events.edit_event_success'), 'event' => $event], 200);
+            return response()->json([
+                'message' => trans('projectsquare::events.edit_event_success'),
+                'event' => (new EventDecorator())->decorate($response->event)
+            ], 200);
         } catch (EventUpdateNotAuthorizedException $e) {
-            return response()->json(['error' => $e->getMessage()], 301);
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 301);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
         }
     }
 
@@ -120,9 +114,13 @@ class CalendarController extends BaseController
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
-            return response()->json(['message' => trans('projectsquare::events.delete_event_success')], 200);
+            return response()->json([
+                'message' => trans('projectsquare::events.delete_event_success')
+            ], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
         }
     }
 }

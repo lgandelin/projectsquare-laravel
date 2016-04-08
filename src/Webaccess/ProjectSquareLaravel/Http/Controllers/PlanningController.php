@@ -3,6 +3,7 @@
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
 use Illuminate\Support\Facades\Input;
+use Webaccess\ProjectSquare\Decorators\StepDecorator;
 use Webaccess\ProjectSquare\Requests\Planning\CreateStepRequest;
 use Webaccess\ProjectSquare\Requests\Planning\DeleteStepRequest;
 use Webaccess\ProjectSquare\Requests\Planning\GetStepRequest;
@@ -16,13 +17,14 @@ class PlanningController extends BaseController
             $step = app()->make('GetStepInteractor')->execute(new GetStepRequest([
                 'stepID' => Input::get('id')
             ]));
-            $step->start_time = $step->startTime->format(DATE_ISO8601);
-            $step->end_time = $step->endTime->format(DATE_ISO8601);
-            $step->project_id = $step->projectID;
 
-            return response()->json(['step' => $step], 200);
+            return response()->json([
+                'step' => (new StepDecorator())->decorate($step)
+            ], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
         }
     }
 
@@ -38,13 +40,14 @@ class PlanningController extends BaseController
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
-            $step = $response->step;
-            $step->start_time = $step->startTime->format(DATE_ISO8601);
-            $step->end_time = $step->endTime->format(DATE_ISO8601);
-
-            return response()->json(['message' => trans('projectsquare::steps.create_step_success'), 'step' => $step], 200);
+            return response()->json([
+                'message' => trans('projectsquare::steps.create_step_success'),
+                'step' => (new StepDecorator())->decorate($response->step)
+            ], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
         }
     }
 
@@ -61,13 +64,14 @@ class PlanningController extends BaseController
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
-            $step = $response->step;
-            $step->start_time = $step->startTime->format(DATE_ISO8601);
-            $step->end_time = $step->endTime->format(DATE_ISO8601);
-            
-            return response()->json(['message' => trans('projectsquare::steps.edit_step_success'), 'step' => $step], 200);
+            return response()->json([
+                'message' => trans('projectsquare::steps.edit_step_success'),
+                'step' => (new StepDecorator())->decorate($response->step)
+            ], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
         }
     }
 
@@ -79,9 +83,13 @@ class PlanningController extends BaseController
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
-            return response()->json(['message' => trans('projectsquare::steps.delete_step_success')], 200);
+            return response()->json([
+                'message' => trans('projectsquare::steps.delete_step_success')
+            ], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
         }
     }
 }

@@ -2,13 +2,11 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
-use Webaccess\ProjectSquare\Requests\Calendar\GetEventRequest;
 use Webaccess\ProjectSquare\Requests\Calendar\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Notifications\GetUnreadNotificationsRequest;
 use Webaccess\ProjectSquare\Requests\Notifications\ReadNotificationRequest;
-use Webaccess\ProjectSquareLaravel\Repositories\EloquentMessageRepository;
+use Webaccess\ProjectSquareLaravel\Decorators\NotificationDecorator;
 
 class DashboardController extends BaseController
 {
@@ -27,20 +25,13 @@ class DashboardController extends BaseController
     public function refresh_notifications()
     {
         try {
-            $notifications = [];
-            if (Auth::user()) {
-                $notifications = app()->make('GetNotificationsInteractor')->getUnreadNotifications(new GetUnreadNotificationsRequest([
-                    'userID' =>$this->getUser()->id,
-                ]))->notifications;
+            $response = app()->make('GetNotificationsInteractor')->getUnreadNotifications(new GetUnreadNotificationsRequest([
+                'userID' =>$this->getUser()->id,
+            ]));
 
-                if (is_array($notifications) && sizeof($notifications) > 0) {
-                    foreach ($notifications as $notification) {
-                        $this->prepareNotification($notification);
-                    }
-                }
-            }
-
-            return response()->json(['notifications' => $notifications], 200);
+            return response()->json([
+                'notifications' => (new NotificationDecorator())->decorate($response->notifications)
+            ], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
@@ -57,23 +48,6 @@ class DashboardController extends BaseController
             return response()->json(['notification' => $response->notification], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
-        }
-    }
-
-    protected function prepareNotification($notification)
-    {
-        $notification->time = $notification->time->format('d/m/Y H:i');
-        if ($notification->type == 'EVENT_CREATED') {
-            $event = app()->make('GetEventInteractor')->execute(new GetEventRequest([
-                'eventID' => $notification->entityID
-            ]));
-            $notification->link = route('calendar');
-            $notification->event_name = $event->name;
-        } elseif ($notification->type == 'MESSAGE_CREATED') {
-            $message = (new EloquentMessageRepository())->getMessage($notification->entityID);
-            $user = app()->make('UserManager')->getUser($message->userID);
-            $notification->link = route('conversation', ['id' => $message->conversationID]);
-            $notification->author_name = $user->firstName . ' ' . $user->lastName;
         }
     }
 }
