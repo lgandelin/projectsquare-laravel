@@ -71,6 +71,7 @@ class EloquentNotificationRepository implements NotificationRepository
         $notification->read = $notificationModel->read;
         $notification->userID = $notificationModel->user_id;
         $notification->entityID = $notificationModel->entity_id;
+        $notification->time = new \DateTime($notificationModel->created_at);
 
         return $notification;
     }

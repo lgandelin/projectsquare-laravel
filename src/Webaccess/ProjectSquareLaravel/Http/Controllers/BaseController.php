@@ -23,7 +23,7 @@ class BaseController extends Controller
         }
 
         view()->share('current_project', $this->getCurrentProject());
-        view()->share('notifications_count', sizeof($this->getUnreadNotifications()));
+        view()->share('notifications', $this->getUnreadNotifications());
     }
 
     protected function getUser()

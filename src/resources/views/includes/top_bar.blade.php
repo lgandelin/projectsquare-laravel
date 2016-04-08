@@ -5,14 +5,21 @@
 
     <nav class="pull-right">
         <ul class="top-right-menu">
-            <li style="position: relative">
-                <a href="#" class="notifications-link">{{ trans('projectsquare::notifications.notifications') }} <span class="badge @if($notifications_count > 0) new-notifications @endif">{{ $notifications_count }}</span></a>
-                <div class="notifications" style="position: absolute; background: white; border: 2px solid #ccc; padding: 1.5rem; z-index: 999; top: -5rem; left: 2rem">
+            <li>
+                <a href="#" class="notifications-link">{{ trans('projectsquare::notifications.notifications') }} <span class="badge @if (sizeof($notifications) > 0) new-notifications @endif">{{ sizeof($notifications) }}</span></a>
+
+                <div class="notifications" style="display: none;">
+                    <span class="glyphicon glyphicon-remove close"></span>
+                    <span class="title">Nouvelles notifications</span>
                     @foreach ($notifications as $notification)
                         <div class="notification">
-                            <span class="date">{{ date('d/m/Y H:i', strtotime($notification->date)) }}</span>
-                            <span class="badge badge-primary">{{ $notification->type }}</span>
-                            <span class="description">Nouvelle notification sur l'entité : {{ $notification->entityID }}</span>
+                            <span class="date">{{ $notification->time->format('d/m/Y H:i') }}</span>
+                            <span class="badge badge-primary type">{{ $notification->type }}</span>
+                            <span class="description">
+                                Nouvelle notification sur l'entité : <a href="#">{{ $notification->entityID }}</a>
+
+                                <span class="glyphicon glyphicon-eye-open pull-right status not-read"></span>
+                            </span>
                         </div>
                     @endforeach
                 </div>

@@ -7871,7 +7871,6 @@ ul {
   padding-left: 2rem; }
 
 .top-bar {
-  overflow: hidden;
   padding-top: 2rem;
   padding-bottom: 1rem; }
   .top-bar .logo {
@@ -7880,11 +7879,57 @@ ul {
       color: #444; }
     .top-bar .logo a:hover {
       text-decoration: none; }
-  .top-bar .top-right-menu li {
-    display: inline-block;
-    margin-right: 2rem; }
-    .top-bar .top-right-menu li .new-notifications {
-      background: #DF5A49; }
+  .top-bar .top-right-menu {
+    position: relative; }
+    .top-bar .top-right-menu li {
+      display: inline-block;
+      margin-right: 2rem; }
+      .top-bar .top-right-menu li .new-notifications {
+        background: #DF5A49; }
+      .top-bar .top-right-menu li .notifications {
+        position: absolute;
+        background: white;
+        border: 2px solid #ccc;
+        padding: 1.5rem;
+        z-index: 999;
+        top: 4rem;
+        right: 0;
+        width: 35rem; }
+        .top-bar .top-right-menu li .notifications .close {
+          position: absolute;
+          right: 1rem;
+          top: 1rem;
+          font-size: 1.5rem;
+          color: #333;
+          opacity: 0.75; }
+        .top-bar .top-right-menu li .notifications .title {
+          font-size: 1.75rem;
+          font-weight: bold;
+          margin-bottom: 2rem;
+          display: block; }
+        .top-bar .top-right-menu li .notifications .notification {
+          margin-bottom: 1rem;
+          padding-bottom: 1rem;
+          border-bottom: 1px solid #ccc;
+          overflow: hidden; }
+          .top-bar .top-right-menu li .notifications .notification .date {
+            font-weight: bold;
+            display: block;
+            float: left; }
+          .top-bar .top-right-menu li .notifications .notification .type {
+            float: right;
+            margin-bottom: 0.75rem; }
+          .top-bar .top-right-menu li .notifications .notification .description {
+            clear: both;
+            display: block; }
+          .top-bar .top-right-menu li .notifications .notification .not-read {
+            color: #dadada; }
+          .top-bar .top-right-menu li .notifications .notification .read {
+            color: #313131; }
+          .top-bar .top-right-menu li .notifications .notification .status {
+            cursor: pointer; }
+        .top-bar .top-right-menu li .notifications .notification:last-child {
+          border: none; }
 
 .left-bar {
   padding: 2rem 0 2rem 0;

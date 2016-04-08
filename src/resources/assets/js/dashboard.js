@@ -25,6 +25,31 @@ $(document).ready(function() {
     setTimeout(function() {
         setInterval(reloadNotificationsPanel, 30000);
     }, 30000);
+
+
+
+    //NOTIFICATIONS BOX
+    $('.notifications-link').click(function() {
+        $('.notifications').toggle(200);
+    });
+
+    $('.notification .status').on('click', function() {
+        $(this).toggleClass('read', 'not-read');
+        //AJAX
+        $(this).closest('.notification').delay(750).slideUp(200).remove();
+        var notifications_count = parseInt($('.notifications-link').find('.new-notifications').text());
+        notifications_count--;
+        $('.notifications-link').find('.new-notifications').text(notifications_count);
+
+        if (notifications_count == 0) {
+            $('.notifications-link').find('.badge').removeClass('new-notifications');
+            $('.notifications').append('<div class="no-new-notifications">Aucune nouvelle notification !</div>');
+        }
+    });
+
+    $('.notifications .close').click(function() {
+        $('.notifications').hide(200);
+    });
 });
 
 function reloadNotificationsPanel() {
@@ -38,7 +63,7 @@ function reloadNotificationsPanel() {
         data: data,
         success: function(data) {
             if (data.notifications && data.notifications.length > 0) {
-                $('.notifications .badge').addClass('new-notifications').text(data.notifications.length);
+                $('.notifications .notifications-link .badge').addClass('new-notifications').text(data.notifications.length);
             }
         }
     });
