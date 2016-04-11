@@ -18,6 +18,9 @@
         var route_step_update = "{{ route('steps_update') }}";
         var route_step_delete = "{{ route('steps_delete') }}";
         var route_step_get_infos = "{{ route('steps_get_infos') }}";
+        var route_task_create = "{{ route('tasks_create') }}";
+        var route_task_update= "{{ route('tasks_update') }}";
+        var route_task_delete= "{{ route('tasks_delete') }}";
     </script>
     <input type="hidden" id="csrf_token" value="{!! csrf_token() !!}" />
     @yield('scripts')

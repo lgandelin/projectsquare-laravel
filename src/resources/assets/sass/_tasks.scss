@@ -1,35 +1,23 @@
 .task-template {
 
-  form {
-    overflow: hidden;
-      .new-task {
-        width: 30%;
-        margin-bottom: 15px;
-      }
+    .tasks {
+        list-style: none;
+        display: block;
+        padding-left: 0;
 
-    .sent {
-      margin-bottom: 15px;
+        .task {
+            overflow: hidden;
+
+            .name {
+                cursor: pointer;
+                float: left;
+                margin-right: 10px;
+                font-weight: bold
+            }
+            
+            .name:hover {
+                text-decoration: line-through;
+            }
+        }
     }
-  }
-
-  .tasks {
-    list-style: none;
-    display: block;
-    padding-left: 0;
-
-    .task {
-      overflow: hidden;
-
-      .name {
-        float: left;
-        margin-right: 10px;
-        font-weight: bold
-      }
-      
-      form {
-        float: left;
-        margin-right: 10px
-      }
-    }
-  }
 }

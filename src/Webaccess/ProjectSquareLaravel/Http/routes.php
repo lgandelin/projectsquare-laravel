@@ -13,6 +13,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/calendar', array('as' => 'calendar', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@index'));
     Route::get('/to-do', array('as' => 'Task', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@index'));
+    Route::post('/tasks/create', array('as' => 'tasks_create', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@create'));
+    Route::post('/tasks/update', array('as' => 'tasks_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@update'));
+    Route::post('/tasks/delete', array('as' => 'tasks_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@delete'));
 
     //TICKETS
     Route::get('/tickets', array('as' => 'tickets_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TicketController@index'));
