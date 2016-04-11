@@ -28,6 +28,10 @@ use Webaccess\ProjectSquare\Interactors\Planning\DeleteStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Planning\UpdateStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectsInteractor;
+use Webaccess\ProjectSquare\Interactors\Tasks\CreateTaskInteractor;
+use Webaccess\ProjectSquare\Interactors\Tasks\DeleteTaskInteractor;
+use Webaccess\ProjectSquare\Interactors\Tasks\GetTasksInteractor;
+use Webaccess\ProjectSquare\Interactors\Tasks\UpdateTaskInteractor;
 use Webaccess\ProjectSquare\Interactors\Tickets\CreateTicketInteractor;
 use Webaccess\ProjectSquare\Interactors\Tickets\DeleteTicketInteractor;
 use Webaccess\ProjectSquare\Interactors\Tickets\GetTicketInteractor;
@@ -44,6 +48,7 @@ use Webaccess\ProjectSquareLaravel\Repositories\EloquentMessageRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentNotificationRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentStepRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentTaskRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentUserRepository;
 use Webaccess\ProjectSquareLaravel\Services\AlertManager;
@@ -289,6 +294,28 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             return new DeleteStepInteractor(
                 new EloquentStepRepository(),
                 new EloquentProjectRepository()
+            );
+        });
+
+        App::bind('GetTasksInteractor', function() {
+            return new GetTasksInteractor(new EloquentTaskRepository());
+        });
+
+        App::bind('CreateTaskInteractor', function() {
+            return new CreateTaskInteractor(
+                new EloquentTaskRepository()
+            );
+        });
+
+        App::bind('UpdateTaskInteractor', function() {
+            return new UpdateTaskInteractor(
+                new EloquentTaskRepository()
+            );
+        });
+
+        App::bind('DeleteTaskInteractor', function() {
+            return new DeleteTaskInteractor(
+                new EloquentTaskRepository()
             );
         });
 
