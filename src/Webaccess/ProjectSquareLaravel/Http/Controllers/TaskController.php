@@ -12,7 +12,7 @@ class TaskController extends BaseController
 {
     public function index()
     {
-        return view('projectsquare::todo.index', [
+        return view('projectsquare::tasks.index', [
             'tasks' => app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
                 'userID' => $this->getUser()->id]
             ))

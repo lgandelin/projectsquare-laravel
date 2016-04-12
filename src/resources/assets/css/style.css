@@ -8153,6 +8153,8 @@ ul {
       font-weight: bold; }
     .task-template .tasks .task .name:hover {
       text-decoration: line-through; }
+    .task-template .tasks .task .btn-delete-task {
+      cursor: pointer; }
 
 .message-view-template .header {
   overflow: hidden;

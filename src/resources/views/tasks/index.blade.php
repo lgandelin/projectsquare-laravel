@@ -26,7 +26,8 @@
 
                     <div class="form-inline">
                         <div class="form-group">
-                            <label for="name">{{ trans('projectsquare::tasks.new-task') }}</label> : <input type="text" class="form-control new-task"  name="name" id="name" required />
+                            <label for="name">{{ trans('projectsquare::tasks.new-task') }}</label> :
+                            <input type="text" class="form-control new-task"  name="name" id="name" required autocomplete="off" />
                             <input type="submit" class="btn btn-success btn-valid-create-task" value="{{ trans('projectsquare::generic.add') }}" />
                         </div>
                     </div>

@@ -12,7 +12,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/logout', array('as' => 'logout', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\LoginController@logout'));
 
     Route::get('/calendar', array('as' => 'calendar', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@index'));
-    Route::get('/to-do', array('as' => 'Task', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@index'));
+
+    //TASKS
+    Route::get('/tasks', array('as' => 'tasks_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@index'));
     Route::post('/tasks/create', array('as' => 'tasks_create', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@create'));
     Route::post('/tasks/update', array('as' => 'tasks_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@update'));
     Route::post('/tasks/delete', array('as' => 'tasks_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@delete'));
@@ -83,12 +85,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/ticket_statuses/{id}', array('as' => 'ticket_statuses_edit', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\TicketStatusController@edit'));
     Route::post('/ticket_statuses', array('as' => 'ticket_statuses_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\TicketStatusController@update'));
     Route::get('/delete_ticket_status/{id}', array('as' => 'ticket_statuses_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\TicketStatusController@delete'));
-
-    //TO-DO LIST
-    Route::get('/to_do/', array('as' => 'to_do_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@index'));
-    Route::post('/add_to_do', array('as' => 'to_do_store', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@store'));
-    Route::post('/update', array('as' => 'to_do_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@update'));
-    Route::get('/delete/{id}', array('as' => 'to_do_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@delete'));
 
     //MESSAGES
     Route::get('/messages', array('as' => 'messages_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MessageController@index'));
