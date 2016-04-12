@@ -70,7 +70,7 @@ function reloadNotificationsPanel() {
 
     $.ajax({
         type: "GET",
-        url: route_refresh_notifications,
+        url: route_get_notifications,
         data: data,
         success: function(data) {
             if (data.notifications && data.notifications.length > 0) {

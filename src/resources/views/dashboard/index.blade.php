@@ -7,6 +7,8 @@
     <div class="dashboard-content">
         <div class="row">
             <div class="col-lg-8 col-md-12">
+
+                <!-- TICKETS -->
                 <div class="block">
                     <h3>{{ trans('projectsquare::dashboard.last_tickets') }}</h3>
                     <div class="block-content table-responsive">
@@ -43,9 +45,13 @@
                         <a href="{{ route('tickets_index') }}" class="btn btn-sm btn-default pull-right"><span class="glyphicon glyphicon-list-alt"></span> {{ trans('projectsquare::tickets.see_tickets') }}</a>
                     </div>
                 </div>
+                <!-- TICKETS -->
+
             </div>
 
             <div class="col-lg-4 col-md-12">
+
+                <!-- MESSAGES -->
                 <div class="block last-messages">
                     <h3>{{ trans('projectsquare::dashboard.last_messages') }}</h3>
                     <div class="wrapper">
@@ -94,20 +100,28 @@
                     <button class="btn btn-sm btn-success create-conversation"><span class="glyphicon glyphicon-plus"></span> {{ trans('projectsquare::messages.add_conversation') }}</button>
                     <a href="{{ route('messages_index') }}" class="btn btn-sm btn-default pull-right"><span class="glyphicon glyphicon-list-alt"></span> {{ trans('projectsquare::messages.see_messages') }}</a>
                 </div>
+                <!-- MESSAGES -->
+
             </div>
         </div>
 
         <div class="row">
             <div class="col-lg-6 col-md-12">
+
+                <!-- CALENDAR -->
                 <div class="block">
                     <h3>{{ trans('projectsquare::calendar.calendar') }} <a style="float:right" href="{{ route('calendar') }}" class="btn btn-default pull-right"><span class="glyphicon glyphicon-list-alt"></span> {{ trans('projectsquare::calendar.see_calendar') }}</a></h3>
                     <div class="block-content loading">
                         <div id="calendar"></div>
                     </div>
                 </div>
+                <!-- CALENDAR -->
+
             </div>
 
             <div class="col-lg-6 col-md-12">
+
+                <!-- MONITORING -->
                 <div class="block">
                     <h3>{{ trans('projectsquare::dashboard.monitoring_alerts') }}</h3>
                     <div class="block-content table-responsive">
@@ -140,7 +154,9 @@
                         </table>
                     </div>
                 </div>
+                <!-- MONITORING -->
 
+                <!-- TASKS -->
                 <div class="block">
                     <h3>{{ trans('projectsquare::dashboard.tasks') }}</h3>
                     <div class="block-content">
@@ -156,13 +172,15 @@
 
                         <div class="form-inline">
                             <div class="form-group">
-                                <label for="name">{{ trans('projectsquare::tasks.new-task') }}</label> : 
+                                <label for="name">{{ trans('projectsquare::tasks.new-task') }}</label> :
                                 <input type="text" class="form-control new-task"  name="name" id="name" required autocomplete="off" />
                                 <input type="submit" class="btn btn-success btn-valid-create-task" value="{{ trans('projectsquare::generic.add') }}" />
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- TASKS -->
+
             </div>
         </div>
     </div>
