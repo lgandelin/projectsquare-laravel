@@ -87,7 +87,7 @@
                                             </div>
 
                                             <div class="submit">
-                                                <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-sm btn-primary pull-right"><span class="glyphicon glyphicon-share-alt"></span> {{ trans('projectsquare::messages.reply_message') }}</a>
+                                                <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-sm btn-primary pull-right"><span class="glyphicon glyphicon-share-alt"></span> {{ trans('projectsquare::messages.see_message') }}</a>
                                                 <button class="btn btn-sm btn-success pull-right reply-message" data-id="{{ $message->id }}" style="margin-right: 1rem;"><span class="glyphicon glyphicon-comment"></span> {{ trans('projectsquare::messages.reply_message') }}</button>
                                             </div>
                                         </td>
