@@ -68,7 +68,6 @@ class TicketController extends BaseController
 
             $this->request->session()->flash('confirmation', trans('projectsquare::tickets.add_ticket_success'));
         } catch (\Exception $e) {
-            //$this->request->session()->flash('error', trans('projectsquare::tickets.add_ticket_error'));
             $this->request->session()->flash('error', $e->getMessage());
         }
 
@@ -150,7 +149,6 @@ class TicketController extends BaseController
             ]));
             $this->request->session()->flash('confirmation', trans('projectsquare::tickets.delete_ticket_success'));
         } catch (\Exception $e) {
-            //$this->request->session()->flash('error', trans('projectsquare::tickets.delete_ticket_error'));
             $this->request->session()->flash('error', $e->getMessage());
         }
 

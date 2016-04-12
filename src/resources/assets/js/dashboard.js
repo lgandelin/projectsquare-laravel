@@ -22,24 +22,7 @@ $(document).ready(function() {
 
     $('.block-content').removeClass('loading');
 
-    setTimeout(function() {
-        setInterval(reloadNotificationsPanel, 30000);
-    }, 30000);
-});
-
-function reloadNotificationsPanel() {
-    var data = {
-        _token: $('#csrf_token').val()
-    };
-
-    $.ajax({
-        type: "GET",
-        url: route_refresh_notifications,
-        data: data,
-        success: function(data) {
-            if (data.notifications && data.notifications.length > 0) {
-                $('.notifications .badge').addClass('new-notifications').text(data.notifications.length);
-            }
-        }
+    $('.notifications .close').click(function() {
+        $('.notifications').hide(200);
     });
-}
+});

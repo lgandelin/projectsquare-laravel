@@ -12,11 +12,15 @@
         var route_event_update = "{{ route('events_update') }}";
         var route_event_delete = "{{ route('events_delete') }}";
         var route_event_get_infos = "{{ route('events_get_infos') }}";
-        var route_refresh_notifications = "{{ route('refresh_notifications') }}";
+        var route_get_notifications = "{{ route('get_notifications') }}";
+        var route_read_notification = "{{ route('read_notification') }}";
         var route_step_create = "{{ route('steps_create') }}";
         var route_step_update = "{{ route('steps_update') }}";
         var route_step_delete = "{{ route('steps_delete') }}";
         var route_step_get_infos = "{{ route('steps_get_infos') }}";
+        var route_task_create = "{{ route('tasks_create') }}";
+        var route_task_update= "{{ route('tasks_update') }}";
+        var route_task_delete= "{{ route('tasks_delete') }}";
     </script>
     <input type="hidden" id="csrf_token" value="{!! csrf_token() !!}" />
     @yield('scripts')

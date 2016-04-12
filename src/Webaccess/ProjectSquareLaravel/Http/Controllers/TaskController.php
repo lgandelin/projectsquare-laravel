@@ -2,44 +2,78 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
-use Webaccess\ProjectSquareLaravel\Models\Task;
+use Webaccess\ProjectSquare\Requests\Tasks\CreateTaskRequest;
+use Webaccess\ProjectSquare\Requests\Tasks\DeleteTaskRequest;
+use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
+use Webaccess\ProjectSquare\Requests\Tasks\UpdateTaskRequest;
 use Illuminate\Support\Facades\Input;
 
 class TaskController extends BaseController
 {
     public function index()
     {
-        return view('projectsquare::todo.index', [
-            'tasks' => Task::where('user_id', '=', $this->getUser()->id)->get(),
+        return view('projectsquare::tasks.index', [
+            'tasks' => app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
+                'userID' => $this->getUser()->id]
+            ))
         ]);
     }
 
-    public function store()
+    public function create()
     {
-        $task = new Task();
-        $task->name = Input::get('name');
-        $task->status = 0;
-        $task->user_id = $this->getUser()->id;
-        $task->save();
+        try {
+            $response = app()->make('CreateTaskInteractor')->execute(new CreateTaskRequest([
+                'name' => Input::get('name'),
+                'userID' => Input::get('user_id') ? Input::get('user_id') : $this->getUser()->id,
+                'status' => false,
+            ]));
 
-        return redirect()->route('to_do_index');
+            return response()->json([
+                'task' => $response->task
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function update()
     {
-        $task = Task::find(Input::get('id'));
-        $task->status = !$task->status;
-        $task->save();
+        try {
+            $response = app()->make('UpdateTaskInteractor')->execute(new UpdateTaskRequest([
+                'taskID' => Input::get('task_id'),
+                'status' => Input::get('status'),
+                'requesterUserID' => $this->getUser()->id,
+            ]));
 
-        return redirect()->route('to_do_index');
+            return response()->json([
+                'message' => trans('projectsquare::tasks.edit_task_success'),
+                'task' => $response->task
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
-    public function delete($userID)
+    public function delete()
     {
-        $task = Task::find($userID);
+        try {
+            $response = app()->make('DeleteTaskInteractor')->execute(new DeleteTaskRequest([
+                'taskID' => Input::get('task_id'),
+                'requesterUserID' => $this->getUser()->id,
+            ]));
 
-        $task->delete();
-
-        return redirect()->route('to_do_index');
+            return response()->json([
+                'message' => trans('projectsquare::tasks.delete_task_success'),
+                'task' => $response->task
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 }

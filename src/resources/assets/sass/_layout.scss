@@ -1,5 +1,4 @@
 .top-bar {
-    overflow: hidden;
     padding-top: 2rem;
     padding-bottom: 1rem;
 
@@ -15,13 +14,89 @@
         }
     }
 
-    .notifications {
+    .top-right-menu {
+        position: relative;
+
         li {
             display: inline-block;
             margin-right: 2rem;
 
             .new-notifications {
                 background: #DF5A49;
+            }
+
+            .notifications {
+                position: absolute;
+                background: white;
+                border: 2px solid #ccc;
+                padding: 1.5rem;
+                z-index: 999;
+                top: 4rem;
+                right: 0;
+                width: 35rem;
+
+                .close {
+                    position: absolute;
+                    right: 1rem;
+                    top: 1rem;
+                    font-size: 1.5rem;
+                    color: #333;
+                    opacity: 0.75;
+                }
+
+                .title {
+                    font-size: 1.75rem;
+                    font-weight: bold;
+                    display: block;
+                }
+
+                .notification {
+                    margin-bottom: 1rem;
+                    padding-bottom: 1rem;
+                    border-bottom: 1px solid #ccc;
+                    overflow: hidden;
+
+                    .date {
+                        font-weight: bold;
+                        display: block;
+                        float: left;
+                    }
+
+                    .type {
+                        float: right;
+                        margin-bottom: 0.75rem;
+                    }
+
+                    .description {
+                        clear: both;
+                        display: block;
+
+                        .btn {
+                           margin-top: 1rem;
+                        }
+                    }
+
+                    .not-read {
+                        color: #dadada;
+                    }
+
+                    .read {
+                        color: #313131;
+                    }
+
+                    .status {
+                        cursor: pointer;
+                    }
+                }
+                
+                .notification:first-child {
+                    margin-top: 2rem;
+                }
+
+                .notification:last-child {
+                    border: none;
+                    padding-bottom: 0;
+                }
             }
         }
     }

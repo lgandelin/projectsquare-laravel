@@ -1,16 +1,24 @@
 <?php
 
 Route::group(['middleware' => ['web']], function () {
+
     //DASHBOARD
     Route::get('/', array('as' => 'dashboard', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\DashboardController@index'));
-    Route::get('/refresh_notifications', array('as' => 'refresh_notifications', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\DashboardController@refresh_notifications'));
-
     Route::get('/login', array('as' => 'login', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\LoginController@login'));
     Route::post('/login', array('as' => 'login_handler', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\LoginController@authenticate'));
     Route::get('/logout', array('as' => 'logout', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\LoginController@logout'));
 
     Route::get('/calendar', array('as' => 'calendar', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@index'));
-    Route::get('/to-do', array('as' => 'Task', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@index'));
+
+    //NOTIFICATIONS
+    Route::get('/get_notifications', array('as' => 'get_notifications', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\NotificationController@get_notifications'));
+    Route::post('/read_notification', array('as' => 'read_notification', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\NotificationController@read'));
+
+    //TASKS
+    Route::get('/tasks', array('as' => 'tasks_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@index'));
+    Route::post('/tasks/create', array('as' => 'tasks_create', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@create'));
+    Route::post('/tasks/update', array('as' => 'tasks_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@update'));
+    Route::post('/tasks/delete', array('as' => 'tasks_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@delete'));
 
     //TICKETS
     Route::get('/tickets', array('as' => 'tickets_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TicketController@index'));
@@ -79,12 +87,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/ticket_statuses', array('as' => 'ticket_statuses_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\TicketStatusController@update'));
     Route::get('/delete_ticket_status/{id}', array('as' => 'ticket_statuses_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\TicketStatusController@delete'));
 
-    //TODO
-    Route::get('/to_do/', array('as' => 'to_do_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@index'));
-    Route::post('/add_to_do', array('as' => 'to_do_store', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@store'));
-    Route::post('/update', array('as' => 'to_do_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@update'));
-    Route::get('/delete/{id}', array('as' => 'to_do_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@delete'));
-
     //MESSAGES
     Route::get('/messages', array('as' => 'messages_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MessageController@index'));
     Route::get('/messages/add_message', array('as' => 'messages_add', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MessageController@add'));
@@ -102,12 +104,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/calendar/update', array('as' => 'events_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@update'));
     Route::post('/calendar/delete', array('as' => 'events_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@delete'));
 
-    //PLANNInG
+    //PLANNING
     Route::get('/planning/get_step', array('as' => 'steps_get_infos', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\PlanningController@get_step'));
     Route::post('/planning/create', array('as' => 'steps_create', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\PlanningController@create'));
     Route::post('/planning/update', array('as' => 'steps_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\PlanningController@update'));
     Route::post('/planning/delete', array('as' => 'steps_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\PlanningController@delete'));
-    
-    //NOTIFICATIONS
-    Route::get('/notifications', array('as' => 'notifications', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@index'));
 });
