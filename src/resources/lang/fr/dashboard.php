@@ -13,4 +13,5 @@ return [
     'alert_type' => 'Type',
     'alert_project' => 'Projet',
     'see_project' => 'voir le projet',
+    'tasks' => 'Tâches',
 ];

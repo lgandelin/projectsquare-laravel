@@ -8140,20 +8140,20 @@ ul {
   padding-top: 1rem !important;
   padding-bottom: 1rem !important; }
 
-.task-template .tasks {
+.tasks {
   list-style: none;
   display: block;
   padding-left: 0; }
-  .task-template .tasks .task {
+  .tasks .task {
     overflow: hidden; }
-    .task-template .tasks .task .name {
+    .tasks .task .name {
       cursor: pointer;
       float: left;
       margin-right: 10px;
       font-weight: bold; }
-    .task-template .tasks .task .name:hover {
+    .tasks .task .name:hover {
       text-decoration: line-through; }
-    .task-template .tasks .task .btn-delete-task {
+    .tasks .task .btn-delete-task {
       cursor: pointer; }
 
 .message-view-template .header {

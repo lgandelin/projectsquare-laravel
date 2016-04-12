@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Requests\Calendar\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Notifications\GetUnreadNotificationsRequest;
 use Webaccess\ProjectSquare\Requests\Notifications\ReadNotificationRequest;
+use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 use Webaccess\ProjectSquareLaravel\Decorators\NotificationDecorator;
 
 class DashboardController extends BaseController
@@ -18,6 +19,9 @@ class DashboardController extends BaseController
             'alerts' => app()->make('AlertManager')->getLastAlerts(5),
             'events' => app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
                 'userID' => $this->getUser()->id,
+            ])),
+            'tasks' => app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
+                    'userID' => $this->getUser()->id
             ])),
         ]);
     }

@@ -140,12 +140,36 @@
                         </table>
                     </div>
                 </div>
+
+                <div class="block">
+                    <h3>{{ trans('projectsquare::dashboard.tasks') }}</h3>
+                    <div class="block-content">
+                        <ul class="tasks">
+                            @foreach ($tasks as $task)
+                                <li class="task" data-id="{{ $task->id }}" data-status="{{ $task->status }}">
+                                    <span class="name @if($task->status == true)task-status-completed @endif">{{ $task->name }}</span>
+                                    <input type="hidden" name="id" value="{{ $task->id }}" />
+                                    <span class="glyphicon glyphicon-remove btn-delete-task"></span>
+                                </li>
+                            @endforeach
+                        </ul>
+
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label for="name">{{ trans('projectsquare::tasks.new-task') }}</label> : 
+                                <input type="text" class="form-control new-task"  name="name" id="name" required autocomplete="off" />
+                                <input type="submit" class="btn btn-success btn-valid-create-task" value="{{ trans('projectsquare::generic.add') }}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     @include('projectsquare::dashboard.new-message')
     @include('projectsquare::dashboard.create-conversation-modal')
+    @include('projectsquare::templates.new-task')
 @endsection
 
 @section('scripts')
@@ -153,6 +177,7 @@
     <script src="{{ asset('js/vendor/fullcalendar/lib/moment.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/lang-all.js') }}"></script>
+    <script src="{{ asset('js/tasks.js') }}"></script>
     <script>
         var defaultDate = "{{ date('Y-m-d') }}";
         var events = [

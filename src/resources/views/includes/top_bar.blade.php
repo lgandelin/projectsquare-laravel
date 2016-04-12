@@ -29,7 +29,7 @@
                                         Nouvel évènement créé : <strong>{{ $notification->event_name }}</strong>
                                     @endif
                                     <br/>
-                                    <a class="btn btn-sm btn-success" href="{{ $notification->link }}">voir</a>
+                                    <a class="btn btn-sm btn-primary" href="{{ $notification->link }}"><span class="glyphicon glyphicon-share-alt"></span>voir</a>
                                     <span class="glyphicon glyphicon-eye-open pull-right status not-read"></span>
                                 </span>
                             </div>

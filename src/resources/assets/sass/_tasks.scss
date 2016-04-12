@@ -1,27 +1,24 @@
-.task-template {
+.tasks {
+    list-style: none;
+    display: block;
+    padding-left: 0;
 
-    .tasks {
-        list-style: none;
-        display: block;
-        padding-left: 0;
+    .task {
+        overflow: hidden;
 
-        .task {
-            overflow: hidden;
+        .name {
+            cursor: pointer;
+            float: left;
+            margin-right: 10px;
+            font-weight: bold
+        }
 
-            .name {
-                cursor: pointer;
-                float: left;
-                margin-right: 10px;
-                font-weight: bold
-            }
-            
-            .name:hover {
-                text-decoration: line-through;
-            }
+        .name:hover {
+            text-decoration: line-through;
+        }
 
-            .btn-delete-task {
-                cursor: pointer;
-            }
+        .btn-delete-task {
+            cursor: pointer;
         }
     }
 }
