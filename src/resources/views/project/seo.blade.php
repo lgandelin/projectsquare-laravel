@@ -9,25 +9,40 @@
         <div id="embed-api-auth-container" style="display: none;"></div>
 
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-9">
                 <h3>Indicateurs</h3>
                 <br>
+
+                <div class="col-lg-4">
+                    <p>Sessions : <span id="sessions-count" class="number"></span></p>
+                    <p>Utilisateurs : <span id="users-count" class="number"></span></p>
+                    <p>Pages par visite : <span id="pages-per-visit" class="number"></span></p>
+                </div>
+
+                <div class="col-lg-4">
+                    <p>Pages vues : <span id="page-views-count" class="number"></span></p>
+                    <p>Durée moyenne session : <span id="avg-session-duration" class="number"></span></p>
+                </div>
+
+                <div class="col-lg-4">
+                    <p>Taux de rebond : <span id="bounce-rate" class="number"></span></p>
+                    <p>Nouvelles visites : <span id="new-visits-pct" class="number"></span></p>
+                </div>
             </div>
 
-            <div class="col-lg-4">
-                <p>Sessions : <span id="sessions-count" class="number"></span></p>
-                <p>Utilisateurs : <span id="users-count" class="number"></span></p>
-                <p>Pages par visite : <span id="pages-per-visit" class="number"></span></p>
-            </div>
+            <div class="col-lg-3">
+                <h3>Période</h3>
+                <br>
+                <div class="form-group col-lg-6">
+                    <label for="title">Date de début</label>
+                    <input class="form-control datepicker" type="text" placeholder="" id="start_date" autocomplete="off" value="{{ $startDate }}" style="width:175px" />
+                </div>
 
-            <div class="col-lg-4">
-                <p>Pages vues : <span id="page-views-count" class="number"></span></p>
-                <p>Durée moyenne session : <span id="avg-session-duration" class="number"></span></p>
-            </div>
-
-            <div class="col-lg-4">
-                <p>Taux de rebond : <span id="bounce-rate" class="number"></span></p>
-                <p>Nouvelles visites : <span id="new-visits-pct" class="number"></span></p>
+                <div class="form-group col-lg-6">
+                    <label for="title">Date de fin</label>
+                    <input class="form-control datepicker" type="text" placeholder="" id="end_date" autocomplete="off" value="{{ $endDate }}" style="width:175px" />
+                </div>
+                <div id="date-range-selector-1-container"></div>
             </div>
         </div>
 
@@ -66,7 +81,6 @@
 
     <script src="{{ asset('js/vendor/fullcalendar/lib/moment.min.js') }}"></script>
     <script>
-
         var start_date = '30daysAgo';
         var end_date = 'yesterday';
         var viewID = 'ga:{{ $gaViewID }}';
@@ -341,6 +355,26 @@
             });
 
             report7.execute();
+
+
+            $('#start_date, #end_date').change(function() {
+                var query = {
+                    'start-date': moment($('#start_date').val(), 'DD/MM/YYYY').format('YYYY-MM-DD'),
+                    'end-date': moment($('#end_date').val(), 'DD/MM/YYYY').format('YYYY-MM-DD'),
+                };
+
+                dataChart.set({query: query}).execute();
+                dataChart2.set({query: query}).execute();
+                dataChart3.set({query: query}).execute();
+                dataChart4.set({query: query}).execute();
+                report.set({query:query}).execute();
+                report2.set({query:query}).execute();
+                report3.set({query:query}).execute();
+                report4.set({query:query}).execute();
+                report5.set({query:query}).execute();
+                report6.set({query:query}).execute();
+                report7.set({query:query}).execute();
+            });
         });
 
         function formatFloat(value) {

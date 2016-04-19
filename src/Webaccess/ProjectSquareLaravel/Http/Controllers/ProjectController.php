@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Interactors\Tickets\GetTicketInteractor;
 use Webaccess\ProjectSquare\Requests\Planning\GetStepsRequest;
@@ -106,10 +107,11 @@ class ProjectController extends BaseController
     public function seo($projectID)
     {
         $gaViewID = app()->make('SettingManager')->getSettingByKeyAndProject('GA_VIEW_ID', $projectID);
-
         return view('projectsquare::project.seo', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'gaViewID' => ($gaViewID) ? $gaViewID->value : null,
+            'startDate' => (new Carbon())->addDay(-30)->format('d/m/Y'),
+            'endDate' => (new Carbon())->format('d/m/Y'),
         ]);
     }
 }
