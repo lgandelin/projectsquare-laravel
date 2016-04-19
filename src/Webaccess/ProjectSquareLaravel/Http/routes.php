@@ -40,6 +40,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/project/{id}/planning', array('as' => 'project_planning', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@planning', 'middleware' => 'change_current_project'));
     Route::get('/project/{id}/settings', array('as' => 'project_settings', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@settings', 'middleware' => 'change_current_project'));
     Route::post('/project/{id}/settings', array('as' => 'project_settings', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@update_settings'));
+    Route::get('/project/{id}/project_seo', array('as' => 'project_seo', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@seo', 'middleware' => 'change_current_project'));
 
     //AGENCY
     Route::get('/agency/users', array('as' => 'users_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\UserController@index'));

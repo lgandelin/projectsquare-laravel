@@ -8102,6 +8102,16 @@ ul {
     .monitoring-template #key_numbers .content ul li:last-child {
       border-bottom: none; }
 
+.seo-template .loading {
+  background: rgba(255, 255, 255, 0.75) url("../img/loading.gif") center center no-repeat;
+  z-index: 9999;
+  width: 100%;
+  height: 100%; }
+
+.seo-template .number {
+  font-size: 22px;
+  color: #243f75; }
+
 .status {
   font-size: 1.2rem;
   font-weight: bold;

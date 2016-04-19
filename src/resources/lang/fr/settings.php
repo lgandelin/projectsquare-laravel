@@ -8,4 +8,6 @@ return [
     'update_setting_success' => 'Réglage mis à jour avec succès',
     'slack_channel' => 'Channel Slack',
     'slack_channel_placeholder' => 'ex: #projet',
+    'ga_view_id' => 'ID vue Google Analytics',
+    'ga_view_id_placeholder' => 'ex: 110039884',
 ];
