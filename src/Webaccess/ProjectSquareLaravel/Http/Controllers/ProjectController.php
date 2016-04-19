@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Interactors\Tickets\GetTicketInteractor;
 use Webaccess\ProjectSquare\Requests\Planning\GetStepsRequest;
@@ -54,11 +55,13 @@ class ProjectController extends BaseController
         $settingAcceptableLoadingTime = app()->make('SettingManager')->getSettingByKeyAndProject('ACCEPTABLE_LOADING_TIME', $projectID);
         $settingAlertLoadingTimeEmail = app()->make('SettingManager')->getSettingByKeyAndProject('ALERT_LOADING_TIME_EMAIL', $projectID);
         $settingSlackChannel = app()->make('SettingManager')->getSettingByKeyAndProject('SLACK_CHANNEL', $projectID);
+        $gaViewID = app()->make('SettingManager')->getSettingByKeyAndProject('GA_VIEW_ID', $projectID);
 
         return view('projectsquare::project.settings', [
             'acceptable_loading_time' => ($settingAcceptableLoadingTime) ? $settingAcceptableLoadingTime->value : null,
             'alert_loading_time_email' => ($settingAlertLoadingTimeEmail) ? $settingAlertLoadingTimeEmail->value : null,
             'slack_channel' => ($settingSlackChannel) ? $settingSlackChannel->value : null,
+            'ga_view_id' => ($gaViewID) ? $gaViewID->value : null,
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
             'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,
@@ -97,7 +100,18 @@ class ProjectController extends BaseController
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'steps' => app()->make('GetStepsInteractor')->execute(new GetStepsRequest([
                 'projectID' => $projectID
-            ])),
+            ]))
+        ]);
+    }
+
+    public function seo($projectID)
+    {
+        $gaViewID = app()->make('SettingManager')->getSettingByKeyAndProject('GA_VIEW_ID', $projectID);
+        return view('projectsquare::project.seo', [
+            'project' => app()->make('ProjectManager')->getProject($projectID),
+            'gaViewID' => ($gaViewID) ? $gaViewID->value : null,
+            'startDate' => (new Carbon())->addDay(-30)->format('d/m/Y'),
+            'endDate' => (new Carbon())->format('d/m/Y'),
         ]);
     }
 }

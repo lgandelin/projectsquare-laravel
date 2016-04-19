@@ -9,4 +9,5 @@ return [
     'settings' => 'Réglages',
     'messages' => 'Messages',
     'planning' => 'Planning',
+    'seo' => 'Référencement',
 ];

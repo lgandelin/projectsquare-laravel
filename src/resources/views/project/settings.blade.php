@@ -88,5 +88,28 @@
 
             {!! csrf_field() !!}
         </form>
+
+        <form action="{{ route('project_settings', ['id' => $project->id]) }}" method="post">
+            <div class="form-group">
+                <label for="value">{{ trans('projectsquare::settings.ga_view_id') }}</label>
+                <input class="form-control" type="text" placeholder="{{ trans('projectsquare::settings.ga_view_id_placeholder') }}" name="value" @if (isset($ga_view_id))value="{{ $ga_view_id }}"@endif />
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">
+                    <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
+                </button>
+
+                <a href="{{ route('project_index', ['id' => $project->id]) }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
+            </div>
+
+            @if (isset($project->id))
+                <input type="hidden" name="project_id" value="{{ $project->id }}" />
+            @endif
+
+            <input type="hidden" name="key" value="GA_VIEW_ID" />
+
+            {!! csrf_field() !!}
+        </form>
     </div>
 @endsection

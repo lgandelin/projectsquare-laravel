@@ -61,3 +61,17 @@
         }
     }
 }
+
+.seo-template {
+    .loading {
+        background: rgba(255, 255, 255, 0.75) url('../img/loading.gif') center center no-repeat;
+        z-index: 9999;
+        width: 100%;
+        height: 100%;
+    }
+
+    .number {
+        font-size: 22px;
+        color: rgb(36, 63, 117);
+    }
+}
