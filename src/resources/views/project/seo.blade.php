@@ -92,13 +92,15 @@
                 clientid: '77799009845-j8h0uaen79phl58fcsgptv34oqu1jdp7.apps.googleusercontent.com'
             });
 
-            var dataChart = new gapi.analytics.googleCharts.DataChart({
+            var charts = [];
+
+            charts.push(new gapi.analytics.googleCharts.DataChart({
                 query: {
                     ids: viewID,
                     metrics: 'ga:sessions',
                     dimensions: 'ga:date',
                     'start-date': start_date,
-                    'end-date': end_date,
+                    'end-date': end_date
                 },
                 chart: {
                     container: 'chart-container',
@@ -107,10 +109,9 @@
                         width: '100%'
                     }
                 }
-            });
-            dataChart.execute();
+            }));
 
-            var dataChart2 = new gapi.analytics.googleCharts.DataChart({
+            charts.push(new gapi.analytics.googleCharts.DataChart({
                 query: {
                     ids: viewID,
                     metrics: 'ga:sessions',
@@ -128,10 +129,9 @@
                         pieHole: 4/9
                     }
                 }
-            });
-            dataChart2.execute();
+            }));
 
-            var dataChart3 = new gapi.analytics.googleCharts.DataChart({
+            charts.push(new gapi.analytics.googleCharts.DataChart({
                 query: {
                     ids: viewID,
                     metrics: 'ga:sessions',
@@ -149,11 +149,9 @@
                         pieHole: 4/9
                     }
                 }
-            });
-            dataChart3.execute();
+            }));
 
-
-            var dataChart4 = new gapi.analytics.googleCharts.DataChart({
+            charts.push(new gapi.analytics.googleCharts.DataChart({
                 query: {
                     ids: viewID,
                     metrics: 'ga:sessions',
@@ -171,21 +169,17 @@
                         pieHole: 4/9
                     }
                 }
-            });
-            dataChart4.execute();
+            }));
 
-
-            var report = new gapi.analytics.report.Data({
+            charts.push(new gapi.analytics.report.Data({
                 query: {
                     ids: viewID,
                     metrics: 'ga:sessions',
                     dimensions: 'ga:date',
                     'start-date': start_date,
-                    'end-date': end_date,
+                    'end-date': end_date
                 }
-            });
-
-            report.on('success', function handleCoreAPIResponse(resultsAsObject) {
+            }).on('success', function handleCoreAPIResponse(resultsAsObject) {
                 var total = 0;
 
                 if (resultsAsObject.rows.length > 0) {
@@ -194,12 +188,9 @@
                     });
                     $('#sessions-count').text(total);
                 }
-            });
+            }));
 
-            report.execute();
-
-
-            var report2 = new gapi.analytics.report.Data({
+            charts.push(new gapi.analytics.report.Data({
                 query: {
                     ids: viewID,
                     metrics: 'ga:users',
@@ -207,9 +198,7 @@
                     'start-date': start_date,
                     'end-date': end_date,
                 }
-            });
-
-            report2.on('success', function handleCoreAPIResponse(resultsAsObject) {
+            }).on('success', function handleCoreAPIResponse(resultsAsObject) {
                 var total = 0;
 
                 if (resultsAsObject.rows.length > 0) {
@@ -218,14 +207,9 @@
                     });
                     $('#users-count').text(total);
                 }
-            });
+            }));
 
-            report2.execute();
-
-
-
-
-            var report3 = new gapi.analytics.report.Data({
+            charts.push(new gapi.analytics.report.Data({
                 query: {
                     ids: viewID,
                     metrics: 'ga:avgSessionDuration',
@@ -233,9 +217,7 @@
                     'start-date': start_date,
                     'end-date': end_date,
                 }
-            });
-
-            report3.on('success', function handleCoreAPIResponse(resultsAsObject) {
+            }).on('success', function handleCoreAPIResponse(resultsAsObject) {
                 var total = 0;
 
                 if (resultsAsObject.rows.length > 0) {
@@ -245,13 +227,9 @@
                     total /= resultsAsObject.rows.length;
                     $('#avg-session-duration').text(formatToSeconds(total));
                 }
-            });
+            }));
 
-            report3.execute();
-
-
-
-            var report4 = new gapi.analytics.report.Data({
+            charts.push(new gapi.analytics.report.Data({
                 query: {
                     ids: viewID,
                     metrics: 'ga:bounceRate',
@@ -259,9 +237,7 @@
                     'start-date': start_date,
                     'end-date': end_date,
                 }
-            });
-
-            report4.on('success', function handleCoreAPIResponse(resultsAsObject) {
+            }).on('success', function handleCoreAPIResponse(resultsAsObject) {
                 var total = 0;
 
                 if (resultsAsObject.rows.length > 0) {
@@ -271,15 +247,9 @@
                     total /= resultsAsObject.rows.length;
                     $('#bounce-rate').text(formatFloat(total) + '%');
                 }
-            });
+            }));
 
-            report4.execute();
-
-
-
-
-
-            var report5 = new gapi.analytics.report.Data({
+            charts.push(new gapi.analytics.report.Data({
                 query: {
                     ids: viewID,
                     metrics: 'ga:pageviews',
@@ -287,9 +257,7 @@
                     'start-date': start_date,
                     'end-date': end_date,
                 }
-            });
-
-            report5.on('success', function handleCoreAPIResponse(resultsAsObject) {
+            }).on('success', function handleCoreAPIResponse(resultsAsObject) {
                 var total = 0;
 
                 if (resultsAsObject.rows.length > 0) {
@@ -298,14 +266,9 @@
                     });
                     $('#page-views-count').text(total);
                 }
-            });
+            }));
 
-            report5.execute();
-
-
-
-
-            var report6 = new gapi.analytics.report.Data({
+            charts.push(new gapi.analytics.report.Data({
                 query: {
                     ids: viewID,
                     metrics: 'ga:percentNewSessions',
@@ -313,9 +276,7 @@
                     'start-date': start_date,
                     'end-date': end_date,
                 }
-            });
-
-            report6.on('success', function handleCoreAPIResponse(resultsAsObject) {
+            }).on('success', function handleCoreAPIResponse(resultsAsObject) {
                 var total = 0;
 
                 if (resultsAsObject.rows.length > 0) {
@@ -325,14 +286,9 @@
                     total /= resultsAsObject.rows.length;
                     $('#new-visits-pct').text(formatFloat(total) + '%');
                 }
-            });
+            }));
 
-            report6.execute();
-
-
-
-
-            var report7 = new gapi.analytics.report.Data({
+            charts.push(new gapi.analytics.report.Data({
                 query: {
                     ids: viewID,
                     metrics: 'ga:pageviewsPerSession',
@@ -340,9 +296,7 @@
                     'start-date': start_date,
                     'end-date': end_date,
                 }
-            });
-
-            report7.on('success', function handleCoreAPIResponse(resultsAsObject) {
+            }).on('success', function handleCoreAPIResponse(resultsAsObject) {
                 var total = 0;
 
                 if (resultsAsObject.rows.length > 0) {
@@ -352,10 +306,11 @@
                     total /= resultsAsObject.rows.length;
                     $('#pages-per-visit').text(formatFloat(total));
                 }
-            });
+            }));
 
-            report7.execute();
-
+            for (i in charts) {
+                charts[i].execute();
+            }
 
             $('#start_date, #end_date').change(function() {
                 var query = {
@@ -363,17 +318,9 @@
                     'end-date': moment($('#end_date').val(), 'DD/MM/YYYY').format('YYYY-MM-DD'),
                 };
 
-                dataChart.set({query: query}).execute();
-                dataChart2.set({query: query}).execute();
-                dataChart3.set({query: query}).execute();
-                dataChart4.set({query: query}).execute();
-                report.set({query:query}).execute();
-                report2.set({query:query}).execute();
-                report3.set({query:query}).execute();
-                report4.set({query:query}).execute();
-                report5.set({query:query}).execute();
-                report6.set({query:query}).execute();
-                report7.set({query:query}).execute();
+                for (i in charts) {
+                    charts[i].set({query: query}).execute();
+                }
             });
         });
 
