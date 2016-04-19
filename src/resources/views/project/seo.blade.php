@@ -10,7 +10,7 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h3>Chiffres</h3>
+                <h3>Indicateurs</h3>
                 <br>
             </div>
 
@@ -69,7 +69,7 @@
 
         var start_date = '30daysAgo';
         var end_date = 'yesterday';
-        var viewID = 'ga:56471361';
+        var viewID = 'ga:{{ $gaViewID }}';
 
         gapi.analytics.ready(function() {
 
