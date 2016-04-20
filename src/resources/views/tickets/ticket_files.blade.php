@@ -7,14 +7,14 @@
                 @foreach($files as $file)
                     <tr>
                         <td width="250">
-                            <a href="{{ asset('uploads' . $file->path) }}" title="{{ $file->name }}" target="_blank">
-                                <img class="thumbnail" src="{{ asset('uploads' . $file->thumbnail_path) }}" alt="{{ $file->name }}" width="135" height="80" />
+                            <a href="{{ asset('uploads/tickets' . $file->path) }}" title="{{ $file->name }}" target="_blank">
+                                <img class="thumbnail" src="{{ asset('uploads/tickets' . $file->thumbnail_path) }}" alt="{{ $file->name }}" width="135" height="80" />
                             </a>
                         </td>
-                        <td><a href="{{ asset('uploads' . $file->path) }}" title="{{ $file->name }}" target="_blank">{{ $file->name }}</a></td>
+                        <td><a href="{{ asset('uploads/tickets' . $file->path) }}" title="{{ $file->name }}" target="_blank">{{ $file->name }}</a></td>
                         <td width="150">{{ \Webaccess\ProjectSquareLaravel\Tools\FileTool::convertFileSize($file->size) }}</td>
                         <td width="275">
-                            <a href="{{ asset('uploads' . $file->path) }}" class="btn btn-success" download="{{ $file->name }}"><i class="glyphicon glyphicon-download"></i> {{ trans('projectsquare::generic.download') }}</a>
+                            <a href="{{ asset('uploads/tickets' . $file->path) }}" class="btn btn-success" download="{{ $file->name }}"><i class="glyphicon glyphicon-download"></i> {{ trans('projectsquare::generic.download') }}</a>
                             <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> {{ trans('projectsquare::generic.delete') }}</a>
                         </td>
                     </tr>

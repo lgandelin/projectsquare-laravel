@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Interactors\Tickets\GetTicketInteractor;
 use Webaccess\ProjectSquare\Requests\Planning\GetStepsRequest;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
+use Webaccess\ProjectSquareLaravel\Tools\UploadTool;
 
 class ProjectController extends BaseController
 {
@@ -113,5 +114,52 @@ class ProjectController extends BaseController
             'startDate' => (new Carbon())->addDay(-30)->format('d/m/Y'),
             'endDate' => (new Carbon())->format('d/m/Y'),
         ]);
+    }
+
+    public function files($projectID)
+    {
+        return view('projectsquare::project.files', [
+            'project' => app()->make('ProjectManager')->getProject($projectID),
+            'files' => app()->make('FileManager')->getFilesByProject($projectID)
+        ]);
+    }
+
+    public function upload_file()
+    {
+        try {
+            if ($data = UploadTool::uploadFileForProject(
+                Input::file('files'),
+                Input::get('project_id')
+            )) {
+                $fileID = app()->make('FileManager')->createFile(
+                    $data->name,
+                    $data->path,
+                    $data->thumbnailPath,
+                    $data->mimeType,
+                    $data->size,
+                    null,
+                    Input::get('project_id')
+                );
+
+                $data->deleteUrl = action('\Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@delete_file', ['id' => $fileID]);
+                $data->deleteType = 'GET';
+            }
+
+            return response()->json(['files' => [$data]], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function delete_file($fileID)
+    {
+        try {
+            app()->make('FileManager')->deleteFile($fileID);
+            $this->request->session()->flash('confirmation', trans('projectsquare::files.delete_file_success'));
+        } catch (\Exception $e) {
+            $this->request->session()->flash('error', trans('projectsquare::files.delete_file_error'));
+        }
+
+        return redirect()->back();
     }
 }

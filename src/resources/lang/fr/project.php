@@ -10,4 +10,5 @@ return [
     'messages' => 'Messages',
     'planning' => 'Planning',
     'seo' => 'Référencement',
+    'files' => 'Fichiers',
 ];

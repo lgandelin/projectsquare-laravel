@@ -20,14 +20,19 @@ class FileManager
         return EloquentFileRepository::getFilesByTicket($ticketID);
     }
 
-    public static function createFile($name, $path, $thumbnailPath, $mimeType, $size, $ticketID)
+    public static function getFilesByProject($ticketID)
     {
-        return EloquentFileRepository::createFile($name, $path, $thumbnailPath, $mimeType, $size, $ticketID);
+        return EloquentFileRepository::getFilesByProject($ticketID);
     }
 
-    public static function updateFile($fileID, $name, $path, $thumbnailPath, $mimeType, $size, $ticketID)
+    public static function createFile($name, $path, $thumbnailPath, $mimeType, $size, $ticketID = null, $projectID = null)
     {
-        return EloquentFileRepository::updateFile($fileID, $name, $path, $thumbnailPath, $mimeType, $size, $ticketID);
+        return EloquentFileRepository::createFile($name, $path, $thumbnailPath, $mimeType, $size, $ticketID, $projectID);
+    }
+
+    public static function updateFile($fileID, $name, $path, $thumbnailPath, $mimeType, $size, $ticketID = null, $projectID = null)
+    {
+        return EloquentFileRepository::updateFile($fileID, $name, $path, $thumbnailPath, $mimeType, $size, $ticketID, $projectID);
     }
 
     public static function deleteFile($fileID)

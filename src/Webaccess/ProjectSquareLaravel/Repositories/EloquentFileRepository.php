@@ -18,15 +18,15 @@ class EloquentFileRepository implements FileRepository
         return Ticket::find($ticketID)->files;
     }
 
-    public static function createFile($name, $path, $thumbnailPath, $mimeType, $size, $ticketID)
+    public static function createFile($name, $path, $thumbnailPath, $mimeType, $size, $ticketID, $projectID)
     {
         $file = new File();
         $file->save();
 
-        return self::updateFile($file->id, $name, $path, $thumbnailPath, $mimeType, $size, $ticketID);
+        return self::updateFile($file->id, $name, $path, $thumbnailPath, $mimeType, $size, $ticketID, $projectID);
     }
 
-    public static function updateFile($fileID, $name, $path, $thumbnailPath, $mimeType, $size, $ticketID)
+    public static function updateFile($fileID, $name, $path, $thumbnailPath, $mimeType, $size, $ticketID, $projectID)
     {
         $file = self::getFile($fileID);
         $file->name = $name;
@@ -35,6 +35,7 @@ class EloquentFileRepository implements FileRepository
         $file->mime_type = $mimeType;
         $file->size = $size;
         $file->ticket_id = $ticketID;
+        $file->project_id = $projectID;
         $file->save();
 
         return $fileID;
@@ -44,5 +45,10 @@ class EloquentFileRepository implements FileRepository
     {
         $file = self::getFile($fileID);
         $file->delete();
+    }
+
+    public static function getFilesByProject($projectID)
+    {
+        return File::where('project_id', '=', $projectID)->get();
     }
 }
