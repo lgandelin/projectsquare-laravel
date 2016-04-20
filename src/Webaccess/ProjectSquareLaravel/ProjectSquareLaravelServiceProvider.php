@@ -74,6 +74,7 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         Context::set('event_dispatcher', new EventDispatcher());
 
         Event::listen(\Webaccess\ProjectSquareLaravel\Events\AlertWebsiteLoadingTimeEvent::class, \Webaccess\ProjectSquareLaravel\Listeners\AlertWebsiteLoadingTimeSlackNotification::class);
+        Event::listen(\Webaccess\ProjectSquareLaravel\Events\AlertWebsiteStatusCodeEvent::class, \Webaccess\ProjectSquareLaravel\Listeners\AlertWebsiteStatusCodeSlackNotification::class);
         //Event::listen(\Webaccess\ProjectSquareLaravel\Events\AlertWebsiteLoadingTimeEvent::class, \Webaccess\ProjectSquareLaravel\Listeners\AlertWebsiteLoadingTimeEmailNotification::class);
         //Event::listen(\Webaccess\ProjectSquareLaravel\Events\ConversationCreatedEvent::class, \Webaccess\ProjectSquareLaravel\Listeners\ConversationCreatedEmailNotification::class);
 
@@ -327,6 +328,7 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             'Webaccess\ProjectSquareLaravel\Commands\CreateUserCommand',
             'Webaccess\ProjectSquareLaravel\Commands\PingWebsiteCommand',
             'Webaccess\ProjectSquareLaravel\Commands\AlertLoadingTimeCommand',
+            'Webaccess\ProjectSquareLaravel\Commands\AlertStatusCodeCommand',
         ]);
     }
 }
