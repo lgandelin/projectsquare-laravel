@@ -7,8 +7,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/login', array('as' => 'login', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\LoginController@login'));
     Route::post('/login', array('as' => 'login_handler', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\LoginController@authenticate'));
     Route::get('/logout', array('as' => 'logout', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\LoginController@logout'));
+    Route::get('/forgotten_password', array('as' => 'forgotten_password', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\LoginController@forgotten_password'));
+    Route::post('/forgotten_password_handler', array('as' => 'forgotten_password_handler', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\LoginController@forgotten_password_handler'));
 
-    Route::get('/calendar', array('as' => 'calendar', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@index'));
+    Route::get('/planning', array('as' => 'planning', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\EventsController@index'));
 
     //NOTIFICATIONS
     Route::get('/get_notifications', array('as' => 'get_notifications', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\NotificationController@get_notifications'));
@@ -36,11 +38,15 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/project/{id}/cms', array('as' => 'project_cms', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@cms', 'middleware' => 'change_current_project'));
     Route::get('/project/{id}/tickets', array('as' => 'project_tickets', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@tickets', 'middleware' => 'change_current_project'));
     Route::get('/project/{id}/monitoring', array('as' => 'project_monitoring', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@monitoring', 'middleware' => 'change_current_project'));
-    Route::get('/project/{id}/messages', array('as' => 'project_messages', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@messages', 'middleware' => 'change_current_project'));
-    Route::get('/project/{id}/planning', array('as' => 'project_planning', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@planning', 'middleware' => 'change_current_project'));
+    Route::get('/project/{id}/calendar', array('as' => 'project_calendar', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@calendar', 'middleware' => 'change_current_project'));
     Route::get('/project/{id}/settings', array('as' => 'project_settings', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@settings', 'middleware' => 'change_current_project'));
     Route::post('/project/{id}/settings', array('as' => 'project_settings', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@update_settings'));
     Route::get('/project/{id}/project_seo', array('as' => 'project_seo', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@seo', 'middleware' => 'change_current_project'));
+    Route::get('/project/{id}/messages', array('as' => 'project_messages', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@messages', 'middleware' => 'change_current_project'));
+    Route::get('/project/{id}/files', array('as' => 'project_files', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@files', 'middleware' => 'change_current_project'));
+    Route::post('/project/files/upload', array('as' => 'projects_files_upload', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@upload_file'));
+    Route::get('/project/files/delete/{id}', array('as' => 'projects_files_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@delete_file'));
+
 
     //AGENCY
     Route::get('/agency/users', array('as' => 'users_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\UserController@index'));
@@ -99,15 +105,15 @@ Route::group(['middleware' => ['web']], function () {
     //MONITORING
     Route::get('/monitoring', array('as' => 'monitoring_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@index'));
 
-    //CALENDAR
-    Route::get('/calendar/get_event', array('as' => 'events_get_infos', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@get_event'));
-    Route::post('/calendar/create', array('as' => 'events_create', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@create'));
-    Route::post('/calendar/update', array('as' => 'events_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@update'));
-    Route::post('/calendar/delete', array('as' => 'events_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\CalendarController@delete'));
-
     //PLANNING
-    Route::get('/planning/get_step', array('as' => 'steps_get_infos', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\PlanningController@get_step'));
-    Route::post('/planning/create', array('as' => 'steps_create', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\PlanningController@create'));
-    Route::post('/planning/update', array('as' => 'steps_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\PlanningController@update'));
-    Route::post('/planning/delete', array('as' => 'steps_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\PlanningController@delete'));
+    Route::get('/planning/get_event', array('as' => 'events_get_infos', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\EventsController@get_event'));
+    Route::post('/planning/create', array('as' => 'events_create', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\EventsController@create'));
+    Route::post('/planning/update', array('as' => 'events_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\EventsController@update'));
+    Route::post('/planning/delete', array('as' => 'events_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\EventsController@delete'));
+
+    //CALENDAR
+    Route::get('/calendar/get_step', array('as' => 'steps_get_infos', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\StepsController@get_step'));
+    Route::post('/calendar/create', array('as' => 'steps_create', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\StepsController@create'));
+    Route::post('/calendar/update', array('as' => 'steps_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\StepsController@update'));
+    Route::post('/calendar/delete', array('as' => 'steps_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\StepsController@delete'));
 });

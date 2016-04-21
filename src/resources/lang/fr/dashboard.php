@@ -12,6 +12,7 @@ return [
     'alert_date' => 'Date',
     'alert_type' => 'Type',
     'alert_project' => 'Projet',
+    'alert_variables' => 'Variables',
     'see_project' => 'voir le projet',
     'tasks' => 'Tâches',
 ];

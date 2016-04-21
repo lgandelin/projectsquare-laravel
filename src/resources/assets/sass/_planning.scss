@@ -1,12 +1,9 @@
-#planning {
-
-    .fc-event .fc-content {
-        padding-top: 0.75rem !important;
-        padding-bottom: 0.75rem !important;
-    }
+.current-event {
+    background: #DF5A49 !important;
+    border: 1px solid #DF5A49 !important;
 }
 
-#step-infos{
+#event-infos{
     height: 350px;
     margin-bottom: 4rem;
 
@@ -16,5 +13,17 @@
         z-index: 9999;
         width: 100%;
         height: 100%;
+    }
+}
+
+#tickets-list {
+    .ticket {
+        min-height: 35px;
+    }
+}
+
+#planning {
+    a[href]:hover {
+        text-decoration: underline;
     }
 }

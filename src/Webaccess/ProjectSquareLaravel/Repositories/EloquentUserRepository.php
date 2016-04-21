@@ -25,10 +25,15 @@ class EloquentUserRepository implements UserRepository
         return User::all();
     }
 
+    public function getUserModel($userID)
+    {
+        return User::find($userID);
+    }
+
     public function getUser($userID)
     {
         $user = null;
-        if ($userModel = User::find($userID)) {
+        if ($userModel = $this->getUserModel($userID)) {
             $user = new UserEntity();
             $user->id = $userModel->id;
             $user->email = $userModel->email;
@@ -55,7 +60,7 @@ class EloquentUserRepository implements UserRepository
 
     public function updateUser($userID, $firstName, $lastName, $email, $password, $clientID)
     {
-        $user = self::getUser($userID);
+        $user = self::getUserModel($userID);
         $user->first_name = $firstName;
         $user->last_name = $lastName;
         $user->email = $email;
@@ -68,7 +73,7 @@ class EloquentUserRepository implements UserRepository
 
     public function deleteUser($userID)
     {
-        $user = self::getUser($userID);
+        $user = self::getUserModel($userID);
         $user->delete();
     }
 

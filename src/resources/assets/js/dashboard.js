@@ -21,8 +21,4 @@ $(document).ready(function() {
     });
 
     $('.block-content').removeClass('loading');
-
-    $('.notifications .close').click(function() {
-        $('.notifications').hide(200);
-    });
 });

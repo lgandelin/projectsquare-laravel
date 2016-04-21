@@ -4,12 +4,12 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Decorators\StepDecorator;
-use Webaccess\ProjectSquare\Requests\Planning\CreateStepRequest;
-use Webaccess\ProjectSquare\Requests\Planning\DeleteStepRequest;
-use Webaccess\ProjectSquare\Requests\Planning\GetStepRequest;
-use Webaccess\ProjectSquare\Requests\Planning\UpdateStepRequest;
+use Webaccess\ProjectSquare\Requests\Steps\CreateStepRequest;
+use Webaccess\ProjectSquare\Requests\Steps\DeleteStepRequest;
+use Webaccess\ProjectSquare\Requests\Steps\GetStepRequest;
+use Webaccess\ProjectSquare\Requests\Steps\UpdateStepRequest;
 
-class PlanningController extends BaseController
+class StepsController extends BaseController
 {
     public function get_step()
     {

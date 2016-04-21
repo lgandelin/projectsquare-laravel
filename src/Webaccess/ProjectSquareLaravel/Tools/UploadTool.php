@@ -9,7 +9,7 @@ class UploadTool
     const UPLOADS_FOLDER = 'uploads';
     public static function uploadFileForTicket($files, $ticketID)
     {
-        $uploadsFolder = public_path(self::UPLOADS_FOLDER);
+        $uploadsFolder = public_path(self::UPLOADS_FOLDER) . '/tickets';
         $ticketFolder = '/'.$ticketID.'/';
         $destinationPath = $uploadsFolder.$ticketFolder;
 
@@ -29,8 +29,40 @@ class UploadTool
         $data->mimeType = $mimeType;
         $data->path = $ticketFolder.$uploadedFile->getFilename();
         $data->thumbnailPath = $ticketFolder.$thumbnailName;
-        $data->url = asset('/'.self::UPLOADS_FOLDER.$data->path);
-        $data->thumbnailUrl = asset('/'.self::UPLOADS_FOLDER.$data->thumbnailPath);
+        $data->url = asset('/'.self::UPLOADS_FOLDER.'/tickets'.$data->path);
+        $data->thumbnailUrl = asset('/'.self::UPLOADS_FOLDER.'/tickets'.$data->thumbnailPath);
+        $data->deleteUrl = null;
+        $data->deleteType = null;
+        $data->fileID = time();
+
+        return $data;
+    }
+
+
+    public static function uploadFileForProject($files, $projectID)
+    {
+        $uploadsFolder = public_path(self::UPLOADS_FOLDER) . '/projects';
+        $ticketFolder = '/'.$projectID.'/';
+        $destinationPath = $uploadsFolder.$ticketFolder;
+
+        self::createFolderIfNotExists($uploadsFolder);
+        self::createFolderIfNotExists($destinationPath);
+
+        $uploadedFile = null;
+        $thumbnailName = null;
+        foreach ($files as $file) {
+            $mimeType = $file->getMimeType();
+            $uploadedFile = $file->move($destinationPath, StringTool::slugify($file->getClientOriginalName()));
+            $thumbnailName = self::createThumbnail($destinationPath, $uploadedFile, $mimeType);
+        }
+        $data = new \StdClass();
+        $data->name = $uploadedFile->getFilename();
+        $data->size = $uploadedFile->getSize();
+        $data->mimeType = $mimeType;
+        $data->path = $ticketFolder.$uploadedFile->getFilename();
+        $data->thumbnailPath = $ticketFolder.$thumbnailName;
+        $data->url = asset('/'.self::UPLOADS_FOLDER.'/projects'.$data->path);
+        $data->thumbnailUrl = asset('/'.self::UPLOADS_FOLDER.'/projects'.$data->thumbnailPath);
         $data->deleteUrl = null;
         $data->deleteType = null;
         $data->fileID = time();

@@ -56,7 +56,7 @@
                                     <i class="fa fa-btn fa-sign-in"></i>Se connecter <span class="glyphicon glyphicon-log-in" style="margin-left: 1rem"></span>
                                 </button>
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Mot de passe oublié ?</a>
+                                <a class="btn btn-link" href="{{ route('forgotten_password') }}">Mot de passe oublié ?</a>
                             </div>
                         </div>
                     </form>

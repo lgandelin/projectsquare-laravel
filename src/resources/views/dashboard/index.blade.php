@@ -108,14 +108,14 @@
         <div class="row">
             <div class="col-lg-6 col-md-12">
 
-                <!-- CALENDAR -->
+                <!-- PLANNING -->
                 <div class="block">
-                    <h3>{{ trans('projectsquare::calendar.calendar') }} <a style="float:right" href="{{ route('calendar') }}" class="btn btn-default pull-right"><span class="glyphicon glyphicon-list-alt"></span> {{ trans('projectsquare::calendar.see_calendar') }}</a></h3>
+                    <h3>{{ trans('projectsquare::calendar.calendar') }} <a style="float:right" href="{{ route('planning') }}" class="btn btn-default pull-right"><span class="glyphicon glyphicon-list-alt"></span> {{ trans('projectsquare::calendar.see_calendar') }}</a></h3>
                     <div class="block-content loading">
                         <div id="calendar"></div>
                     </div>
                 </div>
-                <!-- CALENDAR -->
+                <!-- PLANNING -->
 
             </div>
 
@@ -132,7 +132,7 @@
                                 <th>{{ trans('projectsquare::dashboard.alert_date') }}</th>
                                 <th>{{ trans('projectsquare::dashboard.alert_type') }}</th>
                                 <th>{{ trans('projectsquare::dashboard.alert_project') }}</th>
-                                <th>{{ trans('projectsquare::monitoring.loading_time_in_seconds') }}</th>
+                                <th>{{ trans('projectsquare::dashboard.alert_variables') }}</th>
                                 <th>{{ trans('projectsquare::generic.action') }}</th>
                             </tr>
                             </thead>
@@ -144,7 +144,13 @@
                                         <td>{{ date('d/m/Y H:i', strtotime($alert->created_at)) }}</td>
                                         <td><span class="badge">{{ $alert->type }}</span></td>
                                         <td><a href="{{ route('project_index', ['id' => $alert->project->id]) }}"><span class="label" style="background: {{ $alert->project->color }}">{{ $alert->project->client->name }}</span> {{ $alert->project->name }}</a></td>
-                                        <td>{{ number_format($alert->variables->loading_time, 2) }}s</td>
+                                        <td>
+                                            @if ($alert->type == 'WEBSITE_LOADING_TIME')
+                                                {{ number_format($alert->variables->loading_time, 2) }}s
+                                            @elseif ($alert->type == 'WEBSITE_STATUS_CODE')
+                                                {{ $alert->variables->status_code }}
+                                            @endif
+                                        </td>
                                         <td>
                                             <a href="{{ route('project_monitoring', ['id' => $alert->project->id]) }}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-share-alt"></span> {{ trans('projectsquare::dashboard.see_project') }}</a>
                                         </td>

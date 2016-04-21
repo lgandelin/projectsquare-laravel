@@ -20,4 +20,9 @@ class File extends Model
     {
         return $this->belongsTo('Webaccess\ProjectSquareLaravel\Models\Ticket');
     }
+
+    public function project()
+    {
+        return $this->belongsTo('Webaccess\ProjectSquareLaravel\Models\Project');
+    }
 }

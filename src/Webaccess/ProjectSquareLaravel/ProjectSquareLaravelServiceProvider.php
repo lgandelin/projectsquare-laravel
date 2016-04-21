@@ -12,20 +12,20 @@ use Webaccess\ProjectSquare\Context;
 use Webaccess\ProjectSquare\Contracts\EventManager;
 use Webaccess\ProjectSquare\Contracts\Translator;
 use Webaccess\ProjectSquare\Events\Events;
-use Webaccess\ProjectSquare\Interactors\Calendar\CreateEventInteractor;
-use Webaccess\ProjectSquare\Interactors\Calendar\DeleteEventInteractor;
-use Webaccess\ProjectSquare\Interactors\Calendar\GetEventInteractor;
-use Webaccess\ProjectSquare\Interactors\Calendar\GetEventsInteractor;
-use Webaccess\ProjectSquare\Interactors\Calendar\UpdateEventInteractor;
+use Webaccess\ProjectSquare\Interactors\Events\CreateEventInteractor;
+use Webaccess\ProjectSquare\Interactors\Events\DeleteEventInteractor;
+use Webaccess\ProjectSquare\Interactors\Events\GetEventInteractor;
+use Webaccess\ProjectSquare\Interactors\Events\GetEventsInteractor;
+use Webaccess\ProjectSquare\Interactors\Events\UpdateEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Messages\CreateConversationInteractor;
 use Webaccess\ProjectSquare\Interactors\Messages\CreateMessageInteractor;
 use Webaccess\ProjectSquare\Interactors\Notifications\GetNotificationsInteractor;
 use Webaccess\ProjectSquare\Interactors\Notifications\ReadNotificationInteractor;
-use Webaccess\ProjectSquare\Interactors\Planning\GetStepInteractor;
-use Webaccess\ProjectSquare\Interactors\Planning\GetStepsInteractor;
-use Webaccess\ProjectSquare\Interactors\Planning\CreateStepInteractor;
-use Webaccess\ProjectSquare\Interactors\Planning\DeleteStepInteractor;
-use Webaccess\ProjectSquare\Interactors\Planning\UpdateStepInteractor;
+use Webaccess\ProjectSquare\Interactors\Steps\GetStepInteractor;
+use Webaccess\ProjectSquare\Interactors\Steps\GetStepsInteractor;
+use Webaccess\ProjectSquare\Interactors\Steps\CreateStepInteractor;
+use Webaccess\ProjectSquare\Interactors\Steps\DeleteStepInteractor;
+use Webaccess\ProjectSquare\Interactors\Steps\UpdateStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectsInteractor;
 use Webaccess\ProjectSquare\Interactors\Tasks\CreateTaskInteractor;
@@ -74,6 +74,7 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         Context::set('event_dispatcher', new EventDispatcher());
 
         Event::listen(\Webaccess\ProjectSquareLaravel\Events\AlertWebsiteLoadingTimeEvent::class, \Webaccess\ProjectSquareLaravel\Listeners\AlertWebsiteLoadingTimeSlackNotification::class);
+        Event::listen(\Webaccess\ProjectSquareLaravel\Events\AlertWebsiteStatusCodeEvent::class, \Webaccess\ProjectSquareLaravel\Listeners\AlertWebsiteStatusCodeSlackNotification::class);
         //Event::listen(\Webaccess\ProjectSquareLaravel\Events\AlertWebsiteLoadingTimeEvent::class, \Webaccess\ProjectSquareLaravel\Listeners\AlertWebsiteLoadingTimeEmailNotification::class);
         //Event::listen(\Webaccess\ProjectSquareLaravel\Events\ConversationCreatedEvent::class, \Webaccess\ProjectSquareLaravel\Listeners\ConversationCreatedEmailNotification::class);
 
@@ -327,6 +328,7 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             'Webaccess\ProjectSquareLaravel\Commands\CreateUserCommand',
             'Webaccess\ProjectSquareLaravel\Commands\PingWebsiteCommand',
             'Webaccess\ProjectSquareLaravel\Commands\AlertLoadingTimeCommand',
+            'Webaccess\ProjectSquareLaravel\Commands\AlertStatusCodeCommand',
         ]);
     }
 }

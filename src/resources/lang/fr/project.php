@@ -8,6 +8,7 @@ return [
     'monitoring' => 'Monitoring',
     'settings' => 'Réglages',
     'messages' => 'Messages',
-    'planning' => 'Planning',
+    'calendar' => 'Calendrier',
     'seo' => 'Référencement',
+    'files' => 'Fichiers',
 ];
