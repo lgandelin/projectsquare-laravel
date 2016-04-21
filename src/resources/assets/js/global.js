@@ -60,6 +60,10 @@ $(document).ready(function() {
             }
         });
     });
+
+    $('.notifications .close').click(function() {
+        $('.notifications').hide(200);
+    });
 });
 
 function reloadNotificationsPanel() {
