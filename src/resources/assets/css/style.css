@@ -8170,6 +8170,20 @@ ul {
   overflow: hidden;
   margin-bottom: 1.5rem; }
 
+#calendar .fc-event .fc-content {
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important; }
+
+#step-infos {
+  height: 350px;
+  margin-bottom: 4rem; }
+  #step-infos .loading {
+    background: rgba(255, 255, 255, 0.75) url("../img/loading.gif") center center no-repeat;
+    position: absolute;
+    z-index: 9999;
+    width: 100%;
+    height: 100%; }
+
 .current-event {
   background: #DF5A49 !important;
   border: 1px solid #DF5A49 !important; }
@@ -8187,19 +8201,5 @@ ul {
 #tickets-list .ticket {
   min-height: 35px; }
 
-#calendar a[href]:hover {
+#planning a[href]:hover {
   text-decoration: underline; }
-
-#planning .fc-event .fc-content {
-  padding-top: 0.75rem !important;
-  padding-bottom: 0.75rem !important; }
-
-#step-infos {
-  height: 350px;
-  margin-bottom: 4rem; }
-  #step-infos .loading {
-    background: rgba(255, 255, 255, 0.75) url("../img/loading.gif") center center no-repeat;
-    position: absolute;
-    z-index: 9999;
-    width: 100%;
-    height: 100%; }

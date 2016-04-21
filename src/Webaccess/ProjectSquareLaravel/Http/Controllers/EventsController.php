@@ -5,19 +5,19 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Decorators\EventDecorator;
 use Webaccess\ProjectSquare\Exceptions\Events\EventUpdateNotAuthorizedException;
-use Webaccess\ProjectSquare\Requests\Calendar\CreateEventRequest;
-use Webaccess\ProjectSquare\Requests\Calendar\DeleteEventRequest;
-use Webaccess\ProjectSquare\Requests\Calendar\GetEventRequest;
-use Webaccess\ProjectSquare\Requests\Calendar\GetEventsRequest;
-use Webaccess\ProjectSquare\Requests\Calendar\UpdateEventRequest;
+use Webaccess\ProjectSquare\Requests\Events\CreateEventRequest;
+use Webaccess\ProjectSquare\Requests\Events\DeleteEventRequest;
+use Webaccess\ProjectSquare\Requests\Events\GetEventRequest;
+use Webaccess\ProjectSquare\Requests\Events\GetEventsRequest;
+use Webaccess\ProjectSquare\Requests\Events\UpdateEventRequest;
 
-class CalendarController extends BaseController
+class EventsController extends BaseController
 {
     public function index()
     {
         $userID = (Input::get('filter_user')) ? Input::get('filter_user') : $this->getUser()->id;
 
-        return view('projectsquare::calendar.index', [
+        return view('projectsquare::planning.index', [
             'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
             'events' => app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
                 'userID' => $userID,

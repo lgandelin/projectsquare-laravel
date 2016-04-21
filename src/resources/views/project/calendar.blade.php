@@ -1,10 +1,10 @@
 @extends('projectsquare::default')
 
 @section('content')
-    @include('projectsquare::includes.project_bar', ['active' => 'planning'])
+    @include('projectsquare::includes.project_bar', ['active' => 'calendar'])
 
     <div class="settings-template">
-        <h1 class="page-header">{{ trans('projectsquare::project.planning') }}</h1>
+        <h1 class="page-header">{{ trans('projectsquare::project.calendar') }}</h1>
 
         @if (isset($error))
             <div class="info bg-danger">
@@ -19,31 +19,31 @@
         @endif
 
         <div class="row">
-            <div id="planning" class="col-md-9"></div>
+            <div id="calendar" class="col-md-9"></div>
             <div id="step-infos" class="col-md-3">
-                <h3>{{ trans('projectsquare::planning.informations') }}</h3>
+                <h3>{{ trans('projectsquare::calendar.informations') }}</h3>
 
                 <div class="wrapper" style="display: none">
                     <div class="loading" style="display: none"></div>
 
                     <div class="form-group">
-                        <label for="name">{{ trans('projectsquare::planning.name') }}</label>
-                        <input type="text" class="form-control name" placeholder="{{ trans('projectsquare::planning.name') }}" value="" />
+                        <label for="name">{{ trans('projectsquare::calendar.name') }}</label>
+                        <input type="text" class="form-control name" placeholder="{{ trans('projectsquare::calendar.name') }}" value="" />
                     </div>
 
                     <div class="form-group">
-                        <label for="name">{{ trans('projectsquare::planning.start_time') }}</label><br/>
+                        <label for="name">{{ trans('projectsquare::calendar.start_time') }}</label><br/>
                         <input type="text" class="form-control start_time datepicker" placeholder="dd/mm/YYYY" value="" style="width: 200px; display: inline-block" />
                     </div>
 
                     <div class="form-group">
-                        <label for="name">{{ trans('projectsquare::planning.end_time') }}</label><br/>
+                        <label for="name">{{ trans('projectsquare::calendar.end_time') }}</label><br/>
                         <input type="text" class="form-control end_time datepicker" placeholder="dd/mm/YYYY" value="" style="width: 200px; display: inline-block" />
                     </div>
 
                     <div class="form-group">
-                        <label for="name">{{ trans('projectsquare::planning.color') }}</label>
-                        <input type="text" name="color" class="form-control colorpicker" data-control="saturation" placeholder="{{ trans('projectsquare::planning.color') }}" value="" size="7">
+                        <label for="name">{{ trans('projectsquare::calendar.color') }}</label>
+                        <input type="text" name="color" class="form-control colorpicker" data-control="saturation" placeholder="{{ trans('projectsquare::calendar.color') }}" value="" size="7">
                     </div>
 
                     <input type="hidden" class="id" value="" />
@@ -62,7 +62,7 @@
     <script src="{{ asset('js/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/lang-all.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script src="{{ asset('js/planning.js') }}"></script>
+    <script src="{{ asset('js/calendar.js') }}"></script>
     <script>
         var defaultDate = "{{ date('Y-m-d') }}";
         var steps = [

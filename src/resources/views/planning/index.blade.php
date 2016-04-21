@@ -3,11 +3,11 @@
 @section('content')
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
-        <li class="active">{{ trans('projectsquare::calendar.calendar') }}</li>
+        <li class="active">{{ trans('projectsquare::planning.planning') }}</li>
     </ol>
 
     <div class="page-header">
-        <h1>{{ trans('projectsquare::calendar.calendar') }}</h1>
+        <h1>{{ trans('projectsquare::planning.planning') }}</h1>
     </div>
 
     <form method="get">
@@ -39,32 +39,32 @@
     <hr/>
 
     <div class="row">
-        <div id="calendar" class="col-md-9"></div>
+        <div id="planning" class="col-md-9"></div>
         <div id="event-infos" class="col-md-3">
-            <h3>{{ trans('projectsquare::calendar.informations') }}</h3>
+            <h3>{{ trans('projectsquare::planning.informations') }}</h3>
 
             <div class="wrapper" style="display: none">
                 <div class="loading" style="display: none"></div>
 
                 <div class="form-group">
-                    <label for="name">{{ trans('projectsquare::calendar.name') }}</label>
-                    <input type="text" class="form-control name" placeholder="{{ trans('projectsquare::calendar.name') }}" value="" />
+                    <label for="name">{{ trans('projectsquare::planning.name') }}</label>
+                    <input type="text" class="form-control name" placeholder="{{ trans('projectsquare::planning.name') }}" value="" />
                 </div>
 
                 <div class="form-group">
-                    <label for="name">{{ trans('projectsquare::calendar.start_time') }}</label><br/>
+                    <label for="name">{{ trans('projectsquare::planning.start_time') }}</label><br/>
                     <input type="text" class="form-control start_time datepicker" placeholder="dd/mm/YYYY" value="" style="width: 200px; display: inline-block" />
                     <input type="time" class="form-control start_time_hour" placeholder="hh:mm" style="width: 100px; display: inline-block;"/>
                 </div>
 
                 <div class="form-group">
-                    <label for="name">{{ trans('projectsquare::calendar.end_time') }}</label><br/>
+                    <label for="name">{{ trans('projectsquare::planning.end_time') }}</label><br/>
                     <input type="text" class="form-control end_time datepicker" placeholder="dd/mm/YYYY" value="" style="width: 200px; display: inline-block" />
                     <input type="time" class="form-control end_time_hour" placeholder="hh:mm" style="width: 100px; display: inline-block;"/>
                 </div>
 
                 <div class="form-group">
-                    <label for="project_id">{{ trans('projectsquare::calendar.project') }}</label><br/>
+                    <label for="project_id">{{ trans('projectsquare::planning.project') }}</label><br/>
                     <select name="project_id" class="form-control project_id">
                         <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
                         @foreach ($projects as $project)
@@ -80,7 +80,7 @@
         </div>
 
         <div id="tickets-list" class="col-md-3" style="display: none; margin-top: 5rem;">
-            <h3>{{ trans('projectsquare::calendar.tickets_list') }}</h3>
+            <h3>{{ trans('projectsquare::planning.tickets_list') }}</h3>
             @foreach ($tickets as $ticket)
                 <div id="ticket-{{ $ticket->id }}"
                      data-project="{{ $ticket->project->id }}"
@@ -106,7 +106,7 @@
     <script src="{{ asset('js/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/lang-all.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script src="{{ asset('js/calendar.js') }}"></script>
+    <script src="{{ asset('js/planning.js') }}"></script>
     <script>
         var defaultDate = "{{ date('Y-m-d') }}";
         var events = [

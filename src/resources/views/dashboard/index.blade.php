@@ -108,14 +108,14 @@
         <div class="row">
             <div class="col-lg-6 col-md-12">
 
-                <!-- CALENDAR -->
+                <!-- PLANNING -->
                 <div class="block">
-                    <h3>{{ trans('projectsquare::calendar.calendar') }} <a style="float:right" href="{{ route('calendar') }}" class="btn btn-default pull-right"><span class="glyphicon glyphicon-list-alt"></span> {{ trans('projectsquare::calendar.see_calendar') }}</a></h3>
+                    <h3>{{ trans('projectsquare::calendar.calendar') }} <a style="float:right" href="{{ route('planning') }}" class="btn btn-default pull-right"><span class="glyphicon glyphicon-list-alt"></span> {{ trans('projectsquare::calendar.see_calendar') }}</a></h3>
                     <div class="block-content loading">
                         <div id="calendar"></div>
                     </div>
                 </div>
-                <!-- CALENDAR -->
+                <!-- PLANNING -->
 
             </div>
 

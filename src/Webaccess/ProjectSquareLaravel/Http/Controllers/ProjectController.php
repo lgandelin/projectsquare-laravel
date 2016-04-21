@@ -5,7 +5,7 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Interactors\Tickets\GetTicketInteractor;
-use Webaccess\ProjectSquare\Requests\Planning\GetStepsRequest;
+use Webaccess\ProjectSquare\Requests\Steps\GetStepsRequest;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
 use Webaccess\ProjectSquareLaravel\Tools\UploadTool;
 
@@ -95,9 +95,9 @@ class ProjectController extends BaseController
         ]);
     }
 
-    public function planning($projectID)
+    public function calendar($projectID)
     {
-        return view('projectsquare::project.planning', [
+        return view('projectsquare::project.calendar', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'steps' => app()->make('GetStepsInteractor')->execute(new GetStepsRequest([
                 'projectID' => $projectID
