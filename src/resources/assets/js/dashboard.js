@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
-    //CALENDAR
-    $('#calendar').fullCalendar({
+    //PLANNING
+    $('#planning').fullCalendar({
         header: {
             left: 'prev,next today',
             center: 'title',

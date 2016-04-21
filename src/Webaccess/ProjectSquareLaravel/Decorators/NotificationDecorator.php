@@ -2,7 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Decorators;
 
-use Webaccess\ProjectSquare\Requests\Calendar\GetEventRequest;
+use Webaccess\ProjectSquare\Requests\Events\GetEventRequest;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentMessageRepository;
 
 class NotificationDecorator
@@ -16,7 +16,7 @@ class NotificationDecorator
                     $event = app()->make('GetEventInteractor')->execute(new GetEventRequest([
                         'eventID' => $notification->entityID
                     ]));
-                    $notification->link = route('calendar');
+                    $notification->link = route('planning');
                     $notification->event_name = $event->name;
                 } elseif ($notification->type == 'MESSAGE_CREATED') {
                     $message = (new EloquentMessageRepository())->getMessage($notification->entityID);

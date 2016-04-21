@@ -9,5 +9,5 @@ return [
     'tickets_list' => 'Liste des tickets',
     'informations' => 'Informations',
     'new_event' => 'Nouvel evenement',
-    'see_calendar' => 'voir le calendrier',
+    'see_planning' => 'voir le planning',
 ];
