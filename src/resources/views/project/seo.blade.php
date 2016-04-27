@@ -6,7 +6,7 @@
     <div class="seo-template">
         <h1 class="page-header">{{ trans('projectsquare::project.seo') }}</h1>
 
-        <div id="embed-api-auth-container" style="display: none;"></div>
+        <div id="embed-api-auth-container" style="margin-bottom: 15px"></div>
 
         <div class="row">
             <div class="col-lg-9">
