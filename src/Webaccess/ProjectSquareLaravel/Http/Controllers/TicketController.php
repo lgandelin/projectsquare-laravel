@@ -44,7 +44,7 @@ class TicketController extends BaseController
             'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
             'ticket_status' => app()->make('TicketStatusManager')->getTicketStatuses(),
             'users' => app()->make('UserManager')->getAgencyUsers(),
-            'current_project_id' => $this->getCurrentProject()->id,
+            'current_project_id' => ($this->getCurrentProject()) ? $this->getCurrentProject()->id : null,
         ]);
     }
 

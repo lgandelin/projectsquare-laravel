@@ -114,5 +114,5 @@
         {!! $tickets->render() !!}
     </div>
 
-    <a href="{{ route('tickets_add') }}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> {{ trans('projectsquare::tickets.add_ticket') }}</a>
+    <a href="{{ route('tickets_add') }}" class="btn btn-success btn-create-ticket"><span class="glyphicon glyphicon-plus"></span> {{ trans('projectsquare::tickets.add_ticket') }}</a>
 @endsection
