@@ -47,7 +47,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/project/files/upload', array('as' => 'projects_files_upload', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@upload_file'));
     Route::get('/project/files/delete/{id}', array('as' => 'projects_files_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@delete_file'));
 
-
     //AGENCY
     Route::get('/agency/users', array('as' => 'users_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\UserController@index'));
     Route::get('/agency/roles', array('as' => 'roles_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\RoleController@index'));

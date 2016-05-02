@@ -25,7 +25,7 @@ class EloquentNotificationRepository implements NotificationRepository
         $notifications = [];
         $notificationsModel = Notification::where('user_id', '=', $userID);
         foreach ($notificationsModel->get() as $notificationModel) {
-            $notifications[]= $this->getNotificationEntity($notificationModel);
+            $notifications[] = $this->getNotificationEntity($notificationModel);
         }
 
         return $notifications;
@@ -36,7 +36,7 @@ class EloquentNotificationRepository implements NotificationRepository
         $notifications = [];
         $notificationsModel = Notification::where('user_id', '=', $userID)->where('read', '=', 0);
         foreach ($notificationsModel->get() as $notificationModel) {
-            $notifications[]= $this->getNotificationEntity($notificationModel);
+            $notifications[] = $this->getNotificationEntity($notificationModel);
         }
 
         return $notifications;

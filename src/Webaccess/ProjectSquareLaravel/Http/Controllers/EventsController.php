@@ -46,11 +46,11 @@ class EventsController extends BaseController
             ]));
 
             return response()->json([
-                'event' => (new EventDecorator())->decorate($event)
+                'event' => (new EventDecorator())->decorate($event),
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 500);
         }
     }
@@ -70,11 +70,11 @@ class EventsController extends BaseController
 
             return response()->json([
                 'message' => trans('projectsquare::events.create_event_success'),
-                'event' => (new EventDecorator())->decorate($response->event)
+                'event' => (new EventDecorator())->decorate($response->event),
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 500);
         }
     }
@@ -93,15 +93,15 @@ class EventsController extends BaseController
 
             return response()->json([
                 'message' => trans('projectsquare::events.edit_event_success'),
-                'event' => (new EventDecorator())->decorate($response->event)
+                'event' => (new EventDecorator())->decorate($response->event),
             ], 200);
         } catch (EventUpdateNotAuthorizedException $e) {
             return response()->json([
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 301);
         } catch (\Exception $e) {
             return response()->json([
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 500);
         }
     }
@@ -115,11 +115,11 @@ class EventsController extends BaseController
             ]));
 
             return response()->json([
-                'message' => trans('projectsquare::events.delete_event_success')
+                'message' => trans('projectsquare::events.delete_event_success'),
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 500);
         }
     }

@@ -14,8 +14,8 @@ class TaskController extends BaseController
     {
         return view('projectsquare::tasks.index', [
             'tasks' => app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
-                'userID' => $this->getUser()->id]
-            ))
+                'userID' => $this->getUser()->id, ]
+            )),
         ]);
     }
 
@@ -29,11 +29,11 @@ class TaskController extends BaseController
             ]));
 
             return response()->json([
-                'task' => $response->task
+                'task' => $response->task,
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 500);
         }
     }
@@ -49,11 +49,11 @@ class TaskController extends BaseController
 
             return response()->json([
                 'message' => trans('projectsquare::tasks.edit_task_success'),
-                'task' => $response->task
+                'task' => $response->task,
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 500);
         }
     }
@@ -68,11 +68,11 @@ class TaskController extends BaseController
 
             return response()->json([
                 'message' => trans('projectsquare::tasks.delete_task_success'),
-                'task' => $response->task
+                'task' => $response->task,
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 500);
         }
     }

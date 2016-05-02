@@ -17,7 +17,7 @@ class DashboardController extends BaseController
                 'userID' => $this->getUser()->id,
             ])),
             'tasks' => app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
-                'userID' => $this->getUser()->id
+                'userID' => $this->getUser()->id,
             ])),
         ]);
     }

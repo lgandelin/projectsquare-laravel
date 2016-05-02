@@ -100,14 +100,15 @@ class ProjectController extends BaseController
         return view('projectsquare::project.calendar', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'steps' => app()->make('GetStepsInteractor')->execute(new GetStepsRequest([
-                'projectID' => $projectID
-            ]))
+                'projectID' => $projectID,
+            ])),
         ]);
     }
 
     public function seo($projectID)
     {
         $gaViewID = app()->make('SettingManager')->getSettingByKeyAndProject('GA_VIEW_ID', $projectID);
+
         return view('projectsquare::project.seo', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'gaViewID' => ($gaViewID) ? $gaViewID->value : null,
@@ -120,7 +121,7 @@ class ProjectController extends BaseController
     {
         return view('projectsquare::project.files', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
-            'files' => app()->make('FileManager')->getFilesByProject($projectID)
+            'files' => app()->make('FileManager')->getFilesByProject($projectID),
         ]);
     }
 

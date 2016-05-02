@@ -32,7 +32,7 @@ class EloquentEventRepository implements EventRepository
             if ($eventModel->project) {
                 $event->color = $eventModel->project->color;
             }
-            $events[]= $event;
+            $events[] = $event;
         }
 
         return $events;

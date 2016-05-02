@@ -15,15 +15,15 @@ class StepsController extends BaseController
     {
         try {
             $step = app()->make('GetStepInteractor')->execute(new GetStepRequest([
-                'stepID' => Input::get('id')
+                'stepID' => Input::get('id'),
             ]));
 
             return response()->json([
-                'step' => (new StepDecorator())->decorate($step)
+                'step' => (new StepDecorator())->decorate($step),
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 500);
         }
     }
@@ -42,11 +42,11 @@ class StepsController extends BaseController
 
             return response()->json([
                 'message' => trans('projectsquare::steps.create_step_success'),
-                'step' => (new StepDecorator())->decorate($response->step)
+                'step' => (new StepDecorator())->decorate($response->step),
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 500);
         }
     }
@@ -66,11 +66,11 @@ class StepsController extends BaseController
 
             return response()->json([
                 'message' => trans('projectsquare::steps.edit_step_success'),
-                'step' => (new StepDecorator())->decorate($response->step)
+                'step' => (new StepDecorator())->decorate($response->step),
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 500);
         }
     }
@@ -84,11 +84,11 @@ class StepsController extends BaseController
             ]));
 
             return response()->json([
-                'message' => trans('projectsquare::steps.delete_step_success')
+                'message' => trans('projectsquare::steps.delete_step_success'),
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 500);
         }
     }

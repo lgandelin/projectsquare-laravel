@@ -9,7 +9,7 @@ class UploadTool
     const UPLOADS_FOLDER = 'uploads';
     public static function uploadFileForTicket($files, $ticketID)
     {
-        $uploadsFolder = public_path(self::UPLOADS_FOLDER) . '/tickets';
+        $uploadsFolder = public_path(self::UPLOADS_FOLDER).'/tickets';
         $ticketFolder = '/'.$ticketID.'/';
         $destinationPath = $uploadsFolder.$ticketFolder;
 
@@ -38,10 +38,9 @@ class UploadTool
         return $data;
     }
 
-
     public static function uploadFileForProject($files, $projectID)
     {
-        $uploadsFolder = public_path(self::UPLOADS_FOLDER) . '/projects';
+        $uploadsFolder = public_path(self::UPLOADS_FOLDER).'/projects';
         $ticketFolder = '/'.$projectID.'/';
         $destinationPath = $uploadsFolder.$ticketFolder;
 
