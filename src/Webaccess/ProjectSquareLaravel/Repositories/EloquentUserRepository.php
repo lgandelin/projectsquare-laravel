@@ -40,7 +40,7 @@ class EloquentUserRepository implements UserRepository
             $user->firstName = $userModel->first_name;
             $user->lastName = $userModel->last_name;
             $user->password = $userModel->password;
-            //TODO : client_id
+            $user->clientID = $userModel->client_id;
         }
 
         return $user;

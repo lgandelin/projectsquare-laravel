@@ -1,4 +1,4 @@
-<div class="table-responsive">
+<div class="table-responsive ticket-history">
     <table class="table table-striped table-bordered">
         <thead>
         <th>{{ trans('projectsquare::generic.creation_date') }}</th>
