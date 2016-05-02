@@ -64,4 +64,12 @@ class EloquentRequestRepository
     {
         return self::getRequestsByProject($projectID)->max('loading_time');
     }
+
+    public static function deleteOldRequests()
+    {
+        $lastWeek = new \DateTime();
+        $lastWeek->sub(new \DateInterval('P7D'));
+
+        Request::where('created_at', '<=', $lastWeek)->delete();
+    }
 }

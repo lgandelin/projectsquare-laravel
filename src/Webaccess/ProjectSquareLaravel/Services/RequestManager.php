@@ -82,4 +82,9 @@ class RequestManager
 
         return $averageLoadingTime;
     }
+
+    public static function deleteOldRequests()
+    {
+        EloquentRequestRepository::deleteOldRequests();
+    }
 }

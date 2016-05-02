@@ -329,6 +329,7 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             'Webaccess\ProjectSquareLaravel\Commands\PingWebsiteCommand',
             'Webaccess\ProjectSquareLaravel\Commands\AlertLoadingTimeCommand',
             'Webaccess\ProjectSquareLaravel\Commands\AlertStatusCodeCommand',
+            'Webaccess\ProjectSquareLaravel\Commands\PurgeRequestsCommand',
         ]);
     }
 }
