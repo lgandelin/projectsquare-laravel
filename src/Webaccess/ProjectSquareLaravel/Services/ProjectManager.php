@@ -30,6 +30,11 @@ class ProjectManager
         return $this->repository->getUserProjects($userID);
     }
 
+    private function getProjectsByClient($clientID)
+    {
+        return $this->repository->getPRojectsByClient($clientID);
+    }
+
     public function getProjectWithUsers($projectID)
     {
         if (!$project = $this->repository->getProjectWithUsers($projectID)) {
@@ -60,7 +65,17 @@ class ProjectManager
 
     public function deleteProject($projectID)
     {
+        (new ConversationManager())->deleteConversationByProjectID($projectID);
+        (new AlertManager())->deleteAlertByProjectID($projectID);
         $this->repository->deleteProject($projectID);
+    }
+
+    public function deleteProjectByClient($clientID)
+    {
+        $projects = (new ProjectManager())->getProjectsByClient($clientID);
+        foreach ($projects as $project) {
+            $this->deleteProject($project->id);
+        }
     }
 
     public function addUserToProject($project, $userID, $roleID)

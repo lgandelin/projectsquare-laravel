@@ -62,4 +62,9 @@ class EloquentConversationRepository implements ConversationRepository
 
         return $conversation;
     }
+
+    public function deleteConversationByProjectID($projectID)
+    {
+        Conversation::where('project_id', '=', $projectID)->delete();
+    }
 }

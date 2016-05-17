@@ -25,4 +25,9 @@ class EloquentAlertRepository implements AlertRepository
         $alert->project_id = $projectID;
         $alert->save();
     }
+
+    public static function deleteAlertByProjectID($projectID)
+    {
+        Alert::where('project_id', '=', $projectID)->delete();
+    }
 }
