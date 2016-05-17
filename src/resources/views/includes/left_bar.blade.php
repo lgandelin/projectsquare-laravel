@@ -28,7 +28,6 @@
                     <li><a href="{{ route('messages_index') }}">Messages</a></li>
                     <li><a href="{{ route('planning') }}">Planning</a></li>
                     <li><a href="{{ route('tasks_index') }}">{{ trans('projectsquare::tasks.tasks') }}</a></li>
-                    <li><a href="{{ route('project_calendar', ['id' => $current_project_id]) }}">Calendrier</a></li>
                 </ul>
             </li>
             <li>
