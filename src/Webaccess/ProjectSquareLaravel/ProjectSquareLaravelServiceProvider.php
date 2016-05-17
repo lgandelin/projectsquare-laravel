@@ -207,7 +207,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
 
         App::bind('DeleteEventInteractor', function () {
             return new DeleteEventInteractor(
-                new EloquentEventRepository()
+                new EloquentEventRepository(),
+                new EloquentNotificationRepository()
             );
         });
 

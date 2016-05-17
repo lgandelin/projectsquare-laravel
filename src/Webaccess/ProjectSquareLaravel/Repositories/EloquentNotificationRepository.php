@@ -63,6 +63,12 @@ class EloquentNotificationRepository implements NotificationRepository
         $notification->delete();
     }
 
+    public function removeNotificationsByTypeAndEntityID($type, $eventID)
+    {
+        $notificationsModel = Notification::where('type', '=', $type)->where('entity_id', '=', $eventID);
+        $notificationsModel->delete();
+    }
+
     private function getNotificationEntity($notificationModel)
     {
         $notification = new NotificationEntity();
