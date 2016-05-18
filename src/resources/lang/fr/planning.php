@@ -6,7 +6,7 @@ return [
     'start_time' => 'Date de début',
     'end_time' => 'Date de fin',
     'project' => 'Projet',
-    'my_tickets_list' => 'Mes tickets',
+    'allocated_tickets_list' => 'Tickets assignés',
     'non_allocated_tickets_list' => 'Tickets non assignés',
     'informations' => 'Informations',
     'new_event' => 'Nouvel evenement',

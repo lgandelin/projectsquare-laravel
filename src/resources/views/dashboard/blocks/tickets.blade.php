@@ -8,6 +8,7 @@
                 <th>{{ trans('projectsquare::tickets.ticket') }}</th>
                 <th>{{ trans('projectsquare::tickets.client') }} / {{ trans('projectsquare::tickets.project') }}</th>
                 <th>{{ trans('projectsquare::tickets.type') }}</th>
+                <th>{{ trans('projectsquare::tickets.allocated_user') }}</th>
                 <th>{{ trans('projectsquare::tickets.status') }}</th>
                 <th>{{ trans('projectsquare::tickets.priority') }}</th>
                 <th>{{ trans('projectsquare::generic.action') }}</th>
@@ -18,9 +19,10 @@
             @foreach ($tickets as $ticket)
                 <tr>
                     <td>{{ $ticket->id }}</td>
-                    <td width="40%">{{ $ticket->title }}</td>
+                    <td>{{ $ticket->title }}</td>
                     <td><a href="{{ route('project_index', ['id' => $ticket->project->id]) }}"><span class="label" style="background: {{ $ticket->project->color }}">{{ $ticket->project->client->name }}</span> {{ $ticket->project->name }}</a></td>
                     <td><span class="badge">@if (isset($ticket->type)){{ $ticket->type->name }}@endif</span></td>
+                    <td>@if (isset($ticket->last_state) && $ticket->last_state->allocated_user){{ $ticket->last_state->allocated_user->complete_name }}@endif</td>
                     <td width="10%">@if (isset($ticket->last_state))<span class="status status-{{ $ticket->last_state->status->id }}">{{ $ticket->last_state->status->name }}</span>@endif</td>
                     <td>@if (isset($ticket->last_state))<span class="badge priority-{{ $ticket->last_state->priority }}">{{ $ticket->last_state->priority }}</span>@endif</td>
                     <td>
