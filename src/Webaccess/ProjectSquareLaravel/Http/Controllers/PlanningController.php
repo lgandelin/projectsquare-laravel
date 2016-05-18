@@ -5,6 +5,7 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Decorators\EventDecorator;
 use Webaccess\ProjectSquare\Exceptions\Events\EventUpdateNotAuthorizedException;
+use Webaccess\ProjectSquare\Interactors\Tickets\GetTicketInteractor;
 use Webaccess\ProjectSquare\Requests\Events\CreateEventRequest;
 use Webaccess\ProjectSquare\Requests\Events\DeleteEventRequest;
 use Webaccess\ProjectSquare\Requests\Events\GetEventRequest;
@@ -118,13 +119,26 @@ class PlanningController extends BaseController
     public function delete()
     {
         try {
+            $event = app()->make('GetEventInteractor')->execute(new GetEventRequest([
+                'eventID' => Input::get('event_id')
+            ]));
+
+            $ticket = app()->make('GetTicketInteractor')->getTicketWithStates($event->ticketID);
+
             app()->make('DeleteEventInteractor')->execute(new DeleteEventRequest([
                 'eventID' => Input::get('event_id'),
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
+            $project = app()->make('ProjectManager')->getProject($event->projectID);
+
             return response()->json([
                 'message' => trans('projectsquare::events.delete_event_success'),
+                'ticket_id' => $ticket->id,
+                'project_id' => $project->id,
+                'color' => $project->color,
+                'title' => $ticket->title,
+                'estimated_time' => ($ticket->states[0]->estimated_time != "") ? $ticket->states[0]->estimated_time : "02:00",
             ], 200);
         } catch (\Exception $e) {
             return response()->json([

@@ -122,6 +122,23 @@
         <input type="hidden" class="tickets-current-ticket" />
         <input type="hidden" id="user_id" value="{{ $userID }}" />
     </div>
+
+    <script id="ticket-template" type="text/x-handlebars-template">
+        <div id="ticket-@{{id}}"
+             data-id="@{{id}}"
+             data-project="@{{project_id}}"
+             data-ticket="@{{id}}"
+             data-color="@{{color}}"
+             data-event='{"title":"#@{{id}} - @{{title}}"}'
+             data-duration="@{{estimated_time}}"
+             class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: @{{color}}; margin-bottom: 1rem; width: 50%; border: none !important;"
+        >
+            <div class="fc-content"><div class="fc-title">
+                #@{{id}} - @{{title}}
+                <span class="unallocate-ticket glyphicon glyphicon-remove pull-right"></span>
+            </div></div>
+        </div>
+    </script>
 @endsection
 
 @section('scripts')
