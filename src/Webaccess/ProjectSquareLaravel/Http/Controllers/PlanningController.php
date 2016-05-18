@@ -16,24 +16,26 @@ class PlanningController extends BaseController
     public function index()
     {
         $userID = (Input::get('filter_user')) ? Input::get('filter_user') : $this->getUser()->id;
+
+        $allocatedTickets = app()->make('GetTicketInteractor')->getTicketsList(
+            $userID,
+            Input::get('filter_project'),
+            $userID
+        );
+        $nonAllocatedTickets = app()->make('GetTicketInteractor')->getTicketsList(
+            $userID,
+            Input::get('filter_project'),
+            0
+        );
+
         return view('projectsquare::planning.index', [
             'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
             'events' => app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
                 'userID' => $userID,
                 'projectID' => Input::get('filter_project'),
             ])),
-            'my_tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
-                $userID,
-                env('TICKETS_PER_PAGE'),
-                Input::get('filter_project'),
-                $userID
-            ),
-            'non_allocated_tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
-                $userID,
-                env('TICKETS_PER_PAGE'),
-                Input::get('filter_project'),
-                0
-            ),
+            'allocated_tickets' => $this->removeTicketsAlreadyScheduled($allocatedTickets),
+            'non_allocated_tickets' => $this->removeTicketsAlreadyScheduled($nonAllocatedTickets),
             'filters' => [
                 'project' => Input::get('filter_project'),
                 'user' => Input::get('filter_user'),
@@ -129,5 +131,20 @@ class PlanningController extends BaseController
                 'error' => $e->getMessage(),
             ], 500);
         }
+    }
+
+    protected function removeTicketsAlreadyScheduled($tickets)
+    {
+        foreach ($tickets as $i => $ticket) {
+            $events = app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
+                'ticketID' => $ticket->id
+            ]));
+
+            if (count($events) > 0) {
+                unset($tickets[$i]);
+            }
+        }
+
+        return $tickets;
     }
 }

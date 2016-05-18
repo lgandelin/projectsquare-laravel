@@ -21,6 +21,16 @@ class EloquentTicketRepository implements TicketRepository
 
     public function getTicketsPaginatedList($userID, $limit, $projectID = null, $allocatedUserID = null, $statusID = null, $typeID = null)
     {
+        return $this->getTickets($userID, $projectID , $allocatedUserID, $statusID, $typeID)->paginate($limit);
+    }
+
+    public function getTicketsList($userID, $projectID = null, $allocatedUserID = null, $statusID = null, $typeID = null)
+    {
+        return $this->getTickets($userID, $projectID , $allocatedUserID, $statusID, $typeID)->get();
+    }
+
+    private function getTickets($userID, $projectID = null, $allocatedUserID = null, $statusID = null, $typeID = null)
+    {
         $projectIDs = User::find($userID)->projects->pluck('id')->toArray();
         $tickets = Ticket::whereIn('project_id', $projectIDs)->with('type', 'last_state', 'states', 'states.author_user', 'states.status', 'last_state.author_user', 'last_state.allocated_user', 'last_state.status', 'project', 'project.client');
 
@@ -46,7 +56,7 @@ class EloquentTicketRepository implements TicketRepository
             $tickets->has('last_state.allocated_user', '=', 0);
         }
 
-        return $tickets->orderBy('updated_at', 'DESC')->paginate($limit);
+        return $tickets->orderBy('updated_at', 'DESC');
     }
 
     public function getTicket($ticketID, $userID = null)

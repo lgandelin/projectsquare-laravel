@@ -81,7 +81,7 @@
 
         <div id="my-tickets-list" class="tickets-list col-md-3" style="display: none;">
             <h3>{{ trans('projectsquare::planning.allocated_tickets_list') }}</h3>
-            @foreach ($my_tickets as $ticket)
+            @foreach ($allocated_tickets as $ticket)
                 <div id="ticket-{{ $ticket->id }}"
                      data-project="{{ $ticket->project->id }}"
                      data-ticket="{{ $ticket->id }}"
