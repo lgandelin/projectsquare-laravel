@@ -38,10 +38,12 @@ class EloquentTicketRepository implements TicketRepository
             });
         }
 
-        if ($allocatedUserID) {
+        if ($allocatedUserID > 0) {
             $tickets->whereHas('last_state.allocated_user', function ($query) use ($allocatedUserID) {
                 $query->where('id', '=', $allocatedUserID);
             });
+        } else if ($allocatedUserID === 0) {
+            $tickets->has('last_state.allocated_user', '=', null);
         }
 
         return $tickets->orderBy('updated_at', 'DESC')->paginate($limit);
@@ -78,42 +80,6 @@ class EloquentTicketRepository implements TicketRepository
     public function getTicketStatesPaginatedList($ticket, $limit)
     {
         return $ticket->states()->with('author_user', 'allocated_user', 'status')->paginate($limit);
-    }
-
-    public function updateTicket($ticketID, $statusID, $authorUserID, $allocatedUserID, $priority, $dueDate, $comments)
-    {
-        $this->addState($ticketID, $statusID, $authorUserID, $allocatedUserID, $priority, $dueDate, $comments);
-
-        return $this->getTicket($ticketID);
-    }
-
-    public function addState($ticketID, $statusID, $authorUserID, $allocatedUserID, $priority, $dueDate, $comments)
-    {
-        $ticket = $this->getTicket($ticketID);
-
-        $ticketState = new TicketState();
-        $ticketState->ticket()->associate($ticket);
-
-        $status = TicketStatus::find($statusID);
-        $ticketState->status()->associate($status);
-
-        if ($authorUser = User::find($authorUserID)) {
-            $ticketState->author_user()->associate($authorUser);
-        }
-
-        if ($allocatedUser = User::find($allocatedUserID)) {
-            $ticketState->allocated_user()->associate($allocatedUser);
-        }
-
-        $ticketState->priority = $priority;
-        if ($dueDate) {
-            $ticketState->due_date = $dueDate;
-        }
-        $ticketState->comments = $comments;
-        $ticket->states()->save($ticketState);
-
-        $ticket->last_state()->associate($ticketState);
-        $ticket->save();
     }
 
     public function deleteTicket($ticketID)
@@ -162,5 +128,9 @@ class EloquentTicketRepository implements TicketRepository
         $ticketStateModel->estimated_time = $ticketState->estimatedTime;
         $ticketStateModel->comments = $ticketState->comments;
         $ticketStateModel->save();
+
+        $ticket = Ticket::find($ticketState->ticketID);
+        $ticket->last_state()->associate($ticketStateModel);
+        $ticket->save();
     }
 }
