@@ -174,6 +174,7 @@ $(document).ready(function() {
             $('#planning').fullCalendar('unselect');
         },
         drop: function(date, jsEvent, ui, resourceId) {
+            $(this).remove();
             $('.tickets-current-project').val($(this).data('project'));
             $('.tickets-current-ticket').val($(this).data('ticket'));
         },
@@ -254,7 +255,7 @@ $(document).ready(function() {
     });
 
     //DRAG AND DROP TICKETS
-    $('#tickets-list .ticket').each(function() {
+    $('.tickets-list .ticket').each(function() {
 
         // store data so the planning knows to render an event upon drop
         $(this).data('event', {
@@ -270,5 +271,5 @@ $(document).ready(function() {
         });
     });
 
-    $('#tickets-list').show();
+    $('.tickets-list').show();
 });

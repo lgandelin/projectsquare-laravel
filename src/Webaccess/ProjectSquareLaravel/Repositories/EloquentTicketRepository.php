@@ -43,7 +43,7 @@ class EloquentTicketRepository implements TicketRepository
                 $query->where('id', '=', $allocatedUserID);
             });
         } else if ($allocatedUserID === 0) {
-            $tickets->has('last_state.allocated_user', '=', null);
+            $tickets->has('last_state.allocated_user', '=', 0);
         }
 
         return $tickets->orderBy('updated_at', 'DESC')->paginate($limit);
