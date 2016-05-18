@@ -27,9 +27,9 @@
                         <td>{{ $ticket->id }}</td>
                         <td width="40%">@if (isset($ticket->title)){{ $ticket->title }}@endif</td>
                         <td><span class="badge">@if (isset($ticket->type)){{ $ticket->type->name }}@endif</span></td>
-                        <td>@if (isset($ticket->last_state)){{ $ticket->last_state->author_user->complete_name }}@endif</td>
+                        <td>@if (isset($ticket->last_state) && isset($ticket->last_state->author_user)){{ $ticket->last_state->author_user->complete_name }}@endif</td>
                         <td>@if (isset($ticket->last_state) && isset($ticket->last_state->allocated_user)){{ $ticket->last_state->allocated_user->complete_name }}@endif</td>
-                        <td>@if (isset($ticket->last_state))<span class="status status-{{ $ticket->last_state->status->id }}">{{ $ticket->last_state->status->name }}</span>@endif</td>
+                        <td>@if (isset($ticket->last_state) && isset($ticket->last_state->status))<span class="status status-{{ $ticket->last_state->status->id }}">{{ $ticket->last_state->status->name }}</span>@endif</td>
                         <td>@if (isset($ticket->last_state))<span class="badge priority-{{ $ticket->last_state->priority }}">{{ $ticket->last_state->priority }}</span>@endif</td>
                         <td>
                             <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt"></span>{{ trans('projectsquare::tickets.see_ticket') }}</a>

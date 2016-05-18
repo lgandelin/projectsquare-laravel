@@ -272,4 +272,28 @@ $(document).ready(function() {
     });
 
     $('.tickets-list').show();
+
+    //UNALLOCATE TICKETS
+    $('.tickets-list .unallocate-ticket').click(function() {
+        var ticket = $(this).closest('.ticket');
+        var data = {
+            ticket_id: ticket.data('id'),
+            _token: $('#csrf_token').val()
+        };
+
+        $.ajax({
+            type: "POST",
+            url: route_ticket_unallocate,
+            data: data,
+            success: function(data) {
+                $('#ticket-' + ticket.data('id')).find('.unallocate-ticket').hide();
+                var html = $('#ticket-' + ticket.data('id'));
+                $('#non-allocated-tickets-list').append(html);
+            },
+            error: function(data) {
+                data = $.parseJSON(data.responseText);
+                alert(data.message)
+            }
+        });
+    });
 });
