@@ -66,7 +66,7 @@ class PlanningController extends BaseController
 
     public function create()
     {
-        try {
+        //try {
             $response = app()->make('CreateEventInteractor')->execute(new CreateEventRequest([
                 'name' => Input::get('name'),
                 'userID' => Input::get('user_id') ? Input::get('user_id') : $this->getUser()->id,
@@ -81,11 +81,11 @@ class PlanningController extends BaseController
                 'message' => trans('projectsquare::events.create_event_success'),
                 'event' => (new EventDecorator())->decorate($response->event),
             ], 200);
-        } catch (\Exception $e) {
+        /*} catch (\Exception $e) {
             return response()->json([
                 'error' => $e->getMessage(),
             ], 500);
-        }
+        }*/
     }
 
     public function update()

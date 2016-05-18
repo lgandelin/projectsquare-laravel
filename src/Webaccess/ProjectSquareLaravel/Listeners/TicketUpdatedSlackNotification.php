@@ -48,7 +48,7 @@ class TicketUpdatedSlackNotification
             SlackTool::send(
                 'Modification du ticket : '.$ticket->title,
                 implode("\n", $lines),
-                $ticket->states[0]->author_user->complete_name,
+                (isset($ticket->last_state)) ? $ticket->last_state->author_user->complete_name : '',
                 route('tickets_edit', ['id' => $ticket->id]),
                 ($settingSlackChannel) ? $settingSlackChannel->value : '',
                 '#36a64f'
