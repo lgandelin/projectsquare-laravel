@@ -11,7 +11,7 @@ use Webaccess\ProjectSquare\Requests\Events\GetEventRequest;
 use Webaccess\ProjectSquare\Requests\Events\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Events\UpdateEventRequest;
 
-class EventsController extends BaseController
+class PlanningController extends BaseController
 {
     public function index()
     {
@@ -23,10 +23,18 @@ class EventsController extends BaseController
                 'userID' => $userID,
                 'projectID' => Input::get('filter_project'),
             ])),
-            'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
+            'my_tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
                 $userID,
                 env('TICKETS_PER_PAGE'),
-                Input::get('filter_project')),
+                Input::get('filter_project'),
+                $userID
+            ),
+            'non_allocated_tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
+                $userID,
+                env('TICKETS_PER_PAGE'),
+                Input::get('filter_project'),
+                0
+            ),
             'filters' => [
                 'project' => Input::get('filter_project'),
                 'user' => Input::get('filter_user'),
