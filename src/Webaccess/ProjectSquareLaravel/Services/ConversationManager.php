@@ -46,4 +46,9 @@ class ConversationManager
 
         return $this->repository->getConversationsByProject($projectsID, $limit);
     }
+
+    public function deleteConversationByProjectID($projectID)
+    {
+        return $this->repository->deleteConversationByProjectID($projectID);
+    }
 }

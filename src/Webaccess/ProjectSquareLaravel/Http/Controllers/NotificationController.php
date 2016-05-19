@@ -13,11 +13,11 @@ class NotificationController extends BaseController
     {
         try {
             $response = app()->make('GetNotificationsInteractor')->getUnreadNotifications(new GetUnreadNotificationsRequest([
-                'userID' =>$this->getUser()->id,
+                'userID' => $this->getUser()->id,
             ]));
 
             return response()->json([
-                'notifications' => (new NotificationDecorator())->decorate($response->notifications)
+                'notifications' => (new NotificationDecorator())->decorate($response->notifications),
             ], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

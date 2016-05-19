@@ -105,7 +105,7 @@
         );
 
         // Load existing files:
-        $('#fileupload').addClass('fileupload-processing');
+        /*$('#fileupload').addClass('fileupload-processing');
         $.ajax({
             // Uncomment the following to send cross-domain cookies:
             //xhrFields: {withCredentials: true},
@@ -116,6 +116,6 @@
             $(this).removeClass('fileupload-processing');
         }).done(function (result) {
             $(this).fileupload('option', 'done').call(this, $.Event('done'), {result: result});
-        });
+        });*/
     });
 </script>

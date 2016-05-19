@@ -68,7 +68,7 @@ class LoginController extends Controller
             } else {
                 throw new \Exception('Utilisateur non trouvé');
             }
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             Session::flash('error', $e->getMessage());
         }
 
@@ -77,7 +77,7 @@ class LoginController extends Controller
 
     private function sendNewPasswordToUser($newPassword, $userEmail)
     {
-        Mail::send('projectsquare::emails.password', array('password' => $newPassword), function($message) use($userEmail) {
+        Mail::send('projectsquare::emails.password', array('password' => $newPassword), function ($message) use ($userEmail) {
 
             $message->to($userEmail)
                 ->from('no-reply@projectsquare.fr')
@@ -90,7 +90,7 @@ class LoginController extends Controller
         $chars = 'abcdefghkmnpqrstuvwxyz23456789';
         $count = mb_strlen($chars);
 
-        for ($i = 0, $result = ''; $i < $length; $i++) {
+        for ($i = 0, $result = ''; $i < $length; ++$i) {
             $index = rand(0, $count - 1);
             $result .= mb_substr($chars, $index, 1);
         }

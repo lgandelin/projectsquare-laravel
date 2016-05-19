@@ -154,7 +154,7 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             return new Image();
         });
 
-        App::bind('CreateConversationInteractor', function() {
+        App::bind('CreateConversationInteractor', function () {
             return new CreateConversationInteractor(
                 new EloquentConversationRepository(),
                 new EloquentMessageRepository(),
@@ -164,7 +164,7 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             );
         });
 
-        App::bind('CreateMessageInteractor', function() {
+        App::bind('CreateMessageInteractor', function () {
             return new CreateMessageInteractor(
                 new EloquentMessageRepository(),
                 new EloquentConversationRepository(),
@@ -174,147 +174,150 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             );
         });
 
-        App::bind('GetProjectsInteractor', function() {
+        App::bind('GetProjectsInteractor', function () {
             return new GetProjectsInteractor(
                 new EloquentProjectRepository()
             );
         });
 
-        App::bind('GetEventsInteractor', function() {
+        App::bind('GetEventsInteractor', function () {
             return new GetEventsInteractor(
                 new EloquentEventRepository()
             );
         });
 
-        App::bind('GetEventInteractor', function() {
+        App::bind('GetEventInteractor', function () {
             return new GetEventInteractor(
                 new EloquentEventRepository()
             );
         });
 
-        App::bind('CreateEventInteractor', function() {
+        App::bind('CreateEventInteractor', function () {
             return new CreateEventInteractor(
                 new EloquentEventRepository(),
-                new EloquentNotificationRepository()
+                new EloquentNotificationRepository(),
+                new EloquentTicketRepository(),
+                new EloquentProjectRepository()
             );
         });
 
-        App::bind('UpdateEventInteractor', function() {
+        App::bind('UpdateEventInteractor', function () {
             return new UpdateEventInteractor(
                 new EloquentEventRepository()
             );
         });
 
-        App::bind('DeleteEventInteractor', function() {
+        App::bind('DeleteEventInteractor', function () {
             return new DeleteEventInteractor(
-                new EloquentEventRepository()
+                new EloquentEventRepository(),
+                new EloquentNotificationRepository()
             );
         });
 
-        App::bind('GetProjectInteractor', function() {
+        App::bind('GetProjectInteractor', function () {
             return new GetProjectInteractor(
                 new EloquentProjectRepository()
             );
         });
 
-        App::bind('GetTicketInteractor', function() {
+        App::bind('GetTicketInteractor', function () {
             return new GetTicketInteractor(
                 new EloquentTicketRepository()
             );
         });
 
-        App::bind('CreateTicketInteractor', function() {
+        App::bind('CreateTicketInteractor', function () {
             return new CreateTicketInteractor(
                 new EloquentTicketRepository(),
                 new EloquentProjectRepository()
             );
         });
 
-        App::bind('UpdateTicketInfosInteractor', function() {
+        App::bind('UpdateTicketInfosInteractor', function () {
             return new UpdateTicketInfosInteractor(
                 new EloquentTicketRepository(),
                 new EloquentProjectRepository()
             );
         });
 
-        App::bind('UpdateTicketInteractor', function() {
+        App::bind('UpdateTicketInteractor', function () {
             return new UpdateTicketInteractor(
                 new EloquentTicketRepository(),
                 new EloquentProjectRepository()
             );
         });
 
-        App::bind('DeleteTicketInteractor', function() {
+        App::bind('DeleteTicketInteractor', function () {
             return new DeleteTicketInteractor(
                 new EloquentTicketRepository(),
                 new EloquentProjectRepository()
             );
         });
 
-        App::bind('GetNotificationsInteractor', function() {
+        App::bind('GetNotificationsInteractor', function () {
             return new GetNotificationsInteractor(
                 new EloquentNotificationRepository(),
                 new EloquentUserRepository()
             );
         });
 
-        App::bind('ReadNotificationInteractor', function() {
+        App::bind('ReadNotificationInteractor', function () {
             return new ReadNotificationInteractor(
                 new EloquentNotificationRepository(),
                 new EloquentUserRepository()
             );
         });
 
-        App::bind('GetStepsInteractor', function() {
+        App::bind('GetStepsInteractor', function () {
             return new GetStepsInteractor(
                 new EloquentStepRepository()
             );
         });
 
-        App::bind('GetStepInteractor', function() {
+        App::bind('GetStepInteractor', function () {
             return new GetStepInteractor(
                 new EloquentStepRepository()
             );
         });
 
-        App::bind('CreateStepInteractor', function() {
+        App::bind('CreateStepInteractor', function () {
             return new CreateStepInteractor(
                 new EloquentStepRepository(),
                 new EloquentProjectRepository()
             );
         });
 
-        App::bind('UpdateStepInteractor', function() {
+        App::bind('UpdateStepInteractor', function () {
             return new UpdateStepInteractor(
                 new EloquentStepRepository(),
                 new EloquentProjectRepository()
             );
         });
 
-        App::bind('DeleteStepInteractor', function() {
+        App::bind('DeleteStepInteractor', function () {
             return new DeleteStepInteractor(
                 new EloquentStepRepository(),
                 new EloquentProjectRepository()
             );
         });
 
-        App::bind('GetTasksInteractor', function() {
+        App::bind('GetTasksInteractor', function () {
             return new GetTasksInteractor(new EloquentTaskRepository());
         });
 
-        App::bind('CreateTaskInteractor', function() {
+        App::bind('CreateTaskInteractor', function () {
             return new CreateTaskInteractor(
                 new EloquentTaskRepository()
             );
         });
 
-        App::bind('UpdateTaskInteractor', function() {
+        App::bind('UpdateTaskInteractor', function () {
             return new UpdateTaskInteractor(
                 new EloquentTaskRepository()
             );
         });
 
-        App::bind('DeleteTaskInteractor', function() {
+        App::bind('DeleteTaskInteractor', function () {
             return new DeleteTaskInteractor(
                 new EloquentTaskRepository()
             );
@@ -329,6 +332,7 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             'Webaccess\ProjectSquareLaravel\Commands\PingWebsiteCommand',
             'Webaccess\ProjectSquareLaravel\Commands\AlertLoadingTimeCommand',
             'Webaccess\ProjectSquareLaravel\Commands\AlertStatusCodeCommand',
+            'Webaccess\ProjectSquareLaravel\Commands\PurgeRequestsCommand',
         ]);
     }
 }

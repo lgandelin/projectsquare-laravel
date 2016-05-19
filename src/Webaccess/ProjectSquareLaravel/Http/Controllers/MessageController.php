@@ -27,15 +27,15 @@ class MessageController extends BaseController
             ]));
 
             return response()->json([
-                'message' => (new ReplyMessageDecorator())->decorate($response)
+                'message' => (new ReplyMessageDecorator())->decorate($response),
             ], 200);
         } catch (MessageReplyNotAuthorizedException $e) {
             return response()->json([
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ], 403);
         } catch (\Exception $e) {
             return response()->json([
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ], 500);
         }
     }
@@ -59,12 +59,12 @@ class MessageController extends BaseController
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 500);
         }
 
         return response()->json([
-            'success' => true
+            'success' => true,
         ], 200);
     }
 }

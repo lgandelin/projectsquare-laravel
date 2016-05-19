@@ -15,4 +15,9 @@ class AlertManager
     {
         EloquentAlertRepository::createAlert($type, $variables, $projectID);
     }
+
+    public function deleteAlertByProjectID($projectID)
+    {
+        EloquentAlertRepository::deleteAlertByProjectID($projectID);
+    }
 }

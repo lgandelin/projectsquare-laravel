@@ -20,19 +20,26 @@ class EloquentEventRepository implements EventRepository
         return Event::find($eventID);
     }
 
-    public function getEvents($userID, $projectID = null)
+    public function getEvents($userID = null, $projectID = null, $ticketID = null)
     {
         $events = [];
-        $eventsModel = Event::with('project')->where('user_id', '=', $userID);
+        $eventsModel = Event::with('project');
+
+        if ($userID) {
+            $eventsModel->where('user_id', '=', $userID);
+        }
         if ($projectID) {
             $eventsModel->where('project_id', '=', $projectID);
+        }
+        if ($ticketID) {
+            $eventsModel->where('ticket_id', '=', $ticketID);
         }
         foreach ($eventsModel->get() as $eventModel) {
             $event = $this->getEventEntity($eventModel);
             if ($eventModel->project) {
                 $event->color = $eventModel->project->color;
             }
-            $events[]= $event;
+            $events[] = $event;
         }
 
         return $events;

@@ -21,6 +21,7 @@
         var route_task_create = "{{ route('tasks_create') }}";
         var route_task_update= "{{ route('tasks_update') }}";
         var route_task_delete= "{{ route('tasks_delete') }}";
+        var route_ticket_unallocate= "{{ route('tickets_unallocate') }}";
     </script>
     <input type="hidden" id="csrf_token" value="{!! csrf_token() !!}" />
     @yield('scripts')

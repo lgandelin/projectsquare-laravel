@@ -34,6 +34,15 @@ $(document).ready(function() {
                     success: function(data) {
                         $('#planning').fullCalendar('removeEvents', event._id);
                         $('#event-infos .wrapper').hide();
+                        var html = loadTemplate('ticket-template', {
+                            id: data.ticket_id,
+                            title: data.title,
+                            project_id: data.project_id,
+                            color: data.color,
+                            estimated_time: data.estimated_time
+                        });
+                        $('#my-tickets-list').append(html);
+                        initTicketDragAndDrop();
                     }
                 });
             });
@@ -174,6 +183,7 @@ $(document).ready(function() {
             $('#planning').fullCalendar('unselect');
         },
         drop: function(date, jsEvent, ui, resourceId) {
+            $(this).remove();
             $('.tickets-current-project').val($(this).data('project'));
             $('.tickets-current-ticket').val($(this).data('ticket'));
         },
@@ -254,7 +264,37 @@ $(document).ready(function() {
     });
 
     //DRAG AND DROP TICKETS
-    $('#tickets-list .ticket').each(function() {
+    initTicketDragAndDrop()
+
+    $('.tickets-list').show();
+
+    //UNALLOCATE TICKETS
+    $('.tickets-list').on('click', '.unallocate-ticket', function() {
+        var ticket = $(this).closest('.ticket');
+        var data = {
+            ticket_id: ticket.data('id'),
+            _token: $('#csrf_token').val()
+        };
+
+        $.ajax({
+            type: "POST",
+            url: route_ticket_unallocate,
+            data: data,
+            success: function(data) {
+                $('#ticket-' + ticket.data('id')).find('.unallocate-ticket').hide();
+                var html = $('#ticket-' + ticket.data('id'));
+                $('#non-allocated-tickets-list').append(html);
+            },
+            error: function(data) {
+                data = $.parseJSON(data.responseText);
+                alert(data.message)
+            }
+        });
+    });
+});
+
+function initTicketDragAndDrop() {
+    $('.tickets-list .ticket').each(function() {
 
         // store data so the planning knows to render an event upon drop
         $(this).data('event', {
@@ -269,6 +309,4 @@ $(document).ready(function() {
             revertDuration: 0  //  original position after the drag
         });
     });
-
-    $('#tickets-list').show();
-});
+}

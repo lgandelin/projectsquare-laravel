@@ -26,7 +26,7 @@ class EloquentStepRepository implements StepRepository
         $stepsModel = Step::where('project_id', '=', $projectID);
         foreach ($stepsModel->get() as $stepModel) {
             $step = $this->getStepEntity($stepModel);
-            $steps[]= $step;
+            $steps[] = $step;
         }
 
         return $steps;

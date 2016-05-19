@@ -29,6 +29,11 @@ class EloquentProjectRepository implements ProjectRepository
         return Project::with('users')->find($projectID);
     }
 
+    public function getProjectsByClient($clientID)
+    {
+        return Project::where('client_id', '=', $clientID)->get();
+    }
+
     public function getProjectsPaginatedList($limit)
     {
         return Project::with('client')->orderBy('updated_at', 'DESC')->paginate($limit);
@@ -62,6 +67,11 @@ class EloquentProjectRepository implements ProjectRepository
         $project->delete();
     }
 
+    public static function deleteProjectByClientID($clientID)
+    {
+        Project::where('client_id', '=', $clientID)->delete();
+    }
+
     public function addUserToProject($project, $userID, $roleID)
     {
         $project->users()->attach($userID, ['role_id' => $roleID]);
@@ -69,7 +79,9 @@ class EloquentProjectRepository implements ProjectRepository
 
     public function isUserInProject($project, $userID)
     {
-        return count($project->users()->where('user_id', '=', $userID)->get()) > 0;
+        $user = User::find($userID);
+
+        return count($project->users()->where('user_id', '=', $userID)->get()) > 0 || $user->client_id == $project->client_id;
     }
 
     public function removeUserFromProject($project, $userID)

@@ -26,7 +26,7 @@ class EloquentTaskRepository implements TaskRepository
         $tasksModel = Task::where('user_id', '=', $userID);
         foreach ($tasksModel->get() as $taskModel) {
             $task = $this->getTaskEntity($taskModel);
-            $tasks[]= $task;
+            $tasks[] = $task;
         }
 
         return $tasks;

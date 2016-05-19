@@ -1,5 +1,5 @@
 <form action="{{ route('tickets_update') }}" method="post">
-    <div class="row">
+    <div class="row ticket-state">
         <div class="col-md-6">
             <div class="form-group">
                 <label for="status_id">{{ trans('projectsquare::tickets.status') }}</label>

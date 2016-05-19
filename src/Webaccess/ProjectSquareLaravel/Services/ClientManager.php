@@ -3,6 +3,7 @@
 namespace Webaccess\ProjectSquareLaravel\Services;
 
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentClientRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
 
 class ClientManager
 {
@@ -37,6 +38,7 @@ class ClientManager
 
     public static function deleteClient($clientID)
     {
+        (new ProjectManager())->deleteProjectByClient($clientID);
         EloquentClientRepository::deleteClient($clientID);
     }
 }

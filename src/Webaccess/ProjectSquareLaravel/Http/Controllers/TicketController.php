@@ -44,7 +44,7 @@ class TicketController extends BaseController
             'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
             'ticket_status' => app()->make('TicketStatusManager')->getTicketStatuses(),
             'users' => app()->make('UserManager')->getAgencyUsers(),
-            'current_project_id' => $this->getCurrentProject()->id,
+            'current_project_id' => ($this->getCurrentProject()) ? $this->getCurrentProject()->id : null,
         ]);
     }
 
@@ -191,5 +191,20 @@ class TicketController extends BaseController
         }
 
         return redirect()->back();
+    }
+
+    public function unallocate()
+    {
+        try {
+            app()->make('UpdateTicketInteractor')->execute(new UpdateTicketRequest([
+                'ticketID' => Input::get('ticket_id'),
+                'requesterUserID' => $this->getUser()->id,
+            ]));
+
+            return response()->json(['success' => true], 200);
+        } catch (\Exception $e) {
+            $this->request->session()->flash('error', $e->getMessage());
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 }

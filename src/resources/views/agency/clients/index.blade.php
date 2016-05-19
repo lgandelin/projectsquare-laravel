@@ -38,7 +38,7 @@
                     <td>{{ $client->name }}</td>
                     <td>
                         <a href="{{ route('clients_edit', ['id' => $client->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> {{ trans('projectsquare::generic.edit') }}</a>
-                        <a href="{{ route('clients_delete', ['id' => $client->id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ trans('projectsquare::generic.delete') }}</a>
+                        <a href="{{ route('clients_delete', ['id' => $client->id]) }}" class="btn btn-danger btn-delete"><span class="glyphicon glyphicon-remove"></span> {{ trans('projectsquare::generic.delete') }}</a>
                     </td>
                 </tr>
             @endforeach

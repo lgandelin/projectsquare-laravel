@@ -8198,8 +8198,10 @@ ul {
     width: 100%;
     height: 100%; }
 
-#tickets-list .ticket {
-  min-height: 35px; }
+.tickets-list {
+  margin-top: 5rem; }
+  .tickets-list .ticket {
+    min-height: 35px; }
 
 #planning a[href]:hover {
   text-decoration: underline; }

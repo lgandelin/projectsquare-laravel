@@ -2,6 +2,15 @@ $(document).ready(function() {
 
     //VALID TASK
     $('.btn-valid-create-task').click(function() {
+        $('#tasks').find('.alert').hide();
+
+        if ($('.new-task').val() == '') {
+            $('#tasks').find('.alert .text').text('Vous devez renseigner un titre pour cette tâche');
+            $('#tasks').find('.alert').show();
+
+            return false;
+        }
+
         var data = {
             name: $('.new-task').val(),
             _token: $('#csrf_token').val()
