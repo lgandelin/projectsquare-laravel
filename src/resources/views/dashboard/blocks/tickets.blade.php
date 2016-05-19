@@ -8,6 +8,7 @@
                 <th>{{ trans('projectsquare::tickets.ticket') }}</th>
                 <th>{{ trans('projectsquare::tickets.client') }} / {{ trans('projectsquare::tickets.project') }}</th>
                 <th>{{ trans('projectsquare::tickets.type') }}</th>
+                <th>{{ trans('projectsquare::tickets.allocated_user') }}</th>
                 <th>{{ trans('projectsquare::tickets.status') }}</th>
                 <th>{{ trans('projectsquare::tickets.priority') }}</th>
                 <th>{{ trans('projectsquare::generic.action') }}</th>
@@ -18,11 +19,12 @@
             @foreach ($tickets as $ticket)
                 <tr>
                     <td>{{ $ticket->id }}</td>
-                    <td width="40%">{{ $ticket->title }}</td>
+                    <td>{{ $ticket->title }}</td>
                     <td><a href="{{ route('project_index', ['id' => $ticket->project->id]) }}"><span class="label" style="background: {{ $ticket->project->color }}">{{ $ticket->project->client->name }}</span> {{ $ticket->project->name }}</a></td>
                     <td><span class="badge">@if (isset($ticket->type)){{ $ticket->type->name }}@endif</span></td>
-                    <td width="10%">@if (isset($ticket->states[0]))<span class="status status-{{ $ticket->states[0]->status->id }}">{{ $ticket->states[0]->status->name }}</span>@endif</td>
-                    <td>@if (isset($ticket->states[0]))<span class="badge priority-{{ $ticket->states[0]->priority }}">{{ $ticket->states[0]->priority }}</span>@endif</td>
+                    <td>@if (isset($ticket->last_state) && $ticket->last_state->allocated_user){{ $ticket->last_state->allocated_user->complete_name }}@endif</td>
+                    <td width="10%">@if (isset($ticket->last_state) && isset($ticket->last_state->status))<span class="status status-{{ $ticket->last_state->status->id }}">{{ $ticket->last_state->status->name }}</span>@endif</td>
+                    <td>@if (isset($ticket->last_state))<span class="badge priority-{{ $ticket->last_state->priority }}">{{ $ticket->last_state->priority }}</span>@endif</td>
                     <td>
                         <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-share-alt"></span> {{ trans('projectsquare::tickets.see_ticket') }}</a>
                     </td>

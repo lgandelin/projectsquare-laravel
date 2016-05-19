@@ -5,17 +5,29 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Decorators\EventDecorator;
 use Webaccess\ProjectSquare\Exceptions\Events\EventUpdateNotAuthorizedException;
+use Webaccess\ProjectSquare\Interactors\Tickets\GetTicketInteractor;
 use Webaccess\ProjectSquare\Requests\Events\CreateEventRequest;
 use Webaccess\ProjectSquare\Requests\Events\DeleteEventRequest;
 use Webaccess\ProjectSquare\Requests\Events\GetEventRequest;
 use Webaccess\ProjectSquare\Requests\Events\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Events\UpdateEventRequest;
 
-class EventsController extends BaseController
+class PlanningController extends BaseController
 {
     public function index()
     {
         $userID = (Input::get('filter_user')) ? Input::get('filter_user') : $this->getUser()->id;
+
+        $allocatedTickets = app()->make('GetTicketInteractor')->getTicketsList(
+            $userID,
+            Input::get('filter_project'),
+            $userID
+        );
+        $nonAllocatedTickets = app()->make('GetTicketInteractor')->getTicketsList(
+            $userID,
+            Input::get('filter_project'),
+            0
+        );
 
         return view('projectsquare::planning.index', [
             'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
@@ -23,10 +35,8 @@ class EventsController extends BaseController
                 'userID' => $userID,
                 'projectID' => Input::get('filter_project'),
             ])),
-            'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
-                $userID,
-                env('TICKETS_PER_PAGE'),
-                Input::get('filter_project')),
+            'allocated_tickets' => $this->removeTicketsAlreadyScheduled($allocatedTickets),
+            'non_allocated_tickets' => $this->removeTicketsAlreadyScheduled($nonAllocatedTickets),
             'filters' => [
                 'project' => Input::get('filter_project'),
                 'user' => Input::get('filter_user'),
@@ -109,18 +119,46 @@ class EventsController extends BaseController
     public function delete()
     {
         try {
+            $event = app()->make('GetEventInteractor')->execute(new GetEventRequest([
+                'eventID' => Input::get('event_id')
+            ]));
+
+            $ticket = app()->make('GetTicketInteractor')->getTicketWithStates($event->ticketID);
+
             app()->make('DeleteEventInteractor')->execute(new DeleteEventRequest([
                 'eventID' => Input::get('event_id'),
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
+            $project = app()->make('ProjectManager')->getProject($event->projectID);
+
             return response()->json([
                 'message' => trans('projectsquare::events.delete_event_success'),
+                'ticket_id' => $ticket->id,
+                'project_id' => $project->id,
+                'color' => $project->color,
+                'title' => $ticket->title,
+                'estimated_time' => ($ticket->states[0]->estimated_time != "") ? $ticket->states[0]->estimated_time : "02:00",
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
                 'error' => $e->getMessage(),
             ], 500);
         }
+    }
+
+    protected function removeTicketsAlreadyScheduled($tickets)
+    {
+        foreach ($tickets as $i => $ticket) {
+            $events = app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
+                'ticketID' => $ticket->id
+            ]));
+
+            if (count($events) > 0) {
+                unset($tickets[$i]);
+            }
+        }
+
+        return $tickets;
     }
 }
