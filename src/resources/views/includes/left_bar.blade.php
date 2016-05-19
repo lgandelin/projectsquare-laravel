@@ -39,7 +39,6 @@
                     <li><a href="{{ route('roles_index') }}">Profils</a></li>
                     <li><a href="{{ route('ticket_types_index') }}">Types de tickets</a></li>
                     <li><a href="{{ route('ticket_statuses_index') }}">Statuts de tickets</a></li>
-                    <li>Réglages</li>
                 </ul>
             </li>
         @endif

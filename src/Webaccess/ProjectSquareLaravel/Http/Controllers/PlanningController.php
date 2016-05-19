@@ -4,13 +4,12 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Decorators\EventDecorator;
-use Webaccess\ProjectSquare\Exceptions\Events\EventUpdateNotAuthorizedException;
-use Webaccess\ProjectSquare\Interactors\Tickets\GetTicketInteractor;
-use Webaccess\ProjectSquare\Requests\Events\CreateEventRequest;
-use Webaccess\ProjectSquare\Requests\Events\DeleteEventRequest;
-use Webaccess\ProjectSquare\Requests\Events\GetEventRequest;
-use Webaccess\ProjectSquare\Requests\Events\GetEventsRequest;
-use Webaccess\ProjectSquare\Requests\Events\UpdateEventRequest;
+use Webaccess\ProjectSquare\Exceptions\Planning\EventUpdateNotAuthorizedException;
+use Webaccess\ProjectSquare\Requests\Planning\CreateEventRequest;
+use Webaccess\ProjectSquare\Requests\Planning\DeleteEventRequest;
+use Webaccess\ProjectSquare\Requests\Planning\GetEventRequest;
+use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
+use Webaccess\ProjectSquare\Requests\Planning\UpdateEventRequest;
 
 class PlanningController extends BaseController
 {
