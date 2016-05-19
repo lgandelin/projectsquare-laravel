@@ -250,7 +250,9 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         App::bind('DeleteTicketInteractor', function () {
             return new DeleteTicketInteractor(
                 new EloquentTicketRepository(),
-                new EloquentProjectRepository()
+                new EloquentProjectRepository(),
+                new EloquentEventRepository(),
+                new EloquentNotificationRepository()
             );
         });
 

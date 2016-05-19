@@ -18,7 +18,7 @@ class TicketDeletedSlackNotification
         SlackTool::send(
             'Ticket supprimé : '.$ticket->title,
             implode("\n", $lines),
-            (isset($ticket->states[0])) ? $ticket->states[0]->author_user->complete_name : '',
+            (isset($ticket->last_state) && isset($ticket->last_state->author_user)) ? $ticket->last_state->author_user->complete_name : '',
             null,
             ($settingSlackChannel) ? $settingSlackChannel->value : '',
             '#36a64f'
