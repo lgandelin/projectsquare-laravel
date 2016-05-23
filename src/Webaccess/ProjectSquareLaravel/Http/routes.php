@@ -90,6 +90,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/agency/users/{id}', array('as' => 'users_edit', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\UserController@edit'));
     Route::post('/agency/users', array('as' => 'users_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\UserController@update'));
     Route::get('/agency/delete_user/{id}', array('as' => 'users_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\UserController@delete'));
+    Route::get('/agency/user_generate_new_password/{id}', array('as' => 'users_generate_password', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\UserController@generate_password'));
 
     Route::get('/ticket_types', array('as' => 'ticket_types_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\TicketTypeController@index'));
     Route::get('/add_ticket_type', array('as' => 'ticket_types_add', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\TicketTypeController@add'));

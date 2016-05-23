@@ -13,5 +13,6 @@
 
     @include('projectsquare::agency.users.form', [
         'form_action' => route('users_store'),
+        'password_field' => true,
     ])
 @endsection

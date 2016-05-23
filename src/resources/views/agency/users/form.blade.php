@@ -15,8 +15,19 @@
     </div>
 
     <div class="form-group">
-        <label for="password">{{ trans('projectsquare::users.password') }}</label>
-        <input class="form-control" type="password" placeholder="@if (isset($user_id)){{ trans('projectsquare::users.password_leave_empty') }}@else{{ trans('projectsquare::users.password') }}@endif" name="password" autocomplete="off" />
+        <label for="password">{{ trans('projectsquare::users.password') }}</label><br/>
+        @if ($password_field)
+            <input class="form-control" type="password" placeholder="@if (isset($user_id)){{ trans('projectsquare::users.password_leave_empty') }}@else{{ trans('projectsquare::users.password') }}@endif" name="password" autocomplete="off" />
+        @else
+            <a href="{{ route('users_generate_password', ['id' => $user_id]) }}">
+                <span class="btn btn-primary">
+                    <span class="glyphicon glyphicon-repeat"></span>
+                    {{ trans('projectsquare::users.generate_password') }}
+                </span>
+            </a>
+            <br/>
+            <span style="font-style: italic; display: inline-block;margin-top: 5px;">{{ trans('projectsquare::users.generate_password_notice') }}</span>
+        @endif
     </div>
 
     <div class="form-group">
@@ -33,8 +44,8 @@
 
     <div class="form-group">
         <label for="is_administrator">{{ trans('projectsquare::users.is_administrator') }}</label><br/>
-        Oui <input type="radio" placeholder="{{ trans('projectsquare::users.is_administrator') }}" name="is_administrator" value="y" @if ($is_administrator) checked @endif autocomplete="off" />
-        Non <input type="radio" placeholder="{{ trans('projectsquare::users.is_administrator') }}" name="is_administrator" value="n" @if (!$is_administrator) checked @endif autocomplete="off" />
+        Oui <input type="radio" placeholder="{{ trans('projectsquare::users.is_administrator') }}" name="is_administrator" value="y" @if (isset($is_administrator) && $is_administrator) checked @endif autocomplete="off" />
+        Non <input type="radio" placeholder="{{ trans('projectsquare::users.is_administrator') }}" name="is_administrator" value="n" @if (isset($is_administrator) && !$is_administrator) checked @endif autocomplete="off" />
     </div>
 
     <div class="form-group">
