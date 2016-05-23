@@ -36,14 +36,14 @@ class UserManager
         return $user;
     }
 
-    public function createUser($firstName, $lastName, $email, $password, $clientID)
+    public function createUser($firstName, $lastName, $email, $password, $clientID, $isAdministrator)
     {
-        $this->repository->createUser($firstName, $lastName, $email, $password, $clientID);
+        $this->repository->createUser($firstName, $lastName, $email, $password, $clientID, $isAdministrator);
     }
 
-    public function updateUser($userID, $firstName, $lastName, $email, $password, $clientID)
+    public function updateUser($userID, $firstName, $lastName, $email, $password, $clientID, $isAdministrator)
     {
-        $this->repository->updateUser($userID, $firstName, $lastName, $email, ($password) ? Hash::make($password) : null, $clientID);
+        $this->repository->updateUser($userID, $firstName, $lastName, $email, ($password) ? Hash::make($password) : null, $clientID, $isAdministrator);
     }
 
     public function deleteUser($userID)

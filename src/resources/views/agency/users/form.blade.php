@@ -20,7 +20,7 @@
     </div>
 
     <div class="form-group">
-        <label for="name">{{ trans('projectsquare::users.client') }}</label>
+        <label for="client_id">{{ trans('projectsquare::users.client') }}</label>
         @if (isset($clients))
             <select class="form-control" name="client_id">
                 <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
@@ -29,6 +29,12 @@
                 @endforeach
             </select>
         @endif
+    </div>
+
+    <div class="form-group">
+        <label for="is_administrator">{{ trans('projectsquare::users.is_administrator') }}</label><br/>
+        Oui <input type="radio" placeholder="{{ trans('projectsquare::users.is_administrator') }}" name="is_administrator" value="y" @if ($is_administrator) checked @endif autocomplete="off" />
+        Non <input type="radio" placeholder="{{ trans('projectsquare::users.is_administrator') }}" name="is_administrator" value="n" @if (!$is_administrator) checked @endif autocomplete="off" />
     </div>
 
     <div class="form-group">

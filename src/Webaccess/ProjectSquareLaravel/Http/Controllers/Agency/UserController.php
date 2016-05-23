@@ -37,7 +37,8 @@ class UserController extends BaseController
                 Input::get('last_name'),
                 Input::get('email'),
                 Input::get('password'),
-                Input::get('client_id') ? Input::get('client_id') : null
+                Input::get('client_id') ? Input::get('client_id') : null,
+                (Input::get('is_administrator') == 'y') ? true : false
             );
             $this->request->session()->flash('confirmation', trans('projectsquare::users.add_user_success'));
         } catch (\Exception $e) {
@@ -74,7 +75,8 @@ class UserController extends BaseController
                 Input::get('last_name'),
                 Input::get('email'),
                 Input::get('password'),
-                Input::get('client_id')
+                Input::get('client_id'),
+                (Input::get('is_administrator') == 'y') ? true : false
             );
             $this->request->session()->flash('confirmation', trans('projectsquare::users.edit_user_success'));
         } catch (\Exception $e) {

@@ -28,6 +28,7 @@ class BaseController extends Controller
         view()->share('current_project', $this->getCurrentProject());
         view()->share('notifications', $this->getUnreadNotifications());
         view()->share('is_client', $this->isUserAClient());
+        view()->share('is_admin', $this->isUserAnAdmin());
     }
 
     protected function getUser()
@@ -68,6 +69,15 @@ class BaseController extends Controller
     {
         if ($this->getUser()) {
             return $this->getUser()->client_id != null;
+        }
+
+        return false;
+    }
+
+    protected function isUserAnAdmin()
+    {
+        if ($this->getUser()) {
+            return $this->getUser()->is_administrator;
         }
 
         return false;

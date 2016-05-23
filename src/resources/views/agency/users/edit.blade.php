@@ -29,5 +29,6 @@
         'user_first_name' => $user->firstName,
         'user_last_name' => $user->lastName,
         'user_email' => $user->email,
+        'is_administrator' => $user->isAdministrator
     ])
 @endsection
