@@ -52,7 +52,7 @@ class TicketController extends BaseController
     public function store()
     {
         try {
-            app()->make('CreateTicketInteractor')->execute(new CreateTicketRequest([
+            $response = app()->make('CreateTicketInteractor')->execute(new CreateTicketRequest([
                 'title' => Input::get('title'),
                 'projectID' => Input::get('project_id'),
                 'typeID' => Input::get('type_id'),
@@ -68,7 +68,7 @@ class TicketController extends BaseController
             ]));
 
             $this->request->session()->flash('confirmation', trans('projectsquare::tickets.add_ticket_success'));
-            return redirect()->route('tickets_index');
+            return redirect()->route('tickets_edit', ['id' => $response->ticket->id]);
         } catch (\Exception $e) {
             $this->request->session()->flash('error', $e->getMessage());
         }

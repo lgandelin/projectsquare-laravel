@@ -41,7 +41,7 @@
 
                 <div class="form-group">
                     <label for="description">{{ trans('projectsquare::tickets.description') }}</label>
-                    <textarea class="form-control" rows="10" placeholder="{{ trans('projectsquare::tickets.description') }}" name="description"></textarea>
+                    <textarea class="form-control" rows="12" placeholder="{{ trans('projectsquare::tickets.description') }}" name="description"></textarea>
                 </div>
 
                 <div class="form-group">
@@ -106,6 +106,11 @@
                             <option value="{{ $i }}">{{ $i }}</option>
                         @endfor
                     </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="estimated_time">{{ trans('projectsquare::tickets.estimated_time') }}</label>
+                    <input class="form-control" type="time" name="estimated_time" placeholder="{{ trans('projectsquare::tickets.estimated_time') }}" />
                 </div>
             </div>
         </div>

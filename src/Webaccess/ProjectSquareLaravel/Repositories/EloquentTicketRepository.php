@@ -6,7 +6,6 @@ use Webaccess\ProjectSquare\Entities\Ticket as TicketEntity;
 use Webaccess\ProjectSquare\Entities\TicketState as TicketStateEntity;
 use Webaccess\ProjectSquareLaravel\Models\Ticket;
 use Webaccess\ProjectSquareLaravel\Models\TicketState;
-use Webaccess\ProjectSquareLaravel\Models\TicketStatus;
 use Webaccess\ProjectSquareLaravel\Models\User;
 use Webaccess\ProjectSquare\Repositories\TicketRepository;
 
