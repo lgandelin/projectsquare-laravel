@@ -46,6 +46,11 @@ class EloquentTicketRepository implements TicketRepository
             $tickets->whereHas('last_state.status', function ($query) use ($statusID) {
                 $query->where('id', '=', $statusID);
             });
+        } else {
+            $archivedStatusID = env('ARCHIVED_TICKET_STATUS_ID');
+            $tickets->whereHas('last_state.status', function ($query) use ($archivedStatusID) {
+                $query->where('id', '!=', $archivedStatusID);
+            });
         }
 
         if ($allocatedUserID > 0) {
