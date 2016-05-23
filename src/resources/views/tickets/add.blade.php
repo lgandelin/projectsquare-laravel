@@ -11,6 +11,12 @@
         <h1>{{ trans('projectsquare::tickets.add_ticket') }}</h1>
     </div>
 
+    @if (isset($error))
+        <div class="info bg-danger">
+            {{ $error }}
+        </div>
+    @endif
+
     <form action="{{ route('tickets_store') }}" method="post">
         <div class="row">
             <div class="col-md-6">

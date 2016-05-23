@@ -2,7 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Decorators;
 
-use Webaccess\ProjectSquare\Requests\Events\GetEventRequest;
+use Webaccess\ProjectSquare\Requests\Planning\GetEventRequest;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentMessageRepository;
 
 class NotificationDecorator

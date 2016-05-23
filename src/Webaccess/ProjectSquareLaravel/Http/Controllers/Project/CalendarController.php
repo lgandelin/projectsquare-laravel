@@ -1,16 +1,28 @@
 <?php
 
-namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
+namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Project;
 
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Decorators\StepDecorator;
-use Webaccess\ProjectSquare\Requests\Steps\CreateStepRequest;
-use Webaccess\ProjectSquare\Requests\Steps\DeleteStepRequest;
-use Webaccess\ProjectSquare\Requests\Steps\GetStepRequest;
-use Webaccess\ProjectSquare\Requests\Steps\UpdateStepRequest;
+use Webaccess\ProjectSquare\Requests\Calendar\CreateStepRequest;
+use Webaccess\ProjectSquare\Requests\Calendar\DeleteStepRequest;
+use Webaccess\ProjectSquare\Requests\Calendar\GetStepRequest;
+use Webaccess\ProjectSquare\Requests\Calendar\GetStepsRequest;
+use Webaccess\ProjectSquare\Requests\Calendar\UpdateStepRequest;
+use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 
-class StepsController extends BaseController
+class CalendarController extends BaseController
 {
+    public function index($projectID)
+    {
+        return view('projectsquare::project.calendar', [
+            'project' => app()->make('ProjectManager')->getProject($projectID),
+            'steps' => app()->make('GetStepsInteractor')->execute(new GetStepsRequest([
+                'projectID' => $projectID,
+            ])),
+        ]);
+    }
+
     public function get_step()
     {
         try {

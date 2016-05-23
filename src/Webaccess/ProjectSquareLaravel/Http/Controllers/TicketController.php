@@ -45,6 +45,7 @@ class TicketController extends BaseController
             'ticket_status' => app()->make('TicketStatusManager')->getTicketStatuses(),
             'users' => app()->make('UserManager')->getAgencyUsers(),
             'current_project_id' => ($this->getCurrentProject()) ? $this->getCurrentProject()->id : null,
+            'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
         ]);
     }
 
@@ -67,11 +68,12 @@ class TicketController extends BaseController
             ]));
 
             $this->request->session()->flash('confirmation', trans('projectsquare::tickets.add_ticket_success'));
+            return redirect()->route('tickets_index');
         } catch (\Exception $e) {
             $this->request->session()->flash('error', $e->getMessage());
         }
 
-        return redirect()->route('tickets_index');
+        return redirect()->route('tickets_add');
     }
 
     public function edit($ticketID)

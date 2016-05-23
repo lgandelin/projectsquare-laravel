@@ -2,7 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
-use Webaccess\ProjectSquare\Requests\Events\GetEventsRequest;
+use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 
 class DashboardController extends BaseController

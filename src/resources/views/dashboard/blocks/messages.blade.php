@@ -17,12 +17,10 @@
                                 @endforeach
                             </div>
 
-                            @foreach ($conversation->messages as $message)
-                                <div class="message">
-                                    <span class="badge">{{ date('d/m/Y H:i', strtotime($message->created_at)) }}</span> <span class="glyphicon glyphicon-user"></span> <span class="user_name">{{ $message->user->complete_name }}</span><br/>
-                                    <p class="content">{{ $message->content }}</p>
-                                </div>
-                            @endforeach
+                            <div class="message">
+                                <span class="badge">{{ date('d/m/Y H:i', strtotime($conversation->messages[sizeof($conversation->messages) - 1]->created_at)) }}</span> <span class="glyphicon glyphicon-user"></span> <span class="user_name">{{ $conversation->messages[sizeof($conversation->messages) - 1]->user->complete_name }}</span><br/>
+                                <p class="content">{{ $conversation->messages[sizeof($conversation->messages) - 1]->content }}</p>
+                            </div>
 
                             <div class="message-inserted"></div>
 
@@ -34,7 +32,7 @@
 
                             <div class="submit">
                                 <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-sm btn-primary pull-right"><span class="glyphicon glyphicon-share-alt"></span> {{ trans('projectsquare::messages.see_message') }}</a>
-                                <button class="btn btn-sm btn-success pull-right reply-message" data-id="{{ $message->id }}" style="margin-right: 1rem;"><span class="glyphicon glyphicon-comment"></span> {{ trans('projectsquare::messages.reply_message') }}</button>
+                                <button class="btn btn-sm btn-success pull-right reply-message" data-id="{{ $conversation->id }}" style="margin-right: 1rem;"><span class="glyphicon glyphicon-comment"></span> {{ trans('projectsquare::messages.reply_message') }}</button>
                             </div>
                         </td>
                     </tr>
@@ -43,6 +41,9 @@
             </table>
         </div>
     </div>
-    <button class="btn btn-sm btn-success create-conversation"><span class="glyphicon glyphicon-plus"></span> {{ trans('projectsquare::messages.add_conversation') }}</button>
+    @if ($is_client)
+        <button class="btn btn-sm btn-success create-conversation"><span class="glyphicon glyphicon-plus"></span> {{ trans('projectsquare::messages.add_conversation') }}</button>
+    @endif
     <a href="{{ route('messages_index') }}" class="btn btn-sm btn-default pull-right"><span class="glyphicon glyphicon-list-alt"></span> {{ trans('projectsquare::messages.see_messages') }}</a>
+    <span class="clearfix"></span>
 </div>

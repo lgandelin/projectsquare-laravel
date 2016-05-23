@@ -30,18 +30,20 @@
                     <li><a href="{{ route('tasks_index') }}">{{ trans('projectsquare::tasks.tasks') }}</a></li>
                 </ul>
             </li>
-            <li>
-                <h3>Agence</h3>
-                <ul>
-                    <li><a href="{{ route('clients_index') }}">Clients</a></li>
-                    <li><a href="{{ route('projects_index') }}">Projets</a></li>
-                    <li><a href="{{ route('users_index') }}">Utilisateurs</a></li>
-                    <li><a href="{{ route('roles_index') }}">Profils</a></li>
-                    <li><a href="{{ route('ticket_types_index') }}">Types de tickets</a></li>
-                    <li><a href="{{ route('ticket_statuses_index') }}">Statuts de tickets</a></li>
-                    <li>Réglages</li>
-                </ul>
-            </li>
+
+            @if ($is_admin)
+                <li>
+                    <h3>Agence</h3>
+                    <ul>
+                        <li><a href="{{ route('clients_index') }}">Clients</a></li>
+                        <li><a href="{{ route('projects_index') }}">Projets</a></li>
+                        <li><a href="{{ route('users_index') }}">Utilisateurs</a></li>
+                        <li><a href="{{ route('roles_index') }}">Profils</a></li>
+                        <li><a href="{{ route('ticket_types_index') }}">Types de tickets</a></li>
+                        <li><a href="{{ route('ticket_statuses_index') }}">Statuts de tickets</a></li>
+                    </ul>
+                </li>
+            @endif
         @endif
     </ul>
 </nav>

@@ -21,7 +21,18 @@ class EloquentTicketRepository implements TicketRepository
 
     public function getTicketsPaginatedList($userID, $limit, $projectID = null, $allocatedUserID = null, $statusID = null, $typeID = null)
     {
-        return $this->getTickets($userID, $projectID , $allocatedUserID, $statusID, $typeID)->paginate($limit);
+        $tickets = $this->getTickets($userID, $projectID , $allocatedUserID, $statusID, $typeID)->paginate($limit);
+
+        if (!$statusID) {
+            foreach ($tickets as $i => $ticket) {
+                //Remove archived tickets
+                if (isset($ticket->last_state->status) && $ticket->last_state->status && $ticket->last_state->status->id == env('ARCHIVED_TICKET_STATUS_ID')) {
+                    unset($tickets[$i]);
+                }
+            }
+        }
+
+        return $tickets;
     }
 
     public function getTicketsList($userID, $projectID = null, $allocatedUserID = null, $statusID = null, $typeID = null)

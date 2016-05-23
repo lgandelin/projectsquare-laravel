@@ -22,6 +22,7 @@ return [
     'password_leave_empty' => 'Laisser vide pour ne pas modifier le mot de passe',
     'user' => 'Utilisateur',
     'client' => 'Client',
+    'is_administrator' => 'Administrateur',
 
     'user_not_found' => 'Une erreur est survenue lors de la récupération de cet utilisateur',
     'ticket_creation_not_allowed' => 'Vous n\'êtes pas autorisés à créer un ticket pour ce projet',

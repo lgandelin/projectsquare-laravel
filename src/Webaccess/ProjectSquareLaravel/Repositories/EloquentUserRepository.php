@@ -41,6 +41,7 @@ class EloquentUserRepository implements UserRepository
             $user->lastName = $userModel->last_name;
             $user->password = $userModel->password;
             $user->clientID = $userModel->client_id;
+            $user->isAdministrator = $userModel->is_administrator;
         }
 
         return $user;
@@ -51,14 +52,14 @@ class EloquentUserRepository implements UserRepository
         return Project::find($projectID)->users;
     }
 
-    public function createUser($firstName, $lastName, $email, $password, $clientID)
+    public function createUser($firstName, $lastName, $email, $password, $clientID, $isAdministrator=false)
     {
         $user = new User();
         $user->save();
-        self::updateUser($user->id, $firstName, $lastName, $email, $password, $clientID);
+        self::updateUser($user->id, $firstName, $lastName, $email, $password, $clientID, $isAdministrator);
     }
 
-    public function updateUser($userID, $firstName, $lastName, $email, $password, $clientID)
+    public function updateUser($userID, $firstName, $lastName, $email, $password, $clientID, $isAdministrator=false)
     {
         $user = self::getUserModel($userID);
         $user->first_name = $firstName;
@@ -68,6 +69,7 @@ class EloquentUserRepository implements UserRepository
             $user->password = $password;
         }
         $user->client_id = $clientID;
+        $user->is_administrator = $isAdministrator;
         $user->save();
     }
 

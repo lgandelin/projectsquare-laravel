@@ -12,20 +12,20 @@ use Webaccess\ProjectSquare\Context;
 use Webaccess\ProjectSquare\Contracts\EventManager;
 use Webaccess\ProjectSquare\Contracts\Translator;
 use Webaccess\ProjectSquare\Events\Events;
-use Webaccess\ProjectSquare\Interactors\Events\CreateEventInteractor;
-use Webaccess\ProjectSquare\Interactors\Events\DeleteEventInteractor;
-use Webaccess\ProjectSquare\Interactors\Events\GetEventInteractor;
-use Webaccess\ProjectSquare\Interactors\Events\GetEventsInteractor;
-use Webaccess\ProjectSquare\Interactors\Events\UpdateEventInteractor;
+use Webaccess\ProjectSquare\Interactors\Planning\CreateEventInteractor;
+use Webaccess\ProjectSquare\Interactors\Planning\DeleteEventInteractor;
+use Webaccess\ProjectSquare\Interactors\Planning\GetEventInteractor;
+use Webaccess\ProjectSquare\Interactors\Planning\GetEventsInteractor;
+use Webaccess\ProjectSquare\Interactors\Planning\UpdateEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Messages\CreateConversationInteractor;
 use Webaccess\ProjectSquare\Interactors\Messages\CreateMessageInteractor;
 use Webaccess\ProjectSquare\Interactors\Notifications\GetNotificationsInteractor;
 use Webaccess\ProjectSquare\Interactors\Notifications\ReadNotificationInteractor;
-use Webaccess\ProjectSquare\Interactors\Steps\GetStepInteractor;
-use Webaccess\ProjectSquare\Interactors\Steps\GetStepsInteractor;
-use Webaccess\ProjectSquare\Interactors\Steps\CreateStepInteractor;
-use Webaccess\ProjectSquare\Interactors\Steps\DeleteStepInteractor;
-use Webaccess\ProjectSquare\Interactors\Steps\UpdateStepInteractor;
+use Webaccess\ProjectSquare\Interactors\Calendar\GetStepInteractor;
+use Webaccess\ProjectSquare\Interactors\Calendar\GetStepsInteractor;
+use Webaccess\ProjectSquare\Interactors\Calendar\CreateStepInteractor;
+use Webaccess\ProjectSquare\Interactors\Calendar\DeleteStepInteractor;
+use Webaccess\ProjectSquare\Interactors\Calendar\UpdateStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectsInteractor;
 use Webaccess\ProjectSquare\Interactors\Tasks\CreateTaskInteractor;
@@ -250,7 +250,9 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         App::bind('DeleteTicketInteractor', function () {
             return new DeleteTicketInteractor(
                 new EloquentTicketRepository(),
-                new EloquentProjectRepository()
+                new EloquentProjectRepository(),
+                new EloquentEventRepository(),
+                new EloquentNotificationRepository()
             );
         });
 

@@ -40,4 +40,12 @@
 
     <h3>{{ trans('projectsquare::tickets.ticket_history') }} <span class="badge badge-primary" style="margin-left: 1rem; margin-bottom: 2px;">{{ count($ticket->states) }}</span></h3>
     @include('projectsquare::tickets.ticket_history')
+
+    <hr/>
+
+    <h3>{{ trans('projectsquare::tickets.delete_ticket') }}</h3>
+
+    <a href="{{ route('tickets_delete', ['id' => $ticket->id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ trans('projectsquare::generic.delete') }}</a>
+
+    <br/><br/>
 @endsection
