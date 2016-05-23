@@ -57,4 +57,6 @@ return [
 
     'title_required' => 'Vous devez renseignez un titre pour ce ticket',
     'due_date_already_passed' => 'L\'échéance de ce ticket est déjà passée',
+
+    'delete_ticket' => 'Supprimer le ticket',
 ];
