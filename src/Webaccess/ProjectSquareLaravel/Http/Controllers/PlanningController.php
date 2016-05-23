@@ -34,8 +34,8 @@ class PlanningController extends BaseController
                 'userID' => $userID,
                 'projectID' => Input::get('filter_project'),
             ])),
-            'allocated_tickets' => $this->removeTicketsAlreadyScheduled($allocatedTickets),
-            'non_allocated_tickets' => $this->removeTicketsAlreadyScheduled($nonAllocatedTickets),
+            'allocated_tickets' => $this->filterTicketList($allocatedTickets),
+            'non_allocated_tickets' => $this->filterTicketList($nonAllocatedTickets),
             'filters' => [
                 'project' => Input::get('filter_project'),
                 'user' => Input::get('filter_user'),
@@ -146,14 +146,21 @@ class PlanningController extends BaseController
         }
     }
 
-    protected function removeTicketsAlreadyScheduled($tickets)
+    protected function filterTicketList($tickets)
     {
         foreach ($tickets as $i => $ticket) {
+
+            //Remove tickets already scheduled
             $events = app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
                 'ticketID' => $ticket->id
             ]));
 
             if (count($events) > 0) {
+                unset($tickets[$i]);
+            }
+
+            //Remove archived tickets
+            if (isset($ticket->last_state->status) && $ticket->last_state->status && $ticket->last_state->status->id == env('ARCHIVED_TICKET_STATUS_ID')) {
                 unset($tickets[$i]);
             }
         }
