@@ -85,7 +85,6 @@ class UserManager
     private function sendNewPasswordToUser($newPassword, $userEmail)
     {
         Mail::send('projectsquare::emails.password', array('password' => $newPassword), function ($message) use ($userEmail) {
-
             $message->to($userEmail)
                 ->from('no-reply@projectsquare.fr')
                 ->subject('[projectsquare] Votre nouveau mot de passe');

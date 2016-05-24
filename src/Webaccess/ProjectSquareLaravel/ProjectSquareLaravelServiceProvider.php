@@ -338,6 +338,7 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             'Webaccess\ProjectSquareLaravel\Commands\AlertLoadingTimeCommand',
             'Webaccess\ProjectSquareLaravel\Commands\AlertStatusCodeCommand',
             'Webaccess\ProjectSquareLaravel\Commands\PurgeRequestsCommand',
+            'Webaccess\ProjectSquareLaravel\Commands\SendEmailInstallCompletedCommand',
         ]);
     }
 }
