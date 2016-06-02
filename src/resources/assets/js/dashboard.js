@@ -7,6 +7,7 @@ $(document).ready(function() {
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
         },
+        allDaySlot: false,
         defaultDate: defaultDate,
         defaultView: "agendaWeek",
         editable: false,
