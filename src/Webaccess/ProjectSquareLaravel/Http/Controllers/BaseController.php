@@ -19,6 +19,7 @@ class BaseController extends Controller
     {
         $this->request = $request;
 
+        $this->middleware('before_install');
         $this->middleware('auth');
 
         if (Auth::user()) {

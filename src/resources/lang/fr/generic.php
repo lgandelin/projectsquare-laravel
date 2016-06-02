@@ -13,4 +13,6 @@ return [
     'creation_date' => 'Date de création',
     'see' => 'Voir',
     'close' => 'Fermer',
+    'next' => 'Suivant',
+    'previous' => 'Précédent',
 ];

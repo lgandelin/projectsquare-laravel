@@ -3,6 +3,7 @@
 namespace Webaccess\ProjectSquareLaravel\Services;
 
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentUserRepository;
 
 class UserManager
@@ -49,5 +50,44 @@ class UserManager
     public function deleteUser($userID)
     {
         $this->repository->deleteUser($userID);
+    }
+
+    public function generateNewPassword($userID)
+    {
+        if ($user = $this->getUser($userID)) {
+            $password = $this->createRandomString();
+            $this->repository->updateUser(
+                $user->id,
+                null,
+                null,
+                null,
+                Hash::make($password),
+                null,
+                null
+            );
+            $this->sendNewPasswordToUser($password, $user->email);
+        }
+    }
+
+    private function createRandomString($length=8)
+    {
+        $chars = 'abcdefghkmnpqrstuvwxyz23456789';
+        $count = mb_strlen($chars);
+
+        for ($i = 0, $result = ''; $i < $length; ++$i) {
+            $index = rand(0, $count - 1);
+            $result .= mb_substr($chars, $index, 1);
+        }
+
+        return $result;
+    }
+
+    private function sendNewPasswordToUser($newPassword, $userEmail)
+    {
+        Mail::send('projectsquare::emails.password', array('password' => $newPassword), function ($message) use ($userEmail) {
+            $message->to($userEmail)
+                ->from('no-reply@projectsquare.fr')
+                ->subject('[projectsquare] Votre nouveau mot de passe');
+        });
     }
 }

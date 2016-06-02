@@ -86,6 +86,14 @@ class UserController extends BaseController
         return redirect()->route('users_edit', ['id' => Input::get('user_id')]);
     }
 
+    public function generate_password($userID)
+    {
+        app()->make('UserManager')->generateNewPassword($userID);
+        $this->request->session()->flash('confirmation', trans('projectsquare::users.password_generated_success'));
+
+        return redirect()->route('users_edit', ['id' => Input::get('user_id')]);
+    }
+
     public function delete($userID)
     {
         try {

@@ -87,6 +87,9 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         $basePath = __DIR__.'/../../';
 
         $router->middleware('change_current_project', 'Webaccess\ProjectSquareLaravel\Http\Middleware\ChangeCurrentProject');
+        $router->middleware('before_install', 'Webaccess\ProjectSquareLaravel\Http\Middleware\BeforeInstall');
+        $router->middleware('after_install', 'Webaccess\ProjectSquareLaravel\Http\Middleware\AfterInstall');
+
         include __DIR__.'/Http/routes.php';
 
         $this->loadViewsFrom($basePath.'resources/views/', 'projectsquare');
@@ -335,6 +338,7 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             'Webaccess\ProjectSquareLaravel\Commands\AlertLoadingTimeCommand',
             'Webaccess\ProjectSquareLaravel\Commands\AlertStatusCodeCommand',
             'Webaccess\ProjectSquareLaravel\Commands\PurgeRequestsCommand',
+            'Webaccess\ProjectSquareLaravel\Commands\SendEmailInstallCompletedCommand',
         ]);
     }
 }
