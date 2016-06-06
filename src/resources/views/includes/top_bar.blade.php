@@ -40,7 +40,10 @@
 
             <li>
                 <a href="{{ route('my') }}" title="{{ trans('projectsquare::my.panel_title') }}">
-                    <img class="avatar" src="{{ asset('uploads/users/' . $logged_in_user->id . '/avatar.jpg') }}" alt="{{ $logged_in_user->complete_name }}" />
+                    @include('projectsquare::includes.avatar', [
+                        'id' => $logged_in_user->id,
+                        'name' => $logged_in_user->complete_name
+                    ])
                 </a>
             </li>
 

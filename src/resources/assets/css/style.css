@@ -8218,3 +8218,8 @@ ul {
 
 #planning a[href]:hover {
   text-decoration: underline; }
+
+.my-profile-template .avatar {
+  width: 100%;
+  max-width: 150px;
+  height: auto; }

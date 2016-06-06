@@ -22,7 +22,7 @@
         </div>
     @endif
 
-    <div>
+    <div class="my-profile-template">
         <form action="{{ route('my_profile_update') }}" method="post">
             <div class="form-group">
                 <label for="first_name">{{ trans('projectsquare::users.first_name') }}</label>
@@ -52,6 +52,48 @@
             </div>
 
             {!! csrf_field() !!}
+
+            <div class="form-group">
+                <label for="avatar">{{ trans('projectsquare::my.avatar') }}</label><br/>
+                @include('projectsquare::includes.avatar', [
+                    'id' => $logged_in_user->id,
+                    'name' => $logged_in_user->complete_name
+                ])
+            </div>
+        </form>
+
+        <form id="fileupload" action="{{ route('my_profile_upload_avatar') }}" method="POST" enctype="multipart/form-data">
+            <span class="btn btn-success fileinput-button">
+                <i class="glyphicon glyphicon-picture"></i>
+                <span>Parcourir</span>
+                <!-- The file input field used as target for the file upload widget -->
+                <input id="fileupload" type="file" name="files[]" data-url="{{ route('my_profile_upload_avatar') }}">
+            </span>
         </form>
     </div>
+
+    <script src="{{ asset('js/vendor/jquery.fileupload/vendor/jquery.ui.widget.js') }}"></script>
+    <script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+    <script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+    <script src="{{ asset('js/vendor/jquery.fileupload/jquery.iframe-transport.js') }}"></script>
+    <script src="{{ asset('js/vendor/jquery.fileupload/jquery.fileupload.js') }}"></script>
+    <script src="{{ asset('js/vendor/jquery.fileupload/jquery.fileupload-process.js') }}"></script>
+    <script src="{{ asset('js/vendor/jquery.fileupload/jquery.fileupload-ui.js') }}"></script>
+    <script>
+        $(function () {
+            $('#fileupload').fileupload({
+                dataType: 'json',
+                formData: {
+                    _token: $('#csrf_token').val(),
+                },
+                add: function (e, data) {
+                    data.submit();
+                },
+                done: function (e, data) {
+                    window.location.reload();
+                }
+            });
+        });
+    </script>
+
 @endsection

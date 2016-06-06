@@ -3,6 +3,7 @@
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
 use Illuminate\Support\Facades\Input;
+use Webaccess\ProjectSquareLaravel\Tools\UploadTool;
 
 class MyController extends BaseController
 {
@@ -32,5 +33,19 @@ class MyController extends BaseController
         }
 
         return redirect()->route('my', ['id' => Input::get('user_id')]);
+    }
+
+    public function upload_avatar()
+    {
+        try {
+            $data = UploadTool::uploadFileForUser(
+                Input::file('files'),
+                $this->getUser()->id
+            );
+
+            return response()->json(['files' => [$data]], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 }
