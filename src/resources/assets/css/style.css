@@ -7934,6 +7934,11 @@ ul {
         .top-bar .top-right-menu li .notifications .notification:last-child {
           border: none;
           padding-bottom: 0; }
+    .top-bar .top-right-menu .avatar {
+      border-radius: 50%;
+      border: 2px solid #c8dc1e;
+      width: 60px;
+      height: auto; }
 
 .left-bar {
   padding: 2rem 0 2rem 0;
@@ -8019,6 +8024,12 @@ ul {
 
 .task-status-completed {
   text-decoration: line-through; }
+
+.avatar {
+  border-radius: 50%;
+  border: 2px solid #c8dc1e;
+  width: 50px;
+  height: 50px; }
 
 .dashboard-content .block h3 {
   margin-bottom: 2rem;
