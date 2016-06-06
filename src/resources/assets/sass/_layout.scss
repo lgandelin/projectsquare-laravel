@@ -99,6 +99,17 @@
                 }
             }
         }
+
+        .avatar {
+            border-radius: 50%;
+            border: 2px solid $green;
+            width: 60px;
+            height: auto;
+        }
+
+        .avatar:hover {
+            opacity: 0.9;
+        }
     }
 }
 

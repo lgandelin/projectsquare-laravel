@@ -26,8 +26,22 @@
                         <td>{{ $ticket->id }}</td>
                         <td width="40%">{{ $ticket->title }}</td>
                         <td><span class="badge">@if (isset($ticket->type)){{ $ticket->type->name }}@endif</span></td>
-                        <td>@if (isset($ticket->states[0]) && isset($ticket->states[0]->author_user)){{ $ticket->states[0]->author_user->complete_name }}@endif</td>
-                        <td>@if (isset($ticket->states[0]) && isset($ticket->states[0]->allocated_user)){{ $ticket->states[0]->allocated_user->complete_name }}@endif</td>
+                        <td>
+                            @if (isset($ticket->states[0]) && isset($ticket->states[0]->author_user))
+                                @include('projectsquare::includes.avatar', [
+                                    'id' => $ticket->states[0]->author_user->id,
+                                    'name' => $ticket->states[0]->author_user->complete_name
+                                ])
+                            @endif
+                        </td>
+                        <td>
+                            @if (isset($ticket->states[0]) && isset($ticket->states[0]->allocated_user))
+                                @include('projectsquare::includes.avatar', [
+                                    'id' => $ticket->states[0]->allocated_user->id,
+                                    'name' => $ticket->states[0]->allocated_user->complete_name
+                                ])
+                            @endif
+                        </td>
                         <td>@if (isset($ticket->states[0]) && isset($ticket->states[0]->status))<span class="status status-{{ $ticket->states[0]->status->id }}">{{ $ticket->states[0]->status->name }}</span>@endif</td>
                         <td>@if (isset($ticket->states[0]))<span class="badge priority-{{ $ticket->states[0]->priority }}">{{ $ticket->states[0]->priority }}</span>@endif</td>
                         <td>

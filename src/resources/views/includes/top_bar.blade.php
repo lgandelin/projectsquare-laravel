@@ -39,6 +39,15 @@
             </li>
 
             <li>
+                <a href="{{ route('my') }}" title="{{ trans('projectsquare::my.panel_title') }}">
+                    @include('projectsquare::includes.avatar', [
+                        'id' => $logged_in_user->id,
+                        'name' => $logged_in_user->complete_name
+                    ])
+                </a>
+            </li>
+
+            <li>
                 <a href="{{ route('logout') }}">{{ trans('projectsquare::login.logout') }} <span class="glyphicon glyphicon-log-out"></span></a>
             </li>
         </ul>

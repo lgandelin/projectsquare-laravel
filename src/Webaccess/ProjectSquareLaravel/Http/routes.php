@@ -131,4 +131,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/install2', array('as' => 'install2_handler', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\InstallController@install2_handler', 'middleware' => 'after_install'));
 
     Route::get('/install3', array('as' => 'install3', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\InstallController@install3'));
+
+    //MY
+    Route::get('/my', array('as' => 'my', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MyController@index'));
+    Route::post('/my/profile_update', array('as' => 'my_profile_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MyController@udpate_profile'));
+    Route::post('/my/profile_upload_avatar', array('as' => 'my_profile_upload_avatar', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MyController@upload_avatar'));
+
 });
