@@ -24,7 +24,10 @@
                     <td><span class="badge">@if (isset($ticket->type)){{ $ticket->type->name }}@endif</span></td>
                     <td>
                         @if (isset($ticket->last_state) && $ticket->last_state->allocated_user)
-                            <img class="avatar" src="{{ asset('uploads/users/' . $ticket->last_state->allocated_user->id . '/avatar.jpg') }}" title="{{ $ticket->last_state->allocated_user->complete_name }}" alt="{{ $ticket->last_state->allocated_user->complete_name }}" />
+                            @include('projectsquare::includes.avatar', [
+                                'id' => $ticket->last_state->allocated_user->id,
+                                'name' => $ticket->last_state->allocated_user->complete_name
+                            ])
                         @endif
                     </td>
                     <td width="10%">@if (isset($ticket->last_state) && isset($ticket->last_state->status))<span class="status status-{{ $ticket->last_state->status->id }}">{{ $ticket->last_state->status->name }}</span>@endif</td>

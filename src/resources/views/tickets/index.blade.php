@@ -96,8 +96,22 @@
                         <td><span class="label" style="background: {{ $ticket->project->color }}">{{ $ticket->project->client->name }}</span></td>
                         <td>{{ $ticket->project->name }}</td>
                         <td><span class="badge">@if (isset($ticket->type)){{ $ticket->type->name }}@endif</span></td>
-                        <td>@if (isset($ticket->states[count($ticket->states) - 1])){{ $ticket->states[count($ticket->states) - 1]->author_user->complete_name }}@endif</td>
-                        <td>@if (isset($ticket->last_state) && $ticket->last_state->allocated_user){{ $ticket->last_state->allocated_user->complete_name }}@endif</td>
+                        <td>
+                            @if (isset($ticket->states[count($ticket->states) - 1]))
+                                @include('projectsquare::includes.avatar', [
+                                    'id' => $ticket->states[count($ticket->states) - 1]->author_user->id,
+                                    'name' => $ticket->states[count($ticket->states) - 1]->author_user->complete_name
+                                ])
+                            @endif
+                        </td>
+                        <td>
+                            @if (isset($ticket->last_state) && $ticket->last_state->allocated_user)
+                                @include('projectsquare::includes.avatar', [
+                                    'id' => $ticket->last_state->allocated_user->id,
+                                    'name' => $ticket->last_state->allocated_user->complete_name
+                                ])
+                            @endif
+                        </td>
                         <td>@if (isset($ticket->last_state) && $ticket->last_state->status)<span class="status status-{{ $ticket->last_state->status->id }}">{{ $ticket->last_state->status->name}}</span>@endif</td>
                         <td>@if (isset($ticket->last_state))<span class="badge priority-{{ $ticket->last_state->priority }}">{{ $ticket->last_state->priority }}</span>@endif</td>
                         <td>

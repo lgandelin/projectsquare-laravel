@@ -7939,6 +7939,8 @@ ul {
       border: 2px solid #c8dc1e;
       width: 60px;
       height: auto; }
+    .top-bar .top-right-menu .avatar:hover {
+      opacity: 0.9; }
 
 .left-bar {
   padding: 2rem 0 2rem 0;

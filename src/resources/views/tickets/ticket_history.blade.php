@@ -14,8 +14,26 @@
             @foreach ($ticket_states as $i => $ticket_state)
             <tr>
                 <td>{{ date('d/m/Y H:i', strtotime($ticket_state->created_at)) }}</td>
-                <td>@if ($ticket_state->author_user){{ $ticket_state->author_user->complete_name }}@endif</td>
-                <td>@if ($ticket_state->allocated_user){{ $ticket_state->allocated_user->complete_name }}@endif</td>
+                <td>
+                    @if ($ticket_state->author_user)
+                        @if (isset($ticket_state) && $ticket_state->author_user)
+                            @include('projectsquare::includes.avatar', [
+                                'id' => $ticket_state->author_user->id,
+                                'name' => $ticket_state->author_user->complete_name
+                            ])
+                        @endif
+                    @endif
+                </td>
+                <td>
+                    @if ($ticket_state->allocated_user)
+                        @if (isset($ticket_state) && $ticket_state->allocated_user)
+                            @include('projectsquare::includes.avatar', [
+                                'id' => $ticket_state->allocated_user->id,
+                                'name' => $ticket_state->allocated_user->complete_name
+                            ])
+                        @endif
+                    @endif
+                </td>
                 <td>@if ($ticket_state->due_date){{ $ticket_state->due_date }}@endif</td>
                 <td>@if ($ticket_state->estimated_time){{ $ticket_state->estimated_time }}@endif</td>
                 <td><span class="badge priority-{{ $ticket_state->priority }}">{{ $ticket_state->priority }}</span></td>

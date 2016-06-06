@@ -1,0 +1,1 @@
+<img class="avatar" src="{{ asset('uploads/users/' . $id . '/avatar.jpg') }}" title="{{ $name }}" alt="{{ $name }}" />
