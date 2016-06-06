@@ -42,7 +42,7 @@ class UserManager
         $this->repository->createUser($firstName, $lastName, $email, $password, $clientID, $isAdministrator);
     }
 
-    public function updateUser($userID, $firstName, $lastName, $email, $password, $clientID, $isAdministrator)
+    public function updateUser($userID, $firstName, $lastName, $email, $password=null, $clientID=null, $isAdministrator=null)
     {
         $this->repository->updateUser($userID, $firstName, $lastName, $email, ($password) ? Hash::make($password) : null, $clientID, $isAdministrator);
     }
