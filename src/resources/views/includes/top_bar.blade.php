@@ -38,6 +38,8 @@
                 </div>
             </li>
 
+            <li><a href="{{ route('my') }}">Mon profil</a></li>
+
             <li>
                 <a href="{{ route('logout') }}">{{ trans('projectsquare::login.logout') }} <span class="glyphicon glyphicon-log-out"></span></a>
             </li>
