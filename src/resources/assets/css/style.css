@@ -7852,6 +7852,14 @@ be a descendant of the grid when it is being dragged.
   font-weight: bold;
   z-index: 5; }
 
+@font-face {
+  font-family: "AvantGarde-Book";
+  src: url("../fonts/AvantGarde-Book.woff"), url("../fonts/AvantGarde-Book.otf"), url("../fonts/AvantGarde-Book.svg"), url("../fonts/AvantGarde-Book.eot"), url("../fonts/AvantGarde-Book.ttf"); }
+
+@font-face {
+  font-family: "MyriadPro-Regular";
+  src: url("../fonts/MyriadPro-Regular.woff"), url("../fonts/MyriadPro-Regular.otf"), url("../fonts/MyriadPro-Regular.svg"), url("../fonts/MyriadPro-Regular.eot"), url("../fonts/MyriadPro-Regular.ttf"); }
+
 html {
   font-size: 62.5%; }
 
@@ -7875,7 +7883,8 @@ body {
 
 .top-bar {
   padding-top: 2rem;
-  padding-bottom: 1rem; }
+  padding-bottom: 1rem;
+  background: white; }
   .top-bar .logo {
     font-size: 3rem; }
     .top-bar .logo a {
@@ -8003,16 +8012,22 @@ body {
 
 .beta-form:hover {
   opacity: 0.8; }
+body {
+  background: #e6f0f3; }
 
 .table > tbody > tr > td {
   vertical-align: middle;
   padding: 1.5rem 1rem; }
 
 .block {
-  padding: 2rem;
+  padding: 0rem;
+  padding-top: 3.5rem;
   margin-bottom: 2rem;
-  background: #f7f7f7;
-  border-radius: 4px; }
+  background: white;
+  border-radius: 0px;
+  border: 1px solid #bdc0c1; }
+  .block .block-content {
+    padding: 0rem; }
 
 .info {
   padding: 1rem;
@@ -8053,8 +8068,49 @@ body {
   height: 50px; }
 
 .dashboard-content .block h3 {
+  display: inline-block;
   margin-bottom: 2rem;
-  font-size: 1.8rem; }
+  font-size: 1.8rem;
+  margin-left: 4rem;
+  font-family: "AvantGarde-Book";
+  font-size: 3rem;
+  color: #096a85; }
+
+.dashboard-content .block .add {
+  width: 25px;
+  height: 25px;
+  margin-right: 2rem;
+  background: url(../img/dashboard/add.png) no-repeat; }
+
+.dashboard-content .block .add:hover {
+  background: url(../img/dashboard/add-hover.png) no-repeat; }
+
+.dashboard-content .block .all {
+  width: 25px;
+  height: 22px;
+  margin-right: 2.4rem;
+  background: url(../img/dashboard/all.png) no-repeat; }
+
+.dashboard-content .block .all:hover {
+  background: url(../img/dashboard/all-hover.png) no-repeat; }
+
+.dashboard-content .block .table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #f9fbe6;
+  border: none; }
+
+.dashboard-content .block .table > tbody > tr > td .text {
+  font-family: "MyriadPro-Regular";
+  color: #096a85;
+  font-size: 1.6rem; }
+
+.dashboard-content .block .table > tbody > tr > td .see-more {
+  width: 33px;
+  height: 33px;
+  border: none;
+  background: url(../img/dashboard/see-more.png) no-repeat; }
+
+.dashboard-content .block .table > tbody > tr > td .see-more:hover {
+  background: url(../img/dashboard/see-more-hover.png) no-repeat; }
 
 .dashboard-content .last-messages .count {
   background: #e2c44b; }
@@ -8145,38 +8201,34 @@ body {
   color: #243f75; }
 
 .status {
-  font-size: 1.2rem;
-  font-weight: bold;
-  padding: 0.3rem 1rem;
-  border-radius: 0.3rem;
-  display: inline-block; }
+  display: inline-block;
+  background: none; }
 
-.status-1 {
-  background: #DF5A49;
-  color: white; }
+.priority {
+  width: 24px;
+  height: 25px;
+  display: block; }
 
-.status-2 {
-  background: #E27A3F;
-  color: white; }
+.priority-1 {
+  background: url(../img/dashboard/tickets/priority-1.png) no-repeat; }
 
-.status-3 {
-  background: #7ce0ff;
-  color: white; }
+.priority-2 {
+  background: url(../img/dashboard/tickets/priority-2.png) no-repeat; }
 
-.status-4 {
-  background: #45B29D;
-  color: white; }
+.priority-3 {
+  background: url(../img/dashboard/tickets/priority-3.png) no-repeat; }
 
-.status-5 {
-  background: #a1e647;
-  color: white; }
+.priority-4 {
+  background: url(../img/dashboard/tickets/priority-4.png) no-repeat; }
 
-.status-6 {
-  background: #3745ff;
-  color: white; }
+.priority-5 {
+  background: url(../img/dashboard/tickets/priority-5.png) no-repeat; }
 
 #fileupload .thumbnail {
   margin-bottom: 0; }
+
+.label {
+  font-weight: 400; }
 
 .table > tbody > tr > td {
   padding-top: 1rem !important;

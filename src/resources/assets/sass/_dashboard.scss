@@ -1,8 +1,62 @@
 .dashboard-content {
     .block {
         h3 {
+            display: inline-block;
             margin-bottom: 2rem;
             font-size: 1.8rem;
+            margin-left: 4rem;
+
+            font-family: $typo1;
+            font-size: 3rem;
+            color: $touareg;
+        }
+
+        .add {
+            width: 25px;
+            height: 25px;
+            margin-right: 2rem;
+
+            background: url(../img/dashboard/add.png)no-repeat;
+        }
+
+        .add:hover {
+            background: url(../img/dashboard/add-hover.png)no-repeat;
+        }
+
+        .all {
+            width: 25px;
+            height: 22px;  
+            margin-right: 2.4rem;
+
+            background: url(../img/dashboard/all.png)no-repeat;
+        }
+
+        .all:hover {
+             background: url(../img/dashboard/all-hover.png)no-repeat;
+        }
+
+        .table-striped > tbody > tr:nth-of-type(odd) {
+            background-color: #f9fbe6;
+            border: none;
+        }
+
+        .table > tbody > tr > td {
+
+            .text {
+                font-family: $typo2;
+                color: $touareg ;
+                font-size: 1.6rem;
+            }
+            .see-more {
+                width: 33px;
+                height: 33px;
+                border:none;
+                background: url(../img/dashboard/see-more.png) no-repeat;
+            }
+
+            .see-more:hover {
+                background: url(../img/dashboard/see-more-hover.png) no-repeat;
+            }
         }
     }
 

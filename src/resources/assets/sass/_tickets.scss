@@ -1,45 +1,41 @@
 .status {
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 0.3rem 1rem;
-    border-radius : 0.3rem;
     display: inline-block;
+    background: none;
 }
 
-.status-1 {
-    background: #DF5A49;
-    color: white;
+.priority {
+    width: 24px;
+    height: 25px;
+    display: block;
+}
+.priority-1 {
+    background: url(../img/dashboard/tickets/priority-1.png) no-repeat;
 }
 
-.status-2 {
-    background: #E27A3F;
-    color: white;
+.priority-2 {
+    background: url(../img/dashboard/tickets/priority-2.png) no-repeat;
 }
 
-.status-3 {
-    background: #7ce0ff;
-    color: white;
+.priority-3 {
+    background: url(../img/dashboard/tickets/priority-3.png) no-repeat;
 }
 
-.status-4 {
-    background: #45B29D;
-    color: white;
+.priority-4 {
+    background: url(../img/dashboard/tickets/priority-4.png) no-repeat;
 }
 
-.status-5 {
-    background: #a1e647;
-    color: white;
-}
-
-.status-6 {
-    background: #3745ff;
-    color: white;
+.priority-5 {
+    background: url(../img/dashboard/tickets/priority-5.png) no-repeat;
 }
 
 #fileupload {
     .thumbnail {
         margin-bottom: 0;
     }
+}
+
+.label {
+    font-weight: 400;
 }
 
 .table > tbody > tr > td {
