@@ -44,5 +44,11 @@
                 @endforeach
             </tbody>
         </table>
+
+        @if ($is_client)
+            <button class="btn btn-sm btn-success create-conversation"><span class="glyphicon glyphicon-plus"></span> {{ trans('projectsquare::messages.add_conversation') }}</button>
+        @endif
     </div>
+    @include('projectsquare::dashboard.new-message')
+    @include('projectsquare::dashboard.create-conversation-modal')
 @endsection
