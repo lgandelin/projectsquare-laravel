@@ -112,13 +112,11 @@
                     <div class="info bg-info">{{ trans('projectsquare::no_role_yet') }}</div>
                 @endif
             </div>
-
-            <div class="col-md-3">
-                <button type="submit" class="btn btn-success" style="margin-top: 2.5rem">
-                    <i class="glyphicon glyphicon-plus"></i> {{ trans('projectsquare::generic.add') }}
-                </button>
-            </div>
         </div>
+
+        <button type="submit" class="btn btn-success" style="margin-top: 1.5rem">
+            <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
+        </button>
 
         <input type="hidden" name="project_id" value="{{ $project_id }}" />
 
