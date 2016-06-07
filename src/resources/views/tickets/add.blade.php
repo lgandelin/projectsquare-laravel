@@ -25,19 +25,23 @@
                     <input class="form-control" type="text" placeholder="{{ trans('projectsquare::tickets.title_placeholder') }}" name="title" @if (isset($ticket_title))value="{{ $ticket_title }}"@endif />
                 </div>
 
-                <div class="form-group">
-                    <label for="project_id">{{ trans('projectsquare::tickets.project') }}</label>
-                    @if (isset($projects))
-                        <select class="form-control" name="project_id" @if (isset($ticket) && $ticket->id) disabled @endif>
-                        <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
-                        @foreach ($projects as $project)
-                            <option value="{{ $project->id }}" @if ($current_project_id == $project->id)selected="selected"@endif>[{{ $project->client->name }}] {{ $project->name }}</option>
-                        @endforeach
-                        </select>
-                    @else
-                            <div class="info bg-info">{{ trans('projectsquare::tickets.no_project_yet') }}</div>
-                    @endif
-                </div>
+                @if ($is_client)
+                    <input type="hidden" name="project_id" value="{{ $current_project_id }}" />
+                @else
+                    <div class="form-group">
+                        <label for="project_id">{{ trans('projectsquare::tickets.project') }}</label>
+                        @if (isset($projects))
+                            <select class="form-control" name="project_id" @if (isset($ticket) && $ticket->id) disabled @endif>
+                            <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+                            @foreach ($projects as $project)
+                                <option value="{{ $project->id }}" @if ($current_project_id == $project->id)selected="selected"@endif>[{{ $project->client->name }}] {{ $project->name }}</option>
+                            @endforeach
+                            </select>
+                        @else
+                                <div class="info bg-info">{{ trans('projectsquare::tickets.no_project_yet') }}</div>
+                        @endif
+                    </div>
+                @endif
 
                 <div class="form-group">
                     <label for="description">{{ trans('projectsquare::tickets.description') }}</label>
@@ -70,33 +74,37 @@
                     <input class="form-control datepicker" type="text" placeholder="{{ trans('projectsquare::tickets.due_date_placeholder') }}" name="due_date" autocomplete="off" />
                 </div>
 
-                <div class="form-group">
-                    <label for="status_id">{{ trans('projectsquare::tickets.status') }}</label>
-                    @if (isset($ticket_status))
-                        <select class="form-control" name="status_id">
-                            <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
-                            @foreach ($ticket_status as $ticket_status)
-                                <option value="{{ $ticket_status->id }}">{{ $ticket_status->name }}</option>
-                            @endforeach
-                        </select>
-                    @else
-                        <div class="info bg-info">{{ trans('projectsquare::tickets.no_ticket_status_yet') }}</div>
-                    @endif
-                </div>
+                @if (!$is_client)
+                    <div class="form-group">
+                        <label for="status_id">{{ trans('projectsquare::tickets.status') }}</label>
+                        @if (isset($ticket_status))
+                            <select class="form-control" name="status_id">
+                                <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+                                @foreach ($ticket_status as $ticket_status)
+                                    <option value="{{ $ticket_status->id }}">{{ $ticket_status->name }}</option>
+                                @endforeach
+                            </select>
+                        @else
+                            <div class="info bg-info">{{ trans('projectsquare::tickets.no_ticket_status_yet') }}</div>
+                        @endif
+                    </div>
+                @endif
 
-                <div class="form-group">
-                    <label for="allocated_user_id">{{ trans('projectsquare::tickets.allocated_user') }}</label>
-                    @if (isset($users))
-                        <select class="form-control" name="allocated_user_id">
-                            <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
-                            @foreach ($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->complete_name }}</option>
-                            @endforeach
-                        </select>
-                    @else
-                        <div class="info bg-info">{{ trans('projectsquare::tickets.no_user_yet') }}</div>
-                    @endif
-                </div>
+                @if (!$is_client)
+                    <div class="form-group">
+                        <label for="allocated_user_id">{{ trans('projectsquare::tickets.allocated_user') }}</label>
+                        @if (isset($users))
+                            <select class="form-control" name="allocated_user_id">
+                                <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+                                @foreach ($users as $user)
+                                <option value="{{ $user->id }}">{{ $user->complete_name }}</option>
+                                @endforeach
+                            </select>
+                        @else
+                            <div class="info bg-info">{{ trans('projectsquare::tickets.no_user_yet') }}</div>
+                        @endif
+                    </div>
+                @endif
 
                 <div class="form-group">
                     <label for="priority">{{ trans('projectsquare::tickets.priority') }}</label>
@@ -108,10 +116,12 @@
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="estimated_time">{{ trans('projectsquare::tickets.estimated_time') }}</label>
-                    <input class="form-control" type="time" name="estimated_time" placeholder="{{ trans('projectsquare::tickets.estimated_time') }}" />
-                </div>
+                @if (!$is_client)
+                    <div class="form-group">
+                        <label for="estimated_time">{{ trans('projectsquare::tickets.estimated_time') }}</label>
+                        <input class="form-control" type="time" name="estimated_time" placeholder="{{ trans('projectsquare::tickets.estimated_time') }}" />
+                    </div>
+                @endif
             </div>
         </div>
 
