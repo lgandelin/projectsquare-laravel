@@ -11,4 +11,5 @@ return [
     'last_message' => 'Dernier message',
     'last_messages' => 'Derniers messages',
     'messages' => 'Messages',
+    'date' =>'Date',
 ];

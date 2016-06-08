@@ -1,21 +1,26 @@
-<div class="block last-messages">
-    <h3>{{ trans('projectsquare::dashboard.last_messages') }}</h3>
+<div class="block last-messages"> 
     <div class="wrapper">
         <div class="block-content table-responsive">
+            <h3>{{ trans('projectsquare::dashboard.last_messages') }}</h3>
+             <a href="{{ route('messages_index') }}" class="all pull-right"></a>
+
             <table class="table table-striped">
+                 <thead>
+                    <tr>
+                        <!--<th>#</th>-->    
+                        <th>{{ trans('projectsquare::tickets.client') }} </th>
+                        <th>{{ trans('projectsquare::messages.last_message') }} </th>
+                         <th>{{ trans('projectsquare::messages.date') }} </th>
+                     
+                    </tr>
+                </thead>
+
                 <tbody>
                 @foreach ($conversations as $conversation)
                     <tr class="conversation">
                         <td>
-                            <span class="badge pull-right count"><span class="number">{{ count($conversation->messages) }}</span> @if (count($conversation->messages) > 1){{ trans('projectsquare::dashboard.messages') }} @else {{ trans('projectsquare::dashboard.message') }} @endif</span>
-                            <a href="{{ route('project_index', ['id' => $conversation->project->id]) }}"><span class="label" style="background: {{ $conversation->project->color }}">{{ $conversation->project->client->name }}</span> {{ $conversation->project->name }}</a> - <strong>{{ $conversation->title }}</strong><br>
-
-                            <div class="users">
-                                <u>{{ trans('projectsquare::dashboard.conversation_participants') }}</u> :
-                                @foreach ($conversation->users as $i => $user)
-                                    @if ($i > 0),@endif {{ $user->complete_name }}
-                                @endforeach
-                            </div>
+                            <td align="center" style="border-left: 10px solid {{ $conversation->project->color }}">
+                            <a href="{{ route('project_index', ['id' => $conversation->project->id]) }}"><span class="label" style="background: {{ $conversation->project->color }}">{{ $conversation->project->client->name }}</span></a><strong>{{ $conversation->title }}</strong><br>
 
                             <div class="message">
                                 <span class="badge">{{ date('d/m/Y H:i', strtotime($conversation->messages[sizeof($conversation->messages) - 1]->created_at)) }}</span> <span class="glyphicon glyphicon-user"></span> <span class="user_name">{{ $conversation->messages[sizeof($conversation->messages) - 1]->user->complete_name }}</span><br/>
@@ -44,6 +49,5 @@
     @if ($is_client)
         <button class="btn btn-sm btn-success create-conversation"><span class="glyphicon glyphicon-plus"></span> {{ trans('projectsquare::messages.add_conversation') }}</button>
     @endif
-    <a href="{{ route('messages_index') }}" class="btn btn-sm btn-default pull-right"><span class="glyphicon glyphicon-list-alt"></span> {{ trans('projectsquare::messages.see_messages') }}</a>
-    <span class="clearfix"></span>
+ 
 </div>

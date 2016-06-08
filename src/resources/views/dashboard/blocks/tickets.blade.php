@@ -10,7 +10,7 @@
                 <!--<th>#</th>-->    
                 <th>{{ trans('projectsquare::tickets.priority') }}</th>
                 <th>{{ trans('projectsquare::tickets.ticket') }}</th>
-                <th>{{ trans('projectsquare::tickets.client') }} / {{ trans('projectsquare::tickets.project') }}</th>
+                <th>{{ trans('projectsquare::tickets.client') }} </th>
                 <th>{{ trans('projectsquare::tickets.type') }}</th>
                 <th>{{ trans('projectsquare::tickets.status') }}</th>
                 <th>{{ trans('projectsquare::tickets.allocated_user') }}</th>
@@ -23,7 +23,7 @@
             @foreach ($tickets as $ticket)
                 <tr>
                     <!-- <td>{{ $ticket->id }}</td> -->
-                    <td style="border-left: 7px solid {{ $ticket->project->color }}">@if (isset($ticket->last_state))<span class="priority priority-{{ $ticket->last_state->priority }}"></span>@endif</td>
+                    <td align="center" style="border-left: 10px solid {{ $ticket->project->color }}">@if (isset($ticket->last_state))<span class="priority priority-{{ $ticket->last_state->priority }}"></span>@endif</td>
                     <td><span class="text">{{ $ticket->title }}</span></td>
                     <td><span class="label text">{{ $ticket->project->client->name }}</span></td>
                     <td><span class="text">@if (isset($ticket->type)){{ $ticket->type->name }}@endif</span></td>
