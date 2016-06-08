@@ -1,6 +1,6 @@
 <div class="top-bar">
     <div class="pull-left">
-        <h1 class="logo"><a href="{{ route('dashboard') }}"><img src="{{asset('img/logo.png')}}"></a></h1>
+        <h1 class="logo"><a href="{{ route('dashboard') }}"><img src="{{asset('img/top-bar/logo.png')}}"></a></h1>
     </div>
 
     <nav class="pull-right">

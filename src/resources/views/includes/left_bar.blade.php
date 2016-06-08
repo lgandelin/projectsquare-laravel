@@ -1,9 +1,17 @@
 <nav class="left-bar">
     <ul>
-        <li><h3><a href="{{ route('dashboard') }}">Tableau de bord</a></h3></li>
+        <li>
+        <a href="{{ route('dashboard') }}" class="dashboard">
+            <span class="img"></span>
+            <h3>Tableau de bord</h3>
+        </a>
+        </li>
         @if (!$is_client)
             <li>
-                <h3>Projets</h3>
+                <span class="projects">
+                    <span class="img"></span>
+                    <h3>Projets</h3>
+                </span>
                 <ul class="projects-list">
                     @foreach ($logged_in_user->projects as $project)
                     <li class="@if (isset($current_project_id) && $current_project_id == $project->id) current @endif">
@@ -22,7 +30,10 @@
                 </ul>
             </li>
             <li>
-                <h3>Utilitaires</h3>
+                <span class="utils">
+                    <span class="img"></span>
+                    <h3>Utilitaires</h3>
+                </span>
                 <ul>
                     <li><a href="{{ route('tickets_index') }}">Tickets</a></li>
                     <li><a href="{{ route('messages_index') }}">Messages</a></li>
@@ -33,7 +44,10 @@
 
             @if ($is_admin)
                 <li>
-                    <h3>Agence</h3>
+                    <span class="agency">
+                        <span class="img"></span>
+                        <h3>Agence</h3>
+                    </span>
                     <ul>
                         <li><a href="{{ route('clients_index') }}">Clients</a></li>
                         <li><a href="{{ route('projects_index') }}">Projets</a></li>

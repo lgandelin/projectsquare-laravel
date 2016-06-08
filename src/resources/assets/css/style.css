@@ -7908,7 +7908,7 @@ body {
           display: block;
           width: 57px;
           height: 39px;
-          background: url(../img/notification.png) no-repeat; }
+          background: url(../img/top-bar/notification.png) no-repeat; }
           .top-bar-container .top-bar .top-right-menu li .notifications-link .badge {
             margin-left: 2.5rem;
             margin-top: -2.9rem;
@@ -7918,7 +7918,7 @@ body {
             background: #c8dc1e;
             color: #096a85; }
         .top-bar-container .top-bar .top-right-menu li .notifications-link:hover {
-          background: url(../img/notification-hover.png) no-repeat; }
+          background: url(../img/top-bar/notification-hover.png) no-repeat; }
           .top-bar-container .top-bar .top-right-menu li .notifications-link:hover .badge {
             background: #096a85;
             color: #c8dc1e; }
@@ -7985,28 +7985,58 @@ body {
           display: block;
           width: 33px;
           height: 32px;
-          background: url(../img/log-out.png) no-repeat center center; }
+          background: url(../img/top-bar/log-out.png) no-repeat center center; }
         .top-bar-container .top-bar .top-right-menu .out .log-out:hover {
-          background: url(../img/log-out-hover.png) no-repeat center center; }
+          background: url(../img/top-bar/log-out-hover.png) no-repeat center center; }
 
 .left-bar {
   padding: 2rem 0 2rem 0;
-  background: #f7f7f7;
-  border-radius: 4px; }
+  margin-left: -16px;
+  background: #0a6a86; }
   .left-bar h3 {
-    font-size: 1.9rem; }
+    font-size: 2.5rem;
+    color: white;
+    letter-spacing: 0.1rem;
+    padding-top: 15px; }
+  .left-bar h3:hover {
+    color: #c8dc1e; }
   .left-bar > ul {
     margin-right: 2rem;
     list-style: none; }
     .left-bar > ul li {
       padding: 1rem;
       list-style: none;
-      background: white;
-      border-bottom: 1px solid rgba(100, 100, 100, 0.15); }
+      background: none;
+      border-bottom: 1px solid rgba(100, 100, 100, 0.15);
+      font-family: "AvantGarde-Book"; }
       .left-bar > ul li li:hover {
         background: whitesmoke; }
       .left-bar > ul li a {
         display: block; }
+      .left-bar > ul li .img {
+        width: 48px;
+        height: 48px;
+        display: block;
+        float: left; }
+      .left-bar > ul li .dashboard {
+        background: url(../img/left-bar/picto-dashboard.png) no-repeat; }
+      .left-bar > ul li .dashboard:hover {
+        background: url(../img/left-bar/picto-dashboard-hover.png) no-repeat; }
+      .left-bar > ul li .projects {
+        display: block;
+        background: url(../img/left-bar/picto-project.png) no-repeat; }
+      .left-bar > ul li .projects:hover {
+        background: url(../img/left-bar/picto-project-hover.png) no-repeat; }
+      .left-bar > ul li .utils {
+        display: block;
+        background: url(../img/left-bar/picto-utils.png) no-repeat; }
+      .left-bar > ul li .utils:hover {
+        background: url(../img/left-bar/picto-utils-hover.png) no-repeat; }
+      .left-bar > ul li .agency {
+        display: block;
+        background: url(../img/left-bar/agency.png) no-repeat; }
+      .left-bar > ul li .agency:hover {
+        background: url(../img/left-bar/agency-hoverpng) no-repeat; }
     .left-bar > ul > li {
       margin-bottom: 2rem;
       padding: 2rem; }
@@ -8255,6 +8285,13 @@ body {
 .table > tbody > tr > td {
   padding-top: 1rem !important;
   padding-bottom: 1rem !important; }
+
+.table thead {
+  font-family: "MyriadPro-Regular";
+  color: #8fafbc;
+  font-size: 1.8rem; }
+  .table thead th {
+    font-weight: 400; }
 
 .tasks {
   list-style: none;
