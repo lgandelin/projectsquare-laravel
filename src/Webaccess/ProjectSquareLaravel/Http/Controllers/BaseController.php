@@ -57,10 +57,10 @@ class BaseController extends Controller
     protected function getCurrentProject()
     {
         if ($this->isUserAClient()) {
-            $client = Client::find($this->getUser()->client_id);
-            $project = Project::where('client_id', '=', $client->id)->first();
-
-            $this->request->session()->set('current_project', $project);
+            if ($client = Client::find($this->getUser()->client_id)) {
+                $project = Project::where('client_id', '=', $client->id)->first();
+                $this->request->session()->set('current_project', $project);
+            }
         }
 
         return $this->request->session()->get('current_project');
