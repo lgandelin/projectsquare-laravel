@@ -7852,14 +7852,6 @@ be a descendant of the grid when it is being dragged.
   font-weight: bold;
   z-index: 5; }
 
-@font-face {
-  font-family: "AvantGarde-Book";
-  src: url("../fonts/AvantGarde-Book.woff"), url("../fonts/AvantGarde-Book.otf"), url("../fonts/AvantGarde-Book.svg"), url("../fonts/AvantGarde-Book.eot"), url("../fonts/AvantGarde-Book.ttf"); }
-
-@font-face {
-  font-family: "MyriadPro-Regular";
-  src: url("../fonts/MyriadPro-Regular.woff"), url("../fonts/MyriadPro-Regular.otf"), url("../fonts/MyriadPro-Regular.svg"), url("../fonts/MyriadPro-Regular.eot"), url("../fonts/MyriadPro-Regular.ttf"); }
-
 html {
   font-size: 62.5%; }
 
@@ -7884,6 +7876,14 @@ body {
 .top-bar {
   padding-top: 2rem;
   padding-bottom: 1rem;
+@font-face {
+  font-family: "AvantGarde-Book";
+  src: url("../fonts/AvantGarde-Book.woff"), url("../fonts/AvantGarde-Book.otf"), url("../fonts/AvantGarde-Book.svg"), url("../fonts/AvantGarde-Book.eot"), url("../fonts/AvantGarde-Book.ttf"); }
+
+@font-face {
+  font-family: "MyriadPro-Regular";
+  src: url("../fonts/MyriadPro-Regular.woff"), url("../fonts/MyriadPro-Regular.otf"), url("../fonts/MyriadPro-Regular.svg"), url("../fonts/MyriadPro-Regular.eot"), url("../fonts/MyriadPro-Regular.ttf"); }
+
 .top-bar-container {
   background: white; }
   .top-bar-container .top-bar {
@@ -8196,9 +8196,7 @@ body {
   .dashboard-content .last-messages .new-message {
     margin-bottom: 0; }
   .dashboard-content .last-messages .wrapper {
-    height: 322px;
-    overflow-y: scroll;
-    margin-bottom: 2rem; }
+    overflow-y: scroll; }
     .dashboard-content .last-messages .wrapper table tbody tr:first-child td {
       border-top: none; }
   .dashboard-content .loading {
