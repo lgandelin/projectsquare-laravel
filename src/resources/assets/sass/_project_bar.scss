@@ -1,0 +1,34 @@
+.project-bar {
+	.top-nav {
+		background: white;
+
+		li {
+			padding-left: 2rem;
+			padding-right: 2rem;
+			font-family: $typo1;
+			font-size: 25px;
+
+			a {
+				color: $touareg;
+			}
+
+			a:hover {
+				color: $green;
+				background: none;
+			}
+		}
+
+		.active {
+			 a {
+			 	background: none;
+			 	border-bottom: 5px solid $green;
+			
+			 }
+
+			 a:hover {
+			 	background: none;
+			 }
+				
+		}
+	}
+}

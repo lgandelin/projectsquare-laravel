@@ -1,6 +1,6 @@
 <div class="project-bar">
     <nav>
-        <ul class="nav nav-pills">
+        <ul class="nav nav-pills top-nav">
             @if (!$is_client)
                 <li @if ($active == 'index')class="active"@endif><a href="{{ route('project_index', ['id' => $project->id]) }}">{{ trans('projectsquare::project.cms') }}</a></li>
             @else
