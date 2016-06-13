@@ -1,7 +1,14 @@
+<h2>Informations</h2><br/>
+
 <form action="{{ $form_action }}" method="post">
     <div class="form-group">
         <label for="name">{{ trans('projectsquare::clients.label') }}</label>
         <input class="form-control" type="text" placeholder="{{ trans('projectsquare::clients.name_placeholder') }}" name="name" @if (isset($client_name))value="{{ $client_name }}"@endif />
+    </div>
+
+    <div class="form-group">
+        <label for="name">{{ trans('projectsquare::clients.address') }}</label>
+        <textarea class="form-control" rows="5" class="col-md-6" placeholder="{{ trans('projectsquare::clients.address') }}" name="address">@if (isset($client_address)){{ $client_address }}@endif</textarea>
     </div>
 
     <div class="form-group">

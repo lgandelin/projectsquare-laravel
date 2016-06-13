@@ -13,14 +13,19 @@ class UserManager
         $this->repository = new EloquentUserRepository();
     }
 
-    public function getUsersPaginatedList()
+    public function getAgencyUsersPaginatedList()
     {
-        return $this->repository->getUsersPaginatedList(env('USERS_PER_PAGE', 10));
+        return $this->repository->getAgencyUsersPaginatedList(env('USERS_PER_PAGE', 10));
     }
 
     public function getAgencyUsers()
     {
         return $this->repository->getAgencyUsers();
+    }
+
+    public function getUsersByClient($clientID)
+    {
+        return $this->repository->getClientUsers($clientID);
     }
 
     public function getUsers()
@@ -37,14 +42,14 @@ class UserManager
         return $user;
     }
 
-    public function createUser($firstName, $lastName, $email, $password, $clientID, $isAdministrator)
+    public function createUser($firstName, $lastName, $email, $password, $mobile=null, $phone=null, $clientID=null, $clientRole=null, $isAdministrator=null)
     {
-        $this->repository->createUser($firstName, $lastName, $email, $password, $clientID, $isAdministrator);
+        $this->repository->createUser($firstName, $lastName, $email, Hash::make($password), $mobile, $phone, $clientID, $clientRole, $isAdministrator);
     }
 
-    public function updateUser($userID, $firstName, $lastName, $email, $password=null, $clientID=null, $isAdministrator=null)
+    public function updateUser($userID, $firstName, $lastName, $email, $password=null, $mobile=null, $phone=null, $clientID=null, $clientRole=null, $isAdministrator=null)
     {
-        $this->repository->updateUser($userID, $firstName, $lastName, $email, ($password) ? Hash::make($password) : null, $clientID, $isAdministrator);
+        $this->repository->updateUser($userID, $firstName, $lastName, $email, ($password) ? Hash::make($password) : null, $mobile, $phone, $clientID, $clientRole, $isAdministrator);
     }
 
     public function deleteUser($userID)
@@ -62,6 +67,8 @@ class UserManager
                 null,
                 null,
                 Hash::make($password),
+                null,
+                null,
                 null,
                 null
             );

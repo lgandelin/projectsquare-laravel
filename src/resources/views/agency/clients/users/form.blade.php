@@ -31,21 +31,32 @@
     </div>
 
     <div class="form-group">
-        <label for="is_administrator">{{ trans('projectsquare::users.is_administrator') }}</label><br/>
-        Oui <input type="radio" placeholder="{{ trans('projectsquare::users.is_administrator') }}" name="is_administrator" value="y" @if (isset($is_administrator) && $is_administrator) checked @endif autocomplete="off" />
-        Non <input type="radio" placeholder="{{ trans('projectsquare::users.is_administrator') }}" name="is_administrator" value="n" @if (isset($is_administrator) && !$is_administrator) checked @endif autocomplete="off" />
+        <label for="mobile">{{ trans('projectsquare::users.mobile') }}</label>
+        <input class="form-control" type="text" placeholder="{{ trans('projectsquare::users.mobile') }}" name="mobile" @if (isset($user_mobile))value="{{ $user_mobile }}"@endif autocomplete="off" />
+    </div>
+
+    <div class="form-group">
+        <label for="phone">{{ trans('projectsquare::users.phone') }}</label>
+        <input class="form-control" type="text" placeholder="{{ trans('projectsquare::users.phone') }}" name="phone" @if (isset($user_phone))value="{{ $user_phone }}"@endif autocomplete="off" />
+    </div>
+
+    <div class="form-group">
+        <label for="client_role">{{ trans('projectsquare::users.role') }}</label>
+        <input class="form-control" type="text" placeholder="{{ trans('projectsquare::users.role') }}" name="client_role" @if (isset($user_role))value="{{ $user_role }}"@endif />
     </div>
 
     <div class="form-group">
         <button type="submit" class="btn btn-success">
             <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
         </button>
-        <a href="{{ route('users_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
+        <a href="{{ route('clients_edit', ['id' => $client_id]) }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
     </div>
 
     @if (isset($user_id))
         <input type="hidden" name="user_id" value="{{ $user_id }}" />
     @endif
+
+    <input type="hidden" name="client_id" value="{{ $client_id }}" />
 
     {!! csrf_field() !!}
 </form>

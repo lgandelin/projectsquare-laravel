@@ -10,14 +10,19 @@ use Webaccess\ProjectSquare\Repositories\UserRepository;
 
 class EloquentUserRepository implements UserRepository
 {
-    public function getUsersPaginatedList($limit)
+    public function getAgencyUsersPaginatedList($limit)
     {
-        return User::with('client')->paginate($limit);
+        return User::whereNull('client_id')->paginate($limit);
     }
 
     public function getAgencyUsers()
     {
         return User::whereNull('client_id')->get();
+    }
+
+    public function getClientUsers($clientID)
+    {
+        return User::where('client_id', '=', $clientID)->get();
     }
 
     public function getUsers()
@@ -40,7 +45,10 @@ class EloquentUserRepository implements UserRepository
             $user->firstName = $userModel->first_name;
             $user->lastName = $userModel->last_name;
             $user->password = $userModel->password;
+            $user->mobile = $userModel->mobile;
+            $user->phone = $userModel->phone;
             $user->clientID = $userModel->client_id;
+            $user->clientRole = $userModel->client_role;
             $user->isAdministrator = $userModel->is_administrator;
         }
 
@@ -52,14 +60,14 @@ class EloquentUserRepository implements UserRepository
         return Project::find($projectID)->users;
     }
 
-    public function createUser($firstName, $lastName, $email, $password, $clientID, $isAdministrator=false)
+    public function createUser($firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $isAdministrator=false)
     {
         $user = new User();
         $user->save();
-        self::updateUser($user->id, $firstName, $lastName, $email, $password, $clientID, $isAdministrator);
+        self::updateUser($user->id, $firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $isAdministrator);
     }
 
-    public function updateUser($userID, $firstName, $lastName, $email, $password, $clientID, $isAdministrator=false)
+    public function updateUser($userID, $firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $isAdministrator=false)
     {
         $user = self::getUserModel($userID);
         if ($firstName != null) {
@@ -74,8 +82,17 @@ class EloquentUserRepository implements UserRepository
         if ($password) {
             $user->password = $password;
         }
+        if ($mobile) {
+            $user->mobile = $mobile;
+        }
+        if ($phone) {
+            $user->phone = $phone;
+        }
         if ($clientID != null) {
             $user->client_id = $clientID;
+        }
+        if ($clientRole != null) {
+            $user->client_role = $clientRole;
         }
         if ($isAdministrator != null) {
             $user->is_administrator = $isAdministrator;

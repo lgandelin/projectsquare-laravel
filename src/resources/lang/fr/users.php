@@ -23,6 +23,9 @@ return [
     'user' => 'Utilisateur',
     'client' => 'Client',
     'is_administrator' => 'Administrateur',
+    'role' => 'Rôle',
+    'mobile' => 'Téléphone mobile',
+    'phone' => 'Téléphone fixe',
 
     'user_not_found' => 'Une erreur est survenue lors de la récupération de cet utilisateur',
     'ticket_creation_not_allowed' => 'Vous n\'êtes pas autorisés à créer un ticket pour ce projet',
