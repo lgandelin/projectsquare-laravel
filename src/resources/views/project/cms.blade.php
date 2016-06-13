@@ -1,7 +1,7 @@
 @extends('projectsquare::default')
 
 @section('content')
-    @include('projectsquare::includes.project_bar', ['active' => 'cms'])
+    @include('projectsquare::includes.project_bar', ['active' => 'index'])
 
     <div class="project-template">
         <h1 class="page-header">{{ trans('projectsquare::project.cms') }}</h1>
