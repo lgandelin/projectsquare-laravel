@@ -11,11 +11,11 @@
 
     <div class="dashboard-content">
         <div class="row">
-            <div class="col-lg-8 col-md-12">
+            <div class="col-lg-7 col-md-12">
                 @include('projectsquare::dashboard.blocks.tickets')
             </div>
 
-            <div class="col-lg-4 col-md-12">
+            <div class="col-lg-5 col-md-12">
                 @include('projectsquare::dashboard.blocks.messages')
             </div>
         </div>
@@ -28,7 +28,7 @@
 
                 <div class="col-lg-6 col-md-12">
                     @include('projectsquare::dashboard.blocks.monitoring')
-                    @include('projectsquare::dashboard.blocks.tasks')
+                     <!--@include('projectsquare::dashboard.blocks.tasks')-->
                 </div>
             </div>
         @endif

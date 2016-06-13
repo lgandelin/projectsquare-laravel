@@ -8,7 +8,7 @@
         </li>
         @if (!$is_client)
             <li>
-                <span class="projects">
+                <span class="title projects">
                     <span class="img"></span>
                     <h3>Projets</h3>
                 </span>
@@ -17,12 +17,9 @@
                     <li class="@if (isset($current_project_id) && $current_project_id == $project->id) current @endif">
                         <?php $route = preg_match('/project_/', Route::current()->getName()) ? Route::current()->getName() : 'project_index'; ?>
                         <a href="{{ route($route, ['id' => $project->id]) }}">
-                            <span class="client">
-                                <span class="label" style="background:{{ $project->color }}">{{ $project->client->name }}</span>
-                            </span>
                             {{ $project->name }}
                             @if (isset($current_project_id) && $current_project_id == $project->id)
-                                <i class="pull-right glyphicon glyphicon-ok"></i>
+                                <i class="glyphicon glyphicon-ok"></i>
                             @endif
                         </a>
                     </li>
@@ -30,7 +27,7 @@
                 </ul>
             </li>
             <li>
-                <span class="utils">
+                <span class="title utils">
                     <span class="img"></span>
                     <h3>Utilitaires</h3>
                 </span>
@@ -44,7 +41,7 @@
 
             @if ($is_admin)
                 <li>
-                    <span class="agency">
+                    <span class="title agency">
                         <span class="img"></span>
                         <h3>Agence</h3>
                     </span>

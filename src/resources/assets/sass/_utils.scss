@@ -1,5 +1,12 @@
+html {
+    height: 100%;
+}
+
 body {
+    min-height: 100%;
+    position: relative;
     background: #e6f0f3;
+    font-family: $typo2;
 }
 .table {
     > tbody {
