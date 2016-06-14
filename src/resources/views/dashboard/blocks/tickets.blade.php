@@ -24,9 +24,9 @@
                 <tr>
                     <!-- <td>{{ $ticket->id }}</td> -->
                     <td align="center" style="border-left: 10px solid {{ $ticket->project->color }}">@if (isset($ticket->last_state))<span class="priority priority-{{ $ticket->last_state->priority }}"></span>@endif</td>
-                    <td><span class="text">{{ $ticket->title }}</span></td>
-                    <td><span class="label text">{{ $ticket->project->client->name }}</span></td>
-                    <td><span class="text">@if (isset($ticket->type)){{ $ticket->type->name }}@endif</span></td>
+                    <td>{{ $ticket->title }}</td>
+                    <td>{{ $ticket->project->client->name }}</td>
+                    <td>@if (isset($ticket->type)){{ $ticket->type->name }}@endif</td>
                        <td width="10%">@if (isset($ticket->last_state) && isset($ticket->last_state->status))<span class=" text status">{{ $ticket->last_state->status->name }}</span>@endif</td>
                     <td>
                         @if (isset($ticket->last_state) && $ticket->last_state->allocated_user)

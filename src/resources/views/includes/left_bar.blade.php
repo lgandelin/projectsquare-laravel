@@ -1,4 +1,4 @@
-<nav class="left-bar">
+<nav class="col-lg-2 col-md-4 col-sm-4 left-bar">
     <ul>
         <li>
         <a href="{{ route('dashboard') }}" class="dashboard">

@@ -3,7 +3,7 @@
 @section('content')
     @include('projectsquare::includes.project_bar', ['active' => 'calendar'])
 
-    <div class="settings-template">
+    <div class="templates settings-template">
         <h1 class="page-header">{{ trans('projectsquare::project.calendar') }}</h1>
 
         @if (isset($error))

@@ -8,16 +8,32 @@ body {
     background: #e6f0f3;
     font-family: $typo2;
 }
-.table {
-    > tbody {
-        > tr {
-            > td {
-                vertical-align: middle;
-                padding: 1.5rem 1rem;
 
-            }
-        }
-    }
+.content {
+    padding-left: 0rem;
+    padding-right: 0rem;
+}
+
+.templates {
+    background: white;
+    margin: 2rem 3rem 2em 3rem;
+    padding: 2.5rem;
+
+    .page-header {
+        font-size: 25px;
+        color: $touareg;
+        font-family: $typo1;
+     }
+}
+.add {
+    width: 25px;
+    height: 26px;
+    margin-right: 2rem;
+
+    background: url(../img/dashboard/add.png)no-repeat;
+}
+.add:hover {
+    background: url(../img/dashboard/add-hover.png)no-repeat;
 }
 
 .block {

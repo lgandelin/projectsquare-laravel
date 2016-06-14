@@ -3,7 +3,7 @@
 @section('content')
     @include('projectsquare::includes.project_bar', ['active' => 'messages'])
 
-    <div class="settings-template">
+    <div class="templates settings-template">
         <h1 class="page-header">{{ trans('projectsquare::project.messages') }}</h1>
 
         @if (isset($error))
@@ -38,7 +38,7 @@
                         <td>{{ $conversation->title }}</td>
                         <td>@if (isset($conversation->messages[count($conversation->messages) - 1])){{ $conversation->messages[count($conversation->messages) - 1]->content }}@endif</td>
                         <td>
-                            <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt"></span> {{ trans('projectsquare::generic.see') }}</a>
+                            <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn see-more"></a>
                         </td>
                     </tr>
                 @endforeach

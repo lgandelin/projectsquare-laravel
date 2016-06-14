@@ -12,18 +12,6 @@
             color: $touareg;
         }
 
-        .add {
-            width: 25px;
-            height: 25px;
-            margin-right: 2rem;
-
-            background: url(../img/dashboard/add.png)no-repeat;
-        }
-
-        .add:hover {
-            background: url(../img/dashboard/add-hover.png)no-repeat;
-        }
-
         .all {
             width: 25px;
             height: 22px;  
@@ -34,30 +22,6 @@
 
         .all:hover {
              background: url(../img/dashboard/all-hover.png)no-repeat;
-        }
-
-        .table-striped > tbody > tr:nth-of-type(odd) {
-            background-color: #f9fbe6;
-            border: none;
-        }
-
-        .table > tbody > tr > td {
-
-            .text {
-                font-family: $typo2;
-                color: $touareg ;
-                font-size: 1.8rem;
-            }
-            .see-more {
-                width: 33px;
-                height: 33px;
-                border:none;
-                background: url(../img/dashboard/see-more.png) no-repeat;
-            }
-
-            .see-more:hover {
-                background: url(../img/dashboard/see-more-hover.png) no-repeat;
-            }
         }
     }
 

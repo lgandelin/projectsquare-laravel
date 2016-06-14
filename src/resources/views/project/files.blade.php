@@ -3,7 +3,7 @@
 @section('content')
     @include('projectsquare::includes.project_bar', ['active' => 'files'])
 
-    <div class="files-template">
+    <div class="templates files-template">
         <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
             <h1 class="page-header">{{ trans('projectsquare::project.files') }}</h1>
 

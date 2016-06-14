@@ -3,7 +3,7 @@
 @section('content')
     @include('projectsquare::includes.project_bar', ['active' => 'monitoring'])
 
-    <div class="monitoring-template">
+    <div class="templates monitoring-template">
         <h1 class="page-header">{{ trans('projectsquare::project.monitoring') }}</h1>
 
         <div class="row" style="margin-top: 5rem">

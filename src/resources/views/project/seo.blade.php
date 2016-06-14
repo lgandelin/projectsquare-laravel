@@ -3,7 +3,7 @@
 @section('content')
     @include('projectsquare::includes.project_bar', ['active' => 'seo'])
 
-    <div class="seo-template">
+    <div class="templates seo-template">
         <h1 class="page-header">{{ trans('projectsquare::project.seo') }}</h1>
 
         @if ($gaViewID)

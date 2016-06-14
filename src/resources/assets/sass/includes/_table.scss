@@ -1,0 +1,35 @@
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #f9fbe6;
+    border: none;
+}
+.table {
+    > tbody {
+        > tr {
+            > td {
+                vertical-align: middle;
+                padding: 1.5rem 1rem;
+                font-family: $typo2;
+                color: $touareg ;
+                font-size: 1.8rem;
+
+                .see-more {
+                    width: 33px;
+                    height: 33px;
+                    border:none;
+                    background: url(../img/dashboard/see-more.png) no-repeat;
+                    margin-right: 1em;
+                }
+
+                .see-more:hover {
+                    background: url(../img/dashboard/see-more-hover.png) no-repeat;
+                }
+
+                 .cancel {
+                    width: 16px;
+                    height: 16px;
+                    background: url(../img/cancel.png) no-repeat;
+                }
+            }
+        }
+    }
+}

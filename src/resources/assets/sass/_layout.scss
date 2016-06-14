@@ -7,6 +7,7 @@ body {
     padding-bottom: 1rem;
 .top-bar-container {
     background: white;
+    border-bottom: 1px solid #a3d2e0;
 
     .top-bar {
         padding-top: 2rem;
@@ -176,9 +177,15 @@ body {
     }
 }
 
+
 .left-bar {
     padding: 2rem 0 2rem 0;
     margin-left: -16px;
+    position: absolute;
+    left: 1.5rem;
+    top: 10.7rem;
+    bottom: 0;
+    z-index: 1;
 
     background: #0a6a86;
 
@@ -319,7 +326,7 @@ body {
         .current {
             background: rgb(245, 245, 245);
         }
-    }
+    }*/
 
     a:hover {
         text-decoration: none;
@@ -344,7 +351,4 @@ body {
 
 .beta-form:hover {
     opacity: 0.8;
-}
-
-    }*/
 }

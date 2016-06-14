@@ -22,10 +22,10 @@
                     <tr class="conversation">
                    
                         <td align="center" style="border-left: 10px solid {{ $conversation->project->color }}">
-                        <span class="label text">{{ $conversation->project->client->name }}</span><br />{{ $conversation->title }}</strong><br></td>
+                     {{ $conversation->project->client->name }}<br />{{ $conversation->title }}</strong><br></td>
 
                         <td>
-                            <p class="text">{{ $conversation->messages[sizeof($conversation->messages) - 1]->content }}</p>
+                            <p>{{ $conversation->messages[sizeof($conversation->messages) - 1]->content }}</p>
                         </td>
 
                         <td>
@@ -37,7 +37,7 @@
                         </td>
 
                         <td>
-                            <span class="label text">{{ date('d/m H:i', strtotime($conversation->messages[sizeof($conversation->messages) - 1]->created_at)) }}</span>
+                           {{ date('d/m H:i', strtotime($conversation->messages[sizeof($conversation->messages) - 1]->created_at)) }}
                         </td>
 
                         <td>
