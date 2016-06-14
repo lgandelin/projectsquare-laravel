@@ -5,49 +5,49 @@
         <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
         <li class="active">{{ trans('projectsquare::roles.roles_list') }}</li>
     </ol>
-
-    <div class="page-header">
-        <h1>{{ trans('projectsquare::roles.roles_list') }}</h1>
-    </div>
-
-    @if (isset($error))
-        <div class="info bg-danger">
-            {{ $error }}
+    <div class="templates">
+        <div class="page-header">
+            <h1>{{ trans('projectsquare::roles.roles_list') }}</h1>
         </div>
-    @endif
 
-    @if (isset($confirmation))
-        <div class="info bg-success">
-            {{ $confirmation }}
-        </div>
-    @endif
+         <a href="{{ route('roles_add') }}" class="btn pull-right add"></a>
+        @if (isset($error))
+            <div class="info bg-danger">
+                {{ $error }}
+            </div>
+        @endif
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>{{ trans('projectsquare::roles.role') }}</th>
-                <th>{{ trans('projectsquare::generic.action') }}</th>
-            </tr>
-        </thead>
+        @if (isset($confirmation))
+            <div class="info bg-success">
+                {{ $confirmation }}
+            </div>
+        @endif
 
-        <tbody>
-            @foreach ($roles as $role)
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <td>{{ $role->id }}</td>
-                    <td>{{ $role->name }}</td>
-                    <td>
-                        <a href="{{ route('roles_edit', ['id' => $role->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> {{ trans('projectsquare::generic.edit') }}</a>
-                        <a href="{{ route('roles_delete', ['id' => $role->id]) }}" class="btn btn-danger btn-delete"><span class="glyphicon glyphicon-remove"></span> {{ trans('projectsquare::generic.delete') }}</a>
-                    </td>
+                    <th>#</th>
+                    <th>{{ trans('projectsquare::roles.role') }}</th>
+                    <th>{{ trans('projectsquare::generic.action') }}</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
 
-    <div class="text-center">
-        {!! $roles->render() !!}
+            <tbody>
+                @foreach ($roles as $role)
+                    <tr>
+                        <td>{{ $role->id }}</td>
+                        <td>{{ $role->name }}</td>
+                        <td>
+                            <a href="{{ route('roles_edit', ['id' => $role->id]) }}" class="btn see-more"></a>
+                            <a href="{{ route('roles_delete', ['id' => $role->id]) }}" class="btn cancel"></a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+        <div class="text-center">
+            {!! $roles->render() !!}
+        </div>
     </div>
-
-    <a href="{{ route('roles_add') }}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> {{ trans('projectsquare::roles.add_role') }}</a>
 @endsection

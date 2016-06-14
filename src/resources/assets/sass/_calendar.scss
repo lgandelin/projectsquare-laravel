@@ -18,3 +18,22 @@
         height: 100%;
     }
 }
+
+.fc .fc-button-group > *, .fc-today-button {
+    background: none;
+    border: 2px solid #84b4c2;
+    color: #84b4c2;
+    border-radius: 0rem !important;
+    margin-right: 1.6rem;
+}
+
+.fc .fc-toolbar > * > :first-child {
+    margin-left: 1rem;
+}
+
+.fc-center {
+    h2 {
+        color: $touareg;
+        font-family: $typo1;
+    }
+}

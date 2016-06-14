@@ -30,11 +30,7 @@
                 <h4>{{ trans('projectsquare::tickets.add_files') }}</h4>
                 <div class="row fileupload-buttonbar">
                     <div class="col-lg-12">
-                        <span class="btn btn-success fileinput-button">
-                            <i class="glyphicon glyphicon-plus"></i>
-                            <span>{{ trans('projectsquare::generic.add') }}</span>
-                            <input type="file" name="files[]" multiple>
-                        </span>
+                        <span class="btn add"></span>
                         <button type="submit" class="btn btn-primary start">
                             <i class="glyphicon glyphicon-upload"></i>
                             <span>{{ trans('projectsquare::tickets.start_file_upload') }}</span>
