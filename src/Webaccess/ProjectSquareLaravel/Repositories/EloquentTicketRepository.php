@@ -2,9 +2,11 @@
 
 namespace Webaccess\ProjectSquareLaravel\Repositories;
 
+use Webaccess\ProjectSquare\Entities\Project as ProjectEntity;
 use Webaccess\ProjectSquare\Entities\Ticket as TicketEntity;
 use Webaccess\ProjectSquare\Entities\TicketState as TicketStateEntity;
 use Webaccess\ProjectSquareLaravel\Models\Ticket;
+use Webaccess\ProjectSquareLaravel\Models\Project;
 use Webaccess\ProjectSquareLaravel\Models\TicketState;
 use Webaccess\ProjectSquareLaravel\Models\User;
 use Webaccess\ProjectSquare\Repositories\TicketRepository;
@@ -41,7 +43,16 @@ class EloquentTicketRepository implements TicketRepository
 
     private function getTickets($userID, $projectID = null, $allocatedUserID = null, $statusID = null, $typeID = null)
     {
+        //Ressource projects
         $projectIDs = User::find($userID)->projects->pluck('id')->toArray();
+
+        //Client project
+        $user = User::find($userID);
+        if (isset($user->client_id)) {
+            $project = Project::where('client_id', '=', $user->client_id)->first();
+            $projectIDs[]= $project->id;
+        }
+
         $tickets = Ticket::whereIn('project_id', $projectIDs)->with('type', 'last_state', 'states', 'states.author_user', 'states.status', 'last_state.author_user', 'last_state.allocated_user', 'last_state.status', 'project', 'project.client');
 
         if ($projectID) {
@@ -114,8 +125,14 @@ class EloquentTicketRepository implements TicketRepository
     public function isUserAllowedToSeeTicket($userID, $ticket)
     {
         $projectIDs = User::find($userID)->projects->pluck('id')->toArray();
+        $project = $this->projectRepository->getProject($ticket->project_id);
 
-        return in_array($ticket->project_id, $projectIDs);
+        $clientUsersID = [];
+        if (isset($project->client_id)) {
+            $clientUsersID = User::where('client_id', '=', $project->client_id)->pluck('id')->toArray();
+        }
+
+        return in_array($ticket->project_id, $projectIDs) || in_array($userID, $clientUsersID);
     }
 
     public function persistTicket(TicketEntity $ticket)

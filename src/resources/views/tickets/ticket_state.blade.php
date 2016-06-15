@@ -15,19 +15,23 @@
                 @endif
             </div>
 
-            <div class="form-group">
-                <label for="allocated_user_id">{{ trans('projectsquare::tickets.allocated_user') }}</label>
-                @if (isset($users))
-                <select class="form-control" name="allocated_user_id">
-                    <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
-                    @foreach ($users as $user)
-                    <option value="{{ $user->id }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->allocated_user_id == $user->id)selected="selected"@endif>{{ $user->complete_name }}</option>
-                    @endforeach
-                </select>
-                @else
-                <div class="info bg-info">{{ trans('projectsquare::tickets.no_user_yet') }}</div>
-                @endif
-            </div>
+            @if (!$is_client)
+                <div class="form-group">
+                    <label for="allocated_user_id">{{ trans('projectsquare::tickets.allocated_user') }}</label>
+                    @if (isset($users))
+                    <select class="form-control" name="allocated_user_id">
+                        <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+                        @foreach ($users as $user)
+                        <option value="{{ $user->id }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->allocated_user_id == $user->id)selected="selected"@endif>{{ $user->complete_name }}</option>
+                        @endforeach
+                    </select>
+                    @else
+                    <div class="info bg-info">{{ trans('projectsquare::tickets.no_user_yet') }}</div>
+                    @endif
+                </div>
+            @else
+                <input type="hidden" name="allocated_user_id" value="{{ $ticket->states[0]->allocated_user_id }}">
+            @endif
 
             <div class="form-group">
                 <label for="comments">{{ trans('projectsquare::tickets.comments') }}</label>
