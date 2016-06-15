@@ -7,7 +7,7 @@
         <li class="active">{{ $conversation->title }}</li>
     </ol>
 
-    <div class="message-view-template">
+    <div class="templates message-view-template">
         <div class="page-header">
             <h1>{{ $conversation->title }}</h1>
         </div>

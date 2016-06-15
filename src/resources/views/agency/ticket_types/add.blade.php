@@ -6,12 +6,13 @@
         <li><a href="{{ route('ticket_types_index') }}">{{ trans('projectsquare::ticket_types.ticket_types_list') }}</a></li>
         <li class="active">{{ trans('projectsquare::ticket_types.add_ticket_type') }}</li>
     </ol>
+    <div class="templates">
+        <div class="page-header">
+            <h1>{{ trans('projectsquare::ticket_types.add_ticket_type') }}</h1>
+        </div>
 
-    <div class="page-header">
-        <h1>{{ trans('projectsquare::ticket_types.add_ticket_type') }}</h1>
+        @include('projectsquare::agency.ticket_types.form', [
+            'form_action' => route('ticket_types_store'),
+        ])
     </div>
-
-    @include('projectsquare::agency.ticket_types.form', [
-        'form_action' => route('ticket_types_store'),
-    ])
 @endsection

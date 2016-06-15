@@ -7,14 +7,15 @@
         <li><a href="{{ route('clients_edit', ['id' => $client->id]) }}">{{ trans('projectsquare::clients.edit_client') }}</a></li>
         <li class="active">{{ trans('projectsquare::clients.add_user') }}</li>
     </ol>
+    <div class="templates">
+        <div class="page-header">
+            <h1>{{ trans('projectsquare::users.add_user') }}</h1>
+        </div>
 
-    <div class="page-header">
-        <h1>{{ trans('projectsquare::users.add_user') }}</h1>
+        @include('projectsquare::agency.clients.users.form', [
+            'form_action' => route('clients_store_user'),
+            'password_field' => true,
+            'client_id' => $client->id
+        ])
     </div>
-
-    @include('projectsquare::agency.clients.users.form', [
-        'form_action' => route('clients_store_user'),
-        'password_field' => true,
-        'client_id' => $client->id
-    ])
 @endsection

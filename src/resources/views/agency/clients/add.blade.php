@@ -6,12 +6,13 @@
         <li><a href="{{ route('clients_index') }}">{{ trans('projectsquare::clients.clients_list') }}</a></li>
         <li class="active">{{ trans('projectsquare::clients.add_client') }}</li>
     </ol>
+    <div class="templates">
+        <div class="page-header">
+            <h1>{{ trans('projectsquare::clients.add_client') }}</h1>
+        </div>
 
-    <div class="page-header">
-        <h1>{{ trans('projectsquare::clients.add_client') }}</h1>
+        @include('projectsquare::agency.clients.form', [
+            'form_action' => route('clients_store'),
+        ])
     </div>
-
-    @include('projectsquare::agency.clients.form', [
-        'form_action' => route('clients_store'),
-    ])
 @endsection

@@ -1,0 +1,18 @@
+.templates, .wrapper {
+
+	form {
+
+		 input[type="submit"], button[type="submit"] {
+		 	background: none;
+			border: 2px solid $light_blue;
+			border-radius: 0px;
+			color: $light_blue;
+		}
+		input[type="submit"]:hover,  button[type="submit"]:hover {
+			background: $light_blue;
+			color: white;
+		}
+	}
+
+
+}
