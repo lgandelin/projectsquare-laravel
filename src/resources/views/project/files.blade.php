@@ -35,9 +35,9 @@
                             <i class="glyphicon glyphicon-upload"></i>
                             <span>{{ trans('projectsquare::tickets.start_file_upload') }}</span>
                         </button>
-                        <button type="reset" class="btn btn-warning cancel">
-                            <i class="glyphicon glyphicon-ban-circle"></i>
-                            <span>{{ trans('projectsquare::tickets.cancel_file_upload') }}</span>
+                        <button type="reset" class="btn cancel">
+                            <!--<i class="glyphicon glyphicon-ban-circle"></i>
+                            <span>{{ trans('projectsquare::tickets.cancel_file_upload') }}</span>-->
                         </button>
                         <!--<button type="button" class="btn btn-danger delete">
                             <i class="glyphicon glyphicon-trash"></i>

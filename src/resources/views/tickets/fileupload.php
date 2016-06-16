@@ -15,7 +15,7 @@
         </td>
         <td width="275">
             {% if (!i && !o.options.autoUpload) { %}
-                <button class="btn btn-primary start" disabled>
+                <button class="btn button start" disabled>
                     <i class="glyphicon glyphicon-upload"></i>
                     <span>Démarrer</span>
                 </button>
@@ -51,9 +51,9 @@
         </td>
         <td width="150">{%=o.formatFileSize(file.size)%}</td>
         <td width="275">
-            <a href="{%=file.url%}" class="btn btn-success" download="{%=file.name%}"><i class="glyphicon glyphicon-download"></i> Télécharger</a>
+            <a href="{%=file.url%}" class="btn button" download="{%=file.name%}"><i class="glyphicon glyphicon-download"></i> Télécharger</a>
             {% if (file.deleteUrl) { %}
-                <a href="{%=file.deleteUrl%}" class="btn btn-danger btn-delete"><i class="glyphicon glyphicon-remove"></i> Supprimer</a>
+                <a href="{%=file.deleteUrl%}" class="btn cancel btn-delete"><i class="glyphicon glyphicon-remove"></i> Supprimer</a>
                 <!--<input type="checkbox" name="delete" value="1" class="toggle">-->
             {% } else { %}
                 <button class="btn btn-warning cancel">

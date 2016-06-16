@@ -48,7 +48,7 @@
             <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
         </button>
 
-        <a href="{{ route('projects_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
+        <a href="{{ route('projects_index') }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
     </div>
 
     @if (isset($project_id))
@@ -75,8 +75,7 @@
                     <td>{{ $user->complete_name }}</td>
                     <td>{{ $user->role->name }}</td>
                     <td>
-                        <a href="{{ route('projects_delete_user', ['project_id' => $project_id, 'user_id' => $user->id]) }}" class="btn btn-danger btn-delete">
-                            <i class="glyphicon glyphicon-remove"></i> {{ trans('projectsquare::generic.delete') }}
+                        <a href="{{ route('projects_delete_user', ['project_id' => $project_id, 'user_id' => $user->id]) }}" class="btn cancel btn-delete">
                         </a>
                     </td>
                 </tr>
@@ -137,7 +136,7 @@
                     <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                 </button>
 
-                <a href="{{ route('project_index', ['id' => $project->id]) }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
+                <a href="{{ route('project_index', ['id' => $project->id]) }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
             </div>
 
             @if (isset($project->id))
@@ -160,7 +159,7 @@
                     <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                 </button>
 
-                <a href="{{ route('project_index', ['id' => $project->id]) }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
+                <a href="{{ route('project_index', ['id' => $project->id]) }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
             </div>
 
             @if (isset($project->id))
@@ -183,7 +182,7 @@
                     <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                 </button>
 
-                <a href="{{ route('project_index', ['id' => $project->id]) }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
+                <a href="{{ route('project_index', ['id' => $project->id]) }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
             </div>
 
             @if (isset($project->id))
@@ -206,7 +205,7 @@
                     <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                 </button>
 
-                <a href="{{ route('project_index', ['id' => $project->id]) }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
+                <a href="{{ route('project_index', ['id' => $project->id]) }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
             </div>
 
             @if (isset($project->id))

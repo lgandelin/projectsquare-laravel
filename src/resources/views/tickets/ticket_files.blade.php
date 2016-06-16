@@ -14,8 +14,8 @@
                         <td><a href="{{ asset('uploads/tickets' . $file->path) }}" title="{{ $file->name }}" target="_blank">{{ $file->name }}</a></td>
                         <td width="150">{{ \Webaccess\ProjectSquareLaravel\Tools\FileTool::convertFileSize($file->size) }}</td>
                         <td width="275">
-                            <a href="{{ asset('uploads/tickets' . $file->path) }}" class="btn btn-success" download="{{ $file->name }}"><i class="glyphicon glyphicon-download"></i> {{ trans('projectsquare::generic.download') }}</a>
-                            <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn btn-danger btn-delete"><i class="glyphicon glyphicon-remove"></i> {{ trans('projectsquare::generic.delete') }}</a>
+                            <a href="{{ asset('uploads/tickets' . $file->path) }}" class="btn button" download="{{ $file->name }}"><i class="glyphicon glyphicon-download"></i> {{ trans('projectsquare::generic.download') }}</a>
+                            <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn cancel btn-delete"></a>
                         </td>
                     </tr>
                 @endforeach
@@ -27,18 +27,18 @@
             <h4>{{ trans('projectsquare::tickets.add_files') }}</h4>
             <div class="row fileupload-buttonbar">
                 <div class="col-lg-12">
-                    <span class="btn btn-success fileinput-button">
+                    <span class="btn button fileinput-button">
                         <i class="glyphicon glyphicon-plus"></i>
                         <span>{{ trans('projectsquare::generic.add') }}</span>
                         <input type="file" name="files[]" multiple>
                     </span>
-                    <button type="submit" class="btn btn-primary start">
+                    <button type="submit" class="btn button">
                         <i class="glyphicon glyphicon-upload"></i>
                         <span>{{ trans('projectsquare::tickets.start_file_upload') }}</span>
                     </button>
-                    <button type="reset" class="btn btn-warning cancel">
-                        <i class="glyphicon glyphicon-ban-circle"></i>
-                        <span>{{ trans('projectsquare::tickets.cancel_file_upload') }}</span>
+                    <button type="reset" class="btn cancel">
+                        <!--<i class="glyphicon glyphicon-ban-circle"></i>
+                        <span>{{ trans('projectsquare::tickets.cancel_file_upload') }}</span>-->
                     </button>
                     <!--<button type="button" class="btn btn-danger delete">
                         <i class="glyphicon glyphicon-trash"></i>

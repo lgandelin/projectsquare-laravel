@@ -8,7 +8,7 @@
                  <thead>
                     <tr>
                         <!--<th>#</th>-->    
-                        <th>{{ trans('projectsquare::tickets.client') }} </th>
+                         <!--<th>{{ trans('projectsquare::tickets.client') }} </th>-->
                         <th>{{ trans('projectsquare::messages.message') }} </th>
                         <th>{{ trans('projectsquare::messages.allocated_user') }} </th>
                         <th>{{ trans('projectsquare::messages.date') }} </th>
@@ -21,11 +21,10 @@
                 @foreach ($conversations as $conversation)
                     <tr class="conversation">
                    
-                        <td align="center" style="border-left: 10px solid {{ $conversation->project->color }}">
-                     {{ $conversation->project->client->name }}<br />{{ $conversation->title }}</strong><br></td>
+                        <td style="border-left: 10px solid {{ $conversation->project->color }}">
+                     <!--{{ $conversation->project->client->name }}{{ $conversation->title }}</strong><br></td>-->
 
-                        <td>
-                            <p>{{ $conversation->messages[sizeof($conversation->messages) - 1]->content }}</p>
+                           {{ $conversation->messages[sizeof($conversation->messages) - 1]->content }}
                         </td>
 
                         <td>

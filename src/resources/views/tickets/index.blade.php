@@ -53,7 +53,9 @@
                 </div>
 
                 <div class="col-md-2">
-                    <input class="validate" type="submit" value="{{ trans('projectsquare::generic.valid') }}" style="margin-top: 2.5rem"/>
+                    <input class="btn btn-success" type="submit" value="{{ trans('projectsquare::generic.valid') }}" style="margin-top: 2.5rem"/>
+
+
                 </div>
             </div>
         </form>

@@ -7907,13 +7907,71 @@ body {
     height: 16px;
     background: url(../img/cancel.png) no-repeat; }
 
-.templates form input[type="submit"], .templates form button[type="submit"], .wrapper form input[type="submit"], .wrapper form button[type="submit"] {
-  background: none;
-  border: 2px solid #84b4c2;
+.cancel {
+  width: 16px;
+  height: 16px;
+  background: url(../img/cancel.png) no-repeat; }
+
+.templates h2, .templates h3, .wrapper h2, .wrapper h3 {
+  color: #84b4c2;
+  font-family: "AvantGarde-Book";
+  font-size: 22px; }
+
+.templates form label, .wrapper form label {
+  color: #096a85;
+  font-weight: 400; }
+
+.templates form .back, .templates form .button, .wrapper form .back, .wrapper form .button {
+  border: 1px solid #84b4c2;
   border-radius: 0px;
-  color: #84b4c2; }
+  color: #84b4c2;
+  background: none; }
+
+.templates form .back:hover, .templates form .button:hover, .wrapper form .back:hover, .wrapper form .button:hover {
+  background: #84b4c2;
+  color: white; }
+
+.templates form input, .templates form textarea, .templates form select, .wrapper form input, .wrapper form textarea, .wrapper form select {
+  border: 1px solid #84b4c2;
+  border-radius: 0px !important;
+  color: #096a85;
+  cursor: pointer;
+  background: #fdfdfd; }
+
+.templates form select, .wrapper form select {
+  -webkit-appearance: none;
+  background: #fdfdfd url("../img/select.png") right center no-repeat; }
+
+.templates form input:hover, .templates form textarea:hover, .templates form select:hover, .wrapper form input:hover, .wrapper form textarea:hover, .wrapper form select:hover {
+  border: 1px solid #c8dc1e; }
+
+.templates form input:focus, .templates form textarea:focus, .templates form select:focus, .wrapper form input:focus, .wrapper form textarea:focus, .wrapper form select:focus {
+  border: 1px solid #c8dc1e;
+  box-shadow: none; }
+
+.templates form ::-webkit-input-placeholder, .wrapper form ::-webkit-input-placeholder {
+  color: #096a85; }
+
+.templates form :-moz-placeholder, .wrapper form :-moz-placeholder {
+  color: #096a85; }
+
+.templates form input[type="submit"], .templates form button[type="submit"], .wrapper form input[type="submit"], .wrapper form button[type="submit"] {
+  border: none;
+  background: #096a85;
+  border-radius: 0px;
+  color: white; }
 
 .templates form input[type="submit"]:hover, .templates form button[type="submit"]:hover, .wrapper form input[type="submit"]:hover, .wrapper form button[type="submit"]:hover {
+  background: #c8dc1e;
+  color: #096a85; }
+
+.templates .back, .templates .button, .wrapper .back, .wrapper .button {
+  border: 1px solid #84b4c2;
+  border-radius: 0px;
+  color: #84b4c2;
+  background: none; }
+
+.templates .back:hover, .templates .button:hover, .wrapper .back:hover, .wrapper .button:hover {
   background: #84b4c2;
   color: white; }
 
@@ -8155,7 +8213,8 @@ body {
 .templates {
   background: white;
   margin: 2rem 3rem 2em 3rem;
-  padding: 2.5rem; }
+  padding: 2.5rem;
+  border: 1px solid #bdc0c1; }
   .templates .page-header {
     font-size: 25px;
     color: #096a85;

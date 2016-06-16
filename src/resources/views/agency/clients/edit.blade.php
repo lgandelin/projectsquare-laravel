@@ -61,6 +61,6 @@
             </tbody>
         </table>
 
-        <a href="{{ route('clients_add_user', ['id' => $client->id]) }}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> {{ trans('projectsquare::users.add_user') }}</a>
+        <a href="{{ route('clients_add_user', ['id' => $client->id]) }}" class="btn button"><i class="glyphicon glyphicon-plus"></i> {{ trans('projectsquare::users.add_user') }}</a>
     </div>
 @endsection

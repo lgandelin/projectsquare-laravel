@@ -36,7 +36,7 @@
                 </td>
                 <td>@if ($ticket_state->due_date){{ $ticket_state->due_date }}@endif</td>
                 <td>@if ($ticket_state->estimated_time){{ $ticket_state->estimated_time }}@endif</td>
-                <td><span class="badge priority-{{ $ticket_state->priority }}">{{ $ticket_state->priority }}</span></td>
+                <td><span class="priority priority-{{ $ticket_state->priority }}"></span></td>
                 <td>@if ($ticket_state->status)<span class="status status-{{ $ticket_state->status->id }}">{{ $ticket_state->status->name }}</span>@endif</td>
                 <td>{{ $ticket_state->comments }}</td>
             </tr>
