@@ -136,4 +136,5 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/my/profile_update', array('as' => 'my_profile_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MyController@udpate_profile'));
     Route::post('/my/profile_upload_avatar', array('as' => 'my_profile_upload_avatar', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MyController@upload_avatar'));
 
+    Route::post('/beta_form', array('as' => 'beta_form', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController@betaForm'));
 });

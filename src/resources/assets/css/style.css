@@ -7870,6 +7870,9 @@ ul {
   margin-left: 0;
   padding-left: 2rem; }
 
+body {
+  position: relative; }
+
 .top-bar {
   padding-top: 2rem;
   padding-bottom: 1rem; }
@@ -7984,6 +7987,22 @@ ul {
       background: whitesmoke; }
   .left-bar a:hover {
     text-decoration: none; }
+
+.beta-form {
+  position: absolute;
+  bottom: 0px;
+  right: 0px; }
+  .beta-form .icon {
+    padding: 1rem;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    border-right: none;
+    cursor: pointer;
+    color: #096a85; }
+
+.beta-form:hover {
+  opacity: 0.8; }
 
 .table > tbody > tr > td {
   vertical-align: middle;

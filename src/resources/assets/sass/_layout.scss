@@ -1,3 +1,7 @@
+body {
+    position: relative;
+}
+
 .top-bar {
     padding-top: 2rem;
     padding-bottom: 1rem;
@@ -72,7 +76,7 @@
                         display: block;
 
                         .btn {
-                           margin-top: 1rem;
+                            margin-top: 1rem;
                         }
                     }
 
@@ -88,7 +92,7 @@
                         cursor: pointer;
                     }
                 }
-                
+
                 .notification:first-child {
                     margin-top: 2rem;
                 }
@@ -189,3 +193,24 @@
         text-decoration: none;
     }
 }
+
+.beta-form {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+
+    .icon {
+        padding: 1rem;
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+        border-bottom: none;
+        border-right: none;
+        cursor: pointer;
+        color: #096a85;
+    }
+}
+
+.beta-form:hover {
+    opacity: 0.8;
+}
+
