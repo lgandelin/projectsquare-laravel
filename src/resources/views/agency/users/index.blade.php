@@ -1,10 +1,10 @@
 @extends('projectsquare::default')
 
 @section('content')
-    <ol class="breadcrumb">
+    <!--<ol class="breadcrumb">
         <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
         <li class="active">{{ trans('projectsquare::users.users_list') }}</li>
-    </ol>
+    </ol>-->
     <div class="templates">
         <div class="page-header">
             <h1>{{ trans('projectsquare::users.users_list') }}</h1>
@@ -41,7 +41,7 @@
                         <td>{{ $user->complete_name }}</td>
                         <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                         <td>@if (isset($user->client)){{ $user->client->name }}@endif</td>
-                        <td>
+                        <td align="right">
                             <a href="{{ route('users_edit', ['id' => $user->id]) }}" class="btn see-more"></a>
                             <a href="{{ route('users_delete', ['id' => $user->id]) }}" class="btn cancel"></a>
                         </td>

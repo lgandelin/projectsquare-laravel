@@ -1,11 +1,11 @@
 @extends('projectsquare::default')
 
 @section('content')
-    <ol class="breadcrumb">
+    <!--<ol class="breadcrumb">
         <li><a href="{{ route('dashboard') }}">Tableau de bord</a></li>
         <li><a href="{{ route('messages_index') }}">Messages</a></li>
         <li class="active">{{ $conversation->title }}</li>
-    </ol>
+    </ol>-->
 
     <div class="templates message-view-template">
         <div class="page-header">

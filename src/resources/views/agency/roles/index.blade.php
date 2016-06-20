@@ -1,10 +1,10 @@
 @extends('projectsquare::default')
 
 @section('content')
-    <ol class="breadcrumb">
+    <!--<ol class="breadcrumb">
         <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
         <li class="active">{{ trans('projectsquare::roles.roles_list') }}</li>
-    </ol>
+    </ol>-->
     <div class="templates">
         <div class="page-header">
             <h1>{{ trans('projectsquare::roles.roles_list') }}</h1>
@@ -37,7 +37,7 @@
                     <tr>
                         <td>{{ $role->id }}</td>
                         <td>{{ $role->name }}</td>
-                        <td>
+                        <td align="right">
                             <a href="{{ route('roles_edit', ['id' => $role->id]) }}" class="btn see-more"></a>
                             <a href="{{ route('roles_delete', ['id' => $role->id]) }}" class="btn cancel"></a>
                         </td>

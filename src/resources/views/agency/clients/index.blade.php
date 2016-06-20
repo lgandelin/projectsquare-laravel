@@ -1,10 +1,10 @@
 @extends('projectsquare::default')
 
 @section('content')
-    <ol class="breadcrumb">
+    <!--<ol class="breadcrumb">
         <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
         <li class="active">{{ trans('projectsquare::clients.clients_list') }}</li>
-    </ol>
+    </ol>-->
 
     <div class="templates">
         <div class="page-header">
@@ -29,7 +29,7 @@
             <tr>
                 <th>#</th>
                 <th>{{ trans('projectsquare::clients.client') }}</th>
-                <th>{{ trans('projectsquare::generic.action') }}</th>
+                <th align="right">{{ trans('projectsquare::generic.action') }}</th>
             </tr>
             </thead>
 
@@ -38,7 +38,7 @@
                     <tr>
                         <td>{{ $client->id }}</td>
                         <td>{{ $client->name }}</td>
-                        <td>
+                        <td align="right">
                             <a href="{{ route('clients_edit', ['id' => $client->id]) }}" class="btn see-more"></a>
                             <a href="{{ route('clients_delete', ['id' => $client->id]) }}" class="btn cancel"></a>
                         </td>

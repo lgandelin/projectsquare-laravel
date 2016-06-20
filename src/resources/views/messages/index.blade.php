@@ -1,10 +1,10 @@
 @extends('projectsquare::default')
 
 @section('content')
-    <ol class="breadcrumb">
+    <!--<ol class="breadcrumb">
         <li><a href="{{ route('dashboard') }}">Tableau de bord</a></li>
         <li class="active">Messages</li>
-    </ol>
+    </ol>-->
         <div class="templates">
         <div class="page-header">
             <h1>Messages</h1>
