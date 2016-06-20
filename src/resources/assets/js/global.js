@@ -87,6 +87,13 @@ $(document).ready(function() {
     $('.notifications .close').click(function() {
         $('.notifications').hide(200);
     });
+
+    //DELETE BUTTONS
+    $('.btn-delete').click(function(e) {
+        if (!confirm('Etes-vous sûrs de vouloir supprimer cet élément ?')) {
+            return false;
+        }
+    });
 });
 
 function reloadNotificationsPanel() {

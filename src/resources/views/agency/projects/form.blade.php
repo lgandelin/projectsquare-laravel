@@ -75,7 +75,7 @@
                     <td>{{ $user->complete_name }}</td>
                     <td>{{ $user->role->name }}</td>
                     <td>
-                        <a href="{{ route('projects_delete_user', ['project_id' => $project_id, 'user_id' => $user->id]) }}" class="btn btn-danger">
+                        <a href="{{ route('projects_delete_user', ['project_id' => $project_id, 'user_id' => $user->id]) }}" class="btn btn-danger btn-delete">
                             <i class="glyphicon glyphicon-remove"></i> {{ trans('projectsquare::generic.delete') }}
                         </a>
                     </td>

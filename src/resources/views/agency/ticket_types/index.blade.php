@@ -38,7 +38,7 @@
                     <td>{{ $ticket_type->name }}</td>
                     <td>
                         <a href="{{ route('ticket_types_edit', ['id' => $ticket_type->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> {{ trans('projectsquare::generic.edit') }}</a>
-                        <a href="{{ route('ticket_types_delete', ['id' => $ticket_type->id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ trans('projectsquare::generic.delete') }}</a>
+                        <a href="{{ route('ticket_types_delete', ['id' => $ticket_type->id]) }}" class="btn btn-danger btn-delete"><span class="glyphicon glyphicon-remove"></span> {{ trans('projectsquare::generic.delete') }}</a>
                     </td>
                 </tr>
             @endforeach

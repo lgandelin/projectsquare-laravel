@@ -53,7 +53,7 @@
         <td width="275">
             <a href="{%=file.url%}" class="btn btn-success" download="{%=file.name%}"><i class="glyphicon glyphicon-download"></i> Télécharger</a>
             {% if (file.deleteUrl) { %}
-                <a href="{%=file.deleteUrl%}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Supprimer</a>
+                <a href="{%=file.deleteUrl%}" class="btn btn-danger btn-delete"><i class="glyphicon glyphicon-remove"></i> Supprimer</a>
                 <!--<input type="checkbox" name="delete" value="1" class="toggle">-->
             {% } else { %}
                 <button class="btn btn-warning cancel">

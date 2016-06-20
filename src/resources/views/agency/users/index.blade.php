@@ -42,7 +42,7 @@
                     <td>@if (isset($user->client)){{ $user->client->name }}@endif</td>
                     <td>
                         <a href="{{ route('users_edit', ['id' => $user->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> {{ trans('projectsquare::generic.edit') }}</a>
-                        <a href="{{ route('users_delete', ['id' => $user->id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ trans('projectsquare::generic.delete') }}</a>
+                        <a href="{{ route('users_delete', ['id' => $user->id]) }}" class="btn btn-danger btn-delete"><span class="glyphicon glyphicon-remove"></span> {{ trans('projectsquare::generic.delete') }}</a>
                     </td>
                 </tr>
             @endforeach
