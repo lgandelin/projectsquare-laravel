@@ -22,14 +22,14 @@
 
         @if (!$is_client)
             <div class="row">
-                <div class="col-lg-6 col-md-12">
+                <div class="col-lg-12 col-md-12">
                     @include('projectsquare::dashboard.blocks.planning')
                 </div>
 
-                <div class="col-lg-6 col-md-12">
+                <!--<div class="col-lg-5 col-md-12">
                     @include('projectsquare::dashboard.blocks.monitoring')
-                     <!--@include('projectsquare::dashboard.blocks.tasks')-->
-                </div>
+                     <!--@include('projectsquare::dashboard.blocks.tasks')
+                </div>-->
             </div>
         @endif
     </div>

@@ -1,4 +1,4 @@
-<div class="block">
+<div class="block last-tickets">
     <div class="block-content table-responsive">
         <h3>{{ trans('projectsquare::dashboard.last_tickets') }}</h3>   
         <a href="{{ route('tickets_index') }}" class="all pull-right"></a>
@@ -21,9 +21,9 @@
 
             <tbody>
             @foreach ($tickets as $ticket)
-                <tr>
+                <tr style="border-bottom: 1px solid #daddde";>
                     <!-- <td>{{ $ticket->id }}</td> -->
-                    <td style="border-left: 10px solid {{ $ticket->project->color }}">@if (isset($ticket->last_state))<span class="priority priority-{{ $ticket->last_state->priority }}"></span>@endif</td>
+                    <td class="priorities" style="border-left: 10px solid {{ $ticket->project->color }}">@if (isset($ticket->last_state))<span class="priority priority-{{ $ticket->last_state->priority }}"></span>@endif</td>
                     <td>{{ $ticket->title }}</td>
                    <!-- <td>{{ $ticket->project->client->name }}</td>--> 
                     <td>@if (isset($ticket->type)){{ $ticket->type->name }}@endif</td>
@@ -36,7 +36,7 @@
                             ])
                         @endif
                     </td>
-                    <td>
+                    <td class="action">
                         <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}" class="btn btn-sm btn-primary see-more"></a>
                     </td>
                 </tr>

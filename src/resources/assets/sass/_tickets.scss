@@ -38,19 +38,22 @@
     font-weight: 400;
 }
 
-.table > tbody > tr > td {
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
-}
+.last-tickets {
+    height: 432px;
 
-.table {
-    thead {
-        font-family: $typo2;
-        color: #8fafbc;
-        font-size: 2rem;
+    .table {
+        thead {
+            th:last-child {
+                padding-right: 1rem;
+            }
+        }
 
-        th {
-             font-weight: 400;
+        .priorities {
+            padding: 1.5rem 3rem;
+        }
+
+        .action {
+            text-align: right;
         }
     }
 }
