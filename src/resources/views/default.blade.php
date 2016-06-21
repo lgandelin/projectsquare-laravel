@@ -14,8 +14,8 @@
                 @include('projectsquare::includes.left_bar', [
                     'current_project_id' => ($current_project ? $current_project->id : null),
                     'is_client' => $is_client,
+                    'current_route' => $current_route
                 ])
-            
 
                 <div class="col-lg-10 col-md-8 col-sm-8 col-lg-offset-2 content">
     

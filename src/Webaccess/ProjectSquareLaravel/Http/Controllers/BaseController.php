@@ -29,6 +29,7 @@ class BaseController extends Controller
         }
 
         view()->share('current_project', $this->getCurrentProject());
+        view()->share('current_route', $request->path());
         view()->share('notifications', $this->getUnreadNotifications());
         view()->share('is_client', $this->isUserAClient());
         view()->share('is_admin', $this->isUserAnAdmin());

@@ -11,8 +11,7 @@ body {
 
     .top-bar {
         padding-top: 2rem;
-        padding-bottom: 1rem;
-        padding-left: 2rem;
+        padding-left: 1.1rem;
         display: inline-block;
         width: 100%;
         height: auto;
@@ -179,55 +178,34 @@ body {
 
 
 .left-bar {
-    padding: 1rem 0 2rem 0;
+    padding: 0rem 0 0rem 0;
     margin-left: -16px;
     position: absolute;
     left: 1.5rem;
-    top: 10.7rem;
+    top: 9.1rem;
     bottom: 0;
     z-index: 1;
 
     background: #0a6a86;
 
-    h3 {
-        font-size: 2rem;
-        color: white;
-        letter-spacing: 0.1rem;
-        padding-top: 1rem;
-    }
-
-     h3:hover {
-        color: $green;
-    }
-
-    .dashboard {
-      
-        h3 {
-            font-family: $typo1;
-        }
-        
-    }
 
     > ul {
         list-style: none;
         padding-left: 0rem;
 
-        li {
+       .menu {
             padding: 0rem;
             list-style: none;
 
             background: none;
-            border-bottom: 1px solid rgba(100, 100, 100, 0.15);
             font-family: $typo1;
+            border-bottom: 1px solid #9dc3cf;
 
             a {
-                display: inline-block;
+                overflow: hidden;
+                display: block;
                 color: white;
-                padding-left: 10rem;
-                padding-top: 1rem;
-                padding-bottom: 1rem;
-                font-family: $typo2;
-                font-size: 1.8r
+                padding-left: 2.7rem;
             }
 
             a:hover {
@@ -235,76 +213,85 @@ body {
                 text-decoration: none;
             }
 
-            .img {
-                width: 32px;
-                height: 32px;
-                display: inline-block;
-                margin-right: 50px;
+            .border {
+                width: 78px;
+                height: 58px;
+                float: left;
+                margin-right: 2.9rem;
+                border-right: 1px solid #9dc3cf;
 
             }
 
-            h3 {
-                float: right;
+            .sub-menu {
+                margin-left: 0;
+                padding-left: 0;
+                background: #0c7594;
+
+                li {
+                    border-left: 1px solid #9dc3cf;
+                    margin-left: 7.7rem;
+
+                    a {
+                        padding-top: 1rem;
+                        padding-bottom: 1rem;
+                        font-family: $typo2;
+                        font-size: 1.8rem;
+                    }
+                }
+
             }
 
-            .title {
-               height: 5rem;
-               line-height: 5rem;
+           .title {
+                float: left;
+                font-size: 2rem;
+                color: white;
+                letter-spacing: 0.1rem;
+                padding-top: 2rem;
+            }
+
+            .title:hover {
+                color: $green;
+            }
+
+            .line {
+               display: block;
+               overflow: hidden;
             }
 
 
-            .dashboard {
-                background: url(../img/left-bar/picto-dashboard.png) no-repeat 30px top;
+            .img-dashboard {
+                background: url(../img/left-bar/picto-dashboard.png) no-repeat center;
  
                 padding-top: 0rem;
             }
 
-            .dashboard:hover {
-                background: url(../img/left-bar/picto-dashboard-hover.png) no-repeat 30px top;
-            }
-
             .projects {
-               display: inline-block;
-               background: url(../img/left-bar/picto-project.png) no-repeat 30px top;
-            }
-
-            .projects:hover {
-               background: url(../img/left-bar/picto-project-hover.png) no-repeat 30px top;
+               background: url(../img/left-bar/picto-project.png) no-repeat 20px center;
             }
 
             .utils {
-                display: inline-block;
-                background: url(../img/left-bar/picto-utils.png) no-repeat 30px top;
-            }
-
-            .utils:hover {
-                background: url(../img/left-bar/picto-utils-hover.png) no-repeat 30px top;
+                background: url(../img/left-bar/picto-utils.png) no-repeat 20px center;
             }
 
             .agency {
-                 display: inline-block;
-                 background: url(../img/left-bar/agency.png) no-repeat 30px top;
-            }
-
-            .agency:hover {
-                background: url(../img/left-bar/agency-hover.png) no-repeat 30px top;
+                 background: url(../img/left-bar/agency.png) no-repeat 20px center;
             }
         }
 
-        > li {
-            margin-bottom: 1rem;
-            border-bottom: 1px solid #9dc3cf;
-     
 
-            ul {
-                margin-left: 0;
-                padding-left: 0;
-                background: #0c7594;
+        .encours {
+
+            .title {
+               color: $green; 
+            }
             
+
+            .encours a {
+                color: $green;
             }
         }
 
-        > li:first-child {
+        > .menu:first-child {
 
             a {
                 padding-left: 0rem;
@@ -313,28 +300,40 @@ body {
                 margin-top: 0;
             }
         }
-    }
 
-    /*.projects-list {
-        padding-left: 0;
-        margin-left: 0;
-        list-style: none;
-
-        li {
-            padding: 1rem;
-
-            background: white;
-            border-bottom: 1px solid rgba(100, 100, 100, 0.15);
-
-            .client {
-                margin-right: 1rem;
+        .menu:hover {
+             .title {
+                color: $green;
             }
         }
 
-        .current {
-            background: rgb(245, 245, 245);
+        .menu:first-child:hover {
+            .img-dashboard {
+                 background: url(../img/left-bar/picto-dashboard-hover.png) no-repeat center;
+            }
         }
-    }*/
+        .menu-2:hover, .encours {
+
+            .projects {
+                 background: url(../img/left-bar/picto-project-hover.png) no-repeat 20px center;
+            }
+        }
+
+        .menu-3:hover, .encours {
+
+            .utils {
+                  background: url(../img/left-bar/picto-utils-hover.png) no-repeat 20px center;
+            }
+        }
+
+        .menu:last-child:hover {
+
+            .agency {
+                background: url(../img/left-bar/agency-hover.png) no-repeat 20px center;
+            }
+
+        }
+    }
 
     a:hover {
         text-decoration: none;

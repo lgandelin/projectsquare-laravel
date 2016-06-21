@@ -7897,13 +7897,13 @@ body {
     color: #096a85;
     font-size: 1.8rem; }
     .table > tbody > tr > td .see-more {
-      width: 33px;
-      height: 33px;
+      width: 27px;
+      height: 27px;
       border: none;
-      background: url(../img/dashboard/see-more.png) no-repeat;
+      background: url(../img/dashboard/see-more-1.png) no-repeat;
       margin-right: 1em; }
     .table > tbody > tr > td .see-more:hover {
-      background: url(../img/dashboard/see-more-hover.png) no-repeat; }
+      background: url(../img/dashboard/see-more-hover-1.png) no-repeat; }
     .table > tbody > tr > td .cancel {
       width: 16px;
       height: 16px;
@@ -7998,8 +7998,7 @@ body {
   border-bottom: 1px solid #a3d2e0; }
   .top-bar-container .top-bar {
     padding-top: 2rem;
-    padding-bottom: 1rem;
-    padding-left: 2rem;
+    padding-left: 1.1rem;
     display: inline-block;
     width: 100%;
     height: auto; }
@@ -8100,108 +8099,87 @@ body {
           background: url(../img/top-bar/log-out-hover.png) no-repeat center center; }
 
 .left-bar {
-  padding: 1rem 0 2rem 0;
+  padding: 0rem 0 0rem 0;
   margin-left: -16px;
   position: absolute;
   left: 1.5rem;
-  top: 10.7rem;
+  top: 9.1rem;
   bottom: 0;
   z-index: 1;
-  background: #0a6a86;
-  /*.projects-list {
-        padding-left: 0;
-        margin-left: 0;
-        list-style: none;
-
-        li {
-            padding: 1rem;
-
-            background: white;
-            border-bottom: 1px solid rgba(100, 100, 100, 0.15);
-
-            .client {
-                margin-right: 1rem;
-            }
-        }
-
-        .current {
-            background: rgb(245, 245, 245);
-        }
-    }
-
-    a:hover {
-            text-decoration: none;
-        }*/ }
-  .left-bar h3 {
-    font-size: 2rem;
-    color: white;
-    letter-spacing: 0.1rem;
-    padding-top: 1rem; }
-  .left-bar h3:hover {
-    color: #c8dc1e; }
-  .left-bar .dashboard h3 {
-    font-family: "AvantGarde-Book"; }
+  background: #0a6a86; }
   .left-bar > ul {
     list-style: none;
     padding-left: 0rem; }
-    .left-bar > ul li {
+    .left-bar > ul .menu {
       padding: 0rem;
       list-style: none;
       background: none;
-      border-bottom: 1px solid rgba(100, 100, 100, 0.15);
-      font-family: "AvantGarde-Book"; }
-      .left-bar > ul li a {
-        display: inline-block;
+      font-family: "AvantGarde-Book";
+      border-bottom: 1px solid #9dc3cf; }
+      .left-bar > ul .menu a {
+        overflow: hidden;
+        display: block;
         color: white;
-        padding-left: 10rem;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        font-family: "MyriadPro-Regular";
-        font-size: 1.8r; }
-      .left-bar > ul li a:hover {
+        padding-left: 2.7rem; }
+      .left-bar > ul .menu a:hover {
         color: #c8dc1e;
         text-decoration: none; }
-      .left-bar > ul li .img {
-        width: 32px;
-        height: 32px;
-        display: inline-block;
-        margin-right: 50px; }
-      .left-bar > ul li h3 {
-        float: right; }
-      .left-bar > ul li .title {
-        height: 5rem;
-        line-height: 5rem; }
-      .left-bar > ul li .dashboard {
-        background: url(../img/left-bar/picto-dashboard.png) no-repeat 30px top;
-        padding-top: 0rem; }
-      .left-bar > ul li .dashboard:hover {
-        background: url(../img/left-bar/picto-dashboard-hover.png) no-repeat 30px top; }
-      .left-bar > ul li .projects {
-        display: inline-block;
-        background: url(../img/left-bar/picto-project.png) no-repeat 30px top; }
-      .left-bar > ul li .projects:hover {
-        background: url(../img/left-bar/picto-project-hover.png) no-repeat 30px top; }
-      .left-bar > ul li .utils {
-        display: inline-block;
-        background: url(../img/left-bar/picto-utils.png) no-repeat 30px top; }
-      .left-bar > ul li .utils:hover {
-        background: url(../img/left-bar/picto-utils-hover.png) no-repeat 30px top; }
-      .left-bar > ul li .agency {
-        display: inline-block;
-        background: url(../img/left-bar/agency.png) no-repeat 30px top; }
-      .left-bar > ul li .agency:hover {
-        background: url(../img/left-bar/agency-hover.png) no-repeat 30px top; }
-    .left-bar > ul > li {
-      margin-bottom: 1rem;
-      border-bottom: 1px solid #9dc3cf; }
-      .left-bar > ul > li ul {
+      .left-bar > ul .menu .border {
+        width: 78px;
+        height: 58px;
+        float: left;
+        margin-right: 2.9rem;
+        border-right: 1px solid #9dc3cf; }
+      .left-bar > ul .menu .sub-menu {
         margin-left: 0;
         padding-left: 0;
         background: #0c7594; }
-    .left-bar > ul > li:first-child a {
+        .left-bar > ul .menu .sub-menu li {
+          border-left: 1px solid #9dc3cf;
+          margin-left: 7.7rem; }
+          .left-bar > ul .menu .sub-menu li a {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            font-family: "MyriadPro-Regular";
+            font-size: 1.8rem; }
+      .left-bar > ul .menu .title {
+        float: left;
+        font-size: 2rem;
+        color: white;
+        letter-spacing: 0.1rem;
+        padding-top: 2rem; }
+      .left-bar > ul .menu .title:hover {
+        color: #c8dc1e; }
+      .left-bar > ul .menu .line {
+        display: block;
+        overflow: hidden; }
+      .left-bar > ul .menu .img-dashboard {
+        background: url(../img/left-bar/picto-dashboard.png) no-repeat center;
+        padding-top: 0rem; }
+      .left-bar > ul .menu .projects {
+        background: url(../img/left-bar/picto-project.png) no-repeat 20px center; }
+      .left-bar > ul .menu .utils {
+        background: url(../img/left-bar/picto-utils.png) no-repeat 20px center; }
+      .left-bar > ul .menu .agency {
+        background: url(../img/left-bar/agency.png) no-repeat 20px center; }
+    .left-bar > ul .encours .title {
+      color: #c8dc1e; }
+    .left-bar > ul .encours .encours a {
+      color: #c8dc1e; }
+    .left-bar > ul > .menu:first-child a {
       padding-left: 0rem; }
-    .left-bar > ul > li:first-child h3 {
+    .left-bar > ul > .menu:first-child h3 {
       margin-top: 0; }
+    .left-bar > ul .menu:hover .title {
+      color: #c8dc1e; }
+    .left-bar > ul .menu:first-child:hover .img-dashboard {
+      background: url(../img/left-bar/picto-dashboard-hover.png) no-repeat center; }
+    .left-bar > ul .menu-2:hover .projects, .left-bar > ul .encours .projects {
+      background: url(../img/left-bar/picto-project-hover.png) no-repeat 20px center; }
+    .left-bar > ul .menu-3:hover .utils, .left-bar > ul .encours .utils {
+      background: url(../img/left-bar/picto-utils-hover.png) no-repeat 20px center; }
+    .left-bar > ul .menu:last-child:hover .agency {
+      background: url(../img/left-bar/agency-hover.png) no-repeat 20px center; }
 
 html {
   height: 100%; }
@@ -8486,7 +8464,7 @@ body {
   margin-right: 1.6rem; }
 
 .fc .fc-toolbar > * > :first-child {
-  margin-left: 1rem; }
+  margin-left: 1.6rem; }
 
 .fc-center h2 {
   color: #096a85;
