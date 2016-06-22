@@ -3,7 +3,7 @@
 @section('content')
     @include('projectsquare::includes.project_bar', ['active' => 'files'])
 
-    <div class="templates files-template">
+    <div class="col-lg-12 col-md-12 templates files-template">
         <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
             <h1 class="page-header">{{ trans('projectsquare::project.files') }}</h1>
 
@@ -18,19 +18,21 @@
                         <td><a href="{{ asset('uploads/projects' . $file->path) }}" title="{{ $file->name }}" target="_blank">{{ $file->name }}</a></td>
                         <td width="150">{{ \Webaccess\ProjectSquareLaravel\Tools\FileTool::convertFileSize($file->size) }}</td>
                         <td width="275">
-                            <a href="{{ asset('uploads/projects' . $file->path) }}" class="btn btn-success" download="{{ $file->name }}"><i class="glyphicon glyphicon-download"></i> {{ trans('projectsquare::generic.download') }}</a>
-                            <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn btn-danger btn-delete"><i class="glyphicon glyphicon-remove"></i> {{ trans('projectsquare::generic.delete') }}</a>
+                            <a href="{{ asset('uploads/projects' . $file->path) }}" class="btn button" download="{{ $file->name }}"><i class="glyphicon glyphicon-download"></i> {{ trans('projectsquare::generic.download') }}</a>
+                            <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn cancel btn-delete"><!--<i class="glyphicon glyphicon-remove"></i> {{ trans('projectsquare::generic.delete') }}--></a>
                         </td>
                     </tr>
                 @endforeach
             </table>
             <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
 
-            <div class="col-md-6">
+            <div class=" files col-md-6">
                 <h4>{{ trans('projectsquare::tickets.add_files') }}</h4>
                 <div class="row fileupload-buttonbar">
-                    <div class="col-lg-12">
-                        <span class="btn add"></span>
+                    <div class="col-lg-12 col-md-12 file">
+                        <span class="btn fileinput-button add">
+                            <input type="file" name="files[]" multiple>
+                        </span>
                         <button type="submit" class="btn btn-primary start">
                             <i class="glyphicon glyphicon-upload"></i>
                             <span>{{ trans('projectsquare::tickets.start_file_upload') }}</span>

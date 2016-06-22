@@ -11,7 +11,7 @@
         </td>
         <td width="150">
             <p class="size">Processing...</p>
-            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+            
         </td>
         <td width="275">
             {% if (!i && !o.options.autoUpload) { %}
@@ -21,9 +21,7 @@
                 </button>
             {% } %}
             {% if (!i) { %}
-                <button class="btn btn-warning cancel">
-                    <i class="glyphicon glyphicon-ban-circle"></i>
-                    <span>Annuler</span>
+                <button class="btn cancel">
                 </button>
             {% } %}
         </td>
@@ -53,7 +51,7 @@
         <td width="275">
             <a href="{%=file.url%}" class="btn button" download="{%=file.name%}"><i class="glyphicon glyphicon-download"></i> Télécharger</a>
             {% if (file.deleteUrl) { %}
-                <a href="{%=file.deleteUrl%}" class="btn cancel btn-delete"><i class="glyphicon glyphicon-remove"></i> Supprimer</a>
+                <a href="{%=file.deleteUrl%}" class="btn cancel btn-delete"></a>
                 <!--<input type="checkbox" name="delete" value="1" class="toggle">-->
             {% } else { %}
                 <button class="btn btn-warning cancel">
