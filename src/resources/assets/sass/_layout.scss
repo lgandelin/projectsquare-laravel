@@ -179,13 +179,8 @@ body {
 
 .left-bar {
     padding: 0rem 0 0rem 0;
-    margin-left: -16px;
-    position: absolute;
-    left: 1.5rem;
-    top: 9.1rem;
-    bottom: 0;
-    z-index: 1;
-
+    width: 300px;
+    float: left;
     background: #0a6a86;
 
 
@@ -214,8 +209,8 @@ body {
             }
 
             .border {
-                width: 78px;
-                height: 58px;
+                width: 68px;
+                height: 68px;
                 float: left;
                 margin-right: 2.9rem;
                 border-right: 1px solid #9dc3cf;
@@ -229,7 +224,7 @@ body {
 
                 li {
                     border-left: 1px solid #9dc3cf;
-                    margin-left: 7.7rem;
+                    margin-left: 6.7rem;
 
                     a {
                         padding-top: 1rem;
@@ -246,7 +241,7 @@ body {
                 font-size: 2rem;
                 color: white;
                 letter-spacing: 0.1rem;
-                padding-top: 2rem;
+                padding-top: 2.5rem;
             }
 
             .title:hover {
@@ -260,21 +255,21 @@ body {
 
 
             .img-dashboard {
-                background: url(../img/left-bar/picto-dashboard.png) no-repeat center;
+                background: url(../img/left-bar/picto-dashboard.png) no-repeat 16px center;
  
                 padding-top: 0rem;
             }
 
             .projects {
-               background: url(../img/left-bar/picto-project.png) no-repeat 20px center;
+               background: url(../img/left-bar/picto-project.png) no-repeat 16px center;
             }
 
             .utils {
-                background: url(../img/left-bar/picto-utils.png) no-repeat 20px center;
+                background: url(../img/left-bar/picto-utils.png) no-repeat 16px center;
             }
 
             .agency {
-                 background: url(../img/left-bar/agency.png) no-repeat 20px center;
+                 background: url(../img/left-bar/agency.png) no-repeat 16px center;
             }
         }
 
@@ -307,29 +302,29 @@ body {
             }
         }
 
-        .menu:first-child:hover {
+        .menu:first-child:hover, .encours {
             .img-dashboard {
-                 background: url(../img/left-bar/picto-dashboard-hover.png) no-repeat center;
+                 background: url(../img/left-bar/picto-dashboard-hover.png) no-repeat 16px center;
             }
         }
-        .menu-2:hover, .encours {
+        .menu:nth-child(2):hover, .encours {
 
             .projects {
-                 background: url(../img/left-bar/picto-project-hover.png) no-repeat 20px center;
+                 background: url(../img/left-bar/picto-project-hover.png) no-repeat 16px center;
             }
         }
 
-        .menu-3:hover, .encours {
+        .menu:nth-child(3):hover, .encours {
 
             .utils {
-                  background: url(../img/left-bar/picto-utils-hover.png) no-repeat 20px center;
+                  background: url(../img/left-bar/picto-utils-hover.png) no-repeat 16px center;
             }
         }
 
-        .menu:last-child:hover {
+         .menu:nth-child(4):hover, .encours {
 
             .agency {
-                background: url(../img/left-bar/agency-hover.png) no-repeat 20px center;
+                background: url(../img/left-bar/agency-hover.png) no-repeat 16px center;
             }
 
         }

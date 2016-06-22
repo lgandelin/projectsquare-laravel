@@ -12,6 +12,8 @@ body {
 .content {
     padding-left: 0rem;
     padding-right: 0rem;
+    width: auto;
+    overflow: hidden;
 }
 
 .templates {
@@ -108,4 +110,7 @@ body {
     border: 1px solid $green;
     width: 40px;
     height: 40px;
+}
+.glyphicon-ok {
+    padding-left: 1rem;
 }

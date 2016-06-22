@@ -17,7 +17,7 @@
                     'current_route' => $current_route
                 ])
 
-                <div class="col-lg-10 col-md-8 col-sm-8 col-lg-offset-2 content">
+                <div class="content">
     
             @else
                 <div class="col-lg-12 col-md-12 col-sm-12">
