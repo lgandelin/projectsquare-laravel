@@ -60,6 +60,7 @@
 		 	background: $touareg;
 			border-radius: 0px;
 			color: white;
+			margin-right: 1rem;
 		}
 		input[type="submit"]:hover,  button[type="submit"]:hover {
 			background: $green;
@@ -72,6 +73,7 @@
 		border-radius: 0px;
 		color: $light-blue;
 		background: none;
+		margin-right: 1rem;
 	}
 
 	.back:hover, .button:hover {

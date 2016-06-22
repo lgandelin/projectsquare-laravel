@@ -41,7 +41,7 @@
                         <a href="{{ route('messages_index') }}">Messages</a>
                     </li>
                     <li class="@if($current_route == 'planning') {{ 'encours' }} @endif"><a href="{{ route('planning') }}">Planning</a></li>
-                    <li class="@if($current_route == 'tasks') {{ 'encours' }} @endif"><a href="{{ route('tasks_index') }}">{{ trans('projectsquare::tasks.tasks') }}</a></li>
+                     <!-- <li class="@if($current_route == 'tasks') {{ 'encours' }} @endif"><a href="{{ route('tasks_index') }}">{{ trans('projectsquare::tasks.tasks') }}</a></li>-->
                 </ul>
             </li>
 

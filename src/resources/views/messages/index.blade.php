@@ -27,7 +27,7 @@
                         <td><span class="text">{{ $conversation->project->name }}</span></td>
                         <td><span class="text">@if (isset($conversation->messages[0])){{ $conversation->messages[0]->user->complete_name }}@endif</td>
                         <td><span class="text">{{ $conversation->title }}</span></td>
-                        <td>
+                        <td align="right">
                             <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-primary see-more"></a>
                         </td>
                     </tr>

@@ -37,7 +37,7 @@
                         <td>@if (isset($conversation->messages[0])){{ $conversation->messages[0]->user->complete_name }}@endif</td>
                         <td>{{ $conversation->title }}</td>
                         <td>@if (isset($conversation->messages[count($conversation->messages) - 1])){{ $conversation->messages[count($conversation->messages) - 1]->content }}@endif</td>
-                        <td>
+                        <td align="right">
                             <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn see-more"></a>
                         </td>
                     </tr>

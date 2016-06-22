@@ -7901,7 +7901,7 @@ body {
       height: 27px;
       border: none;
       background: url(../img/dashboard/see-more-1.png) no-repeat;
-      margin-right: 1em; }
+      margin-right: 1.5em; }
     .table > tbody > tr > td .see-more:hover {
       background: url(../img/dashboard/see-more-hover-1.png) no-repeat; }
     .table > tbody > tr > td .cancel {
@@ -7977,7 +7977,8 @@ body {
   border: none;
   background: #096a85;
   border-radius: 0px;
-  color: white; }
+  color: white;
+  margin-right: 1rem; }
 
 .templates form input[type="submit"]:hover, .templates form button[type="submit"]:hover, .wrapper form input[type="submit"]:hover, .wrapper form button[type="submit"]:hover {
   background: #c8dc1e;
@@ -7987,7 +7988,8 @@ body {
   border: 1px solid #84b4c2;
   border-radius: 0px;
   color: #84b4c2;
-  background: none; }
+  background: none;
+  margin-right: 1rem; }
 
 .templates .back:hover, .templates .button:hover, .wrapper .back:hover, .wrapper .button:hover {
   background: #84b4c2;
@@ -8202,14 +8204,14 @@ body {
   font-family: "MyriadPro-Regular"; }
 
 .content {
-  padding-left: 0rem;
-  padding-right: 0rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
   width: auto;
   overflow: hidden; }
 
 .templates {
   background: white;
-  margin: 2rem 3rem 2em 3rem;
+  margin: 2rem 0rem 2em 0rem;
   padding: 2.5rem;
   border: 1px solid #bdc0c1; }
   .templates .page-header {
@@ -8283,9 +8285,7 @@ body {
   padding-left: 1rem; }
 
 .dashboard-content {
-  padding-top: 4rem;
-  padding-left: 4rem;
-  padding-right: 4rem; }
+  padding-top: 4rem; }
   .dashboard-content .block h3 {
     display: inline-block;
     margin-bottom: 2rem;
@@ -8524,3 +8524,8 @@ body {
     border-radius: 0rem; }
   .project-bar .top-nav .active a:hover {
     background: none; }
+
+.files {
+  margin-top: 3rem; }
+  .files .fileupload-buttonbar .file {
+    margin-top: 3rem; }

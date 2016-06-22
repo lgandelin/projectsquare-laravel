@@ -117,7 +117,7 @@
                             </td>
                             <td>@if (isset($ticket->last_state) && $ticket->last_state->status)<span class="status status-{{ $ticket->last_state->status->id }}">{{ $ticket->last_state->status->name}}</span>@endif</td>
                             <td>@if (isset($ticket->last_state))<span class="priority priority-{{ $ticket->last_state->priority }}">@endif</td>
-                            <td>
+                            <td align="right">
                                 <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}" class="btn see-more"></a>
                                 <a href="{{ route('tickets_delete', ['id' => $ticket->id]) }}" class="btn cancel"></a>
                             </td>
