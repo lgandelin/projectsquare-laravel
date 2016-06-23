@@ -6,7 +6,11 @@
     <div class="project-template">
         <h1 class="page-header">{{ trans('projectsquare::project.cms') }}</h1>
 
-        <iframe id="cms-iframe" class="cms-iframe" src="{{ $project->website_back_url }}" frameborder="0"></iframe>
+        @if ($project->website_back_url)
+            <iframe id="cms-iframe" class="cms-iframe" src="{{ $project->website_back_url }}" frameborder="0"></iframe>
+        @else
+            <span>URL d'administration non configurée pour ce projet.</span>
+        @endif
     </div>
 @endsection
 
