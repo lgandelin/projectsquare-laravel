@@ -44,7 +44,7 @@
     </div>
 
     <div class="form-group">
-        <button type="submit" class="btn btn-success">
+        <button type="submit" class="btn btn-success valid">
             <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
         </button>
 
@@ -113,7 +113,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-success" style="margin-top: 1.5rem">
+        <button type="submit" class="btn btn-success valid" style="margin-top: 1.5rem">
             <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
         </button>
 
@@ -132,7 +132,7 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn btn-success valid">
                     <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                 </button>
 
@@ -155,7 +155,7 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn btn-success valid">
                     <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                 </button>
 
@@ -178,7 +178,7 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn btn-success valid">
                     <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                 </button>
 
@@ -201,7 +201,7 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn btn-success valid">
                     <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                 </button>
 

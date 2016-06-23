@@ -2,9 +2,6 @@ body {
     position: relative;
 }
 
-.top-bar {
-    padding-top: 2rem;
-    padding-bottom: 1rem;
 .top-bar-container {
     background: white;
     border-bottom: 1px solid #a3d2e0;
@@ -102,8 +99,6 @@ body {
                             float: left;
                         }
 
-                        .btn {
-                            margin-top: 1rem;
                         .type {
                             float: right;
                             margin-bottom: 0.75rem;
@@ -140,10 +135,6 @@ body {
                         padding-bottom: 0;
                     }
                 }
-
-                .notification:first-child {
-                    margin-top: 2rem;
-                }
             }
 
             .avatar {
@@ -159,7 +150,7 @@ body {
 
             .out {
 
-            vertical-align: middle;
+                vertical-align: middle;
 
                 .log-out {
                     display: block;

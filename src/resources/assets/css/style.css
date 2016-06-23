@@ -7870,12 +7870,6 @@ ul {
   margin-left: 0;
   padding-left: 2rem; }
 
-body {
-  position: relative; }
-
-.top-bar {
-  padding-top: 2rem;
-  padding-bottom: 1rem;
 @font-face {
   font-family: "AvantGarde-Book";
   src: url("../fonts/AvantGarde-Book.woff"), url("../fonts/AvantGarde-Book.otf"), url("../fonts/AvantGarde-Book.svg"), url("../fonts/AvantGarde-Book.eot"), url("../fonts/AvantGarde-Book.ttf"); }
@@ -7938,60 +7932,83 @@ body {
 .templates h3, .wrapper h3 {
   margin-top: 3rem; }
 
-.templates form label, .wrapper form label {
-  color: #096a85;
-  font-weight: 400; }
+.templates form, .wrapper form {
+  /*input[type="submit"], button[type="submit"] {
+		 	border: none;
+		 	background: $touareg;
+			border-radius: 0px;
+			color: white;
+			margin-right: 1rem;
+		}
+		input[type="submit"]:hover,  button[type="submit"]:hover {
+			background: $green;
+			color: $touareg;
+		}*/ }
+  .templates form label, .wrapper form label {
+    color: #096a85;
+    font-weight: 400; }
+  .templates form input, .templates form textarea, .templates form select, .wrapper form input, .wrapper form textarea, .wrapper form select {
+    border: 1px solid #84b4c2;
+    border-radius: 0px !important;
+    color: #a3b1bd;
+    cursor: pointer;
+    background: #fdfdfd; }
+  .templates form select, .wrapper form select {
+    -webkit-appearance: none;
+    background: #fdfdfd url("../img/select.png") right center no-repeat; }
+  .templates form input:hover, .templates form textarea:hover, .templates form select:hover, .wrapper form input:hover, .wrapper form textarea:hover, .wrapper form select:hover {
+    border: 1px solid #c8dc1e; }
+  .templates form input:focus, .templates form textarea:focus, .templates form select:focus, .wrapper form input:focus, .wrapper form textarea:focus, .wrapper form select:focus {
+    border: 1px solid #c8dc1e;
+    box-shadow: none; }
+  .templates form ::-webkit-input-placeholder, .wrapper form ::-webkit-input-placeholder {
+    color: #a3b1bd !important; }
+  .templates form :-moz-placeholder, .wrapper form :-moz-placeholder {
+    color: #a3b1bd !important; }
 
-.templates form input, .templates form textarea, .templates form select, .wrapper form input, .wrapper form textarea, .wrapper form select {
-  border: 1px solid #84b4c2;
-  border-radius: 0px !important;
-  color: #a3b1bd;
-  cursor: pointer;
-  background: #fdfdfd; }
-
-.templates form select, .wrapper form select {
-  -webkit-appearance: none;
-  background: #fdfdfd url("../img/select.png") right center no-repeat; }
-
-.templates form input:hover, .templates form textarea:hover, .templates form select:hover, .wrapper form input:hover, .wrapper form textarea:hover, .wrapper form select:hover {
-  border: 1px solid #c8dc1e; }
-
-.templates form input:focus, .templates form textarea:focus, .templates form select:focus, .wrapper form input:focus, .wrapper form textarea:focus, .wrapper form select:focus {
-  border: 1px solid #c8dc1e;
-  box-shadow: none; }
-
-.templates form ::-webkit-input-placeholder, .wrapper form ::-webkit-input-placeholder {
-  color: #a3b1bd !important; }
-
-.templates form :-moz-placeholder, .wrapper form :-moz-placeholder {
-  color: #a3b1bd !important; }
-
-.templates form input[type="submit"], .templates form button[type="submit"], .wrapper form input[type="submit"], .wrapper form button[type="submit"] {
-  border: none;
-  background: #096a85;
+.templates .valid, .wrapper .valid {
   border-radius: 0px;
-  color: white;
-  margin-right: 1rem; }
-
-.templates form input[type="submit"]:hover, .templates form button[type="submit"]:hover, .wrapper form input[type="submit"]:hover, .wrapper form button[type="submit"]:hover {
+  border: none;
   background: #c8dc1e;
   color: #096a85; }
 
-.templates .back, .templates .button, .wrapper .back, .wrapper .button {
-  border: 1px solid #84b4c2;
+.templates .valid:hover, .wrapper .valid:hover {
+  opacity: 0.8; }
+
+.templates .button, .wrapper .button {
   border-radius: 0px;
   color: white;
   background: #096a85;
   margin-right: 1rem; }
 
-.templates .back:hover, .templates .button:hover, .wrapper .back:hover, .wrapper .button:hover {
+.templates .button:hover, .wrapper .button:hover {
   opacity: 0.8; }
+
+.templates .back, .wrapper .back {
+  border: 1px solid #84b4c2;
+  border-radius: 0px;
+  color: #096a85;
+  background: none; }
+
+.templates .back:hover, .wrapper .back:hover {
+  background: #84b4c2;
+  color: white; }
 
 .templates .users, .wrapper .users {
   margin-top: 2rem; }
 
-.templates .button .picto-delete, .wrapper .button .picto-delete {
-  color: #d80011; }
+.templates .delete, .wrapper .delete {
+  border-radius: 0px;
+  background: #ca2e44;
+  color: white; }
+  .templates .delete .picto-delete, .wrapper .delete .picto-delete {
+    color: white; }
+
+.templates .delete:hover, .wrapper .delete:hover {
+  opacity: 0.8; }
+
+body {
+  position: relative; }
 
 .top-bar-container {
   background: white;
@@ -8176,9 +8193,8 @@ body {
       background: url(../img/left-bar/picto-utils-hover.png) no-repeat 16px center; }
     .left-bar > ul .menu:nth-child(4):hover .agency, .left-bar > ul .encours .agency {
       background: url(../img/left-bar/agency-hover.png) no-repeat 16px center; }
-
-html {
-  height: 100%; }
+  .left-bar a:hover {
+    text-decoration: none; }
 
 .beta-form {
   position: absolute;
@@ -8195,6 +8211,10 @@ html {
 
 .beta-form:hover {
   opacity: 0.8; }
+
+html {
+  height: 100%; }
+
 body {
   min-height: 100%;
   position: relative;
@@ -8208,7 +8228,7 @@ body {
   overflow: hidden; }
 
 .content-page {
-  margin: 2rem 4rem 2em 4rem; }
+  margin: 3rem; }
 
 .templates {
   background: white;
@@ -8289,9 +8309,9 @@ body {
   padding-left: 1rem; }
 
 .dashboard-content {
-  padding-top: 2rem;
-  padding-left: 4rem;
-  padding-right: 4rem; }
+  padding-top: 3rem;
+  padding-left: 3rem;
+  padding-right: 3rem; }
   .dashboard-content .block h3 {
     display: inline-block;
     margin-bottom: 2rem;

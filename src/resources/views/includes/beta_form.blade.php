@@ -1,8 +1,8 @@
-<div class="beta-form">
+<!--<div class="beta-form">
     <a href="#" class="toggle" title="Nous contacter">
         <span class="glyphicon glyphicon-envelope icon"></span>
     </a>
-</div>
+</div>-->
 
 <div class="modal fade" id="beta-form-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">

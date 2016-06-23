@@ -46,7 +46,7 @@
 
             <h3>{{ trans('projectsquare::tickets.delete_ticket') }}</h3>
 
-            <a href="{{ route('tickets_delete', ['id' => $ticket->id]) }}" class="btn button btn-delete">
+            <a href="{{ route('tickets_delete', ['id' => $ticket->id]) }}" class="btn delete btn-delete">
                 <i class="glyphicon glyphicon-remove picto-delete"></i>
                 <span> Supprimer </span>
             </a>

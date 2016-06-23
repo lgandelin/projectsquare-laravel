@@ -50,7 +50,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="submit" class="btn btn-success" value="{{ trans('projectsquare::generic.valid') }}" />
+                            <input type="submit" class="btn btn-success valid" value="{{ trans('projectsquare::generic.valid') }}" />
                             <a href="{{ route('tickets_index') }}" class="btn btn-default back">{{ trans('projectsquare::generic.back') }}</a>
                         </div>
                     </div>

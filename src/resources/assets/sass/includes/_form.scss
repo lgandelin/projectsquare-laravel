@@ -48,7 +48,7 @@
 		   color: #a3b1bd !important;
 		}
 
-		 input[type="submit"], button[type="submit"] {
+		/*input[type="submit"], button[type="submit"] {
 		 	border: none;
 		 	background: $touareg;
 			border-radius: 0px;
@@ -58,30 +58,59 @@
 		input[type="submit"]:hover,  button[type="submit"]:hover {
 			background: $green;
 			color: $touareg;
-		}
+		}*/
 	}
 
-	.back, .button {
-		border: 1px solid $light-blue;
+	.valid {
+		border-radius: 0px;
+		border: none;
+		background: $green;
+		color: $touareg;
+	}
+
+	.valid:hover {
+		opacity: 0.8;
+	}
+
+	.button {
 		border-radius: 0px;
 		color: white;
 		background: $touareg;
 		margin-right: 1rem;
 	}
 
-	.back:hover, .button:hover {
+	.button:hover {
 		opacity: 0.8;
+	}
+
+	.back {
+		border: 1px solid $light-blue;
+		border-radius: 0px;
+		color: $touareg;
+		background: none;
+	}
+
+	.back:hover {
+		background: $light_blue;
+		color: white;
 	}
 
 	.users {
 		margin-top: 2rem;
 	}
 
-	.button {
+	.delete {
+		border-radius: 0px;
+		background: #ca2e44;
+		color: white;
 
 		.picto-delete {
-			color: #d80011;
+			color: white;
 		}
+	}
+
+	.delete:hover {
+		opacity: 0.8;
 	}
 		
 }
