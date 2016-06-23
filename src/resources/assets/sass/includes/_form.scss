@@ -5,6 +5,10 @@
 		font-family: $typo1;
 		font-size: 22px;
 	}
+
+	h3 {
+		margin-top: 3rem;
+	}
 	
 	form {
 
@@ -13,22 +17,10 @@
 			font-weight: 400;
 		}
 
-		.back, .button {
-			border: 1px solid $light-blue;
-			border-radius: 0px;
-			color: $light-blue;
-			background: none;
-		}
-
-		.back:hover, .button:hover {
-			background: $light-blue;
-			color: white;
-		}
-
 		input, textarea, select {
 			border: 1px solid $light_blue;
 			border-radius: 0px !important;
-			color: $touareg;
+			color:  #a3b1bd;
 			cursor: pointer;
 			background: #fdfdfd;
 		}
@@ -36,6 +28,7 @@
 		select {
 			-webkit-appearance: none;
 			background: #fdfdfd url('../img/select.png') right center no-repeat;
+
 		}
 
 		input:hover, textarea:hover, select:hover {
@@ -48,11 +41,11 @@
 		}
 
 		::-webkit-input-placeholder { 
-		    color: $touareg;
+		    color: #a3b1bd !important;
 		}
 
 		:-moz-placeholder { 
-		   color: $touareg;
+		   color: #a3b1bd !important;
 		}
 
 		 input[type="submit"], button[type="submit"] {
@@ -71,14 +64,24 @@
 	.back, .button {
 		border: 1px solid $light-blue;
 		border-radius: 0px;
-		color: $light-blue;
-		background: none;
+		color: white;
+		background: $touareg;
 		margin-right: 1rem;
 	}
 
 	.back:hover, .button:hover {
-		background: $light-blue;
-		color: white;
+		opacity: 0.8;
+	}
+
+	.users {
+		margin-top: 2rem;
+	}
+
+	.button {
+
+		.picto-delete {
+			color: #d80011;
+		}
 	}
 		
 }

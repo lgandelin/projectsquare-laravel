@@ -74,7 +74,7 @@
                 <tr>
                     <td>{{ $user->complete_name }}</td>
                     <td>{{ $user->role->name }}</td>
-                    <td>
+                    <td align="right">
                         <a href="{{ route('projects_delete_user', ['project_id' => $project_id, 'user_id' => $user->id]) }}" class="btn cancel btn-delete">
                         </a>
                     </td>

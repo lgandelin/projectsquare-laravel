@@ -21,7 +21,9 @@
                 </button>
             {% } %}
             {% if (!i) { %}
-                <button class="btn cancel">
+                <button class="btn button">
+                    <i class="glyphicon glyphicon-remove picto-delete"></i>
+                    <span> Supprimer </span>
                 </button>
             {% } %}
         </td>
@@ -51,7 +53,10 @@
         <td width="275">
             <a href="{%=file.url%}" class="btn button" download="{%=file.name%}"><i class="glyphicon glyphicon-download"></i> Télécharger</a>
             {% if (file.deleteUrl) { %}
-                <a href="{%=file.deleteUrl%}" class="btn cancel btn-delete"></a>
+                <a href="{%=file.deleteUrl%}" class="btn button btn-delete">
+                    <i class="glyphicon glyphicon-remove picto-delete"></i>
+                    <span> Supprimer </span>
+                </a>
                 <!--<input type="checkbox" name="delete" value="1" class="toggle">-->
             {% } else { %}
                 <button class="btn btn-warning cancel">

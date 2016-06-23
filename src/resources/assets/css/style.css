@@ -7935,24 +7935,17 @@ body {
   font-family: "AvantGarde-Book";
   font-size: 22px; }
 
+.templates h3, .wrapper h3 {
+  margin-top: 3rem; }
+
 .templates form label, .wrapper form label {
   color: #096a85;
   font-weight: 400; }
 
-.templates form .back, .templates form .button, .wrapper form .back, .wrapper form .button {
-  border: 1px solid #84b4c2;
-  border-radius: 0px;
-  color: #84b4c2;
-  background: none; }
-
-.templates form .back:hover, .templates form .button:hover, .wrapper form .back:hover, .wrapper form .button:hover {
-  background: #84b4c2;
-  color: white; }
-
 .templates form input, .templates form textarea, .templates form select, .wrapper form input, .wrapper form textarea, .wrapper form select {
   border: 1px solid #84b4c2;
   border-radius: 0px !important;
-  color: #096a85;
+  color: #a3b1bd;
   cursor: pointer;
   background: #fdfdfd; }
 
@@ -7968,10 +7961,10 @@ body {
   box-shadow: none; }
 
 .templates form ::-webkit-input-placeholder, .wrapper form ::-webkit-input-placeholder {
-  color: #096a85; }
+  color: #a3b1bd !important; }
 
 .templates form :-moz-placeholder, .wrapper form :-moz-placeholder {
-  color: #096a85; }
+  color: #a3b1bd !important; }
 
 .templates form input[type="submit"], .templates form button[type="submit"], .wrapper form input[type="submit"], .wrapper form button[type="submit"] {
   border: none;
@@ -7987,13 +7980,18 @@ body {
 .templates .back, .templates .button, .wrapper .back, .wrapper .button {
   border: 1px solid #84b4c2;
   border-radius: 0px;
-  color: #84b4c2;
-  background: none;
+  color: white;
+  background: #096a85;
   margin-right: 1rem; }
 
 .templates .back:hover, .templates .button:hover, .wrapper .back:hover, .wrapper .button:hover {
-  background: #84b4c2;
-  color: white; }
+  opacity: 0.8; }
+
+.templates .users, .wrapper .users {
+  margin-top: 2rem; }
+
+.templates .button .picto-delete, .wrapper .button .picto-delete {
+  color: #d80011; }
 
 .top-bar-container {
   background: white;
@@ -8204,14 +8202,16 @@ body {
   font-family: "MyriadPro-Regular"; }
 
 .content {
-  padding-left: 4rem;
-  padding-right: 4rem;
+  padding-left: 0rem;
+  padding-right: 0rem;
   width: auto;
   overflow: hidden; }
 
+.content-page {
+  margin: 2rem 4rem 2em 4rem; }
+
 .templates {
   background: white;
-  margin: 2rem 0rem 2em 0rem;
   padding: 2.5rem;
   border: 1px solid #bdc0c1; }
   .templates .page-header {
@@ -8242,6 +8242,10 @@ body {
   border: 1px solid #bdc0c1; }
   .block .block-content {
     padding: 0rem; }
+
+.text-seo {
+  color: #096a85;
+  font-weight: 400; }
 
 .info {
   padding: 1rem;
@@ -8285,7 +8289,9 @@ body {
   padding-left: 1rem; }
 
 .dashboard-content {
-  padding-top: 4rem; }
+  padding-top: 2rem;
+  padding-left: 4rem;
+  padding-right: 4rem; }
   .dashboard-content .block h3 {
     display: inline-block;
     margin-bottom: 2rem;
@@ -8460,7 +8466,7 @@ body {
 
 .fc .fc-button-group > *, .fc-today-button {
   background: none;
-  border: 2px solid #84b4c2;
+  border: 1px solid #84b4c2;
   color: #84b4c2;
   border-radius: 0rem !important;
   margin-right: 1.6rem; }
@@ -8474,6 +8480,12 @@ body {
 
 .fc-unthemed .fc-today {
   background: #f9fbe6; }
+
+.fc-state-active {
+  box-shadow: none;
+  background: #84b4c2 !important;
+  color: white !important;
+  text-shadow: none; }
 
 .current-event {
   background: #DF5A49 !important;
@@ -8504,7 +8516,7 @@ body {
 
 .project-bar .top-nav {
   background: white;
-  padding-top: 2rem;
+  padding-top: 1.6rem;
   border-bottom: 2px solid #acb3b6;
   -o-box-shadow: 0px 2px 10px 0px #acb3b6;
   box-shadow: 0px 2px 10px 0px #acb3b6; }

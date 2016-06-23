@@ -2,10 +2,29 @@
 
 @section('content')
     @include('projectsquare::includes.project_bar', ['active' => 'files'])
+    <div class="content-page">
+        <div class="col-lg-12 col-md-12 templates files-template">
+            <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
+                <h1 class="page-header">{{ trans('projectsquare::project.files') }}</h1>
 
-    <div class="col-lg-12 col-md-12 templates files-template">
-        <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
-            <h1 class="page-header">{{ trans('projectsquare::project.files') }}</h1>
+                <table class="table table-striped">
+                    @foreach($files as $file)
+                        <tr>
+                            <td width="250">
+                                <a href="{{ asset('uploads/projects' . $file->path) }}" title="{{ $file->name }}" target="_blank">
+                                    <img class="thumbnail" src="{{ asset('uploads/projects' . $file->thumbnail_path) }}" alt="{{ $file->name }}" width="135" height="80" />
+                                </a>
+                            </td>
+                            <td><a href="{{ asset('uploads/projects' . $file->path) }}" title="{{ $file->name }}" target="_blank">{{ $file->name }}</a></td>
+                            <td width="150">{{ \Webaccess\ProjectSquareLaravel\Tools\FileTool::convertFileSize($file->size) }}</td>
+                            <td width="275">
+                                <a href="{{ asset('uploads/projects' . $file->path) }}" class="btn button" download="{{ $file->name }}"><i class="glyphicon glyphicon-download"></i> {{ trans('projectsquare::generic.download') }}</a>
+                                <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn cancel"><!--<i class="glyphicon glyphicon-remove"></i> {{ trans('projectsquare::generic.delete') }}--></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
+                <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
 
             <table class="table table-striped">
                 @foreach($files as $file)
@@ -48,24 +67,23 @@
                         <input type="checkbox" class="toggle">-->
                         <span class="fileupload-process"></span>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 fileupload-progress fade" style="margin-top: 2rem;">
-                        <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                    <div class="row">
+                        <div class="col-md-12 fileupload-progress fade" style="margin-top: 2rem;">
+                            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                            </div>
+                            <div class="progress-extended">&nbsp;</div>
                         </div>
-                        <div class="progress-extended">&nbsp;</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" style="margin-top: 2rem;">
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12" style="margin-top: 2rem;">
-                    </div>
-                </div>
-            </div>
-            <input type="hidden" name="project_id" value="{{ $project->id }}" />
-        </form>
+                <input type="hidden" name="project_id" value="{{ $project->id }}" />
+            </form>
+        </div>
     </div>
-
     @include('projectsquare::tickets.fileupload')
 
     <script src="{{ asset('js/vendor/jquery.fileupload/vendor/jquery.ui.widget.js') }}"></script>

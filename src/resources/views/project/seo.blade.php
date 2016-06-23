@@ -2,46 +2,46 @@
 
 @section('content')
     @include('projectsquare::includes.project_bar', ['active' => 'seo'])
+    <div class="content-page">
+        <div class="templates seo-template">
+            <h1 class="page-header">{{ trans('projectsquare::project.seo') }}</h1>
 
-    <div class="templates seo-template">
-        <h1 class="page-header">{{ trans('projectsquare::project.seo') }}</h1>
+            @if ($gaViewID)
+                <div id="embed-api-auth-container" style="margin-bottom: 15px"></div>
 
-        @if ($gaViewID)
-            <div id="embed-api-auth-container" style="margin-bottom: 15px"></div>
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h3>Indicateurs</h3>
+                        <br>
 
-            <div class="row">
-                <div class="col-lg-9">
-                    <h3>Indicateurs</h3>
-                    <br>
+                        <div class="col-lg-4">
+                            <p class="text-seo">Sessions : <span id="sessions-count" class="number"></span></p>
+                            <p class="text-seo">Utilisateurs : <span id="users-count" class="number"></span></p>
+                            <p class="text-seo">Pages par visite : <span id="pages-per-visit" class="number"></span></p>
+                        </div>
 
-                    <div class="col-lg-4">
-                        <p>Sessions : <span id="sessions-count" class="number"></span></p>
-                        <p>Utilisateurs : <span id="users-count" class="number"></span></p>
-                        <p>Pages par visite : <span id="pages-per-visit" class="number"></span></p>
+                        <div class="col-lg-4">
+                            <p class="text-seo">Pages vues : <span id="page-views-count" class="number"></span></p>
+                            <p class="text-seo">Durée moyenne session : <span id="avg-session-duration" class="number"></span></p>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <p class="text-seo">Taux de rebond : <span id="bounce-rate" class="number"></span></p>
+                            <p class="text-seo">Nouvelles visites : <span id="new-visits-pct" class="number"></span></p>
+                        </div>
                     </div>
-
-                    <div class="col-lg-4">
-                        <p>Pages vues : <span id="page-views-count" class="number"></span></p>
-                        <p>Durée moyenne session : <span id="avg-session-duration" class="number"></span></p>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <p>Taux de rebond : <span id="bounce-rate" class="number"></span></p>
-                        <p>Nouvelles visites : <span id="new-visits-pct" class="number"></span></p>
-                    </div>
-                </div>
 
                 <div class="col-lg-3">
                     <h3>Période</h3>
                     <br>
                     <div class="form-group col-lg-6">
-                        <label for="title">Date de début</label>
-                        <input class="form-control datepicker" type="text" placeholder="" id="start_date" autocomplete="off" value="{{ $startDate }}" style="width:175px" />
+                        <label for="title" class="text-seo">Date de début</label>
+                        <input class="form-control datepicker button" type="text" placeholder="" id="start_date" autocomplete="off" value="{{ $startDate }}" style="width:175px" />
                     </div>
 
                     <div class="form-group col-lg-6">
-                        <label for="title">Date de fin</label>
-                        <input class="form-control datepicker" type="text" placeholder="" id="end_date" autocomplete="off" value="{{ $endDate }}" style="width:175px" />
+                        <label for="title" class="text-seo">Date de fin</label>
+                        <input class="form-control datepicker button" type="text" placeholder="" id="end_date" autocomplete="off" value="{{ $endDate }}" style="width:175px" />
                     </div>
                     <div id="date-range-selector-1-container"></div>
                 </div>
@@ -53,6 +53,9 @@
                     <h3>Sessions</h3>
                     <div id="chart-container" class="loading" style="min-height: 250px"></div>
                 </div>
+            </div>
+
+            <div class="row" style="margin-top: 5rem">
 
                 <div class="col-lg-4">
                     <h3>Navigateurs</h3>

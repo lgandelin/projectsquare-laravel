@@ -15,7 +15,10 @@
                         <td width="150">{{ \Webaccess\ProjectSquareLaravel\Tools\FileTool::convertFileSize($file->size) }}</td>
                         <td width="275">
                             <a href="{{ asset('uploads/tickets' . $file->path) }}" class="btn button" download="{{ $file->name }}"><i class="glyphicon glyphicon-download"></i> {{ trans('projectsquare::generic.download') }}</a>
-                            <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn cancel btn-delete"></a>
+                            <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn button btn-delete">
+                                <i class="glyphicon glyphicon-remove picto-delete"></i>
+                                <span>Supprimer</span>
+                            </a>
                         </td>
                     </tr>
                 @endforeach
@@ -36,9 +39,9 @@
                         <i class="glyphicon glyphicon-upload"></i>
                         <span>{{ trans('projectsquare::tickets.start_file_upload') }}</span>
                     </button>
-                    <button type="reset" class="btn cancel">
-                        <!--<i class="glyphicon glyphicon-ban-circle"></i>
-                        <span>{{ trans('projectsquare::tickets.cancel_file_upload') }}</span>-->
+                    <button type="reset" class="btn button">
+                        <i class="glyphicon glyphicon-remove picto-delete"></i>
+                        <span>{{ trans('projectsquare::tickets.cancel_file_upload') }}</span>
                     </button>
                     <!--<button type="button" class="btn btn-danger delete">
                         <i class="glyphicon glyphicon-trash"></i>

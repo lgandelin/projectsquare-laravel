@@ -6,13 +6,15 @@
         <li><a href="{{ route('projects_index') }}">{{ trans('projectsquare::projects.projects_list') }}</a></li>
         <li class="active">{{ trans('projectsquare::projects.add_project') }}</li>
     </ol>-->
-    <div class="templates">
-        <div class="page-header">
-            <h1>{{ trans('projectsquare::projects.add_project') }}</h1>
-        </div>
+    <div class="content-page">
+        <div class="templates">
+            <div class="page-header">
+                <h1>{{ trans('projectsquare::projects.add_project') }}</h1>
+            </div>
 
-        @include('projectsquare::agency.projects.form', [
-            'form_action' => route('projects_store'),
-        ])
+            @include('projectsquare::agency.projects.form', [
+                'form_action' => route('projects_store'),
+            ])
+        </div>
     </div>
 @endsection

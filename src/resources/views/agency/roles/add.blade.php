@@ -6,13 +6,15 @@
         <li><a href="{{ route('roles_index') }}">{{ trans('projectsquare::roles.roles_list') }}</a></li>
         <li class="active">{{ trans('projectsquare::roles.add_role') }}</li>
     </ol>-->
-    <div class="templates">
-        <div class="page-header">
-            <h1>{{ trans('projectsquare::roles.add_role') }}</h1>
-        </div>
+    <div class="content-page">
+        <div class="templates">
+            <div class="page-header">
+                <h1>{{ trans('projectsquare::roles.add_role') }}</h1>
+            </div>
 
-        @include('projectsquare::agency.roles.form', [
-            'form_action' => route('roles_store'),
-        ])
+            @include('projectsquare::agency.roles.form', [
+                'form_action' => route('roles_store'),
+            ])
+        </div>
     </div>
 @endsection
