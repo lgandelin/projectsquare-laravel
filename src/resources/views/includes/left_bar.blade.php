@@ -16,13 +16,14 @@
                 </span>
                 <ul class="sub-menu">
                     @foreach ($logged_in_user->projects as $project)
-                    <li class="@if (isset($current_project_id) && $current_project_id == $project->id) encours @endif">
+                    <li class="@if (isset($current_project_id) && $current_project_id == $project->id) encours @endif" style="border-left: 3px solid {{ $project->color }}">
                         <?php $route = preg_match('/project_/', Route::current()->getName()) ? Route::current()->getName() : 'project_index'; ?>
                         <a href="{{ route($route, ['id' => $project->id]) }}">
-                            {{ $project->name }}
-                            @if (isset($current_project_id) && $current_project_id == $project->id)
+                            <!--{{ $project->name }}-->
+                            <span title="{{ $project->name }}">{{ $project->client->name }}</span>
+                            <!--@if (isset($current_project_id) && $current_project_id == $project->id)
                                 <i class="glyphicon glyphicon-ok" style="color: #c8dc1e"></i>
-                            @endif
+                            @endif-->
                         </a>
                     </li>
                     @endforeach
