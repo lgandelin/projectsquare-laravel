@@ -18,7 +18,8 @@ $(document).ready(function() {
         minTime: '08:00',
         maxTime: '21:00',
         droppable: false,
-        events: events
+        events: events,
+        contentHeight: 'auto'
     });
 
     $('.block-content').removeClass('loading');

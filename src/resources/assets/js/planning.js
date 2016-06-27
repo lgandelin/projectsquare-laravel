@@ -18,6 +18,8 @@ $(document).ready(function() {
         droppable: true,
         events: events,
         allDaySlot: false,
+        contentHeight: 'auto',
+
         eventRender: function(event, element) {
             element.append( "<span class='delete'>X</span>" );
             element.find(".delete").click(function() {

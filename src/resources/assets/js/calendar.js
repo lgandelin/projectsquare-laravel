@@ -18,6 +18,7 @@ $(document).ready(function() {
         droppable: true,
         events: steps,
         allDaySlot: false,
+        contentHeight: 'auto',
         eventRender: function(event, element) {
             element.append( "<span class='delete'>X</span>" );
             element.find(".delete").click(function() {
