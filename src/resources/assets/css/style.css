@@ -8463,9 +8463,11 @@ body {
     .tasks .task .btn-delete-task {
       cursor: pointer; }
 
-.message-view-template .header {
-  overflow: hidden;
-  margin-bottom: 1.5rem; }
+.message-view-template {
+  overflow: hidden; }
+  .message-view-template .header {
+    overflow: hidden;
+    margin-bottom: 1.5rem; }
 
 .last-messages {
   height: 432px; }

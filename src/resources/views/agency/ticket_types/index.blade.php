@@ -41,7 +41,7 @@
                             <td>{{ $ticket_type->name }}</td>
                             <td align="right">
                                 <a href="{{ route('ticket_types_edit', ['id' => $ticket_type->id]) }}" class="btn see-more"></a>
-                                <a href="{{ route('ticket_types_delete', ['id' => $ticket_type->id]) }}" class="btn cancel"></a>
+                                <a href="{{ route('ticket_types_delete', ['id' => $ticket_type->id]) }}" class="btn cancel btn-delete"></a>
                             </td>
                         </tr>
                     @endforeach

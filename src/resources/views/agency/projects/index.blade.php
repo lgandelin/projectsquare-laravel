@@ -41,7 +41,7 @@
                             <td>{{ $project->name }}</td>
                             <td align="right">
                                 <a href="{{ route('projects_edit', ['id' => $project->id]) }}" class="btn see-more"></a>
-                                <a href="{{ route('projects_delete', ['id' => $project->id]) }}" class="btn cancel"></a>
+                                <a href="{{ route('projects_delete', ['id' => $project->id]) }}" class="btn cancel btn-delete"></a>
                             </td>
                         </tr>
                     @endforeach

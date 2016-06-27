@@ -44,7 +44,7 @@
                             <td>@if (isset($user->client)){{ $user->client->name }}@endif</td>
                             <td align="right">
                                 <a href="{{ route('users_edit', ['id' => $user->id]) }}" class="btn see-more"></a>
-                                <a href="{{ route('users_delete', ['id' => $user->id]) }}" class="btn cancel"></a>
+                                <a href="{{ route('users_delete', ['id' => $user->id]) }}" class="btn cancel btn-delete"></a>
                             </td>
                         </tr>
                     @endforeach
