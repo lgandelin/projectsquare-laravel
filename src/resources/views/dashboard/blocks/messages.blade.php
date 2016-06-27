@@ -19,10 +19,10 @@
 
                 <tbody>
                 @foreach ($conversations as $conversation)
-                    <tr class="conversation">
+                    <tr class="conversation" id="conversation-{{ $conversation->id }}">
                    
                         <td style="border-left: 10px solid {{ $conversation->project->color }}">
-                     <!--{{ $conversation->project->client->name }}{{ $conversation->title }}</strong><br></td>-->
+                            <!--{{ $conversation->project->client->name }}{{ $conversation->title }}</strong><br></td>-->
 
                            {{ $conversation->messages[sizeof($conversation->messages) - 1]->content }}
                         </td>
@@ -48,7 +48,7 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <tr class="conversation-reply" id="conversation-{{ $conversation->id }}-reply" data-id="{{ $conversation->id }}">
                         <td colspan="5">
                             <div class="message-inserted"></div>
 

@@ -28,7 +28,7 @@
 
                 <div class="col-lg-5 col-md-12">
                     @include('projectsquare::dashboard.blocks.monitoring')
-                     <!--@include('projectsquare::dashboard.blocks.tasks')
+                     <!--@include('projectsquare::dashboard.blocks.tasks')-->
                 </div>
             </div>
         @endif

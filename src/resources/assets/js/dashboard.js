@@ -27,27 +27,30 @@ $(document).ready(function() {
     //DASHBOARD - REPLY TO MESSAGE
     $('.conversation').on('click', '.reply-message', function() {
         var conversation = $(this).closest('.conversation');
-        conversation.find('.new-message').show();
-        conversation.find('.new-message textarea').focus();
+        var conversation_reply = $('#' + conversation.attr('id') + '-reply');
+        conversation_reply.find('.new-message').show();
+        conversation_reply.find('.new-message textarea').focus();
 
         conversation.find('.submit').hide();
     });
 
     //DASHBOARD - CANCEL MESSAGE
-    $('.conversation').on('click', '.cancel-message', function() {
-        var conversation = $(this).closest('.conversation');
-        conversation.find('.new-message textarea').val('');
-        conversation.find('.new-message').hide();
+    $('.conversation-reply').on('click', '.cancel-message', function() {
+        var conversation_reply = $(this).closest('.conversation-reply');
+        var conversation = $('#conversation-' + conversation_reply.attr('data-id'));
+        conversation_reply.find('.new-message textarea').val('');
+        conversation_reply.find('.new-message').hide();
 
         conversation.find('.submit').show();
     });
 
     //DASHBOARD - VALID MESSAGE
-    $('.conversation').on('click', '.valid-message', function() {
-        var conversation = $(this).closest('.conversation');
+    $('.conversation-reply').on('click', '.valid-message', function() {
+        var conversation_reply = $(this).closest('.conversation-reply');
+        var conversation = $('#conversation-' + conversation_reply.attr('data-id'));
         var data = {
-            conversation_id: $(this).data('id'),
-            message: conversation.find('.new-message textarea').val(),
+            conversation_id: conversation_reply.attr('data-id'),
+            message: conversation_reply.find('.new-message textarea').val(),
             _token: $('#csrf_token').val()
         };
 
@@ -56,13 +59,13 @@ $(document).ready(function() {
             url: route_message_reply,
             data: data,
             success: function(data) {
-                conversation.find('.new-message textarea').val('');
-                conversation.find('.new-message').hide();
+                conversation_reply.find('.new-message textarea').val('');
+                conversation_reply.find('.new-message').hide();
 
                 var html = loadTemplate('message-template', data.message);
-                $(conversation).find('.message-inserted').append(html);
+                $(conversation_reply).find('.message-inserted').append(html);
 
-                conversation.find('.count .number').text(data.message.count);
+                //conversation.find('.count .number').text(data.message.count);
 
                 conversation.find('.submit').show();
             },
