@@ -21,7 +21,7 @@
                 </button>
             {% } %}
             {% if (!i) { %}
-                <button class="btn delete">
+                <button class="btn delete btn-cancel">
                     <i class="glyphicon glyphicon-remove picto-delete"></i>
                     <span> Annuler </span>
                 </button>
@@ -59,7 +59,7 @@
                 </a>
                 <!--<input type="checkbox" name="delete" value="1" class="toggle">-->
             {% } else { %}
-                <button class="btn btn-warning cancel">
+                <button class="btn btn-warning cancel btn-delete">
                     <i class="glyphicon glyphicon-ban-circle"></i>
                     <span>Annuler</span>
                 </button>

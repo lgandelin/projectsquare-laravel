@@ -26,7 +26,7 @@
             </table>
             <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
 
-            <div class=" files col-md-6">
+            <div class="col-md-6" style="margin-top: 4rem">
                 <h4>{{ trans('projectsquare::tickets.add_files') }}</h4>
                 <div class="row fileupload-buttonbar">
                     <div class="col-lg-12 col-md-12 file">
