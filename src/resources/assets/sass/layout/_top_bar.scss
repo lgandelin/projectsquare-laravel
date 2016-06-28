@@ -5,9 +5,8 @@
     .top-bar {
         padding-top: 2rem;
         padding-left: 1.1rem;
-        display: inline-block;
-        width: 100%;
-        height: auto;
+        overflow: hidden;
+        height: 90px;
 
         .logo {
             font-size: 3rem;

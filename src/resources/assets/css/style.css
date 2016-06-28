@@ -8130,9 +8130,8 @@ body {
   .top-bar-container .top-bar {
     padding-top: 2rem;
     padding-left: 1.1rem;
-    display: inline-block;
-    width: 100%;
-    height: auto; }
+    overflow: hidden;
+    height: 90px; }
     .top-bar-container .top-bar .logo {
       font-size: 3rem; }
       .top-bar-container .top-bar .logo a {
@@ -8407,6 +8406,7 @@ body {
 
 .monitoring-template #key_numbers .content {
   margin-top: 2rem;
+  margin-left: 0;
   font-size: 1.5rem; }
   .monitoring-template #key_numbers .content .number {
     font-size: 25px;
