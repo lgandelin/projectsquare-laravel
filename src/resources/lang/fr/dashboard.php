@@ -3,7 +3,6 @@
 return [
     'panel_title' => 'Tableau de bord',
     'last_tickets' => 'Tickets',
-    'last_messages' => 'Derniers messages',
     'messages' => 'Messages',
     'message' => 'Message',
     'conversation_participants' => 'Participants',

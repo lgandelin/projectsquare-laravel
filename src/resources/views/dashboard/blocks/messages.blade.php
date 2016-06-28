@@ -1,6 +1,6 @@
 <div class="block last-messages"> 
     <div class="block-content table-responsive">
-        <h3>{{ trans('projectsquare::dashboard.last_messages') }}</h3>
+        <h3>{{ trans('projectsquare::dashboard.messages') }}</h3>
          <a href="{{ route('messages_index') }}" class="all pull-right"></a>
 
         <table class="table table-striped">
@@ -42,7 +42,7 @@
                         <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-sm btn-primary see-more"></a>
 
                         <span class="submit">
-                            <button class="btn btn-sm valid pull-right reply-message" data-id="{{ $conversation->id }}" style="margin-right: 1rem;"><span class="glyphicon glyphicon-comment"></span></button>
+                            <button class="btn btn-sm button pull-right reply-message" data-id="{{ $conversation->id }}" style="margin-right: 1rem;"><span class="glyphicon glyphicon-comment"></span></button>
                         </span>
                     </td>
                 </tr>
