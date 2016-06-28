@@ -7845,12 +7845,14 @@ be a descendant of the grid when it is being dragged.
   border-top-color: transparent;
   border-bottom-color: transparent; }
 
-.fc-event .delete {
+.fc-event .delete-event {
   position: absolute;
   top: 7px;
   right: 8px;
-  font-weight: bold;
   z-index: 5; }
+
+.fc-event .delete-event:hover {
+  opacity: 0.8; }
 
 .valid {
   border-radius: 0px;
@@ -8130,7 +8132,6 @@ body {
   .top-bar-container .top-bar {
     padding-top: 2rem;
     padding-left: 1.1rem;
-    overflow: hidden;
     height: 90px; }
     .top-bar-container .top-bar .logo {
       font-size: 3rem; }

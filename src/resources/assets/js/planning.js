@@ -21,8 +21,8 @@ $(document).ready(function() {
         contentHeight: 'auto',
 
         eventRender: function(event, element) {
-            element.append( "<span class='delete'>X</span>" );
-            element.find(".delete").click(function() {
+            element.append('<span class="delete-event glyphicon glyphicon-remove btn-delete"></span>');
+            element.find(".delete-event").click(function() {
                 $('#event-infos .wrapper').hide();
 
                 var data = {

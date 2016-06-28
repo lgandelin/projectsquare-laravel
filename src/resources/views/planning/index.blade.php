@@ -75,8 +75,8 @@
                             </div>
 
                             <input type="hidden" class="id" value="" />
-                            <input type="button" class="btn valid btn-valid button" value="{{ trans('projectsquare::generic.valid') }}">
-                            <input type="button" class="btn btn-default btn-close button" value="{{ trans('projectsquare::generic.close') }}">
+                            <input type="button" class="btn valid btn-valid" value="{{ trans('projectsquare::generic.valid') }}">
+                            <input type="button" class="btn btn-close button" value="{{ trans('projectsquare::generic.close') }}">
                         </div>
                     </form>
                 </div>
