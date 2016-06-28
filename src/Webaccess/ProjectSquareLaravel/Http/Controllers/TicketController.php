@@ -46,13 +46,14 @@ class TicketController extends BaseController
             'users' => app()->make('UserManager')->getAgencyUsers(),
             'current_project_id' => ($this->getCurrentProject()) ? $this->getCurrentProject()->id : null,
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
+            'data' => ($this->request->session()->has('data')) ? $this->request->session()->get('data') : null
         ]);
     }
 
     public function store()
     {
         try {
-            $response = app()->make('CreateTicketInteractor')->execute(new CreateTicketRequest([
+            $data = [
                 'title' => Input::get('title'),
                 'projectID' => Input::get('project_id'),
                 'typeID' => Input::get('type_id'),
@@ -65,7 +66,9 @@ class TicketController extends BaseController
                 'estimatedTime' => Input::get('estimated_time'),
                 'comments' => Input::get('comments'),
                 'requesterUserID' => $this->getUser()->id,
-            ]));
+            ];
+            $this->request->session()->flash('data', $data);
+            $response = app()->make('CreateTicketInteractor')->execute(new CreateTicketRequest($data));
 
             $this->request->session()->flash('confirmation', trans('projectsquare::tickets.add_ticket_success'));
             return redirect()->route('tickets_edit', ['id' => $response->ticket->id]);
