@@ -28,7 +28,7 @@ $(document).ready(function() {
     $('.conversation').on('click', '.reply-message', function() {
         var conversation = $(this).closest('.conversation');
         var conversation_reply = $('#' + conversation.attr('id') + '-reply');
-        conversation_reply.find('.new-message').show();
+        conversation_reply.show().find('.new-message');
         conversation_reply.find('.new-message textarea').focus();
 
         conversation.find('.submit').hide();
@@ -39,7 +39,7 @@ $(document).ready(function() {
         var conversation_reply = $(this).closest('.conversation-reply');
         var conversation = $('#conversation-' + conversation_reply.attr('data-id'));
         conversation_reply.find('.new-message textarea').val('');
-        conversation_reply.find('.new-message').hide();
+        conversation_reply.hide();
 
         conversation.find('.submit').show();
     });
@@ -60,7 +60,7 @@ $(document).ready(function() {
             data: data,
             success: function(data) {
                 conversation_reply.find('.new-message textarea').val('');
-                conversation_reply.find('.new-message').hide();
+                conversation_reply.hide();
 
                 var html = loadTemplate('message-template', data.message);
                 $(conversation_reply).find('.message-inserted').append(html);
