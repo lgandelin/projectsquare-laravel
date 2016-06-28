@@ -10,7 +10,11 @@
 @import "includes/_table";
 @import "includes/_form";
 
-@import "_layout";
+@import "layout/_left_bar";
+@import "layout/_top_bar";
+@import "layout/_project_bar";
+
+@import "_beta_form";
 @import "_utils";
 @import "_dashboard";
 @import "_project";
@@ -20,5 +24,4 @@
 @import "_calendar";
 @import "_planning";
 @import "_my";
-@import "_project_bar";
 @import "_files";

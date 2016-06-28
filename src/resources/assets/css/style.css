@@ -7854,7 +7854,7 @@ be a descendant of the grid when it is being dragged.
 
 .valid {
   border-radius: 0px;
-  border: none;
+  border: 1px solid #c8dc1e;
   background: #c8dc1e;
   color: #096a85; }
 
@@ -7865,8 +7865,7 @@ be a descendant of the grid when it is being dragged.
 .button {
   border-radius: 0px;
   color: white;
-  background: #096a85;
-  margin-right: 1rem; }
+  background: #096a85; }
 
 .button:hover {
   opacity: 0.8;
@@ -7912,6 +7911,19 @@ h1, h2, h3, h4, h5 {
 
 h1 {
   font-size: 3rem; }
+
+h2, h3 {
+  color: #84b4c2;
+  font-family: "AvantGarde-Book";
+  font-size: 2.2rem; }
+
+h3 {
+  margin-top: 3rem; }
+
+h4 {
+  color: #096a85;
+  font-family: "AvantGarde-Book";
+  font-size: 1.8rem; }
 
 ul {
   margin-left: 0;
@@ -7984,7 +7996,7 @@ form input[type="text"], form input[type="email"], form input[type="password"], 
 
 form select {
   -webkit-appearance: none;
-  background: #fdfdfd url("../img/select.png") right center no-repeat; }
+  background: #fdfdfd url("../img/select.png") right center no-repeat !important; }
 
 form input[type="text"]:hover, form input[type="email"]:hover, form input[type="password"]:hover, form textarea:hover, form select:hover {
   border: 1px solid #c8dc1e; }
@@ -7999,8 +8011,88 @@ form ::-webkit-input-placeholder {
 form :-moz-placeholder {
   color: #a3b1bd !important; }
 
-body {
-  position: relative; }
+.left-bar {
+  padding: 0rem 0 0rem 0;
+  width: 300px;
+  float: left;
+  background: #0a6a86; }
+  .left-bar > ul {
+    list-style: none;
+    padding-left: 0rem; }
+    .left-bar > ul .menu {
+      padding: 0rem;
+      list-style: none;
+      background: none;
+      font-family: "AvantGarde-Book";
+      border-bottom: 1px solid #9dc3cf; }
+      .left-bar > ul .menu a {
+        overflow: hidden;
+        display: block;
+        color: white;
+        padding-left: 2.7rem; }
+      .left-bar > ul .menu h3 {
+        margin: 0; }
+      .left-bar > ul .menu a:hover {
+        color: #c8dc1e;
+        text-decoration: none; }
+      .left-bar > ul .menu .border {
+        width: 68px;
+        height: 68px;
+        float: left;
+        margin-right: 2.9rem;
+        border-right: 1px solid #9dc3cf; }
+      .left-bar > ul .menu .sub-menu {
+        margin-left: 0;
+        padding-left: 0;
+        background: #0c7594; }
+        .left-bar > ul .menu .sub-menu li {
+          border-left: 1px solid #9dc3cf;
+          margin-left: 6.7rem; }
+          .left-bar > ul .menu .sub-menu li a {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            font-family: "MyriadPro-Regular";
+            font-size: 1.8rem; }
+      .left-bar > ul .menu .title {
+        float: left;
+        font-size: 2rem;
+        color: white;
+        letter-spacing: 0.1rem;
+        padding-top: 2.5rem; }
+      .left-bar > ul .menu .title:hover {
+        color: #c8dc1e; }
+      .left-bar > ul .menu .line {
+        display: block;
+        overflow: hidden; }
+      .left-bar > ul .menu .img-dashboard {
+        background: url(../img/left-bar/picto-dashboard.png) no-repeat 16px center;
+        padding-top: 0rem; }
+      .left-bar > ul .menu .projects {
+        background: url(../img/left-bar/picto-project.png) no-repeat 16px center; }
+      .left-bar > ul .menu .utils {
+        background: url(../img/left-bar/picto-utils.png) no-repeat 16px center; }
+      .left-bar > ul .menu .agency {
+        background: url(../img/left-bar/agency.png) no-repeat 16px center; }
+    .left-bar > ul .encours .title {
+      color: #c8dc1e; }
+    .left-bar > ul .encours .encours a {
+      color: #c8dc1e; }
+    .left-bar > ul > .menu:first-child a {
+      padding-left: 0rem; }
+    .left-bar > ul > .menu:first-child h3 {
+      margin-top: 0; }
+    .left-bar > ul .menu:hover .title {
+      color: #c8dc1e; }
+    .left-bar > ul .menu:first-child:hover .img-dashboard, .left-bar > ul .encours .img-dashboard {
+      background: url(../img/left-bar/picto-dashboard-hover.png) no-repeat 16px center; }
+    .left-bar > ul .menu:nth-child(2):hover .projects, .left-bar > ul .encours .projects {
+      background: url(../img/left-bar/picto-project-hover.png) no-repeat 16px center; }
+    .left-bar > ul .menu:nth-child(3):hover .utils, .left-bar > ul .encours .utils {
+      background: url(../img/left-bar/picto-utils-hover.png) no-repeat 16px center; }
+    .left-bar > ul .menu:nth-child(4):hover .agency, .left-bar > ul .encours .agency {
+      background: url(../img/left-bar/agency-hover.png) no-repeat 16px center; }
+  .left-bar a:hover {
+    text-decoration: none; }
 
 .top-bar-container {
   background: white;
@@ -8107,86 +8199,28 @@ body {
         .top-bar-container .top-bar .top-right-menu .out .log-out:hover {
           background: url(../img/top-bar/log-out-hover.png) no-repeat center center; }
 
-.left-bar {
-  padding: 0rem 0 0rem 0;
-  width: 300px;
-  float: left;
-  background: #0a6a86; }
-  .left-bar > ul {
-    list-style: none;
-    padding-left: 0rem; }
-    .left-bar > ul .menu {
-      padding: 0rem;
-      list-style: none;
-      background: none;
-      font-family: "AvantGarde-Book";
-      border-bottom: 1px solid #9dc3cf; }
-      .left-bar > ul .menu a {
-        overflow: hidden;
-        display: block;
-        color: white;
-        padding-left: 2.7rem; }
-      .left-bar > ul .menu a:hover {
-        color: #c8dc1e;
-        text-decoration: none; }
-      .left-bar > ul .menu .border {
-        width: 68px;
-        height: 68px;
-        float: left;
-        margin-right: 2.9rem;
-        border-right: 1px solid #9dc3cf; }
-      .left-bar > ul .menu .sub-menu {
-        margin-left: 0;
-        padding-left: 0;
-        background: #0c7594; }
-        .left-bar > ul .menu .sub-menu li {
-          border-left: 1px solid #9dc3cf;
-          margin-left: 6.7rem; }
-          .left-bar > ul .menu .sub-menu li a {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-            font-family: "MyriadPro-Regular";
-            font-size: 1.8rem; }
-      .left-bar > ul .menu .title {
-        float: left;
-        font-size: 2rem;
-        color: white;
-        letter-spacing: 0.1rem;
-        padding-top: 2.5rem; }
-      .left-bar > ul .menu .title:hover {
-        color: #c8dc1e; }
-      .left-bar > ul .menu .line {
-        display: block;
-        overflow: hidden; }
-      .left-bar > ul .menu .img-dashboard {
-        background: url(../img/left-bar/picto-dashboard.png) no-repeat 16px center;
-        padding-top: 0rem; }
-      .left-bar > ul .menu .projects {
-        background: url(../img/left-bar/picto-project.png) no-repeat 16px center; }
-      .left-bar > ul .menu .utils {
-        background: url(../img/left-bar/picto-utils.png) no-repeat 16px center; }
-      .left-bar > ul .menu .agency {
-        background: url(../img/left-bar/agency.png) no-repeat 16px center; }
-    .left-bar > ul .encours .title {
-      color: #c8dc1e; }
-    .left-bar > ul .encours .encours a {
-      color: #c8dc1e; }
-    .left-bar > ul > .menu:first-child a {
-      padding-left: 0rem; }
-    .left-bar > ul > .menu:first-child h3 {
-      margin-top: 0; }
-    .left-bar > ul .menu:hover .title {
-      color: #c8dc1e; }
-    .left-bar > ul .menu:first-child:hover .img-dashboard, .left-bar > ul .encours .img-dashboard {
-      background: url(../img/left-bar/picto-dashboard-hover.png) no-repeat 16px center; }
-    .left-bar > ul .menu:nth-child(2):hover .projects, .left-bar > ul .encours .projects {
-      background: url(../img/left-bar/picto-project-hover.png) no-repeat 16px center; }
-    .left-bar > ul .menu:nth-child(3):hover .utils, .left-bar > ul .encours .utils {
-      background: url(../img/left-bar/picto-utils-hover.png) no-repeat 16px center; }
-    .left-bar > ul .menu:nth-child(4):hover .agency, .left-bar > ul .encours .agency {
-      background: url(../img/left-bar/agency-hover.png) no-repeat 16px center; }
-  .left-bar a:hover {
-    text-decoration: none; }
+.project-bar .top-nav {
+  background: white;
+  padding-top: 1.6rem;
+  border-bottom: 2px solid #acb3b6;
+  -o-box-shadow: 0px 2px 10px 0px #acb3b6;
+  box-shadow: 0px 2px 10px 0px #acb3b6; }
+  .project-bar .top-nav li {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-family: "AvantGarde-Book";
+    font-size: 2rem; }
+    .project-bar .top-nav li a {
+      color: #096a85; }
+    .project-bar .top-nav li a:hover {
+      color: #c8dc1e;
+      background: none; }
+  .project-bar .top-nav .active a {
+    background: none;
+    border-bottom: 5px solid #c8dc1e;
+    border-radius: 0rem; }
+  .project-bar .top-nav .active a:hover {
+    background: none; }
 
 .beta-form {
   position: absolute;
@@ -8203,14 +8237,6 @@ body {
 
 .beta-form:hover {
   opacity: 0.8; }
-
-.templates h2, .templates h3, .wrapper h2, .wrapper h3 {
-  color: #84b4c2;
-  font-family: "AvantGarde-Book";
-  font-size: 22px; }
-
-.templates h3, .wrapper h3 {
-  margin-top: 3rem; }
 
 html {
   height: 100%; }
@@ -8310,6 +8336,7 @@ body {
     display: inline-block;
     margin-bottom: 2rem;
     margin-left: 1.7rem;
+    margin-top: 0;
     font-family: "AvantGarde-Book";
     font-size: 2.6rem;
     color: #096a85; }
@@ -8529,29 +8556,6 @@ body {
   width: 100%;
   max-width: 150px;
   height: auto; }
-
-.project-bar .top-nav {
-  background: white;
-  padding-top: 1.6rem;
-  border-bottom: 2px solid #acb3b6;
-  -o-box-shadow: 0px 2px 10px 0px #acb3b6;
-  box-shadow: 0px 2px 10px 0px #acb3b6; }
-  .project-bar .top-nav li {
-    padding-left: 2rem;
-    padding-right: 2rem;
-    font-family: "AvantGarde-Book";
-    font-size: 2rem; }
-    .project-bar .top-nav li a {
-      color: #096a85; }
-    .project-bar .top-nav li a:hover {
-      color: #c8dc1e;
-      background: none; }
-  .project-bar .top-nav .active a {
-    background: none;
-    border-bottom: 5px solid #c8dc1e;
-    border-radius: 0rem; }
-  .project-bar .top-nav .active a:hover {
-    background: none; }
 
 .files {
   margin-top: 3rem; }

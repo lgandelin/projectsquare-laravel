@@ -21,7 +21,7 @@
                 </button>
             {% } %}
             {% if (!i) { %}
-                <button class="btn delete btn-cancel">
+                <button class="btn delete btn-delete btn-cancel">
                     <i class="glyphicon glyphicon-remove picto-delete"></i>
                     <span> Annuler </span>
                 </button>

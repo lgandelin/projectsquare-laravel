@@ -17,6 +17,22 @@ h1 {
     font-size: 3rem;
 }
 
+h2, h3 {
+	color: $light-blue;
+	font-family: $typo1;
+	font-size: 2.2rem;
+}
+
+h3 {
+	margin-top: 3rem;
+}
+
+h4 {
+	color: $touareg;
+	font-family: $typo1;
+	font-size: 1.8rem;
+}
+
 ul {
     margin-left: 0;
     padding-left: 2rem;

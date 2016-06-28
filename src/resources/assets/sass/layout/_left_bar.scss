@@ -1,0 +1,161 @@
+.left-bar {
+    padding: 0rem 0 0rem 0;
+    width: 300px;
+    float: left;
+    background: #0a6a86;
+
+
+    > ul {
+        list-style: none;
+        padding-left: 0rem;
+
+        .menu {
+            padding: 0rem;
+            list-style: none;
+
+            background: none;
+            font-family: $typo1;
+            border-bottom: 1px solid #9dc3cf;
+
+            a {
+                overflow: hidden;
+                display: block;
+                color: white;
+                padding-left: 2.7rem;
+            }
+
+            h3 {
+                margin: 0;
+            }
+
+            a:hover {
+                color: $green;
+                text-decoration: none;
+            }
+
+            .border {
+                width: 68px;
+                height: 68px;
+                float: left;
+                margin-right: 2.9rem;
+                border-right: 1px solid #9dc3cf;
+
+            }
+
+            .sub-menu {
+                margin-left: 0;
+                padding-left: 0;
+                background: #0c7594;
+
+                li {
+                    border-left: 1px solid #9dc3cf;
+                    margin-left: 6.7rem;
+
+                    a {
+                        padding-top: 1rem;
+                        padding-bottom: 1rem;
+                        font-family: $typo2;
+                        font-size: 1.8rem;
+                    }
+                }
+
+            }
+
+            .title {
+                float: left;
+                font-size: 2rem;
+                color: white;
+                letter-spacing: 0.1rem;
+                padding-top: 2.5rem;
+            }
+
+            .title:hover {
+                color: $green;
+            }
+
+            .line {
+                display: block;
+                overflow: hidden;
+            }
+
+
+            .img-dashboard {
+                background: url(../img/left-bar/picto-dashboard.png) no-repeat 16px center;
+
+                padding-top: 0rem;
+            }
+
+            .projects {
+                background: url(../img/left-bar/picto-project.png) no-repeat 16px center;
+            }
+
+            .utils {
+                background: url(../img/left-bar/picto-utils.png) no-repeat 16px center;
+            }
+
+            .agency {
+                background: url(../img/left-bar/agency.png) no-repeat 16px center;
+            }
+        }
+
+
+        .encours {
+
+            .title {
+                color: $green;
+            }
+
+
+            .encours a {
+                color: $green;
+            }
+        }
+
+        > .menu:first-child {
+
+            a {
+                padding-left: 0rem;
+            }
+            h3 {
+                margin-top: 0;
+            }
+        }
+
+        .menu:hover {
+            .title {
+                color: $green;
+            }
+        }
+
+        .menu:first-child:hover, .encours {
+            .img-dashboard {
+                background: url(../img/left-bar/picto-dashboard-hover.png) no-repeat 16px center;
+            }
+        }
+        .menu:nth-child(2):hover, .encours {
+
+            .projects {
+                background: url(../img/left-bar/picto-project-hover.png) no-repeat 16px center;
+            }
+        }
+
+        .menu:nth-child(3):hover, .encours {
+
+            .utils {
+                background: url(../img/left-bar/picto-utils-hover.png) no-repeat 16px center;
+            }
+        }
+
+        .menu:nth-child(4):hover, .encours {
+
+            .agency {
+                background: url(../img/left-bar/agency-hover.png) no-repeat 16px center;
+            }
+
+        }
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+}

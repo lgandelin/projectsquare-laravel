@@ -1,6 +1,6 @@
 .valid {
     border-radius: 0px;
-    border: none;
+    border: 1px solid $green;
     background: $green;
     color: $touareg;
 }
@@ -14,7 +14,6 @@
     border-radius: 0px;
     color: white;
     background: $touareg;
-    margin-right: 1rem;
 }
 
 .button:hover {
