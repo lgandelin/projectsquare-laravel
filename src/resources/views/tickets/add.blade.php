@@ -72,7 +72,7 @@
 
                         <div class="form-group">
                             <label for="title">{{ trans('projectsquare::tickets.due_date') }}</label>
-                            <input class="form-control datepicker" type="text" placeholder="{{ trans('projectsquare::tickets.due_date_placeholder') }}" name="due_date" autocomplete="off" @if (isset($data['dueDate'])) value="@if (is_string($data['dueDate'])){{ $data['dueDate'] }}@else{{$data['dueDate']->format('d/m/Y') }}@endif" @endif />
+                            <input class="form-control datepicker" type="text" placeholder="{{ trans('projectsquare::tickets.due_date_placeholder') }}" name="due_date" autocomplete="off" />
                         </div>
 
                         @if (!$is_client)

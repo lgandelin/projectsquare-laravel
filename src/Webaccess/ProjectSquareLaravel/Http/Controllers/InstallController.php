@@ -49,6 +49,9 @@ class InstallController extends Controller
             $email,
             Hash::make($password),
             null,
+            null,
+            null,
+            null,
             true
         );
 
