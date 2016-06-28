@@ -30,7 +30,6 @@
                     <th>#</th>
                     <th>{{ trans('projectsquare::users.name') }}</th>
                     <th>{{ trans('projectsquare::users.email') }}</th>
-                    <th>{{ trans('projectsquare::users.client') }}</th>
                     <th>{{ trans('projectsquare::generic.action') }}</th>
                 </tr>
                 </thead>
@@ -41,7 +40,6 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->complete_name }}</td>
                             <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
-                            <td>@if (isset($user->client)){{ $user->client->name }}@endif</td>
                             <td align="right">
                                 <a href="{{ route('users_edit', ['id' => $user->id]) }}" class="btn see-more"></a>
                                 <a href="{{ route('users_delete', ['id' => $user->id]) }}" class="btn cancel btn-delete"></a>
