@@ -4,8 +4,11 @@
 @import "vendor/_jquery.colorpicker";
 @import "vendor/_fullcalendar";
 
-@import "_variables";
-@import "_typography";
+@import "includes/_variables";
+@import "includes/_typography";
+@import "includes/_table";
+@import "includes/_form";
+
 @import "_layout";
 @import "_utils";
 @import "_dashboard";
@@ -15,3 +18,6 @@
 @import "_messages";
 @import "_calendar";
 @import "_planning";
+@import "_my";
+@import "_project_bar";
+@import "_files";

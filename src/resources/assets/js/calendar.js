@@ -17,6 +17,8 @@ $(document).ready(function() {
         maxTime: '21:00',
         droppable: true,
         events: steps,
+        allDaySlot: false,
+        contentHeight: 'auto',
         eventRender: function(event, element) {
             element.append( "<span class='delete'>X</span>" );
             element.find(".delete").click(function() {

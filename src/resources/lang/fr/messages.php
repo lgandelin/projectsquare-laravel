@@ -11,4 +11,8 @@ return [
     'last_message' => 'Dernier message',
     'last_messages' => 'Derniers messages',
     'messages' => 'Messages',
+    'message' => 'Message',
+    'date' =>'Date',
+    'allocated_user' => 'Utilisateur',
+    'action' =>'Action',
 ];

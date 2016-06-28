@@ -581,10 +581,10 @@
                     filesList.find('.start').click();
                 }
             });
-            this._on(fileUploadButtonBar.find('.cancel'), {
+            this._on(fileUploadButtonBar.find('.btn-cancel'), {
                 click: function (e) {
                     e.preventDefault();
-                    filesList.find('.cancel').click();
+                    filesList.find('.btn-cancel').click();
                 }
             });
             this._on(fileUploadButtonBar.find('.delete'), {
@@ -610,7 +610,7 @@
         _destroyButtonBarEventHandlers: function () {
             this._off(
                 this.element.find('.fileupload-buttonbar')
-                    .find('.start, .cancel, .delete'),
+                    .find('.start, .btn-cancel, .delete'),
                 'click'
             );
             this._off(
@@ -623,7 +623,7 @@
             this._super();
             this._on(this.options.filesContainer, {
                 'click .start': this._startHandler,
-                'click .cancel': this._cancelHandler,
+                'click .btn-cancel': this._cancelHandler,
                 'click .delete': this._deleteHandler
             });
             this._initButtonBarEventHandlers();

@@ -1,3 +1,5 @@
+<h2>Informations</h2><br/>
+
 <form action="{{ $form_action }}" method="post">
     <div class="form-group">
         <label for="name">{{ trans('projectsquare::clients.label') }}</label>
@@ -5,10 +7,15 @@
     </div>
 
     <div class="form-group">
-        <button type="submit" class="btn btn-success">
+        <label for="name">{{ trans('projectsquare::clients.address') }}</label>
+        <textarea class="form-control" rows="5" class="col-md-6" placeholder="{{ trans('projectsquare::clients.address') }}" name="address">@if (isset($client_address)){{ $client_address }}@endif</textarea>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-success valid">
             <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
         </button>
-        <a href="{{ route('clients_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i>{{ trans('projectsquare::generic.back') }}</a>
+        <a href="{{ route('clients_index') }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i>{{ trans('projectsquare::generic.back') }}</a>
     </div>
 
     @if (isset($client_id))

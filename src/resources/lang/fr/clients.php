@@ -17,6 +17,10 @@ return [
     'client' => 'Client',
     'label' => 'Libellé',
     'name_placeholder' => 'Nom de votre client',
+    'address' => 'Adresse',
 
     'client_not_found' => 'Une erreur est survenue lors de la récupération de ce client',
+
+    'add_user' => 'Ajouter un utilisateur',
+    'edit_user' => 'Editer un utilisateur',
 ];

@@ -2,33 +2,33 @@
 
 @section('content')
     @if (!$is_client)
-        <ol class="breadcrumb">
+        <!--<ol class="breadcrumb">
             <li class="active">{{ trans('projectsquare::dashboard.panel_title') }}</li>
-        </ol>
+        </ol>-->
     @else
         @include('projectsquare::includes.project_bar', ['active' => 'dashboard', 'project' => $current_project])
     @endif
 
     <div class="dashboard-content">
         <div class="row">
-            <div class="col-lg-8 col-md-12">
+            <div class="col-lg-7 col-md-12">
                 @include('projectsquare::dashboard.blocks.tickets')
             </div>
 
-            <div class="col-lg-4 col-md-12">
+            <div class="col-lg-5 col-md-12">
                 @include('projectsquare::dashboard.blocks.messages')
             </div>
         </div>
 
         @if (!$is_client)
             <div class="row">
-                <div class="col-lg-6 col-md-12">
+                <div class="col-lg-7 col-md-12">
                     @include('projectsquare::dashboard.blocks.planning')
                 </div>
 
-                <div class="col-lg-6 col-md-12">
+                <div class="col-lg-5 col-md-12">
                     @include('projectsquare::dashboard.blocks.monitoring')
-                    @include('projectsquare::dashboard.blocks.tasks')
+                     <!--@include('projectsquare::dashboard.blocks.tasks')-->
                 </div>
             </div>
         @endif

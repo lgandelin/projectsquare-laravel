@@ -1,0 +1,41 @@
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+h1, h2, h3, h4, h5 {
+    margin-top: 0;
+    padding-top: 0;
+
+    color: $black;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+ul {
+    margin-left: 0;
+    padding-left: 2rem;
+}
+
+@font-face {
+	font-family: "AvantGarde-Book";
+	src: url('../fonts/AvantGarde-Book.woff'),
+		 url('../fonts/AvantGarde-Book.otf'),
+		 url('../fonts/AvantGarde-Book.svg'),
+		 url('../fonts/AvantGarde-Book.eot'),
+		 url('../fonts/AvantGarde-Book.ttf');
+}
+
+@font-face {
+	font-family: "MyriadPro-Regular";
+	src: url('../fonts/MyriadPro-Regular.woff'),
+		 url('../fonts/MyriadPro-Regular.otf'),
+		 url('../fonts/MyriadPro-Regular.svg'),
+		 url('../fonts/MyriadPro-Regular.eot'),
+		 url('../fonts/MyriadPro-Regular.ttf');
+}

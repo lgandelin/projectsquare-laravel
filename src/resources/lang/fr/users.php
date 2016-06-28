@@ -23,12 +23,16 @@ return [
     'user' => 'Utilisateur',
     'client' => 'Client',
     'is_administrator' => 'Administrateur',
+    'role' => 'Rôle',
+    'mobile' => 'Téléphone mobile',
+    'phone' => 'Téléphone fixe',
 
     'user_not_found' => 'Une erreur est survenue lors de la récupération de cet utilisateur',
     'ticket_creation_not_allowed' => 'Vous n\'êtes pas autorisés à créer un ticket pour ce projet',
     'ticket_update_not_allowed' => 'Vous n\'êtes pas autorisés à modifier ce ticket',
     'ticket_deletion_not_allowed' => 'Vous n\'êtes pas autorisés à supprimer ce ticket',
     'message_reply_not_allowed' => 'Vous n\'êtes pas autorisés à répondre à cette conversation',
+    'allocated_user_not_in_project' => 'Cet utilisateur n\'appartient pas au projet',
 
     'generate_password' => 'Générer un nouveau mot de passe',
     'generate_password_notice' => 'Le mot de passe sera envoyé sur l\'adresse email de l\'utilisateur',

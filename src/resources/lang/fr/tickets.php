@@ -27,7 +27,7 @@ return [
     'status' => 'Statut',
     'priority' => 'Priorité',
     'author_user' => 'Auteur',
-    'allocated_user' => 'Utilisateur assigné',
+    'allocated_user' => 'Utilisateur',
     'comments' => 'Commentaires',
     'estimated_time' => 'Temps estimé',
 

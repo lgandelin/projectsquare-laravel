@@ -11,8 +11,8 @@
                 Nouvel évènement créé : <strong>{{ event_name }}</strong>
             {{/ifCond}}
             <br/>
-            <a class="btn btn-sm btn-success" href="{{ link }}">voir</a>
-            <span class="glyphicon glyphicon-eye-open pull-right status not-read"></span>
+            <a class="btn btn-sm btn-success" href="{{ link }}"><span class="glyphicon glyphicon-eye-open"></span>voir</a>
+            <span class="glyphicon glyphicon-remove pull-right status not-read"></span>
         </span>
     </div>
 </script>

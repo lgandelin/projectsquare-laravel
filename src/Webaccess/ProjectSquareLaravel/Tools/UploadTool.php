@@ -41,8 +41,8 @@ class UploadTool
     public static function uploadFileForProject($files, $projectID)
     {
         $uploadsFolder = public_path(self::UPLOADS_FOLDER).'/projects';
-        $ticketFolder = '/'.$projectID.'/';
-        $destinationPath = $uploadsFolder.$ticketFolder;
+        $projectFolder = '/'.$projectID.'/';
+        $destinationPath = $uploadsFolder.$projectFolder;
 
         self::createFolderIfNotExists($uploadsFolder);
         self::createFolderIfNotExists($destinationPath);
@@ -58,13 +58,43 @@ class UploadTool
         $data->name = $uploadedFile->getFilename();
         $data->size = $uploadedFile->getSize();
         $data->mimeType = $mimeType;
-        $data->path = $ticketFolder.$uploadedFile->getFilename();
-        $data->thumbnailPath = $ticketFolder.$thumbnailName;
+        $data->path = $projectFolder.$uploadedFile->getFilename();
+        $data->thumbnailPath = $projectFolder.$thumbnailName;
         $data->url = asset('/'.self::UPLOADS_FOLDER.'/projects'.$data->path);
         $data->thumbnailUrl = asset('/'.self::UPLOADS_FOLDER.'/projects'.$data->thumbnailPath);
         $data->deleteUrl = null;
         $data->deleteType = null;
         $data->fileID = time();
+
+        return $data;
+    }
+
+    public static function uploadFileForUser($files, $userID)
+    {
+        $uploadsFolder = public_path(self::UPLOADS_FOLDER).'/users';
+        $userFolder = '/'.$userID.'/';
+        $destinationPath = $uploadsFolder.$userFolder;
+
+        self::createFolderIfNotExists($uploadsFolder);
+        self::createFolderIfNotExists($destinationPath);
+
+        $uploadedFile = null;
+        $thumbnailName = null;
+        foreach ($files as $file) {
+            $mimeType = $file->getMimeType();
+            $uploadedFile = $file->move($destinationPath, StringTool::slugify($file->getClientOriginalName()));
+
+            Image::make($destinationPath.$uploadedFile->getFilename())
+                ->fit(150, 150)
+                ->encode('jpg', 85)
+                ->save($destinationPath.'avatar.jpg');
+        }
+        $data = new \StdClass();
+        $data->name = $uploadedFile->getFilename();
+        $data->size = $uploadedFile->getSize();
+        $data->mimeType = $mimeType;
+        $data->path = $destinationPath.'avatar.jpg';
+        $data->url = asset('/'.self::UPLOADS_FOLDER.'/users'.$data->path);
 
         return $data;
     }

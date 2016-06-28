@@ -18,3 +18,34 @@
         height: 100%;
     }
 }
+
+.fc .fc-button-group > *, .fc-today-button {
+    background: none;
+    border: 1px solid $light_blue;
+    color: $light_blue;
+    border-radius: 0rem !important;
+    margin-right: 1.6rem;
+}
+
+.fc .fc-toolbar > * > :first-child {
+    margin-left: 1.6rem;
+}
+
+.fc-center {
+    h2 {
+        color: $touareg;
+        font-family: $typo1;
+    }
+}
+
+
+.fc-unthemed .fc-today {
+    background: #f9fbe6;
+}
+
+.fc-state-active {
+    box-shadow: none;
+    background: $light_blue !important;
+    color: white !important;
+    text-shadow: none;
+}

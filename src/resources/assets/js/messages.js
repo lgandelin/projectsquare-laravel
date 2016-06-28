@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    //DASHBOARD - REPLY TO MESSAGE
+    //REPLY TO MESSAGE
     $('.conversation').on('click', '.reply-message', function() {
         var conversation = $(this).closest('.conversation');
         conversation.find('.new-message').show();
@@ -9,7 +9,7 @@ $(document).ready(function() {
         conversation.find('.submit').hide();
     });
 
-    //DASHBOARD - CANCEL MESSAGE
+    //CANCEL MESSAGE
     $('.conversation').on('click', '.cancel-message', function() {
         var conversation = $(this).closest('.conversation');
         conversation.find('.new-message textarea').val('');
@@ -18,7 +18,7 @@ $(document).ready(function() {
         conversation.find('.submit').show();
     });
 
-    //DASHBOARD - VALID MESSAGE
+    //VALID MESSAGE
     $('.conversation').on('click', '.valid-message', function() {
         var conversation = $(this).closest('.conversation');
         var data = {
@@ -45,28 +45,6 @@ $(document).ready(function() {
             error: function(data) {
                 data = $.parseJSON(data.responseText);
                 alert(data.message)
-            }
-        });
-    });
-
-    //DASHBOARD - CREATE CONVERSATION
-    $('body').on('click', '.create-conversation', function() {
-        $('#create-conversation-modal').modal('show');
-    });
-
-    $('.valid-create-conversation').click(function() {
-        var data = {
-            title: $('input[name="title"]').val(),
-            message: $('textarea[name="message"]').val(),
-            _token: $('#csrf_token').val()
-        };
-
-        $.ajax({
-            type: "POST",
-            url: route_add_conversation,
-            data: data,
-            success: function(data) {
-                window.location.reload();
             }
         });
     });

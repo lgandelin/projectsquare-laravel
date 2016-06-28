@@ -1,0 +1,116 @@
+.templates, .wrapper {
+
+	h2,h3 {
+		color: $light-blue;
+		font-family: $typo1;
+		font-size: 22px;
+	}
+
+	h3 {
+		margin-top: 3rem;
+	}
+	
+	form {
+
+		label {
+			color: $touareg;
+			font-weight: 400;
+		}
+
+		input, textarea, select {
+			border: 1px solid $light_blue;
+			border-radius: 0px !important;
+			color:  #a3b1bd;
+			cursor: pointer;
+			background: #fdfdfd;
+		}
+
+		select {
+			-webkit-appearance: none;
+			background: #fdfdfd url('../img/select.png') right center no-repeat;
+
+		}
+
+		input:hover, textarea:hover, select:hover {
+			border: 1px solid $green;
+		}
+
+		input:focus, textarea:focus, select:focus {
+			border: 1px solid $green;
+			box-shadow: none;
+		}
+
+		::-webkit-input-placeholder { 
+		    color: #a3b1bd !important;
+		}
+
+		:-moz-placeholder { 
+		   color: #a3b1bd !important;
+		}
+
+		/*input[type="submit"], button[type="submit"] {
+		 	border: none;
+		 	background: $touareg;
+			border-radius: 0px;
+			color: white;
+			margin-right: 1rem;
+		}
+		input[type="submit"]:hover,  button[type="submit"]:hover {
+			background: $green;
+			color: $touareg;
+		}*/
+	}
+
+	.valid {
+		border-radius: 0px;
+		border: none;
+		background: $green;
+		color: $touareg;
+	}
+
+	.valid:hover {
+		opacity: 0.8;
+	}
+
+	.button {
+		border-radius: 0px;
+		color: white;
+		background: $touareg;
+		margin-right: 1rem;
+	}
+
+	.button:hover {
+		opacity: 0.8;
+	}
+
+	.back {
+		border: 1px solid $light-blue;
+		border-radius: 0px;
+		color: $touareg;
+		background: none;
+	}
+
+	.back:hover {
+		background: $light_blue;
+		color: white;
+	}
+
+	.users {
+		margin-top: 2rem;
+	}
+
+	.delete {
+		border-radius: 0px;
+		background: #ca2e44;
+		color: white;
+
+		.picto-delete {
+			color: white;
+		}
+	}
+
+	.delete:hover {
+		opacity: 0.8;
+	}
+		
+}

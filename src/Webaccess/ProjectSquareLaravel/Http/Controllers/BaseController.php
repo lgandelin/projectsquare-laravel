@@ -5,6 +5,8 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 use Webaccess\ProjectSquare\Requests\Notifications\GetUnreadNotificationsRequest;
 use Webaccess\ProjectSquareLaravel\Models\Client;
 use Webaccess\ProjectSquareLaravel\Models\Project;
@@ -27,6 +29,7 @@ class BaseController extends Controller
         }
 
         view()->share('current_project', $this->getCurrentProject());
+        view()->share('current_route', $request->path());
         view()->share('notifications', $this->getUnreadNotifications());
         view()->share('is_client', $this->isUserAClient());
         view()->share('is_admin', $this->isUserAnAdmin());
@@ -57,10 +60,10 @@ class BaseController extends Controller
     protected function getCurrentProject()
     {
         if ($this->isUserAClient()) {
-            $client = Client::find($this->getUser()->client_id);
-            $project = Project::where('client_id', '=', $client->id)->first();
-
-            $this->request->session()->set('current_project', $project);
+            if ($client = Client::find($this->getUser()->client_id)) {
+                $project = Project::where('client_id', '=', $client->id)->first();
+                $this->request->session()->set('current_project', $project);
+            }
         }
 
         return $this->request->session()->get('current_project');
@@ -82,5 +85,22 @@ class BaseController extends Controller
         }
 
         return false;
+    }
+
+    protected function betaForm()
+    {
+        $userID = $this->getUser()->id;
+        $title = Input::get('title');
+        $content = nl2br(Input::get('message'));
+
+        Mail::send('projectsquare::emails.beta_form', array('title' => $title, 'content' => $content, 'user_id' => $userID), function ($message) {
+            $message->to('lgandelin@web-access.fr')
+                ->from('no-reply@projectsquare.fr')
+                ->subject('[projectsquare] Formulaire de contact');
+        });
+
+        return response()->json([
+            'success' => true,
+        ], 200);
     }
 }

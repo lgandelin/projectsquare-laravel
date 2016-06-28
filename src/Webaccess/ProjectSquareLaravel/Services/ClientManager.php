@@ -26,14 +26,14 @@ class ClientManager
         return EloquentClientRepository::getClientsPaginatedList(env('CLIENTS_PER_PAGE', 10));
     }
 
-    public static function createClient($name)
+    public static function createClient($name, $address)
     {
-        EloquentClientRepository::createClient($name);
+        EloquentClientRepository::createClient($name, $address);
     }
 
-    public static function updateClient($clientID, $name)
+    public static function updateClient($clientID, $name, $address)
     {
-        EloquentClientRepository::updateClient($clientID, $name);
+        EloquentClientRepository::updateClient($clientID, $name, $address);
     }
 
     public static function deleteClient($clientID)

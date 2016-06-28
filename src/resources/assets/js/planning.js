@@ -17,6 +17,9 @@ $(document).ready(function() {
         maxTime: '21:00',
         droppable: true,
         events: events,
+        allDaySlot: false,
+        contentHeight: 'auto',
+
         eventRender: function(event, element) {
             element.append( "<span class='delete'>X</span>" );
             element.find(".delete").click(function() {
@@ -34,15 +37,17 @@ $(document).ready(function() {
                     success: function(data) {
                         $('#planning').fullCalendar('removeEvents', event._id);
                         $('#event-infos .wrapper').hide();
-                        var html = loadTemplate('ticket-template', {
-                            id: data.ticket_id,
-                            title: data.title,
-                            project_id: data.project_id,
-                            color: data.color,
-                            estimated_time: data.estimated_time
-                        });
-                        $('#my-tickets-list').append(html);
-                        initTicketDragAndDrop();
+                        if (data.ticket_id) {
+                            var html = loadTemplate('ticket-template', {
+                                id: data.ticket_id,
+                                title: data.title,
+                                project_id: data.project_id,
+                                color: data.color,
+                                estimated_time: data.estimated_time
+                            });
+                            $('#my-tickets-list').append(html);
+                            initTicketDragAndDrop();
+                        }
                     }
                 });
             });

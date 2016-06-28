@@ -36,7 +36,6 @@ Route::group(['middleware' => ['web']], function () {
 
     //PROJECTS
     Route::get('/project/{id}', array('as' => 'project_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@index', 'middleware' => 'change_current_project'));
-    Route::get('/project/{id}/cms', array('as' => 'project_cms', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@cms', 'middleware' => 'change_current_project'));
     Route::get('/project/{id}/tickets', array('as' => 'project_tickets', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@tickets', 'middleware' => 'change_current_project'));
     Route::get('/project/{id}/monitoring', array('as' => 'project_monitoring', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@monitoring', 'middleware' => 'change_current_project'));
     Route::get('/project/{id}/project_seo', array('as' => 'project_seo', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@seo', 'middleware' => 'change_current_project'));
@@ -53,11 +52,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/calendar/create', array('as' => 'steps_create', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Project\CalendarController@create'));
     Route::post('/calendar/update', array('as' => 'steps_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Project\CalendarController@update'));
     Route::post('/calendar/delete', array('as' => 'steps_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Project\CalendarController@delete'));
-
-    //PROJECT SETTINGS
-    Route::get('/project/{id}/settings', array('as' => 'project_settings', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Project\SettingsController@index', 'middleware' => 'change_current_project'));
-    Route::post('/project/{id}/settings', array('as' => 'project_settings', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Project\SettingsController@update_settings'));
-
 
     //AGENCY
     Route::get('/agency/users', array('as' => 'users_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\UserController@index'));
@@ -76,6 +70,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/agency/delete_project/{id}', array('as' => 'projects_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\ProjectController@delete'));
     Route::post('/agency/project_add_user', array('as' => 'projects_add_user', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\ProjectController@add_user'));
     Route::get('/agency/projects_delete_user/{id}/{user_id}', array('as' => 'projects_delete_user', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\ProjectController@delete_user'));
+    Route::post('/agency/project/{id}/settings', array('as' => 'project_settings', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\ProjectController@update_settings'));
 
     Route::get('/agency/clients', array('as' => 'clients_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\ClientController@index'));
     Route::get('/agency/add_client', array('as' => 'clients_add', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\ClientController@add'));
@@ -83,6 +78,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/agency/clients/{id}', array('as' => 'clients_edit', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\ClientController@edit'));
     Route::post('/agency/clients', array('as' => 'clients_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\ClientController@update'));
     Route::get('/agency/delete_client/{id}', array('as' => 'clients_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\ClientController@delete'));
+
+    Route::get('/agency/clients/{id}/add_user', array('as' => 'clients_add_user', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\ClientController@add_user'));
+    Route::post('/agency/clients/store_user', array('as' => 'clients_store_user', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\ClientController@store_user'));
+    Route::get('/agency/clients/{id}/edit_user/{user_id}', array('as' => 'clients_edit_user', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\ClientController@edit_user'));
+    Route::post('/agency/clients/update_user', array('as' => 'clients_update_user', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\ClientController@update_user'));
+    Route::get('/agency/clients/{id}/delete_user/{user_id}', array('as' => 'clients_delete_user', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\ClientController@delete_user'));
 
     Route::get('/agency/users', array('as' => 'users_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\UserController@index'));
     Route::get('/agency/add_user', array('as' => 'users_add', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\UserController@add'));
@@ -107,10 +108,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/delete_ticket_status/{id}', array('as' => 'ticket_statuses_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\TicketStatusController@delete'));
 
     //MESSAGES
-    Route::get('/messages', array('as' => 'messages_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MessageController@index'));
-    Route::get('/messages/add_message', array('as' => 'messages_add', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MessageController@add'));
-    Route::post('/messages/reply', array('as' => 'messages_reply', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MessageController@reply'));
-
+    Route::get('/conversations', array('as' => 'messages_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MessageController@index'));
+    Route::post('/conversations/reply', array('as' => 'messages_reply', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MessageController@reply'));
     Route::get('/conversations/{id}', array('as' => 'conversation', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MessageController@view'));
     Route::post('/conversations', array('as' => 'add_conversation', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MessageController@addConversation'));
 
@@ -131,4 +130,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/install2', array('as' => 'install2_handler', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\InstallController@install2_handler', 'middleware' => 'after_install'));
 
     Route::get('/install3', array('as' => 'install3', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\InstallController@install3'));
+
+    //MY
+    Route::get('/my', array('as' => 'my', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MyController@index'));
+    Route::post('/my/profile_update', array('as' => 'my_profile_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MyController@udpate_profile'));
+    Route::post('/my/profile_upload_avatar', array('as' => 'my_profile_upload_avatar', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MyController@upload_avatar'));
+
+    Route::post('/beta_form', array('as' => 'beta_form', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController@betaForm'));
 });

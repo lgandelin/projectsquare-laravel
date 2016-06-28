@@ -16,7 +16,7 @@ class UserController extends BaseController
     public function index()
     {
         return view('projectsquare::agency.users.index', [
-            'users' => app()->make('UserManager')->getUsersPaginatedList(),
+            'users' => app()->make('UserManager')->getAgencyUsersPaginatedList(),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
             'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,
         ]);
@@ -37,7 +37,10 @@ class UserController extends BaseController
                 Input::get('last_name'),
                 Input::get('email'),
                 Input::get('password'),
-                Input::get('client_id') ? Input::get('client_id') : null,
+                null,
+                null,
+                null,
+                null,
                 (Input::get('is_administrator') == 'y') ? true : false
             );
             $this->request->session()->flash('confirmation', trans('projectsquare::users.add_user_success'));
@@ -75,7 +78,10 @@ class UserController extends BaseController
                 Input::get('last_name'),
                 Input::get('email'),
                 Input::get('password'),
-                Input::get('client_id'),
+                null,
+                null,
+                null,
+                null,
                 (Input::get('is_administrator') == 'y') ? true : false
             );
             $this->request->session()->flash('confirmation', trans('projectsquare::users.edit_user_success'));

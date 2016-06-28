@@ -22,17 +22,18 @@ class EloquentClientRepository implements ClientRepository
         return Client::orderBy('updated_at', 'DESC')->paginate($limit);
     }
 
-    public static function createClient($name)
+    public static function createClient($name, $address)
     {
         $client = new Client();
         $client->save();
-        self::updateClient($client->id, $name);
+        self::updateClient($client->id, $name, $address);
     }
 
-    public static function updateClient($clientID, $name)
+    public static function updateClient($clientID, $name, $address)
     {
         $client = self::getClient($clientID);
         $client->name = $name;
+        $client->address = $address;
         $client->save();
     }
 

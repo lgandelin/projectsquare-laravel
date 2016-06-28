@@ -2,7 +2,7 @@
 
 return [
     'panel_title' => 'Tableau de bord',
-    'last_tickets' => 'Derniers tickets',
+    'last_tickets' => 'Tickets',
     'last_messages' => 'Derniers messages',
     'messages' => 'Messages',
     'message' => 'Message',

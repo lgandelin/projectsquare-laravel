@@ -7,12 +7,6 @@ use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 
 class ProjectController extends BaseController
 {
-    public function project_list()
-    {
-        return view('projectsquare::projects.index', [
-        ]);
-    }
-
     public function index()
     {
         return view('projectsquare::agency.projects.index', [
@@ -51,6 +45,11 @@ class ProjectController extends BaseController
 
     public function edit($projectID)
     {
+        $settingAcceptableLoadingTime = app()->make('SettingManager')->getSettingByKeyAndProject('ACCEPTABLE_LOADING_TIME', $projectID);
+        $settingAlertLoadingTimeEmail = app()->make('SettingManager')->getSettingByKeyAndProject('ALERT_LOADING_TIME_EMAIL', $projectID);
+        $settingSlackChannel = app()->make('SettingManager')->getSettingByKeyAndProject('SLACK_CHANNEL', $projectID);
+        $gaViewID = app()->make('SettingManager')->getSettingByKeyAndProject('GA_VIEW_ID', $projectID);
+
         try {
             $project = app()->make('ProjectManager')->getProjectWithUsers($projectID);
         } catch (\Exception $e) {
@@ -66,6 +65,10 @@ class ProjectController extends BaseController
             'users' => app()->make('UserManager')->getAgencyUsers(),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
             'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,
+            'acceptable_loading_time' => ($settingAcceptableLoadingTime) ? $settingAcceptableLoadingTime->value : null,
+            'alert_loading_time_email' => ($settingAlertLoadingTimeEmail) ? $settingAlertLoadingTimeEmail->value : null,
+            'slack_channel' => ($settingSlackChannel) ? $settingSlackChannel->value : null,
+            'ga_view_id' => ($gaViewID) ? $gaViewID->value : null,
         ]);
     }
 
@@ -134,5 +137,21 @@ class ProjectController extends BaseController
         }
 
         return redirect()->route('projects_edit', ['id' => $projectID]);
+    }
+
+    public function update_settings()
+    {
+        try {
+            app()->make('SettingManager')->createOrUpdateSetting(
+                Input::get('project_id'),
+                Input::get('key'),
+                Input::get('value')
+            );
+            $this->request->session()->flash('confirmation', trans('projectsquare::settings.update_setting_success'));
+        } catch (\Exception $e) {
+            $this->request->session()->flash('error', trans('projectsquare::settings.update_setting_error'));
+        }
+
+        return redirect()->route('projects_edit', ['id' => Input::get('project_id')]);
     }
 }

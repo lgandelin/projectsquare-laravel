@@ -122,22 +122,26 @@ class PlanningController extends BaseController
                 'eventID' => Input::get('event_id')
             ]));
 
-            $ticket = app()->make('GetTicketInteractor')->getTicketWithStates($event->ticketID);
+            if (isset($event->ticketID)) {
+                $ticket = app()->make('GetTicketInteractor')->getTicketWithStates($event->ticketID);
+            }
 
             app()->make('DeleteEventInteractor')->execute(new DeleteEventRequest([
                 'eventID' => Input::get('event_id'),
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
-            $project = app()->make('ProjectManager')->getProject($event->projectID);
+            if (isset($event->projectID)) {
+                $project = app()->make('ProjectManager')->getProject($event->projectID);
+            }
 
             return response()->json([
                 'message' => trans('projectsquare::events.delete_event_success'),
-                'ticket_id' => $ticket->id,
-                'project_id' => $project->id,
-                'color' => $project->color,
-                'title' => $ticket->title,
-                'estimated_time' => ($ticket->states[0]->estimated_time != "") ? $ticket->states[0]->estimated_time : "02:00",
+                'ticket_id' => isset($ticket) ? $ticket->id : '',
+                'project_id' => isset($project) ? $project->id : '',
+                'color' => isset($project) ? $project->color : '',
+                'title' => isset($ticket) ? $ticket->title : '',
+                'estimated_time' => (isset($ticket) && $ticket->states[0]->estimated_time != "") ? $ticket->states[0]->estimated_time : "02:00",
             ], 200);
         } catch (\Exception $e) {
             return response()->json([

@@ -20,7 +20,7 @@
             <input class="form-control" type="password" placeholder="@if (isset($user_id)){{ trans('projectsquare::users.password_leave_empty') }}@else{{ trans('projectsquare::users.password') }}@endif" name="password" autocomplete="off" />
         @else
             <a href="{{ route('users_generate_password', ['id' => $user_id]) }}">
-                <span class="btn btn-primary">
+                <span class="btn btn-primary button">
                     <span class="glyphicon glyphicon-repeat"></span>
                     {{ trans('projectsquare::users.generate_password') }}
                 </span>
@@ -31,28 +31,16 @@
     </div>
 
     <div class="form-group">
-        <label for="client_id">{{ trans('projectsquare::users.client') }}</label>
-        @if (isset($clients))
-            <select class="form-control" name="client_id">
-                <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
-                @foreach ($clients as $client)
-                    <option value="{{ $client->id }}" @if (isset($user) && $user->clientID == $client->id)selected="selected"@endif>{{ $client->name }}</option>
-                @endforeach
-            </select>
-        @endif
-    </div>
-
-    <div class="form-group">
         <label for="is_administrator">{{ trans('projectsquare::users.is_administrator') }}</label><br/>
         Oui <input type="radio" placeholder="{{ trans('projectsquare::users.is_administrator') }}" name="is_administrator" value="y" @if (isset($is_administrator) && $is_administrator) checked @endif autocomplete="off" />
         Non <input type="radio" placeholder="{{ trans('projectsquare::users.is_administrator') }}" name="is_administrator" value="n" @if (isset($is_administrator) && !$is_administrator) checked @endif autocomplete="off" />
     </div>
 
     <div class="form-group">
-        <button type="submit" class="btn btn-success">
+        <button type="submit" class="btn btn-success valid">
             <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
         </button>
-        <a href="{{ route('users_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
+        <a href="{{ route('users_index') }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
     </div>
 
     @if (isset($user_id))

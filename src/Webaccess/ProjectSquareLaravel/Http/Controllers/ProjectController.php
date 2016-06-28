@@ -10,14 +10,6 @@ class ProjectController extends BaseController
 {
     public function index($projectID)
     {
-        return view('projectsquare::project.index', [
-            'project' => app()->make('ProjectManager')->getProject($projectID),
-            'tickets' => (new GetTicketInteractor(new EloquentTicketRepository()))->getTicketsPaginatedList($this->getUser()->id, env('TICKETS_PER_PAGE', 10), $projectID),
-        ]);
-    }
-
-    public function cms($projectID)
-    {
         return view('projectsquare::project.cms', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
         ]);

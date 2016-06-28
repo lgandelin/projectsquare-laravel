@@ -1,12 +1,12 @@
 <div class="top-bar">
     <div class="pull-left">
-        <h1 class="logo"><a href="{{ route('dashboard') }}">projectsquare</a></h1>
+        <h1 class="logo"><a href="{{ route('dashboard') }}"><img src="{{asset('img/top-bar/logo.png')}}"></a></h1>
     </div>
 
     <nav class="pull-right">
         <ul class="top-right-menu">
             <li>
-                <a href="#" class="notifications-link">{{ trans('projectsquare::notifications.notifications') }} <span class="badge @if (sizeof($notifications) > 0) new-notifications @endif">{{ sizeof($notifications) }}</span></a>
+                <a href="#" class="notifications-link"> <span class="badge @if (sizeof($notifications) > 0) new-notifications @endif">{{ sizeof($notifications) }}</span></a>
 
                 <div class="notifications" style="display: none;">
                     <span class="glyphicon glyphicon-remove close"></span>
@@ -29,8 +29,8 @@
                                         Nouvel évènement créé : <strong>{{ $notification->event_name }}</strong>
                                     @endif
                                     <br/>
-                                    <a class="btn btn-sm btn-primary" href="{{ $notification->link }}"><span class="glyphicon glyphicon-share-alt"></span>voir</a>
-                                    <span class="glyphicon glyphicon-eye-open pull-right status not-read"></span>
+                                    <a class="btn btn-sm btn-primary" href="{{ $notification->link }}"><span class="glyphicon glyphicon-eye-open"></span>voir</a>
+                                    <span class="glyphicon glyphicon-remove pull-right status not-read"></span>
                                 </span>
                             </div>
                         @endforeach
@@ -39,7 +39,16 @@
             </li>
 
             <li>
-                <a href="{{ route('logout') }}">{{ trans('projectsquare::login.logout') }} <span class="glyphicon glyphicon-log-out"></span></a>
+                <a href="{{ route('my') }}" title="{{ trans('projectsquare::my.panel_title') }}">
+                    @include('projectsquare::includes.avatar', [
+                        'id' => $logged_in_user->id,
+                        'name' => $logged_in_user->complete_name
+                    ])
+                </a>
+            </li>
+
+            <li class="out">
+                <a href="{{ route('logout') }}" class="log-out" ></a>
             </li>
         </ul>
     </nav>

@@ -25,6 +25,29 @@ function uniqid() {
 
 $(document).ready(function() {
 
+    //BETA FORM
+    $('body').on('click', '.beta-form .toggle', function() {
+        $('#beta-form-modal').modal('show');
+    });
+
+    $('#beta-form-modal .valid-beta-form').click(function() {
+        var data = {
+            title: $('#beta-form-modal input[name="title"]').val(),
+            message: $('#beta-form-modal textarea[name="message"]').val(),
+            _token: $('#csrf_token').val()
+        };
+
+        $.ajax({
+            type: "POST",
+            url: route_beta_form,
+            data: data,
+            success: function(data) {
+                window.location.reload();
+            }
+        });
+
+    });
+
     //NOTIFICATIONS BOX
     $('.notifications-link').click(function() {
         $('.notifications').toggle(200);
@@ -63,6 +86,13 @@ $(document).ready(function() {
 
     $('.notifications .close').click(function() {
         $('.notifications').hide(200);
+    });
+
+    //DELETE BUTTONS
+    $('.btn-delete').click(function(e) {
+        if (!confirm('Etes-vous sûrs de vouloir supprimer cet élément ?')) {
+            return false;
+        }
     });
 });
 
