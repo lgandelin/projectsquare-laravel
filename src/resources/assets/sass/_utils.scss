@@ -94,12 +94,6 @@ body {
     background: #DF5A49;
 }
 
-.btn {
-    .glyphicon {
-        margin-right: 0.5rem;
-    }
-}
-
 .block-content {
     display: block;
     width: 100%;
@@ -118,7 +112,4 @@ body {
     border: 1px solid $green;
     width: 40px;
     height: 40px;
-}
-.glyphicon-ok {
-    padding-left: 1rem;
 }

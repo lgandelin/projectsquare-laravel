@@ -7852,6 +7852,53 @@ be a descendant of the grid when it is being dragged.
   font-weight: bold;
   z-index: 5; }
 
+.valid {
+  border-radius: 0px;
+  border: none;
+  background: #c8dc1e;
+  color: #096a85; }
+
+.valid:hover {
+  opacity: 0.8;
+  color: #096a85; }
+
+.button {
+  border-radius: 0px;
+  color: white;
+  background: #096a85;
+  margin-right: 1rem; }
+
+.button:hover {
+  opacity: 0.8;
+  color: white; }
+
+.back {
+  border: 1px solid #84b4c2;
+  border-radius: 0px;
+  color: #096a85;
+  background: none; }
+
+.back:hover {
+  background: #84b4c2;
+  color: white; }
+
+.users {
+  margin-top: 2rem; }
+
+.delete {
+  border-radius: 0px;
+  background: #ca2e44;
+  color: white; }
+  .delete .picto-delete {
+    color: white; }
+
+.delete:hover {
+  color: white;
+  opacity: 0.8; }
+
+.btn .glyphicon {
+  margin-right: 0.5rem; }
+
 html {
   font-size: 62.5%; }
 
@@ -7924,88 +7971,33 @@ ul {
   .table thead th:first-child {
     padding-left: 1.8rem; }
 
-.templates h2, .templates h3, .wrapper h2, .wrapper h3 {
-  color: #84b4c2;
-  font-family: "AvantGarde-Book";
-  font-size: 22px; }
-
-.templates h3, .wrapper h3 {
-  margin-top: 3rem; }
-
-.templates form, .wrapper form {
-  /*input[type="submit"], button[type="submit"] {
-		 	border: none;
-		 	background: $touareg;
-			border-radius: 0px;
-			color: white;
-			margin-right: 1rem;
-		}
-		input[type="submit"]:hover,  button[type="submit"]:hover {
-			background: $green;
-			color: $touareg;
-		}*/ }
-  .templates form label, .wrapper form label {
-    color: #096a85;
-    font-weight: 400; }
-  .templates form input, .templates form textarea, .templates form select, .wrapper form input, .wrapper form textarea, .wrapper form select {
-    border: 1px solid #84b4c2;
-    border-radius: 0px !important;
-    color: #a3b1bd;
-    cursor: pointer;
-    background: #fdfdfd; }
-  .templates form select, .wrapper form select {
-    -webkit-appearance: none;
-    background: #fdfdfd url("../img/select.png") right center no-repeat; }
-  .templates form input:hover, .templates form textarea:hover, .templates form select:hover, .wrapper form input:hover, .wrapper form textarea:hover, .wrapper form select:hover {
-    border: 1px solid #c8dc1e; }
-  .templates form input:focus, .templates form textarea:focus, .templates form select:focus, .wrapper form input:focus, .wrapper form textarea:focus, .wrapper form select:focus {
-    border: 1px solid #c8dc1e;
-    box-shadow: none; }
-  .templates form ::-webkit-input-placeholder, .wrapper form ::-webkit-input-placeholder {
-    color: #a3b1bd !important; }
-  .templates form :-moz-placeholder, .wrapper form :-moz-placeholder {
-    color: #a3b1bd !important; }
-
-.templates .valid, .wrapper .valid {
-  border-radius: 0px;
-  border: none;
-  background: #c8dc1e;
-  color: #096a85; }
-
-.templates .valid:hover, .wrapper .valid:hover {
-  opacity: 0.8; }
-
-.templates .button, .wrapper .button {
-  border-radius: 0px;
-  color: white;
-  background: #096a85;
-  margin-right: 1rem; }
-
-.templates .button:hover, .wrapper .button:hover {
-  opacity: 0.8; }
-
-.templates .back, .wrapper .back {
-  border: 1px solid #84b4c2;
-  border-radius: 0px;
+form label {
   color: #096a85;
-  background: none; }
+  font-weight: 400; }
 
-.templates .back:hover, .wrapper .back:hover {
-  background: #84b4c2;
-  color: white; }
+form input[type="text"], form input[type="email"], form input[type="password"], form textarea, form select {
+  border: 1px solid #84b4c2 !important;
+  border-radius: 0px !important;
+  color: #6a7376;
+  cursor: pointer;
+  background: #fdfdfd; }
 
-.templates .users, .wrapper .users {
-  margin-top: 2rem; }
+form select {
+  -webkit-appearance: none;
+  background: #fdfdfd url("../img/select.png") right center no-repeat; }
 
-.templates .delete, .wrapper .delete {
-  border-radius: 0px;
-  background: #ca2e44;
-  color: white; }
-  .templates .delete .picto-delete, .wrapper .delete .picto-delete {
-    color: white; }
+form input[type="text"]:hover, form input[type="email"]:hover, form input[type="password"]:hover, form textarea:hover, form select:hover {
+  border: 1px solid #c8dc1e; }
 
-.templates .delete:hover, .wrapper .delete:hover {
-  opacity: 0.8; }
+form input[type="text"]:focus, form input[type="email"]:focus, form input[type="password"]:focus, form textarea:focus, form select:focus {
+  border: 1px solid #c8dc1e;
+  box-shadow: none; }
+
+form ::-webkit-input-placeholder {
+  color: #a3b1bd !important; }
+
+form :-moz-placeholder {
+  color: #a3b1bd !important; }
 
 body {
   position: relative; }
@@ -8212,6 +8204,14 @@ body {
 .beta-form:hover {
   opacity: 0.8; }
 
+.templates h2, .templates h3, .wrapper h2, .wrapper h3 {
+  color: #84b4c2;
+  font-family: "AvantGarde-Book";
+  font-size: 22px; }
+
+.templates h3, .wrapper h3 {
+  margin-top: 3rem; }
+
 html {
   height: 100%; }
 
@@ -8286,9 +8286,6 @@ body {
 .priority-5 {
   background: #DF5A49; }
 
-.btn .glyphicon {
-  margin-right: 0.5rem; }
-
 .block-content {
   display: block;
   width: 100%;
@@ -8304,9 +8301,6 @@ body {
   border: 1px solid #c8dc1e;
   width: 40px;
   height: 40px; }
-
-.glyphicon-ok {
-  padding-left: 1rem; }
 
 .dashboard-content {
   padding-top: 3rem;

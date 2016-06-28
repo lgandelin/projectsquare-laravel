@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn valid">
                             <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                         </button>
                         <a href="{{ route('dashboard') }}" class="btn btn-default back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
@@ -64,7 +64,7 @@
                 </form>
 
                 <form id="fileupload" action="{{ route('my_profile_upload_avatar') }}" method="POST" enctype="multipart/form-data">
-                    <span class="btn btn-success fileinput-button back">
+                    <span class="btn valid fileinput-button back">
                         <i class="glyphicon glyphicon-picture"></i>
                         <span>Parcourir</span>
                         <!-- The file input field used as target for the file upload widget -->

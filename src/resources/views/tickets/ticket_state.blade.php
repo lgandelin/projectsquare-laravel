@@ -39,7 +39,7 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-success valid">
+                <button type="submit" class="btn valid">
                     <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                 </button>
                 <a href="{{ route('tickets_index') }}" class="btn back"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.back') }}</a>

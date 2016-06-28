@@ -345,3 +345,16 @@ body {
 .beta-form:hover {
     opacity: 0.8;
 }
+
+.templates, .wrapper {
+
+    h2, h3 {
+        color: $light-blue;
+        font-family: $typo1;
+        font-size: 22px;
+    }
+
+    h3 {
+        margin-top: 3rem;
+    }
+}

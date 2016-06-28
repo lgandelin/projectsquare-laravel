@@ -1,8 +1,8 @@
-<!--<div class="beta-form">
+<div class="beta-form">
     <a href="#" class="toggle" title="Nous contacter">
         <span class="glyphicon glyphicon-envelope icon"></span>
     </a>
-</div>-->
+</div>
 
 <div class="modal fade" id="beta-form-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -27,8 +27,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success valid-beta-form"><i class="glyphicon glyphicon-ok"></i> Valider</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn valid valid-beta-form"><i class="glyphicon glyphicon-ok"></i> Valider</button>
+                    <button type="button" class="btn back" data-dismiss="modal"><span class="glyphicon glyphicon-arrow-left"></span> Annuler</button>
                 </div>
             </form>
         </div>

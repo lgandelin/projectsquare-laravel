@@ -15,7 +15,7 @@
             <div class="form-group">
                 <label for="newtask">{{ trans('projectsquare::tasks.new-task') }}</label> :
                 <input type="text" class="form-control new-task" name="new-task" autocomplete="off" />
-                <input type="submit" class="btn btn-success btn-valid-create-task" value="{{ trans('projectsquare::generic.add') }}" />
+                <input type="submit" class="btn valid btn-valid-create-task" value="{{ trans('projectsquare::generic.add') }}" />
             </div>
             <div class="alert alert-danger" style="display: none; margin-top: 2rem">
                 <span class="text"></span>
