@@ -38,7 +38,7 @@
                        {{ date('d/m H:i', strtotime($conversation->messages[sizeof($conversation->messages) - 1]->created_at)) }}
                     </td>
 
-                    <td>
+                    <td align="right">
                         <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-sm btn-primary see-more"></a>
 
                         <span class="submit">

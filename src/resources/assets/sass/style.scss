@@ -10,11 +10,12 @@
 @import "includes/_table";
 @import "includes/_form";
 
+@import "layout/_layout";
 @import "layout/_left_bar";
 @import "layout/_top_bar";
 @import "layout/_project_bar";
+@import "layout/_beta_form";
 
-@import "_beta_form";
 @import "_utils";
 @import "_dashboard";
 @import "_project";

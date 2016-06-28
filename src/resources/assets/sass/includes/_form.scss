@@ -1,38 +1,35 @@
-form {
+label {
+	color: $touareg;
+	font-weight: 400;
+}
 
-	label {
-		color: $touareg;
-		font-weight: 400;
-	}
+input[type="text"], input[type="email"], input[type="password"], textarea, select {
+	border: 1px solid $light_blue !important;
+	border-radius: 0px !important;
+	color: #6a7376;
+	cursor: pointer;
+	background: #fdfdfd;
+}
 
-	input[type="text"], input[type="email"], input[type="password"], textarea, select {
-		border: 1px solid $light_blue !important;
-		border-radius: 0px !important;
-		color: #6a7376;
-		cursor: pointer;
-		background: #fdfdfd;
-	}
+select {
+	-webkit-appearance: none;
+	background: #fdfdfd url('../img/select.png') right center no-repeat !important;
 
-	select {
-		-webkit-appearance: none;
-		background: #fdfdfd url('../img/select.png') right center no-repeat !important;
+}
 
-	}
+input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover, textarea:hover, select:hover {
+	border: 1px solid $green;
+}
 
-	input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover, textarea:hover, select:hover {
-		border: 1px solid $green;
-	}
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+	border: 1px solid $green;
+	box-shadow: none;
+}
 
-	input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
-		border: 1px solid $green;
-		box-shadow: none;
-	}
+::-webkit-input-placeholder {
+	color: #a3b1bd !important;
+}
 
-	::-webkit-input-placeholder {
-		color: #a3b1bd !important;
-	}
-
-	:-moz-placeholder {
-	   color: #a3b1bd !important;
-	}
+:-moz-placeholder {
+   color: #a3b1bd !important;
 }

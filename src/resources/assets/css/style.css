@@ -7898,11 +7898,21 @@ be a descendant of the grid when it is being dragged.
 .btn .glyphicon {
   margin-right: 0.5rem; }
 
+.add {
+  width: 25px;
+  height: 26px;
+  margin-right: 2rem;
+  background: url(../img/dashboard/add.png) no-repeat; }
+
+.add:hover {
+  background: url(../img/dashboard/add-hover.png) no-repeat; }
+
 html {
   font-size: 62.5%; }
 
 body {
-  font-size: 1.6rem; }
+  font-size: 1.6rem;
+  font-family: "MyriadPro-Regular"; }
 
 h1, h2, h3, h4, h5 {
   margin-top: 0;
@@ -7983,38 +7993,58 @@ ul {
   .table thead th:first-child {
     padding-left: 1.8rem; }
 
-form label {
+label {
   color: #096a85;
   font-weight: 400; }
 
-form input[type="text"], form input[type="email"], form input[type="password"], form textarea, form select {
+input[type="text"], input[type="email"], input[type="password"], textarea, select {
   border: 1px solid #84b4c2 !important;
   border-radius: 0px !important;
   color: #6a7376;
   cursor: pointer;
   background: #fdfdfd; }
 
-form select {
+select {
   -webkit-appearance: none;
   background: #fdfdfd url("../img/select.png") right center no-repeat !important; }
 
-form input[type="text"]:hover, form input[type="email"]:hover, form input[type="password"]:hover, form textarea:hover, form select:hover {
+input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover, textarea:hover, select:hover {
   border: 1px solid #c8dc1e; }
 
-form input[type="text"]:focus, form input[type="email"]:focus, form input[type="password"]:focus, form textarea:focus, form select:focus {
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
   border: 1px solid #c8dc1e;
   box-shadow: none; }
 
-form ::-webkit-input-placeholder {
+::-webkit-input-placeholder {
   color: #a3b1bd !important; }
 
-form :-moz-placeholder {
+:-moz-placeholder {
   color: #a3b1bd !important; }
+
+html {
+  height: 100%; }
+
+body {
+  min-height: 100%;
+  position: relative;
+  background: #e6f0f3; }
+
+.content {
+  padding-left: 0rem;
+  padding-right: 0rem;
+  margin-left: 300px; }
+
+.content-page {
+  margin: 3rem; }
 
 .left-bar {
   padding: 0rem 0 0rem 0;
   width: 300px;
-  float: left;
+  position: absolute;
+  top: 90px;
+  left: 0;
+  bottom: 0;
+  z-index: 99;
   background: #0a6a86; }
   .left-bar > ul {
     list-style: none;
@@ -8223,7 +8253,7 @@ form :-moz-placeholder {
     background: none; }
 
 .beta-form {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   right: 0px; }
   .beta-form .icon {
@@ -8238,24 +8268,6 @@ form :-moz-placeholder {
 .beta-form:hover {
   opacity: 0.8; }
 
-html {
-  height: 100%; }
-
-body {
-  min-height: 100%;
-  position: relative;
-  background: #e6f0f3;
-  font-family: "MyriadPro-Regular"; }
-
-.content {
-  padding-left: 0rem;
-  padding-right: 0rem;
-  width: auto;
-  overflow: hidden; }
-
-.content-page {
-  margin: 3rem; }
-
 .templates {
   background: white;
   padding: 2.5rem;
@@ -8269,25 +8281,6 @@ body {
       font-size: 25px;
       color: #096a85;
       font-family: "AvantGarde-Book"; }
-
-.add {
-  width: 25px;
-  height: 26px;
-  margin-right: 2rem;
-  background: url(../img/dashboard/add.png) no-repeat; }
-
-.add:hover {
-  background: url(../img/dashboard/add-hover.png) no-repeat; }
-
-.block {
-  padding: 0rem;
-  padding-top: 3.5rem;
-  margin-bottom: 2rem;
-  background: white;
-  border-radius: 0px;
-  border: 1px solid #bdc0c1; }
-  .block .block-content {
-    padding: 0rem; }
 
 .text-seo {
   color: #096a85;
@@ -8312,13 +8305,6 @@ body {
 .priority-5 {
   background: #DF5A49; }
 
-.block-content {
-  display: block;
-  width: 100%;
-  min-height: 250px;
-  padding: 1rem 2rem;
-  background: #fefefe; }
-
 .task-status-completed {
   text-decoration: line-through; }
 
@@ -8327,6 +8313,23 @@ body {
   border: 1px solid #c8dc1e;
   width: 40px;
   height: 40px; }
+
+.block {
+  padding: 0rem;
+  padding-top: 3.5rem;
+  margin-bottom: 3rem;
+  background: white;
+  border-radius: 0px;
+  border: 1px solid #bdc0c1; }
+  .block .block-content {
+    padding: 0rem; }
+
+.block-content {
+  display: block;
+  width: 100%;
+  min-height: 250px;
+  padding: 1rem 2rem;
+  background: #fefefe; }
 
 .dashboard-content {
   padding-top: 3rem;

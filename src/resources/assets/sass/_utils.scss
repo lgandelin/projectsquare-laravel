@@ -1,25 +1,3 @@
-html {
-    height: 100%;
-}
-
-body {
-    min-height: 100%;
-    position: relative;
-    background: #e6f0f3;
-    font-family: $typo2;
-}
-
-.content {
-    padding-left: 0rem;
-    padding-right: 0rem;
-    width: auto;
-    overflow: hidden;
-}
-
-.content-page {
-    margin: 3rem;
-}
-
 .templates {
     background: white;
     padding: 2.5rem;
@@ -37,31 +15,6 @@ body {
             font-family: $typo1;
         }
      }
-}
-.add {
-    width: 25px;
-    height: 26px;
-    margin-right: 2rem;
-
-    background: url(../img/dashboard/add.png)no-repeat;
-}
-.add:hover {
-    background: url(../img/dashboard/add-hover.png)no-repeat;
-}
-
-.block {
-    padding: 0rem;
-    padding-top: 3.5rem;
-    margin-bottom: 2rem;
-
-    background: white;
-    border-radius: 0px;
-    border: 1px solid #bdc0c1;
-
-    .block-content {
-        padding: 0rem;
-    }
-
 }
 
 .text-seo {
@@ -92,15 +45,6 @@ body {
 
 .priority-5 {
     background: #DF5A49;
-}
-
-.block-content {
-    display: block;
-    width: 100%;
-    min-height: 250px;
-    padding: 1rem 2rem;
-
-    background: #fefefe;
 }
 
 .task-status-completed {

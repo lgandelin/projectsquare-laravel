@@ -21,15 +21,12 @@
                         <a href="{{ route($route, ['id' => $project->id]) }}">
                             <!--{{ $project->name }}-->
                             <span title="{{ $project->name }}">{{ $project->client->name }}</span>
-                            <!--@if (isset($current_project_id) && $current_project_id == $project->id)
-                                <i class="glyphicon glyphicon-ok" style="color: #c8dc1e"></i>
-                            @endif-->
                         </a>
                     </li>
                     @endforeach
                 </ul>
             </li>
-            <li class="menu @if(in_array($current_route, ['tickets', 'conversations', 'planning', 'tasks'])) {{ 'encours' }} @endif">
+            <li class="menu @if(in_array($current_route, ['tickets', 'conversations', 'planning', 'monitoring', 'tasks'])) {{ 'encours' }} @endif">
                 <span class="line utils">
                     <span class="border"></span>
                     <h3 class="title">Utilitaires</h3>
@@ -38,11 +35,18 @@
                     <li class="@if($current_route == 'tickets') {{ 'encours' }} @endif">
                         <a href="{{ route('tickets_index') }}">Tickets</a>
                     </li>
+
                     <li class="@if($current_route == 'conversations') {{ 'encours' }} @endif">
                         <a href="{{ route('messages_index') }}">Messages</a>
                     </li>
+
                     <li class="@if($current_route == 'planning') {{ 'encours' }} @endif"><a href="{{ route('planning') }}">Planning</a></li>
-                     <!-- <li class="@if($current_route == 'tasks') {{ 'encours' }} @endif"><a href="{{ route('tasks_index') }}">{{ trans('projectsquare::tasks.tasks') }}</a></li>-->
+
+                    <!-- <li class="@if($current_route == 'tasks') {{ 'encours' }} @endif"><a href="{{ route('tasks_index') }}">{{ trans('projectsquare::tasks.tasks') }}</a></li>-->
+
+                    <li class="@if($current_route == 'monitoring') {{ 'encours' }} @endif">
+                        <a href="{{ route('monitoring_index') }}">Alertes monitoring</a>
+                    </li>
                 </ul>
             </li>
 

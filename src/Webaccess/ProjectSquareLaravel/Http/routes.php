@@ -114,7 +114,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/conversations', array('as' => 'add_conversation', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MessageController@addConversation'));
 
     //MONITORING
-    Route::get('/monitoring', array('as' => 'monitoring_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@index'));
+    Route::get('/monitoring', array('as' => 'monitoring_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MonitoringController@index'));
 
     //PLANNING
     Route::get('/planning/get_event', array('as' => 'events_get_infos', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\PlanningController@get_event'));

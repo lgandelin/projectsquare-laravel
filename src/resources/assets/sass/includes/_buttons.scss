@@ -57,3 +57,14 @@
         margin-right: 0.5rem;
     }
 }
+
+.add {
+    width: 25px;
+    height: 26px;
+    margin-right: 2rem;
+
+    background: url(../img/dashboard/add.png)no-repeat;
+}
+.add:hover {
+    background: url(../img/dashboard/add-hover.png)no-repeat;
+}
