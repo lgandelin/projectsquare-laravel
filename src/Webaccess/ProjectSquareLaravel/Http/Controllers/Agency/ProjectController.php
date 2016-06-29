@@ -26,7 +26,7 @@ class ProjectController extends BaseController
     public function store()
     {
         try {
-            app()->make('ProjectManager')->createProject(
+            $projectID = app()->make('ProjectManager')->createProject(
                 Input::get('name'),
                 Input::get('client_id'),
                 Input::get('website_front_url'),
@@ -36,11 +36,14 @@ class ProjectController extends BaseController
                 Input::get('color')
             );
             $this->request->session()->flash('confirmation', trans('projectsquare::projects.add_project_success'));
+
+            return redirect()->route('projects_edit', ['id' => $projectID]);
         } catch (\Exception $e) {
             $this->request->session()->flash('error', trans('projectsquare::projects.add_project_error'));
+
+            return redirect()->route('projects_index');
         }
 
-        return redirect()->route('projects_index');
     }
 
     public function edit($projectID)

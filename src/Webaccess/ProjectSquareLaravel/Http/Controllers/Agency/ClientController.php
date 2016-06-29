@@ -31,13 +31,14 @@ class ClientController extends BaseController
     public function store()
     {
         try {
-            app()->make('ClientManager')->createClient(Input::get('name'), Input::get('address'));
+            $clientID = app()->make('ClientManager')->createClient(Input::get('name'), Input::get('address'));
             $this->request->session()->flash('confirmation', trans('projectsquare::clients.add_client_success'));
+
+            return redirect()->route('clients_edit', ['id' => $clientID]);
         } catch (\Exception $e) {
             $this->request->session()->flash('error', trans('projectsquare::clients.add_client_error'));
+            return redirect()->route('clients_index');
         }
-
-        return redirect()->route('clients_index');
     }
 
     public function edit($clientID)

@@ -44,6 +44,8 @@ class EloquentProjectRepository implements ProjectRepository
         $project = new Project();
         $project->save();
         $this->updateProject($project->id, $name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color);
+
+        return $project->id;
     }
 
     public function updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color)
