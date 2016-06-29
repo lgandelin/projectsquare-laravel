@@ -37,15 +37,11 @@ class BaseController extends Controller
 
     protected function getUser()
     {
-        if (!$this->request->session()->has('current_user')) {
-            $userInSession = null;
-            if ($user = Auth::user()) {
-                $userInSession = User::with('projects.client')->find($user->id);
-            }
-            $this->request->session()->set('current_user', $userInSession);
+        if ($user = Auth::user()) {
+            return User::with('projects.client')->find($user->id);
         }
 
-        return $this->request->session()->get('current_user');
+        return null;
     }
 
     protected function getUnreadNotifications()
