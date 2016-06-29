@@ -59,7 +59,7 @@
                 </a>
                 <!--<input type="checkbox" name="delete" value="1" class="toggle">-->
             {% } else { %}
-                <button class="btn btn-warning cancel btn-delete">
+                <button class="btn btn-warning delete btn-delete">
                     <i class="glyphicon glyphicon-ban-circle"></i>
                     <span>Annuler</span>
                 </button>
