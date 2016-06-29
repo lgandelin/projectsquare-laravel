@@ -9,7 +9,7 @@
             </span>
         </li>
         @if (!$is_client)
-            <li class="menu @if(substr_replace($current_route, "", -1) == 'project/') {{ 'encours' }} @endif">
+            <li class="menu @if(preg_match('/project_/', Route::current()->getName())) {{ 'encours' }} @endif">
                 <span class="line projects">
                     <span class="border"></span>
                     <h3 class="title">Projets</h3>
@@ -18,7 +18,7 @@
                     @foreach ($logged_in_user->projects as $project)
                     <li class="@if (isset($current_project_id) && $current_project_id == $project->id) encours @endif" style="border-left: 3px solid {{ $project->color }}">
                         <?php $route = preg_match('/project_/', Route::current()->getName()) ? Route::current()->getName() : 'project_index'; ?>
-                        <a href="{{ route($route, ['id' => $project->id]) }}">
+                        <a href="{{ route($route, ['id' => $project->id]) }}" @if (preg_match('/project_/', Route::current()->getName()) && isset($current_project_id) && $current_project_id == $project->id) style="color: #c8dc1e" @endif">
                             <!--{{ $project->name }}-->
                             <span title="{{ $project->name }}">{{ $project->client->name }}</span>
                         </a>
