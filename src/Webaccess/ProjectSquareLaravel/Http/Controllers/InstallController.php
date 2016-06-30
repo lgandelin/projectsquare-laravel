@@ -47,7 +47,7 @@ class InstallController extends Controller
             $this->request->session()->get('first_name'),
             $this->request->session()->get('last_name'),
             $email,
-            Hash::make($password),
+            $password,
             null,
             null,
             null,
