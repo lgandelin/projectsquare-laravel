@@ -13,7 +13,7 @@ class TicketDeletedSlackNotification
         $ticket = (new EloquentTicketRepository())->getTicketWithStates($event->ticket->id);
         $lines = [];
 
-        $settingSlackChannel = app()->make('SettingManager')->getSettingByKeyAndProject('SLACK_CHANNEL', $ticket->project->id);
+        $settingSlackChannel = app()->make('SettingManager')->getSettingByKeyAndProject('SLACK_CHANNEL', $ticket->projectID);
 
         SlackTool::send(
             'Ticket supprimé : '.$ticket->title,

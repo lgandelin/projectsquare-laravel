@@ -92,7 +92,7 @@ class TicketController extends BaseController
         return view('projectsquare::tickets.edit', [
             'ticket' => $ticket,
             'projects' => app()->make('ProjectManager')->getProjects(),
-            'ticket_states' => app()->make('GetTicketInteractor')->getTicketStatesPaginatedList($ticket, env('TICKET_STATES_PER_PAGE', 10)),
+            'ticket_states' => app()->make('GetTicketInteractor')->getTicketStatesPaginatedList($ticketID, env('TICKET_STATES_PER_PAGE', 10)),
             'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
             'ticket_status' => app()->make('TicketStatusManager')->getTicketStatuses(),
             'users' => app()->make('UserManager')->getAgencyUsers(),
