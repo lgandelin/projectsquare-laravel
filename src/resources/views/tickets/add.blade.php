@@ -39,7 +39,7 @@
                                     @endforeach
                                     </select>
                                 @else
-                                        <div class="info bg-info">{{ trans('projectsquare::tickets.no_project_yet') }}</div>
+                                    <div class="info bg-info">{{ trans('projectsquare::tickets.no_project_yet') }}</div>
                                 @endif
                             </div>
                         @endif
@@ -50,8 +50,12 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="submit" class="btn valid" value="{{ trans('projectsquare::generic.valid') }}" />
-                            <a href="{{ route('tickets_index') }}" class="btn btn-default back">{{ trans('projectsquare::generic.back') }}</a>
+                            <button type="submit" class="btn valid">
+                                <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
+                            </button>
+                            <a href="{{ route('tickets_index') }}" class="btn btn-default back">
+                                <span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.back') }}
+                            </a>
                         </div>
                     </div>
 

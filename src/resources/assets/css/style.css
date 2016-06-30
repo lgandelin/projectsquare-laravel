@@ -7999,7 +7999,7 @@ label {
   color: #096a85;
   font-weight: 400; }
 
-input[type="text"], input[type="email"], input[type="password"], textarea, select {
+input[type="text"], input[type="email"], input[type="time"], input[type="password"], textarea, select {
   border: 1px solid #84b4c2 !important;
   border-radius: 0px !important;
   color: #6a7376;
@@ -8008,14 +8008,15 @@ input[type="text"], input[type="email"], input[type="password"], textarea, selec
 
 select {
   -webkit-appearance: none;
+  -moz-appearance: none;
   background: #fdfdfd url("../img/select.png") right center no-repeat !important; }
 
 input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover, textarea:hover, select:hover {
   border: 1px solid #c8dc1e; }
 
-input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
-  border: 1px solid #c8dc1e;
-  box-shadow: none; }
+input:focus, textarea:focus, select:focus {
+  border: 1px solid #c8dc1e !important;
+  box-shadow: none !important; }
 
 ::-webkit-input-placeholder {
   color: #a3b1bd !important; }
@@ -8076,7 +8077,8 @@ body {
       .left-bar > ul .menu .sub-menu {
         margin-left: 0;
         padding-left: 0;
-        background: #0c7594; }
+        background: #0c7594;
+        list-style: none; }
         .left-bar > ul .menu .sub-menu li {
           border-left: 1px solid #9dc3cf;
           margin-left: 6.7rem; }

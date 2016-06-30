@@ -3,7 +3,7 @@ label {
 	font-weight: 400;
 }
 
-input[type="text"], input[type="email"], input[type="password"], textarea, select {
+input[type="text"], input[type="email"], input[type="time"], input[type="password"], textarea, select {
 	border: 1px solid $light_blue !important;
 	border-radius: 0px !important;
 	color: #6a7376;
@@ -13,6 +13,7 @@ input[type="text"], input[type="email"], input[type="password"], textarea, selec
 
 select {
 	-webkit-appearance: none;
+	-moz-appearance: none;
 	background: #fdfdfd url('../img/select.png') right center no-repeat !important;
 
 }
@@ -21,9 +22,9 @@ input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hove
 	border: 1px solid $green;
 }
 
-input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
-	border: 1px solid $green;
-	box-shadow: none;
+input:focus, textarea:focus, select:focus {
+	border: 1px solid $green !important;
+	box-shadow: none !important;
 }
 
 ::-webkit-input-placeholder {
