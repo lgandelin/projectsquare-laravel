@@ -35,7 +35,7 @@
                                     <select class="form-control" name="project_id" @if (isset($ticket) && $ticket->id) disabled @endif>
                                     <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
                                     @foreach ($projects as $project)
-                                        <option value="{{ $project->id }}" @if ($current_project_id == $project->id)selected="selected"@endif>[{{ $project->client->name }}] {{ $project->name }}</option>
+                                        <option value="{{ $project->id }}" @if ((isset($data['projectID']) && $data['projectID'] == $project->id) || ($current_project_id == $project->id))selected="selected"@endif>[{{ $project->client->name }}] {{ $project->name }}</option>
                                     @endforeach
                                     </select>
                                 @else
@@ -76,7 +76,7 @@
 
                         <div class="form-group">
                             <label for="title">{{ trans('projectsquare::tickets.due_date') }}</label>
-                            <input class="form-control datepicker" type="text" placeholder="{{ trans('projectsquare::tickets.due_date_placeholder') }}" name="due_date" autocomplete="off" />
+                            <input class="form-control datepicker" type="text" placeholder="{{ trans('projectsquare::tickets.due_date_placeholder') }}" name="due_date" autocomplete="off" value="@if (isset($data['dueDate']) && $data['dueDate'] instanceof \DateTime){{ $data['dueDate']->format('d/m/Y') }}@endif" />
                         </div>
 
                         @if (!$is_client)
