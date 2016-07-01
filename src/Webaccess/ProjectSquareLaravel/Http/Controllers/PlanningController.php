@@ -141,7 +141,7 @@ class PlanningController extends BaseController
                 'project_id' => isset($project) ? $project->id : '',
                 'color' => isset($project) ? $project->color : '',
                 'title' => isset($ticket) ? $ticket->title : '',
-                'estimated_time' => (isset($ticket) && $ticket->states[0]->estimated_time != "") ? $ticket->states[0]->estimated_time : "02:00",
+                'estimated_time' => (isset($ticket) && $ticket->states[0]->estimatedTime != "") ? $ticket->states[0]->estimatedTime : "02:00",
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
