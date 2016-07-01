@@ -46,6 +46,12 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="password_confirmation">{{ trans('projectsquare::my.password_confirmation') }}</label><br/>
+                        <input class="form-control" type="password" placeholder="@if (isset($user->id)){{ trans('projectsquare::users.password_leave_empty') }}@else{{ trans('projectsquare::my.password_confirmation') }}@endif" name="password_confirmation" autocomplete="off" />
+                    </div>
+
+
+                    <div class="form-group">
                         <button type="submit" class="btn valid">
                             <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                         </button>
