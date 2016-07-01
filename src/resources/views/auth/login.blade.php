@@ -2,16 +2,10 @@
 
 @section('main-content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-12 top-bar">
-            <div class="pull-left">
-                <h1 class="logo"><a href="{{ route('dashboard') }}">projectsquare</a></h1>
-            </div>
-        </div>
-    </div>
+
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
+            <div class="panel panel-default" style="margin-top: 5rem">
                 <div class="panel-heading">{{ trans('projectsquare::login.panel_title') }}</div>
                 <div class="panel-body">
 
@@ -22,6 +16,9 @@
                     @endif
 
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('login_handler') }}">
+
+                        <h1 class="logo" style="text-align: center; margin-top: 1rem; margin-bottom: 4rem"><a href="{{ route('dashboard') }}"><img src="{{asset('img/top-bar/logo.png')}}"></a></h1>
+
                         {!! csrf_field() !!}
 
                         <div class="form-group">
@@ -52,7 +49,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn valid">
                                     <i class="fa fa-btn fa-sign-in"></i>Se connecter <span class="glyphicon glyphicon-log-in" style="margin-left: 1rem"></span>
                                 </button>
 
