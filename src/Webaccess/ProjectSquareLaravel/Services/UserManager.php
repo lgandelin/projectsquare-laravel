@@ -45,6 +45,12 @@ class UserManager
     public function createUser($firstName, $lastName, $email, $password, $mobile=null, $phone=null, $clientID=null, $clientRole=null, $isAdministrator=null)
     {
         $this->repository->createUser($firstName, $lastName, $email, Hash::make($password), $mobile, $phone, $clientID, $clientRole, $isAdministrator);
+
+        Mail::send('projectsquare::emails.user_account_created', array('email' => $email, 'first_name' => $firstName, 'last_name' => $lastName, 'password' => $password), function ($message) use ($email) {
+            $message->to($email)
+                ->from('no-reply@projectsquare.fr')
+                ->subject('[projectsquare] Votre compte a été créé avec succès');
+        });
     }
 
     public function updateUser($userID, $firstName, $lastName, $email, $password=null, $mobile=null, $phone=null, $clientID=null, $clientRole=null, $isAdministrator=null)

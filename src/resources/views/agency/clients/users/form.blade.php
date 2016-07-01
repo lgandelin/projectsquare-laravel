@@ -20,7 +20,7 @@
             <input class="form-control" type="password" placeholder="@if (isset($user_id)){{ trans('projectsquare::users.password_leave_empty') }}@else{{ trans('projectsquare::users.password') }}@endif" name="password" autocomplete="off" />
         @else
             <a href="{{ route('users_generate_password', ['id' => $user_id]) }}">
-                <span class="btn btn-primary">
+                <span class="btn button">
                     <span class="glyphicon glyphicon-repeat"></span>
                     {{ trans('projectsquare::users.generate_password') }}
                 </span>
@@ -46,7 +46,7 @@
     </div>
 
     <div class="form-group">
-        <button type="submit" class="btn btn-success">
+        <button type="submit" class="btn valid">
             <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
         </button>
         <a href="{{ route('clients_edit', ['id' => $client_id]) }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
