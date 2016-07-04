@@ -5,8 +5,94 @@
         overflow: hidden;
         margin-bottom: 1.5rem;
     }
+
+    .conversation {
+    	
+        .messages {
+            overflow: hidden;
+
+        	.message {
+                position: relative;
+        		float: right;
+        		margin-bottom: 8.5rem;
+        		color: #606060;
+                background: #f9fbe8;
+                //border: 0.2rem solid #f4fac0;
+                border-right: 10px solid $touareg;
+                padding-left: 0;
+                padding-right: 0;
+
+                .message-content {
+
+                    text-align: justify;
+                }
+
+        		.avatar {
+        			left: -2rem;
+        		} 
+
+                .border {
+                    border: 0.2rem solid #f4fac0;
+                    border-right: none;
+                    padding-left: 3.5rem;
+                    padding-right: 3.5rem;
+                }
+        	}
+
+
+
+        	.message-client {
+        		background: #f3f3f3;
+                //border: 0.2rem solid #ebebeb;
+        		float: left;
+                border-right: none;
+
+        		.avatar {
+        			right: -2rem;  
+                    left: auto;
+        		}
+
+                .border {
+                 border: 0.2rem solid #ebebeb;
+                 border-left: none;
+                }
+        	}
+
+        	.avatar {
+        		position: absolute;
+                top: 50%;
+                margin-top: -20px;
+        	}
+
+        	.date {
+                display: block;
+        		text-align: right;
+                font-size: 14px;
+                color: #a8a99f;
+        	}
+        }
+    }
+
+    .new-message {
+        border: 1px solid #58585a;
+        padding: 2rem 6rem 2rem 6rem;
+
+        textarea {
+            border: none !important;
+        }
+
+        .border-new-message {
+            display: block;
+            margin-top: 3.5rem;
+        }
+    }
 }
 
 .last-messages {
 	height: 432px;
+}
+
+.create-conversation {
+	display: block;
+	margin-top: 2rem
 }

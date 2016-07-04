@@ -32,7 +32,7 @@ $(document).ready(function() {
             url: route_message_reply,
             data: data,
             success: function(data) {
-                conversation.find('.new-message textarea').val('');
+                /*conversation.find('.new-message textarea').val('');
                 conversation.find('.new-message').hide();
 
                 var html = loadTemplate('message-template', data.message);
@@ -40,11 +40,34 @@ $(document).ready(function() {
 
                 conversation.find('.count .number').text(data.message.count);
 
-                conversation.find('.submit').show();
+                conversation.find('.submit').show();*/
+                window.location.reload();
             },
             error: function(data) {
                 data = $.parseJSON(data.responseText);
                 alert(data.message)
+            }
+        });
+    });
+    
+    //DASHBOARD - CREATE CONVERSATION
+    $('body').on('click', '.create-conversation', function() {
+        $('#create-conversation-modal').modal('show');
+    });
+
+    $('.valid-create-conversation').click(function() {
+        var data = {
+            title: $('input[name="title"]').val(),
+            message: $('textarea[name="message"]').val(),
+            _token: $('#csrf_token').val()
+        };
+
+        $.ajax({
+            type: "POST",
+            url: route_add_conversation,
+            data: data,
+            success: function(data) {
+                window.location.reload();
             }
         });
     });
