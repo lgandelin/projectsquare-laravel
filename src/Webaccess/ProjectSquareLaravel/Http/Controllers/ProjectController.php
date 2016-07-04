@@ -3,6 +3,7 @@
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Interactors\Tickets\GetTicketInteractor;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
 
@@ -19,7 +20,23 @@ class ProjectController extends BaseController
     {
         return view('projectsquare::project.tickets', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
-            'tickets' => (new GetTicketInteractor(new EloquentTicketRepository()))->getTicketsPaginatedList($this->getUser()->id, env('TICKETS_PER_PAGE', 10), $projectID),
+            'projects' => app()->make('ProjectManager')->getProjects(),
+            'users' => app()->make('UserManager')->getUsers(),
+            'ticket_statuses' => app()->make('TicketStatusManager')->getTicketStatuses(),
+            'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
+            'filters' => [
+                'allocated_user' => Input::get('filter_allocated_user'),
+                'status' => Input::get('filter_status'),
+                'type' => Input::get('filter_type'),
+            ],
+            'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
+                $this->getUser()->id,
+                env('TICKETS_PER_PAGE', 10),
+                $projectID,
+                Input::get('filter_allocated_user'),
+                Input::get('filter_status'),
+                Input::get('filter_type')
+            ),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
             'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,
         ]);
