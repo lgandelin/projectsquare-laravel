@@ -30,7 +30,7 @@
                     @endif
                 </div>
             @else
-                <input type="hidden" name="allocated_user_id" value="{{ $ticket->states[0]->allocated_user_id }}">
+                <input type="hidden" name="allocated_user_id" value="{{ $ticket->states[0]->allocatedUserID }}">
             @endif
 
             <div class="form-group">
@@ -64,7 +64,7 @@
 
             <div class="form-group">
                 <label for="estimated_time">{{ trans('projectsquare::tickets.estimated_time') }}</label>
-                <input class="form-control" type="time" name="estimated_time" placeholder="{{ trans('projectsquare::tickets.estimated_time') }}" value="@if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->estimatedTime){{ $ticket->states[0]->estimatedTime }}@endif" />
+                <input @if ($is_client) disabled @endif class="form-control" type="time" name="estimated_time" placeholder="{{ trans('projectsquare::tickets.estimated_time') }}" value="@if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->estimatedTime){{ $ticket->states[0]->estimatedTime }}@endif" />
             </div>
         </div>
 

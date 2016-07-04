@@ -27,7 +27,20 @@
                         </div>
 
                         @if ($is_client)
-                            <input type="hidden" name="project_id" value="{{ $current_project_id }}" />
+                            <div class="form-group">
+                                <label for="project_id">{{ trans('projectsquare::tickets.project') }}</label>
+                                @if (isset($projects))
+                                    <select class="form-control" disabled>
+                                        <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+                                        @foreach ($projects as $project)
+                                            <option value="{{ $project->id }}" @if ((isset($data['projectID']) && $data['projectID'] == $project->id) || ($current_project_id == $project->id))selected="selected"@endif>[{{ $project->client->name }}] {{ $project->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <input type="hidden" name="project_id" value="{{ $current_project_id }}" />
+                                @else
+                                    <div class="info bg-info">{{ trans('projectsquare::tickets.no_project_yet') }}</div>
+                                @endif
+                            </div>
                         @else
                             <div class="form-group">
                                 <label for="project_id">{{ trans('projectsquare::tickets.project') }}</label>
@@ -89,6 +102,21 @@
                                             <option value="{{ $ticket_status->id }}" @if (isset($data['statusID']) && $data['statusID'] == $ticket_status->id) selected="selected" @endif>{{ $ticket_status->name }}</option>
                                         @endforeach
                                     </select>
+                                @else
+                                    <div class="info bg-info">{{ trans('projectsquare::tickets.no_ticket_status_yet') }}</div>
+                                @endif
+                            </div>
+                        @else
+                            <div class="form-group">
+                                <label for="status_id">{{ trans('projectsquare::tickets.status') }}</label>
+                                @if (isset($ticket_status))
+                                    <select class="form-control" disabled autocomplete="off">
+                                        <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+                                        @foreach ($ticket_status as $ticket_status)
+                                            <option value="{{ $ticket_status->id }}" @if ($ticket_status->id == 1)selected="selected"@endif>{{ $ticket_status->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <input type="hidden" name="status_id" value="1" />
                                 @else
                                     <div class="info bg-info">{{ trans('projectsquare::tickets.no_ticket_status_yet') }}</div>
                                 @endif
