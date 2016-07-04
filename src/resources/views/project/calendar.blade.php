@@ -63,7 +63,6 @@
     <script src="{{ asset('js/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/lang-all.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script src="{{ asset('js/calendar.js') }}"></script>
     <script>
         var defaultDate = "{{ date('Y-m-d') }}";
         var steps = [
@@ -79,8 +78,9 @@
             },
             @endforeach
         ];
+        var is_client = @if ($is_client) {{ $is_client}} @else 0 @endif;
     </script>
-
+    <script src="{{ asset('js/calendar.js') }}"></script>
     <script>
         $('.colorpicker').minicolors({
             theme: 'bootstrap',
