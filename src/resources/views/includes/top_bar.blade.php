@@ -5,6 +5,32 @@
 
     <nav class="pull-right">
         <ul class="top-right-menu">
+
+            <li class="todo">
+                 <a href="#" class="tasks-link">
+                    <span class="badge @if (sizeof($tasks) > 0) new-notifications @endif">{{ sizeof($tasks) }}</span></a>
+                 </a>
+
+                <div class="tasks" style="display: none;">
+                     <ul>
+                        @foreach ($tasks as $task)
+                            <li class="task" data-id="{{ $task->id }}" data-status="{{ $task->status }}">
+                                <span class="name @if($task->status == true)task-status-completed @endif"> {{ $task->name }}</span>
+                                <input type="hidden" name="id" value="{{ $task->id }}" />
+                                <span class="glyphicon glyphicon-remove btn-delete-task"></span>
+                            </li>
+                        @endforeach
+                    </ul>
+
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <input type="text" class="form-control new-task"  name="name" id="name" required autocomplete="off" />
+                            <input type="submit" class="btn valid btn-valid-create-task" value="{{ trans('projectsquare::generic.add') }}" />
+                        </div>
+                    </div>
+                </div>
+               
+            </li>
             <li>
                 <a href="#" class="notifications-link"> <span class="badge @if (sizeof($notifications) > 0) new-notifications @endif">{{ sizeof($notifications) }}</span></a>
 
@@ -71,3 +97,5 @@
 </div>
 
 @include ('projectsquare::templates.new-notification')
+@include('projectsquare::templates.new-task')
+<script src="{{ asset('js/tasks.js') }}"></script>

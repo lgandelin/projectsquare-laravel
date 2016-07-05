@@ -48,6 +48,12 @@ $(document).ready(function() {
 
     });
 
+    //TASKS BOX 
+      $('.tasks-link').click(function() {
+        $('.tasks').toggle(200);
+    });
+
+
     //NOTIFICATIONS BOX
     $('.notifications-link').click(function() {
         $('.notifications').toggle(200);
