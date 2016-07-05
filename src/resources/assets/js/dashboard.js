@@ -48,11 +48,19 @@ $(document).ready(function() {
     $('.conversation-reply').on('click', '.valid-message', function() {
         var conversation_reply = $(this).closest('.conversation-reply');
         var conversation = $('#conversation-' + conversation_reply.attr('data-id'));
+        var message = conversation_reply.find('.new-message textarea').val();
+
         var data = {
             conversation_id: conversation_reply.attr('data-id'),
-            message: conversation_reply.find('.new-message textarea').val(),
+            message: message,
             _token: $('#csrf_token').val()
         };
+
+        if (message == '') {
+            alert('Veuillez entrer un message');
+
+            return false;
+        }
 
         $.ajax({
             type: "POST",

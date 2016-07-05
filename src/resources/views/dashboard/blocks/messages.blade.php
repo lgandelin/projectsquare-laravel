@@ -1,7 +1,12 @@
 <div class="block last-messages"> 
     <div class="block-content table-responsive">
         <h3>{{ trans('projectsquare::dashboard.messages') }}</h3>
-         <a href="{{ route('messages_index') }}" class="all pull-right"></a>
+
+        <a href="{{ route('messages_index') }}" class="all pull-right"></a>
+
+        @if ($is_client)
+            <button class="btn add create-conversation pull-right"></button>
+        @endif
 
         <table class="table table-striped">
              <thead>
@@ -20,18 +25,17 @@
             @foreach ($conversations as $conversation)
                 <tr class="conversation" id="conversation-{{ $conversation->id }}">
 
-                    <td style="border-left: 10px solid {{ $conversation->project->color }}">
+                    <td style="border-left: 10px solid {{ $conversation->project->color }}" width="50%">
                         <!--{{ $conversation->project->client->name }}{{ $conversation->title }}</strong><br></td>-->
 
-                       {{ $conversation->messages[sizeof($conversation->messages) - 1]->content }}
+                       {{ str_limit($conversation->messages[sizeof($conversation->messages) - 1]->content, 100) }}
                     </td>
 
-                    <td>
+                    <td align="center">
                         @include('projectsquare::includes.avatar', [
                             'id' => $conversation->messages[sizeof($conversation->messages) - 1]->user->id,
                             'name' => $conversation->messages[sizeof($conversation->messages) - 1]->user->complete_name
                         ])
-
                     </td>
 
                     <td>
@@ -39,7 +43,7 @@
                     </td>
 
                     <td align="right">
-                        <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-sm btn-primary see-more"></a>
+                        <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-sm btn-primary see-more" style="margin-right: 1rem"></a>
 
                         <span class="submit">
                             <button class="btn btn-sm button pull-right reply-message" data-id="{{ $conversation->id }}" style="margin-right: 1rem;"><span class="glyphicon glyphicon-comment"></span></button>
@@ -64,9 +68,4 @@
             </tbody>
         </table>
     </div>
-
-    @if ($is_client)
-        <button class="btn btn-sm create-conversation"><span class="glyphicon glyphicon-plus"></span> {{ trans('projectsquare::messages.add_conversation') }}</button>
-    @endif
- 
 </div>

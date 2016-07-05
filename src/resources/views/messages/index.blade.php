@@ -27,14 +27,12 @@
                         <td >{{ $conversation->id }}</td>
                         <td >{{ date('d/m/Y H:i', strtotime($conversation->created_at)) }}</td>
                         <td><span class="text">{{ $conversation->project->name }}</span></td>
-                         <td>
-                        @include('projectsquare::includes.avatar', [
-                            'id' => $conversation->messages[sizeof($conversation->messages) - 1]->user->id,
-                            'name' => $conversation->messages[sizeof($conversation->messages) - 1]->user->complete_name
-                        ])
-
-                    </td>
-
+                        <td>
+                            @include('projectsquare::includes.avatar', [
+                                'id' => $conversation->messages[sizeof($conversation->messages) - 1]->user->id,
+                                'name' => $conversation->messages[sizeof($conversation->messages) - 1]->user->complete_name
+                            ])
+                        </td>
                         <td><span class="text">{{ $conversation->title }}</span></td>
                         <td align="right">
                             <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-primary see-more"></a>
@@ -45,6 +43,8 @@
             <div class="text-center">
                 {!! $conversations->render() !!}
             </div>
+
+
         </div>
     </div>
 @endsection

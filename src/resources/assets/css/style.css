@@ -8260,7 +8260,8 @@ body {
 .beta-form {
   position: fixed;
   bottom: 0px;
-  right: 0px; }
+  right: 0px;
+  z-index: 999; }
   .beta-form .icon {
     padding: 1rem;
     background: #f5f5f5;
@@ -8321,7 +8322,7 @@ body {
 
 .block {
   padding: 0rem;
-  padding-top: 3.5rem;
+  padding-top: 2.5rem;
   margin-bottom: 3rem;
   background: white;
   border-radius: 0px;
@@ -8357,36 +8358,47 @@ body {
     background: url(../img/dashboard/all-hover.png) no-repeat; }
   .dashboard-content .planning h3 {
     display: block; }
-  .dashboard-content .last-messages .count {
-    background: #e2c44b; }
-  .dashboard-content .last-messages .conversation .users {
-    margin-top: 1rem;
-    margin-bottom: 1.5rem; }
-  .dashboard-content .last-messages .conversation .message {
-    overflow: hidden;
-    margin-bottom: 1rem; }
-    .dashboard-content .last-messages .conversation .message .glyphicon-user {
-      margin-left: 1rem; }
-    .dashboard-content .last-messages .conversation .message .user_name {
-      font-weight: bold;
-      color: #cc6057; }
-    .dashboard-content .last-messages .conversation .message .content {
+  .dashboard-content .last-tickets table tr {
+    border-bottom: 1px solid #daddde; }
+  .dashboard-content .last-tickets table tr:last-child {
+    border-bottom: none; }
+  .dashboard-content .last-messages {
+    overflow: hidden; }
+    .dashboard-content .last-messages .count {
+      background: #e2c44b; }
+    .dashboard-content .last-messages table td:first-child {
+      padding-left: 2.5rem; }
+    .dashboard-content .last-messages .conversation .users {
+      margin-top: 1rem;
+      margin-bottom: 1.5rem; }
+    .dashboard-content .last-messages .conversation .message {
+      overflow: hidden;
+      margin-bottom: 1rem; }
+      .dashboard-content .last-messages .conversation .message .glyphicon-user {
+        margin-left: 1rem; }
+      .dashboard-content .last-messages .conversation .message .user_name {
+        font-weight: bold;
+        color: #cc6057; }
+      .dashboard-content .last-messages .conversation .message .content {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        background: white;
+        padding: 1rem; }
+    .dashboard-content .last-messages .reply-message:hover {
+      background: #c8dc1e; }
+    .dashboard-content .last-messages .submit {
       margin-top: 1rem;
       margin-bottom: 1rem;
-      background: white;
-      padding: 1rem; }
-  .dashboard-content .last-messages .submit {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    overflow: hidden; }
-  .dashboard-content .last-messages .new-message {
-    margin-bottom: 0; }
-  .dashboard-content .last-messages .wrapper {
-    overflow-y: scroll; }
-    .dashboard-content .last-messages .wrapper table tbody tr:first-child td {
-      border-top: none; }
+      overflow: hidden; }
+    .dashboard-content .last-messages .new-message {
+      margin-bottom: 0; }
   .dashboard-content .loading {
     background: rgba(255, 255, 255, 0.75) url("../img/loading.gif") center center no-repeat; }
+  .dashboard-content .planning .fc-body > tr > .fc-widget-content {
+    border: none !important; }
+  .dashboard-content .planning .fc-head > tr > .fc-head-container {
+    border-left: 0;
+    border-right: 0; }
 
 .project-template .cms-iframe {
   width: 100%;
@@ -8503,21 +8515,21 @@ body {
     .message-view-template .conversation .messages .message {
       position: relative;
       float: right;
-      margin-bottom: 8.5rem;
+      margin-bottom: 6.5rem;
       color: #606060;
       background: #f9fbe8;
       border-right: 10px solid #096a85;
       padding-left: 0;
       padding-right: 0; }
       .message-view-template .conversation .messages .message .message-content {
-        text-align: justify; }
+        text-align: justify;
+        margin-bottom: 0 !important; }
       .message-view-template .conversation .messages .message .avatar {
         left: -2rem; }
       .message-view-template .conversation .messages .message .border {
         border: 0.2rem solid #f4fac0;
         border-right: none;
-        padding-left: 3.5rem;
-        padding-right: 3.5rem; }
+        padding: 2rem 2.5rem 1rem 3.5rem; }
     .message-view-template .conversation .messages .message-client {
       background: #f3f3f3;
       float: left;
@@ -8527,7 +8539,9 @@ body {
         left: auto; }
       .message-view-template .conversation .messages .message-client .border {
         border: 0.2rem solid #ebebeb;
-        border-left: none; }
+        border-left: none;
+        padding-left: 2.5rem;
+        padding-right: 3.5rem; }
     .message-view-template .conversation .messages .avatar {
       position: absolute;
       top: 50%;
@@ -8536,11 +8550,13 @@ body {
       display: block;
       text-align: right;
       font-size: 14px;
-      color: #a8a99f; }
+      color: #a8a99f;
+      margin-top: 1rem; }
   .message-view-template .new-message {
     border: 1px solid #58585a;
-    padding: 2rem 6rem 2rem 6rem; }
+    padding: 3rem 3rem 1.5rem 3rem; }
     .message-view-template .new-message textarea {
+      box-shadow: none !important;
       border: none !important; }
     .message-view-template .new-message .border-new-message {
       display: block;
@@ -8555,10 +8571,7 @@ body {
     .message-view-template .new-message .img-emoji {
       background: url(../img/messages/emoji.png) no-repeat; }
 
-.last-messages {
-  height: 432px; }
-
-.create-conversation {
+.messages-list-template .create-conversation {
   display: block;
   margin-top: 2rem; }
 

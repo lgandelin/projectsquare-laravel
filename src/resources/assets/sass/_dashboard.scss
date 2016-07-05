@@ -1,6 +1,6 @@
 .block {
     padding: 0rem;
-    padding-top: 3.5rem;
+    padding-top: 2.5rem;
     margin-bottom: 3rem;
 
     background: white;
@@ -59,9 +59,27 @@
         }
     }
 
+    .last-tickets {
+        table {
+            tr {
+                border-bottom: 1px solid #daddde;
+            }
+
+            tr:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+
     .last-messages {
+        overflow: hidden;
+
         .count {
             background: #e2c44b;
+        }
+
+        table td:first-child {
+            padding-left: 2.5rem;
         }
 
         .conversation {
@@ -91,6 +109,10 @@
                 }
             }
         }
+        
+        .reply-message:hover {
+            background: $green;
+        }
 
         .submit {
             margin-top: 1rem;
@@ -101,25 +123,20 @@
         .new-message {
             margin-bottom: 0;
         }
-
-        .wrapper {
-            //height: 322px;
-            overflow-y: scroll;
-            //margin-bottom: 2rem;
-
-            table {
-                tbody {
-                    tr:first-child {
-                        td {
-                            border-top: none;
-                        }
-                    }
-                }
-            }
-        }
     }
 
     .loading {
         background: rgba(255, 255, 255, 0.75) url('../img/loading.gif') center center no-repeat;
+    }
+
+    .planning {
+        .fc-body > tr > .fc-widget-content {
+            border: none !important;
+        }
+
+        .fc-head > tr > .fc-head-container {
+            border-left: 0;
+            border-right: 0;
+        }
     }
 }

@@ -21,11 +21,18 @@ $(document).ready(function() {
     //VALID MESSAGE
     $('.conversation').on('click', '.valid-message', function() {
         var conversation = $(this).closest('.conversation');
+        var message = conversation.find('.new-message textarea').val();
         var data = {
             conversation_id: $(this).data('id'),
-            message: conversation.find('.new-message textarea').val(),
+            message: message,
             _token: $('#csrf_token').val()
         };
+
+        if (message == '') {
+            alert('Veuillez entrer un message');
+
+            return false;
+        }
 
         $.ajax({
             type: "POST",

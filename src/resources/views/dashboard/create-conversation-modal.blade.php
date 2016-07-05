@@ -9,17 +9,17 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="title">Titre</label>
-                        <input class="form-control" type="text" placeholder="{{ trans('projectsquare::conversations.title') }}" name="title" />
+                        <input class="form-control" type="text" placeholder="{{ trans('projectsquare::conversations.title') }}" name="title" autocomplete="off" />
                     </div>
 
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea class="form-control" placeholder="{{ trans('projectsquare::conversations.message') }}" name="message" rows="10"></textarea>
+                        <textarea class="form-control" placeholder="{{ trans('projectsquare::conversations.message') }}" name="message" rows="10" autocomplete="off"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn valid-create-conversation"><i class="glyphicon glyphicon-ok"></i> Valider</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn valid valid-create-conversation"><i class="glyphicon glyphicon-ok"></i> Valider</button>
+                    <button type="button" class="btn back" data-dismiss="modal"><span class="glyphicon glyphicon-arrow-left"></span> Annuler</button>
                 </div>
             </form>
         </div>
