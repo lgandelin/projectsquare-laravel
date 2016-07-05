@@ -6,9 +6,9 @@ use Webaccess\ProjectSquareLaravel\Repositories\EloquentAlertRepository;
 
 class AlertManager
 {
-    public static function getLastAlerts($limit)
+    public static function getAlertsPaginatedList()
     {
-        return EloquentAlertRepository::getLastAlerts($limit);
+        return EloquentAlertRepository::getAlertsPaginatedList(10);
     }
 
     public static function createAlert($type, $variables, $projectID)

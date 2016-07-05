@@ -34,7 +34,7 @@
 
             <hr/>
 
-            <h3>{{ trans('projectsquare::tickets.files') }} <span class="badge badge-primary" style="margin-left: 1rem; margin-bottom: 2px;">{{ count($ticket->files) }}</span></h3>
+            <h3>{{ trans('projectsquare::tickets.files') }} <span class="badge badge-primary" style="margin-left: 1rem; margin-bottom: 2px;">{{ count($files) }}</span></h3>
             @include('projectsquare::tickets.ticket_files')
 
             <hr/>

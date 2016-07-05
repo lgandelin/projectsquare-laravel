@@ -1,6 +1,16 @@
-<div class="block">
-    <h3>{{ trans('projectsquare::dashboard.monitoring_alerts') }}</h3>
-    <div class="block-content table-responsive">
+@extends('projectsquare::default')
+
+@section('content')
+        <!--<ol class="breadcrumb">
+        <li><a href="{{ route('dashboard') }}">Tableau de bord</a></li>
+        <li class="active">Messages</li>
+    </ol>-->
+<div class="content-page">
+    <div class="templates">
+        <div class="page-header">
+            <h1>Alertes monitoring</h1>
+        </div>
+
         <table class="table table-striped">
             <thead>
             <tr>
@@ -15,6 +25,7 @@
 
             <tbody>
             @foreach ($alerts as $alert)
+                <?php $alert->variables = json_decode($alert->variables); ?>
                 <tr>
                     <td>{{ $alert->id }}</td>
                     <td>{{ date('d/m/Y H:i', strtotime($alert->created_at)) }}</td>
@@ -27,12 +38,16 @@
                             {{ $alert->variables->status_code }}
                         @endif
                     </td>
-                    <td>
-                        <a href="{{ route('project_monitoring', ['id' => $alert->project->id]) }}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-share-alt"></span> {{ trans('projectsquare::dashboard.see_project') }}</a>
+                    <td align="right">
+                        <a href="{{ route('project_monitoring', ['id' => $alert->project->id]) }}" class="btn see-more"></a>
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
+        <div class="text-center">
+            {!! $alerts->render() !!}
+        </div>
     </div>
 </div>
+@endsection

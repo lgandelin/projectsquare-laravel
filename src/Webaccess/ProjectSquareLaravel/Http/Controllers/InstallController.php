@@ -41,13 +41,16 @@ class InstallController extends Controller
     public function install2_handler()
     {
         $email = $this->request->session()->get('email');
-        $password = $this->generateNewPassword();
+        $password = $this->request->session()->get('password');
 
         app()->make('UserManager')->createUser(
             $this->request->session()->get('first_name'),
             $this->request->session()->get('last_name'),
             $email,
-            Hash::make($password),
+            $password,
+            null,
+            null,
+            null,
             null,
             true
         );
@@ -64,19 +67,6 @@ class InstallController extends Controller
     public function install3()
     {
         return view('projectsquare::install.install3', []);
-    }
-
-    private function generateNewPassword($length = 8)
-    {
-        $chars = 'abcdefghkmnpqrstuvwxyz23456789';
-        $count = mb_strlen($chars);
-
-        for ($i = 0, $result = ''; $i < $length; ++$i) {
-            $index = rand(0, $count - 1);
-            $result .= mb_substr($chars, $index, 1);
-        }
-
-        return $result;
     }
 
     private function insertSeedsInDB()

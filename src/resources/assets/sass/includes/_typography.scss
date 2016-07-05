@@ -4,6 +4,7 @@ html {
 
 body {
     font-size: 1.6rem;
+	font-family: $typo2;
 }
 
 h1, h2, h3, h4, h5 {
@@ -15,6 +16,22 @@ h1, h2, h3, h4, h5 {
 
 h1 {
     font-size: 3rem;
+}
+
+h2, h3 {
+	color: $light-blue;
+	font-family: $typo1;
+	font-size: 2.2rem;
+}
+
+h3 {
+	margin-top: 3rem;
+}
+
+h4 {
+	color: $touareg;
+	font-family: $typo1;
+	font-size: 1.8rem;
 }
 
 ul {

@@ -35,9 +35,9 @@ class ConversationManager
         return $this->repository->getConversationsPaginatedList(env('CONVERSATIONS_PER_PAGE', 10));
     }
 
-    public function getConversationsByProject($projectID)
+    public function getConversationsByProject($projectID, $limit = null)
     {
-        return $this->repository->getConversationsByProject([$projectID]);
+        return $this->repository->getConversationsByProject([$projectID], $limit);
     }
 
     public function getLastConversations($userID, $limit)

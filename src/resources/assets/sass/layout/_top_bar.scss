@@ -1,0 +1,162 @@
+.top-bar-container {
+    background: white;
+    border-bottom: 1px solid #a3d2e0;
+
+    .top-bar {
+        padding-top: 2rem;
+        padding-left: 1.1rem;
+        height: 90px;
+
+        .logo {
+            font-size: 3rem;
+
+            a {
+                color: $black;
+            }
+
+            a:hover {
+                text-decoration: none;
+            }
+        }
+
+        .top-right-menu {
+            position: relative;
+
+            li {
+                display: inline-block;
+                margin-right: 2rem;
+
+                .notifications-link {
+                    display: block;
+                    width: 57px;
+                    height: 39px;
+                    background: url(../img/top-bar/notification.png) no-repeat;
+
+                    .badge {
+                        margin-left: 2.5rem;
+                        margin-top: -2.9rem;
+                        padding: 8px 11px;
+                        border-radius: 17px;
+                        font-size: 15px;
+                        background: $green;
+                        color: $touareg;
+                    }
+                }
+
+                .notifications-link:hover {
+                    background: url(../img/top-bar/notification-hover.png) no-repeat;
+
+                    .badge {
+                        background: $touareg;
+                        color: $green;
+                    }
+                }
+
+                .new-notifications {
+                    background: #DF5A49;
+                }
+
+                .notifications {
+                    position: absolute;
+                    background: white;
+                    border: 2px solid #ccc;
+                    padding: 1.5rem;
+                    z-index: 999;
+                    top: 4rem;
+                    right: 0;
+                    width: 35rem;
+
+                    .close {
+                        position: absolute;
+                        right: 1rem;
+                        top: 1rem;
+                        font-size: 1.5rem;
+                        color: #333;
+                        opacity: 0.75;
+                    }
+
+                    .title {
+                        font-size: 1.75rem;
+                        font-weight: bold;
+                        display: block;
+                    }
+
+                    .notification {
+                        margin-bottom: 1rem;
+                        padding-bottom: 1rem;
+                        border-bottom: 1px solid #ccc;
+                        overflow: hidden;
+
+                        .date {
+                            font-weight: bold;
+                            display: block;
+                            float: left;
+                        }
+
+                        .type {
+                            float: right;
+                            margin-bottom: 0.75rem;
+                        }
+
+                        .description {
+                            clear: both;
+                            display: block;
+
+                            .btn {
+                                margin-top: 1rem;
+                            }
+                        }
+
+                        .not-read {
+                            color: #dadada;
+                        }
+
+                        .read {
+                            color: #313131;
+                        }
+
+                        .status {
+                            cursor: pointer;
+                        }
+                    }
+
+                    .notification:first-child {
+                        margin-top: 2rem;
+                    }
+
+                    .notification:last-child {
+                        border: none;
+                        padding-bottom: 0;
+                    }
+                }
+            }
+
+            .avatar {
+                border-radius: 50%;
+                border: 1px solid $green;
+                width: 50px;
+                height: auto;
+            }
+
+            .avatar:hover {
+                opacity: 0.9;
+            }
+
+            .out {
+
+                vertical-align: middle;
+
+                .log-out {
+                    display: block;
+                    width: 33px;
+                    height: 32px;
+                    background: url(../img/top-bar/log-out.png)no-repeat center center;
+                }
+
+                .log-out:hover {
+                    background: url(../img/top-bar/log-out-hover.png)no-repeat center center;
+                }
+            }
+        }
+    }
+}

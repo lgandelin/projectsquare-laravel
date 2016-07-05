@@ -180,4 +180,14 @@
         });
     </script>
     <script src="{{ asset('js/vendor/highcharts.js') }}"></script>
+
+    <script>
+        Highcharts.setOptions({
+
+            lang : {
+                resetZoom : 'Rétablir zoom'
+
+            }
+        });
+    </script>
 @endsection

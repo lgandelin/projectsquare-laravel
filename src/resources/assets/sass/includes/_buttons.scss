@@ -1,0 +1,70 @@
+.valid {
+    border-radius: 0px;
+    border: 1px solid $green;
+    background: $green;
+    color: $touareg;
+}
+
+.valid:hover {
+    opacity: 0.8;
+    color: $touareg;
+}
+
+.button {
+    border-radius: 0px;
+    color: white;
+    background: $touareg;
+}
+
+.button:hover {
+    opacity: 0.8;
+    color: white;
+}
+
+.back {
+    border: 1px solid $light-blue;
+    border-radius: 0px;
+    color: $touareg;
+    background: none;
+}
+
+.back:hover {
+    background: $light_blue;
+    color: white;
+}
+
+.users {
+    margin-top: 2rem;
+}
+
+.delete {
+    border-radius: 0px;
+    background: #ca2e44;
+    color: white;
+
+    .picto-delete {
+        color: white;
+    }
+}
+
+.delete:hover {
+    color: white;
+    opacity: 0.8;
+}
+
+.btn {
+    .glyphicon {
+        margin-right: 0.5rem;
+    }
+}
+
+.add {
+    width: 25px;
+    height: 26px;
+    margin-right: 2rem;
+
+    background: url(../img/dashboard/add.png)no-repeat;
+}
+.add:hover {
+    background: url(../img/dashboard/add-hover.png)no-repeat;
+}

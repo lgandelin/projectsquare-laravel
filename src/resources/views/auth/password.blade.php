@@ -28,7 +28,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-success" title="{{ trans('projectsquare::forgotten_password.title_password_forgotten') }}">
+                                    <button type="submit" class="btn valid" title="{{ trans('projectsquare::forgotten_password.title_password_forgotten') }}">
                                         {{ trans('projectsquare::forgotten_password.send_new_password') }}
                                     </button>
                                 </div>

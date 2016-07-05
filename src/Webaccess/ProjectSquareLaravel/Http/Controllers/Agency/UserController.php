@@ -5,6 +5,8 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Agency;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 
+class TwoPasswordsException extends \Exception {}
+
 class UserController extends BaseController
 {
     public function users()
@@ -32,18 +34,24 @@ class UserController extends BaseController
     public function store()
     {
         try {
-            app()->make('UserManager')->createUser(
-                Input::get('first_name'),
-                Input::get('last_name'),
-                Input::get('email'),
-                Input::get('password'),
-                null,
-                null,
-                null,
-                null,
-                (Input::get('is_administrator') == 'y') ? true : false
-            );
-            $this->request->session()->flash('confirmation', trans('projectsquare::users.add_user_success'));
+            if (Input::get('password') != '' && Input::get('password') != Input::get('password_confirmation')) {
+                throw new TwoPasswordsException();
+            } else {
+                app()->make('UserManager')->createUser(
+                    Input::get('first_name'),
+                    Input::get('last_name'),
+                    Input::get('email'),
+                    Input::get('password'),
+                    null,
+                    null,
+                    null,
+                    null,
+                    (Input::get('is_administrator') == 'y') ? true : false
+                );
+                $this->request->session()->flash('confirmation', trans('projectsquare::users.add_user_success'));
+            }
+        } catch (TwoPasswordsException $e) {
+            $this->request->session()->flash('error', 'Les deux mots de passe ne correspondent pas');
         } catch (\Exception $e) {
             $this->request->session()->flash('error', trans('projectsquare::users.add_user_error'));
         }

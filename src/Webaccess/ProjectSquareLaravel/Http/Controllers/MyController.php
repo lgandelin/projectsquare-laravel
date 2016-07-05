@@ -5,6 +5,8 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquareLaravel\Tools\UploadTool;
 
+class TwoPasswordsException extends \Exception {}
+
 class MyController extends BaseController
 {
     public function index()
@@ -20,14 +22,20 @@ class MyController extends BaseController
     {
         $userID = $this->getUser()->id;
         try {
-            app()->make('UserManager')->updateUser(
-                $userID,
-                Input::get('first_name'),
-                Input::get('last_name'),
-                Input::get('email'),
-                Input::get('password')
-            );
-            $this->request->session()->flash('confirmation', trans('projectsquare::my.edit_profile_success'));
+            if (Input::get('password') != '' && Input::get('password') != Input::get('password_confirmation')) {
+                throw new TwoPasswordsException();
+            } else {
+                app()->make('UserManager')->updateUser(
+                    $userID,
+                    Input::get('first_name'),
+                    Input::get('last_name'),
+                    Input::get('email'),
+                    Input::get('password')
+                );
+                $this->request->session()->flash('confirmation', trans('projectsquare::my.edit_profile_success'));
+            }
+        } catch (TwoPasswordsException $e) {
+            $this->request->session()->flash('error', 'Les deux mots de passe ne correspondent pas');
         } catch (\Exception $e) {
             $this->request->session()->flash('error', trans('projectsquare::my.edit_profile_error'));
         }

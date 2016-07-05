@@ -21,7 +21,7 @@
 
             <tbody>
             @foreach ($tickets as $ticket)
-                <tr style="border-bottom: 1px solid #daddde";>
+                <tr>
                     <!-- <td>{{ $ticket->id }}</td> -->
                     <td class="priorities" style="border-left: 10px solid {{ $ticket->project->color }}">@if (isset($ticket->last_state))<span class="priority priority-{{ $ticket->last_state->priority }}"></span>@endif</td>
                     <td>{{ $ticket->title }}</td>

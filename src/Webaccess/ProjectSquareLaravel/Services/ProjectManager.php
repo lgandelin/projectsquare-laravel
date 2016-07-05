@@ -55,7 +55,7 @@ class ProjectManager
 
     public function createProject($name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color)
     {
-        $this->repository->createProject($name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color);
+        return $this->repository->createProject($name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color);
     }
 
     public function updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, $status, $color)

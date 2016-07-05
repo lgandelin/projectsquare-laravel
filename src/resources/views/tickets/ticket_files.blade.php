@@ -26,23 +26,23 @@
             <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6" style="margin-top: 2rem;">
             <h4>{{ trans('projectsquare::tickets.add_files') }}</h4>
             <div class="row fileupload-buttonbar">
                 <div class="col-lg-12">
-                    <span class="btn button fileinput-button">
+                    <span class="btn valid fileinput-button">
                         <i class="glyphicon glyphicon-plus"></i>
                         <span>{{ trans('projectsquare::generic.add') }}</span>
                         <input type="file" name="files[]" multiple>
                     </span>
-                    <button type="submit" class="btn button">
+                    <button type="submit" class="btn button start">
                         <i class="glyphicon glyphicon-upload"></i>
                         <span>{{ trans('projectsquare::tickets.start_file_upload') }}</span>
                     </button>
-                    <button type="reset" class="btn delete">
+                    <!--<button type="reset" class="btn delete">
                         <i class="glyphicon glyphicon-remove picto-delete"></i>
                         <span>{{ trans('projectsquare::tickets.cancel_file_upload') }}</span>
-                    </button>
+                    </button>-->
                     <!--<button type="button" class="btn btn-danger delete">
                         <i class="glyphicon glyphicon-trash"></i>
                         <span>Supprimer</span>

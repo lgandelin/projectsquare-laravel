@@ -1,71 +1,75 @@
 <div class="block last-messages"> 
-    <div class="wrapper">
-        <div class="block-content table-responsive">
-            <h3>{{ trans('projectsquare::dashboard.last_messages') }}</h3>
-             <a href="{{ route('messages_index') }}" class="all pull-right"></a>
+    <div class="block-content table-responsive">
+        <h3>{{ trans('projectsquare::dashboard.messages') }}</h3>
 
-            <table class="table table-striped">
-                 <thead>
-                    <tr>
-                        <!--<th>#</th>-->    
-                         <!--<th>{{ trans('projectsquare::tickets.client') }} </th>-->
-                        <th>{{ trans('projectsquare::messages.message') }} </th>
-                        <th>{{ trans('projectsquare::messages.allocated_user') }} </th>
-                        <th>{{ trans('projectsquare::messages.date') }} </th>
-                        <th>{{ trans('projectsquare::messages.action') }} </th>
-                     
-                    </tr>
-                </thead>
+        <a href="{{ route('messages_index') }}" class="all pull-right"></a>
 
-                <tbody>
-                @foreach ($conversations as $conversation)
-                    <tr class="conversation" id="conversation-{{ $conversation->id }}">
-                   
-                        <td style="border-left: 10px solid {{ $conversation->project->color }}">
-                            <!--{{ $conversation->project->client->name }}{{ $conversation->title }}</strong><br></td>-->
+        @if ($is_client)
+            <button class="btn add create-conversation pull-right"></button>
+        @endif
 
-                           {{ $conversation->messages[sizeof($conversation->messages) - 1]->content }}
-                        </td>
+        <table class="table table-striped">
+             <thead>
+                <tr>
+                    <!--<th>#</th>-->
+                     <!--<th>{{ trans('projectsquare::tickets.client') }} </th>-->
+                    <th>{{ trans('projectsquare::messages.message') }} </th>
+                    <th>{{ trans('projectsquare::messages.allocated_user') }} </th>
+                    <th>{{ trans('projectsquare::messages.date') }} </th>
+                    <th>{{ trans('projectsquare::messages.action') }} </th>
 
-                        <td>
-                            @include('projectsquare::includes.avatar', [
-                                'id' => $conversation->messages[sizeof($conversation->messages) - 1]->user->id,
-                                'name' => $conversation->messages[sizeof($conversation->messages) - 1]->user->complete_name 
-                            ])
-                         
-                        </td>
+                </tr>
+            </thead>
 
-                        <td>
-                           {{ date('d/m H:i', strtotime($conversation->messages[sizeof($conversation->messages) - 1]->created_at)) }}
-                        </td>
+            <tbody>
+            @foreach ($conversations as $conversation)
+                <tr class="conversation" id="conversation-{{ $conversation->id }}" data-id="{{ $conversation->id }}">
 
-                        <td>
-                            <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-sm btn-primary see-more"></a>
+                    <td style="border-left: 10px solid {{ $conversation->project->color }}" width="50%">
+                        <!--{{ $conversation->project->client->name }}{{ $conversation->title }}</strong><br></td>-->
 
-                            <span class="submit">
-                                <button class="btn btn-sm btn-success pull-right reply-message" data-id="{{ $conversation->id }}" style="margin-right: 1rem;"><span class="glyphicon glyphicon-comment"></span></button>
-                            </span>
-                        </td>
-                    </tr>
+                       {{ str_limit($conversation->messages[sizeof($conversation->messages) - 1]->content, 100) }}
+                    </td>
 
-                    <tr class="conversation-reply" id="conversation-{{ $conversation->id }}-reply" data-id="{{ $conversation->id }}">
-                        <td colspan="5">
-                            <div class="message-inserted"></div>
+                    <td align="center">
+                        @include('projectsquare::includes.avatar', [
+                            'id' => $conversation->messages[sizeof($conversation->messages) - 1]->user->id,
+                            'name' => $conversation->messages[sizeof($conversation->messages) - 1]->user->complete_name
+                        ])
+                    </td>
 
-                            <div class="message new-message" style="display:none">
-                                <textarea class="form-control" placeholder="{{ trans('projectsquare::dashboard.your_message') }}" rows="4"></textarea>
-                                <button class="btn btn-sm btn-default pull-right cancel-message" data-id="{{ $conversation->id }}" style="margin-top:1.5rem"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.cancel') }}</button>
-                                <button class="btn btn-sm btn-success pull-right valid-message" data-id="{{ $conversation->id }}" style="margin-top:1.5rem; margin-right: 1rem"><span class="glyphicon glyphicon-ok"></span> {{ trans('projectsquare::generic.valid') }}</button>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
+                    <td>
+                       {{ date('d/m H:i', strtotime($conversation->messages[sizeof($conversation->messages) - 1]->created_at)) }}
+                    </td>
+
+                    <td align="right">
+                        <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-sm btn-primary see-more" style="margin-right: 1rem"></a>
+
+                        <span class="submit">
+                            <button class="btn btn-sm button pull-right reply-message" data-id="{{ $conversation->id }}" style="margin-right: 1rem;"><span class="glyphicon glyphicon-comment"></span></button>
+                        </span>
+                    </td>
+                </tr>
+
+                <tr class="conversation-reply" style="display:none" id="conversation-{{ $conversation->id }}-reply" data-id="{{ $conversation->id }}">
+                    <td colspan="5">
+                        <div class="message-inserted"></div>
+
+                        <div class="message new-message">
+                            <textarea class="form-control" placeholder="{{ trans('projectsquare::dashboard.your_message') }}" rows="4"></textarea>
+                            <button class="btn btn-sm back pull-right cancel-message" data-id="{{ $conversation->id }}" style="margin-top:1.5rem"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.cancel') }}</button>
+                            <button class="btn btn-sm valid pull-right valid-message" data-id="{{ $conversation->id }}" style="margin-top:1.5rem; margin-right: 1rem"><span class="glyphicon glyphicon-ok"></span> {{ trans('projectsquare::generic.valid') }}</button>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr></tr>
+            @endforeach
+            </tbody>
+        </table>
     </div>
-    @if ($is_client)
-        <button class="btn btn-sm btn-success create-conversation"><span class="glyphicon glyphicon-plus"></span> {{ trans('projectsquare::messages.add_conversation') }}</button>
-    @endif
- 
 </div>
+
+@foreach ($conversations as $conversation)
+    @include('projectsquare::dashboard.conversation-modal', ['conversation' => $conversation])
+@endforeach

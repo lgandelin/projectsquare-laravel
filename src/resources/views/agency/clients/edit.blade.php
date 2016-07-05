@@ -53,16 +53,16 @@
                         <td>{{ $user->complete_name }}</td>
                         <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                         <td>{{ $user->client_role }}</td>
-                        <td>
-                            <a href="{{ route('clients_edit_user', ['client_id' => $client->id, 'user_id' => $user->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> {{ trans('projectsquare::generic.edit') }}</a>
-                            <a href="{{ route('clients_delete_user', ['client_id' => $client->id, 'user_id' => $user->id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ trans('projectsquare::generic.delete') }}</a>
+                        <td align="right">
+                            <a href="{{ route('clients_edit_user', ['client_id' => $client->id, 'user_id' => $user->id]) }}" class="btn button"><span class="glyphicon glyphicon-pencil"></span> {{ trans('projectsquare::generic.edit') }}</a>
+                            <a href="{{ route('clients_delete_user', ['client_id' => $client->id, 'user_id' => $user->id]) }}" class="btn btn-delete delete"><span class="glyphicon glyphicon-remove"></span> {{ trans('projectsquare::generic.delete') }}</a>
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
 
-            <a href="{{ route('clients_add_user', ['id' => $client->id]) }}" class="btn button users"><i class="glyphicon glyphicon-plus"></i> {{ trans('projectsquare::users.add_user') }}</a>
+            <a href="{{ route('clients_add_user', ['id' => $client->id]) }}" class="btn valid users"><i class="glyphicon glyphicon-plus"></i> {{ trans('projectsquare::users.add_user') }}</a>
         </div>
     </div>
 @endsection

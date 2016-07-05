@@ -9,19 +9,19 @@
             <div class="form-group">
                 <label for="project_id">{{ trans('projectsquare::tickets.project') }}</label>
                 @if (isset($projects))
-                <select class="form-control" name="project_id">
-                    <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
-                    @foreach ($projects as $project)
-                    <option value="{{ $project->id }}" @if (isset($ticket) && $ticket->project_id == $project->id)selected="selected"@endif>[{{ $project->client->name }}] {{ $project->name }}</option>
-                    @endforeach
-                </select>
+                    <select class="form-control" name="project_id" @if ($is_client) disabled @endif>
+                        <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+                        @foreach ($projects as $project)
+                        <option value="{{ $project->id }}" @if (isset($ticket) && $ticket->projectID == $project->id)selected="selected"@endif>[{{ $project->client->name }}] {{ $project->name }}</option>
+                        @endforeach
+                    </select>
                 @else
-                <div class="info bg-info">{{ trans('projectsquare::tickets.no_project_yet') }}</div>
+                    <div class="info bg-info">{{ trans('projectsquare::tickets.no_project_yet') }}</div>
                 @endif
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-success valid">
+                <button type="submit" class="btn valid">
                     <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                 </button>
                 <a href="{{ route('tickets_index') }}" class="btn back"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.back') }}</a>
@@ -34,7 +34,7 @@
                 <select class="form-control" name="type_id">
                     <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
                     @foreach ($ticket_types as $ticket_type)
-                    <option value="{{ $ticket_type->id }}" @if (isset($ticket) && $ticket->type_id == $ticket_type->id)selected="selected"@endif>{{ $ticket_type->name }}</option>
+                    <option value="{{ $ticket_type->id }}" @if (isset($ticket) && $ticket->typeID == $ticket_type->id)selected="selected"@endif>{{ $ticket_type->name }}</option>
                     @endforeach
                 </select>
                 @else

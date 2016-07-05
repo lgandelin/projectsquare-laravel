@@ -47,8 +47,8 @@
                         </div>
 
                         <input type="hidden" class="id" value="" />
-                        <input type="button" class="btn btn-success btn-valid" value="{{ trans('projectsquare::generic.valid') }}">
-                        <input type="button" class="btn btn-default btn-close" value="{{ trans('projectsquare::generic.close') }}">
+                        <button class="btn valid btn-valid"><i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}</button>
+                        <button class="btn back btn-close"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.close') }}</button>
                     </div>
                 </div>
 
@@ -63,7 +63,6 @@
     <script src="{{ asset('js/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/lang-all.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script src="{{ asset('js/calendar.js') }}"></script>
     <script>
         var defaultDate = "{{ date('Y-m-d') }}";
         var steps = [
@@ -79,8 +78,9 @@
             },
             @endforeach
         ];
+        var is_client = @if ($is_client) {{ $is_client}} @else 0 @endif;
     </script>
-
+    <script src="{{ asset('js/calendar.js') }}"></script>
     <script>
         $('.colorpicker').minicolors({
             theme: 'bootstrap',

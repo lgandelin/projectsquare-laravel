@@ -3,7 +3,12 @@
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Project;
 
 use Illuminate\Support\Facades\Input;
+use Webaccess\ProjectSquare\Requests\Notifications\CreateNotificationRequest;
+use Webaccess\ProjectSquare\Responses\Notifications\CreateNotificationInteractor;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentNotificationRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentUserRepository;
 use Webaccess\ProjectSquareLaravel\Tools\UploadTool;
 
 class FilesController extends BaseController
@@ -35,6 +40,8 @@ class FilesController extends BaseController
 
                 $data->deleteUrl = action('\Webaccess\ProjectSquareLaravel\Http\Controllers\Project\FilesController@delete', ['id' => $fileID]);
                 $data->deleteType = 'GET';
+
+                $this->createNotifications($this->getUser()->id, Input::get('project_id'), $fileID);
             }
 
             return response()->json(['files' => [$data]], 200);
@@ -53,5 +60,33 @@ class FilesController extends BaseController
         }
 
         return redirect()->back();
+    }
+
+    private function createNotifications($userID, $projectID, $fileID)
+    {
+        $project = (new EloquentProjectRepository())->getProject($projectID);
+
+        //Agency users
+        foreach ((new EloquentUserRepository())->getUsersByProject($projectID) as $user) {
+            if ($user->id != $userID) {
+                $this->notifyUserIfRequired($user, $fileID);
+            }
+        }
+
+        //Client users
+        foreach ((new EloquentUserRepository())->getClientUsers($project->client_id) as $user) {
+            if ($user->id != $userID) {
+                $this->notifyUserIfRequired($user, $fileID);
+            }
+        }
+    }
+
+    private function notifyUserIfRequired($user, $fileID)
+    {
+        (new CreateNotificationInteractor(new EloquentNotificationRepository()))->execute(new CreateNotificationRequest([
+            'userID' => $user->id,
+            'entityID' => $fileID,
+            'type' => 'FILE_UPLOADED',
+        ]));
     }
 }

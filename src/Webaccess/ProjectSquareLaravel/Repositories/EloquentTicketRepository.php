@@ -2,7 +2,6 @@
 
 namespace Webaccess\ProjectSquareLaravel\Repositories;
 
-use Webaccess\ProjectSquare\Entities\Project as ProjectEntity;
 use Webaccess\ProjectSquare\Entities\Ticket as TicketEntity;
 use Webaccess\ProjectSquare\Entities\TicketState as TicketStateEntity;
 use Webaccess\ProjectSquareLaravel\Models\Ticket;
@@ -96,7 +95,7 @@ class EloquentTicketRepository implements TicketRepository
         $ticket->description = $ticketModel->description;
         $ticket->projectID = $ticketModel->project_id;
         $ticket->typeID = $ticketModel->type_id;
-        $ticket->lastTypeID = $ticketModel->last_type_id;
+        $ticket->lastStateID = $ticketModel->last_state_id;
         $ticket->createdAt = $ticketModel->updated_at;
         $ticket->updatedAt = $ticketModel->updated_at;
 
@@ -105,11 +104,42 @@ class EloquentTicketRepository implements TicketRepository
 
     public function getTicketWithStates($ticketID)
     {
-        return Ticket::with('states', 'states.author_user', 'states.allocated_user', 'states.status')->find($ticketID);
+        $ticketModel = Ticket::with('states', 'states.author_user', 'states.allocated_user', 'states.status')->find($ticketID);
+
+        $ticket = new TicketEntity();
+        $ticket->id = $ticketModel->id;
+        $ticket->title = $ticketModel->title;
+        $ticket->description = $ticketModel->description;
+        $ticket->projectID = $ticketModel->project_id;
+        $ticket->typeID = $ticketModel->type_id;
+        $ticket->lastStateID = $ticketModel->last_state_id;
+        $ticket->createdAt = $ticketModel->updated_at;
+        $ticket->updatedAt = $ticketModel->updated_at;
+        $ticket->states = [];
+
+        foreach ($ticketModel->states as $state) {
+            $ticketState = new TicketStateEntity();
+            $ticketState->id = $state->id;
+            $ticketState->statusID = $state->status_id;
+            $ticketState->allocatedUserID = $state->allocated_user_id;
+            $ticketState->authorUserID = $state->author_user_id;
+            $ticketState->comments = $state->comments;
+            $ticketState->dueDate = $state->due_date;
+            $ticketState->estimatedTime = $state->estimated_time;
+            $ticketState->priority = $state->priority;
+            $ticketState->ticketID = $state->ticket_id;
+            $ticketState->createdAt = $state->updated_at;
+            $ticketState->updatedAt = $state->updated_at;
+            $ticket->states[]= $ticketState;
+        }
+
+        return $ticket;
     }
 
-    public function getTicketStatesPaginatedList($ticket, $limit)
+    public function getTicketStatesPaginatedList($ticketID, $limit)
     {
+        $ticket = Ticket::with('states', 'states.author_user', 'states.allocated_user', 'states.status')->find($ticketID);
+
         return $ticket->states()->with('author_user', 'allocated_user', 'status')->paginate($limit);
     }
 
@@ -125,14 +155,14 @@ class EloquentTicketRepository implements TicketRepository
     public function isUserAllowedToSeeTicket($userID, $ticket)
     {
         $projectIDs = User::find($userID)->projects->pluck('id')->toArray();
-        $project = $this->projectRepository->getProject($ticket->project_id);
+        $project = $this->projectRepository->getProject($ticket->projectID);
 
         $clientUsersID = [];
         if (isset($project->client_id)) {
             $clientUsersID = User::where('client_id', '=', $project->client_id)->pluck('id')->toArray();
         }
 
-        return in_array($ticket->project_id, $projectIDs) || in_array($userID, $clientUsersID);
+        return in_array($ticket->projectID, $projectIDs) || in_array($userID, $clientUsersID);
     }
 
     public function persistTicket(TicketEntity $ticket)

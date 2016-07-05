@@ -5,11 +5,18 @@
 @import "vendor/_fullcalendar";
 
 @import "includes/_variables";
+@import "includes/_modals";
+@import "includes/_buttons";
 @import "includes/_typography";
 @import "includes/_table";
 @import "includes/_form";
 
-@import "_layout";
+@import "layout/_layout";
+@import "layout/_left_bar";
+@import "layout/_top_bar";
+@import "layout/_project_bar";
+@import "layout/_beta_form";
+
 @import "_utils";
 @import "_dashboard";
 @import "_project";
@@ -19,5 +26,4 @@
 @import "_calendar";
 @import "_planning";
 @import "_my";
-@import "_project_bar";
 @import "_files";

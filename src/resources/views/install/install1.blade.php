@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success pull-right">
+                        <button type="submit" class="btn valid pull-right">
                             {{ trans('projectsquare::generic.next') }} <i class="glyphicon glyphicon glyphicon-arrow-right"></i>
                         </button>
                     </div>

@@ -1,12 +1,113 @@
-.message-view-template {
+.message-view-template, .conversation-modal {
     overflow: hidden;
     
     .header {
         overflow: hidden;
         margin-bottom: 1.5rem;
     }
+
+    .conversation {
+    	
+        .messages {
+            overflow: hidden;
+
+        	.message {
+                position: relative;
+        		float: right;
+        		margin-bottom: 6.5rem;
+        		color: #606060;
+                background: #f9fbe8;
+                //border: 0.2rem solid #f4fac0;
+                border-right: 10px solid $touareg;
+                padding-left: 0;
+                padding-right: 0;
+
+                .message-content {
+                    text-align: justify;
+                    margin-bottom: 0 !important;
+                }
+
+        		.avatar {
+        			left: -2rem;
+        		} 
+
+                .border {
+                    border: 0.2rem solid #f4fac0;
+                    border-right: none;
+                    padding: 2rem 2.5rem 1rem 3.5rem;
+                }
+        	}
+
+        	.message-client {
+        		background: #f3f3f3;
+                //border: 0.2rem solid #ebebeb;
+        		float: left;
+                border-right: none;
+
+        		.avatar {
+        			right: -2rem;  
+                    left: auto;
+        		}
+
+                .border {
+                    border: 0.2rem solid #ebebeb;
+                    border-left: none;
+                    padding-left: 2.5rem;
+                    padding-right: 3.5rem;
+                }
+        	}
+
+        	.avatar {
+        		position: absolute;
+                top: 50%;
+                margin-top: -20px;
+        	}
+
+        	.date {
+                display: block;
+        		text-align: right;
+                font-size: 14px;
+                color: #a8a99f;
+                margin-top: 1rem;
+        	}
+        }
+    }
+
+    .new-message {
+        border: 1px solid #58585a;
+        padding: 3rem 3rem 1.5rem 3rem;
+
+        textarea {
+            box-shadow: none !important;
+            border: none !important;
+            padding: 0;
+        }
+
+        .border-new-message {
+            display: block;
+            margin-top: 3.5rem;
+        }
+
+        .img-new-message {
+            width: 35px;
+            height: 25px;
+            display: inline-block;
+            margin-top: 2rem;
+        }
+
+        .img-join {
+            background: url(../img/messages/join.png) no-repeat;
+        }
+
+        .img-emoji {
+            background: url(../img/messages/emoji.png) no-repeat;
+        }
+    }
 }
 
-.last-messages {
-	height: 432px;
+.messages-list-template {
+    .create-conversation {
+        display: block;
+        margin-top: 2rem
+    }
 }

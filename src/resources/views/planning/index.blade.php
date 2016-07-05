@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="col-md-2">
-                        <input class="btn btn-success" type="submit" value="{{ trans('projectsquare::generic.valid') }}" style="margin-top: 2.5rem"/>
+                        <input class="btn button" type="submit" value="{{ trans('projectsquare::generic.valid') }}" style="margin-top: 2.5rem"/>
                     </div>
                 </div>
             </form>
@@ -75,8 +75,8 @@
                             </div>
 
                             <input type="hidden" class="id" value="" />
-                            <input type="button" class="btn btn-success btn-valid button" value="{{ trans('projectsquare::generic.valid') }}">
-                            <input type="button" class="btn btn-default btn-close button" value="{{ trans('projectsquare::generic.close') }}">
+                            <input type="button" class="btn valid btn-valid" value="{{ trans('projectsquare::generic.valid') }}">
+                            <input type="button" class="btn btn-close button" value="{{ trans('projectsquare::generic.close') }}">
                         </div>
                     </form>
                 </div>

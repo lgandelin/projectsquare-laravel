@@ -27,6 +27,8 @@ class EloquentClientRepository implements ClientRepository
         $client = new Client();
         $client->save();
         self::updateClient($client->id, $name, $address);
+
+        return $client->id;
     }
 
     public static function updateClient($clientID, $name, $address)

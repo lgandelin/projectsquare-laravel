@@ -1,0 +1,21 @@
+.modal-content {
+    border-radius: 0 !important;
+}
+
+.modal-lg {
+    min-width: 900px;
+    width: 80%;
+    max-width: 1600px;
+
+    .modal-header {
+        padding: 3rem;
+
+        h4 {
+            font-size: 2rem;
+        }
+    }
+
+    .modal-body {
+        padding: 3rem;
+    }
+}

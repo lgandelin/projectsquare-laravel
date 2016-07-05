@@ -30,8 +30,8 @@ class TicketUpdatedSlackNotification
             $modificationMade = true;
         }
 
-        if ($ticket->states[0]->due_date != $ticket->states[1]->due_date) {
-            $lines[] = 'Echéance : *'.$ticket->states[1]->due_date.'* => *'.$ticket->states[0]->due_date.'*';
+        if ($ticket->states[0]->dueDate != $ticket->states[1]->dueDate) {
+            $lines[] = 'Echéance : *'.$ticket->states[1]->dueDate.'* => *'.$ticket->states[0]->dueDate.'*';
             $modificationMade = true;
         }
 
@@ -42,13 +42,13 @@ class TicketUpdatedSlackNotification
 
         $lines[] = route('tickets_edit', ['id' => $ticket->id]);
 
-        $settingSlackChannel = app()->make('SettingManager')->getSettingByKeyAndProject('SLACK_CHANNEL', $ticket->project->id);
+        $settingSlackChannel = app()->make('SettingManager')->getSettingByKeyAndProject('SLACK_CHANNEL', $ticket->projectID);
 
         if ($modificationMade) {
             SlackTool::send(
                 'Modification du ticket : '.$ticket->title,
                 implode("\n", $lines),
-                (isset($ticket->last_state)) ? $ticket->last_state->author_user->complete_name : '',
+                (isset($ticket->states[0]) && isset($ticket->states[0]->author_user)) ? $ticket->states[0]->author_user->complete_name : '',
                 route('tickets_edit', ['id' => $ticket->id]),
                 ($settingSlackChannel) ? $settingSlackChannel->value : '',
                 '#36a64f'

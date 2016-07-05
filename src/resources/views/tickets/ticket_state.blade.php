@@ -7,7 +7,7 @@
                 <select class="form-control" name="status_id">
                     <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
                     @foreach ($ticket_status as $ticket_status)
-                    <option value="{{ $ticket_status->id }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->status_id == $ticket_status->id)selected="selected"@endif>{{ $ticket_status->name }}</option>
+                    <option value="{{ $ticket_status->id }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->statusID == $ticket_status->id)selected="selected"@endif>{{ $ticket_status->name }}</option>
                     @endforeach
                 </select>
                 @else
@@ -22,7 +22,7 @@
                     <select class="form-control" name="allocated_user_id">
                         <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
                         @foreach ($users as $user)
-                        <option value="{{ $user->id }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->allocated_user_id == $user->id)selected="selected"@endif>{{ $user->complete_name }}</option>
+                        <option value="{{ $user->id }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->allocatedUserID == $user->id)selected="selected"@endif>{{ $user->complete_name }}</option>
                         @endforeach
                     </select>
                     @else
@@ -30,7 +30,7 @@
                     @endif
                 </div>
             @else
-                <input type="hidden" name="allocated_user_id" value="{{ $ticket->states[0]->allocated_user_id }}">
+                <input type="hidden" name="allocated_user_id" value="{{ $ticket->states[0]->allocatedUserID }}">
             @endif
 
             <div class="form-group">
@@ -39,7 +39,7 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-success valid">
+                <button type="submit" class="btn valid">
                     <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                 </button>
                 <a href="{{ route('tickets_index') }}" class="btn back"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.back') }}</a>
@@ -49,7 +49,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="title">{{ trans('projectsquare::tickets.due_date') }}</label>
-                <input class="form-control datepicker" type="text" placeholder="{{ trans('projectsquare::tickets.due_date_placeholder') }}" name="due_date" @if (isset($ticket->states[0]->due_date))value="{{ $ticket->states[0]->due_date }}"@endif autocomplete="off" />
+                <input class="form-control datepicker" type="text" placeholder="{{ trans('projectsquare::tickets.due_date_placeholder') }}" name="due_date" @if (isset($ticket->states[0]->dueDate))value="{{ $ticket->states[0]->dueDate }}"@endif autocomplete="off" />
             </div>
 
             <div class="form-group">
@@ -64,7 +64,7 @@
 
             <div class="form-group">
                 <label for="estimated_time">{{ trans('projectsquare::tickets.estimated_time') }}</label>
-                <input class="form-control" type="time" name="estimated_time" placeholder="{{ trans('projectsquare::tickets.estimated_time') }}" value="@if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->estimated_time){{ $ticket->states[0]->estimated_time }}@endif" />
+                <input @if ($is_client) disabled @endif class="form-control" type="time" name="estimated_time" placeholder="{{ trans('projectsquare::tickets.estimated_time') }}" value="@if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->estimatedTime){{ $ticket->states[0]->estimatedTime }}@endif" />
             </div>
         </div>
 

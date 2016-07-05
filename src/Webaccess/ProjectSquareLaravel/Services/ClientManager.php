@@ -28,7 +28,7 @@ class ClientManager
 
     public static function createClient($name, $address)
     {
-        EloquentClientRepository::createClient($name, $address);
+        return EloquentClientRepository::createClient($name, $address);
     }
 
     public static function updateClient($clientID, $name, $address)

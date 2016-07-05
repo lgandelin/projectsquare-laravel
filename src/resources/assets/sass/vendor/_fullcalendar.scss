@@ -1126,10 +1126,13 @@ be a descendant of the grid when it is being dragged.
 	border-bottom-color: transparent;
 }
 
-.fc-event .delete {
+.fc-event .delete-event {
 	position: absolute;
 	top: 7px;
 	right: 8px;
-	font-weight: bold;
 	z-index: 5;
+}
+
+.fc-event .delete-event:hover {
+	opacity: 0.8;
 }

@@ -7,14 +7,9 @@ use Webaccess\ProjectSquare\Repositories\AlertRepository;
 
 class EloquentAlertRepository implements AlertRepository
 {
-    public static function getLastAlerts($limit)
+    public static function getAlertsPaginatedList($limit=null)
     {
-        $alerts = Alert::orderBy('updated_at', 'DESC')->limit($limit)->get();
-        foreach ($alerts as $alert) {
-            $alert->variables = json_decode($alert->variables);
-        }
-
-        return $alerts;
+        return Alert::orderBy('updated_at', 'DESC')->paginate($limit);
     }
 
     public static function createAlert($type, $variables, $projectID)
