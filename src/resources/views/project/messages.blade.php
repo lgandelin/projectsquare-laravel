@@ -34,7 +34,14 @@
                         <tr>
                             <td>{{ $conversation->id }}</td>
                             <td>{{ date('d/m/Y H:i', strtotime($conversation->created_at)) }}</td>
-                            <td>@if (isset($conversation->messages[0])){{ $conversation->messages[0]->user->complete_name }}@endif</td>
+                             <td>
+                                @include('projectsquare::includes.avatar', [
+                                    'id' => $conversation->messages[sizeof($conversation->messages) - 1]->user->id,
+                                    'name' => $conversation->messages[sizeof($conversation->messages) - 1]->user->complete_name
+                                ])
+
+                            </td>
+
                             <td>{{ $conversation->title }}</td>
                             <td>@if (isset($conversation->messages[count($conversation->messages) - 1])){{ $conversation->messages[count($conversation->messages) - 1]->content }}@endif</td>
                             <td align="right">
@@ -46,7 +53,7 @@
             </table>
 
             @if ($is_client)
-                <button class="btn btn-sm btn-success create-conversation"><span class="glyphicon glyphicon-plus"></span> {{ trans('projectsquare::messages.add_conversation') }}</button>
+                <button class="btn valid create-conversation"><span class="glyphicon glyphicon-plus"></span> {{ trans('projectsquare::messages.add_conversation') }}</button>
             @endif
         </div>
     </div>
