@@ -21,7 +21,13 @@
                         @foreach ($notifications as $notification)
                             <div class="notification" data-id="{{ $notification->id }}">
                                 <span class="date">{{ $notification->time }}</span>
-                                <span class="badge badge-primary type">{{ $notification->type }}</span>
+                                <span class="badge badge-primary type">
+                                    @if ($notification->type == 'MESSAGE_CREATED')
+                                        Nouveau message
+                                    @elseif ($notification->type == 'EVENT_CREATED')
+                                        Nouvel évènement
+                                    @endif
+                                </span>
                                 <span class="description">
                                     @if ($notification->type == 'MESSAGE_CREATED')
                                         Nouveau message créé par : <strong>{{ $notification->author_name }}</strong>
@@ -29,7 +35,7 @@
                                         Nouvel évènement créé : <strong>{{ $notification->event_name }}</strong>
                                     @endif
                                     <br/>
-                                    <a class="btn btn-sm btn-primary" href="{{ $notification->link }}"><span class="glyphicon glyphicon-eye-open"></span>voir</a>
+                                    <a class="btn btn-sm button" href="{{ $notification->link }}"><span class="glyphicon glyphicon-eye-open"></span>voir</a>
                                     <span class="glyphicon glyphicon-remove pull-right status not-read"></span>
                                 </span>
                             </div>
