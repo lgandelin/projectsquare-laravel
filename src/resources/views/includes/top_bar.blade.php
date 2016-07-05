@@ -26,6 +26,10 @@
                                         Nouveau message
                                     @elseif ($notification->type == 'EVENT_CREATED')
                                         Nouvel évènement
+                                    @elseif ($notification->type == 'TICKET_CREATED')
+                                        Nouveau ticket
+                                    @elseif ($notification->type == 'FILE_UPLOADED')
+                                        Nouveau fichier
                                     @endif
                                 </span>
                                 <span class="description">
@@ -33,9 +37,15 @@
                                         Nouveau message créé par : <strong>{{ $notification->author_name }}</strong>
                                     @elseif ($notification->type == 'EVENT_CREATED')
                                         Nouvel évènement créé : <strong>{{ $notification->event_name }}</strong>
+                                    @elseif ($notification->type == 'TICKET_CREATED')
+                                        Nouveau ticket créé : <strong>{{ $notification->ticket_title }}</strong>
+                                    @elseif ($notification->type == 'FILE_UPLOADED')
+                                        Nouveau fichier uploadé : <strong>{{ $notification->file_name }}</strong>
                                     @endif
                                     <br/>
-                                    <a class="btn btn-sm button" href="{{ $notification->link }}"><span class="glyphicon glyphicon-eye-open"></span>voir</a>
+                                    @if (isset($notification->link))
+                                        <a class="btn btn-sm button" href="{{ $notification->link }}"><span class="glyphicon glyphicon-eye-open"></span>voir</a>
+                                    @endif
                                     <span class="glyphicon glyphicon-remove pull-right status not-read"></span>
                                 </span>
                             </div>

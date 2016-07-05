@@ -232,7 +232,9 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         App::bind('CreateTicketInteractor', function () {
             return new CreateTicketInteractor(
                 new EloquentTicketRepository(),
-                new EloquentProjectRepository()
+                new EloquentProjectRepository(),
+                new EloquentUserRepository(),
+                new EloquentNotificationRepository()
             );
         });
 
