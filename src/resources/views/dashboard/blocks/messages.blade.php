@@ -23,7 +23,7 @@
 
             <tbody>
             @foreach ($conversations as $conversation)
-                <tr class="conversation" id="conversation-{{ $conversation->id }}">
+                <tr class="conversation" id="conversation-{{ $conversation->id }}" data-id="{{ $conversation->id }}">
 
                     <td style="border-left: 10px solid {{ $conversation->project->color }}" width="50%">
                         <!--{{ $conversation->project->client->name }}{{ $conversation->title }}</strong><br></td>-->
@@ -69,3 +69,7 @@
         </table>
     </div>
 </div>
+
+@foreach ($conversations as $conversation)
+    @include('projectsquare::dashboard.conversation-modal', ['conversation' => $conversation])
+@endforeach

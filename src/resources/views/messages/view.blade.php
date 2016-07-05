@@ -55,10 +55,10 @@
                     </div>
                 </div>
             </div>
-
-          
         </div>
     </div>
 
     @include('projectsquare::dashboard.new-message')
+
+    <script src="{{ asset('js/messages.js') }}"></script>
 @endsection

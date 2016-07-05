@@ -108,6 +108,10 @@
                     padding: 1rem;
                 }
             }
+
+            .message:last-child {
+                margin-bottom: 0;
+            }
         }
         
         .reply-message:hover {
@@ -122,6 +126,23 @@
 
         .new-message {
             margin-bottom: 0;
+        }
+    }
+
+    .conversation-modal {
+        .conversation {
+            overflow: hidden;
+
+            .messages {
+                overflow-y: auto;
+                max-height: 600px;
+                padding-right: 3rem;
+                margin-bottom: 5rem;
+
+                textarea {
+                    padding: 0;
+                }
+            }
         }
     }
 

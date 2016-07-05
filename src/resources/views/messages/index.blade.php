@@ -43,8 +43,7 @@
             <div class="text-center">
                 {!! $conversations->render() !!}
             </div>
-
-
         </div>
     </div>
+    <script src="{{ asset('js/messages.js') }}"></script>
 @endsection

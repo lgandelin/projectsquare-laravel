@@ -24,34 +24,25 @@ $(document).ready(function() {
 
     $('.block-content').removeClass('loading');
 
-    //DASHBOARD - REPLY TO MESSAGE
+    //DASHBOARD - REPLY MESSAGE
     $('.conversation').on('click', '.reply-message', function() {
-        var conversation = $(this).closest('.conversation');
-        var conversation_reply = $('#' + conversation.attr('id') + '-reply');
-        conversation_reply.show().find('.new-message');
-        conversation_reply.find('.new-message textarea').focus();
-
-        conversation.find('.submit').hide();
+        var conversation_id = $(this).closest('.conversation').attr('data-id');
+        $('#conversation-' + conversation_id + '-modal').modal('show');
     });
 
     //DASHBOARD - CANCEL MESSAGE
-    $('.conversation-reply').on('click', '.cancel-message', function() {
-        var conversation_reply = $(this).closest('.conversation-reply');
-        var conversation = $('#conversation-' + conversation_reply.attr('data-id'));
-        conversation_reply.find('.new-message textarea').val('');
-        conversation_reply.hide();
-
-        conversation.find('.submit').show();
+    $('.conversation').on('click', '.cancel-message', function() {
+        var conversation = $(this).closest('.conversation');
+        var conversation_id = $(this).data('id');
+        $('#conversation-' + conversation_id + '-modal').modal('hide');
     });
 
     //DASHBOARD - VALID MESSAGE
-    $('.conversation-reply').on('click', '.valid-message', function() {
-        var conversation_reply = $(this).closest('.conversation-reply');
-        var conversation = $('#conversation-' + conversation_reply.attr('data-id'));
-        var message = conversation_reply.find('.new-message textarea').val();
-
+    $('.conversation').on('click', '.valid-message', function() {
+        var conversation = $(this).closest('.conversation');
+        var message = conversation.find('.new-message textarea').val();
         var data = {
-            conversation_id: conversation_reply.attr('data-id'),
+            conversation_id: $(this).data('id'),
             message: message,
             _token: $('#csrf_token').val()
         };
@@ -67,15 +58,7 @@ $(document).ready(function() {
             url: route_message_reply,
             data: data,
             success: function(data) {
-                conversation_reply.find('.new-message textarea').val('');
-                conversation_reply.hide();
-
-                var html = loadTemplate('message-template', data.message);
-                $(conversation_reply).find('.message-inserted').append(html);
-
-                //conversation.find('.count .number').text(data.message.count);
-
-                conversation.find('.submit').show();
+                window.location.reload();
             },
             error: function(data) {
                 data = $.parseJSON(data.responseText);

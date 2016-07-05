@@ -7854,6 +7854,20 @@ be a descendant of the grid when it is being dragged.
 .fc-event .delete-event:hover {
   opacity: 0.8; }
 
+.modal-content {
+  border-radius: 0 !important; }
+
+.modal-lg {
+  min-width: 900px;
+  width: 80%;
+  max-width: 1600px; }
+  .modal-lg .modal-header {
+    padding: 3rem; }
+    .modal-lg .modal-header h4 {
+      font-size: 2rem; }
+  .modal-lg .modal-body {
+    padding: 3rem; }
+
 .valid {
   border-radius: 0px;
   border: 1px solid #c8dc1e;
@@ -8384,6 +8398,8 @@ body {
         margin-bottom: 1rem;
         background: white;
         padding: 1rem; }
+    .dashboard-content .last-messages .conversation .message:last-child {
+      margin-bottom: 0; }
     .dashboard-content .last-messages .reply-message:hover {
       background: #c8dc1e; }
     .dashboard-content .last-messages .submit {
@@ -8392,6 +8408,15 @@ body {
       overflow: hidden; }
     .dashboard-content .last-messages .new-message {
       margin-bottom: 0; }
+  .dashboard-content .conversation-modal .conversation {
+    overflow: hidden; }
+    .dashboard-content .conversation-modal .conversation .messages {
+      overflow-y: auto;
+      max-height: 600px;
+      padding-right: 3rem;
+      margin-bottom: 5rem; }
+      .dashboard-content .conversation-modal .conversation .messages textarea {
+        padding: 0; }
   .dashboard-content .loading {
     background: rgba(255, 255, 255, 0.75) url("../img/loading.gif") center center no-repeat; }
   .dashboard-content .planning .fc-body > tr > .fc-widget-content {
@@ -8505,14 +8530,14 @@ body {
     .tasks .task .btn-delete-task {
       cursor: pointer; }
 
-.message-view-template {
+.message-view-template, .conversation-modal {
   overflow: hidden; }
-  .message-view-template .header {
+  .message-view-template .header, .conversation-modal .header {
     overflow: hidden;
     margin-bottom: 1.5rem; }
-  .message-view-template .conversation .messages {
+  .message-view-template .conversation .messages, .conversation-modal .conversation .messages {
     overflow: hidden; }
-    .message-view-template .conversation .messages .message {
+    .message-view-template .conversation .messages .message, .conversation-modal .conversation .messages .message {
       position: relative;
       float: right;
       margin-bottom: 6.5rem;
@@ -8521,54 +8546,55 @@ body {
       border-right: 10px solid #096a85;
       padding-left: 0;
       padding-right: 0; }
-      .message-view-template .conversation .messages .message .message-content {
+      .message-view-template .conversation .messages .message .message-content, .conversation-modal .conversation .messages .message .message-content {
         text-align: justify;
         margin-bottom: 0 !important; }
-      .message-view-template .conversation .messages .message .avatar {
+      .message-view-template .conversation .messages .message .avatar, .conversation-modal .conversation .messages .message .avatar {
         left: -2rem; }
-      .message-view-template .conversation .messages .message .border {
+      .message-view-template .conversation .messages .message .border, .conversation-modal .conversation .messages .message .border {
         border: 0.2rem solid #f4fac0;
         border-right: none;
         padding: 2rem 2.5rem 1rem 3.5rem; }
-    .message-view-template .conversation .messages .message-client {
+    .message-view-template .conversation .messages .message-client, .conversation-modal .conversation .messages .message-client {
       background: #f3f3f3;
       float: left;
       border-right: none; }
-      .message-view-template .conversation .messages .message-client .avatar {
+      .message-view-template .conversation .messages .message-client .avatar, .conversation-modal .conversation .messages .message-client .avatar {
         right: -2rem;
         left: auto; }
-      .message-view-template .conversation .messages .message-client .border {
+      .message-view-template .conversation .messages .message-client .border, .conversation-modal .conversation .messages .message-client .border {
         border: 0.2rem solid #ebebeb;
         border-left: none;
         padding-left: 2.5rem;
         padding-right: 3.5rem; }
-    .message-view-template .conversation .messages .avatar {
+    .message-view-template .conversation .messages .avatar, .conversation-modal .conversation .messages .avatar {
       position: absolute;
       top: 50%;
       margin-top: -20px; }
-    .message-view-template .conversation .messages .date {
+    .message-view-template .conversation .messages .date, .conversation-modal .conversation .messages .date {
       display: block;
       text-align: right;
       font-size: 14px;
       color: #a8a99f;
       margin-top: 1rem; }
-  .message-view-template .new-message {
+  .message-view-template .new-message, .conversation-modal .new-message {
     border: 1px solid #58585a;
     padding: 3rem 3rem 1.5rem 3rem; }
-    .message-view-template .new-message textarea {
+    .message-view-template .new-message textarea, .conversation-modal .new-message textarea {
       box-shadow: none !important;
-      border: none !important; }
-    .message-view-template .new-message .border-new-message {
+      border: none !important;
+      padding: 0; }
+    .message-view-template .new-message .border-new-message, .conversation-modal .new-message .border-new-message {
       display: block;
       margin-top: 3.5rem; }
-    .message-view-template .new-message .img-new-message {
+    .message-view-template .new-message .img-new-message, .conversation-modal .new-message .img-new-message {
       width: 35px;
       height: 25px;
       display: inline-block;
       margin-top: 2rem; }
-    .message-view-template .new-message .img-join {
+    .message-view-template .new-message .img-join, .conversation-modal .new-message .img-join {
       background: url(../img/messages/join.png) no-repeat; }
-    .message-view-template .new-message .img-emoji {
+    .message-view-template .new-message .img-emoji, .conversation-modal .new-message .img-emoji {
       background: url(../img/messages/emoji.png) no-repeat; }
 
 .messages-list-template .create-conversation {
