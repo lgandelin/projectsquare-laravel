@@ -8545,6 +8545,15 @@ body {
     .message-view-template .new-message .border-new-message {
       display: block;
       margin-top: 3.5rem; }
+    .message-view-template .new-message .img-new-message {
+      width: 35px;
+      height: 25px;
+      display: inline-block;
+      margin-top: 2rem; }
+    .message-view-template .new-message .img-join {
+      background: url(../img/messages/join.png) no-repeat; }
+    .message-view-template .new-message .img-emoji {
+      background: url(../img/messages/emoji.png) no-repeat; }
 
 .last-messages {
   height: 432px; }

@@ -45,6 +45,8 @@
             <div class=" col-lg-7 col-md-7 col-sm-12 col-xs-12 pull-right message new-message" style="display:none">
                 <textarea class="form-control" placeholder="Votre message"></textarea>
                 <span class="border-new-message" style="border: 1px solid{{ $conversation->project->color }}"></span>
+                <!--<a class="img-new-message img-join" href=""></a>
+                <a class="img-new-message img-emoji" href=""></a>-->
                 <button class="btn button pull-right cancel-message" data-id="{{ $conversation->id }}" style="margin-top:1.5rem"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.cancel') }}</button>
                 <button class="btn valid pull-right valid-message" data-id="{{ $conversation->id }}" style="margin-top:1.5rem; margin-right: 1rem"><span class="glyphicon glyphicon-ok"></span> {{ trans('projectsquare::generic.valid') }}</button>
             </div>

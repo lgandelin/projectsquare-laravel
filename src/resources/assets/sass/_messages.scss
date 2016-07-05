@@ -85,6 +85,21 @@
             display: block;
             margin-top: 3.5rem;
         }
+
+        .img-new-message {
+            width: 35px;
+            height: 25px;
+            display: inline-block;
+            margin-top: 2rem;
+        }
+
+        .img-join {
+            background: url(../img/messages/join.png) no-repeat;
+        }
+
+        .img-emoji {
+            background: url(../img/messages/emoji.png) no-repeat;
+        }
     }
 }
 
