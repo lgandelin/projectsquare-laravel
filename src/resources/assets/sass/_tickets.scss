@@ -37,23 +37,3 @@
 .label {
     font-weight: 400;
 }
-
-.last-tickets {
-    min-height: 432px;
-
-    .table {
-        thead {
-            th:last-child {
-                padding-right: 1rem;
-            }
-        }
-
-        .priorities {
-            padding: 1.5rem 3rem;
-        }
-
-        .action {
-            text-align: right;
-        }
-    }
-}

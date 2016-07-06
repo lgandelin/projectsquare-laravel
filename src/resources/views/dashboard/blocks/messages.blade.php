@@ -2,10 +2,11 @@
     <div class="block-content table-responsive">
         <h3>{{ trans('projectsquare::dashboard.messages') }}</h3>
 
-        <a href="{{ route('messages_index') }}" class="all pull-right"></a>
-
         @if ($is_client)
+            <a href="{{ route('project_messages', ['id' => $current_project->id]) }}" class="all pull-right"></a>
             <button class="btn add create-conversation pull-right"></button>
+        @else
+            <a href="{{ route('messages_index') }}" class="all pull-right"></a>
         @endif
 
         <table class="table table-striped">

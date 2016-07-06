@@ -15,7 +15,7 @@
 .block-content {
     display: block;
     width: 100%;
-    min-height: 250px;
+    min-height: 212px;
     padding: 1rem 2rem;
 
     background: #fefefe;
@@ -67,6 +67,22 @@
 
             tr:last-child {
                 border-bottom: none;
+            }
+        }
+
+        .table {
+            thead {
+                th:last-child {
+                    padding-right: 1rem;
+                }
+            }
+
+            .priorities {
+                padding: 1.5rem 3rem;
+            }
+
+            .action {
+                text-align: right;
             }
         }
     }

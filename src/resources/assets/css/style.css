@@ -8357,7 +8357,7 @@ body {
 .block-content {
   display: block;
   width: 100%;
-  min-height: 250px;
+  min-height: 212px;
   padding: 1rem 2rem;
   background: #fefefe; }
 
@@ -8386,6 +8386,12 @@ body {
     border-bottom: 1px solid #daddde; }
   .dashboard-content .last-tickets table tr:last-child {
     border-bottom: none; }
+  .dashboard-content .last-tickets .table thead th:last-child {
+    padding-right: 1rem; }
+  .dashboard-content .last-tickets .table .priorities {
+    padding: 1.5rem 3rem; }
+  .dashboard-content .last-tickets .table .action {
+    text-align: right; }
   .dashboard-content .last-messages {
     overflow: hidden; }
     .dashboard-content .last-messages .count {
@@ -8514,15 +8520,6 @@ body {
 
 .label {
   font-weight: 400; }
-
-.last-tickets {
-  min-height: 432px; }
-  .last-tickets .table thead th:last-child {
-    padding-right: 1rem; }
-  .last-tickets .table .priorities {
-    padding: 1.5rem 3rem; }
-  .last-tickets .table .action {
-    text-align: right; }
 
 .tasks {
   list-style: none;
