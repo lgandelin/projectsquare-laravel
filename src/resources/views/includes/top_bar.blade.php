@@ -8,21 +8,27 @@
 
             <li class="todo">
                  <a href="#" class="tasks-link">
-                    <span class="badge @if (sizeof($tasks) > 0) new-notifications @endif">{{ sizeof($tasks) }}</span></a>
+                    <span class="badge tasks-number">{{ $tasks_count }}</span></a>
                  </a>
 
                 <div class="tasks" style="display: none;">
-                     <ul>
+
+                    <span class="title">
+                            Liste de tâches
+                    </span>
+
+                    <span class="no-tasks" @if (sizeof($tasks) == 0)style="display: block"@else style="display:none"@endif>Aucune tâche en cours !</span>
+
+                    <ul>
                         @foreach ($tasks as $task)
-                            <li class="task @if($task->status == true)task-status-completed @endif" data-id="{{ $task->id }}" data-status="{{ $task->status }}"><span class="name">{{ $task->name }}</span><input type="hidden" name="id" value="{{ $task->id }}" /><span class="glyphicon glyphicon-remove btn-delete-task"></span>
-                            </li>
+                            <li class="task @if($task->status == true)task-status-completed @endif" data-id="{{ $task->id }}" data-status="{{ $task->status }}"><span class="name">{{ $task->name }}</span><input type="hidden" name="id" value="{{ $task->id }}" /><span class="glyphicon glyphicon-remove btn-delete-task"></span></li>
                         @endforeach
                     </ul>
 
                     <div class="form-inline">
                         <div class="form-group">
-                            <input type="text" class="form-control new-task"  name="name" id="name" required autocomplete="off" />
-                            <input type="submit" class="btn add btn-valid-create-task" value="">
+                            <input type="text" class="form-control new-task" placeholder="nouvelle tâche" name="name" id="name" required autocomplete="off" />
+                            <button type="submit" class="btn add btn-valid-create-task" />
                         </div>
                     </div>
                 </div>
@@ -32,7 +38,6 @@
                 <a href="#" class="notifications-link"> <span class="badge @if (sizeof($notifications) > 0) new-notifications @endif">{{ sizeof($notifications) }}</span></a>
 
                 <div class="notifications" style="display: none;">
-                    <span class="glyphicon glyphicon-remove close"></span>
                     <span class="title">
                         @if (sizeof($notifications) > 0)
                             Nouvelles notifications

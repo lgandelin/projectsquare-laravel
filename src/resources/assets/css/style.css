@@ -8194,7 +8194,7 @@ body {
         .top-bar-container .top-bar .top-right-menu li .notifications {
           position: absolute;
           background: white;
-          border: 2px solid #ccc;
+          border: 1px solid #a0a6a9;
           padding: 1.5rem;
           z-index: 999;
           top: 7rem;
@@ -8202,13 +8202,6 @@ body {
           width: 35rem;
           overflow-y: auto;
           max-height: 467px; }
-          .top-bar-container .top-bar .top-right-menu li .notifications .close {
-            position: absolute;
-            right: 1rem;
-            top: 1rem;
-            font-size: 1.5rem;
-            color: #333;
-            opacity: 0.75; }
           .top-bar-container .top-bar .top-right-menu li .notifications .title {
             font-size: 1.75rem;
             font-weight: bold;
@@ -8253,13 +8246,17 @@ body {
         .top-bar-container .top-bar .top-right-menu li .tasks {
           width: 268px;
           position: absolute;
-          top: 20%;
-          top: 70px;
-          left: -62px;
+          top: 56px;
+          left: -100px;
           z-index: 999;
           background: white;
           border: 1px solid #a0a6a9;
-          padding: 2.5rem; }
+          padding: 1.5rem; }
+          .top-bar-container .top-bar .top-right-menu li .tasks .title {
+            font-size: 1.75rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 1rem; }
           .top-bar-container .top-bar .top-right-menu li .tasks ul {
             padding: 0px;
             margin-bottom: 2rem; }
@@ -8270,9 +8267,9 @@ body {
             display: block;
             padding-left: 2rem;
             cursor: pointer;
-            background: url(../img/top-bar/task-uncheck.png) no-repeat left 3px; }
+            background: url(../img/top-bar/task-uncheck.png) no-repeat left 5px; }
             .top-bar-container .top-bar .top-right-menu li .tasks .task .name {
-              width: 156px;
+              width: 180px;
               display: inline-block; }
             .top-bar-container .top-bar .top-right-menu li .tasks .task .name:hover {
               opacity: 0.8; }
@@ -8282,15 +8279,22 @@ body {
               display: inline-block;
               vertical-align: middle;
               white-space: normal; }
+            .top-bar-container .top-bar .top-right-menu li .tasks .task .btn-delete-task:hover {
+              color: #c8dc1e; }
           .top-bar-container .top-bar .top-right-menu li .tasks .task:hover, .top-bar-container .top-bar .top-right-menu li .tasks .task-status-completed {
             margin-right: 0; }
+          .top-bar-container .top-bar .top-right-menu li .tasks .no-tasks {
+            color: #a0a6a9; }
           .top-bar-container .top-bar .top-right-menu li .tasks .task-status-completed {
-            background: url(../img/top-bar/task-check2.png) no-repeat left 0px; }
+            background: url(../img/top-bar/task-check2.png) no-repeat left 2px; }
             .top-bar-container .top-bar .top-right-menu li .tasks .task-status-completed .name {
               text-decoration: line-through; }
           .top-bar-container .top-bar .top-right-menu li .tasks .form-inline .new-task {
-            height: 24px;
+            width: 178px;
+            height: 28px;
             margin-right: 1.5rem; }
+          .top-bar-container .top-bar .top-right-menu li .tasks .form-inline .add {
+            margin-right: 0; }
           .top-bar-container .top-bar .top-right-menu li .tasks .form-inline .valid {
             padding: 0.5rem;
             height: 30px; }

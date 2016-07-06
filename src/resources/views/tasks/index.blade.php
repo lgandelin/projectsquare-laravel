@@ -36,8 +36,6 @@
             </div>
         </div>
 
-        <script src="{{ asset('js/tasks.js') }}"></script>
-
         @include('projectsquare::templates.new-task')
     </div>
 
