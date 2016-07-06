@@ -11,6 +11,25 @@
                 <h1>Messages</h1>
             </div>
 
+            <form method="get">
+                <div class="row">
+                    <div class="form-group col-md-2">
+                        <label for="filter_project">{{ trans('projectsquare::tickets.filters.by_project') }}</label>
+                        <select class="form-control" name="filter_project" id="filter_project">
+                            <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+                            @foreach ($projects as $project)
+                                <option value="{{ $project->id }}" @if ($filters['project'] == $project->id)selected="selected" @endif>{{ $project->client->name }} - {{ $project->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <input class="btn button" type="submit" value="{{ trans('projectsquare::generic.valid') }}" style="margin-top: 2.5rem"/>
+                    </div>
+                </div>
+            </form>
+            <hr/>
+
             <table class="table table-striped table-responsive">
                 <thead>
                     <tr>

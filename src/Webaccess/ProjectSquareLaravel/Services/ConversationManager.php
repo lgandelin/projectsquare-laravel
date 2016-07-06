@@ -31,7 +31,7 @@ class ConversationManager
         return $conversation;
     }
 
-    public function getConversationsPaginatedList($userID, $limit)
+    public function getConversationsPaginatedList($userID, $limit, $projectID = null)
     {
         //Ressource projects
         $projectIDs = User::find($userID)->projects->pluck('id')->toArray();
@@ -41,6 +41,11 @@ class ConversationManager
         if (isset($user->client_id)) {
             $project = Project::where('client_id', '=', $user->client_id)->first();
             $projectIDs[]= $project->id;
+        }
+
+        //Filter by project
+        if ($projectID != null) {
+            $projectIDs = [$projectID];
         }
 
         return $this->repository->getConversationsPaginatedList($projectIDs, $limit);
