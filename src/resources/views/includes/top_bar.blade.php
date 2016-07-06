@@ -14,10 +14,7 @@
                 <div class="tasks" style="display: none;">
                      <ul>
                         @foreach ($tasks as $task)
-                            <li class="task" data-id="{{ $task->id }}" data-status="{{ $task->status }}">
-                                <span class="name @if($task->status == true)task-status-completed @endif"> {{ $task->name }}</span>
-                                <input type="hidden" name="id" value="{{ $task->id }}" />
-                                <span class="glyphicon glyphicon-remove btn-delete-task"></span>
+                            <li class="task @if($task->status == true)task-status-completed @endif" data-id="{{ $task->id }}" data-status="{{ $task->status }}"><span class="name">{{ $task->name }}</span><input type="hidden" name="id" value="{{ $task->id }}" /><span class="glyphicon glyphicon-remove btn-delete-task"></span>
                             </li>
                         @endforeach
                     </ul>
@@ -25,7 +22,7 @@
                     <div class="form-inline">
                         <div class="form-group">
                             <input type="text" class="form-control new-task"  name="name" id="name" required autocomplete="off" />
-                            <input type="submit" class="btn valid btn-valid-create-task" value="{{ trans('projectsquare::generic.add') }}" />
+                            <input type="submit" class="btn add btn-valid-create-task" value="">
                         </div>
                     </div>
                 </div>
@@ -98,4 +95,3 @@
 
 @include ('projectsquare::templates.new-notification')
 @include('projectsquare::templates.new-task')
-<script src="{{ asset('js/tasks.js') }}"></script>

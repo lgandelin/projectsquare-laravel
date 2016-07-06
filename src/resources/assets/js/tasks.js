@@ -47,7 +47,7 @@ $(document).ready(function() {
             url: route_task_update,
             data: data,
             success: function(data) {
-                $('.task[data-id="' + data.task.id + '"] .name').toggleClass('task-status-completed');
+                $('.task[data-id="' + data.task.id + '"]').toggleClass('task-status-completed');
                 $('.task[data-id="' + data.task.id + '"]').attr('data-status', (data.task.status == true) ? 1 : 0);
             },
             error: function(data) {

@@ -149,6 +149,7 @@
                 .tasks {
                     width: 268px;
                     position: absolute;
+
                     top: 20%;
                     top: 70px;
                     left: -62px;
@@ -157,10 +158,48 @@
                     border: 1px solid #a0a6a9;
                     padding: 2.5rem;
 
+                    ul {
+                        padding: 0px;
+                        margin-bottom: 2rem;
+                    }
+
                     .task {
+                        margin-bottom: 0.5rem;
+                        overflow: hidden; 
+                        margin-right: 0px;
+                        display: block;         
+                        padding-left: 2rem;
+                        cursor: pointer;
+                        background: url(../img/top-bar/task-uncheck.png) no-repeat left 3px; 
+
 
                         .name {
+                            width: 156px;
+                            display: inline-block;
 
+                        }
+                        .name:hover {
+                            opacity: 0.8;
+                        }
+
+                        .btn-delete-task {
+                            color: $touareg; 
+                            cursor: pointer;
+                            display: inline-block;
+                            vertical-align: middle;
+                            white-space: normal;
+                        }
+                    }
+
+                    .task:hover, .task-status-completed {
+                        
+                        margin-right: 0;
+                    }
+
+                    .task-status-completed {
+                        background: url(../img/top-bar/task-check2.png) no-repeat left 0px;
+                        .name {
+                            text-decoration: line-through;                            
                         }
                     }
 
@@ -168,7 +207,7 @@
 
                         .new-task {
                             height: 24px;
-                            margin-right: 0.5rem;
+                            margin-right: 1.5rem;
                         }
 
                         .valid {

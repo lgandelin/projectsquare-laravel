@@ -8260,9 +8260,37 @@ body {
           background: white;
           border: 1px solid #a0a6a9;
           padding: 2.5rem; }
+          .top-bar-container .top-bar .top-right-menu li .tasks ul {
+            padding: 0px;
+            margin-bottom: 2rem; }
+          .top-bar-container .top-bar .top-right-menu li .tasks .task {
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+            margin-right: 0px;
+            display: block;
+            padding-left: 2rem;
+            cursor: pointer;
+            background: url(../img/top-bar/task-uncheck.png) no-repeat left 3px; }
+            .top-bar-container .top-bar .top-right-menu li .tasks .task .name {
+              width: 156px;
+              display: inline-block; }
+            .top-bar-container .top-bar .top-right-menu li .tasks .task .name:hover {
+              opacity: 0.8; }
+            .top-bar-container .top-bar .top-right-menu li .tasks .task .btn-delete-task {
+              color: #096a85;
+              cursor: pointer;
+              display: inline-block;
+              vertical-align: middle;
+              white-space: normal; }
+          .top-bar-container .top-bar .top-right-menu li .tasks .task:hover, .top-bar-container .top-bar .top-right-menu li .tasks .task-status-completed {
+            margin-right: 0; }
+          .top-bar-container .top-bar .top-right-menu li .tasks .task-status-completed {
+            background: url(../img/top-bar/task-check2.png) no-repeat left 0px; }
+            .top-bar-container .top-bar .top-right-menu li .tasks .task-status-completed .name {
+              text-decoration: line-through; }
           .top-bar-container .top-bar .top-right-menu li .tasks .form-inline .new-task {
             height: 24px;
-            margin-right: 0.5rem; }
+            margin-right: 1.5rem; }
           .top-bar-container .top-bar .top-right-menu li .tasks .form-inline .valid {
             padding: 0.5rem;
             height: 30px; }
@@ -8554,22 +8582,6 @@ body {
 
 .label {
   font-weight: 400; }
-
-.tasks {
-  list-style: none;
-  display: block;
-  padding-left: 0; }
-  .tasks .task {
-    overflow: hidden; }
-    .tasks .task .name {
-      cursor: pointer;
-      float: left;
-      margin-right: 10px;
-      font-weight: bold; }
-    .tasks .task .name:hover {
-      text-decoration: line-through; }
-    .tasks .task .btn-delete-task {
-      cursor: pointer; }
 
 .message-view-template, .conversation-modal {
   overflow: hidden; }

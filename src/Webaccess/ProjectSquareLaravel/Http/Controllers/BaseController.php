@@ -108,11 +108,12 @@ class BaseController extends Controller
 
     protected function getTasks()
     {
+        if ($this->getUser()) {
+            return app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
+                'userID' => $this->getUser()->id
+            ]));
+        }
 
-        return app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
-            'userID' => $this->getUser()->id
-        ]));
-
-
+        return []; 
     }
 }
