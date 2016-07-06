@@ -5,13 +5,13 @@
     z-index: 999;
 
     .icon {
-        padding: 1rem;
-        background: #f5f5f5;
-        border: 1px solid #ddd;
+        padding: 8px 6px 8px 8px;
+        background: white;
+        border: 1px solid #bdc0c1;
         border-bottom: none;
         border-right: none;
         cursor: pointer;
-        color: #096a85;
+        color: $touareg;
     }
 }
 

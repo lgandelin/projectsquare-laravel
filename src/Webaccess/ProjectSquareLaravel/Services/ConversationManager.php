@@ -42,7 +42,7 @@ class ConversationManager
             $project = Project::where('client_id', '=', $user->client_id)->first();
             $projectIDs[]= $project->id;
         }
-        
+
         return $this->repository->getConversationsPaginatedList($projectIDs, $limit);
     }
 
