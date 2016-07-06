@@ -8103,7 +8103,11 @@ body {
             padding-top: 1rem;
             padding-bottom: 1rem;
             font-family: "MyriadPro-Regular";
-            font-size: 1.8rem; }
+            font-size: 1.7rem; }
+        .left-bar > ul .menu .sub-menu li:first-child {
+          padding-top: 1rem; }
+        .left-bar > ul .menu .sub-menu li:last-child {
+          padding-bottom: 1rem; }
       .left-bar > ul .menu .title {
         float: left;
         font-size: 2rem;
@@ -8116,14 +8120,18 @@ body {
         display: block;
         overflow: hidden; }
       .left-bar > ul .menu .img-dashboard {
-        background: url(../img/left-bar/picto-dashboard.png) no-repeat 16px center;
+        background: url(../img/left-bar/picto-dashboard.png) no-repeat 21px center;
         padding-top: 0rem; }
       .left-bar > ul .menu .projects {
-        background: url(../img/left-bar/picto-project.png) no-repeat 16px center; }
+        background: url(../img/left-bar/picto-project.png) no-repeat 18px center; }
       .left-bar > ul .menu .utils {
-        background: url(../img/left-bar/picto-utils.png) no-repeat 16px center; }
+        background: url(../img/left-bar/picto-utils.png) no-repeat 21px center; }
       .left-bar > ul .menu .agency {
-        background: url(../img/left-bar/agency.png) no-repeat 16px center; }
+        background: url(../img/left-bar/agency.png) no-repeat 21px center; }
+    .left-bar > ul .menu:nth-child(2) .sub-menu li:first-child {
+      padding-top: 0; }
+    .left-bar > ul .menu:nth-child(2) .sub-menu li:last-child {
+      padding-bottom: 0; }
     .left-bar > ul .encours .title {
       color: #c8dc1e; }
     .left-bar > ul .encours .encours a {
@@ -8135,13 +8143,13 @@ body {
     .left-bar > ul .menu:hover .title {
       color: #c8dc1e; }
     .left-bar > ul .menu:first-child:hover .img-dashboard, .left-bar > ul .encours .img-dashboard {
-      background: url(../img/left-bar/picto-dashboard-hover.png) no-repeat 16px center; }
+      background: url(../img/left-bar/picto-dashboard-hover.png) no-repeat 21px center; }
     .left-bar > ul .menu:nth-child(2):hover .projects, .left-bar > ul .encours .projects {
-      background: url(../img/left-bar/picto-project-hover.png) no-repeat 16px center; }
+      background: url(../img/left-bar/picto-project-hover.png) no-repeat 18px center; }
     .left-bar > ul .menu:nth-child(3):hover .utils, .left-bar > ul .encours .utils {
-      background: url(../img/left-bar/picto-utils-hover.png) no-repeat 16px center; }
+      background: url(../img/left-bar/picto-utils-hover.png) no-repeat 21px center; }
     .left-bar > ul .menu:nth-child(4):hover .agency, .left-bar > ul .encours .agency {
-      background: url(../img/left-bar/agency-hover.png) no-repeat 16px center; }
+      background: url(../img/left-bar/agency-hover.png) no-repeat 21px center; }
   .left-bar a:hover {
     text-decoration: none; }
 
@@ -8189,9 +8197,11 @@ body {
           border: 2px solid #ccc;
           padding: 1.5rem;
           z-index: 999;
-          top: 4rem;
+          top: 7rem;
           right: 0;
-          width: 35rem; }
+          width: 35rem;
+          overflow-y: auto;
+          max-height: 467px; }
           .top-bar-container .top-bar .top-right-menu li .notifications .close {
             position: absolute;
             right: 1rem;

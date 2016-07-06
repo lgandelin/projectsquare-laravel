@@ -25,7 +25,7 @@
                             <label class="col-md-4 control-label">Adresse email</label>
 
                             <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" autocomplete="off" />
+                                <input type="email" class="form-control" name="email" />
                             </div>
                         </div>
 

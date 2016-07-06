@@ -43,7 +43,6 @@
                 float: left;
                 margin-right: 2.9rem;
                 border-right: 1px solid #9dc3cf;
-
             }
 
             .sub-menu {
@@ -60,8 +59,16 @@
                         padding-top: 1rem;
                         padding-bottom: 1rem;
                         font-family: $typo2;
-                        font-size: 1.8rem;
+                        font-size: 1.7rem;
                     }
+                }
+
+                li:first-child {
+                    padding-top: 1rem;
+                }
+
+                li:last-child {
+                    padding-bottom: 1rem;
                 }
 
             }
@@ -85,24 +92,33 @@
 
 
             .img-dashboard {
-                background: url(../img/left-bar/picto-dashboard.png) no-repeat 16px center;
+                background: url(../img/left-bar/picto-dashboard.png) no-repeat 21px center;
 
                 padding-top: 0rem;
             }
 
             .projects {
-                background: url(../img/left-bar/picto-project.png) no-repeat 16px center;
+                background: url(../img/left-bar/picto-project.png) no-repeat 18px center;
             }
 
             .utils {
-                background: url(../img/left-bar/picto-utils.png) no-repeat 16px center;
+                background: url(../img/left-bar/picto-utils.png) no-repeat 21px center;
             }
 
             .agency {
-                background: url(../img/left-bar/agency.png) no-repeat 16px center;
+                background: url(../img/left-bar/agency.png) no-repeat 21px center;
             }
         }
 
+        .menu:nth-child(2) .sub-menu {
+            li:first-child {
+                padding-top: 0;
+            }
+
+            li:last-child {
+                padding-bottom: 0;
+            }
+        }
 
         .encours {
 
@@ -134,27 +150,28 @@
 
         .menu:first-child:hover, .encours {
             .img-dashboard {
-                background: url(../img/left-bar/picto-dashboard-hover.png) no-repeat 16px center;
+                background: url(../img/left-bar/picto-dashboard-hover.png) no-repeat 21px center;
             }
         }
+
         .menu:nth-child(2):hover, .encours {
 
             .projects {
-                background: url(../img/left-bar/picto-project-hover.png) no-repeat 16px center;
+                background: url(../img/left-bar/picto-project-hover.png) no-repeat 18px center;
             }
         }
 
         .menu:nth-child(3):hover, .encours {
 
             .utils {
-                background: url(../img/left-bar/picto-utils-hover.png) no-repeat 16px center;
+                background: url(../img/left-bar/picto-utils-hover.png) no-repeat 21px center;
             }
         }
 
         .menu:nth-child(4):hover, .encours {
 
             .agency {
-                background: url(../img/left-bar/agency-hover.png) no-repeat 16px center;
+                background: url(../img/left-bar/agency-hover.png) no-repeat 21px center;
             }
 
         }
