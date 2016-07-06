@@ -34,9 +34,11 @@ class EloquentConversationRepository implements ConversationRepository
         return Conversation::with('messages')->with('messages.user')->find($conversationID);
     }
 
-    public function getConversationsPaginatedList($limit)
+    public function getConversationsPaginatedList($projectsID, $limit)
     {
-        return Conversation::with('messages')->with('messages.user')->with('project')->with('project.client')->orderBy('created_at', 'DESC')->paginate($limit);
+        $conversations = Conversation::with('messages')->with('messages.user')->with('project')->with('project.client')->orderBy('created_at', 'DESC')->whereIn('project_id', $projectsID);
+
+        return $conversations->paginate($limit);
     }
 
     public function getConversationsByProject($projectsID, $limit = null)
