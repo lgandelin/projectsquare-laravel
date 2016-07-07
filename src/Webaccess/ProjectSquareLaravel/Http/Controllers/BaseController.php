@@ -36,6 +36,7 @@ class BaseController extends Controller
         view()->share('is_admin', $this->isUserAnAdmin());
         view()->share('tasks', $this->getTasks());
         view()->share('tasks_count', $this->getUncompleteTasksCount());
+        view()->share('left_bar', isset($_COOKIE['left-bar']) ? $_COOKIE['left-bar'] : 'opened');
     }
 
     protected function getUser()

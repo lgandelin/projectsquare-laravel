@@ -1,4 +1,4 @@
-<nav class="left-bar">
+<nav class="left-bar @if ($left_bar == 'closed') left-bar-minified @endif">
     <ul>
         <li class="menu @if($current_route == '/') encours @endif">
             <span class="line img-dashboard">
@@ -66,6 +66,12 @@
                     </ul>
                 </li>
             @endif
+
+            <li class="menu">
+                <span class="line toggle-left-bar glyphicon glyphicon-triangle-@if ($left_bar == 'closed'){{'right'}}@else{{'left'}}@endif">
+                    <h3 class="title"></h3>
+                </span>
+            </li>
         @endif
     </ul>
 </nav>

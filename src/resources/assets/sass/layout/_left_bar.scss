@@ -173,11 +173,56 @@
             .agency {
                 background: url(../img/left-bar/agency-hover.png) no-repeat 21px center;
             }
+        }
 
+        .toggle-left-bar {
+            height: 68px;
+            text-align: right;
+            margin-right: 1rem;
+            display: block;
+            color: white;
+            font-size: 2.2rem;
+            padding-top: 2rem;
+            cursor: pointer;
+        }
+
+        .toggle-left-bar:hover {
+            color: $green;
         }
     }
 
     a:hover {
         text-decoration: none;
+    }
+}
+
+.left-bar-minified {
+    width: 68px;
+
+    .menu {
+        position: relative;
+
+        .title {
+            display: none;
+        }
+
+        .sub-menu {
+            display: none;
+            background: #222 !important;
+            position: absolute;
+            left: 68px;
+            top: 0;
+            width: 185px;
+
+            li {
+                margin-left: 0 !important;
+            }
+        }
+
+        .toggle-left-bar {
+            text-align: center;
+            margin-right: 0;
+            border-right: 1px solid #9dc3cf;
+        }
     }
 }

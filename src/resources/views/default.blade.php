@@ -10,15 +10,12 @@
 
         <div class="row">
             @if (!$is_client)
-               
                 @include('projectsquare::includes.left_bar', [
                     'current_project_id' => ($current_project ? $current_project->id : null),
                     'is_client' => $is_client,
                     'current_route' => $current_route
                 ])
-
-                <div class="content">
-    
+                <div class="content @if ($left_bar == 'closed') content-expanded @endif">
             @else
                 <div class="col-lg-12 col-md-12 col-sm-12">
             @endif
