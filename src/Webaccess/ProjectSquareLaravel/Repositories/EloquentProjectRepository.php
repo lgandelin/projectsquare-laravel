@@ -5,12 +5,31 @@ namespace Webaccess\ProjectSquareLaravel\Repositories;
 use Webaccess\ProjectSquareLaravel\Models\Project;
 use Webaccess\ProjectSquareLaravel\Models\User;
 use Webaccess\ProjectSquare\Repositories\ProjectRepository;
+use Webaccess\ProjectSquare\Entities\Project as ProjectEntity;
 
 class EloquentProjectRepository implements ProjectRepository
 {
-    public function getProject($projectID)
+    public function getProjectModel($projectID)
     {
         return Project::find($projectID);
+    }
+
+    public function getProject($projectID)
+    {
+        $projectModel = $this->getProjectModel($projectID);
+
+        $project = new ProjectEntity();
+        $project->id = $projectModel->id;
+        $project->clientID = $projectModel->client_id;
+        $project->name = $projectModel->name;
+        $project->status = $projectModel->status;
+        $project->color = $projectModel->color;
+        $project->websiteFrontURL = $projectModel->website_front_url;
+        $project->websiteBackURL = $projectModel->website_back_url;
+        $project->createdAt = $projectModel->created_at;
+        $project->udpatedAt = $projectModel->updated_at;
+
+        return $project;
     }
 
     public function getProjects()
@@ -82,8 +101,9 @@ class EloquentProjectRepository implements ProjectRepository
     public function isUserInProject($project, $userID)
     {
         $user = User::find($userID);
+        $projectModel = Project::find($project->id);
 
-        return count($project->users()->where('user_id', '=', $userID)->get()) > 0 || $user->client_id == $project->client_id;
+        return count($projectModel->users()->where('user_id', '=', $userID)->get()) > 0 || $user->client_id == $projectModel->client_id;
     }
 
     public function removeUserFromProject($project, $userID)
