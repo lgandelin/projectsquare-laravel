@@ -130,14 +130,15 @@
             }
         }
         
-        .reply-message:hover {
+        /*.reply-message:hover {
             background: $green;
-        }
+        }*/
 
         .submit {
             margin-top: 1rem;
             margin-bottom: 1rem;
             overflow: hidden;
+            display: inline-block;
         }
 
         .new-message {

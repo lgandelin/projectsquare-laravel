@@ -21,6 +21,21 @@
     color: white;
 }
 
+.button-message {
+    background: url(../img/messages/repondre.png) no-repeat;
+    border:none;
+    width: 36px;
+    height: 35px;
+
+    .glyphicon-comment {
+        display: none;
+    }
+}
+
+.button-message:hover {
+    background: url(../img/messages/repondre-hover.png) no-repeat;
+}
+
 .back {
     border: 1px solid $light-blue;
     border-radius: 0px;

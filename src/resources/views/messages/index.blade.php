@@ -35,9 +35,10 @@
             <table class="table table-striped table-responsive">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>#</th>
                         <th>Date</th>
-                        <th>Projet</th>
+                        <th>Client</th>
                         <th>Auteur</th>
                         <th>Titre</th>
                         <th>Action</th>
@@ -45,9 +46,10 @@
                 </thead>
                 @foreach ($conversations as $conversation)
                     <tr>
+                        <td class="priorities" style="border-left: 5px solid {{ $conversation->project->color }}"></td>
                         <td >{{ $conversation->id }}</td>
                         <td >{{ date('d/m/Y H:i', strtotime($conversation->created_at)) }}</td>
-                        <td><span class="text">{{ $conversation->project->name }}</span></td>
+                        <td><span class="text">{{ $conversation->project->client->name }}</span></td>
                         <td>
                             @include('projectsquare::includes.avatar', [
                                 'id' => $conversation->messages[sizeof($conversation->messages) - 1]->user->id,

@@ -7887,6 +7887,17 @@ be a descendant of the grid when it is being dragged.
   opacity: 0.8;
   color: white; }
 
+.button-message {
+  background: url(../img/messages/repondre.png) no-repeat;
+  border: none;
+  width: 36px;
+  height: 35px; }
+  .button-message .glyphicon-comment {
+    display: none; }
+
+.button-message:hover {
+  background: url(../img/messages/repondre-hover.png) no-repeat; }
+
 .back {
   border: 1px solid #84b4c2;
   border-radius: 0px;
@@ -7980,13 +7991,15 @@ ul {
       height: 27px;
       border: none;
       background: url(../img/dashboard/see-more-1.png) no-repeat;
-      margin-right: 1.5em; }
+      margin-right: 0.5em; }
     .table > tbody > tr > td .see-more:hover {
       background: url(../img/dashboard/see-more-hover-1.png) no-repeat; }
     .table > tbody > tr > td .cancel {
       width: 16px;
       height: 16px;
       background: url(../img/cancel.png) no-repeat; }
+  .table > tbody > tr td:last-child {
+    min-width: 100px; }
 
 .cancel {
   width: 16px;
@@ -8459,7 +8472,10 @@ body {
   .dashboard-content .last-tickets .table .action {
     text-align: right; }
   .dashboard-content .last-messages {
-    overflow: hidden; }
+    overflow: hidden;
+    /*.reply-message:hover {
+            background: $green;
+        }*/ }
     .dashboard-content .last-messages .count {
       background: #e2c44b; }
     .dashboard-content .last-messages table td:first-child {
@@ -8482,12 +8498,11 @@ body {
         padding: 1rem; }
     .dashboard-content .last-messages .conversation .message:last-child {
       margin-bottom: 0; }
-    .dashboard-content .last-messages .reply-message:hover {
-      background: #c8dc1e; }
     .dashboard-content .last-messages .submit {
       margin-top: 1rem;
       margin-bottom: 1rem;
-      overflow: hidden; }
+      overflow: hidden;
+      display: inline-block; }
     .dashboard-content .last-messages .new-message {
       margin-bottom: 0; }
   .dashboard-content .conversation-modal .conversation {
@@ -8738,3 +8753,22 @@ body {
   margin-top: 3rem; }
   .files .fileupload-buttonbar .file {
     margin-top: 3rem; }
+
+.monitoring_badge {
+  background: #dde4e8;
+  font-size: 1.1rem;
+  border-radius: 0px; }
+
+@media only screen and (max-width: 1450px) and (min-width: 1200px) {
+  .project-bar .top-nav li {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1.6rem; }
+  .last-messages .table .conversation .text-conversation {
+    min-width: 250px; } }
+
+@media only screen and (max-width: 1200px) and (min-width: 1024px) {
+  .project-bar .top-nav li {
+    padding-left: 0rem;
+    padding-right: 0rem;
+    font-size: 1.5rem; } }

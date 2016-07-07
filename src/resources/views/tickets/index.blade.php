@@ -76,10 +76,10 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th></th>
+                            <th>#</th> 
                             <th>{{ trans('projectsquare::tickets.ticket') }}</th>
                             <th>{{ trans('projectsquare::tickets.client') }}</th>
-                            <th>{{ trans('projectsquare::tickets.project') }}</th>
                             <th>{{ trans('projectsquare::tickets.type') }}</th>
                             <th>{{ trans('projectsquare::tickets.author_user') }}</th>
                             <th>{{ trans('projectsquare::tickets.allocated_user') }}</th>
@@ -92,10 +92,10 @@
                     <tbody>
                         @foreach ($tickets as $ticket)
                             <tr>
+                                <td class="priorities" style="border-left: 10px solid {{ $ticket->project->color }}"></td>
                                 <td>{{ $ticket->id }}</td>
                                 <td>{{ $ticket->title }}</td>
                                 <td>{{ $ticket->project->client->name }}</td>
-                                <td>{{ $ticket->project->name }}</td>
                                 <td>@if (isset($ticket->type)){{ $ticket->type->name }}@endif</td>
                                 <td>
                                     @if (isset($ticket->states[count($ticket->states) - 1]))
