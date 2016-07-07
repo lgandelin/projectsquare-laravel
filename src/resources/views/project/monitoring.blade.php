@@ -47,7 +47,7 @@
                     zoomType: 'x'
                 },
                 title: {
-                    text: "{!! trans('projectsquare::monitoring.website_loading_time') !!} {{ $project->website_front_url }}"
+                    text: "{!! trans('projectsquare::monitoring.website_loading_time') !!} {{ $project->websiteFrontURL }}"
                 },
                 subtitle: {
                     text: "{!! trans('projectsquare::monitoring.last_24h') !!}"

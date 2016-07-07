@@ -9,11 +9,12 @@
             <form method="get">
                 <div class="row">
 
+                    <h2>Filtres</h2>
+
                     @if (!$is_client)
                         <div class="form-group col-md-2">
-                            <label for="filter_allocated_user">{{ trans('projectsquare::tickets.filters.by_allocated_user') }}</label>
                             <select class="form-control" name="filter_allocated_user" id="filter_allocated_user">
-                                <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+                                <option value="">{{ trans('projectsquare::tickets.filters.by_allocated_user') }}</option>
                                 @foreach ($users as $user)
                                     <option value="{{ $user->id }}" @if ($filters['allocated_user'] == $user->id)selected="selected" @endif>{{ $user->complete_name }}</option>
                                 @endforeach
@@ -22,9 +23,8 @@
                     @endif
 
                     <div class="form-group col-md-2">
-                        <label for="filter_status">{{ trans('projectsquare::tickets.filters.by_status') }}</label>
                         <select class="form-control" name="filter_status" id="filter_status">
-                            <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+                            <option value="">{{ trans('projectsquare::tickets.filters.by_status') }}</option>
                             @foreach ($ticket_statuses as $ticket_status)
                                 <option value="{{ $ticket_status->id }}" @if ($filters['status'] == $ticket_status->id)selected="selected" @endif>{{ $ticket_status->name }}</option>
                             @endforeach
@@ -32,9 +32,8 @@
                     </div>
 
                     <div class="form-group col-md-2">
-                        <label for="filter_type">{{ trans('projectsquare::tickets.filters.by_type') }}</label>
                         <select class="form-control" name="filter_type" id="filter_type">
-                            <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+                            <option value="">{{ trans('projectsquare::tickets.filters.by_type') }}</option>
                             @foreach ($ticket_types as $ticket_type)
                                 <option value="{{ $ticket_type->id }}" @if ($filters['type'] == $ticket_type->id)selected="selected" @endif>{{ $ticket_type->name }}</option>
                             @endforeach
@@ -42,7 +41,7 @@
                     </div>
 
                     <div class="col-md-2">
-                        <input class="btn button" type="submit" value="{{ trans('projectsquare::generic.valid') }}" style="margin-top: 2.5rem"/>
+                        <input class="btn button" type="submit" value="{{ trans('projectsquare::generic.valid') }}" />
                     </div>
                 </div>
             </form>

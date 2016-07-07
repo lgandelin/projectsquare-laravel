@@ -6,17 +6,19 @@
         <li class="active">{{ trans('projectsquare::planning.planning') }}</li>
     </ol>-->
     <div class="content-page">
-        <div class="templates">
+        <div class="templates planning-template">
             <div class="page-header">
                 <h1>{{ trans('projectsquare::planning.planning') }}</h1>
             </div>
 
             <form method="get">
                 <div class="row">
+
+                    <h2>Filtres</h2>
+
                     <div class="form-group col-md-2">
-                        <label for="filter_project">{{ trans('projectsquare::tickets.filters.by_project') }}</label>
                         <select class="form-control" name="filter_project" id="filter_project">
-                            <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+                            <option value="">{{ trans('projectsquare::tickets.filters.by_project') }}</option>
                             @foreach ($projects as $project)
                                 <option value="{{ $project->id }}" @if ($filters['project'] == $project->id)selected="selected" @endif>{{ $project->client->name }} - {{ $project->name }}</option>
                             @endforeach
@@ -24,8 +26,8 @@
                     </div>
 
                     <div class="form-group col-md-2">
-                        <label for="filter_allocated_user">{{ trans('projectsquare::tickets.filters.by_allocated_user') }}</label>
                         <select class="form-control" name="filter_user" id="filter_user">
+                            <option value="">{{ trans('projectsquare::tickets.filters.by_allocated_user') }}</option>
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}" @if ($filters['user'] == $user->id || (!$filters['user'] && $user->id == $currentUserID))selected="selected" @endif>{{ $user->complete_name }}</option>
                             @endforeach
@@ -33,7 +35,7 @@
                     </div>
 
                     <div class="col-md-2">
-                        <input class="btn button" type="submit" value="{{ trans('projectsquare::generic.valid') }}" style="margin-top: 2.5rem"/>
+                        <input class="btn button" type="submit" value="{{ trans('projectsquare::generic.valid') }}" />
                     </div>
                 </div>
             </form>

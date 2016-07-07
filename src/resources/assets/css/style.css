@@ -7941,7 +7941,7 @@ h1 {
 h2, h3 {
   color: #84b4c2;
   font-family: "AvantGarde-Book";
-  font-size: 2.2rem; }
+  font-size: 2rem; }
 
 h3 {
   margin-top: 3rem; }
@@ -8515,6 +8515,9 @@ body {
 .project-template .project-name {
   font-size: 1.4rem; }
 
+.project-template h2 {
+  margin-left: 1.5rem; }
+
 .monitoring-template #loading_time {
   min-width: 310px;
   height: 400px;
@@ -8587,6 +8590,9 @@ body {
 .label {
   font-weight: 400; }
 
+.tickets-template h2 {
+  margin-left: 1.5rem; }
+
 .message-view-template, .conversation-modal {
   overflow: hidden; }
   .message-view-template .header, .conversation-modal .header {
@@ -8658,6 +8664,9 @@ body {
   display: block;
   margin-top: 2rem; }
 
+.messages-template h2 {
+  margin-left: 1.5rem; }
+
 #calendar .fc-event .fc-content {
   padding-top: 0.75rem !important;
   padding-bottom: 0.75rem !important; }
@@ -8716,6 +8725,9 @@ body {
 
 #planning a[href]:hover {
   text-decoration: underline; }
+
+.planning-template h2 {
+  margin-left: 1.5rem; }
 
 .my-profile-template .avatar {
   width: 100%;

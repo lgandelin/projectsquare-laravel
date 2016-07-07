@@ -6,17 +6,19 @@
         <li class="active">Messages</li>
     </ol>-->
      <div class="content-page">
-        <div class="templates">
+        <div class="templates messages-template">
             <div class="page-header">
                 <h1>Messages</h1>
             </div>
 
             <form method="get">
                 <div class="row">
+
+                    <h2>Filtres</h2>
+
                     <div class="form-group col-md-2">
-                        <label for="filter_project">{{ trans('projectsquare::tickets.filters.by_project') }}</label>
                         <select class="form-control" name="filter_project" id="filter_project">
-                            <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+                            <option value="">{{ trans('projectsquare::tickets.filters.by_project') }}</option>
                             @foreach ($projects as $project)
                                 <option value="{{ $project->id }}" @if ($filters['project'] == $project->id)selected="selected" @endif>{{ $project->client->name }} - {{ $project->name }}</option>
                             @endforeach
@@ -24,7 +26,7 @@
                     </div>
 
                     <div class="col-md-2">
-                        <input class="btn button" type="submit" value="{{ trans('projectsquare::generic.valid') }}" style="margin-top: 2.5rem"/>
+                        <input class="btn button" type="submit" value="{{ trans('projectsquare::generic.valid') }}" />
                     </div>
                 </div>
             </form>
