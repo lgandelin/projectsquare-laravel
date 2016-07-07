@@ -73,7 +73,7 @@
             @endif
 
             <div class="table-responsive">
-                <a href="{{ route('tickets_add') }}" class="btn pull-right add"></a>
+                <a href="{{ route('tickets_add') }}" class="btn pull-right add create-ticket"></a>
                 <table class="table table-striped">
                     <thead>
                         <tr>
