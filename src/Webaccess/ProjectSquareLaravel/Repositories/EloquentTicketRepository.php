@@ -169,7 +169,7 @@ class EloquentTicketRepository implements TicketRepository
     {
         $ticketModel = (!isset($ticket->id)) ? new Ticket() : Ticket::find($ticket->id);
         $ticketModel->title = $ticket->title;
-        if ($project = $this->projectRepository->getProject($ticket->projectID)) {
+        if ($project = $this->projectRepository->getProjectModel($ticket->projectID)) {
             $ticketModel->project()->associate($project);
         }
         $ticketModel->description = $ticket->description;
