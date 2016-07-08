@@ -45,10 +45,7 @@
 
                     <td align="center">
                         <!--<a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-sm btn-primary see-more" style="margin-right: 1rem"></a>-->
-
-                        <span class="submit messages">
-                            <button class="button-message pull-right reply-message" data-id="{{ $conversation->id }}"><span class="glyphicon-comment"></span></button>
-                        </span>
+                        <button class="button-message pull-right reply-message" data-id="{{ $conversation->id }}"><span class="glyphicon-comment"></span></button>
                     </td>
                 </tr>
 

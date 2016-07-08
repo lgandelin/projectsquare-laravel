@@ -129,17 +129,15 @@
                 margin-bottom: 0;
             }
         }
+
+        .button-message {
+            margin-right: 2rem;
+            margin-top: 2px;
+        }
         
         /*.reply-message:hover {
             background: $green;
         }*/
-
-        .submit {
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-            overflow: hidden;
-            display: inline-block;
-        }
 
         .new-message {
             margin-bottom: 0;

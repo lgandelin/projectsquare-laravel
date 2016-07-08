@@ -8498,11 +8498,9 @@ body {
         padding: 1rem; }
     .dashboard-content .last-messages .conversation .message:last-child {
       margin-bottom: 0; }
-    .dashboard-content .last-messages .submit {
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-      overflow: hidden;
-      display: inline-block; }
+    .dashboard-content .last-messages .button-message {
+      margin-right: 2rem;
+      margin-top: 2px; }
     .dashboard-content .last-messages .new-message {
       margin-bottom: 0; }
   .dashboard-content .conversation-modal .conversation {
