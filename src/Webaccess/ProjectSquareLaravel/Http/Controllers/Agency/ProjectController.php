@@ -115,7 +115,7 @@ class ProjectController extends BaseController
             $role = app()->make('RoleManager')->getRole(Input::get('role_id'));
 
             app()->make('ProjectManager')->addUserToProject(
-                $project,
+                Input::get('project_id'),
                 Input::get('user_id'),
                 Input::get('role_id')
             );
@@ -133,7 +133,7 @@ class ProjectController extends BaseController
             $project = app()->make('ProjectManager')->getProject($projectID);
             $user = app()->make('UserManager')->getUser($userID);
 
-            app()->make('ProjectManager')->removeUserFromProject($project, $userID);
+            app()->make('ProjectManager')->removeUserFromProject($projectID, $userID);
             $this->request->session()->flash('confirmation', trans('projectsquare::projects.delete_user_from_project_success'));
         } catch (\Exception $e) {
             $this->request->session()->flash('error', trans('projectsquare::projects.delete_user_from_project_error'));

@@ -69,7 +69,7 @@ class EloquentProjectRepository implements ProjectRepository
 
     public function updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color)
     {
-        $project = $this->getProject($projectID);
+        $project = $this->getProjectModel($projectID);
         $project->name = $name;
         $project->client_id = $clientID;
         $project->website_front_url = $websiteFrontURL;
@@ -84,7 +84,7 @@ class EloquentProjectRepository implements ProjectRepository
 
     public function deleteProject($projectID)
     {
-        $project = $this->getProject($projectID);
+        $project = $this->getProjectModel($projectID);
         $project->delete();
     }
 
@@ -93,21 +93,23 @@ class EloquentProjectRepository implements ProjectRepository
         Project::where('client_id', '=', $clientID)->delete();
     }
 
-    public function addUserToProject($project, $userID, $roleID)
+    public function addUserToProject($projectID, $userID, $roleID)
     {
+        $project = $this->getProjectModel($projectID);
         $project->users()->attach($userID, ['role_id' => $roleID]);
     }
 
-    public function isUserInProject($project, $userID)
+    public function isUserInProject($projectID, $userID)
     {
         $user = User::find($userID);
-        $projectModel = Project::find($project->id);
+        $project = $this->getProjectModel($projectID);
 
-        return count($projectModel->users()->where('user_id', '=', $userID)->get()) > 0 || $user->client_id == $projectModel->client_id;
+        return count($project->users()->where('user_id', '=', $userID)->get()) > 0 || $user->client_id == $project->client_id;
     }
 
-    public function removeUserFromProject($project, $userID)
+    public function removeUserFromProject($projectID, $userID)
     {
+        $project = $this->getProjectModel($projectID);
         $project->users()->detach($userID);
     }
 }
