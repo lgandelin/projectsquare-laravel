@@ -78,22 +78,22 @@ class ProjectManager
         }
     }
 
-    public function addUserToProject($project, $userID, $roleID)
+    public function addUserToProject($projectID, $userID, $roleID)
     {
-        if ($this->isUserInProject($project, $userID)) {
+        if ($this->isUserInProject($projectID, $userID)) {
             throw new \Exception(trans('projectsquare::projects.user_already_in_project'));
         }
 
-        $this->repository->addUserToProject($project, $userID, $roleID);
+        $this->repository->addUserToProject($projectID, $userID, $roleID);
     }
 
-    public function isUserInProject($project, $userID)
+    public function isUserInProject($projectID, $userID)
     {
-        return $this->repository->isUserInProject($project, $userID);
+        return $this->repository->isUserInProject($projectID, $userID);
     }
 
-    public function removeUserFromProject($project, $userID)
+    public function removeUserFromProject($projectID, $userID)
     {
-        $this->repository->removeUserFromProject($project, $userID);
+        $this->repository->removeUserFromProject($projectID, $userID);
     }
 }

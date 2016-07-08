@@ -2,10 +2,11 @@
     <div class="block-content table-responsive">
         <h3>{{ trans('projectsquare::dashboard.messages') }}</h3>
 
-        <a href="{{ route('messages_index') }}" class="all pull-right"></a>
-
         @if ($is_client)
+            <a href="{{ route('project_messages', ['id' => $current_project->id]) }}" class="all pull-right"></a>
             <button class="btn add create-conversation pull-right"></button>
+        @else
+            <a href="{{ route('messages_index') }}" class="all pull-right"></a>
         @endif
 
         <table class="table table-striped">
@@ -25,7 +26,7 @@
             @foreach ($conversations as $conversation)
                 <tr class="conversation" id="conversation-{{ $conversation->id }}" data-id="{{ $conversation->id }}">
 
-                    <td style="border-left: 10px solid {{ $conversation->project->color }}" width="50%">
+                    <td class="text-conversation" style="border-left: 10px solid {{ $conversation->project->color }}" width="50%">
                         <!--{{ $conversation->project->client->name }}{{ $conversation->title }}</strong><br></td>-->
 
                        {{ str_limit($conversation->messages[sizeof($conversation->messages) - 1]->content, 100) }}
@@ -42,12 +43,9 @@
                        {{ date('d/m H:i', strtotime($conversation->messages[sizeof($conversation->messages) - 1]->created_at)) }}
                     </td>
 
-                    <td align="right">
-                        <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-sm btn-primary see-more" style="margin-right: 1rem"></a>
-
-                        <span class="submit">
-                            <button class="btn btn-sm button pull-right reply-message" data-id="{{ $conversation->id }}" style="margin-right: 1rem;"><span class="glyphicon glyphicon-comment"></span></button>
-                        </span>
+                    <td align="center">
+                        <!--<a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-sm btn-primary see-more" style="margin-right: 1rem"></a>-->
+                        <button class="button-message pull-right reply-message" data-id="{{ $conversation->id }}"><span class="glyphicon-comment"></span></button>
                     </td>
                 </tr>
 

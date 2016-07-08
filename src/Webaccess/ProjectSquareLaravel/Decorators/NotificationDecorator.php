@@ -30,9 +30,12 @@ class NotificationDecorator
                     $notification->ticket_title = $ticket->title;
                     $notification->link = route('tickets_edit', ['id' => $ticket->id]);
                 } elseif ($notification->type == 'FILE_UPLOADED') {
-                    $file = (new EloquentFileRepository())->getFile($notification->entityID);
-                    $notification->link = route('project_files', ['id' => $file->project_id]);
-                    $notification->file_name = $file->name;
+                    $notification->link = '';
+                    $notification->file_name = '';
+                    if ($file = (new EloquentFileRepository())->getFile($notification->entityID)) {
+                        $notification->link = route('project_files', ['id' => $file->project_id]);
+                        $notification->file_name = $file->name;
+                    }
                 }
             }
         }

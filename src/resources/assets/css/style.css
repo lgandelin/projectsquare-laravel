@@ -7887,6 +7887,17 @@ be a descendant of the grid when it is being dragged.
   opacity: 0.8;
   color: white; }
 
+.button-message {
+  background: url(../img/messages/repondre.png) no-repeat;
+  border: none;
+  width: 36px;
+  height: 35px; }
+  .button-message .glyphicon-comment {
+    display: none; }
+
+.button-message:hover {
+  background: url(../img/messages/repondre-hover.png) no-repeat; }
+
 .back {
   border: 1px solid #84b4c2;
   border-radius: 0px;
@@ -7941,7 +7952,7 @@ h1 {
 h2, h3 {
   color: #84b4c2;
   font-family: "AvantGarde-Book";
-  font-size: 2.2rem; }
+  font-size: 2rem; }
 
 h3 {
   margin-top: 3rem; }
@@ -7980,13 +7991,15 @@ ul {
       height: 27px;
       border: none;
       background: url(../img/dashboard/see-more-1.png) no-repeat;
-      margin-right: 1.5em; }
+      margin-right: 0.5em; }
     .table > tbody > tr > td .see-more:hover {
       background: url(../img/dashboard/see-more-hover-1.png) no-repeat; }
     .table > tbody > tr > td .cancel {
       width: 16px;
       height: 16px;
       background: url(../img/cancel.png) no-repeat; }
+  .table > tbody > tr td:last-child {
+    min-width: 100px; }
 
 .cancel {
   width: 16px;
@@ -8103,7 +8116,11 @@ body {
             padding-top: 1rem;
             padding-bottom: 1rem;
             font-family: "MyriadPro-Regular";
-            font-size: 1.8rem; }
+            font-size: 1.7rem; }
+        .left-bar > ul .menu .sub-menu li:first-child {
+          padding-top: 1rem; }
+        .left-bar > ul .menu .sub-menu li:last-child {
+          padding-bottom: 1rem; }
       .left-bar > ul .menu .title {
         float: left;
         font-size: 2rem;
@@ -8116,14 +8133,18 @@ body {
         display: block;
         overflow: hidden; }
       .left-bar > ul .menu .img-dashboard {
-        background: url(../img/left-bar/picto-dashboard.png) no-repeat 16px center;
+        background: url(../img/left-bar/picto-dashboard.png) no-repeat 21px center;
         padding-top: 0rem; }
       .left-bar > ul .menu .projects {
-        background: url(../img/left-bar/picto-project.png) no-repeat 16px center; }
+        background: url(../img/left-bar/picto-project.png) no-repeat 18px center; }
       .left-bar > ul .menu .utils {
-        background: url(../img/left-bar/picto-utils.png) no-repeat 16px center; }
+        background: url(../img/left-bar/picto-utils.png) no-repeat 21px center; }
       .left-bar > ul .menu .agency {
-        background: url(../img/left-bar/agency.png) no-repeat 16px center; }
+        background: url(../img/left-bar/agency.png) no-repeat 21px center; }
+    .left-bar > ul .menu:nth-child(2) .sub-menu li:first-child {
+      padding-top: 0; }
+    .left-bar > ul .menu:nth-child(2) .sub-menu li:last-child {
+      padding-bottom: 0; }
     .left-bar > ul .encours .title {
       color: #c8dc1e; }
     .left-bar > ul .encours .encours a {
@@ -8135,13 +8156,13 @@ body {
     .left-bar > ul .menu:hover .title {
       color: #c8dc1e; }
     .left-bar > ul .menu:first-child:hover .img-dashboard, .left-bar > ul .encours .img-dashboard {
-      background: url(../img/left-bar/picto-dashboard-hover.png) no-repeat 16px center; }
+      background: url(../img/left-bar/picto-dashboard-hover.png) no-repeat 21px center; }
     .left-bar > ul .menu:nth-child(2):hover .projects, .left-bar > ul .encours .projects {
-      background: url(../img/left-bar/picto-project-hover.png) no-repeat 16px center; }
+      background: url(../img/left-bar/picto-project-hover.png) no-repeat 18px center; }
     .left-bar > ul .menu:nth-child(3):hover .utils, .left-bar > ul .encours .utils {
-      background: url(../img/left-bar/picto-utils-hover.png) no-repeat 16px center; }
+      background: url(../img/left-bar/picto-utils-hover.png) no-repeat 21px center; }
     .left-bar > ul .menu:nth-child(4):hover .agency, .left-bar > ul .encours .agency {
-      background: url(../img/left-bar/agency-hover.png) no-repeat 16px center; }
+      background: url(../img/left-bar/agency-hover.png) no-repeat 21px center; }
   .left-bar a:hover {
     text-decoration: none; }
 
@@ -8163,12 +8184,12 @@ body {
       .top-bar-container .top-bar .top-right-menu li {
         display: inline-block;
         margin-right: 2rem; }
-        .top-bar-container .top-bar .top-right-menu li .notifications-link {
+        .top-bar-container .top-bar .top-right-menu li .notifications-link, .top-bar-container .top-bar .top-right-menu li .tasks-link {
           display: block;
           width: 57px;
           height: 39px;
           background: url(../img/top-bar/notification.png) no-repeat; }
-          .top-bar-container .top-bar .top-right-menu li .notifications-link .badge {
+          .top-bar-container .top-bar .top-right-menu li .notifications-link .badge, .top-bar-container .top-bar .top-right-menu li .tasks-link .badge {
             margin-left: 2.5rem;
             margin-top: -2.9rem;
             padding: 8px 11px;
@@ -8176,9 +8197,9 @@ body {
             font-size: 15px;
             background: #c8dc1e;
             color: #096a85; }
-        .top-bar-container .top-bar .top-right-menu li .notifications-link:hover {
+        .top-bar-container .top-bar .top-right-menu li .notifications-link:hover, .top-bar-container .top-bar .top-right-menu li .tasks-link:hover {
           background: url(../img/top-bar/notification-hover.png) no-repeat; }
-          .top-bar-container .top-bar .top-right-menu li .notifications-link:hover .badge {
+          .top-bar-container .top-bar .top-right-menu li .notifications-link:hover .badge, .top-bar-container .top-bar .top-right-menu li .tasks-link:hover .badge {
             background: #096a85;
             color: #c8dc1e; }
         .top-bar-container .top-bar .top-right-menu li .new-notifications {
@@ -8186,19 +8207,14 @@ body {
         .top-bar-container .top-bar .top-right-menu li .notifications {
           position: absolute;
           background: white;
-          border: 2px solid #ccc;
+          border: 1px solid #a0a6a9;
           padding: 1.5rem;
           z-index: 999;
-          top: 4rem;
+          top: 7rem;
           right: 0;
-          width: 35rem; }
-          .top-bar-container .top-bar .top-right-menu li .notifications .close {
-            position: absolute;
-            right: 1rem;
-            top: 1rem;
-            font-size: 1.5rem;
-            color: #333;
-            opacity: 0.75; }
+          width: 35rem;
+          overflow-y: auto;
+          max-height: 467px; }
           .top-bar-container .top-bar .top-right-menu li .notifications .title {
             font-size: 1.75rem;
             font-weight: bold;
@@ -8231,6 +8247,72 @@ body {
           .top-bar-container .top-bar .top-right-menu li .notifications .notification:last-child {
             border: none;
             padding-bottom: 0; }
+        .top-bar-container .top-bar .top-right-menu li .tasks-link {
+          background: url(../img/top-bar/todo.png) no-repeat;
+          width: 38px;
+          height: 33px;
+          display: block; }
+          .top-bar-container .top-bar .top-right-menu li .tasks-link .badge {
+            margin-left: -1.5rem; }
+        .top-bar-container .top-bar .top-right-menu li .tasks-link:hover {
+          background: url(../img/top-bar/todo-hover.png) no-repeat; }
+        .top-bar-container .top-bar .top-right-menu li .tasks {
+          width: 268px;
+          position: absolute;
+          top: 56px;
+          left: -100px;
+          z-index: 999;
+          background: white;
+          border: 1px solid #a0a6a9;
+          padding: 1.5rem; }
+          .top-bar-container .top-bar .top-right-menu li .tasks .title {
+            font-size: 1.75rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 1rem; }
+          .top-bar-container .top-bar .top-right-menu li .tasks ul {
+            padding: 0px;
+            margin-bottom: 2rem; }
+          .top-bar-container .top-bar .top-right-menu li .tasks .task {
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+            margin-right: 0px;
+            display: block;
+            padding-left: 2rem;
+            cursor: pointer;
+            background: url(../img/top-bar/task-uncheck.png) no-repeat left 5px; }
+            .top-bar-container .top-bar .top-right-menu li .tasks .task .name {
+              width: 180px;
+              display: inline-block; }
+            .top-bar-container .top-bar .top-right-menu li .tasks .task .name:hover {
+              opacity: 0.8; }
+            .top-bar-container .top-bar .top-right-menu li .tasks .task .btn-delete-task {
+              color: #096a85;
+              cursor: pointer;
+              display: inline-block;
+              vertical-align: middle;
+              white-space: normal; }
+            .top-bar-container .top-bar .top-right-menu li .tasks .task .btn-delete-task:hover {
+              color: #c8dc1e; }
+          .top-bar-container .top-bar .top-right-menu li .tasks .task:hover, .top-bar-container .top-bar .top-right-menu li .tasks .task-status-completed {
+            margin-right: 0; }
+          .top-bar-container .top-bar .top-right-menu li .tasks .no-tasks {
+            color: #a0a6a9; }
+          .top-bar-container .top-bar .top-right-menu li .tasks .task-status-completed {
+            background: url(../img/top-bar/task-check2.png) no-repeat left 2px; }
+            .top-bar-container .top-bar .top-right-menu li .tasks .task-status-completed .name {
+              text-decoration: line-through; }
+          .top-bar-container .top-bar .top-right-menu li .tasks .form-inline .new-task {
+            width: 178px;
+            height: 28px;
+            margin-right: 1.5rem; }
+          .top-bar-container .top-bar .top-right-menu li .tasks .form-inline .add {
+            margin-right: 0; }
+          .top-bar-container .top-bar .top-right-menu li .tasks .form-inline .valid {
+            padding: 0.5rem;
+            height: 30px; }
+      .top-bar-container .top-bar .top-right-menu .todo {
+        position: relative; }
       .top-bar-container .top-bar .top-right-menu .avatar {
         border-radius: 50%;
         border: 1px solid #c8dc1e;
@@ -8277,9 +8359,9 @@ body {
   right: 0px;
   z-index: 999; }
   .beta-form .icon {
-    padding: 1rem;
-    background: #f5f5f5;
-    border: 1px solid #ddd;
+    padding: 8px 6px 8px 8px;
+    background: white;
+    border: 1px solid #bdc0c1;
     border-bottom: none;
     border-right: none;
     cursor: pointer;
@@ -8328,6 +8410,13 @@ body {
 .task-status-completed {
   text-decoration: line-through; }
 
+.badge {
+  padding: 6px 8px 3px 8px;
+  border-radius: 18px;
+  font-size: 13px;
+  background: #c8dc1e;
+  color: #096a85; }
+
 .avatar {
   border-radius: 50%;
   border: 1px solid #c8dc1e;
@@ -8347,7 +8436,7 @@ body {
 .block-content {
   display: block;
   width: 100%;
-  min-height: 250px;
+  min-height: 212px;
   padding: 1rem 2rem;
   background: #fefefe; }
 
@@ -8376,8 +8465,17 @@ body {
     border-bottom: 1px solid #daddde; }
   .dashboard-content .last-tickets table tr:last-child {
     border-bottom: none; }
+  .dashboard-content .last-tickets .table thead th:last-child {
+    padding-right: 1rem; }
+  .dashboard-content .last-tickets .table .priorities {
+    padding: 1.5rem 3rem; }
+  .dashboard-content .last-tickets .table .action {
+    text-align: right; }
   .dashboard-content .last-messages {
-    overflow: hidden; }
+    overflow: hidden;
+    /*.reply-message:hover {
+            background: $green;
+        }*/ }
     .dashboard-content .last-messages .count {
       background: #e2c44b; }
     .dashboard-content .last-messages table td:first-child {
@@ -8400,12 +8498,9 @@ body {
         padding: 1rem; }
     .dashboard-content .last-messages .conversation .message:last-child {
       margin-bottom: 0; }
-    .dashboard-content .last-messages .reply-message:hover {
-      background: #c8dc1e; }
-    .dashboard-content .last-messages .submit {
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-      overflow: hidden; }
+    .dashboard-content .last-messages .button-message {
+      margin-right: 2rem;
+      margin-top: 2px; }
     .dashboard-content .last-messages .new-message {
       margin-bottom: 0; }
   .dashboard-content .conversation-modal .conversation {
@@ -8432,6 +8527,9 @@ body {
 
 .project-template .project-name {
   font-size: 1.4rem; }
+
+.project-template h2 {
+  margin-left: 1.5rem; }
 
 .monitoring-template #loading_time {
   min-width: 310px;
@@ -8505,30 +8603,8 @@ body {
 .label {
   font-weight: 400; }
 
-.last-tickets {
-  min-height: 432px; }
-  .last-tickets .table thead th:last-child {
-    padding-right: 1rem; }
-  .last-tickets .table .priorities {
-    padding: 1.5rem 3rem; }
-  .last-tickets .table .action {
-    text-align: right; }
-
-.tasks {
-  list-style: none;
-  display: block;
-  padding-left: 0; }
-  .tasks .task {
-    overflow: hidden; }
-    .tasks .task .name {
-      cursor: pointer;
-      float: left;
-      margin-right: 10px;
-      font-weight: bold; }
-    .tasks .task .name:hover {
-      text-decoration: line-through; }
-    .tasks .task .btn-delete-task {
-      cursor: pointer; }
+.tickets-template h2 {
+  margin-left: 1.5rem; }
 
 .message-view-template, .conversation-modal {
   overflow: hidden; }
@@ -8601,6 +8677,9 @@ body {
   display: block;
   margin-top: 2rem; }
 
+.messages-template h2 {
+  margin-left: 1.5rem; }
+
 #calendar .fc-event .fc-content {
   padding-top: 0.75rem !important;
   padding-bottom: 0.75rem !important; }
@@ -8650,7 +8729,7 @@ body {
     position: absolute;
     z-index: 9999;
     width: 100%;
-    height: 100%; }
+    height: 340px; }
 
 .tickets-list {
   margin-top: 5rem; }
@@ -8659,6 +8738,9 @@ body {
 
 #planning a[href]:hover {
   text-decoration: underline; }
+
+.planning-template h2 {
+  margin-left: 1.5rem; }
 
 .my-profile-template .avatar {
   width: 100%;
@@ -8669,3 +8751,22 @@ body {
   margin-top: 3rem; }
   .files .fileupload-buttonbar .file {
     margin-top: 3rem; }
+
+.monitoring_badge {
+  background: #dde4e8;
+  font-size: 1.1rem;
+  border-radius: 0px; }
+
+@media only screen and (max-width: 1450px) and (min-width: 1200px) {
+  .project-bar .top-nav li {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1.6rem; }
+  .last-messages .table .conversation .text-conversation {
+    min-width: 250px; } }
+
+@media only screen and (max-width: 1200px) and (min-width: 1024px) {
+  .project-bar .top-nav li {
+    padding-left: 0rem;
+    padding-right: 0rem;
+    font-size: 1.5rem; } }

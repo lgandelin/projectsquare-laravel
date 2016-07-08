@@ -12,6 +12,7 @@ use Webaccess\ProjectSquareLaravel\Models\Client;
 use Webaccess\ProjectSquareLaravel\Models\Project;
 use Webaccess\ProjectSquareLaravel\Models\User;
 use Webaccess\ProjectSquareLaravel\Decorators\NotificationDecorator;
+use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 
 class BaseController extends Controller
 {
@@ -33,6 +34,8 @@ class BaseController extends Controller
         view()->share('notifications', $this->getUnreadNotifications());
         view()->share('is_client', $this->isUserAClient());
         view()->share('is_admin', $this->isUserAnAdmin());
+        view()->share('tasks', $this->getTasks());
+        view()->share('tasks_count', $this->getUncompleteTasksCount());
     }
 
     protected function getUser()
@@ -102,5 +105,31 @@ class BaseController extends Controller
         return response()->json([
             'success' => true,
         ], 200);
+    }
+
+    protected function getTasks()
+    {
+        if ($this->getUser()) {
+            return app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
+                'userID' => $this->getUser()->id
+            ]));
+        }
+
+        return []; 
+    }
+
+    private function getUncompleteTasksCount()
+    {
+        $result = 0;
+        $tasks = $this->getTasks();
+        if (is_array($tasks) && sizeof($tasks) > 0) {
+            foreach ($tasks as $task) {
+                if (!$task->status) {
+                    $result++;
+                }
+            }
+        }
+
+        return $result;
     }
 }

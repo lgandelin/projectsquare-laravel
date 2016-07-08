@@ -155,7 +155,7 @@ class EloquentTicketRepository implements TicketRepository
     public function isUserAllowedToSeeTicket($userID, $ticket)
     {
         $projectIDs = User::find($userID)->projects->pluck('id')->toArray();
-        $project = $this->projectRepository->getProject($ticket->projectID);
+        $project = $this->projectRepository->getProjectModel($ticket->projectID);
 
         $clientUsersID = [];
         if (isset($project->client_id)) {
@@ -169,7 +169,7 @@ class EloquentTicketRepository implements TicketRepository
     {
         $ticketModel = (!isset($ticket->id)) ? new Ticket() : Ticket::find($ticket->id);
         $ticketModel->title = $ticket->title;
-        if ($project = $this->projectRepository->getProject($ticket->projectID)) {
+        if ($project = $this->projectRepository->getProjectModel($ticket->projectID)) {
             $ticketModel->project()->associate($project);
         }
         $ticketModel->description = $ticket->description;

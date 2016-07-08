@@ -1,7 +1,12 @@
 <div class="block last-tickets">
     <div class="block-content table-responsive">
-        <h3>{{ trans('projectsquare::dashboard.last_tickets') }}</h3>   
-        <a href="{{ route('tickets_index') }}" class="all pull-right"></a>
+        <h3>{{ trans('projectsquare::dashboard.last_tickets') }}</h3>
+
+        @if ($is_client)
+            <a href="{{ route('project_tickets', ['id' => $current_project->id]) }}" class="all pull-right"></a>
+        @else
+            <a href="{{ route('tickets_index') }}" class="all pull-right"></a>
+        @endif
         <a href="{{ route('tickets_add') }}" class="add pull-right"></a>
      
         <table class="table table-striped">

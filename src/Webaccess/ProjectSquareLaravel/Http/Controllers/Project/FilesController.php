@@ -74,7 +74,7 @@ class FilesController extends BaseController
         }
 
         //Client users
-        foreach ((new EloquentUserRepository())->getClientUsers($project->client_id) as $user) {
+        foreach ((new EloquentUserRepository())->getClientUsers($project->clientID) as $user) {
             if ($user->id != $userID) {
                 $this->notifyUserIfRequired($user, $fileID);
             }

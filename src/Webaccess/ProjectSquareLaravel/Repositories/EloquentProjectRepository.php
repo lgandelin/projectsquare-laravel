@@ -5,12 +5,31 @@ namespace Webaccess\ProjectSquareLaravel\Repositories;
 use Webaccess\ProjectSquareLaravel\Models\Project;
 use Webaccess\ProjectSquareLaravel\Models\User;
 use Webaccess\ProjectSquare\Repositories\ProjectRepository;
+use Webaccess\ProjectSquare\Entities\Project as ProjectEntity;
 
 class EloquentProjectRepository implements ProjectRepository
 {
-    public function getProject($projectID)
+    public function getProjectModel($projectID)
     {
         return Project::find($projectID);
+    }
+
+    public function getProject($projectID)
+    {
+        $projectModel = $this->getProjectModel($projectID);
+
+        $project = new ProjectEntity();
+        $project->id = $projectModel->id;
+        $project->clientID = $projectModel->client_id;
+        $project->name = $projectModel->name;
+        $project->status = $projectModel->status;
+        $project->color = $projectModel->color;
+        $project->websiteFrontURL = $projectModel->website_front_url;
+        $project->websiteBackURL = $projectModel->website_back_url;
+        $project->createdAt = $projectModel->created_at;
+        $project->udpatedAt = $projectModel->updated_at;
+
+        return $project;
     }
 
     public function getProjects()
@@ -50,7 +69,7 @@ class EloquentProjectRepository implements ProjectRepository
 
     public function updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color)
     {
-        $project = $this->getProject($projectID);
+        $project = $this->getProjectModel($projectID);
         $project->name = $name;
         $project->client_id = $clientID;
         $project->website_front_url = $websiteFrontURL;
@@ -65,7 +84,7 @@ class EloquentProjectRepository implements ProjectRepository
 
     public function deleteProject($projectID)
     {
-        $project = $this->getProject($projectID);
+        $project = $this->getProjectModel($projectID);
         $project->delete();
     }
 
@@ -74,20 +93,23 @@ class EloquentProjectRepository implements ProjectRepository
         Project::where('client_id', '=', $clientID)->delete();
     }
 
-    public function addUserToProject($project, $userID, $roleID)
+    public function addUserToProject($projectID, $userID, $roleID)
     {
+        $project = $this->getProjectModel($projectID);
         $project->users()->attach($userID, ['role_id' => $roleID]);
     }
 
-    public function isUserInProject($project, $userID)
+    public function isUserInProject($projectID, $userID)
     {
         $user = User::find($userID);
+        $project = $this->getProjectModel($projectID);
 
         return count($project->users()->where('user_id', '=', $userID)->get()) > 0 || $user->client_id == $project->client_id;
     }
 
-    public function removeUserFromProject($project, $userID)
+    public function removeUserFromProject($projectID, $userID)
     {
+        $project = $this->getProjectModel($projectID);
         $project->users()->detach($userID);
     }
 }

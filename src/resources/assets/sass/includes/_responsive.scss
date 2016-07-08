@@ -1,0 +1,40 @@
+
+@media only screen and (max-width:1450px) and (min-width: 1200px) {
+
+	.project-bar {
+		.top-nav {
+
+			li {
+				padding-left: 1rem;
+				padding-right: 1rem;
+				font-size: 1.6rem;
+			}
+		}
+	}
+
+	.last-messages {
+		.table {
+
+			.conversation {
+
+				.text-conversation {
+					min-width: 250px;
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width:1200px) and (min-width: 1024px) {
+
+	.project-bar {
+		.top-nav {
+
+			li {
+				padding-left: 0rem;
+				padding-right: 0rem;
+				font-size: 1.5rem;
+			}
+		}
+	}
+}

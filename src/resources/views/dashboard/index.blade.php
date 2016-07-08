@@ -39,7 +39,6 @@
     <script src="{{ asset('js/vendor/fullcalendar/lib/moment.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/lang-all.js') }}"></script>
-    <script src="{{ asset('js/tasks.js') }}"></script>
     <script>
         var defaultDate = "{{ date('Y-m-d') }}";
         var events = [

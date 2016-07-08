@@ -48,9 +48,17 @@ $(document).ready(function() {
 
     });
 
+    //TASKS BOX 
+      $('.tasks-link').click(function() {
+        $('.tasks').slideToggle(200);
+          $('.notifications').hide(200);
+    });
+
+
     //NOTIFICATIONS BOX
     $('.notifications-link').click(function() {
-        $('.notifications').toggle(200);
+        $('.notifications').slideToggle(200);
+        $('.tasks').hide(200);
     });
 
     setTimeout(function() {

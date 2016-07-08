@@ -39,7 +39,6 @@
                                     'id' => $conversation->messages[sizeof($conversation->messages) - 1]->user->id,
                                     'name' => $conversation->messages[sizeof($conversation->messages) - 1]->user->complete_name
                                 ])
-
                             </td>
 
                             <td>{{ $conversation->title }}</td>
@@ -59,4 +58,5 @@
     </div>
     @include('projectsquare::dashboard.new-message')
     @include('projectsquare::dashboard.create-conversation-modal')
+    <script src="{{ asset('js/messages.js') }}"></script>
 @endsection

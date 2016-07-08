@@ -51,6 +51,14 @@
     text-decoration: line-through;
 }
 
+.badge {
+    padding: 6px 8px 3px 8px;
+    border-radius: 18px;
+    font-size: 13px;
+    background: $green;
+    color: $touareg;
+}
+
 .avatar {
     border-radius: 50%;
     border: 1px solid $green;

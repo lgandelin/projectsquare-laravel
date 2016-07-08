@@ -204,6 +204,7 @@ class TicketController extends BaseController
             app()->make('UpdateTicketInteractor')->execute(new UpdateTicketRequest([
                 'ticketID' => Input::get('ticket_id'),
                 'requesterUserID' => $this->getUser()->id,
+                'allocatedUserID' => 0
             ]));
 
             return response()->json(['success' => true], 200);

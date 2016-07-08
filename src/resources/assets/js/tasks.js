@@ -22,12 +22,12 @@ $(document).ready(function() {
             data: data,
             success: function(data) {
                 var html = loadTemplate('task-template', data.task);
-                $('.tasks').append(html);
+                $('.tasks ul').append(html);
                 $('.new-task').val('');
+                update_tasks_count();
             },
             error: function(data) {
                 data = $.parseJSON(data.responseText);
-                alert(data.message)
             }
         });
     });
@@ -47,12 +47,12 @@ $(document).ready(function() {
             url: route_task_update,
             data: data,
             success: function(data) {
-                $('.task[data-id="' + data.task.id + '"] .name').toggleClass('task-status-completed');
+                $('.task[data-id="' + data.task.id + '"]').toggleClass('task-status-completed');
                 $('.task[data-id="' + data.task.id + '"]').attr('data-status', (data.task.status == true) ? 1 : 0);
+                update_tasks_count();
             },
             error: function(data) {
                 data = $.parseJSON(data.responseText);
-                alert(data.message)
             }
         });
     });
@@ -71,12 +71,24 @@ $(document).ready(function() {
             url: route_task_delete,
             data: data,
             success: function(data) {
-                $('.task[data-id="' + data.task.id + '"]').fadeOut();
+                $('.task[data-id="' + data.task.id + '"]').fadeOut().remove();
+                update_tasks_count();
             },
             error: function(data) {
                 data = $.parseJSON(data.responseText);
-                alert(data.message)
             }
         });
     })
 });
+
+function update_tasks_count() {
+    var count = $('.todo li:not(.task-status-completed)').length;
+
+    $('.todo .tasks-number').text(count);
+
+    if ($('.todo li').length == 0) {
+        $('.no-tasks').show();
+    } else {
+        $('.no-tasks').hide();
+    }
+}

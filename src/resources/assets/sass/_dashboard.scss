@@ -15,7 +15,7 @@
 .block-content {
     display: block;
     width: 100%;
-    min-height: 250px;
+    min-height: 212px;
     padding: 1rem 2rem;
 
     background: #fefefe;
@@ -69,6 +69,22 @@
                 border-bottom: none;
             }
         }
+
+        .table {
+            thead {
+                th:last-child {
+                    padding-right: 1rem;
+                }
+            }
+
+            .priorities {
+                padding: 1.5rem 3rem;
+            }
+
+            .action {
+                text-align: right;
+            }
+        }
     }
 
     .last-messages {
@@ -113,16 +129,15 @@
                 margin-bottom: 0;
             }
         }
-        
-        .reply-message:hover {
-            background: $green;
-        }
 
-        .submit {
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-            overflow: hidden;
+        .button-message {
+            margin-right: 2rem;
+            margin-top: 2px;
         }
+        
+        /*.reply-message:hover {
+            background: $green;
+        }*/
 
         .new-message {
             margin-bottom: 0;
