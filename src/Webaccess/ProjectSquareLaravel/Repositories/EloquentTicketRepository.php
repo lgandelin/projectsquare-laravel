@@ -155,7 +155,7 @@ class EloquentTicketRepository implements TicketRepository
     public function isUserAllowedToSeeTicket($userID, $ticket)
     {
         $projectIDs = User::find($userID)->projects->pluck('id')->toArray();
-        $project = $this->projectRepository->getProject($ticket->projectID);
+        $project = $this->projectRepository->getProjectModel($ticket->projectID);
 
         $clientUsersID = [];
         if (isset($project->client_id)) {
