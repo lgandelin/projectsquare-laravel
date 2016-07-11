@@ -116,7 +116,12 @@ $(document).ready(function() {
         $('.left-bar .menu .sub-menu').show();
         $('.left-bar-minified .menu .sub-menu').hide();
 
-        if (readCookie('left-bar') == 'opened') {
+        var current = readCookie('left-bar');
+        if (current == null) {
+            current = 'opened';
+        }
+
+        if (current == 'opened') {
             createCookie('left-bar', 'closed');
         } else {
             createCookie('left-bar', 'opened');
@@ -192,3 +197,4 @@ function createCookie(name,value) {
     var expires = "; expires="+date.toGMTString();
     document.cookie = name+"="+value+expires+"; path=/";
 }
+
