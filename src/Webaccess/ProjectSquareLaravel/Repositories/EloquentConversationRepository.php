@@ -55,7 +55,7 @@ class EloquentConversationRepository implements ConversationRepository
     {
         $conversationModel = (!isset($conversation->id)) ? new Conversation() : Conversation::find($conversation->id);
         $conversationModel->title = $conversation->title;
-        if ($project = $this->projectRepository->getProject($conversation->projectID)) {
+        if ($project = $this->projectRepository->getProjectModel($conversation->projectID)) {
             $conversationModel->project()->associate($project);
         }
         $conversationModel->save();
