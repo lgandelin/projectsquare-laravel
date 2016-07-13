@@ -59,7 +59,7 @@
                     <ul class="sub-menu">
                         <li class="@if($current_route == 'agency/clients') {{ 'encours' }} @endif"><a href="{{ route('clients_index') }}">Clients</a></li>
                         <li class="@if($current_route == 'agency/projects') {{ 'encours' }} @endif"><a href="{{ route('projects_index') }}">Projets</a></li>
-                        <li class="@if($current_route == 'agency/users') {{ 'encours' }} @endif"><a href="{{ route('users_index') }}">Utilisateurs</a></li>
+                        <li class="@if($current_route == 'agency/users') {{ 'encours' }} @endif"><a href="{{ route('users_index') }}">Collaborateurs</a></li>
                         <li class="@if($current_route == 'agency/roles') {{ 'encours' }} @endif"><a href="{{ route('roles_index') }}">Profils</a></li>
                         <li class="@if($current_route == 'ticket_types') {{ 'encours' }} @endif"><a href="{{ route('ticket_types_index') }}">Types de tickets</a></li>
                         <li class="@if($current_route == 'ticket_statuses') {{ 'encours' }} @endif"><a href="{{ route('ticket_statuses_index') }}">Statuts de tickets</a></li>
