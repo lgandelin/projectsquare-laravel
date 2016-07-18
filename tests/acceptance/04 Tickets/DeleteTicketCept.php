@@ -6,7 +6,7 @@ $I = new AcceptanceTester($scenario);
 $I->wantTo('ensure that I can delete a ticket');
 $I->loginAsARessource();
 $I->goToPage(TicketPage::$URI);
-$I->click('table tbody tr:nth-child(1) a.btn-delete');
+$I->click('.content table tbody tr:nth-child(1) .btn-delete');
 $I->acceptPopup();
 $I->wait(2);
 $I->see(TicketPage::$messageTicketDeletedSuccess);
