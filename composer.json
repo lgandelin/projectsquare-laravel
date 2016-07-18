@@ -13,6 +13,9 @@
         "illuminate/support": "~5.2",
         "intervention/image": "~2.3.5"
     },
+    "require-dev": {
+        "codeception/codeception": "^2.1"
+    },
     "autoload": {
         "psr-4": {
             "Webaccess\\ProjectSquareLaravel\\": "src/Webaccess/ProjectSquareLaravel"
