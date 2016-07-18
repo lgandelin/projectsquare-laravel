@@ -13,6 +13,6 @@ return [
     'messages' => 'Messages',
     'message' => 'Message',
     'date' =>'Date',
-    'allocated_user' => 'Utilisateur',
+    'allocated_user' => 'Collaborateur',
     'action' =>'Action',
 ];

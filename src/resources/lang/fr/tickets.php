@@ -44,7 +44,7 @@ return [
 
     'filters' => [
         'by_project' => 'par projet',
-        'by_allocated_user' => 'par utilisateur',
+        'by_allocated_user' => 'par collaborateur',
         'by_status' => 'par statut',
         'by_type' => 'par type',
     ],
