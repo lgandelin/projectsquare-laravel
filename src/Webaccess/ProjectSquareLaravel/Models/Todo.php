@@ -4,9 +4,9 @@ namespace Webaccess\ProjectSquareLaravel\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Task extends Model
+class Todo extends Model
 {
-    protected $table = 'to_do';
+    protected $table = 'todos';
 
     protected $fillable = [
         'name', 'status',

@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'tasks' => 'Tâches',
-    'new-task' => 'Nouvelle tâche',
+    'todos' => 'Tâches',
+    'new-todo' => 'Nouvelle tâche',
 ];

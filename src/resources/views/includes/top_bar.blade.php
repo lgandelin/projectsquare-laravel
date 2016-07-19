@@ -7,28 +7,28 @@
         <ul class="top-right-menu">
 
             <li class="todo">
-                 <a href="#" class="tasks-link">
-                    <span class="badge tasks-number">{{ $tasks_count }}</span></a>
+                 <a href="#" class="todos-link">
+                    <span class="badge todos-number">{{ $todos_count }}</span></a>
                  </a>
 
-                <div class="tasks" style="display: none;">
+                <div class="todos" style="display: none;">
 
                     <span class="title">
                             Liste de tâches
                     </span>
 
-                    <span class="no-tasks" @if (sizeof($tasks) == 0)style="display: block"@else style="display:none"@endif>Aucune tâche en cours !</span>
+                    <span class="no-todos" @if (sizeof($todos) == 0)style="display: block"@else style="display:none"@endif>Aucune tâche en cours !</span>
 
                     <ul>
-                        @foreach ($tasks as $task)
-                            <li class="task @if($task->status == true)task-status-completed @endif" data-id="{{ $task->id }}" data-status="{{ $task->status }}"><span class="name">{{ $task->name }}</span><input type="hidden" name="id" value="{{ $task->id }}" /><span class="glyphicon glyphicon-remove btn-delete-task"></span></li>
+                        @foreach ($todos as $todo)
+                                <li class="todo @if($todo->status == true)todo-status-completed @endif" data-id="{{ $todo->id }}" data-status="{{ $todo->status }}"><span class="name">{{ $todo->name }}</span><input type="hidden" name="id" value="{{ $todo->id }}" /><span class="glyphicon glyphicon-remove btn-delete-todo"></span></li>
                         @endforeach
                     </ul>
 
                     <div class="form-inline">
                         <div class="form-group">
-                            <input type="text" class="form-control new-task" placeholder="nouvelle tâche" name="name" id="name" required autocomplete="off" />
-                            <button type="submit" class="btn add btn-valid-create-task" />
+                            <input type="text" class="form-control new-todo" placeholder="nouvelle tâche" name="name" id="name" required autocomplete="off" />
+                            <button type="submit" class="btn add btn-valid-create-todo" />
                         </div>
                     </div>
                 </div>
@@ -99,4 +99,4 @@
 </div>
 
 @include ('projectsquare::templates.new-notification')
-@include('projectsquare::templates.new-task')
+@include('projectsquare::templates.new-todo')

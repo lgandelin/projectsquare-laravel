@@ -3,7 +3,7 @@
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
 use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
-use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
+use Webaccess\ProjectSquare\Requests\Todos\GetTodosRequest;
 
 class DashboardController extends BaseController
 {
@@ -15,7 +15,7 @@ class DashboardController extends BaseController
             'events' => app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
                 'userID' => $this->getUser()->id,
             ])),
-            'tasks' => app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
+            'todos' => app()->make('GetTodosInteractor')->execute(new GetTodosRequest([
                 'userID' => $this->getUser()->id,
             ])),
         ]);

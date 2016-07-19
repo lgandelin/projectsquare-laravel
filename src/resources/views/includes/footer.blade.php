@@ -5,7 +5,7 @@
     <script src="{{ asset('js/vendor/jquery.bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/vendor/jquery.handlebars.min.js') }}"></script>
     <script src="{{ asset('js/vendor/jquery.colorpicker.js') }}"></script>
-    <script src="{{ asset('js/tasks.js') }}"></script>
+    <script src="{{ asset('js/todos.js') }}"></script>
     <script src="{{ asset('js/global.js') }}"></script>
     <script>
         var route_message_reply = "{{ route('messages_reply') }}";
@@ -20,9 +20,9 @@
         var route_step_update = "{{ route('steps_update') }}";
         var route_step_delete = "{{ route('steps_delete') }}";
         var route_step_get_infos = "{{ route('steps_get_infos') }}";
-        var route_task_create = "{{ route('tasks_create') }}";
-        var route_task_update= "{{ route('tasks_update') }}";
-        var route_task_delete= "{{ route('tasks_delete') }}";
+        var route_todo_create = "{{ route('todos_create') }}";
+        var route_todo_update= "{{ route('todos_update') }}";
+        var route_todo_delete= "{{ route('todos_delete') }}";
         var route_ticket_unallocate= "{{ route('tickets_unallocate') }}";
         var route_beta_form= "{{ route('beta_form') }}";
     </script>

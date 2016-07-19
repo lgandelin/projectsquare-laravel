@@ -16,11 +16,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/get_notifications', array('as' => 'get_notifications', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\NotificationController@get_notifications'));
     Route::post('/read_notification', array('as' => 'read_notification', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\NotificationController@read'));
 
-    //TASKS
-    Route::get('/tasks', array('as' => 'tasks_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@index'));
-    Route::post('/tasks/create', array('as' => 'tasks_create', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@create'));
-    Route::post('/tasks/update', array('as' => 'tasks_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@update'));
-    Route::post('/tasks/delete', array('as' => 'tasks_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TaskController@delete'));
+    //TODOS
+    Route::get('/todos', array('as' => 'todos_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TodoController@index'));
+    Route::post('/todos/create', array('as' => 'todos_create', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TodoController@create'));
+    Route::post('/todos/update', array('as' => 'todos_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TodoController@update'));
+    Route::post('/todos/delete', array('as' => 'todos_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TodoController@delete'));
 
     //TICKETS
     Route::get('/tickets', array('as' => 'tickets_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\TicketController@index'));

@@ -2,18 +2,18 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
-use Webaccess\ProjectSquare\Requests\Tasks\CreateTaskRequest;
-use Webaccess\ProjectSquare\Requests\Tasks\DeleteTaskRequest;
-use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
-use Webaccess\ProjectSquare\Requests\Tasks\UpdateTaskRequest;
+use Webaccess\ProjectSquare\Requests\Todos\CreateTodoRequest;
+use Webaccess\ProjectSquare\Requests\Todos\DeleteTodoRequest;
+use Webaccess\ProjectSquare\Requests\Todos\GetTodosRequest;
+use Webaccess\ProjectSquare\Requests\Todos\UpdateTodoRequest;
 use Illuminate\Support\Facades\Input;
 
-class TaskController extends BaseController
+class TodoController extends BaseController
 {
     public function index()
     {
-        return view('projectsquare::tasks.index', [
-            'tasks' => app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
+        return view('projectsquare::todos.index', [
+            'todos' => app()->make('GetTodosInteractor')->execute(new GetTodosRequest([
                 'userID' => $this->getUser()->id, ]
             )),
         ]);
@@ -22,14 +22,14 @@ class TaskController extends BaseController
     public function create()
     {
         try {
-            $response = app()->make('CreateTaskInteractor')->execute(new CreateTaskRequest([
+            $response = app()->make('CreateTodoInteractor')->execute(new CreateTodoRequest([
                 'name' => Input::get('name'),
                 'userID' => Input::get('user_id') ? Input::get('user_id') : $this->getUser()->id,
                 'status' => false,
             ]));
 
             return response()->json([
-                'task' => $response->task,
+                'todo' => $response->todo,
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
@@ -41,15 +41,15 @@ class TaskController extends BaseController
     public function update()
     {
         try {
-            $response = app()->make('UpdateTaskInteractor')->execute(new UpdateTaskRequest([
-                'taskID' => Input::get('task_id'),
+            $response = app()->make('UpdateTodoInteractor')->execute(new UpdateTodoRequest([
+                'todoID' => Input::get('todo_id'),
                 'status' => Input::get('status'),
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
             return response()->json([
-                'message' => trans('projectsquare::tasks.edit_task_success'),
-                'task' => $response->task,
+                'message' => trans('projectsquare::todos.edit_todo_success'),
+                'todo' => $response->todo,
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
@@ -61,14 +61,14 @@ class TaskController extends BaseController
     public function delete()
     {
         try {
-            $response = app()->make('DeleteTaskInteractor')->execute(new DeleteTaskRequest([
-                'taskID' => Input::get('task_id'),
+            $response = app()->make('DeleteTodoInteractor')->execute(new DeleteTodoRequest([
+                'todoID' => Input::get('todo_id'),
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
             return response()->json([
-                'message' => trans('projectsquare::tasks.delete_task_success'),
-                'task' => $response->task,
+                'message' => trans('projectsquare::todos.delete_todo_success'),
+                'todo' => $response->todo,
             ], 200);
         } catch (\Exception $e) {
             return response()->json([

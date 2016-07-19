@@ -49,8 +49,8 @@ $(document).ready(function() {
     });
 
     //TASKS BOX 
-      $('.tasks-link').click(function() {
-        $('.tasks').slideToggle(200);
+      $('.todos-link').click(function() {
+        $('.todos').slideToggle(200);
           $('.notifications').hide(200);
     });
 
@@ -58,7 +58,7 @@ $(document).ready(function() {
     //NOTIFICATIONS BOX
     $('.notifications-link').click(function() {
         $('.notifications').slideToggle(200);
-        $('.tasks').hide(200);
+        $('.todos').hide(200);
     });
 
     setTimeout(function() {

@@ -28,10 +28,10 @@ use Webaccess\ProjectSquare\Interactors\Calendar\DeleteStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\UpdateStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectsInteractor;
-use Webaccess\ProjectSquare\Interactors\Tasks\CreateTaskInteractor;
-use Webaccess\ProjectSquare\Interactors\Tasks\DeleteTaskInteractor;
-use Webaccess\ProjectSquare\Interactors\Tasks\GetTasksInteractor;
-use Webaccess\ProjectSquare\Interactors\Tasks\UpdateTaskInteractor;
+use Webaccess\ProjectSquare\Interactors\Todos\CreateTodoInteractor;
+use Webaccess\ProjectSquare\Interactors\Todos\DeleteTodoInteractor;
+use Webaccess\ProjectSquare\Interactors\Todos\GetTodosInteractor;
+use Webaccess\ProjectSquare\Interactors\Todos\UpdateTodoInteractor;
 use Webaccess\ProjectSquare\Interactors\Tickets\CreateTicketInteractor;
 use Webaccess\ProjectSquare\Interactors\Tickets\DeleteTicketInteractor;
 use Webaccess\ProjectSquare\Interactors\Tickets\GetTicketInteractor;
@@ -48,7 +48,7 @@ use Webaccess\ProjectSquareLaravel\Repositories\EloquentMessageRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentNotificationRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentStepRepository;
-use Webaccess\ProjectSquareLaravel\Repositories\EloquentTaskRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentTodoRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentUserRepository;
 use Webaccess\ProjectSquareLaravel\Services\AlertManager;
@@ -308,25 +308,25 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             );
         });
 
-        App::bind('GetTasksInteractor', function () {
-            return new GetTasksInteractor(new EloquentTaskRepository());
+        App::bind('GetTodosInteractor', function () {
+            return new GetTodosInteractor(new EloquentTodoRepository());
         });
 
-        App::bind('CreateTaskInteractor', function () {
-            return new CreateTaskInteractor(
-                new EloquentTaskRepository()
+        App::bind('CreateTodoInteractor', function () {
+            return new CreateTodoInteractor(
+                new EloquentTodoRepository()
             );
         });
 
-        App::bind('UpdateTaskInteractor', function () {
-            return new UpdateTaskInteractor(
-                new EloquentTaskRepository()
+        App::bind('UpdateTodoInteractor', function () {
+            return new UpdateTodoInteractor(
+                new EloquentTodoRepository()
             );
         });
 
-        App::bind('DeleteTaskInteractor', function () {
-            return new DeleteTaskInteractor(
-                new EloquentTaskRepository()
+        App::bind('DeleteTodoInteractor', function () {
+            return new DeleteTodoInteractor(
+                new EloquentTodoRepository()
             );
         });
 

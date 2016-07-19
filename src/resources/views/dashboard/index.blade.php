@@ -31,7 +31,7 @@
 
     @include('projectsquare::dashboard.new-message')
     @include('projectsquare::dashboard.create-conversation-modal')
-    @include('projectsquare::templates.new-task')
+    @include('projectsquare::templates.new-todo')
 @endsection
 
 @section('scripts')
