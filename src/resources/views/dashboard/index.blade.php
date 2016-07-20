@@ -11,28 +11,24 @@
 
     <div class="dashboard-content">
         <div class="row">
-            <div class="col-lg-12 col-md-12">
+            <div class="col-lg-12 col-md-12 widget">
                 @include('projectsquare::dashboard.blocks.tasks')
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-lg-7 col-md-12">
+            <div class="col-lg-7 col-md-12 widget">
                 @include('projectsquare::dashboard.blocks.tickets')
             </div>
 
-            <div class="col-lg-5 col-md-12">
+            <div class="col-lg-5 col-md-12 widget">
                 @include('projectsquare::dashboard.blocks.messages')
             </div>
-        </div>
 
-        @if (!$is_client)
-            <div class="row">
-                <div class="col-lg-12 col-md-12">
+            @if (!$is_client)
+                <div class="col-lg-12 col-md-12 widget">
                     @include('projectsquare::dashboard.blocks.planning')
                 </div>
-            </div>
-        @endif
+            @endif
+        </div>
     </div>
 
     @include('projectsquare::dashboard.new-message')
@@ -62,4 +58,21 @@
         ];
     </script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
+    <script>
+        $('.widget').resizable({
+            stop: function( event, ui ) {
+                var col = Math.round((ui.size.width / $('.dashboard-content .row').width()) * 12);
+
+                ui.element.removeClass(makeRemoveClassHandler(/^col-lg-/)).addClass('col-lg-' + col).removeAttr('style')
+            },
+            handles: 'e'
+        });
+
+        function makeRemoveClassHandler(regex) {
+            return function (index, classes) {
+                return classes.split(/\s+/).filter(function (el) {return regex.test(el);}).join(' ');
+            }
+        }
+
+    </script>
 @endsection
