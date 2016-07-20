@@ -11,6 +11,12 @@
 
     <div class="dashboard-content">
         <div class="row">
+            <div class="col-lg-12 col-md-12">
+                @include('projectsquare::dashboard.blocks.tasks')
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-lg-7 col-md-12">
                 @include('projectsquare::dashboard.blocks.tickets')
             </div>

@@ -1,25 +1,52 @@
-<div id="tasks" class="block">
-    <h3>{{ trans('projectsquare::dashboard.tasks') }}</h3>
-    <div class="block-content">
-        <ul class="tasks">
-            @foreach ($tasks as $task)
-                <li class="task" data-id="{{ $task->id }}" data-status="{{ $task->status }}">
-                    <span class="name @if($task->status == true)task-status-completed @endif">{{ $task->name }}</span>
-                    <input type="hidden" name="id" value="{{ $task->id }}" />
-                    <span class="glyphicon glyphicon-remove btn-delete-task"></span>
-                </li>
-            @endforeach
-        </ul>
+<div class="block last-tasks">
+    <div class="block-content table-responsive">
+        <h3>{{ trans('projectsquare::dashboard.last_tasks') }}</h3>
 
-        <div class="form-inline">
-            <div class="form-group">
-                <label for="newtask">{{ trans('projectsquare::tasks.new-task') }}</label> :
-                <input type="text" class="form-control new-task" name="new-task" autocomplete="off" />
-                <input type="submit" class="btn valid btn-valid-create-task" value="{{ trans('projectsquare::generic.add') }}" />
-            </div>
-            <div class="alert alert-danger" style="display: none; margin-top: 2rem">
-                <span class="text"></span>
-            </div>
-        </div>
+        @if ($is_client)
+            <a href="{{ route('project_tasks', ['id' => $current_project->id]) }}" class="all pull-right"></a>
+        @else
+            <a href="{{ route('tasks_index') }}" class="all pull-right"></a>
+        @endif
+        <a href="{{ route('tasks_add') }}" class="add pull-right"></a>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <!--<th>#</th>-->
+                <th>{{ trans('projectsquare::tasks.title') }}</th>
+                <th>{{ trans('projectsquare::tasks.allocated_user') }}</th>
+                <th>{{ trans('projectsquare::tasks.status') }}</th>
+
+                <th>{{ trans('projectsquare::generic.action') }}</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            @foreach ($tasks as $task)
+                <tr>
+                    <!-- <td>{{ $task->id }}</td> -->
+                    <td style="border-left: 10px solid {{ $task->project->color }}">{{ $task->title }}</td>
+                    <td>
+                        @if (isset($task->allocated_user))
+                            @include('projectsquare::includes.avatar', [
+                                'id' => $task->allocated_user->id,
+                                'name' => $task->allocated_user->complete_name
+                            ])
+                        @endif
+                    </td>
+                    <td>
+                        @if ($task->status_id == 1)A faire
+                        @elseif ($task->status_id == 2)En cours
+                        @elseif ($task->status_id == 3)Terminé
+                        @endif
+                    </td>
+                    <td align="right" class="action">
+                        <a href="{{ route('tasks_edit', ['id' => $task->id]) }}" class="btn btn-sm btn-primary see-more"></a>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+
     </div>
 </div>
