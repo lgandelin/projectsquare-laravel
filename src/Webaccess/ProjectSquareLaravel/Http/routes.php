@@ -32,6 +32,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/tickets_unallocate', array('as' => 'tickets_unallocate', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\TicketController@unallocate'));
     Route::get('/delete_ticket/{id}', array('as' => 'tickets_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\TicketController@delete'));
 
+    //TASKS
+    Route::get('/tasks', array('as' => 'tasks_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\TaskController@index'));
+    Route::get('/add_task', array('as' => 'tasks_add', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\TaskController@add'));
+
     //PROJECTS
     Route::get('/project/{id}', array('as' => 'project_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@index', 'middleware' => 'change_current_project'));
     Route::get('/project/{id}/tickets', array('as' => 'project_tickets', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@tickets', 'middleware' => 'change_current_project'));

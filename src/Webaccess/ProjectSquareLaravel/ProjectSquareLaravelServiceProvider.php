@@ -37,6 +37,9 @@ use Webaccess\ProjectSquare\Interactors\Tickets\DeleteTicketInteractor;
 use Webaccess\ProjectSquare\Interactors\Tickets\GetTicketInteractor;
 use Webaccess\ProjectSquare\Interactors\Tickets\UpdateTicketInfosInteractor;
 use Webaccess\ProjectSquare\Interactors\Tickets\UpdateTicketInteractor;
+use Webaccess\ProjectSquare\Interactors\Tasks\GetTasksInteractor;
+use Webaccess\ProjectSquare\Interactors\Tasks\CreateTaskInteractor;
+use Webaccess\ProjectSquare\Interactors\Tasks\UpdateTaskInteractor;
 use Webaccess\ProjectSquareLaravel\Listeners\ConversationCreatedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\MessageCreatedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\TicketCreatedSlackNotification;
@@ -48,6 +51,7 @@ use Webaccess\ProjectSquareLaravel\Repositories\EloquentMessageRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentNotificationRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentStepRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentTasksRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTodoRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentUserRepository;
@@ -327,6 +331,12 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         App::bind('DeleteTodoInteractor', function () {
             return new DeleteTodoInteractor(
                 new EloquentTodoRepository()
+            );
+        });
+
+        App::bind('GetTasksInteractor', function () {
+            return new GetTasksInteractor(
+                new EloquentTasksRepository()
             );
         });
 
