@@ -38,8 +38,10 @@ use Webaccess\ProjectSquare\Interactors\Tickets\GetTicketInteractor;
 use Webaccess\ProjectSquare\Interactors\Tickets\UpdateTicketInfosInteractor;
 use Webaccess\ProjectSquare\Interactors\Tickets\UpdateTicketInteractor;
 use Webaccess\ProjectSquare\Interactors\Tasks\GetTasksInteractor;
+use Webaccess\ProjectSquare\Interactors\Tasks\GetTaskInteractor;
 use Webaccess\ProjectSquare\Interactors\Tasks\CreateTaskInteractor;
 use Webaccess\ProjectSquare\Interactors\Tasks\UpdateTaskInteractor;
+use Webaccess\ProjectSquare\Interactors\Tasks\DeleteTaskInteractor;
 use Webaccess\ProjectSquareLaravel\Listeners\ConversationCreatedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\MessageCreatedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\TicketCreatedSlackNotification;
@@ -337,6 +339,33 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         App::bind('GetTasksInteractor', function () {
             return new GetTasksInteractor(
                 new EloquentTasksRepository()
+            );
+        });
+
+        App::bind('GetTaskInteractor', function () {
+            return new GetTaskInteractor(
+                new EloquentTasksRepository()
+            );
+        });
+
+        App::bind('CreateTaskInteractor', function () {
+            return new CreateTaskInteractor(
+                new EloquentTasksRepository(),
+                new EloquentProjectRepository()
+            );
+        });
+
+        App::bind('UpdateTaskInteractor', function () {
+            return new UpdateTaskInteractor(
+                new EloquentTasksRepository(),
+                new EloquentProjectRepository()
+            );
+        });
+
+        App::bind('DeleteTaskInteractor', function () {
+            return new DeleteTaskInteractor(
+                new EloquentTasksRepository(),
+                new EloquentProjectRepository()
             );
         });
 

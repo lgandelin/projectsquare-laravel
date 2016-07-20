@@ -80,19 +80,24 @@
                 <tbody>
                 @foreach ($tasks as $task)
                     <tr>
-                        <td class="priorities" style="border-left: 10px solid {{ $task->project->color }}"></td>
+                        <td @if (isset($task->project))style="border-left: 10px solid {{ $task->project->color }}"@endif></td>
                         <td>{{ $task->id }}</td>
                         <td>{{ $task->title }}</td>
-                        <td>{{ $task->project->client->name }}</td>
+                        <td>@if (isset($task->project)){{ $task->project->client->name }}@endif</td>
                         <td>
-                            @if (isset($task->last_state) && $task->last_state->allocated_user)
+                            @if (isset($task->allocated_user))
                                 @include('projectsquare::includes.avatar', [
                                     'id' => $task->allocated_user->id,
                                     'name' => $task->allocated_user->complete_name
                                 ])
                             @endif
                         </td>
-                        <td>{{ $task->status }}</td>
+                        <td>
+                            @if ($task->status_id == 1)A faire
+                            @elseif ($task->status_id == 2)En cours
+                            @elseif ($task->status_id == 3)Terminé
+                            @endif
+                        </td>
                         <td align="right">
                             <a href="{{ route('tasks_edit', ['id' => $task->id]) }}" class="btn see-more"></a>
                             <a href="{{ route('tasks_delete', ['id' => $task->id]) }}" class="btn cancel btn-delete"></a>
