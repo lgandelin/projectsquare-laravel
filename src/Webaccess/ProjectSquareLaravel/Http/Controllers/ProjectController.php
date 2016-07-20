@@ -4,8 +4,9 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
-use Webaccess\ProjectSquare\Interactors\Tickets\GetTicketInteractor;
+use Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\TaskController;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
+use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 
 class ProjectController extends BaseController
 {
@@ -13,6 +14,28 @@ class ProjectController extends BaseController
     {
         return view('projectsquare::project.cms', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
+        ]);
+    }
+
+    public function tasks($projectID)
+    {
+        return view('projectsquare::project.tasks', [
+            'project' => app()->make('ProjectManager')->getProject($projectID),
+            'projects' => app()->make('ProjectManager')->getProjects(),
+            'users' => app()->make('UserManager')->getUsers(),
+            'task_statuses' => TaskController::getTasksStatuses(),
+            'filters' => [
+                'allocated_user' => Input::get('filter_allocated_user'),
+                'status' => Input::get('filter_status'),
+                'type' => Input::get('filter_type'),
+            ],
+            'tasks' => app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
+                'projectID' => $projectID,
+                'statusID' => Input::get('filter_status'),
+                'allocatedUserID' => Input::get('filter_allocated_user'),
+            ])),
+            'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
+            'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,
         ]);
     }
 

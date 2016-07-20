@@ -6,6 +6,7 @@
             @else
                 <li @if ($active == 'dashboard')class="active"@endif><a href="{{ route('dashboard') }}">Tableau de bord</a></li>
             @endif
+            <li @if ($active == 'tasks')class="active"@endif><a href="{{ route('project_tasks', ['id' => $project->id]) }}">{{ trans('projectsquare::project.tasks') }}</a></li>
             <li @if ($active == 'tickets')class="active"@endif><a href="{{ route('project_tickets', ['id' => $project->id]) }}">{{ trans('projectsquare::project.tickets') }}</a></li>
             @if (!$is_client)<li @if ($active == 'monitoring')class="active"@endif><a href="{{ route('project_monitoring', ['id' => $project->id]) }}">{{ trans('projectsquare::project.monitoring') }}</a></li>@endif
             <li @if ($active == 'calendar')class="active"@endif><a href="{{ route('project_calendar', ['id' => $project->id]) }}">{{ trans('projectsquare::project.calendar') }}</a></li>

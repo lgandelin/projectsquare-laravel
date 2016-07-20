@@ -26,12 +26,16 @@
                     @endforeach
                 </ul>
             </li>
-            <li class="menu @if(in_array($current_route, ['tickets', 'conversations', 'planning', 'monitoring', 'todos'])) {{ 'encours' }} @endif">
+            <li class="menu @if(in_array($current_route, ['tasks', 'tickets', 'conversations', 'planning', 'monitoring'])) {{ 'encours' }} @endif">
                 <span class="line utils">
                     <span class="border"></span>
                     <h3 class="title">Utilitaires</h3>
                 </span>
                 <ul class="sub-menu">
+                    <li class="@if($current_route == 'tasks') {{ 'encours' }} @endif">
+                        <a href="{{ route('tasks_index') }}">Tâches</a>
+                    </li>
+
                     <li class="@if($current_route == 'tickets') {{ 'encours' }} @endif">
                         <a href="{{ route('tickets_index') }}">Tickets</a>
                     </li>
@@ -41,8 +45,6 @@
                     </li>
 
                     <li class="@if($current_route == 'planning') {{ 'encours' }} @endif"><a href="{{ route('planning') }}">Planning</a></li>
-
-                    <!-- <li class="@if($current_route == 'todos') {{ 'encours' }} @endif"><a href="{{ route('todos_index') }}">{{ trans('projectsquare::todos.todos') }}</a></li>-->
 
                     <li class="@if($current_route == 'monitoring') {{ 'encours' }} @endif">
                         <a href="{{ route('monitoring_index') }}">Alertes monitoring</a>

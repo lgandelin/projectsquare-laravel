@@ -9206,6 +9206,9 @@ body {
 .tickets-template h2 {
   margin-left: 1.5rem; }
 
+.tasks-template h2 {
+  margin-left: 1.5rem; }
+
 .message-view-template, .conversation-modal {
   overflow: hidden; }
   .message-view-template .header, .conversation-modal .header {
