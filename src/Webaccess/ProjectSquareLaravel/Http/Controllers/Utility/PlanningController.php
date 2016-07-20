@@ -1,6 +1,6 @@
 <?php
 
-namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
+namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Utility;
 
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Decorators\EventDecorator;
@@ -10,6 +10,7 @@ use Webaccess\ProjectSquare\Requests\Planning\DeleteEventRequest;
 use Webaccess\ProjectSquare\Requests\Planning\GetEventRequest;
 use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Planning\UpdateEventRequest;
+use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 
 class PlanningController extends BaseController
 {

@@ -1,6 +1,8 @@
 <?php
 
-namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
+namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Utility;
+
+use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 
 class MonitoringController extends BaseController
 {

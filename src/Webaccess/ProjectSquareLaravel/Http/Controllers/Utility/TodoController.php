@@ -1,12 +1,13 @@
 <?php
 
-namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
+namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Utility;
 
 use Webaccess\ProjectSquare\Requests\Todos\CreateTodoRequest;
 use Webaccess\ProjectSquare\Requests\Todos\DeleteTodoRequest;
 use Webaccess\ProjectSquare\Requests\Todos\GetTodosRequest;
 use Webaccess\ProjectSquare\Requests\Todos\UpdateTodoRequest;
 use Illuminate\Support\Facades\Input;
+use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 
 class TodoController extends BaseController
 {
