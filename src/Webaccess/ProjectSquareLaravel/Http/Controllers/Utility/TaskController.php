@@ -22,7 +22,7 @@ class TaskController extends BaseController
             ])),
             'projects' => app()->make('ProjectManager')->getUserProjects($this->getUser()->id),
             'users' => app()->make('UserManager')->getUsers(),
-            'task_statuses' => $this->getTasksStatuses(),
+            'task_statuses' => self::getTasksStatuses(),
             'filters' => [
                 'project' => Input::get('filter_project'),
                 'allocated_user' => Input::get('filter_allocated_user'),
@@ -39,7 +39,7 @@ class TaskController extends BaseController
             'projects' => app()->make('ProjectManager')->getProjects(),
             'users' => app()->make('UserManager')->getAgencyUsers(),
             'current_project_id' => ($this->getCurrentProject()) ? $this->getCurrentProject()->id : null,
-            'task_statuses' => $this->getTasksStatuses(),
+            'task_statuses' => self::getTasksStatuses(),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
             'data' => ($this->request->session()->has('data')) ? $this->request->session()->get('data') : null
         ]);
@@ -86,7 +86,7 @@ class TaskController extends BaseController
         return view('projectsquare::tasks.edit', [
             'task' => $task,
             'projects' => app()->make('ProjectManager')->getProjects(),
-            'task_statuses' => $this->getTasksStatuses(),
+            'task_statuses' => self::getTasksStatuses(),
             'users' => app()->make('UserManager')->getAgencyUsers(),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
             'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,
@@ -130,7 +130,7 @@ class TaskController extends BaseController
         return redirect()->route('tasks_index');
     }
 
-    private function getTasksStatuses()
+    public static function getTasksStatuses()
     {
         $tasksStatus1 = new \StdClass();
         $tasksStatus1->id = 1;
