@@ -22,7 +22,7 @@ return [
     'title_placeholder' => 'Titre de la tâche',
     'no_task_status_yet' => 'Aucun statut de tâche',
 
-    'add_task_success' => 'Tâche ajoutée avec succès',
+    'add_task_success' => 'Tâche créée avec succès',
     'delete_task_success' => 'Tâche supprimée avec succès',
 
     'edit_task' => 'Editer une tâche',
