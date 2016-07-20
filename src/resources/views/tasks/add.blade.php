@@ -58,10 +58,10 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="status_id">{{ trans('projectsquare::tasks.status') }}</label>
-                        @if (isset($task_status))
+                        @if (isset($task_statuses))
                             <select class="form-control" name="status_id">
                                 <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
-                                @foreach ($task_status as $task_status)
+                                @foreach ($task_statuses as $task_status)
                                     <option value="{{ $task_status->id }}" @if (isset($data['statusID']) && $data['statusID'] == $task_status->id) selected="selected" @endif>{{ $task_status->name }}</option>
                                 @endforeach
                             </select>
