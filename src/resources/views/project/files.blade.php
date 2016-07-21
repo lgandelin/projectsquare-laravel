@@ -7,63 +7,63 @@
             <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
                 <h1 class="page-header">{{ trans('projectsquare::project.files') }}</h1>
 
-            <table class="table table-striped">
-                @foreach($files as $file)
-                    <tr>
-                        <td width="250">
-                            <a href="{{ asset('uploads/projects' . $file->path) }}" title="{{ $file->name }}" target="_blank">
-                                <img class="thumbnail" src="{{ asset('uploads/projects' . $file->thumbnail_path) }}" alt="{{ $file->name }}" width="135" height="80" />
-                            </a>
-                        </td>
-                        <td><a href="{{ asset('uploads/projects' . $file->path) }}" title="{{ $file->name }}" target="_blank">{{ $file->name }}</a></td>
-                        <td width="150">{{ \Webaccess\ProjectSquareLaravel\Tools\FileTool::convertFileSize($file->size) }}</td>
-                        <td width="275">
-                            <a href="{{ asset('uploads/projects' . $file->path) }}" class="btn button" download="{{ $file->name }}"><i class="glyphicon glyphicon-download"></i> {{ trans('projectsquare::generic.download') }}</a>
-                            <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn btn-danger delete btn-delete"><i class="glyphicon glyphicon-remove"></i> <span>Supprimer</span></a>
-                        </td>
-                    </tr>
-                @endforeach
-            </table>
-            <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+                <table class="table table-striped">
+                    @foreach($files as $file)
+                        <tr>
+                            <td width="250">
+                                <a href="{{ asset('uploads/projects' . $file->path) }}" title="{{ $file->name }}" target="_blank">
+                                    <img class="thumbnail" src="{{ asset('uploads/projects' . $file->thumbnail_path) }}" alt="{{ $file->name }}" width="135" height="80" />
+                                </a>
+                            </td>
+                            <td><a href="{{ asset('uploads/projects' . $file->path) }}" title="{{ $file->name }}" target="_blank">{{ $file->name }}</a></td>
+                            <td width="150">{{ \Webaccess\ProjectSquareLaravel\Tools\FileTool::convertFileSize($file->size) }}</td>
+                            <td class="file_button" width="275">
+                                <a href="{{ asset('uploads/projects' . $file->path) }}" class="btn button" download="{{ $file->name }}"><i class="glyphicon glyphicon-download"></i> <span class="value">{{ trans('projectsquare::generic.download') }}</span></a>
+                                <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn btn-danger delete btn-delete"><i class="glyphicon glyphicon-remove"></i> <span class="value">Supprimer</span></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
+                <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
 
-            <div class="col-md-6" style="margin-top: 4rem">
-                <h4>{{ trans('projectsquare::tickets.add_files') }}</h4>
-                <div class="row fileupload-buttonbar">
-                    <div class="col-lg-12 col-md-12 file">
+                <div class="col-md-6" style="margin-top: 4rem">
+                    <h4>{{ trans('projectsquare::tickets.add_files') }}</h4>
+                    <div class="row fileupload-buttonbar">
+                        <div class="col-lg-12 col-md-12 file">
                         <span class="btn valid fileinput-button">
                             <i class="glyphicon glyphicon-plus"></i>
                             <span>{{ trans('projectsquare::generic.add') }}</span>
                             <input type="file" name="files[]" multiple>
                         </span>
-                        <button type="submit" class="btn btn-primary button start">
-                            <i class="glyphicon glyphicon-upload"></i>
-                            <span>{{ trans('projectsquare::tickets.start_file_upload') }}</span>
-                        </button>
-                        <!--<button type="reset" class="btn delete">
-                            <i class="glyphicon glyphicon-remove"></i>
-                            <span>Supprimer</span>
-                        </button>
-                        <!--<button type="button" class="btn btn-danger delete">
-                            <i class="glyphicon glyphicon-trash"></i>
-                            <span>Supprimer</span>
-                        </button>
-                        <input type="checkbox" class="toggle">-->
-                        <span class="fileupload-process"></span>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 fileupload-progress fade" style="margin-top: 2rem;">
-                            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                            <button type="submit" class="btn btn-primary button start">
+                                <i class="glyphicon glyphicon-upload"></i>
+                                <span>{{ trans('projectsquare::tickets.start_file_upload') }}</span>
+                            </button>
+                            <!--<button type="reset" class="btn delete">
+                                <i class="glyphicon glyphicon-remove"></i>
+                                <span>Supprimer</span>
+                            </button>
+                            <!--<button type="button" class="btn btn-danger delete">
+                                <i class="glyphicon glyphicon-trash"></i>
+                                <span>Supprimer</span>
+                            </button>
+                            <input type="checkbox" class="toggle">-->
+                            <span class="fileupload-process"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 fileupload-progress fade" style="margin-top: 2rem;">
+                                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                                </div>
+                                <div class="progress-extended">&nbsp;</div>
                             </div>
-                            <div class="progress-extended">&nbsp;</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" style="margin-top: 2rem;">
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12" style="margin-top: 2rem;">
-                        </div>
-                    </div>
-                </div>
-                <input type="hidden" name="project_id" value="{{ $project->id }}" />
+                    <input type="hidden" name="project_id" value="{{ $project->id }}" />
             </form>
         </div>
     </div>
@@ -99,12 +99,12 @@
 
             // Enable iframe cross-domain access via redirect option:
             $('#fileupload').fileupload(
-                'option',
-                'redirect',
-                window.location.href.replace(
-                    /\/[^\/]*$/,
-                    '/cors/result.html?%s'
-                )
+                    'option',
+                    'redirect',
+                    window.location.href.replace(
+                            /\/[^\/]*$/,
+                            '/cors/result.html?%s'
+                    )
             );
 
             // Load existing files:

@@ -47,10 +47,11 @@
             </form>
             <hr/>
 
-            <a href="{{ route('tickets_add') }}" class="btn pull-right add"></a>
+            <div class="table-responsive">
+                <a href="{{ route('tickets_add') }}" class="btn pull-right add"></a>
 
-            <table class="table table-striped">
-                <thead>
+                <table class="table table-striped">
+                    <thead>
                     <tr>
                         <th>#</th>
                         <th>{{ trans('projectsquare::tickets.ticket') }}</th>
@@ -61,9 +62,9 @@
                         <th>{{ trans('projectsquare::tickets.priority') }}</th>
                         <th>{{ trans('projectsquare::generic.action') }}</th>
                     </tr>
-                </thead>
+                    </thead>
 
-                <tbody>
+                    <tbody>
                     @foreach ($tickets as $ticket)
                         <tr>
                             <td>{{ $ticket->id }}</td>
@@ -94,8 +95,9 @@
                             </td>
                         </tr>
                     @endforeach
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

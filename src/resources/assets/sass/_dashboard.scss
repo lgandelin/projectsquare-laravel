@@ -15,7 +15,6 @@
 .block-content {
     display: block;
     width: 100%;
-    min-height: 212px;
     padding: 1rem 2rem;
 
     background: #fefefe;
@@ -25,7 +24,7 @@
     padding-top: 3rem;
     padding-left: 3rem;
     padding-right: 3rem;
-    
+
     .block {
 
         h3 {
@@ -41,18 +40,18 @@
 
         .all {
             width: 25px;
-            height: 22px;  
+            height: 22px;
             margin-right: 2.4rem;
 
             background: url(../img/dashboard/all.png)no-repeat;
         }
 
         .all:hover {
-             background: url(../img/dashboard/all-hover.png)no-repeat;
+            background: url(../img/dashboard/all-hover.png)no-repeat;
         }
     }
 
-     .planning {
+    .planning {
 
         h3 {
             display:  block;
@@ -134,7 +133,7 @@
             margin-right: 2rem;
             margin-top: 2px;
         }
-        
+
         /*.reply-message:hover {
             background: $green;
         }*/
@@ -151,7 +150,8 @@
             .messages {
                 overflow-y: auto;
                 max-height: 600px;
-                padding-right: 3rem;
+                padding-right: 2rem;
+                padding-left: 2rem;
                 margin-bottom: 5rem;
 
                 textarea {

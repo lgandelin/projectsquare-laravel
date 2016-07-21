@@ -8424,7 +8424,6 @@ be a descendant of the grid when it is being dragged.
   border-radius: 0 !important; }
 
 .modal-lg {
-  min-width: 900px;
   width: 80%;
   max-width: 1600px; }
   .modal-lg .modal-header {
@@ -9036,7 +9035,6 @@ body {
 .block-content {
   display: block;
   width: 100%;
-  min-height: 212px;
   padding: 1rem 2rem;
   background: #fefefe; }
 
@@ -9108,7 +9106,8 @@ body {
     .dashboard-content .conversation-modal .conversation .messages {
       overflow-y: auto;
       max-height: 600px;
-      padding-right: 3rem;
+      padding-right: 2rem;
+      padding-left: 2rem;
       margin-bottom: 5rem; }
       .dashboard-content .conversation-modal .conversation .messages textarea {
         padding: 0; }
@@ -9214,48 +9213,48 @@ body {
   .message-view-template .header, .conversation-modal .header {
     overflow: hidden;
     margin-bottom: 1.5rem; }
-  .message-view-template .conversation .messages, .conversation-modal .conversation .messages {
-    overflow: hidden; }
-    .message-view-template .conversation .messages .message, .conversation-modal .conversation .messages .message {
-      position: relative;
-      float: right;
-      margin-bottom: 6.5rem;
-      color: #606060;
-      background: #f9fbe8;
-      border-right: 10px solid #096a85;
-      padding-left: 0;
-      padding-right: 0; }
-      .message-view-template .conversation .messages .message .message-content, .conversation-modal .conversation .messages .message .message-content {
-        text-align: justify;
-        margin-bottom: 0 !important; }
-      .message-view-template .conversation .messages .message .avatar, .conversation-modal .conversation .messages .message .avatar {
-        left: -2rem; }
-      .message-view-template .conversation .messages .message .border, .conversation-modal .conversation .messages .message .border {
-        border: 0.2rem solid #f4fac0;
-        border-right: none;
-        padding: 2rem 2.5rem 1rem 3.5rem; }
-    .message-view-template .conversation .messages .message-client, .conversation-modal .conversation .messages .message-client {
-      background: #f3f3f3;
-      float: left;
-      border-right: none; }
-      .message-view-template .conversation .messages .message-client .avatar, .conversation-modal .conversation .messages .message-client .avatar {
-        right: -2rem;
-        left: auto; }
-      .message-view-template .conversation .messages .message-client .border, .conversation-modal .conversation .messages .message-client .border {
-        border: 0.2rem solid #ebebeb;
-        border-left: none;
-        padding-left: 2.5rem;
-        padding-right: 3.5rem; }
-    .message-view-template .conversation .messages .avatar, .conversation-modal .conversation .messages .avatar {
-      position: absolute;
-      top: 50%;
-      margin-top: -20px; }
-    .message-view-template .conversation .messages .date, .conversation-modal .conversation .messages .date {
-      display: block;
-      text-align: right;
-      font-size: 14px;
-      color: #a8a99f;
-      margin-top: 1rem; }
+  .message-view-template .conversation .messages .message, .conversation-modal .conversation .messages .message {
+    position: relative;
+    float: right;
+    margin-bottom: 6.5rem;
+    color: #606060;
+    background: #f9fbe8;
+    border-right: 10px solid #096a85;
+    padding-left: 0;
+    padding-right: 0; }
+    .message-view-template .conversation .messages .message .message-content, .conversation-modal .conversation .messages .message .message-content {
+      text-align: justify;
+      margin-bottom: 0 !important; }
+    .message-view-template .conversation .messages .message .avatar, .conversation-modal .conversation .messages .message .avatar {
+      left: -2rem; }
+    .message-view-template .conversation .messages .message .border, .conversation-modal .conversation .messages .message .border {
+      border: 0.2rem solid #f4fac0;
+      border-right: none;
+      padding: 2rem 2.5rem 1rem 3.5rem; }
+  .message-view-template .conversation .messages .message-client, .conversation-modal .conversation .messages .message-client {
+    background: #f3f3f3;
+    float: left;
+    border-right: none; }
+    .message-view-template .conversation .messages .message-client .avatar, .conversation-modal .conversation .messages .message-client .avatar {
+      right: -2rem;
+      left: auto; }
+    .message-view-template .conversation .messages .message-client .border, .conversation-modal .conversation .messages .message-client .border {
+      border: 0.2rem solid #ebebeb;
+      border-left: none;
+      padding-left: 2.5rem;
+      padding-right: 3.5rem; }
+  .message-view-template .conversation .messages .avatar, .conversation-modal .conversation .messages .avatar {
+    position: absolute;
+    top: 50%;
+    margin-top: -20px; }
+  .message-view-template .conversation .messages .date, .conversation-modal .conversation .messages .date {
+    display: block;
+    text-align: right;
+    font-size: 14px;
+    color: #a8a99f;
+    margin-top: 1rem; }
+  .message-view-template .conversation .submit, .conversation-modal .conversation .submit {
+    clear: both; }
   .message-view-template .new-message, .conversation-modal .new-message {
     border: 1px solid #58585a;
     padding: 3rem 3rem 1.5rem 3rem; }
@@ -9373,3 +9372,31 @@ body {
     padding-left: 0rem;
     padding-right: 0rem;
     font-size: 1.5rem; } }
+
+@media only screen and (max-width: 1024px) {
+  .planning .fc-toolbar .fc-left, .planning-template .fc-toolbar .fc-left, .settings-template .fc-toolbar .fc-left {
+    margin-bottom: 2rem; }
+  .planning .fc-toolbar .fc-right, .planning-template .fc-toolbar .fc-right, .settings-template .fc-toolbar .fc-right {
+    float: left;
+    margin-bottom: 2rem; }
+  .left-bar ul .menu .toggle-left-bar {
+    display: none; }
+  .project-bar .top-nav li {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 1.4rem; }
+    .project-bar .top-nav li a {
+      padding: 3px 7px; }
+  .project-bar .top-nav .active a {
+    border-bottom: 3px solid #c8dc1e; }
+  .table tr td .btn, .table .template-upload td .btn {
+    margin-right: 1rem;
+    padding: 5px 10px; }
+    .table tr td .btn .glyphicon-remove, .table tr td .btn .glyphicon, .table .template-upload td .btn .glyphicon-remove, .table .template-upload td .btn .glyphicon {
+      margin-right: 0rem; }
+    .table tr td .btn .value, .table .template-upload td .btn .value {
+      display: none; }
+  .table tr td .delete, .table .template-upload td .delete {
+    float: right; }
+  .table tr .file_button, .table .template-upload .file_button {
+    width: 115px; } }

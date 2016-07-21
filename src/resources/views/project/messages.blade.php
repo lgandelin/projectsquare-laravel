@@ -17,24 +17,24 @@
                     {{ $confirmation }}
                 </div>
             @endif
-
-            <table class="table table-striped table-responsive">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>{{ trans('projectsquare::messages.date') }}</th>
-                    <th>{{ trans('projectsquare::messages.author') }}</th>
-                    <th>{{ trans('projectsquare::messages.title') }}</th>
-                    <th>{{ trans('projectsquare::messages.last_message') }}</th>
-                    <th>{{ trans('projectsquare::generic.action') }}</th>
-                </tr>
-                </thead>
-                <tbody>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>{{ trans('projectsquare::messages.date') }}</th>
+                        <th>{{ trans('projectsquare::messages.author') }}</th>
+                        <th>{{ trans('projectsquare::messages.title') }}</th>
+                        <th>{{ trans('projectsquare::messages.last_message') }}</th>
+                        <th>{{ trans('projectsquare::generic.action') }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     @foreach ($conversations as $conversation)
                         <tr>
                             <td>{{ $conversation->id }}</td>
                             <td>{{ date('d/m/Y H:i', strtotime($conversation->created_at)) }}</td>
-                             <td>
+                            <td>
                                 @include('projectsquare::includes.avatar', [
                                     'id' => $conversation->messages[sizeof($conversation->messages) - 1]->user->id,
                                     'name' => $conversation->messages[sizeof($conversation->messages) - 1]->user->complete_name
@@ -48,8 +48,9 @@
                             </td>
                         </tr>
                     @endforeach
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
 
             @if ($is_client)
                 <button class="btn valid create-conversation"><span class="glyphicon glyphicon-plus"></span> {{ trans('projectsquare::messages.add_conversation') }}</button>

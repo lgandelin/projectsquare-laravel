@@ -49,11 +49,10 @@ $(document).ready(function() {
     });
 
     //TASKS BOX 
-      $('.todos-link').click(function() {
+    $('.todos-link').click(function() {
         $('.todos').slideToggle(200);
-          $('.notifications').hide(200);
+        $('.notifications').hide(200);
     });
-
 
     //NOTIFICATIONS BOX
     $('.notifications-link').click(function() {
@@ -128,6 +127,10 @@ $(document).ready(function() {
         }
     });
 
+    if (!$('.left-bar').hasClass('left-bar-minified') && ($(window).width() <=1024)) {
+        $('.left-bar .toggle-left-bar').trigger('click');
+    }
+
     $('body').on('mouseover', '.left-bar-minified .toggle-left-bar', function() {
         $('.left-bar-minified .menu .sub-menu').hide();
     });
@@ -197,4 +200,3 @@ function createCookie(name,value) {
     var expires = "; expires="+date.toGMTString();
     document.cookie = name+"="+value+expires+"; path=/";
 }
-
