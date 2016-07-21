@@ -59,13 +59,27 @@
     </script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
     <script>
-        $('.widget').resizable({
-            stop: function( event, ui ) {
+        $('.widget .block').resizable({
+            resize: function( event, ui ) {
                 var col = Math.round((ui.size.width / $('.dashboard-content .row').width()) * 12);
-
-                ui.element.removeClass(makeRemoveClassHandler(/^col-lg-/)).addClass('col-lg-' + col).removeAttr('style')
+                ui.element.removeAttr('style');
+                ui.element.closest('.widget').removeClass(makeRemoveClassHandler(/^col-lg-/)).addClass('col-lg-' + col);
             },
             handles: 'e'
+        });
+
+        $('.dashboard-content .row').sortable({
+            cursor: "move",
+            tolerance: "pointer",
+            placeholder: "ui-state-highlight",
+            forcePlaceholderSize: true,
+            handle: ".move-widget",
+            helper: "clone",
+            sort: function(event, ui) {
+                var col = Math.round((ui.item.width() / $('.dashboard-content .row').width()) * 12);
+                ui.placeholder.addClass('col-lg-' + col)
+                ui.placeholder.height(ui.item.height() - 34)
+            },
         });
 
         function makeRemoveClassHandler(regex) {

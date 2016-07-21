@@ -8,6 +8,8 @@
             <a href="{{ route('tickets_index') }}" class="all pull-right"></a>
         @endif
         <a href="{{ route('tickets_add') }}" class="add pull-right"></a>
+
+        <a href="#" class="glyphicon glyphicon-move move-widget pull-right"></a>
      
         <table class="table table-striped">
             <thead>
