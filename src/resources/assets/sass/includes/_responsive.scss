@@ -38,3 +38,83 @@
 		}
 	}
 }
+
+
+@media only screen and (max-width:1024px) {
+
+	.planning, .planning-template, .settings-template {
+
+		.fc-toolbar {
+
+			.fc-left {
+				margin-bottom: 2rem;
+			}
+
+			.fc-right {
+				float: left;
+				margin-bottom: 2rem;
+			}
+		}
+	}
+
+	.left-bar {
+		ul {
+
+			.menu {
+				.toggle-left-bar {
+					display: none;
+				}
+			}
+		}
+	}
+
+	.project-bar {
+		.top-nav {
+
+			li {
+				padding-left: 0rem;
+				padding-right: 0rem;
+				//padding-left: 1.5rem;
+				//padding-right: 1.5rem;
+				font-size: 1.1rem;
+
+				a {
+					padding: 3px 7px;
+				}
+			}
+
+			.active {
+
+				a {
+					border-bottom: 3px solid #c8dc1e;
+				}
+
+			}
+		}
+	}
+
+	.table-responsive {
+
+		.table {
+			tr {
+				td {
+					.btn {
+						margin-right: 1rem;
+						padding: 5px 10px;
+						.glyphicon-remove, .glyphicon  {
+							margin-right: 0rem;
+						}
+						.value {
+							display: none;
+						}
+					}
+
+					.delete {
+						float: right;
+					}
+				}
+			}
+
+		}
+	}
+}

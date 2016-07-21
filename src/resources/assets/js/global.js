@@ -128,6 +128,8 @@ $(document).ready(function() {
         }
     });
 
+    $('.left-bar .toggle-left-bar').trigger('click');
+
     $('body').on('mouseover', '.left-bar-minified .toggle-left-bar', function() {
         $('.left-bar-minified .menu .sub-menu').hide();
     });
