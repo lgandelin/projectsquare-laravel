@@ -14,11 +14,3 @@
         </div>
     </div>
 @endsection
-
-<script type="text/javascript">
-    function resize()
-    {
-        var iframe = document.getElementById('cms-iframe');
-        iframe.height = iframe.contentWindow.document.body.scrollHeight;
-    }
-</script>
