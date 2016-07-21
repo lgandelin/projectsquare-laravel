@@ -5,6 +5,7 @@
     <script src="{{ asset('js/vendor/jquery.bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/vendor/jquery.handlebars.min.js') }}"></script>
     <script src="{{ asset('js/vendor/jquery.colorpicker.js') }}"></script>
+    <script src="{{ asset('js/vendor/jquery.tooltipster.bundle.min.js') }}"></script>
     <script src="{{ asset('js/todos.js') }}"></script>
     <script src="{{ asset('js/global.js') }}"></script>
     <script>
