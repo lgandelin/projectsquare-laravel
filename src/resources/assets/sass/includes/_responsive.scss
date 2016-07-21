@@ -72,11 +72,9 @@
 		.top-nav {
 
 			li {
-				padding-left: 0rem;
-				padding-right: 0rem;
-				//padding-left: 1.5rem;
-				//padding-right: 1.5rem;
-				font-size: 1.1rem;
+				padding-left: 0.5rem;
+				padding-right: 0.5rem;
+				font-size: 1.4rem;
 
 				a {
 					padding: 3px 7px;
@@ -93,28 +91,29 @@
 		}
 	}
 
-	.table-responsive {
-
-		.table {
-			tr {
-				td {
-					.btn {
-						margin-right: 1rem;
-						padding: 5px 10px;
-						.glyphicon-remove, .glyphicon  {
-							margin-right: 0rem;
-						}
-						.value {
-							display: none;
-						}
+	.table {
+		tr, .template-upload {
+			td {
+				.btn {
+					margin-right: 1rem;
+					padding: 5px 10px;
+					.glyphicon-remove, .glyphicon  {
+						margin-right: 0rem;
 					}
-
-					.delete {
-						float: right;
+					.value {
+						display: none;
 					}
+				}
+
+				.delete {
+					float: right;
 				}
 			}
 
+			.file_button {
+				width: 115px;
+			}
 		}
 	}
+
 }
