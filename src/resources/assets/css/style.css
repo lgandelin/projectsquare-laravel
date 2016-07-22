@@ -9043,8 +9043,10 @@ body {
   padding-left: 3rem;
   padding-right: 3rem; }
   .dashboard-content .ui-state-highlight {
-    background: #c8dc1e;
-    overflow: hidden; }
+    border: none !important;
+    background: #ededed;
+    overflow: hidden;
+    margin-bottom: 3rem; }
   .dashboard-content .block h3 {
     display: inline-block;
     margin-bottom: 2rem;
@@ -9067,10 +9069,6 @@ body {
   .dashboard-content .block .move-widget:hover {
     color: #c8dc1e;
     text-decoration: none; }
-  .dashboard-content .ui-state-highlight {
-    margin-left: 2rem;
-    margin-right: 2rem;
-    margin-bottom: 2rem; }
   .dashboard-content .planning h3 {
     display: block; }
   .dashboard-content .last-tickets table tr {

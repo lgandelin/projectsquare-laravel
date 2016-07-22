@@ -11,6 +11,7 @@
 
     <div class="dashboard-content">
         <div class="row">
+            <div class="col-lg-12 col-md-12 total-width" style="display: none;"></div>
             <div class="col-lg-12 col-md-12 widget">
                 @include('projectsquare::dashboard.blocks.tasks')
             </div>
@@ -70,15 +71,14 @@
 
         $('.dashboard-content .row').sortable({
             cursor: "move",
-            tolerance: "pointer",
+            tolerance: "intersect",
             placeholder: "ui-state-highlight",
-            forcePlaceholderSize: true,
             handle: ".move-widget",
             helper: "clone",
             sort: function(event, ui) {
-                var col = Math.round((ui.item.width() / $('.dashboard-content .row').width()) * 12);
-                ui.placeholder.addClass('col-lg-' + col)
-                ui.placeholder.height(ui.item.height() - 34)
+                var col = Math.round((ui.item.width() / $('.dashboard-content .total-width').width()) * 12);
+                ui.placeholder.addClass('col-lg-' + col);
+                ui.placeholder.height(ui.item.height()-30);
             },
         });
 

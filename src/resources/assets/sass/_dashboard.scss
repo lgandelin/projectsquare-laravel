@@ -25,6 +25,13 @@
     padding-left: 3rem;
     padding-right: 3rem;
 
+    .ui-state-highlight {
+        border: none !important;
+        background: #ededed;
+        overflow: hidden;
+        margin-bottom: 3rem;
+    }
+
     .block {
 
         h3 {
@@ -62,13 +69,7 @@
         }
     }
 
-    .ui-state-highlight {
-        margin-left: 2rem;
-        margin-right: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    .planning {
+     .planning {
 
         h3 {
             display:  block;
