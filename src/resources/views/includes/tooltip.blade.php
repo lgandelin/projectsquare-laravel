@@ -1,0 +1,1 @@
+<img class="tooltips" src="{{asset('img/tooltip.png')}}" title="{{ $text }}" />

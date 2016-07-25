@@ -13,6 +13,7 @@
             font-size: 25px;
             color: $touareg;
             font-family: $typo1;
+            display: inline-block;
         }
      }
 }
@@ -69,6 +70,20 @@
 
 .tooltips {
     display: inline-block;
-    width: 5em;
-    background: red;
+    width: 18px;
+    height: 18px;
+    margin-left: 0.3rem;
+    margin-top: -6px;
+    cursor: pointer;
+}
+
+/*.tooltipster-sidetip.tooltipster-shadow.tooltipster-shadow-customized .tooltipster-box {
+  
+}*/
+
+.tooltipster-sidetip.tooltipster-shadow.tooltipster-shadow-customized .tooltipster-content {
+    color: $touareg;
+    font-family: $typo2;
+    font-size: 12px;
+    font-weight: 300;
 }

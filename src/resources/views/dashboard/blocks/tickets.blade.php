@@ -3,7 +3,9 @@
         <h3>{{ trans('projectsquare::dashboard.last_tickets') }}
             
         </h3>
-        <img class="tooltips" src="{{asset('img/tooltip.png')}}" title="test" />
+        @include('projectsquare::includes.tooltip', [
+            'text' => trans('projectsquare::tooltips.tickets')
+        ])
         @if ($is_client)
             <a href="{{ route('project_tickets', ['id' => $current_project->id]) }}" class="all pull-right"></a>
         @else

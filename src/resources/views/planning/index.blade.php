@@ -42,8 +42,8 @@
             <hr/>
 
             <div class="row">
-                <div id="planning" class="col-md-9"></div>
-                <div class="col-md-3">
+                <div id="planning" class="col-lg-9 col-md-12"></div>
+                <div class="col-lg-3 col-md-12 col-xm-12 col-xs-12">
                     <div id="event-infos">
                         <h3>{{ trans('projectsquare::planning.informations') }}</h3>
                         <form method="get">
@@ -127,6 +127,10 @@
 
                     <div id="my-tickets-list" class="tickets-list" style="display: none; clear: both; float: left; width: 50%">
                         <h3>{{ trans('projectsquare::planning.allocated_tickets_list') }}</h3>
+
+                        @include('projectsquare::includes.tooltip', [
+                         'text' => trans('projectsquare::tooltips.allocated_tickets_list')
+                        ])
                         @foreach ($allocated_tickets as $ticket)
                             <div id="ticket-{{ $ticket->id }}"
                                  data-id="{{ $ticket->id }}"
@@ -149,6 +153,10 @@
 
                     <div id="non-allocated-tickets-list" class="tickets-list" style="display: none; float: left; width: 50%">
                         <h3>{{ trans('projectsquare::planning.non_allocated_tickets_list') }}</h3>
+
+                        @include('projectsquare::includes.tooltip', [
+                         'text' => trans('projectsquare::tooltips.non_allocated_tickets_list')
+                        ])
                         @foreach ($non_allocated_tickets as $ticket)
                             <div id="ticket-{{ $ticket->id }}"
                                  data-id="{{ $ticket->id }}"
