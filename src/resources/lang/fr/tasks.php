@@ -16,6 +16,7 @@ return [
         'by_project' => 'par projet',
         'by_allocated_user' => 'par collaborateur',
         'by_status' => 'par statut',
+        'filters' => 'Filtres',
     ],
 
     'add_task' => 'Ajouter une tâche',
@@ -27,4 +28,8 @@ return [
 
     'edit_task' => 'Editer une tâche',
     'edit_task_success' => 'Tâche mise à jour avec succès',
+
+    'to_do' => 'A faire', 
+    'in_progress' =>'En cours', 
+    'done' => 'Terminé',
 ];

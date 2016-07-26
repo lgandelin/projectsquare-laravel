@@ -19,7 +19,7 @@
                             <td width="150">{{ \Webaccess\ProjectSquareLaravel\Tools\FileTool::convertFileSize($file->size) }}</td>
                             <td class="file_button" width="275">
                                 <a href="{{ asset('uploads/projects' . $file->path) }}" class="btn button" download="{{ $file->name }}"><i class="glyphicon glyphicon-download"></i> <span class="value">{{ trans('projectsquare::generic.download') }}</span></a>
-                                <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn btn-danger delete btn-delete"><i class="glyphicon glyphicon-remove"></i> <span class="value">Supprimer</span></a>
+                                <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn btn-danger delete btn-delete"><i class="glyphicon glyphicon-remove"></i> <span class="value">{{ trans('projectsquare::generic.delete') }}</span></a>
                             </td>
                         </tr>
                     @endforeach

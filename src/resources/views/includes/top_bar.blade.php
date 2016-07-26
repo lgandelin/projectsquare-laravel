@@ -14,10 +14,10 @@
                 <div class="todos" style="display: none;">
 
                     <span class="title">
-                            Liste de tâches
+                            {{ trans('projectsquare::top_bar.lists_of_tasks') }}
                     </span>
 
-                    <span class="no-todos" @if (sizeof($todos) == 0)style="display: block"@else style="display:none"@endif>Aucune tâche en cours !</span>
+                    <span class="no-todos" @if (sizeof($todos) == 0)style="display: block"@else style="display:none"@endif>{{ trans('projectsquare::top_bar.no_current_task') }}</span>
 
                     <ul>
                         @foreach ($todos as $todo)
@@ -40,9 +40,9 @@
                 <div class="notifications" style="display: none;">
                     <span class="title">
                         @if (sizeof($notifications) > 0)
-                            Nouvelles notifications
+                           {{ trans('projectsquare::top_bar.news_notifications') }}
                         @else
-                            Aucune nouvelle notification !
+                            {{ trans('projectsquare::top_bar.no_new_notification') }}
                         @endif
                     </span>
                     @if (sizeof($notifications) > 0)
@@ -51,28 +51,28 @@
                                 <span class="date">{{ $notification->time }}</span>
                                 <span class="badge badge-primary type">
                                     @if ($notification->type == 'MESSAGE_CREATED')
-                                        Nouveau message
+                                        {{ trans('projectsquare::top_bar.new_message') }}
                                     @elseif ($notification->type == 'EVENT_CREATED')
-                                        Nouvel évènement
+                                        {{ trans('projectsquare::top_bar.new_event') }}
                                     @elseif ($notification->type == 'TICKET_CREATED')
-                                        Nouveau ticket
+                                        {{ trans('projectsquare::top_bar.new_ticket') }}
                                     @elseif ($notification->type == 'FILE_UPLOADED')
-                                        Nouveau fichier
+                                        {{ trans('projectsquare::top_bar.new_file') }}
                                     @endif
                                 </span>
                                 <span class="description">
                                     @if ($notification->type == 'MESSAGE_CREATED')
-                                        Nouveau message créé par : <strong>{{ $notification->author_name }}</strong>
+                                        {{ trans('projectsquare::top_bar.new_message_created') }} <strong>{{ $notification->author_name }}</strong>
                                     @elseif ($notification->type == 'EVENT_CREATED')
-                                        Nouvel évènement créé : <strong>{{ $notification->event_name }}</strong>
+                                        {{ trans('projectsquare::top_bar.new_event_created') }} <strong>{{ $notification->event_name }}</strong>
                                     @elseif ($notification->type == 'TICKET_CREATED')
-                                        Nouveau ticket créé : <strong>{{ $notification->ticket_title }}</strong>
+                                        {{ trans('projectsquare::top_bar.new_ticket_created') }} <strong>{{ $notification->ticket_title }}</strong>
                                     @elseif ($notification->type == 'FILE_UPLOADED')
-                                        Nouveau fichier uploadé : <strong>{{ $notification->file_name }}</strong>
+                                        {{ trans('projectsquare::top_bar.new_file_created') }} <strong>{{ $notification->file_name }}</strong>
                                     @endif
                                     <br/>
                                     @if (isset($notification->link))
-                                        <a class="btn btn-sm button" href="{{ $notification->link }}"><span class="glyphicon glyphicon-eye-open"></span>voir</a>
+                                        <a class="btn btn-sm button" href="{{ $notification->link }}"><span class="glyphicon glyphicon-eye-open"></span>{{ trans('projectsquare::top_bar.see') }}</a>
                                     @endif
                                     <span class="glyphicon glyphicon-remove pull-right status not-read"></span>
                                 </span>

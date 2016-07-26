@@ -9,7 +9,7 @@
             @if ($project->websiteBackURL)
                 <iframe id="cms-iframe" class="cms-iframe" src="{{ $project->websiteBackURL }}" frameborder="0"></iframe>
             @else
-                <span>URL d'administration non configurée pour ce projet.</span>
+                <span>{{ trans('projectsquare::cms.url_not_configured') }}</span>
             @endif
         </div>
     </div>

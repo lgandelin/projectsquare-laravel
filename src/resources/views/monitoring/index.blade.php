@@ -8,7 +8,7 @@
 <div class="content-page">
     <div class="templates">
         <div class="page-header">
-            <h1>Alertes monitoring</h1>
+            <h1>{{ trans('projectsquare::monitoring.alerts_monitoring') }}</h1>
         </div>
         <div class="table-responsive">
             <table class="table table-striped">

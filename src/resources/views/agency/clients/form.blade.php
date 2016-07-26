@@ -1,4 +1,4 @@
-<h2>Informations</h2><br/>
+<h2>{{ trans('projectsquare::clients.information') }}</h2><br/>
 
 <form action="{{ $form_action }}" method="post">
     <div class="form-group">

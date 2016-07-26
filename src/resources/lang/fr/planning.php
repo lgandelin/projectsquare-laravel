@@ -11,4 +11,5 @@ return [
     'informations' => 'Informations',
     'new_event' => 'Nouvel evenement',
     'see_planning' => 'voir le planning',
+    'filters' =>'Filtres',
 ];

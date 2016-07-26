@@ -9,7 +9,7 @@
             <form method="get">
                 <div class="row">
 
-                    <h2>Filtres</h2>
+                    <h2>{{ trans('projectsquare::tasks.filters.filters') }}</h2>
 
                     @if (!$is_client)
                         <div class="form-group col-md-2">
@@ -65,9 +65,9 @@
                             @endif
                         </td>
                         <td>
-                            @if ($task->status_id == 1)A faire
-                            @elseif ($task->status_id == 2)En cours
-                            @elseif ($task->status_id == 3)Terminé
+                            @if ($task->status_id == 1){{ trans('projectsquare::tasks.to_do') }}
+                            @elseif ($task->status_id == 2){{ trans('projectsquare::tasks.in_progress') }}
+                            @elseif ($task->status_id == 3){{ trans('projectsquare::tasks.done') }}
                             @endif
                         </td>
                         <td align="right">

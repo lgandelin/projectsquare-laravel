@@ -8,6 +8,7 @@ return [
     'date' => 'Date',
     'author' => 'Auteur',
     'title' => 'Titre',
+    'client' => 'Client',
     'last_message' => 'Dernier message',
     'last_messages' => 'Derniers messages',
     'messages' => 'Messages',
@@ -15,4 +16,5 @@ return [
     'date' =>'Date',
     'allocated_user' => 'Collaborateur',
     'action' =>'Action',
+    'filters' => 'Filtres',
 ];

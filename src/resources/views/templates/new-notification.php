@@ -3,36 +3,36 @@
         <span class="date">{{time}}</span>
         <span class="badge badge-primary type">
             {{#ifCond type 'MESSAGE_CREATED'}}
-                Nouveau message
+                {{ trans('projectsquare::top_bar.new_message') }}
             {{/ifCond}}
 
             {{#ifCond type 'EVENT_CREATED'}}
-                Nouvel évenement
+                {{ trans('projectsquare::top_bar.new_event') }}
             {{/ifCond}}
 
             {{#ifCond type 'TICKET_CREATED'}}
-                Nouveau ticket
+                {{ trans('projectsquare::top_bar.new_ticket') }}
             {{/ifCond}}
 
             {{#ifCond type 'FILE_UPLOADED'}}
-                Nouveau fichier
+                {{ trans('projectsquare::top_bar.new_file') }}
             {{/ifCond}}
         </span>
         <span class="description">
             {{#ifCond type 'MESSAGE_CREATED'}}
-                Nouveau message créé par : <strong>{{ author_name }}</strong>
+                {{ trans('projectsquare::top_bar.new_message_created') }} <strong>{{ author_name }}</strong>
             {{/ifCond}}
 
             {{#ifCond type 'EVENT_CREATED'}}
-                Nouvel évènement créé : <strong>{{ event_name }}</strong>
+                 {{ trans('projectsquare::top_bar.new_event_created') }} <strong>{{ event_name }}</strong>
             {{/ifCond}}
 
             {{#ifCond type 'TICKET_CREATED'}}
-                Nouveau ticket créé : <strong>{{ ticket_title }}</strong>
+                 {{ trans('projectsquare::top_bar.new_ticket_created') }} <strong>{{ ticket_title }}</strong>
             {{/ifCond}}
 
             {{#ifCond type 'FILE_UPLOADED'}}
-                Nouveau fichier uploadé : <strong>{{ file_name }}</strong>
+                 {{ trans('projectsquare::top_bar.new_file_created') }} <strong>{{ file_name }}</strong>
             {{/ifCond}}
             <br/>
             <a class="btn btn-sm button" href="{{ link }}"><span class="glyphicon glyphicon-eye-open"></span>voir</a>

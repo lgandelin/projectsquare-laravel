@@ -47,6 +47,7 @@ return [
         'by_allocated_user' => 'par collaborateur',
         'by_status' => 'par statut',
         'by_type' => 'par type',
+        'filters' => 'Filtres',
     ],
 
     'files' => 'Pièces jointes',

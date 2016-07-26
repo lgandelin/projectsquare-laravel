@@ -14,7 +14,7 @@
         <form method="get">
             <div class="row">
 
-                <h2>Filtres</h2>
+                <h2>{{ trans('projectsquare::tasks.filters.filters') }}</h2>
 
                 <div class="form-group col-md-2">
                     <select class="form-control" name="filter_project" id="filter_project">

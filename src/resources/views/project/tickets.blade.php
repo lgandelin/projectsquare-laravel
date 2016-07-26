@@ -9,7 +9,7 @@
             <form method="get">
                 <div class="row">
 
-                    <h2>Filtres</h2>
+                    <h2>{{ trans('projectsquare::tickets.filters.filters') }}</h2>
 
                     @if (!$is_client)
                         <div class="form-group col-md-2">

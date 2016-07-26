@@ -8,13 +8,13 @@
 <div class="content-page">
     <div class="templates messages-template">
         <div class="page-header">
-            <h1>Messages</h1>
+            <h1>{{ trans('projectsquare::messages.messages') }}</h1>
         </div>
 
         <form method="get">
             <div class="row">
 
-                <h2>Filtres</h2>
+                <h2>{{ trans('projectsquare::messages.filters') }}</h2>
 
                 <div class="form-group col-md-2">
                     <select class="form-control" name="filter_project" id="filter_project">
@@ -37,11 +37,11 @@
                 <tr>
                     <th></th>
                     <th>#</th>
-                    <th>Date</th>
-                    <th>Client</th>
-                    <th>Auteur</th>
-                    <th>Titre</th>
-                    <th>Action</th>
+                    <th>{{ trans('projectsquare::messages.date') }}</th>
+                    <th>{{ trans('projectsquare::messages.client') }}</th>
+                    <th>{{ trans('projectsquare::messages.author') }}</th>
+                    <th>{{ trans('projectsquare::messages.title') }}</th>
+                    <th>{{ trans('projectsquare::messages.action') }}</th>
                 </tr>
                 </thead>
                 @foreach ($conversations as $conversation)

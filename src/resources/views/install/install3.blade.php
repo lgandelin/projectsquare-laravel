@@ -5,15 +5,15 @@
         <div class="row">
             <div class="col-md-12 top-bar">
                 <div class="pull-left">
-                    <h1 class="logo">Installation</h1>
+                    <h1 class="logo">{{ trans('projectsquare::install.installation') }}</h1>
                 </div>
             </div>
         </div>
         <div class="row" style="margin-top: 5rem;">
             <div class="col-lg-6 col-lg-offset-3">
-                <h3>Installation terminée !</h3>
-                <p>Vous allez être redirigés vers la page d'accueil dans 10 secondes.<br/><br/>
-                    Si vous ne souhaitez pas attendre <a href="{{ route('dashboard') }}"><span class="btn btn-primary">cliquez ici</span></a>
+                <h3>{{ trans('projectsquare::install.program_installed') }}</h3>
+                <p>{{ trans('projectsquare::install.installation_text_1') }}<br/><br/>
+                    {{ trans('projectsquare::install.installation_text_2') }} <a href="{{ route('dashboard') }}"><span class="btn btn-primary">{{ trans('projectsquare::install.click') }}</span></a>
                 </p>
             </div>
         </div>
