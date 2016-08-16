@@ -10,19 +10,9 @@ class DashboardController extends BaseController
 {
     public function index()
     {
-        if (!isset($_COOKIE['dashboard-widgets'])) {
-            $widgets = [
-                ['name' => 'tasks', 'width' => 12],
-                ['name' => 'tickets', 'width' => 7],
-                ['name' => 'messages', 'width' => 5],
-                ['name' => 'planning', 'width' => 12],
-            ];
-            $_COOKIE['dashboard-widgets'] = json_encode($widgets);
-        }
-        $widgets = json_decode($_COOKIE['dashboard-widgets']);
-
+        $this->initWidgetsIfNecessary();
         return view('projectsquare::dashboard.index', [
-            'widgets' => $widgets,
+            'widgets' => json_decode($_COOKIE['dashboard-widgets']),
             'tasks' => app()->make('GetTasksInteractor')->execute(new GetTasksRequest()),
             'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList($this->getUser()->id, env('TICKETS_PER_PAGE', 10)),
             'conversations' => $this->isUserAClient() ? app()->make('ConversationManager')->getConversationsByProject($this->getCurrentProject()->id, 5) : app()->make('ConversationManager')->getConversations($this->getUser()->id, 5),
@@ -33,5 +23,17 @@ class DashboardController extends BaseController
                 'userID' => $this->getUser()->id,
             ])),
         ]);
+    }
+
+    private function initWidgetsIfNecessary()
+    {
+        if (!isset($_COOKIE['dashboard-widgets'])) {
+            $_COOKIE['dashboard-widgets'] = json_encode([
+                ['name' => 'tasks', 'width' => 12],
+                ['name' => 'tickets', 'width' => 7],
+                ['name' => 'messages', 'width' => 5],
+                ['name' => 'planning', 'width' => 12],
+            ]);
+        }
     }
 }
