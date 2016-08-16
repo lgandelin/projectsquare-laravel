@@ -11,8 +11,7 @@ modules:
         - \Helper\Acceptance
     config:
         WebDriver:
-            #url: 'http://testing.projectsquare.io'
-            url: 'http://188.166.158.234'
+            url: 'http://testing.projectsquare.io'
             browser: 'firefox'
             host: '172.18.0.1'
             port: '4444'
