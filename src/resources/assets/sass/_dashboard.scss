@@ -25,6 +25,13 @@
     padding-left: 3rem;
     padding-right: 3rem;
 
+    .ui-state-highlight {
+        border: none !important;
+        background: #ededed;
+        overflow: hidden;
+        margin-bottom: 3rem;
+    }
+
     .block {
 
         h3 {
@@ -49,9 +56,20 @@
         .all:hover {
             background: url(../img/dashboard/all-hover.png)no-repeat;
         }
+
+        .move-widget {
+            font-size: 2.5rem;
+            margin-right: 1.5rem;
+            color: $touareg;
+        }
+        
+        .move-widget:hover {
+            color: $green;
+            text-decoration: none;
+        }
     }
 
-    .planning {
+     .planning {
 
         h3 {
             display:  block;

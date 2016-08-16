@@ -9,6 +9,8 @@
         @endif
         <a href="{{ route('tasks_add') }}" class="add pull-right"></a>
 
+        <a href="#" class="glyphicon glyphicon-move move-widget pull-right"></a>
+
         <table class="table table-striped">
             <thead>
             <tr>

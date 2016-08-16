@@ -11,28 +11,15 @@
 
     <div class="dashboard-content">
         <div class="row">
-            <div class="col-lg-12 col-md-12">
-                @include('projectsquare::dashboard.blocks.tasks')
-            </div>
-        </div>
+            <div class="col-lg-12 col-md-12 total-width" style="display: none;"></div>
 
-        <div class="row">
-            <div class="col-lg-7 col-md-12">
-                @include('projectsquare::dashboard.blocks.tickets')
-            </div>
-
-            <div class="col-lg-5 col-md-12">
-                @include('projectsquare::dashboard.blocks.messages')
-            </div>
-        </div>
-
-        @if (!$is_client)
-            <div class="row">
-                <div class="col-lg-12 col-md-12">
-                    @include('projectsquare::dashboard.blocks.planning')
+            @foreach ($widgets as $widget)
+                <div class="col-lg-{{ $widget->width }} col-md-12 widget" id="{{ $widget->name }}-widget" data-w="{{ $widget->width }}">
+                    @include('projectsquare::dashboard.blocks.' . $widget->name)
                 </div>
-            </div>
-        @endif
+            @endforeach
+
+        </div>
     </div>
 
     @include('projectsquare::dashboard.new-message')
