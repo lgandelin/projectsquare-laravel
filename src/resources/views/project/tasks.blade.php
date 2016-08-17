@@ -47,6 +47,7 @@
                     <th>{{ trans('projectsquare::tasks.task') }}</th>
                     <th>{{ trans('projectsquare::tasks.allocated_user') }}</th>
                     <th>{{ trans('projectsquare::tasks.status') }}</th>
+                    <th>{{ trans('projectsquare::tasks.estimated_time') }}</th>
                     <th>{{ trans('projectsquare::generic.action') }}</th>
                 </tr>
                 </thead>
@@ -70,6 +71,7 @@
                             @elseif ($task->status_id == 3){{ trans('projectsquare::tasks.done') }}
                             @endif
                         </td>
+                        <td>{{ $task->estimated_time }}</td>
                         <td align="right">
                             <a href="{{ route('tasks_edit', ['id' => $task->id]) }}" class="btn see-more"></a>
                             <a href="{{ route('tasks_delete', ['id' => $task->id]) }}" class="btn cancel btn-delete"></a>

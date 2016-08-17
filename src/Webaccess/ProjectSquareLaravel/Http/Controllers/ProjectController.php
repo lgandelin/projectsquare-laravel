@@ -101,4 +101,34 @@ class ProjectController extends BaseController
             'endDate' => (new Carbon())->format('d/m/Y'),
         ]);
     }
+
+    public function progress($projectID)
+    {
+        return view('projectsquare::project.progress', [
+            'users' => app()->make('UserManager')->getAgencyUsers(),
+            'project' => app()->make('ProjectManager')->getProject($projectID),
+            'tasks' => app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
+                'projectID' => $projectID,
+                'statusID' => Input::get('filter_status'),
+                'allocatedUserID' => Input::get('filter_allocated_user'),
+            ])),
+            'task_statuses' => TaskController::getTasksStatuses(),
+            'filters' => [
+                'allocated_user' => Input::get('filter_allocated_user'),
+                'status' => Input::get('filter_status'),
+            ],
+            'todo_tasks_count' => sizeof(app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
+                'projectID' => $projectID,
+                'statusID' => 1,
+            ]))),
+            'in_progress_tasks_count' => sizeof(app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
+                'projectID' => $projectID,
+                'statusID' => 2,
+            ]))),
+            'completed_tasks_count' => sizeof(app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
+                'projectID' => $projectID,
+                'statusID' => 3,
+            ]))),
+        ]);
+    }
 }
