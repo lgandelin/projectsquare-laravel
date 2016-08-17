@@ -44,6 +44,11 @@
     </div>
 
     <div class="form-group">
+        <label for="name">{{ trans('projectsquare::projects.scheduled_time') }}</label>
+        <input type="text" name="scheduled_time" class="form-control" placeholder="{{ trans('projectsquare::projects.scheduled_time_placehodler') }}"  @if (isset($project_scheduled_time))value="{{ $project_scheduled_time }}"@endif size="7">
+    </div>
+
+    <div class="form-group">
         <button type="submit" class="btn valid">
             <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
         </button>

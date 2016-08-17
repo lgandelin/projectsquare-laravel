@@ -26,6 +26,8 @@ return [
     'website_back_url' => 'URL de l\'interface d\'administration du site',
     'status' => 'Statut',
     'color' => 'Couleur associée',
+    'scheduled_time' => 'Temps prévu (en jours)',
+    'scheduled_time_placehodler' => 'ex: 12.5',
     'name_placeholder' => 'Nom de votre projet',
     'project_resources' => 'Ressources assignées',
     'add_resource' => 'Ajouter une ressource',

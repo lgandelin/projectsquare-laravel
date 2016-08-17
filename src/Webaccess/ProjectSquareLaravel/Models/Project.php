@@ -14,6 +14,7 @@ class Project extends Model
         'website_front_url',
         'website_back_url',
         'color',
+        'scheduled_time',
     ];
 
     public function client()
