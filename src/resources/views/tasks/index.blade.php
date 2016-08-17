@@ -48,6 +48,7 @@
                 </div>
             </div>
         </form>
+
         <hr/>
 
         @if (isset($error))
@@ -99,7 +100,7 @@
                             @elseif ($task->status_id == 3)Terminé
                             @endif
                         </td>
-                        <td>@if ($task->estimated_time_days > 0){{ $task->estimated_time_days }} {{ trans('projectsquare::tasks.days') }}@endif @if ($task->estimated_time_hours > 0){{ $task->estimated_time_hours }} {{ trans('projectsquare::tasks.hours') }}@endif</td>
+                        <td>@if ($task->estimated_time_days > 0){{ $task->estimated_time_days }} {{ trans('projectsquare::generic.days') }}@endif @if ($task->estimated_time_hours > 0){{ $task->estimated_time_hours }} {{ trans('projectsquare::generic.hours') }}@endif</td>
                         <td align="right">
                             <a href="{{ route('tasks_edit', ['id' => $task->id]) }}" class="btn see-more"></a>
                             <a href="{{ route('tasks_delete', ['id' => $task->id]) }}" class="btn cancel btn-delete"></a>

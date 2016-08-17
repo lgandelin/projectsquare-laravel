@@ -10,6 +10,8 @@ use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 
 class ProjectController extends BaseController
 {
+    const HOURS_IN_DAY = 7;
+
     public function index($projectID)
     {
         return view('projectsquare::project.cms', [
@@ -104,14 +106,20 @@ class ProjectController extends BaseController
 
     public function progress($projectID)
     {
+        $project = app()->make('ProjectManager')->getProject($projectID);
+        $tasks = app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
+            'projectID' => $projectID,
+            'statusID' => Input::get('filter_status'),
+            'allocatedUserID' => Input::get('filter_allocated_user'),
+        ]));
+
+        list($totalEstimatedTimeDays, $totalEstimatedTimeHours) = $this->getTotalEstimatedTime($tasks);
+        list($totalSpentTimeDays, $totalSpentTimeHours) = $this->getTotalSpentTime($tasks);
+
         return view('projectsquare::project.progress', [
             'users' => app()->make('UserManager')->getAgencyUsers(),
-            'project' => app()->make('ProjectManager')->getProject($projectID),
-            'tasks' => app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
-                'projectID' => $projectID,
-                'statusID' => Input::get('filter_status'),
-                'allocatedUserID' => Input::get('filter_allocated_user'),
-            ])),
+            'project' => $project,
+            'tasks' => $tasks,
             'task_statuses' => TaskController::getTasksStatuses(),
             'filters' => [
                 'allocated_user' => Input::get('filter_allocated_user'),
@@ -129,6 +137,47 @@ class ProjectController extends BaseController
                 'projectID' => $projectID,
                 'statusID' => 3,
             ]))),
+            'total_estimated_time_days' => $totalEstimatedTimeDays,
+            'total_estimated_time_hours' => $totalEstimatedTimeHours,
+            'total_spent_time_days' => $totalSpentTimeDays,
+            'total_spent_time_hours' => $totalSpentTimeHours,
+            'profitability_percentage' => ($totalSpentTimeDays + $totalSpentTimeHours > 0) ? floor((100 * $project->scheduledTime / ($totalSpentTimeDays + $totalSpentTimeHours / self::HOURS_IN_DAY)) - 100) : 0,
         ]);
+    }
+
+    private function getTotalEstimatedTime($tasks)
+    {
+        $totalEstimatedTimeDays = 0;
+        $totalEstimatedTimeHours = 0;
+
+        foreach ($tasks as $task) {
+            $totalEstimatedTimeDays += $task->estimated_time_days;
+            $totalEstimatedTimeHours += $task->estimated_time_hours;
+        }
+
+        if ($totalEstimatedTimeHours >= self::HOURS_IN_DAY) {
+            $totalEstimatedTimeDays += floor($totalEstimatedTimeHours / self::HOURS_IN_DAY);
+            $totalEstimatedTimeHours = $totalEstimatedTimeHours % self::HOURS_IN_DAY;
+        }
+
+        return array($totalEstimatedTimeDays, $totalEstimatedTimeHours);
+    }
+
+    private function getTotalSpentTime($tasks)
+    {
+        $totalSpentTimeDays = 0;
+        $totalSpentTimeHours = 0;
+
+        foreach ($tasks as $task) {
+            $totalSpentTimeDays += $task->spent_time_days;
+            $totalSpentTimeHours += $task->spent_time_hours;
+        }
+
+        if ($totalSpentTimeHours >= self::HOURS_IN_DAY) {
+            $totalSpentTimeDays += floor($totalSpentTimeHours / self::HOURS_IN_DAY);
+            $totalSpentTimeHours = $totalSpentTimeHours % self::HOURS_IN_DAY;
+        }
+
+        return array($totalSpentTimeDays, $totalSpentTimeHours);
     }
 }
