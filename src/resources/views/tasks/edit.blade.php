@@ -1,7 +1,7 @@
 @extends('projectsquare::default')
 
 @section('content')
-        <!--<ol class="breadcrumb">
+    <!--<ol class="breadcrumb">
         <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
         <li><a href="{{ route('tasks_index') }}">{{ trans('projectsquare::tasks.tasks_list') }}</a></li>
         <li class="active">{{ trans('projectsquare::tasks.add_task') }}</li>
@@ -91,8 +91,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="estimated_time">{{ trans('projectsquare::tasks.estimated_time') }}</label>
-                        <input class="form-control" type="time" name="estimated_time" placeholder="{{ trans('projectsquare::tasks.estimated_time') }}" value="@if (isset($task->estimatedTime)){{ $task->estimatedTime }}@endif" />
+                        <label for="estimated_time">{{ trans('projectsquare::tasks.estimated_time') }}</label><br>
+                        <input class="form-control" type="text" name="estimated_time_days" style="display: inline-block; width: 5rem; margin-right: 0.5rem;" value="@if (isset($task->estimatedTimeDays)){{ $task->estimatedTimeDays }}@endif" /> {{ trans('projectsquare::tasks.days') }}
+                        <input class="form-control" type="text" name="estimated_time_hours" style="display: inline-block; width: 5rem; margin-left: 1rem; margin-right: 0.5rem;" value="@if (isset($task->estimatedTimeHours)){{ $task->estimatedTimeHours }}@endif" /> {{ trans('projectsquare::tasks.hours') }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="estimated_time">{{ trans('projectsquare::tasks.spent_time') }}</label><br>
+                        <input class="form-control" type="text" name="spent_time_days" style="display: inline-block; width: 5rem; margin-right: 0.5rem;" value="@if (isset($task->spentTimeDays)){{ $task->spentTimeDays }}@endif" /> {{ trans('projectsquare::tasks.days') }}
+                        <input class="form-control" type="text" name="spent_time_hours" style="display: inline-block; width: 5rem; margin-left: 1rem; margin-right: 0.5rem;" value="@if (isset($task->spentTimeHours)){{ $task->spentTimeHours }}@endif" /> {{ trans('projectsquare::tasks.hours') }}
                     </div>
                 </div>
             </div>

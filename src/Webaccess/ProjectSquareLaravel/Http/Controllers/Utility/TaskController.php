@@ -53,7 +53,10 @@ class TaskController extends BaseController
                 'description' => Input::get('description'),
                 'projectID' => Input::get('project_id'),
                 'statusID' => Input::get('status_id'),
-                'estimatedTime' => Input::get('estimated_time'),
+                'estimatedTimeDays' => Input::get('estimated_time_days'),
+                'estimatedTimeHours' => Input::get('estimated_time_hours'),
+                'spentTimeDays' => Input::get('spent_time_days'),
+                'spentTimeHours' => Input::get('spent_time_hours'),
                 'allocatedUserID' => Input::get('allocated_user_id'),
                 'requesterUserID' => $this->getUser()->id,
             ];
@@ -103,7 +106,10 @@ class TaskController extends BaseController
                 'statusID' => Input::get('status_id'),
                 'allocatedUserID' => Input::get('allocated_user_id'),
                 'description' => Input::get('description'),
-                'estimatedTime' => Input::get('estimated_time'),
+                'estimatedTimeDays' => Input::get('estimated_time_days'),
+                'estimatedTimeHours' => Input::get('estimated_time_hours'),
+                'spentTimeDays' => Input::get('spent_time_days'),
+                'spentTimeHours' => Input::get('spent_time_hours'),
                 'requesterUserID' => $this->getUser()->id,
             ]));
 

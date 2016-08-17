@@ -44,7 +44,10 @@ class EloquentTasksRepository implements TaskRepository
         $todoModel = (!isset($todo->id)) ? new Task() : Task::find($todo->id);
         $todoModel->title = $todo->title;
         $todoModel->description = $todo->description;
-        $todoModel->estimated_time = $todo->estimatedTime;
+        $todoModel->estimated_time_days = $todo->estimatedTimeDays;
+        $todoModel->estimated_time_hours = $todo->estimatedTimeHours;
+        $todoModel->spent_time_days = $todo->spentTimeDays;
+        $todoModel->spent_time_hours = $todo->spentTimeHours;
         $todoModel->project_id = $todo->projectID;
         $todoModel->status_id = $todo->statusID;
         $todoModel->allocated_user_id = $todo->allocatedUserID;
@@ -68,7 +71,10 @@ class EloquentTasksRepository implements TaskRepository
         $todo->id = $todoModel->id;
         $todo->title = $todoModel->title;
         $todo->description = $todoModel->description;
-        $todo->estimatedTime = $todoModel->estimated_time;
+        $todo->estimatedTimeDays = $todoModel->estimated_time_days;
+        $todo->estimatedTimeHours = $todoModel->estimated_time_hours;
+        $todo->spentTimeDays = $todoModel->spent_time_days;
+        $todo->spentTimeHours = $todoModel->spent_time_hours;
         $todo->projectID = $todoModel->project_id;
         $todo->statusID = $todoModel->status_id;
         $todo->allocatedUserID = $todoModel->allocated_user_id;
