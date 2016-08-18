@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Entities\Task;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\TaskController;
-use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 
 class ProjectController extends BaseController
@@ -132,7 +131,8 @@ class ProjectController extends BaseController
             'total_spent_time_days' => $spentTime->days,
             'total_spent_time_hours' => $spentTime->hours,
             'progress_percentage' => app()->make('GetProgressIndicatorsInteractor')->getProgressPercentage($projectID, $tasks),
-            'profitability_percentage' => app()->make('GetProgressIndicatorsInteractor')->getProfitabilityPercentage($project->scheduledTime, $spentTime)
+            'profitability_percentage' => app()->make('GetProgressIndicatorsInteractor')->getProfitabilityPercentage($project->scheduledTime, $spentTime),
+            'spent_time_percentage' => app()->make('GetProgressIndicatorsInteractor')->getSpentTimePercentage($project->scheduledTime, $spentTime),
         ]);
     }
 }

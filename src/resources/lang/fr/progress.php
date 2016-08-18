@@ -18,4 +18,6 @@ return [
 
     'progress_percentage' => 'Pourcentage d\'avancement',
     'profitability_percentage' => 'Pourcentage de rentabilité',
+    'spent_time_percentage' => 'Pourcentage de temps passé',
+    'spent_time' => 'Temps passé'
 ];
