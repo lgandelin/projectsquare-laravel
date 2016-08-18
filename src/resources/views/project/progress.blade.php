@@ -63,7 +63,7 @@
                         <h3>{{ trans('projectsquare::progress.indicators') }}</h3>
 
                         <div class="col-lg-2">
-                            {{ trans('projectsquare::progress.progress_percentage') }} : <span style="font-size: 25px">{{ floor($completed_tasks_count * 100 / sizeof($tasks)) }}%</span>
+                            {{ trans('projectsquare::progress.progress_percentage') }} : <span style="font-size: 25px">{{ $progress_percentage }}%</span>
                         </div>
 
                         <div class="col-lg-2">

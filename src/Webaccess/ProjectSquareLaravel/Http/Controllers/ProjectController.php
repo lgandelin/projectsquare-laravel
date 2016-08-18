@@ -4,14 +4,13 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
+use Webaccess\ProjectSquare\Entities\Task;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\TaskController;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 
 class ProjectController extends BaseController
 {
-    const HOURS_IN_DAY = 7;
-
     public function index($projectID)
     {
         return view('projectsquare::project.cms', [
@@ -113,8 +112,8 @@ class ProjectController extends BaseController
             'allocatedUserID' => Input::get('filter_allocated_user'),
         ]));
 
-        list($totalEstimatedTimeDays, $totalEstimatedTimeHours) = $this->getTotalEstimatedTime($tasks);
-        list($totalSpentTimeDays, $totalSpentTimeHours) = $this->getTotalSpentTime($tasks);
+        $estimatedTime = app()->make('GetTasksTotalTimeInteractor')->getTasksTotalEstimatedTime($projectID);
+        $spentTime = app()->make('GetTasksTotalTimeInteractor')->getTasksTotalSpentTime($projectID);
 
         return view('projectsquare::project.progress', [
             'users' => app()->make('UserManager')->getAgencyUsers(),
@@ -125,59 +124,15 @@ class ProjectController extends BaseController
                 'allocated_user' => Input::get('filter_allocated_user'),
                 'status' => Input::get('filter_status'),
             ],
-            'todo_tasks_count' => sizeof(app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
-                'projectID' => $projectID,
-                'statusID' => 1,
-            ]))),
-            'in_progress_tasks_count' => sizeof(app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
-                'projectID' => $projectID,
-                'statusID' => 2,
-            ]))),
-            'completed_tasks_count' => sizeof(app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
-                'projectID' => $projectID,
-                'statusID' => 3,
-            ]))),
-            'total_estimated_time_days' => $totalEstimatedTimeDays,
-            'total_estimated_time_hours' => $totalEstimatedTimeHours,
-            'total_spent_time_days' => $totalSpentTimeDays,
-            'total_spent_time_hours' => $totalSpentTimeHours,
-            'profitability_percentage' => ($totalSpentTimeDays + $totalSpentTimeHours > 0) ? floor((100 * $project->scheduledTime / ($totalSpentTimeDays + $totalSpentTimeHours / self::HOURS_IN_DAY)) - 100) : 0,
+            'todo_tasks_count' => app()->make('GetProgressIndicatorsInteractor')->getTasksCountByStatus($projectID, Task::TODO),
+            'in_progress_tasks_count' => app()->make('GetProgressIndicatorsInteractor')->getTasksCountByStatus($projectID, Task::IN_PROGRESS),
+            'completed_tasks_count' => app()->make('GetProgressIndicatorsInteractor')->getTasksCountByStatus($projectID, Task::COMPLETED),
+            'total_estimated_time_days' => $estimatedTime->days,
+            'total_estimated_time_hours' => $estimatedTime->hours,
+            'total_spent_time_days' => $spentTime->days,
+            'total_spent_time_hours' => $spentTime->hours,
+            'progress_percentage' => app()->make('GetProgressIndicatorsInteractor')->getProgressPercentage($projectID, $tasks),
+            'profitability_percentage' => app()->make('GetProgressIndicatorsInteractor')->getProfitabilityPercentage($project->scheduledTime, $spentTime)
         ]);
-    }
-
-    private function getTotalEstimatedTime($tasks)
-    {
-        $totalEstimatedTimeDays = 0;
-        $totalEstimatedTimeHours = 0;
-
-        foreach ($tasks as $task) {
-            $totalEstimatedTimeDays += $task->estimated_time_days;
-            $totalEstimatedTimeHours += $task->estimated_time_hours;
-        }
-
-        if ($totalEstimatedTimeHours >= self::HOURS_IN_DAY) {
-            $totalEstimatedTimeDays += floor($totalEstimatedTimeHours / self::HOURS_IN_DAY);
-            $totalEstimatedTimeHours = $totalEstimatedTimeHours % self::HOURS_IN_DAY;
-        }
-
-        return array($totalEstimatedTimeDays, $totalEstimatedTimeHours);
-    }
-
-    private function getTotalSpentTime($tasks)
-    {
-        $totalSpentTimeDays = 0;
-        $totalSpentTimeHours = 0;
-
-        foreach ($tasks as $task) {
-            $totalSpentTimeDays += $task->spent_time_days;
-            $totalSpentTimeHours += $task->spent_time_hours;
-        }
-
-        if ($totalSpentTimeHours >= self::HOURS_IN_DAY) {
-            $totalSpentTimeDays += floor($totalSpentTimeHours / self::HOURS_IN_DAY);
-            $totalSpentTimeHours = $totalSpentTimeHours % self::HOURS_IN_DAY;
-        }
-
-        return array($totalSpentTimeDays, $totalSpentTimeHours);
     }
 }

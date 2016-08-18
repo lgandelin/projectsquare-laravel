@@ -20,23 +20,34 @@ class EloquentTasksRepository implements TaskRepository
         return Task::find($todoID);
     }
 
-    public function getTasks($projectID = null, $statusID = null, $allocatedUserID = null)
+    public function getTasks($projectID = null, $statusID = null, $allocatedUserID = null, $entities = false)
     {
         if ($projectID) {
-            $todos = Task::with('project', 'project.client')->with('project.client')->where('project_id', '=', $projectID);
+            $tasks = Task::with('project', 'project.client')->with('project.client')->where('project_id', '=', $projectID);
         } else {
-            $todos = Task::with('project', 'project.client')->with('project.client');
+            $tasks = Task::with('project', 'project.client')->with('project.client');
         }
 
         if ($statusID) {
-            $todos->where('status_id', '=', $statusID);
+            $tasks->where('status_id', '=', $statusID);
         }
 
         if ($allocatedUserID) {
-            $todos->where('allocated_user_id', '=', $allocatedUserID);
+            $tasks->where('allocated_user_id', '=', $allocatedUserID);
         }
 
-        return $todos->get();
+        if ($entities) {
+            $tasksList = $tasks->get();
+
+            $result = [];
+            foreach ($tasksList as $taskModel) {
+                $result[]= $this->getTaskEntity($taskModel);
+            }
+
+            return $result;
+        }
+
+        return $tasks->get();
     }
 
     public function persistTask(TaskEntity $todo)
