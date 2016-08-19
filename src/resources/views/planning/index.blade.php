@@ -93,7 +93,7 @@
                                  data-ticket="{{ $ticket->id }}"
                                  data-color="{{ $ticket->project->color }}"
                                  data-event='{"title":"#{{ $ticket->id }} - {{ $ticket->title }}"}'
-                                 data-duration="{{ ($ticket->states[0]->estimated_time) ? $ticket->states[0]->estimated_time : "02:00" }}"
+                                 data-duration="02:00"
                                  class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: {{ $ticket->project->color }}; margin-bottom: 1rem; width: 50%; border: none !important;"
                             >
                                 <div class="fc-content">
@@ -115,7 +115,7 @@
                                  data-ticket="{{ $ticket->id }}"
                                  data-color="{{ $ticket->project->color }}"
                                  data-event='{"title":"#{{ $ticket->id }} - {{ $ticket->title }}"}'
-                                 data-duration="{{ ($ticket->states[0]->estimated_time) ? $ticket->states[0]->estimated_time : "02:00" }}"
+                                 data-duration="02:00"
                                  class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: {{ $ticket->project->color }}; margin-bottom: 1rem; width: 50%; border: none !important;"
                             >
                                 <div class="fc-content"><div class="fc-title">#{{ $ticket->id }} - {{ $ticket->title }}</div></div>
@@ -136,7 +136,7 @@
                      data-ticket="@{{id}}"
                      data-color="@{{color}}"
                      data-event='{"title":"#@{{id}} - @{{title}}"}'
-                     data-duration="@{{estimated_time}}"
+                     data-duration="02:00"
                      class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: @{{color}}; margin-bottom: 1rem; width: 50%; border: none !important;"
                 >
                     <div class="fc-content"><div class="fc-title">
