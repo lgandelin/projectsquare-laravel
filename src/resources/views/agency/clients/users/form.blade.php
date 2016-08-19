@@ -32,7 +32,7 @@
             </span>
         </a>
         <br/>
-        <span style="font-style: italic; display: inline-block;margin-top: 5px;">{{ trans('projectsquare::users.generate_password_notice') }}</span>
+        <span style="font-style: italic; display: inline-block;margin-top: 5px;">{{ trans('projectsquare::clients.generate_password_notice') }}</span>
     @endif
 
     <div class="form-group">

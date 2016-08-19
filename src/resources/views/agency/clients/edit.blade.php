@@ -63,7 +63,7 @@
             </table>
         </div>
 
-        <a href="{{ route('clients_add_user', ['id' => $client->id]) }}" class="btn valid users"><i class="glyphicon glyphicon-plus"></i> {{ trans('projectsquare::users.add_user') }}</a>
+        <a href="{{ route('clients_add_user', ['id' => $client->id]) }}" class="btn valid users"><i class="glyphicon glyphicon-plus"></i> {{ trans('projectsquare::clients.add_user') }}</a>
     </div>
 </div>
 @endsection
