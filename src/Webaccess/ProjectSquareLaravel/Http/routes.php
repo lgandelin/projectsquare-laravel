@@ -38,6 +38,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/add_task', array('as' => 'tasks_store', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\TaskController@store'));
     Route::get('/tasks/{id}', array('as' => 'tasks_edit', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\TaskController@edit'));
     Route::post('/tasks/update', array('as' => 'tasks_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\TaskController@update'));
+    Route::post('/tasks_unallocate', array('as' => 'tasks_unallocate', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\TaskController@unallocate'));
     Route::get('/delete_task/{id}', array('as' => 'tasks_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\TaskController@delete'));
 
     //PROJECTS

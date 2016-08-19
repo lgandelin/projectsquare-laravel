@@ -156,4 +156,20 @@ class TaskController extends BaseController
             $tasksStatus3,
         ];
     }
+    
+    public function unallocate()
+    {
+        try {
+            app()->make('UpdateTaskInteractor')->execute(new UpdateTaskRequest([
+                'taskID' => Input::get('task_id'),
+                'requesterUserID' => $this->getUser()->id,
+                'allocatedUserID' => 0
+            ]));
+
+            return response()->json(['success' => true], 200);
+        } catch (\Exception $e) {
+            $this->request->session()->flash('error', $e->getMessage());
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 }

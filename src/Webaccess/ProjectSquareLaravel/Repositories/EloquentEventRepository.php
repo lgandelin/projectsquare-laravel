@@ -20,7 +20,7 @@ class EloquentEventRepository implements EventRepository
         return Event::find($eventID);
     }
 
-    public function getEvents($userID = null, $projectID = null, $ticketID = null)
+    public function getEvents($userID = null, $projectID = null, $ticketID = null, $taskID = null)
     {
         $events = [];
         $eventsModel = Event::with('project');
@@ -33,6 +33,9 @@ class EloquentEventRepository implements EventRepository
         }
         if ($ticketID) {
             $eventsModel->where('ticket_id', '=', $ticketID);
+        }
+        if ($taskID) {
+            $eventsModel->where('task_id', '=', $taskID);
         }
         foreach ($eventsModel->get() as $eventModel) {
             $event = $this->getEventEntity($eventModel);
@@ -53,6 +56,7 @@ class EloquentEventRepository implements EventRepository
         $eventModel->end_time = $event->endTime->format('Y-m-d H:i:s');
         $eventModel->user_id = $event->userID;
         $eventModel->ticket_id = $event->ticketID;
+        $eventModel->task_id = $event->taskID;
         $eventModel->project_id = $event->projectID;
 
         $eventModel->save();
@@ -77,6 +81,7 @@ class EloquentEventRepository implements EventRepository
         $event->endTime = new \DateTime($eventModel->end_time);
         $event->userID = $eventModel->user_id;
         $event->ticketID = $eventModel->ticket_id;
+        $event->taskID = $eventModel->task_id;
         $event->projectID = $eventModel->project_id;
 
         return $event;

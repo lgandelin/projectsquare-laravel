@@ -209,7 +209,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
                 new EloquentEventRepository(),
                 new EloquentNotificationRepository(),
                 new EloquentTicketRepository(),
-                new EloquentProjectRepository()
+                new EloquentProjectRepository(),
+                new EloquentTasksRepository()
             );
         });
 

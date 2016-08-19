@@ -28,11 +28,11 @@ class EloquentTasksRepository implements TaskRepository
             $tasks = Task::with('project', 'project.client')->with('project.client');
         }
 
-        if ($statusID) {
+        if ($statusID !== null) {
             $tasks->where('status_id', '=', $statusID);
         }
 
-        if ($allocatedUserID) {
+        if ($allocatedUserID !== null) {
             $tasks->where('allocated_user_id', '=', $allocatedUserID);
         }
 

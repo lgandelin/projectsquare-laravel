@@ -9645,8 +9645,6 @@ body {
 
 .tickets-list {
   margin-top: 5rem; }
-  .tickets-list .ticket {
-    min-height: 35px; }
 
 #planning a[href]:hover {
   text-decoration: underline; }
