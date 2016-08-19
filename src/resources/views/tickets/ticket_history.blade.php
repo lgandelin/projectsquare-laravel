@@ -6,6 +6,7 @@
         <th>{{ trans('projectsquare::tickets.allocated_user') }}</th>
         <th>{{ trans('projectsquare::tickets.due_date') }}</th>
         <th>{{ trans('projectsquare::tickets.estimated_time') }}</th>
+        <th>{{ trans('projectsquare::tickets.spent_time') }}</th>
         <th>{{ trans('projectsquare::tickets.priority') }}</th>
         <th>{{ trans('projectsquare::tickets.status') }}</th>
         <th>{{ trans('projectsquare::tickets.comments') }}</th>
@@ -35,7 +36,8 @@
                     @endif
                 </td>
                 <td>@if ($ticket_state->due_date){{ $ticket_state->due_date }}@endif</td>
-                <td>@if ($ticket_state->estimated_time){{ $ticket_state->estimated_time }}@endif</td>
+                <td>@if ($ticket_state->estimated_time_days > 0){{ $ticket_state->estimated_time_days }} {{ trans('projectsquare::generic.days') }}@endif @if ($ticket_state->estimated_time_hours > 0){{ $ticket_state->estimated_time_hours }} {{ trans('projectsquare::generic.hours') }}@endif</td>
+                <td>@if ($ticket_state->spent_time_days > 0){{ $ticket_state->spent_time_days }} {{ trans('projectsquare::generic.days') }}@endif @if ($ticket_state->spent_time_hours > 0){{ $ticket_state->spent_time_hours }} {{ trans('projectsquare::generic.hours') }}@endif</td>
                 <td><span class="priority priority-{{ $ticket_state->priority }}"></span></td>
                 <td>@if ($ticket_state->status)<span class="status status-{{ $ticket_state->status->id }}">{{ $ticket_state->status->name }}</span>@endif</td>
                 <td>{{ $ticket_state->comments }}</td>
