@@ -13,11 +13,11 @@ class UpdateTicketsTableUpdatedEstimatedTime extends Migration
     public function up()
     {
         Schema::table('ticket_states', function (Blueprint $table) {
-            $table->float('estimated_time_days')->after('estimated_time');
+            $table->float('estimated_time_days')->after('estimated_time')->nullable();
             $table->dropColumn('estimated_time');
-            $table->float('estimated_time_hours')->after('estimated_time_days');
-            $table->float('spent_time_days')->after('estimated_time_hours');
-            $table->float('spent_time_hours')->after('spent_time_days');
+            $table->float('estimated_time_hours')->after('estimated_time_days')->nullable();
+            $table->float('spent_time_days')->after('estimated_time_hours')->nullable();
+            $table->float('spent_time_hours')->after('spent_time_days')->nullable();
         });
     }
 

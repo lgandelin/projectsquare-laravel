@@ -110,9 +110,24 @@ class ProjectController extends BaseController
             'statusID' => Input::get('filter_status'),
             'allocatedUserID' => Input::get('filter_allocated_user'),
         ]));
+        $tasksEstimatedTime = app()->make('GetTasksTotalTimeInteractor')->getTasksTotalEstimatedTime($projectID);
+        $tasksSpentTime = app()->make('GetTasksTotalTimeInteractor')->getTasksTotalSpentTime($projectID);
 
-        $estimatedTime = app()->make('GetTasksTotalTimeInteractor')->getTasksTotalEstimatedTime($projectID);
-        $spentTime = app()->make('GetTasksTotalTimeInteractor')->getTasksTotalSpentTime($projectID);
+        $tickets = app()->make('GetTicketInteractor')->getTicketsList(
+            $this->getUser()->id,
+            $projectID,
+            Input::get('filter_allocated_user'),
+            Input::get('filter_status')
+        );
+        $ticketsEstimatedTime = app()->make('GetTicketsTotalTimeInteractor')->getTicketsTotalEstimatedTime($this->getUser()->id, $projectID);
+        $ticketsSpentTime = app()->make('GetTicketsTotalTimeInteractor')->getTicketsTotalSpentTime($this->getUser()->id, $projectID);
+
+        $ticketStatusesColors = ['#d9534f', '#EC970D', '#29595E', '#5cb85c', '#8DA899'];
+        $ticketStatuses = app()->make('TicketStatusManager')->getTicketStatuses();
+        foreach ($ticketStatuses as $i => $ticketStatus) {
+            $ticketStatuses[$i]->count = sizeof(app()->make('GetTicketInteractor')->getTicketsList($this->getUser()->id, $projectID, null, $ticketStatus->id));
+            $ticketStatuses[$i]->color = $ticketStatusesColors[$i];
+        }
 
         return view('projectsquare::project.progress', [
             'users' => app()->make('UserManager')->getAgencyUsers(),
@@ -126,13 +141,21 @@ class ProjectController extends BaseController
             'todo_tasks_count' => app()->make('GetProgressIndicatorsInteractor')->getTasksCountByStatus($projectID, Task::TODO),
             'in_progress_tasks_count' => app()->make('GetProgressIndicatorsInteractor')->getTasksCountByStatus($projectID, Task::IN_PROGRESS),
             'completed_tasks_count' => app()->make('GetProgressIndicatorsInteractor')->getTasksCountByStatus($projectID, Task::COMPLETED),
-            'total_estimated_time_days' => $estimatedTime->days,
-            'total_estimated_time_hours' => $estimatedTime->hours,
-            'total_spent_time_days' => $spentTime->days,
-            'total_spent_time_hours' => $spentTime->hours,
+            'total_tasks_estimated_time_days' => $tasksEstimatedTime->days,
+            'total_tasks_estimated_time_hours' => $tasksEstimatedTime->hours,
+            'total_tasks_spent_time_days' => $tasksSpentTime->days,
+            'total_tasks_spent_time_hours' => $tasksSpentTime->hours,
             'progress_percentage' => app()->make('GetProgressIndicatorsInteractor')->getProgressPercentage($projectID, $tasks),
-            'profitability_percentage' => app()->make('GetProgressIndicatorsInteractor')->getProfitabilityPercentage($project->scheduledTime, $spentTime),
-            'spent_time_percentage' => app()->make('GetProgressIndicatorsInteractor')->getSpentTimePercentage($project->scheduledTime, $spentTime),
+            'profitability_percentage' => app()->make('GetProgressIndicatorsInteractor')->getProfitabilityPercentage($project->scheduledTime, $tasksSpentTime),
+            'tasks_spent_time_percentage' => app()->make('GetProgressIndicatorsInteractor')->getSpentTimePercentage($project->scheduledTime, $tasksSpentTime),
+
+            'tickets' => $tickets,
+            'total_tickets_estimated_time_days' => $ticketsEstimatedTime->days,
+            'total_tickets_estimated_time_hours' => $ticketsEstimatedTime->hours,
+            'total_tickets_spent_time_days' => $ticketsSpentTime->days,
+            'total_tickets_spent_time_hours' => $ticketsSpentTime->hours,
+            'tickets_spent_time_percentage' => app()->make('GetProgressIndicatorsInteractor')->getSpentTimePercentage($project->scheduledTime, $ticketsSpentTime),
+            'ticket_statuses' => $ticketStatuses,
         ]);
     }
 }

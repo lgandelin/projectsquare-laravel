@@ -12,12 +12,19 @@ return [
     'total' => 'Total',
 
     'time_tracking' => 'Gestion du temps',
-    'total_scheduled_time' => 'Temps total prévu sur le projet',
+    'project_scheduled_time' => 'Temps prévu sur le projet',
     'total_tasks_estimated_time' => 'Temps total estimé sur les tâches',
     'total_tasks_spent_time' => 'Temps total passé sur les tâches',
 
     'progress_percentage' => 'Pourcentage d\'avancement',
     'profitability_percentage' => 'Pourcentage de rentabilité',
-    'spent_time_percentage' => 'Pourcentage de temps passé',
-    'spent_time' => 'Temps passé'
+    'tasks_spent_time_percentage' => 'Pourcentage de temps passé sur les tâches',
+    'spent_time' => 'Temps passé',
+
+    'ticket_statuses' => 'Statuts des tickets',
+    'no_ticket_yet' => 'Aucun ticket entré pour le moment',
+    'tickets' => 'tickets',
+    'total_tickets_estimated_time' => 'Temps total estimé sur les tickets',
+    'total_tickets_spent_time' => 'Temps total passé sur les tickets',
+    'tickets_spent_time_percentage' => 'Pourcentage de temps passé sur les tickets',
 ];

@@ -13,7 +13,7 @@ class UpdateProjectsTableAddScheduledTime extends Migration
     public function up()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->float('scheduled_time')->after('color');
+            $table->float('scheduled_time')->after('color')->nullable();
         });
     }
 
