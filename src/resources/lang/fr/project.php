@@ -12,5 +12,5 @@ return [
     'calendar' => 'Calendrier',
     'seo' => 'Référencement',
     'files' => 'Fichiers',
-    'progress' => 'Avancement',
+    'reporting' => 'Reporting',
 ];

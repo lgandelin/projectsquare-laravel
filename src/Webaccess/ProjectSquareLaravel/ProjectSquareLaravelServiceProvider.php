@@ -26,9 +26,9 @@ use Webaccess\ProjectSquare\Interactors\Calendar\GetStepsInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\CreateStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\DeleteStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\UpdateStepInteractor;
-use Webaccess\ProjectSquare\Interactors\Progress\GetProgressIndicatorsInteractor;
-use Webaccess\ProjectSquare\Interactors\Progress\GetTasksTotalTimeInteractor;
-use Webaccess\ProjectSquare\Interactors\Progress\GetTicketsTotalTimeInteractor;
+use Webaccess\ProjectSquare\Interactors\Reporting\GetReportingIndicatorsInteractor;
+use Webaccess\ProjectSquare\Interactors\Reporting\GetTasksTotalTimeInteractor;
+use Webaccess\ProjectSquare\Interactors\Reporting\GetTicketsTotalTimeInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectsInteractor;
 use Webaccess\ProjectSquare\Interactors\Todos\CreateTodoInteractor;
@@ -379,8 +379,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             );
         });
 
-        App::bind('GetProgressIndicatorsInteractor', function () {
-            return new GetProgressIndicatorsInteractor(
+        App::bind('GetReportingIndicatorsInteractor', function () {
+            return new GetReportingIndicatorsInteractor(
                 new EloquentTasksRepository()
             );
         });
