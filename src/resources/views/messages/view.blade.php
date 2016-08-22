@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="submit">
-                        <a href="{{ route('messages_index') }}" class="btn back button pull-right"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.back') }}</a>
+                        <a href="{{ \URL::previous() }}" class="btn back button pull-right"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.back') }}</a>
                         <button class="btn button pull-right reply-message" data-id="{{ $message->id }}" style="margin-right: 1rem;"><span class="glyphicon glyphicon-comment"></span> {{ trans('projectsquare::messages.reply_message') }}</button>
                     </div>
                 </div>
