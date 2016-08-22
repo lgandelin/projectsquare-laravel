@@ -1,48 +1,48 @@
 @extends('projectsquare::default')
 
 @section('content')
-    <!--<ol class="breadcrumb">
+        <!--<ol class="breadcrumb">
         <li><a href="{{ route('dashboard') }}">Tableau de bord</a></li>
         <li class="active">Messages</li>
     </ol>-->
-     <div class="content-page">
-        <div class="templates messages-template">
-            <div class="page-header">
-                <h1>Messages</h1>
-            </div>
+<div class="content-page">
+    <div class="templates messages-template">
+        <div class="page-header">
+            <h1>{{ trans('projectsquare::messages.messages') }}</h1>
+        </div>
 
-            <form method="get">
-                <div class="row">
+        <form method="get">
+            <div class="row">
 
-                    <h2>Filtres</h2>
+                <h2>{{ trans('projectsquare::messages.filters') }}</h2>
 
-                    <div class="form-group col-md-2">
-                        <select class="form-control" name="filter_project" id="filter_project">
-                            <option value="">{{ trans('projectsquare::tickets.filters.by_project') }}</option>
-                            @foreach ($projects as $project)
-                                <option value="{{ $project->id }}" @if ($filters['project'] == $project->id)selected="selected" @endif>{{ $project->client->name }} - {{ $project->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="col-md-2">
-                        <input class="btn button" type="submit" value="{{ trans('projectsquare::generic.valid') }}" />
-                    </div>
+                <div class="form-group col-md-2">
+                    <select class="form-control" name="filter_project" id="filter_project">
+                        <option value="">{{ trans('projectsquare::tickets.filters.by_project') }}</option>
+                        @foreach ($projects as $project)
+                            <option value="{{ $project->id }}" @if ($filters['project'] == $project->id)selected="selected" @endif>{{ $project->client->name }} - {{ $project->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
-            </form>
-            <hr/>
 
-            <table class="table table-striped table-responsive">
+                <div class="col-md-2">
+                    <input class="btn button" type="submit" value="{{ trans('projectsquare::generic.valid') }}" />
+                </div>
+            </div>
+        </form>
+        <hr/>
+        <div class="table-responsive">
+            <table class="table table-striped">
                 <thead>
-                    <tr>
-                        <th></th>
-                        <th>#</th>
-                        <th>Date</th>
-                        <th>Client</th>
-                        <th>Auteur</th>
-                        <th>Titre</th>
-                        <th>Action</th>
-                    </tr>
+                <tr>
+                    <th></th>
+                    <th>#</th>
+                    <th>{{ trans('projectsquare::messages.date') }}</th>
+                    <th>{{ trans('projectsquare::messages.client') }}</th>
+                    <th>{{ trans('projectsquare::messages.author') }}</th>
+                    <th>{{ trans('projectsquare::messages.title') }}</th>
+                    <th>{{ trans('projectsquare::messages.action') }}</th>
+                </tr>
                 </thead>
                 @foreach ($conversations as $conversation)
                     <tr>
@@ -63,10 +63,11 @@
                     </tr>
                 @endforeach
             </table>
-            <div class="text-center">
-                {!! $conversations->render() !!}
-            </div>
+        </div>
+        <div class="text-center">
+            {!! $conversations->render() !!}
         </div>
     </div>
-    <script src="{{ asset('js/messages.js') }}"></script>
+</div>
+<script src="{{ asset('js/messages.js') }}"></script>
 @endsection

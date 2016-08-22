@@ -1,12 +1,13 @@
 <?php
 
-namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
+namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Utility;
 
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Requests\Tickets\CreateTicketRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\DeleteTicketRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\UpdateTicketInfosRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\UpdateTicketRequest;
+use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 use Webaccess\ProjectSquareLaravel\Tools\UploadTool;
 
 class TicketController extends BaseController
@@ -63,7 +64,10 @@ class TicketController extends BaseController
                 'allocatedUserID' => Input::get('allocated_user_id'),
                 'priority' => Input::get('priority'),
                 'dueDate' => \DateTime::createFromFormat('d/m/Y', Input::get('due_date')),
-                'estimatedTime' => Input::get('estimated_time'),
+                'estimatedTimeDays' => Input::get('estimated_time_days'),
+                'estimatedTimeHours' => Input::get('estimated_time_hours'),
+                'spentTimeDays' => Input::get('spent_time_days'),
+                'spentTimeHours' => Input::get('spent_time_hours'),
                 'comments' => Input::get('comments'),
                 'requesterUserID' => $this->getUser()->id,
             ];
@@ -132,7 +136,10 @@ class TicketController extends BaseController
                 'allocatedUserID' => Input::get('allocated_user_id'),
                 'priority' => Input::get('priority'),
                 'dueDate' => \DateTime::createFromFormat('d/m/Y', Input::get('due_date')),
-                'estimatedTime' => Input::get('estimated_time'),
+                'estimatedTimeDays' => Input::get('estimated_time_days'),
+                'estimatedTimeHours' => Input::get('estimated_time_hours'),
+                'spentTimeDays' => Input::get('spent_time_days'),
+                'spentTimeHours' => Input::get('spent_time_hours'),
                 'comments' => Input::get('comments'),
                 'requesterUserID' => $this->getUser()->id,
             ]));

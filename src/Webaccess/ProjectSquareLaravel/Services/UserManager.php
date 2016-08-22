@@ -44,6 +44,10 @@ class UserManager
 
     public function createUser($firstName, $lastName, $email, $password, $mobile=null, $phone=null, $clientID=null, $clientRole=null, $isAdministrator=null)
     {
+        if ($user = $this->repository->getUserByEmail($email)) {
+            throw new \Exception(trans('projectsquare::users.email_already_existing_error'));
+        }
+
         $this->repository->createUser($firstName, $lastName, $email, Hash::make($password), $mobile, $phone, $clientID, $clientRole, $isAdministrator);
 
         Mail::send('projectsquare::emails.user_account_created', array('email' => $email, 'first_name' => $firstName, 'last_name' => $lastName, 'password' => $password), function ($message) use ($email) {
@@ -55,6 +59,11 @@ class UserManager
 
     public function updateUser($userID, $firstName, $lastName, $email, $password=null, $mobile=null, $phone=null, $clientID=null, $clientRole=null, $isAdministrator=null)
     {
+        $user = $this->repository->getUserByEmail($email);
+        if ($user && $user->id != $userID) {
+            throw new \Exception(trans('projectsquare::users.email_already_existing_error'));
+        }
+
         $this->repository->updateUser($userID, $firstName, $lastName, $email, ($password) ? Hash::make($password) : null, $mobile, $phone, $clientID, $clientRole, $isAdministrator);
     }
 

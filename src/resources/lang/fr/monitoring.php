@@ -11,4 +11,5 @@ return [
     'statuses_codes' => 'Code statuts de réponse du serveur',
     'last_24h' => 'Durant les dernières 24h',
     'see_alerts' => 'voir toutes les alertes',
+    'alerts_monitoring' => 'Alertes monitoring',
 ];

@@ -13,17 +13,17 @@
             <p class="size">Processing...</p>
             
         </td>
-        <td width="275">
+        <td class="file_button" width="275">
             {% if (!i && !o.options.autoUpload) { %}
                 <button class="btn button start" disabled>
                     <i class="glyphicon glyphicon-upload"></i>
-                    <span>Démarrer</span>
+                    <span class="value">Démarrer</span>
                 </button>
             {% } %}
             {% if (!i) { %}
                 <button class="btn delete btn-delete btn-cancel">
                     <i class="glyphicon glyphicon-remove picto-delete"></i>
-                    <span> Annuler </span>
+                    <span class="value"> Annuler </span>
                 </button>
             {% } %}
         </td>
@@ -50,18 +50,18 @@
             {% } %}
         </td>
         <td width="150">{%=o.formatFileSize(file.size)%}</td>
-        <td width="275">
-            <a href="{%=file.url%}" class="btn button" download="{%=file.name%}"><i class="glyphicon glyphicon-download"></i> Télécharger</a>
+        <td class="file_button" width="275">
+            <a href="{%=file.url%}" class="btn button" download="{%=file.name%}"><i class="glyphicon glyphicon-download"></i> <span class="value"> Télécharger </span></a>
             {% if (file.deleteUrl) { %}
                 <a href="{%=file.deleteUrl%}" class="btn delete btn-delete">
                     <i class="glyphicon glyphicon-remove picto-delete"></i>
-                    <span> Supprimer </span>
+                    <span class="value"> Supprimer </span>
                 </a>
                 <!--<input type="checkbox" name="delete" value="1" class="toggle">-->
             {% } else { %}
                 <button class="btn btn-warning delete btn-delete">
                     <i class="glyphicon glyphicon-ban-circle"></i>
-                    <span>Annuler</span>
+                    <span class="value">Annuler</span>
                 </button>
             {% } %}
         </td>

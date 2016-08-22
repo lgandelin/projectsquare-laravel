@@ -9,6 +9,8 @@
             <a href="{{ route('messages_index') }}" class="all pull-right"></a>
         @endif
 
+        <a href="#" class="glyphicon glyphicon-move move-widget pull-right"></a>
+
         <table class="table table-striped">
              <thead>
                 <tr>

@@ -1,9 +1,9 @@
-Votre compte a bien été créé sur la plateforme projectsquare.<br/><br/>
+{{ trans('projectsquare::email.account_created') }}<br/><br/>
 
-<strong>Adresse email :</strong> {{ $email }}<br/>
-<strong>Mot de passe :</strong> {{ $password }}<br/>
-<strong>Prénom :</strong> {{ $first_name }}<br/>
-<strong>Nom :</strong> {{ $last_name }}<br/><br/>
+<strong>{{ trans('projectsquare::email.email') }}</strong> {{ $email }}<br/>
+<strong>{{ trans('projectsquare::email.password') }}</strong> {{ $password }}<br/>
+<strong>{{ trans('projectsquare::email.first_name') }}</strong> {{ $first_name }}<br/>
+<strong>{{ trans('projectsquare::email.name') }}</strong> {{ $last_name }}<br/><br/>
 
-A bientôt !<br/>
-L'équipe projectsquare<br/>
+{{ trans('projectsquare::email.signature_1') }}<br/>
+{{ trans('projectsquare::email.signature_2') }}<br/>

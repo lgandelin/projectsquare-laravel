@@ -32,7 +32,7 @@
             </span>
         </a>
         <br/>
-        <span style="font-style: italic; display: inline-block;margin-top: 5px;">{{ trans('projectsquare::users.generate_password_notice') }}</span>
+        <span style="font-style: italic; display: inline-block;margin-top: 5px;">{{ trans('projectsquare::clients.generate_password_notice') }}</span>
     @endif
 
     <div class="form-group">
@@ -54,7 +54,7 @@
         <button type="submit" class="btn valid">
             <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
         </button>
-        <a href="{{ route('clients_edit', ['id' => $client_id]) }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
+        <a href="{{ \URL::previous() }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
     </div>
 
     @if (isset($user_id))

@@ -1,12 +1,13 @@
 <?php
 
-namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
+namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Utility;
 
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Decorators\ReplyMessageDecorator;
 use Webaccess\ProjectSquare\Exceptions\Messages\MessageReplyNotAuthorizedException;
 use Webaccess\ProjectSquare\Requests\Messages\CreateConversationRequest;
 use Webaccess\ProjectSquare\Requests\Messages\CreateMessageRequest;
+use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 
 class MessageController extends BaseController
 {

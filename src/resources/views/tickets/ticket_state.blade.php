@@ -42,7 +42,7 @@
                 <button type="submit" class="btn valid">
                     <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                 </button>
-                <a href="{{ route('tickets_index') }}" class="btn back"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.back') }}</a>
+                <a href="{{ \URL::previous() }}" class="btn back"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.back') }}</a>
             </div>
         </div>
 
@@ -62,10 +62,19 @@
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="estimated_time">{{ trans('projectsquare::tickets.estimated_time') }}</label>
-                <input @if ($is_client) disabled @endif class="form-control" type="time" name="estimated_time" placeholder="{{ trans('projectsquare::tickets.estimated_time') }}" value="@if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->estimatedTime){{ $ticket->states[0]->estimatedTime }}@endif" />
-            </div>
+            @if (!$is_client)
+                <div class="form-group">
+                    <label for="estimated_time">{{ trans('projectsquare::tasks.estimated_time') }}</label><br>
+                    <input class="form-control" type="text" name="estimated_time_days" style="display: inline-block; width: 5rem; margin-right: 0.5rem;" value="@if (isset($ticket) && isset($ticket->states[0]) && isset($ticket->states[0]->estimatedTimeDays)){{ $ticket->states[0]->estimatedTimeDays }}@endif" /> {{ trans('projectsquare::generic.days') }}
+                    <input class="form-control" type="text" name="estimated_time_hours" style="display: inline-block; width: 5rem; margin-left: 1rem; margin-right: 0.5rem;" value="@if (isset($ticket) && isset($ticket->states[0]) && isset($ticket->states[0]->estimatedTimeHours)){{ $ticket->states[0]->estimatedTimeHours }}@endif" /> {{ trans('projectsquare::generic.hours') }}
+                </div>
+
+                <div class="form-group">
+                    <label for="estimated_time">{{ trans('projectsquare::tasks.spent_time') }}</label><br>
+                    <input class="form-control" type="text" name="spent_time_days" style="display: inline-block; width: 5rem; margin-right: 0.5rem;" value="@if (isset($ticket) && isset($ticket->states[0]) && isset($ticket->states[0]->spentTimeDays)){{ $ticket->states[0]->spentTimeDays }}@endif" /> {{ trans('projectsquare::generic.days') }}
+                    <input class="form-control" type="text" name="spent_time_hours" style="display: inline-block; width: 5rem; margin-left: 1rem; margin-right: 0.5rem;" value="@if (isset($ticket) && isset($ticket->states[0]) && isset($ticket->states[0]->spentTimeHours)){{ $ticket->states[0]->spentTimeHours }}@endif" /> {{ trans('projectsquare::generic.hours') }}
+                </div>
+            @endif
         </div>
 
         @if (isset($ticket->id))

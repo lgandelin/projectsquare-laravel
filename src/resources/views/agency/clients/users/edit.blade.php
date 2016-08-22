@@ -10,7 +10,7 @@
     <div class="content-page">
         <div class="templates">
             <div class="page-header">
-                <h1>{{ trans('projectsquare::users.edit_user') }}</h1>
+                <h1>{{ trans('projectsquare::clients.edit_user') }}</h1>
             </div>
 
             @if (isset($error))

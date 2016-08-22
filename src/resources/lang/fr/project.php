@@ -4,6 +4,7 @@ return [
     'last_tickets' => 'Derniers tickets',
     'summary' => 'Résumé',
     'cms' => 'CMS',
+    'tasks' => 'Tâches',
     'tickets' => 'Tickets',
     'monitoring' => 'Monitoring',
     'settings' => 'Réglages',
@@ -11,4 +12,5 @@ return [
     'calendar' => 'Calendrier',
     'seo' => 'Référencement',
     'files' => 'Fichiers',
+    'reporting' => 'Reporting',
 ];

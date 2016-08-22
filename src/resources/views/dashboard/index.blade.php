@@ -11,27 +11,20 @@
 
     <div class="dashboard-content">
         <div class="row">
-            <div class="col-lg-7 col-md-12">
-                @include('projectsquare::dashboard.blocks.tickets')
-            </div>
+            <div class="col-lg-12 col-md-12 total-width" style="display: none;"></div>
 
-            <div class="col-lg-5 col-md-12">
-                @include('projectsquare::dashboard.blocks.messages')
-            </div>
-        </div>
-
-        @if (!$is_client)
-            <div class="row">
-                <div class="col-lg-12 col-md-12">
-                    @include('projectsquare::dashboard.blocks.planning')
+            @foreach ($widgets as $widget)
+                <div class="col-lg-{{ $widget->width }} col-md-12 widget" id="{{ $widget->name }}-widget" data-w="{{ $widget->width }}">
+                    @include('projectsquare::dashboard.blocks.' . $widget->name)
                 </div>
-            </div>
-        @endif
+            @endforeach
+
+        </div>
     </div>
 
     @include('projectsquare::dashboard.new-message')
     @include('projectsquare::dashboard.create-conversation-modal')
-    @include('projectsquare::templates.new-task')
+    @include('projectsquare::templates.new-todo')
 @endsection
 
 @section('scripts')
@@ -50,7 +43,8 @@
                 end: "{{ $event->endTime->format(DATE_ISO8601) }}",
                 color: "{{ isset($event->color) ? $event->color : null }}",
                 project_id: "{{ isset($event->project_id) ? $event->project_id : null }}",
-                url: "{{ isset($event->ticketID) ? route('tickets_edit', ['id' => $event->ticketID]) : null }}"
+                @if (isset($event->ticketID) && $event->ticketID > 0)url: "{{ route('tickets_edit', ['id' => $event->ticketID]) }}",@endif
+                @if (isset($event->taskID) && $event->taskID > 0)url: "{{ route('tasks_edit', ['id' => $event->taskID]) }}",@endif
             },
             @endforeach
         ];

@@ -1,21 +1,20 @@
 .message-view-template, .conversation-modal {
     overflow: hidden;
-    
+
     .header {
         overflow: hidden;
         margin-bottom: 1.5rem;
     }
 
     .conversation {
-    	
-        .messages {
-            overflow: hidden;
 
-        	.message {
+        .messages {
+
+            .message {
                 position: relative;
-        		float: right;
-        		margin-bottom: 6.5rem;
-        		color: #606060;
+                float: right;
+                margin-bottom: 6.5rem;
+                color: #606060;
                 background: #f9fbe8;
                 //border: 0.2rem solid #f4fac0;
                 border-right: 10px solid $touareg;
@@ -27,27 +26,27 @@
                     margin-bottom: 0 !important;
                 }
 
-        		.avatar {
-        			left: -2rem;
-        		} 
+                .avatar {
+                    left: -2rem;
+                }
 
                 .border {
                     border: 0.2rem solid #f4fac0;
                     border-right: none;
                     padding: 2rem 2.5rem 1rem 3.5rem;
                 }
-        	}
+            }
 
-        	.message-client {
-        		background: #f3f3f3;
+            .message-client {
+                background: #f3f3f3;
                 //border: 0.2rem solid #ebebeb;
-        		float: left;
+                float: left;
                 border-right: none;
 
-        		.avatar {
-        			right: -2rem;  
+                .avatar {
+                    right: -2rem;
                     left: auto;
-        		}
+                }
 
                 .border {
                     border: 0.2rem solid #ebebeb;
@@ -55,21 +54,25 @@
                     padding-left: 2.5rem;
                     padding-right: 3.5rem;
                 }
-        	}
+            }
 
-        	.avatar {
-        		position: absolute;
+            .avatar {
+                position: absolute;
                 top: 50%;
                 margin-top: -20px;
-        	}
+            }
 
-        	.date {
+            .date {
                 display: block;
-        		text-align: right;
+                text-align: right;
                 font-size: 14px;
                 color: #a8a99f;
                 margin-top: 1rem;
-        	}
+            }
+        }
+
+        .submit {
+            clear: both;
         }
     }
 

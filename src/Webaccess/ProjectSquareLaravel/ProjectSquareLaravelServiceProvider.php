@@ -26,17 +26,25 @@ use Webaccess\ProjectSquare\Interactors\Calendar\GetStepsInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\CreateStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\DeleteStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\UpdateStepInteractor;
+use Webaccess\ProjectSquare\Interactors\Reporting\GetReportingIndicatorsInteractor;
+use Webaccess\ProjectSquare\Interactors\Reporting\GetTasksTotalTimeInteractor;
+use Webaccess\ProjectSquare\Interactors\Reporting\GetTicketsTotalTimeInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectsInteractor;
-use Webaccess\ProjectSquare\Interactors\Tasks\CreateTaskInteractor;
-use Webaccess\ProjectSquare\Interactors\Tasks\DeleteTaskInteractor;
-use Webaccess\ProjectSquare\Interactors\Tasks\GetTasksInteractor;
-use Webaccess\ProjectSquare\Interactors\Tasks\UpdateTaskInteractor;
+use Webaccess\ProjectSquare\Interactors\Todos\CreateTodoInteractor;
+use Webaccess\ProjectSquare\Interactors\Todos\DeleteTodoInteractor;
+use Webaccess\ProjectSquare\Interactors\Todos\GetTodosInteractor;
+use Webaccess\ProjectSquare\Interactors\Todos\UpdateTodoInteractor;
 use Webaccess\ProjectSquare\Interactors\Tickets\CreateTicketInteractor;
 use Webaccess\ProjectSquare\Interactors\Tickets\DeleteTicketInteractor;
 use Webaccess\ProjectSquare\Interactors\Tickets\GetTicketInteractor;
 use Webaccess\ProjectSquare\Interactors\Tickets\UpdateTicketInfosInteractor;
 use Webaccess\ProjectSquare\Interactors\Tickets\UpdateTicketInteractor;
+use Webaccess\ProjectSquare\Interactors\Tasks\GetTasksInteractor;
+use Webaccess\ProjectSquare\Interactors\Tasks\GetTaskInteractor;
+use Webaccess\ProjectSquare\Interactors\Tasks\CreateTaskInteractor;
+use Webaccess\ProjectSquare\Interactors\Tasks\UpdateTaskInteractor;
+use Webaccess\ProjectSquare\Interactors\Tasks\DeleteTaskInteractor;
 use Webaccess\ProjectSquareLaravel\Listeners\ConversationCreatedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\MessageCreatedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\TicketCreatedSlackNotification;
@@ -48,7 +56,8 @@ use Webaccess\ProjectSquareLaravel\Repositories\EloquentMessageRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentNotificationRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentStepRepository;
-use Webaccess\ProjectSquareLaravel\Repositories\EloquentTaskRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentTasksRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentTodoRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentUserRepository;
 use Webaccess\ProjectSquareLaravel\Services\AlertManager;
@@ -200,7 +209,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
                 new EloquentEventRepository(),
                 new EloquentNotificationRepository(),
                 new EloquentTicketRepository(),
-                new EloquentProjectRepository()
+                new EloquentProjectRepository(),
+                new EloquentTasksRepository()
             );
         });
 
@@ -308,25 +318,76 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             );
         });
 
+        App::bind('GetTodosInteractor', function () {
+            return new GetTodosInteractor(new EloquentTodoRepository());
+        });
+
+        App::bind('CreateTodoInteractor', function () {
+            return new CreateTodoInteractor(
+                new EloquentTodoRepository()
+            );
+        });
+
+        App::bind('UpdateTodoInteractor', function () {
+            return new UpdateTodoInteractor(
+                new EloquentTodoRepository()
+            );
+        });
+
+        App::bind('DeleteTodoInteractor', function () {
+            return new DeleteTodoInteractor(
+                new EloquentTodoRepository()
+            );
+        });
+
         App::bind('GetTasksInteractor', function () {
-            return new GetTasksInteractor(new EloquentTaskRepository());
+            return new GetTasksInteractor(
+                new EloquentTasksRepository()
+            );
+        });
+
+        App::bind('GetTaskInteractor', function () {
+            return new GetTaskInteractor(
+                new EloquentTasksRepository()
+            );
         });
 
         App::bind('CreateTaskInteractor', function () {
             return new CreateTaskInteractor(
-                new EloquentTaskRepository()
+                new EloquentTasksRepository(),
+                new EloquentProjectRepository()
             );
         });
 
         App::bind('UpdateTaskInteractor', function () {
             return new UpdateTaskInteractor(
-                new EloquentTaskRepository()
+                new EloquentTasksRepository(),
+                new EloquentProjectRepository()
             );
         });
 
         App::bind('DeleteTaskInteractor', function () {
             return new DeleteTaskInteractor(
-                new EloquentTaskRepository()
+                new EloquentTasksRepository(),
+                new EloquentProjectRepository()
+            );
+        });
+
+        App::bind('GetTasksTotalTimeInteractor', function () {
+            return new GetTasksTotalTimeInteractor(
+                new EloquentTasksRepository()
+            );
+        });
+
+        App::bind('GetReportingIndicatorsInteractor', function () {
+            return new GetReportingIndicatorsInteractor(
+                new EloquentTasksRepository()
+            );
+        });
+
+        App::bind('GetTicketsTotalTimeInteractor', function () {
+            return new GetTicketsTotalTimeInteractor(
+                new EloquentTicketRepository()
             );
         });
 

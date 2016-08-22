@@ -17,7 +17,7 @@
                             <a href="{{ asset('uploads/tickets' . $file->path) }}" class="btn button" download="{{ $file->name }}"><i class="glyphicon glyphicon-download"></i> {{ trans('projectsquare::generic.download') }}</a>
                             <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn delete btn-delete">
                                 <i class="glyphicon glyphicon-remove picto-delete"></i>
-                                <span>Supprimer</span>
+                                <span>{{ trans('projectsquare::generic.delete') }}</span>
                             </a>
                         </td>
                     </tr>

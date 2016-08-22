@@ -66,7 +66,7 @@
                             <button type="submit" class="btn valid">
                                 <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                             </button>
-                            <a href="{{ route('tickets_index') }}" class="btn btn-default back">
+                            <a href="{{ \URL::previous() }}" class="btn btn-default back">
                                 <span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.back') }}
                             </a>
                         </div>
@@ -151,8 +151,9 @@
 
                         @if (!$is_client)
                             <div class="form-group">
-                                <label for="estimated_time">{{ trans('projectsquare::tickets.estimated_time') }}</label>
-                                <input class="form-control" type="time" name="estimated_time" placeholder="{{ trans('projectsquare::tickets.estimated_time') }}" value="{{{ $data['estimatedTime'] }}}" />
+                                <label for="estimated_time">{{ trans('projectsquare::tasks.estimated_time') }}</label><br>
+                                <input class="form-control" type="text" name="estimated_time_days" style="display: inline-block; width: 5rem; margin-right: 0.5rem;" value="{{{ $data['estimatedTimeDays'] }}}" /> {{ trans('projectsquare::generic.days') }}
+                                <input class="form-control" type="text" name="estimated_time_hours" style="display: inline-block; width: 5rem; margin-left: 1rem; margin-right: 0.5rem;" value="{{{ $data['estimatedTimeHours'] }}}" /> {{ trans('projectsquare::generic.hours') }}
                             </div>
                         @endif
                     </div>

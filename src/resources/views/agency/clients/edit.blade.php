@@ -1,40 +1,40 @@
 @extends('projectsquare::default')
 
 @section('content')
-    <!--<ol class="breadcrumb">
+        <!--<ol class="breadcrumb">
         <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
         <li><a href="{{ route('clients_index') }}">{{ trans('projectsquare::clients.clients_list') }}</a></li>
         <li class="active">{{ trans('projectsquare::clients.edit_client') }}</li>
     </ol>-->
-    <div class="content-page">
-        <div class="templates">
-            <div class="page-header">
-                <h1>{{ trans('projectsquare::clients.edit_client') }}</h1>
+<div class="content-page">
+    <div class="templates">
+        <div class="page-header">
+            <h1>{{ trans('projectsquare::clients.edit_client') }}</h1>
+        </div>
+
+        @if (isset($error))
+            <div class="info bg-danger">
+                {{ $error }}
             </div>
+        @endif
 
-            @if (isset($error))
-                <div class="info bg-danger">
-                    {{ $error }}
-                </div>
-            @endif
+        @if (isset($confirmation))
+            <div class="info bg-success">
+                {{ $confirmation }}
+            </div>
+        @endif
 
-            @if (isset($confirmation))
-                <div class="info bg-success">
-                    {{ $confirmation }}
-                </div>
-            @endif
+        @include('projectsquare::agency.clients.form', [
+            'form_action' => route('clients_update'),
+            'client_id' => $client->id,
+            'client_name' => $client->name,
+            'client_address' => $client->address
+        ])
 
-            @include('projectsquare::agency.clients.form', [
-                'form_action' => route('clients_update'),
-                'client_id' => $client->id,
-                'client_name' => $client->name,
-                'client_address' => $client->address
-            ])
+        <br>
 
-            <br>
-
-            <h2>Utilisateurs</h2>
-
+        <h2>Utilisateurs</h2>
+        <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -54,15 +54,16 @@
                         <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                         <td>{{ $user->client_role }}</td>
                         <td align="right">
-                            <a href="{{ route('clients_edit_user', ['client_id' => $client->id, 'user_id' => $user->id]) }}" class="btn button"><span class="glyphicon glyphicon-pencil"></span> {{ trans('projectsquare::generic.edit') }}</a>
-                            <a href="{{ route('clients_delete_user', ['client_id' => $client->id, 'user_id' => $user->id]) }}" class="btn btn-delete delete"><span class="glyphicon glyphicon-remove"></span> {{ trans('projectsquare::generic.delete') }}</a>
+                            <a href="{{ route('clients_edit_user', ['client_id' => $client->id, 'user_id' => $user->id]) }}" class="btn button"><span class="glyphicon glyphicon-pencil"></span> <span class="value">{{ trans('projectsquare::generic.edit') }}</span></a>
+                            <a href="{{ route('clients_delete_user', ['client_id' => $client->id, 'user_id' => $user->id]) }}" class="btn btn-delete delete"><span class="glyphicon glyphicon-remove"></span> <span class="value">{{ trans('projectsquare::generic.delete') }}</span></a>
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
-
-            <a href="{{ route('clients_add_user', ['id' => $client->id]) }}" class="btn valid users"><i class="glyphicon glyphicon-plus"></i> {{ trans('projectsquare::users.add_user') }}</a>
         </div>
+
+        <a href="{{ route('clients_add_user', ['id' => $client->id]) }}" class="btn valid users"><i class="glyphicon glyphicon-plus"></i> {{ trans('projectsquare::clients.add_user') }}</a>
     </div>
+</div>
 @endsection

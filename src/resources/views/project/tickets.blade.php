@@ -9,7 +9,7 @@
             <form method="get">
                 <div class="row">
 
-                    <h2>Filtres</h2>
+                    <h2>{{ trans('projectsquare::tickets.filters.filters') }}</h2>
 
                     @if (!$is_client)
                         <div class="form-group col-md-2">
@@ -47,26 +47,29 @@
             </form>
             <hr/>
 
-            <a href="{{ route('tickets_add') }}" class="btn pull-right add"></a>
+            <div class="table-responsive">
+                <a href="{{ route('tickets_add') }}" class="btn pull-right add"></a>
 
-            <table class="table table-striped">
-                <thead>
+                <table class="table table-striped">
+                    <thead>
                     <tr>
                         <th>#</th>
+                        <th>{{ trans('projectsquare::tickets.priority') }}</th>
                         <th>{{ trans('projectsquare::tickets.ticket') }}</th>
                         <th>{{ trans('projectsquare::tickets.type') }}</th>
                         <th>{{ trans('projectsquare::tickets.author_user') }}</th>
                         <th>{{ trans('projectsquare::tickets.allocated_user') }}</th>
                         <th>{{ trans('projectsquare::tickets.status') }}</th>
-                        <th>{{ trans('projectsquare::tickets.priority') }}</th>
+                        <th>{{ trans('projectsquare::tickets.estimated_time') }}</th>
                         <th>{{ trans('projectsquare::generic.action') }}</th>
                     </tr>
-                </thead>
+                    </thead>
 
-                <tbody>
+                    <tbody>
                     @foreach ($tickets as $ticket)
                         <tr>
                             <td>{{ $ticket->id }}</td>
+                            <td>@if (isset($ticket->states[0]))<span class="priority priority-{{ $ticket->states[0]->priority }}"></span>@endif</td>
                             <td width="40%">{{ $ticket->title }}</td>
                             <td>@if (isset($ticket->type)){{ $ticket->type->name }}@endif</td>
                             <td>
@@ -86,16 +89,16 @@
                                 @endif
                             </td>
                             <td>@if (isset($ticket->states[0]) && isset($ticket->states[0]->status))<span class="status status-{{ $ticket->states[0]->status->id }}">{{ $ticket->states[0]->status->name }}</span>@endif</td>
-
-                            <td>@if (isset($ticket->states[0]))<span class="priority priority-{{ $ticket->states[0]->priority }}"></span>@endif</td>
+                            <td>@if ($ticket->states[0]->estimated_time_days > 0){{ $ticket->states[0]->estimated_time_days }} {{ trans('projectsquare::generic.days') }}@endif @if ($ticket->states[0]->estimated_time_hours > 0){{ $ticket->states[0]->estimated_time_hours }} {{ trans('projectsquare::generic.hours') }}@endif</td>
                             <td align="right">
                                 <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}" class="btn btn-primary see-more"></a>
                                 <a href="{{ route('tickets_delete', ['id' => $ticket->id]) }}" class="btn cancel btn-delete"></a>
                             </td>
                         </tr>
                     @endforeach
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

@@ -15,4 +15,7 @@ return [
     'close' => 'Fermer',
     'next' => 'Suivant',
     'previous' => 'Précédent',
+    'platform_title' => 'Projectsquare',
+    'days' => 'jour(s)',
+    'hours' => 'heure(s)',
 ];

@@ -44,11 +44,16 @@
     </div>
 
     <div class="form-group">
+        <label for="name">{{ trans('projectsquare::projects.scheduled_time') }}</label>
+        <input type="text" name="scheduled_time" class="form-control" placeholder="{{ trans('projectsquare::projects.scheduled_time_placehodler') }}"  @if (isset($project_scheduled_time))value="{{ $project_scheduled_time }}"@endif size="7">
+    </div>
+
+    <div class="form-group">
         <button type="submit" class="btn valid">
             <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
         </button>
 
-        <a href="{{ route('projects_index') }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
+        <a href="{{ \URL::previous() }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
     </div>
 
     @if (isset($project_id))
@@ -182,7 +187,7 @@
                     <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                 </button>
 
-                <a href="{{ route('project_index', ['id' => $project->id]) }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
+                <a href="{{ \URL::previous() }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
             </div>
 
             @if (isset($project->id))
@@ -205,7 +210,7 @@
                     <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                 </button>
 
-                <a href="{{ route('project_index', ['id' => $project->id]) }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
+                <a href="{{ \URL::previous() }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
             </div>
 
             @if (isset($project->id))

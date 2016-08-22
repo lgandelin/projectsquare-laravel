@@ -12,7 +12,7 @@ use Webaccess\ProjectSquareLaravel\Models\Client;
 use Webaccess\ProjectSquareLaravel\Models\Project;
 use Webaccess\ProjectSquareLaravel\Models\User;
 use Webaccess\ProjectSquareLaravel\Decorators\NotificationDecorator;
-use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
+use Webaccess\ProjectSquare\Requests\Todos\GetTodosRequest;
 
 class BaseController extends Controller
 {
@@ -34,8 +34,8 @@ class BaseController extends Controller
         view()->share('notifications', $this->getUnreadNotifications());
         view()->share('is_client', $this->isUserAClient());
         view()->share('is_admin', $this->isUserAnAdmin());
-        view()->share('tasks', $this->getTasks());
-        view()->share('tasks_count', $this->getUncompleteTasksCount());
+        view()->share('todos', $this->getTodos());
+        view()->share('todos_count', $this->getUncompleteTodosCount());
         view()->share('left_bar', isset($_COOKIE['left-bar']) ? $_COOKIE['left-bar'] : 'opened');
     }
 
@@ -108,10 +108,10 @@ class BaseController extends Controller
         ], 200);
     }
 
-    protected function getTasks()
+    protected function getTodos()
     {
         if ($this->getUser()) {
-            return app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
+            return app()->make('GetTodosInteractor')->execute(new GetTodosRequest([
                 'userID' => $this->getUser()->id
             ]));
         }
@@ -119,13 +119,13 @@ class BaseController extends Controller
         return []; 
     }
 
-    private function getUncompleteTasksCount()
+    private function getUncompleteTodosCount()
     {
         $result = 0;
-        $tasks = $this->getTasks();
-        if (is_array($tasks) && sizeof($tasks) > 0) {
-            foreach ($tasks as $task) {
-                if (!$task->status) {
+        $todos = $this->getTodos();
+        if (is_array($todos) && sizeof($todos) > 0) {
+            foreach ($todos as $todo) {
+                if (!$todo->status) {
                     $result++;
                 }
             }

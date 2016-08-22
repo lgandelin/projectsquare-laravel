@@ -10,7 +10,7 @@
     <div class="content-page">
         <div class="templates">
             <div class="page-header">
-                <h1>{{ trans('projectsquare::users.add_user') }}</h1>
+                <h1>{{ trans('projectsquare::clients.add_user') }}</h1>
             </div>
 
             @include('projectsquare::agency.clients.users.form', [

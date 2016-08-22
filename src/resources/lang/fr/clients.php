@@ -18,9 +18,12 @@ return [
     'label' => 'Libellé',
     'name_placeholder' => 'Nom de votre client',
     'address' => 'Adresse',
+    'information' =>'Informations',
 
     'client_not_found' => 'Une erreur est survenue lors de la récupération de ce client',
 
     'add_user' => 'Ajouter un utilisateur',
     'edit_user' => 'Editer un utilisateur',
+
+    'generate_password_notice' => 'Le mot de passe sera envoyé sur l\'adresse email de l\'utilisateur',
 ];

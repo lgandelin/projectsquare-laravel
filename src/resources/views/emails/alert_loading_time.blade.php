@@ -1,3 +1,3 @@
-<strong>Projet :</strong> {{ $project->client->name }} - {{ $project->name }}<br/>
-<strong>Temps de chargement :</strong> {{ $request->loading_time }}s<br/>
-<strong>Date :</strong> {{ $request->created_at }}
+<strong>{{ trans('projectsquare::email.project') }}</strong> {{ $project->client->name }} - {{ $project->name }}<br/>
+<strong>{{ trans('projectsquare::email.loading_time') }}</strong> {{ $request->loading_time }}s<br/>
+<strong>{{ trans('projectsquare::email.date') }}</strong> {{ $request->created_at }}

@@ -24,6 +24,11 @@ class Event extends Model
         return $this->belongsTo('Webaccess\ProjectSquareLaravel\Models\Ticket');
     }
 
+    public function task()
+    {
+        return $this->belongsTo('Webaccess\ProjectSquareLaravel\Models\Task');
+    }
+
     public function project()
     {
         return $this->belongsTo('Webaccess\ProjectSquareLaravel\Models\Project');

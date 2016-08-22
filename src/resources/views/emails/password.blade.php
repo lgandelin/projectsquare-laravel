@@ -1,6 +1,6 @@
-Voici votre mot de passe :<br/><br/>
+{{ trans('projectsquare::email.password_text') }}<br/><br/>
 
-<strong>Mot de passe :</strong> {{ $password }}<br/><br/>
+<strong>{{ trans('projectsquare::email.password') }}</strong> {{ $password }}<br/><br/>
 
-A bientôt !<br/>
-L'équipe projectsquare<br/>
+{{ trans('projectsquare::email.signature_1') }}<br/>
+{{ trans('projectsquare::email.signature_2') }}<br/>

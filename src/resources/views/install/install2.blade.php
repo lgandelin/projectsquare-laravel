@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12 top-bar">
                 <div class="pull-left">
-                    <h1 class="logo">Installation</h1>
+                    <h1 class="logo">{{ trans('projectsquare::install.installation') }}</h1>
                 </div>
             </div>
         </div>
@@ -13,7 +13,7 @@
             <div class="col-lg-6 col-lg-offset-3">
                 <form action="{{ route('install2_handler') }}" method="post">
 
-                    <h3>Agence</h3>
+                    <h3>{{ trans('projectsquare::agency.panel_title') }}</h3>
                     <hr>
 
                     <div class="form-group">

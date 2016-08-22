@@ -39,14 +39,14 @@
     <div class="form-group">
         <label for="is_administrator">{{ trans('projectsquare::users.is_administrator') }}</label><br/>
         Oui <input type="radio" placeholder="{{ trans('projectsquare::users.is_administrator') }}" name="is_administrator" value="y" @if (isset($is_administrator) && $is_administrator) checked @endif autocomplete="off" />
-        Non <input type="radio" placeholder="{{ trans('projectsquare::users.is_administrator') }}" name="is_administrator" value="n" @if (isset($is_administrator) && !$is_administrator) checked @endif autocomplete="off" />
+        Non <input type="radio" placeholder="{{ trans('projectsquare::users.is_administrator') }}" name="is_administrator" value="n" @if (isset($is_administrator) && !$is_administrator) checked @endif @if (!isset($is_administrator)) checked @endif autocomplete="off" />
     </div>
 
     <div class="form-group">
         <button type="submit" class="btn valid">
             <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
         </button>
-        <a href="{{ route('users_index') }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
+        <a href="{{ \URL::previous() }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
     </div>
 
     @if (isset($user_id))

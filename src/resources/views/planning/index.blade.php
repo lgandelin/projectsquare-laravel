@@ -14,7 +14,7 @@
             <form method="get">
                 <div class="row">
 
-                    <h2>Filtres</h2>
+                    <h2>{{ trans('projectsquare::planning.filters') }}</h2>
 
                     <div class="form-group col-md-2">
                         <select class="form-control" name="filter_project" id="filter_project">
@@ -84,7 +84,48 @@
                         </form>
                     </div>
 
-                    <div id="my-tickets-list" class="tickets-list" style="display: none;">
+                    <hr>
+
+                    <div id="my-tasks-list" class="tasks-list" style="display: none; float: left; width: 50%">
+                        <h3>{{ trans('projectsquare::planning.allocated_tasks_list') }}</h3>
+                        @foreach ($allocated_tasks as $task)
+                            <div id="task-{{ $task->id }}"
+                                 data-id="{{ $task->id }}"
+                                 data-project="{{ $task->project->id }}"
+                                 data-task="{{ $task->id }}"
+                                 data-color="{{ $task->project->color }}"
+                                 data-event='{"title":"#{{ $task->id }} - {{ $task->title }}"}'
+                                 data-duration="02:00"
+                                 class="task fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: {{ $task->project->color }}; margin-bottom: 1rem; width: 90%; border: none !important;"
+                                    >
+                                <div class="fc-content">
+                                    <div class="fc-title">
+                                        #{{ $task->id }} - {{ $task->title }}
+                                        <span class="unallocate-task glyphicon glyphicon-remove pull-right"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div id="non-allocated-tasks-list" class="tasks-list" style="display: none; float: left; width: 50%">
+                        <h3>{{ trans('projectsquare::planning.non_allocated_tasks_list') }}</h3>
+                        @foreach ($non_allocated_tasks as $task)
+                            <div id="task-{{ $task->id }}"
+                                 data-id="{{ $task->id }}"
+                                 data-project="{{ $task->project->id }}"
+                                 data-task="{{ $task->id }}"
+                                 data-color="{{ $task->project->color }}"
+                                 data-event='{"title":"#{{ $task->id }} - {{ $task->title }}"}'
+                                 data-duration="02:00"
+                                 class="task fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: {{ $task->project->color }}; margin-bottom: 1rem; width: 90%; border: none !important;"
+                                    >
+                                <div class="fc-content"><div class="fc-title">#{{ $task->id }} - {{ $task->title }}</div></div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div id="my-tickets-list" class="tickets-list" style="display: none; clear: both; float: left; width: 50%">
                         <h3>{{ trans('projectsquare::planning.allocated_tickets_list') }}</h3>
                         @foreach ($allocated_tickets as $ticket)
                             <div id="ticket-{{ $ticket->id }}"
@@ -93,8 +134,8 @@
                                  data-ticket="{{ $ticket->id }}"
                                  data-color="{{ $ticket->project->color }}"
                                  data-event='{"title":"#{{ $ticket->id }} - {{ $ticket->title }}"}'
-                                 data-duration="{{ ($ticket->states[0]->estimated_time) ? $ticket->states[0]->estimated_time : "02:00" }}"
-                                 class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: {{ $ticket->project->color }}; margin-bottom: 1rem; width: 50%; border: none !important;"
+                                 data-duration="02:00"
+                                 class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: {{ $ticket->project->color }}; margin-bottom: 1rem; width: 90%; border: none !important;"
                             >
                                 <div class="fc-content">
                                     <div class="fc-title">
@@ -106,7 +147,7 @@
                         @endforeach
                     </div>
 
-                    <div id="non-allocated-tickets-list" class="tickets-list" style="display: none;">
+                    <div id="non-allocated-tickets-list" class="tickets-list" style="display: none; float: left; width: 50%">
                         <h3>{{ trans('projectsquare::planning.non_allocated_tickets_list') }}</h3>
                         @foreach ($non_allocated_tickets as $ticket)
                             <div id="ticket-{{ $ticket->id }}"
@@ -115,8 +156,8 @@
                                  data-ticket="{{ $ticket->id }}"
                                  data-color="{{ $ticket->project->color }}"
                                  data-event='{"title":"#{{ $ticket->id }} - {{ $ticket->title }}"}'
-                                 data-duration="{{ ($ticket->states[0]->estimated_time) ? $ticket->states[0]->estimated_time : "02:00" }}"
-                                 class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: {{ $ticket->project->color }}; margin-bottom: 1rem; width: 50%; border: none !important;"
+                                 data-duration="02:00"
+                                 class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: {{ $ticket->project->color }}; margin-bottom: 1rem; width: 90%; border: none !important;"
                             >
                                 <div class="fc-content"><div class="fc-title">#{{ $ticket->id }} - {{ $ticket->title }}</div></div>
                             </div>
@@ -126,6 +167,10 @@
 
                 <input type="hidden" class="tickets-current-project" />
                 <input type="hidden" class="tickets-current-ticket" />
+
+                <input type="hidden" class="tasks-current-project" />
+                <input type="hidden" class="tasks-current-task" />
+
                 <input type="hidden" id="user_id" value="{{ $userID }}" />
             </div>
 
@@ -136,12 +181,29 @@
                      data-ticket="@{{id}}"
                      data-color="@{{color}}"
                      data-event='{"title":"#@{{id}} - @{{title}}"}'
-                     data-duration="@{{estimated_time}}"
-                     class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: @{{color}}; margin-bottom: 1rem; width: 50%; border: none !important;"
+                     data-duration="02:00"
+                     class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: @{{color}}; margin-bottom: 1rem; width: 90%; border: none !important;"
                 >
                     <div class="fc-content"><div class="fc-title">
                         #@{{id}} - @{{title}}
                         <span class="unallocate-ticket glyphicon glyphicon-remove pull-right"></span>
+                    </div></div>
+                </div>
+            </script>
+
+            <script id="task-template" type="text/x-handlebars-template">
+                <div id="task-@{{id}}"
+                     data-id="@{{id}}"
+                     data-project="@{{project_id}}"
+                     data-task="@{{id}}"
+                     data-color="@{{color}}"
+                     data-event='{"title":"#@{{id}} - @{{title}}"}'
+                     data-duration="02:00"
+                     class="task fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: @{{color}}; margin-bottom: 1rem; width: 90%; border: none !important;"
+                        >
+                    <div class="fc-content"><div class="fc-title">
+                        #@{{id}} - @{{title}}
+                        <span class="unallocate-task glyphicon glyphicon-remove pull-right"></span>
                     </div></div>
                 </div>
             </script>

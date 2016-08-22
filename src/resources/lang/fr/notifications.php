@@ -2,4 +2,5 @@
 
 return [
     'notifications' => 'Notifications',
+
 ];

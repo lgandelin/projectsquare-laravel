@@ -26,7 +26,7 @@
                 display: inline-block;
                 margin-right: 2rem;
 
-                .notifications-link, .tasks-link {
+                .notifications-link, .todos-link {
                     display: block;
                     width: 57px;
                     height: 39px;
@@ -43,7 +43,7 @@
                     }
                 }
 
-                .notifications-link:hover, .tasks-link:hover {
+                .notifications-link:hover, .todos-link:hover {
                     background: url(../img/top-bar/notification-hover.png) no-repeat;
 
                     .badge {
@@ -123,7 +123,7 @@
                     }
                 }
 
-                .tasks-link {
+                .todos-link {
                     background: url(../img/top-bar/todo.png) no-repeat;
                     width: 38px;
                     height: 33px;
@@ -133,11 +133,11 @@
                          margin-left: -1.5rem;
                     }
                 }
-                .tasks-link:hover {
+                .todos-link:hover {
                     background: url(../img/top-bar/todo-hover.png) no-repeat;
                 }
 
-                .tasks {
+                .todos {
                     width: 268px;
                     position: absolute;
 
@@ -161,14 +161,14 @@
                         margin-bottom: 2rem;
                     }
 
-                    .task {
+                    .todo {
                         margin-bottom: 0.5rem;
                         overflow: hidden; 
                         margin-right: 0px;
                         display: block;         
                         padding-left: 2rem;
                         cursor: pointer;
-                        background: url(../img/top-bar/task-uncheck.png) no-repeat left 5px;
+                        background: url(../img/top-bar/todo-uncheck.png) no-repeat left 5px;
 
 
                         .name {
@@ -181,7 +181,7 @@
                             opacity: 0.8;
                         }
 
-                        .btn-delete-task {
+                        .btn-delete-todo {
                             color: $touareg; 
                             cursor: pointer;
                             display: inline-block;
@@ -189,22 +189,22 @@
                             white-space: normal;
                         }
 
-                        .btn-delete-task:hover {
+                        .btn-delete-todo:hover {
                             color: $green;
                         }
                     }
 
-                    .task:hover, .task-status-completed {
+                    .todo:hover, .todo-status-completed {
                         
                         margin-right: 0;
                     }
 
-                    .no-tasks {
+                    .no-todos {
                         color: #a0a6a9;
                     }
 
-                    .task-status-completed {
-                        background: url(../img/top-bar/task-check2.png) no-repeat left 2px;
+                    .todo-status-completed {
+                        background: url(../img/top-bar/todo-check2.png) no-repeat left 2px;
                         .name {
                             text-decoration: line-through;                            
                         }
@@ -212,7 +212,7 @@
 
                     .form-inline {
 
-                        .new-task {
+                        .new-todo {
                             width: 178px;
                             height: 28px;
                             margin-right: 1.5rem;

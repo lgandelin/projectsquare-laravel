@@ -1,6 +1,6 @@
 <?php
 
-namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
+namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Utility;
 
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Decorators\EventDecorator;
@@ -10,6 +10,9 @@ use Webaccess\ProjectSquare\Requests\Planning\DeleteEventRequest;
 use Webaccess\ProjectSquare\Requests\Planning\GetEventRequest;
 use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Planning\UpdateEventRequest;
+use Webaccess\ProjectSquare\Requests\Tasks\GetTaskRequest;
+use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
+use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 
 class PlanningController extends BaseController
 {
@@ -22,11 +25,22 @@ class PlanningController extends BaseController
             Input::get('filter_project'),
             $userID
         );
+
         $nonAllocatedTickets = app()->make('GetTicketInteractor')->getTicketsList(
             $userID,
             Input::get('filter_project'),
             0
         );
+
+        $allocatedTasks = app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
+            'projectID' => Input::get('filter_project'),
+            'allocatedUserID' => $userID,
+        ]));
+
+        $nonAllocatedTasks = app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
+            'projectID' => Input::get('filter_project'),
+            'allocatedUserID' => 0,
+        ]));
 
         return view('projectsquare::planning.index', [
             'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
@@ -36,6 +50,8 @@ class PlanningController extends BaseController
             ])),
             'allocated_tickets' => $this->filterTicketList($allocatedTickets),
             'non_allocated_tickets' => $this->filterTicketList($nonAllocatedTickets),
+            'allocated_tasks' => $this->filterTaskList($allocatedTasks),
+            'non_allocated_tasks' => $this->filterTaskList($nonAllocatedTasks),
             'filters' => [
                 'project' => Input::get('filter_project'),
                 'user' => Input::get('filter_user'),
@@ -74,6 +90,7 @@ class PlanningController extends BaseController
                 'endTime' => new \DateTime(Input::get('end_time')),
                 'projectID' => Input::get('project_id'),
                 'ticketID' => Input::get('ticket_id'),
+                'taskID' => Input::get('task_id'),
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
@@ -122,8 +139,14 @@ class PlanningController extends BaseController
                 'eventID' => Input::get('event_id')
             ]));
 
-            if (isset($event->ticketID)) {
+            if (isset($event->ticketID) && $event->ticketID > 0) {
                 $ticket = app()->make('GetTicketInteractor')->getTicketWithStates($event->ticketID);
+            }
+
+            if (isset($event->taskID) && $event->taskID > 0) {
+                $task = app()->make('GetTaskInteractor')->execute(new GetTaskRequest([
+                    'taskID' => $event->taskID
+                ]));
             }
 
             app()->make('DeleteEventInteractor')->execute(new DeleteEventRequest([
@@ -135,13 +158,21 @@ class PlanningController extends BaseController
                 $project = app()->make('ProjectManager')->getProject($event->projectID);
             }
 
+            $title = '';
+            if (isset($ticket)) {
+                $title = $ticket->title;
+            } elseif (isset($task)) {
+                $title = $task->title;
+            }
+
             return response()->json([
                 'message' => trans('projectsquare::events.delete_event_success'),
                 'ticket_id' => isset($ticket) ? $ticket->id : '',
+                'task_id' => isset($task) ? $task->id : '',
                 'project_id' => isset($project) ? $project->id : '',
                 'color' => isset($project) ? $project->color : '',
-                'title' => isset($ticket) ? $ticket->title : '',
-                'estimated_time' => (isset($ticket) && $ticket->states[0]->estimatedTime != "") ? $ticket->states[0]->estimatedTime : "02:00",
+                'title' => $title,
+                'estimated_time' => "02:00",
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
@@ -170,5 +201,22 @@ class PlanningController extends BaseController
         }
 
         return $tickets;
+    }
+
+    protected function filterTaskList($tasks)
+    {
+        foreach ($tasks as $i => $task) {
+
+            //Remove tasks already scheduled
+            $events = app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
+                'taskID' => $task->id
+            ]));
+
+            if (sizeof($events) > 0) {
+                unset($tasks[$i]);
+            }
+        }
+
+        return $tasks;
     }
 }

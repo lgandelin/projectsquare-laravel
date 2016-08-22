@@ -48,6 +48,18 @@ $(document).ready(function() {
                             $('#my-tickets-list').append(html);
                             initTicketDragAndDrop();
                         }
+
+                        if (data.task_id) {
+                            var html = loadTemplate('task-template', {
+                                id: data.task_id,
+                                title: data.title,
+                                project_id: data.project_id,
+                                color: data.color,
+                                estimated_time: data.estimated_time
+                            });
+                            $('#my-tasks-list').append(html);
+                            initTaskDragAndDrop();
+                        }
                     }
                 });
             });
@@ -191,6 +203,8 @@ $(document).ready(function() {
             $(this).remove();
             $('.tickets-current-project').val($(this).data('project'));
             $('.tickets-current-ticket').val($(this).data('ticket'));
+            $('.tasks-current-project').val($(this).data('project'));
+            $('.tasks-current-task').val($(this).data('task'));
         },
         eventReceive: function(event, delta, revertFunc) {
             $('#event-infos .wrapper').show();
@@ -204,6 +218,7 @@ $(document).ready(function() {
                 user_id: $('#user_id').val(),
                 project_id: $('.tickets-current-project').val(),
                 ticket_id: $('.tickets-current-ticket').val(),
+                task_id: $('.tasks-current-task').val(),
                 _token: $('#csrf_token').val()
             };
 
@@ -216,6 +231,7 @@ $(document).ready(function() {
                     event.color = data.event.color;
                     event.project_id = $('.tickets-current-project').val();
                     event.ticket_id = $('.tickets-current-ticket').val();
+                    event.task_id = $('.tasks-current-task').val();
                     $('#planning').fullCalendar('updateEvent', event);
 
                     $('#event-infos .wrapper').find('.id').val(data.event.id);
@@ -268,10 +284,12 @@ $(document).ready(function() {
         $(this).parent().hide();
     });
 
-    //DRAG AND DROP TICKETS
+    //DRAG AND DROP
     initTicketDragAndDrop()
+    initTaskDragAndDrop()
 
     $('.tickets-list').show();
+    $('.tasks-list').show();
 
     //UNALLOCATE TICKETS
     $('.tickets-list').on('click', '.unallocate-ticket', function() {
@@ -296,10 +314,52 @@ $(document).ready(function() {
             }
         });
     });
+
+    //UNALLOCATE TASKS
+    $('.tasks-list').on('click', '.unallocate-task', function() {
+        var task = $(this).closest('.task');
+        var data = {
+            task_id: task.data('id'),
+            _token: $('#csrf_token').val()
+        };
+
+        $.ajax({
+            type: "POST",
+            url: route_task_unallocate,
+            data: data,
+            success: function(data) {
+                $('#task-' + task.data('id')).find('.unallocate-task').hide();
+                var html = $('#task-' + task.data('id'));
+                $('#non-allocated-tasks-list').append(html);
+            },
+            error: function(data) {
+                data = $.parseJSON(data.responseText);
+                alert(data.message)
+            }
+        });
+    });
 });
 
 function initTicketDragAndDrop() {
     $('.tickets-list .ticket').each(function() {
+
+        // store data so the planning knows to render an event upon drop
+        $(this).data('event', {
+            title: $.trim($(this).text()), // use the element's text as the event title
+            stick: true // maintain when user navigates (see docs on the renderEvent method)
+        });
+
+        // make the event draggable using jQuery UI
+        $(this).draggable({
+            zIndex: 999,
+            revert: true,      // will cause the event to go back to its
+            revertDuration: 0  //  original position after the drag
+        });
+    });
+}
+
+function initTaskDragAndDrop() {
+    $('.tasks-list .task').each(function() {
 
         // store data so the planning knows to render an event upon drop
         $(this).data('event', {

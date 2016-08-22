@@ -6,13 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    protected $table = 'to_do';
+    protected $table = 'tasks';
 
     protected $fillable = [
-        'name', 'status',
+        'title',
+        'description',
+        'estimated_time_days',
+        'estimated_time_hours',
+        'status_id',
     ];
 
-    public function user()
+    public function project()
+    {
+        return $this->belongsTo('Webaccess\ProjectSquareLaravel\Models\Project');
+    }
+
+    public function allocated_user()
     {
         return $this->belongsTo('Webaccess\ProjectSquareLaravel\Models\User');
     }

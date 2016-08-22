@@ -11,4 +11,7 @@ return [
     'informations' => 'Informations',
     'new_event' => 'Nouvel evenement',
     'see_planning' => 'voir le planning',
+    'filters' =>'Filtres',
+    'allocated_tasks_list' => 'Tâches assignées',
+    'non_allocated_tasks_list' => 'Tâches non assignées',
 ];

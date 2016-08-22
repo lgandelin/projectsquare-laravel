@@ -24,7 +24,7 @@
                 <button type="submit" class="btn valid">
                     <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                 </button>
-                <a href="{{ route('tickets_index') }}" class="btn back"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.back') }}</a>
+                <a href="{{ \URL::previous() }}" class="btn back"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.back') }}</a>
             </div>
         </div>
         <div class="col-md-6">
