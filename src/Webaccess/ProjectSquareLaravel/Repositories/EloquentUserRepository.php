@@ -39,17 +39,17 @@ class EloquentUserRepository implements UserRepository
     {
         $user = null;
         if ($userModel = $this->getUserModel($userID)) {
-            $user = new UserEntity();
-            $user->id = $userModel->id;
-            $user->email = $userModel->email;
-            $user->firstName = $userModel->first_name;
-            $user->lastName = $userModel->last_name;
-            $user->password = $userModel->password;
-            $user->mobile = $userModel->mobile;
-            $user->phone = $userModel->phone;
-            $user->clientID = $userModel->client_id;
-            $user->clientRole = $userModel->client_role;
-            $user->isAdministrator = $userModel->is_administrator;
+            $user = $this->getEntityFromModel($userModel);
+        }
+
+        return $user;
+    }
+
+    public function getUserByEmail($userEmail)
+    {
+        $user = null;
+        if ($userModel = User::where('email', '=', $userEmail)->first()) {
+            $user = $this->getEntityFromModel($userModel);
         }
 
         return $user;
@@ -125,5 +125,22 @@ class EloquentUserRepository implements UserRepository
         }
 
         $user->save();
+    }
+
+    private function getEntityFromModel($userModel)
+    {
+        $user = new UserEntity();
+        $user->id = $userModel->id;
+        $user->email = $userModel->email;
+        $user->firstName = $userModel->first_name;
+        $user->lastName = $userModel->last_name;
+        $user->password = $userModel->password;
+        $user->mobile = $userModel->mobile;
+        $user->phone = $userModel->phone;
+        $user->clientID = $userModel->client_id;
+        $user->clientRole = $userModel->client_role;
+        $user->isAdministrator = $userModel->is_administrator;
+
+        return $user;
     }
 }

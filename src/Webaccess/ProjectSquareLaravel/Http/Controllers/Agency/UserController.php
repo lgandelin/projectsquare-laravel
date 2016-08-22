@@ -53,7 +53,7 @@ class UserController extends BaseController
         } catch (TwoPasswordsException $e) {
             $this->request->session()->flash('error', 'Les deux mots de passe ne correspondent pas');
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', trans('projectsquare::users.add_user_error'));
+            $this->request->session()->flash('error', $e->getMessage());
         }
 
         return redirect()->route('users_index');
@@ -94,7 +94,7 @@ class UserController extends BaseController
             );
             $this->request->session()->flash('confirmation', trans('projectsquare::users.edit_user_success'));
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', trans('projectsquare::users.edit_user_error'));
+            $this->request->session()->flash('error', $e->getMessage());
         }
 
         return redirect()->route('users_edit', ['id' => Input::get('user_id')]);
