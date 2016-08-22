@@ -89,7 +89,7 @@
                                 @endif
                             </td>
                             <td>@if (isset($ticket->states[0]) && isset($ticket->states[0]->status))<span class="status status-{{ $ticket->states[0]->status->id }}">{{ $ticket->states[0]->status->name }}</span>@endif</td>
-                            <td>@if ($ticket->states[0]->estimated_time_days > 0){{ $ticket->states[0]->estimated_time_days }} {{ trans('projectsquare::generic.days') }}@endif @if ($ticket->states[0]->estimated_time_hours > 0){{ $ticket->states[0]->estimated_time_hours }} {{ trans('projectsquare::generic.hours') }}@endif</td>
+                            <td>@if (isset($ticket->states[0]) && isset($ticket->states[0]->estimated_time_days) && $ticket->states[0]->estimated_time_days > 0){{ $ticket->states[0]->estimated_time_days }} {{ trans('projectsquare::generic.days') }}@endif @if (isset($ticket->states[0]) && isset($ticket->states[0]->estimated_time_hours) && $ticket->states[0]->estimated_time_hours > 0){{ $ticket->states[0]->estimated_time_hours }} {{ trans('projectsquare::generic.hours') }}@endif</td>
                             <td align="right">
                                 <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}" class="btn btn-primary see-more"></a>
                                 <a href="{{ route('tickets_delete', ['id' => $ticket->id]) }}" class="btn cancel btn-delete"></a>
@@ -98,6 +98,10 @@
                     @endforeach
                     </tbody>
                 </table>
+            </div>
+
+            <div class="text-center">
+                {!! $tickets->render() !!}
             </div>
         </div>
     </div>

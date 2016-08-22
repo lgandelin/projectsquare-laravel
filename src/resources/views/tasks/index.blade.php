@@ -110,6 +110,10 @@
                 </tbody>
             </table>
         </div>
+
+        <div class="text-center">
+            {!! $tasks->render() !!}
+        </div>
     </div>
 </div>
 @endsection

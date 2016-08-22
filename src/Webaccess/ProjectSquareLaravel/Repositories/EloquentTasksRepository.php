@@ -20,6 +20,11 @@ class EloquentTasksRepository implements TaskRepository
         return Task::find($todoID);
     }
 
+    public function getTasksList($projectID = null, $statusID = null, $allocatedUserID = null, $entities = false)
+    {
+        return $this->getTasks($projectID, $statusID, $allocatedUserID, $entities)->get();
+    }
+
     public function getTasks($projectID = null, $statusID = null, $allocatedUserID = null, $entities = false)
     {
         if ($projectID) {
@@ -36,6 +41,8 @@ class EloquentTasksRepository implements TaskRepository
             $tasks->where('allocated_user_id', '=', $allocatedUserID);
         }
 
+        $tasks->orderBy('updated_at', 'DESC');
+
         if ($entities) {
             $tasksList = $tasks->get();
 
@@ -47,7 +54,12 @@ class EloquentTasksRepository implements TaskRepository
             return $result;
         }
 
-        return $tasks->get();
+        return $tasks;
+    }
+
+    public function getTasksPaginatedList($limit, $projectID = null, $statusID = null, $allocatedUserID = null)
+    {
+        return $this->getTasks($projectID, $statusID, $allocatedUserID)->paginate($limit);
     }
 
     public function persistTask(TaskEntity $todo)
