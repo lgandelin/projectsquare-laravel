@@ -355,7 +355,9 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         App::bind('CreateTaskInteractor', function () {
             return new CreateTaskInteractor(
                 new EloquentTasksRepository(),
-                new EloquentProjectRepository()
+                new EloquentProjectRepository(),
+                new EloquentUserRepository(),
+                new EloquentNotificationRepository()
             );
         });
 

@@ -8,10 +8,12 @@ return [
     'new_message' => 'Nouveau message',
     'new_event' => 'Nouvel évènement', 
     'new_ticket' => 'Nouveau ticket',
+    'new_task' => 'Nouvelle tâche',
     'new_file' => 'Nouveau fichier',
     'new_message_created' => 'Nouveau message crée par :',
     'new_event_created' => 'Nouvel évenement crée :',
     'new_ticket_created' => 'Nouveau ticket crée :', 
-    'new_event_created' => 'Nouveau fichier uploadé :',
+    'new_task_created' => 'Nouvelle tâche créée :',
+    'new_file_created' => 'Nouveau fichier uploadé :',
     'see' =>'voir',
 ];

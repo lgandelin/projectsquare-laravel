@@ -5,6 +5,7 @@ namespace Webaccess\ProjectSquareLaravel\Decorators;
 use Webaccess\ProjectSquare\Requests\Planning\GetEventRequest;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentFileRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentMessageRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentTasksRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
 
 class NotificationDecorator
@@ -29,6 +30,10 @@ class NotificationDecorator
                     $ticket = (new EloquentTicketRepository())->getTicket($notification->entityID);
                     $notification->ticket_title = $ticket->title;
                     $notification->link = route('tickets_edit', ['id' => $ticket->id]);
+                } elseif ($notification->type == 'TASK_CREATED') {
+                    $task = (new EloquentTasksRepository())->getTask($notification->entityID);
+                    $notification->task_title = $task->title;
+                    $notification->link = route('tasks_edit', ['id' => $task->id]);
                 } elseif ($notification->type == 'FILE_UPLOADED') {
                     $notification->link = '';
                     $notification->file_name = '';
