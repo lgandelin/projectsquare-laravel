@@ -30,6 +30,7 @@ return [
     'allocated_user' => 'Traité par',
     'comments' => 'Commentaires',
     'estimated_time' => 'Temps estimé',
+    'spent_time' => 'Temps passé',
 
     'ticket_history' => 'Historique du ticket',
     'ticket_state' => 'Etat du ticket',

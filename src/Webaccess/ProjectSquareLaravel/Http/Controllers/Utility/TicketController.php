@@ -64,7 +64,10 @@ class TicketController extends BaseController
                 'allocatedUserID' => Input::get('allocated_user_id'),
                 'priority' => Input::get('priority'),
                 'dueDate' => \DateTime::createFromFormat('d/m/Y', Input::get('due_date')),
-                'estimatedTime' => Input::get('estimated_time'),
+                'estimatedTimeDays' => Input::get('estimated_time_days'),
+                'estimatedTimeHours' => Input::get('estimated_time_hours'),
+                'spentTimeDays' => Input::get('spent_time_days'),
+                'spentTimeHours' => Input::get('spent_time_hours'),
                 'comments' => Input::get('comments'),
                 'requesterUserID' => $this->getUser()->id,
             ];
@@ -133,7 +136,10 @@ class TicketController extends BaseController
                 'allocatedUserID' => Input::get('allocated_user_id'),
                 'priority' => Input::get('priority'),
                 'dueDate' => \DateTime::createFromFormat('d/m/Y', Input::get('due_date')),
-                'estimatedTime' => Input::get('estimated_time'),
+                'estimatedTimeDays' => Input::get('estimated_time_days'),
+                'estimatedTimeHours' => Input::get('estimated_time_hours'),
+                'spentTimeDays' => Input::get('spent_time_days'),
+                'spentTimeHours' => Input::get('spent_time_hours'),
                 'comments' => Input::get('comments'),
                 'requesterUserID' => $this->getUser()->id,
             ]));

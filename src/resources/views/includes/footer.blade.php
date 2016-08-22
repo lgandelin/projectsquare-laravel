@@ -24,6 +24,7 @@
         var route_todo_update= "{{ route('todos_update') }}";
         var route_todo_delete= "{{ route('todos_delete') }}";
         var route_ticket_unallocate= "{{ route('tickets_unallocate') }}";
+        var route_task_unallocate= "{{ route('tasks_unallocate') }}";
         var route_beta_form= "{{ route('beta_form') }}";
     </script>
 

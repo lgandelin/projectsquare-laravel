@@ -10,7 +10,8 @@ return [
     'status' => 'Statut',
     'description' => 'Description',
     'project' => 'Projet',
-    'estimated_time' => 'Durée estimée',
+    'estimated_time' => 'Temps estimé',
+    'spent_time' => 'Temps passé',
 
     'filters' => [
         'by_project' => 'par projet',

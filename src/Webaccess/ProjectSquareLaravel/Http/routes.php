@@ -38,6 +38,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/add_task', array('as' => 'tasks_store', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\TaskController@store'));
     Route::get('/tasks/{id}', array('as' => 'tasks_edit', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\TaskController@edit'));
     Route::post('/tasks/update', array('as' => 'tasks_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\TaskController@update'));
+    Route::post('/tasks_unallocate', array('as' => 'tasks_unallocate', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\TaskController@unallocate'));
     Route::get('/delete_task/{id}', array('as' => 'tasks_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\TaskController@delete'));
 
     //PROJECTS
@@ -48,6 +49,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/project/{id}/project_seo', array('as' => 'project_seo', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@seo', 'middleware' => 'change_current_project'));
     Route::get('/project/{id}/messages', array('as' => 'project_messages', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@messages', 'middleware' => 'change_current_project'));
     Route::get('/project/{id}/calendar', array('as' => 'project_calendar', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Project\CalendarController@index', 'middleware' => 'change_current_project'));
+    Route::get('/project/{id}/reporting', array('as' => 'project_reporting', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@reporting', 'middleware' => 'change_current_project'));
 
     //PROJECT FILES
     Route::get('/project/{id}/files', array('as' => 'project_files', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Project\FilesController@index', 'middleware' => 'change_current_project'));

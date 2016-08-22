@@ -125,7 +125,10 @@ class EloquentTicketRepository implements TicketRepository
             $ticketState->authorUserID = $state->author_user_id;
             $ticketState->comments = $state->comments;
             $ticketState->dueDate = $state->due_date;
-            $ticketState->estimatedTime = $state->estimated_time;
+            $ticketState->estimatedTimeDays = $state->estimated_time_days;
+            $ticketState->estimatedTimeHours = $state->estimated_time_hours;
+            $ticketState->spentTimeDays = $state->spent_time_days;
+            $ticketState->spentTimeHours = $state->spent_time_hours;
             $ticketState->priority = $state->priority;
             $ticketState->ticketID = $state->ticket_id;
             $ticketState->createdAt = $state->updated_at;
@@ -192,7 +195,10 @@ class EloquentTicketRepository implements TicketRepository
         if ($ticketState->dueDate) {
             $ticketStateModel->due_date = $ticketState->dueDate->format('Y-m-d');
         }
-        $ticketStateModel->estimated_time = $ticketState->estimatedTime;
+        $ticketStateModel->estimated_time_days = $ticketState->estimatedTimeDays;
+        $ticketStateModel->estimated_time_hours = $ticketState->estimatedTimeHours;
+        $ticketStateModel->spent_time_days = $ticketState->spentTimeDays;
+        $ticketStateModel->spent_time_hours = $ticketState->spentTimeHours;
         $ticketStateModel->comments = $ticketState->comments;
         $ticketStateModel->save();
 

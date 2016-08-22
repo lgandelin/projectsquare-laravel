@@ -12,7 +12,10 @@ class TicketState extends Model
     protected $fillable = [
         'priority',
         'due_date',
-        'estimated_time',
+        'estimated_time_days',
+        'estimated_time_hours',
+        'spent_time_days',
+        'spent_time_hours',
         'comments',
     ];
 

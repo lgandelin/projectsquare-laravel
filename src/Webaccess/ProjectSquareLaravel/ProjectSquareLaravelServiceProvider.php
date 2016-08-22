@@ -26,6 +26,9 @@ use Webaccess\ProjectSquare\Interactors\Calendar\GetStepsInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\CreateStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\DeleteStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\UpdateStepInteractor;
+use Webaccess\ProjectSquare\Interactors\Reporting\GetReportingIndicatorsInteractor;
+use Webaccess\ProjectSquare\Interactors\Reporting\GetTasksTotalTimeInteractor;
+use Webaccess\ProjectSquare\Interactors\Reporting\GetTicketsTotalTimeInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectsInteractor;
 use Webaccess\ProjectSquare\Interactors\Todos\CreateTodoInteractor;
@@ -206,7 +209,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
                 new EloquentEventRepository(),
                 new EloquentNotificationRepository(),
                 new EloquentTicketRepository(),
-                new EloquentProjectRepository()
+                new EloquentProjectRepository(),
+                new EloquentTasksRepository()
             );
         });
 
@@ -366,6 +370,24 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             return new DeleteTaskInteractor(
                 new EloquentTasksRepository(),
                 new EloquentProjectRepository()
+            );
+        });
+
+        App::bind('GetTasksTotalTimeInteractor', function () {
+            return new GetTasksTotalTimeInteractor(
+                new EloquentTasksRepository()
+            );
+        });
+
+        App::bind('GetReportingIndicatorsInteractor', function () {
+            return new GetReportingIndicatorsInteractor(
+                new EloquentTasksRepository()
+            );
+        });
+
+        App::bind('GetTicketsTotalTimeInteractor', function () {
+            return new GetTicketsTotalTimeInteractor(
+                new EloquentTicketRepository()
             );
         });
 
