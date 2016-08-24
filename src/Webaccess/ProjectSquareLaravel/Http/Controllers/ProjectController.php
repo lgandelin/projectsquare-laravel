@@ -126,7 +126,7 @@ class ProjectController extends BaseController
         $ticketStatuses = app()->make('TicketStatusManager')->getTicketStatuses();
         foreach ($ticketStatuses as $i => $ticketStatus) {
             $ticketStatuses[$i]->count = sizeof(app()->make('GetTicketInteractor')->getTicketsList($this->getUser()->id, $projectID, null, $ticketStatus->id));
-            $ticketStatuses[$i]->color = $ticketStatusesColors[$i];
+            $ticketStatuses[$i]->color = isset($ticketStatusesColors[$i]) ? $ticketStatusesColors[$i] : $ticketStatusesColors[0];
         }
 
         return view('projectsquare::project.reporting', [
