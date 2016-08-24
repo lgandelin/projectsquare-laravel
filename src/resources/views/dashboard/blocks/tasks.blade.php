@@ -14,11 +14,9 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <!--<th>#</th>-->
                 <th>{{ trans('projectsquare::tasks.title') }}</th>
                 <th>{{ trans('projectsquare::tasks.allocated_user') }}</th>
                 <th>{{ trans('projectsquare::tasks.status') }}</th>
-
                 <th>{{ trans('projectsquare::generic.action') }}</th>
             </tr>
             </thead>
@@ -26,8 +24,7 @@
             <tbody>
             @foreach ($tasks as $task)
                 <tr>
-                    <!-- <td>{{ $task->id }}</td> -->
-                    <td style="border-left: 10px solid {{ $task->project->color }}">{{ $task->title }}</td>
+                    <td style="border-left: 10px solid @if (isset($task->project)) {{ $task->project->color }} @endif">{{ $task->title }}</td>
                     <td>
                         @if (isset($task->allocated_user))
                             @include('projectsquare::includes.avatar', [
