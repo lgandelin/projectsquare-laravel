@@ -20,7 +20,7 @@
                     <select class="form-control" name="filter_project" id="filter_project">
                         <option value="">{{ trans('projectsquare::tasks.filters.by_project') }}</option>
                         @foreach ($projects as $project)
-                            <option value="{{ $project->id }}" @if ($filters['project'] == $project->id)selected="selected" @endif>{{ $project->client->name }} - {{ $project->name }}</option>
+                            <option value="{{ $project->id }}" @if ($filters['project'] == $project->id)selected="selected" @endif>@if (isset($project->client)){{ $project->client->name }} -@endif {{ $project->name }}</option>
                         @endforeach
                     </select>
                 </div>

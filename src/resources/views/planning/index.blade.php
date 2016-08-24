@@ -20,7 +20,7 @@
                         <select class="form-control" name="filter_project" id="filter_project">
                             <option value="">{{ trans('projectsquare::tickets.filters.by_project') }}</option>
                             @foreach ($projects as $project)
-                                <option value="{{ $project->id }}" @if ($filters['project'] == $project->id)selected="selected" @endif>{{ $project->client->name }} - {{ $project->name }}</option>
+                                <option value="{{ $project->id }}" @if ($filters['project'] == $project->id)selected="selected" @endif>@if (isset($project->client)){{ $project->client->name }} -@endif {{ $project->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -72,7 +72,7 @@
                                     <select name="project_id" class="form-control project_id">
                                         <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
                                         @foreach ($projects as $project)
-                                            <option value="{{ $project->id }}">{{ $project->client->name }} - {{ $project->name }}</option>
+                                            <option value="{{ $project->id }}">@if (isset($project->client)){{ $project->client->name }} -@endif {{ $project->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -91,12 +91,12 @@
                         @foreach ($allocated_tasks as $task)
                             <div id="task-{{ $task->id }}"
                                  data-id="{{ $task->id }}"
-                                 data-project="{{ $task->project->id }}"
+                                 data-project="@if (isset($task->project)){{ $task->project->id }}@endif"
                                  data-task="{{ $task->id }}"
-                                 data-color="{{ $task->project->color }}"
+                                 data-color="@if (isset($task->project)){{ $task->project->color }}@endif"
                                  data-event='{"title":"#{{ $task->id }} - {{ $task->title }}"}'
                                  data-duration="02:00"
-                                 class="task fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: {{ $task->project->color }}; margin-bottom: 1rem; width: 90%; border: none !important;"
+                                 class="task fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="@if (isset($task->project))background: {{ $task->project->color }};@endif margin-bottom: 1rem; width: 90%; border: none !important;"
                                     >
                                 <div class="fc-content">
                                     <div class="fc-title">
@@ -113,12 +113,12 @@
                         @foreach ($non_allocated_tasks as $task)
                             <div id="task-{{ $task->id }}"
                                  data-id="{{ $task->id }}"
-                                 data-project="{{ $task->project->id }}"
+                                 data-project="@if (isset($task->project)){{ $task->project->id }}@endif"
                                  data-task="{{ $task->id }}"
-                                 data-color="{{ $task->project->color }}"
+                                 data-color="@if (isset($task->project)){{ $task->project->color }}@endif"
                                  data-event='{"title":"#{{ $task->id }} - {{ $task->title }}"}'
                                  data-duration="02:00"
-                                 class="task fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: {{ $task->project->color }}; margin-bottom: 1rem; width: 90%; border: none !important;"
+                                 class="task fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="@if (isset($task->project))background: {{ $task->project->color }};@endif margin-bottom: 1rem; width: 90%; border: none !important;"
                                     >
                                 <div class="fc-content"><div class="fc-title">#{{ $task->id }} - {{ $task->title }}</div></div>
                             </div>
@@ -130,12 +130,12 @@
                         @foreach ($allocated_tickets as $ticket)
                             <div id="ticket-{{ $ticket->id }}"
                                  data-id="{{ $ticket->id }}"
-                                 data-project="{{ $ticket->project->id }}"
+                                 data-project="@if (isset($ticket->project)){{ $ticket->project->id }}@endif"
                                  data-ticket="{{ $ticket->id }}"
-                                 data-color="{{ $ticket->project->color }}"
+                                 data-color="@if (isset($ticket->project)){{ $ticket->project->color }}@endif"
                                  data-event='{"title":"#{{ $ticket->id }} - {{ $ticket->title }}"}'
                                  data-duration="02:00"
-                                 class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: {{ $ticket->project->color }}; margin-bottom: 1rem; width: 90%; border: none !important;"
+                                 class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="@if (isset($ticket->project))background: {{ $ticket->project->color }};@endif margin-bottom: 1rem; width: 90%; border: none !important;"
                             >
                                 <div class="fc-content">
                                     <div class="fc-title">
@@ -152,12 +152,12 @@
                         @foreach ($non_allocated_tickets as $ticket)
                             <div id="ticket-{{ $ticket->id }}"
                                  data-id="{{ $ticket->id }}"
-                                 data-project="{{ $ticket->project->id }}"
+                                 data-project="@if (isset($ticket->project)){{ $ticket->project->id }}@endif"
                                  data-ticket="{{ $ticket->id }}"
-                                 data-color="{{ $ticket->project->color }}"
+                                 data-color="@if (isset($ticket->project)){{ $ticket->project->color }}@endif"
                                  data-event='{"title":"#{{ $ticket->id }} - {{ $ticket->title }}"}'
                                  data-duration="02:00"
-                                 class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: {{ $ticket->project->color }}; margin-bottom: 1rem; width: 90%; border: none !important;"
+                                 class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="@if (isset($ticket->project))background: {{ $ticket->project->color }};@endif margin-bottom: 1rem; width: 90%; border: none !important;"
                             >
                                 <div class="fc-content"><div class="fc-title">#{{ $ticket->id }} - {{ $ticket->title }}</div></div>
                             </div>
