@@ -24,7 +24,8 @@ class EloquentProjectRepository implements ProjectRepository
         $project->name = $projectModel->name;
         $project->status = $projectModel->status;
         $project->color = $projectModel->color;
-        $project->scheduledTime = $projectModel->scheduled_time;
+        $project->tasksScheduledTime = $projectModel->tasks_scheduled_time;
+        $project->ticketsScheduledTime = $projectModel->tickets_scheduled_time;
         $project->websiteFrontURL = $projectModel->website_front_url;
         $project->websiteBackURL = $projectModel->website_back_url;
         $project->createdAt = $projectModel->created_at;
@@ -59,16 +60,16 @@ class EloquentProjectRepository implements ProjectRepository
         return Project::with('client')->orderBy('updated_at', 'DESC')->paginate($limit);
     }
 
-    public function createProject($name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color, $scheduledTime)
+    public function createProject($name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color, $tasksScheduledTime, $ticketsScheduledTime)
     {
         $project = new Project();
         $project->save();
-        $this->updateProject($project->id, $name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color, $scheduledTime);
+        $this->updateProject($project->id, $name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color, $tasksScheduledTime, $ticketsScheduledTime);
 
         return $project->id;
     }
 
-    public function updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color, $scheduledTime)
+    public function updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color, $tasksScheduledTime, $ticketsScheduledTime)
     {
         $project = $this->getProjectModel($projectID);
         $project->name = $name;
@@ -80,7 +81,8 @@ class EloquentProjectRepository implements ProjectRepository
         }
         $project->status = $status;
         $project->color = $color;
-        $project->scheduled_time = $scheduledTime;
+        $project->tickets_scheduled_time = $ticketsScheduledTime;
+        $project->tasks_scheduled_time = $tasksScheduledTime;
         $project->save();
     }
 

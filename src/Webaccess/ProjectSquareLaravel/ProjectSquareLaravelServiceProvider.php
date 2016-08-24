@@ -26,6 +26,7 @@ use Webaccess\ProjectSquare\Interactors\Calendar\GetStepsInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\CreateStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\DeleteStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\UpdateStepInteractor;
+use Webaccess\ProjectSquare\Interactors\Reporting\GetRemainingTimeInteractor;
 use Webaccess\ProjectSquare\Interactors\Reporting\GetReportingIndicatorsInteractor;
 use Webaccess\ProjectSquare\Interactors\Reporting\GetTasksTotalTimeInteractor;
 use Webaccess\ProjectSquare\Interactors\Reporting\GetTicketsTotalTimeInteractor;
@@ -391,6 +392,10 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             return new GetTicketsTotalTimeInteractor(
                 new EloquentTicketRepository()
             );
+        });
+
+        App::bind('GetRemainingTimeinteractor', function () {
+            return new GetRemainingTimeinteractor();
         });
 
         Context::set('GetProjectInteractor', app()->make('GetProjectInteractor'));

@@ -9482,6 +9482,13 @@ body {
   font-size: 22px;
   color: #243f75; }
 
+.reporting-template h2 {
+  margin-left: 1rem;
+  color: #096a85;
+  font-size: 2.3rem;
+  margin-top: 2rem;
+  margin-bottom: 0; }
+
 .status {
   display: inline-block;
   background: none; }

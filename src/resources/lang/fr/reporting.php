@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'task_statuses' => 'Statuts des tâches',
+    'status' => 'Statut',
     'progress_bar' => 'Barre de progression',
     'no_task_yet' => 'Aucune tâche entrée pour le moment',
     'indicators' => 'Indicateurs',
@@ -12,19 +12,23 @@ return [
     'total' => 'Total',
 
     'time_tracking' => 'Gestion du temps',
-    'project_scheduled_time' => 'Temps prévu sur le projet',
-    'total_tasks_estimated_time' => 'Temps total estimé sur les tâches',
-    'total_tasks_spent_time' => 'Temps total passé sur les tâches',
+    'project_tickets_scheduled_time' => 'Temps prévu de maintenance sur le projet',
+    'project_tasks_scheduled_time' => 'Temps prévu de réalisation sur le projet',
+    'total_tasks_estimated_time' => 'Temps total estimé',
+    'total_tasks_spent_time' => 'Temps total passé',
+    'total_tasks_remaining_time' => 'Temps total restant',
 
     'progress_percentage' => 'Pourcentage d\'avancement',
     'profitability_percentage' => 'Pourcentage de rentabilité',
-    'tasks_spent_time_percentage' => 'Pourcentage de temps passé sur les tâches',
+    'tasks_spent_time_percentage' => 'Pourcentage de temps passé',
     'spent_time' => 'Temps passé',
 
-    'ticket_statuses' => 'Statuts des tickets',
     'no_ticket_yet' => 'Aucun ticket entré pour le moment',
     'tickets' => 'tickets',
-    'total_tickets_estimated_time' => 'Temps total estimé sur les tickets',
-    'total_tickets_spent_time' => 'Temps total passé sur les tickets',
-    'tickets_spent_time_percentage' => 'Pourcentage de temps passé sur les tickets',
+    'total_tickets_estimated_time' => 'Temps total estimé',
+    'total_tickets_spent_time' => 'Temps total passé',
+    'total_tickets_remaining_time' => 'Temps total restant',
+    'tickets_spent_time_percentage' => 'Pourcentage de temps passé',
+    'no_remaining_time' => 'Pas de temps restant',
+    'non_configured' => 'Non renseigné',
 ];
