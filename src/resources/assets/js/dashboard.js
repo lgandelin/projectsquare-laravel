@@ -110,6 +110,7 @@ $(document).ready(function() {
         handle: ".move-widget",
         helper: "clone",
         items: ".widget:not(.total-width)",
+        containment: "html  ",
         sort: function(event, ui) {
             var col = Math.round((ui.item.width() / $('.dashboard-content .total-width').width()) * 12);
             ui.placeholder.addClass('col-lg-' + col);
