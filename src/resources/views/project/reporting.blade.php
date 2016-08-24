@@ -20,7 +20,7 @@
 
                     <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
                         <div class="progress" style="margin-top: 7rem;">
-                            @if ($in_progress_tasks_count > 0)
+                            @if ($todo_tasks_count > 0)
                                 <div class="progress-bar progress-bar-danger" style="width: {{ floor($todo_tasks_count * 100 / sizeof($tasks)) }}%">
                                     {{ trans('projectsquare::reporting.todo') }} ({{ $todo_tasks_count }} {{ trans('projectsquare::reporting.tasks') }})
                                 </div>
