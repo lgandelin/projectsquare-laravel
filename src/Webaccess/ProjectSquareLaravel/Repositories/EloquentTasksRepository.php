@@ -92,6 +92,10 @@ class EloquentTasksRepository implements TaskRepository
 
     private function getTaskEntity($todoModel)
     {
+        if (!$todoModel) {
+            return false;
+        }
+
         $todo = new TaskEntity();
         $todo->id = $todoModel->id;
         $todo->title = $todoModel->title;

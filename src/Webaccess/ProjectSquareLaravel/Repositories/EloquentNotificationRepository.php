@@ -81,16 +81,4 @@ class EloquentNotificationRepository implements NotificationRepository
 
         return $notification;
     }
-
-
-    public function getNotificationsByTicket($ticketID)
-    {
-        $notifications = Notification::where('type', '=', 'TICKET_CREATED')->where('entity_id', '=', $ticketID)->get();
-        $result = [];
-        foreach ($notifications as $notification) {
-            $result[]= $this->getNotificationEntity($notification);
-        }
-
-        return $result;
-    }
 }

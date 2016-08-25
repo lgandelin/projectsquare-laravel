@@ -372,7 +372,9 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         App::bind('DeleteTaskInteractor', function () {
             return new DeleteTaskInteractor(
                 new EloquentTasksRepository(),
-                new EloquentProjectRepository()
+                new EloquentProjectRepository(),
+                new EloquentEventRepository(),
+                new EloquentNotificationRepository()
             );
         });
 
