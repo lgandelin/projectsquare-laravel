@@ -22,4 +22,4 @@ $I->wait(1);
 $I->see('Collaborateur assigné au projet avec succès');
 
 $I->seeNumberOfElements('.left-bar ul .menu:nth-child(2) .sub-menu li', 1);
-$I->see('Client Test', '.left-bar ul .menu:nth-child(2) .sub-menu li');
+$I->see('Projet Test', '.left-bar ul .menu:nth-child(2) .sub-menu li');
