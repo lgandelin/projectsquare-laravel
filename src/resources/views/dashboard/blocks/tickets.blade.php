@@ -1,7 +1,11 @@
 <div class="block last-tickets">
     <div class="block-content table-responsive">
-        <h3>{{ trans('projectsquare::dashboard.last_tickets') }}</h3>
-
+        <h3>{{ trans('projectsquare::dashboard.last_tickets') }}
+            
+        </h3>
+        @include('projectsquare::includes.tooltip', [
+            'text' => trans('projectsquare::tooltips.tickets')
+        ])
         @if ($is_client)
             <a href="{{ route('project_tickets', ['id' => $current_project->id]) }}" class="all pull-right"></a>
         @else

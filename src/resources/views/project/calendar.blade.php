@@ -4,7 +4,12 @@
     @include('projectsquare::includes.project_bar', ['active' => 'calendar'])
     <div class="content-page">
         <div class="templates settings-template">
-            <h1 class="page-header">{{ trans('projectsquare::project.calendar') }}</h1>
+            <h1 class="page-header">{{ trans('projectsquare::project.calendar') }}
+                @include('projectsquare::includes.tooltip', [
+                        'text' => trans('projectsquare::tooltips.calendar_title')
+                  ])
+
+            </h1>
 
             @if (isset($error))
                 <div class="info bg-danger">
@@ -21,7 +26,11 @@
             <div class="row">
                 <div id="calendar" class="col-md-9"></div>
                 <div id="step-infos" class="col-md-3">
-                    <h3>{{ trans('projectsquare::calendar.informations') }}</h3>
+                    <h3>{{ trans('projectsquare::calendar.informations') }}
+                         @include('projectsquare::includes.tooltip', [
+                            'text' => trans('projectsquare::tooltips.calendar.informations')
+                        ])
+                    </h3>
 
                     <div class="wrapper" style="display: none">
                         <div class="loading" style="display: none"></div>

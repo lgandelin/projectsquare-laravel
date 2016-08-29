@@ -4,7 +4,11 @@
     @include('projectsquare::includes.project_bar', ['active' => 'tasks'])
     <div class="content-page">
         <div class="templates project-template">
-            <h1 class="page-header">{{ trans('projectsquare::project.tasks') }}</h1>
+            <h1 class="page-header">{{ trans('projectsquare::project.tasks') }}
+                @include('projectsquare::includes.tooltip', [
+                    'text' => trans('projectsquare::tooltips.tasks')
+                ])
+            </h1>
 
             <form method="get">
                 <div class="row">
@@ -81,6 +85,10 @@
                 @endforeach
                 </tbody>
             </table>
+
+            <div class="text-center">
+                {!! $tasks->render() !!}
+            </div>
         </div>
     </div>
 

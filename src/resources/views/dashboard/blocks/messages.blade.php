@@ -1,7 +1,9 @@
 <div class="block last-messages"> 
     <div class="block-content table-responsive">
         <h3>{{ trans('projectsquare::dashboard.messages') }}</h3>
-
+        @include('projectsquare::includes.tooltip', [
+            'text' => trans('projectsquare::tooltips.messages')
+        ])
         @if ($is_client)
             <a href="{{ route('project_messages', ['id' => $current_project->id]) }}" class="all pull-right"></a>
             <button class="btn add create-conversation pull-right"></button>

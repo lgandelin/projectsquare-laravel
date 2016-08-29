@@ -33,7 +33,7 @@
 
         <br>
 
-        <h2>Utilisateurs</h2>
+        <h2>{{ trans('projectsquare::clients.client_accounts') }}</h2>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>

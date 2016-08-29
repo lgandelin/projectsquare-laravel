@@ -28,6 +28,15 @@ class UserManager
         return $this->repository->getClientUsers($clientID);
     }
 
+    public function getUsersByProject($projectID)
+    {
+        if (!$projectID) {
+            return $this->getUsers();
+        }
+
+        return $this->repository->getUsersByProject($projectID);
+    }
+
     public function getUsers()
     {
         return $this->repository->getUsers();

@@ -15,15 +15,16 @@ return [
     'clients_list' => 'Liste des clients',
 
     'client' => 'Client',
-    'label' => 'Libellé',
-    'name_placeholder' => 'Nom de votre client',
+    'label' => 'Société',
+    'name_placeholder' => 'Nom de la société',
     'address' => 'Adresse',
     'information' =>'Informations',
 
     'client_not_found' => 'Une erreur est survenue lors de la récupération de ce client',
 
-    'add_user' => 'Ajouter un utilisateur',
-    'edit_user' => 'Editer un utilisateur',
+    'client_accounts' => 'Comptes utilisateur',
+    'add_user' => 'Ajouter un compte utilisateur',
+    'edit_user' => 'Editer un compte utilisateur',
 
     'generate_password_notice' => 'Le mot de passe sera envoyé sur l\'adresse email de l\'utilisateur',
 ];

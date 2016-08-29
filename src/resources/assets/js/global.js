@@ -134,6 +134,14 @@ $(document).ready(function() {
     $('body').on('mouseover', '.left-bar-minified .toggle-left-bar', function() {
         $('.left-bar-minified .menu .sub-menu').hide();
     });
+
+     //TOOLTRIP
+    $('.tooltips').tooltipster({
+        animation: 'fade',
+        theme: ['tooltipster-shadow', 'tooltipster-shadow-customized'],
+        maxWidth : 300
+    });
+
 });
 
 function reloadNotificationsPanel() {

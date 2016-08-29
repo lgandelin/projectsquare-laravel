@@ -44,8 +44,13 @@
     </div>
 
     <div class="form-group">
-        <label for="name">{{ trans('projectsquare::projects.scheduled_time') }}</label>
-        <input type="text" name="scheduled_time" class="form-control" placeholder="{{ trans('projectsquare::projects.scheduled_time_placehodler') }}"  @if (isset($project_scheduled_time))value="{{ $project_scheduled_time }}"@endif size="7">
+        <label for="name">{{ trans('projectsquare::projects.tasks_scheduled_time') }}</label>
+        <input type="text" name="tasks_scheduled_time" class="form-control" placeholder="{{ trans('projectsquare::projects.scheduled_time_placeholder') }}"  @if (isset($project_tasks_scheduled_time))value="{{ $project_tasks_scheduled_time }}"@endif size="7">
+    </div>
+    
+    <div class="form-group">
+        <label for="name">{{ trans('projectsquare::projects.tickets_scheduled_time') }}</label>
+        <input type="text" name="tickets_scheduled_time" class="form-control" placeholder="{{ trans('projectsquare::projects.scheduled_time_placeholder') }}"  @if (isset($project_tickets_scheduled_time))value="{{ $project_tickets_scheduled_time }}"@endif size="7">
     </div>
 
     <div class="form-group">

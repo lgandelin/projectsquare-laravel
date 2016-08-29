@@ -5,7 +5,11 @@
     <div class="content-page">
         <div class="col-lg-12 col-md-12 templates files-template">
             <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
-                <h1 class="page-header">{{ trans('projectsquare::project.files') }}</h1>
+                <h1 class="page-header">{{ trans('projectsquare::project.files') }}
+                     @include('projectsquare::includes.tooltip', [
+                        'text' => trans('projectsquare::tooltips.files')
+                  ])
+                </h1>
 
                 <table class="table table-striped">
                     @foreach($files as $file)

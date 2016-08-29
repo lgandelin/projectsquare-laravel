@@ -4,7 +4,11 @@
     @include('projectsquare::includes.project_bar', ['active' => 'monitoring'])
     <div class="content-page">
         <div class="templates monitoring-template">
-            <h1 class="page-header">{{ trans('projectsquare::project.monitoring') }}</h1>
+            <h1 class="page-header">{{ trans('projectsquare::project.monitoring') }}
+                  @include('projectsquare::includes.tooltip', [
+                        'text' => trans('projectsquare::tooltips.monitoring_title')
+                  ])
+            </h1>
 
             <div class="row" style="margin-top: 5rem">
                 <div id="loading_time" class="col-md-8"></div>
@@ -13,10 +17,30 @@
 
                     <div class="content">
                         <ul>
-                            <li>{{ trans('projectsquare::monitoring.availability_percentage') }} : <span class="number" style="color: #57c17b">{{ number_format($availability_percentage, 2) }}%</span></li>
-                            <li>{{ trans('projectsquare::monitoring.average_loading_time') }} : <span class="number" style="color: #57c17b">{{ number_format($average_loading_time, 2) }}s</span></li>
-                            <li>{{ trans('projectsquare::monitoring.longest_loading_time') }} : <span class="number" style="color: #fc9a24">{{ number_format($max_loading_time, 2) }}s</span></li>
-                            <li>{{ trans('projectsquare::monitoring.requests_number') }} : <span class="number">{{ count($requests) }}</span></li>
+                            <li>{{ trans('projectsquare::monitoring.availability_percentage') }} : 
+                                @include('projectsquare::includes.tooltip', [
+                                    'text' => trans('projectsquare::tooltips.monitoring.disponibility')
+                                ])
+                                <span class="number" style="color: #57c17b">{{ number_format($availability_percentage, 2) }}%</span>
+                            </li>
+                            <li>{{ trans('projectsquare::monitoring.average_loading_time') }} : 
+                                 @include('projectsquare::includes.tooltip', [
+                                    'text' => trans('projectsquare::tooltips.monitoring.average_loading_time')
+                                ])
+                                <span class="number" style="color: #57c17b">{{ number_format($average_loading_time, 2) }}s</span>
+                            </li>
+                            <li>{{ trans('projectsquare::monitoring.longest_loading_time') }} : 
+                                 <!--@include('projectsquare::includes.tooltip', [
+                                    'text' => trans('projectsquare::tooltips.monitoring.max_loading_time')
+                                ])-->
+                                <span class="number" style="color: #fc9a24">{{ number_format($max_loading_time, 2) }}s</span>
+                            </li>
+                            <li>{{ trans('projectsquare::monitoring.requests_number') }} :
+                                @include('projectsquare::includes.tooltip', [
+                                    'text' => trans('projectsquare::tooltips.monitoring.requests_number')
+                                ]) 
+                                <span class="number">{{ count($requests) }}</span>
+                            </li>
                         </ul>
                     </div>
                 </div>

@@ -38,7 +38,7 @@
                             <select class="form-control" name="project_id">
                                 <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
                                 @foreach ($projects as $project)
-                                    <option value="{{ $project->id }}" @if ((isset($task->projectID) && $task->projectID == $project->id))selected="selected"@endif>[{{ $project->client->name }}] {{ $project->name }}</option>
+                                    <option value="{{ $project->id }}" @if ((isset($task->projectID) && $task->projectID == $project->id))selected="selected"@endif>@if (isset($project->client))[{{ $project->client->name }}]@endif {{ $project->name }}</option>
                                 @endforeach
                             </select>
                         @else

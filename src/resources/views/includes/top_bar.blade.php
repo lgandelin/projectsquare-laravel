@@ -56,6 +56,8 @@
                                         {{ trans('projectsquare::top_bar.new_event') }}
                                     @elseif ($notification->type == 'TICKET_CREATED')
                                         {{ trans('projectsquare::top_bar.new_ticket') }}
+                                    @elseif ($notification->type == 'TASK_CREATED')
+                                        {{ trans('projectsquare::top_bar.new_task') }}
                                     @elseif ($notification->type == 'FILE_UPLOADED')
                                         {{ trans('projectsquare::top_bar.new_file') }}
                                     @endif
@@ -67,6 +69,8 @@
                                         {{ trans('projectsquare::top_bar.new_event_created') }} <strong>{{ $notification->event_name }}</strong>
                                     @elseif ($notification->type == 'TICKET_CREATED')
                                         {{ trans('projectsquare::top_bar.new_ticket_created') }} <strong>{{ $notification->ticket_title }}</strong>
+                                    @elseif ($notification->type == 'TASK_CREATED')
+                                        {{ trans('projectsquare::top_bar.new_task_created') }} <strong>{{ $notification->task_title }}</strong>
                                     @elseif ($notification->type == 'FILE_UPLOADED')
                                         {{ trans('projectsquare::top_bar.new_file_created') }} <strong>{{ $notification->file_name }}</strong>
                                     @endif
@@ -99,4 +103,4 @@
 </div>
 
 @include ('projectsquare::templates.new-notification')
-@include('projectsquare::templates.new-todo')
+@include ('projectsquare::templates.new-todo')

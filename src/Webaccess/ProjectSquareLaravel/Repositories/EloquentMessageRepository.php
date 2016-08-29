@@ -12,6 +12,10 @@ class EloquentMessageRepository implements MessageRepository
     {
         $messageModel = $this->getMessageModel($messageID);
 
+        if (!$messageModel) {
+            return false;
+        }
+
         $message = new MessageEntity();
         $message->id = $messageModel->id;
         $message->content = $messageModel->content;

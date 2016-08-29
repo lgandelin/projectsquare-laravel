@@ -4,7 +4,11 @@
     @include('projectsquare::includes.project_bar', ['active' => 'messages'])
     <div class="content-page">
         <div class="templates messages-list-template">
-            <h1 class="page-header">{{ trans('projectsquare::project.messages') }}</h1>
+            <h1 class="page-header">{{ trans('projectsquare::project.messages') }}
+                 @include('projectsquare::includes.tooltip', [
+                        'text' => trans('projectsquare::tooltips.messages')
+                  ])
+            </h1>
 
             @if (isset($error))
                 <div class="info bg-danger">

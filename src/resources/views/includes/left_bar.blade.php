@@ -20,7 +20,7 @@
                         <?php $route = preg_match('/project_/', Route::current()->getName()) ? Route::current()->getName() : 'project_index'; ?>
                         <a href="{{ route($route, ['id' => $project->id]) }}" @if (preg_match('/project_/', Route::current()->getName()) && isset($current_project_id) && $current_project_id == $project->id) style="color: #c8dc1e" @endif">
                             <!--{{ $project->name }}-->
-                            <span title="{{ $project->name }}">{{ $project->client->name }}</span>
+                            <span title="{{ $project->name }}">{{$project->name}}</span>
                         </a>
                     </li>
                     @endforeach

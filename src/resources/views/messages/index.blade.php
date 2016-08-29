@@ -8,7 +8,11 @@
 <div class="content-page">
     <div class="templates messages-template">
         <div class="page-header">
-            <h1>{{ trans('projectsquare::messages.messages') }}</h1>
+            <h1>{{ trans('projectsquare::messages.messages') }}
+                @include('projectsquare::includes.tooltip', [
+                    'text' => trans('projectsquare::tooltips.messages')
+                ])
+            </h1>
         </div>
 
         <form method="get">
@@ -20,7 +24,7 @@
                     <select class="form-control" name="filter_project" id="filter_project">
                         <option value="">{{ trans('projectsquare::tickets.filters.by_project') }}</option>
                         @foreach ($projects as $project)
-                            <option value="{{ $project->id }}" @if ($filters['project'] == $project->id)selected="selected" @endif>{{ $project->client->name }} - {{ $project->name }}</option>
+                            <option value="{{ $project->id }}" @if ($filters['project'] == $project->id)selected="selected" @endif>@if (isset($project->client)){{ $project->client->name }} -@endif {{ $project->name }}</option>
                         @endforeach
                     </select>
                 </div>

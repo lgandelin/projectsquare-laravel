@@ -8,7 +8,11 @@
     <div class="content-page">
         <div class="templates">
             <div class="page-header">
-                <h1>{{ trans('projectsquare::roles.roles_list') }}</h1>
+                <h1>{{ trans('projectsquare::roles.roles_list') }}
+                    @include('projectsquare::includes.tooltip', [
+                        'text' => trans('projectsquare::tooltips.roles_list')
+                  ])
+                </h1>
             </div>
 
              <a href="{{ route('roles_add') }}" class="btn pull-right add"></a>

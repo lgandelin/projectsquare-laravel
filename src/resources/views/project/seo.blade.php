@@ -4,7 +4,11 @@
     @include('projectsquare::includes.project_bar', ['active' => 'seo'])
     <div class="content-page">
         <div class="templates seo-template">
-            <h1 class="page-header">{{ trans('projectsquare::project.seo') }}</h1>
+            <h1 class="page-header">{{ trans('projectsquare::project.seo') }}
+                 @include('projectsquare::includes.tooltip', [
+                        'text' => trans('projectsquare::tooltips.seo_title')
+                  ])
+            </h1>
 
             @if ($gaViewID)
                 <div id="embed-api-auth-container" style="margin-bottom: 15px"></div>
