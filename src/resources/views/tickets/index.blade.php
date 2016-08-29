@@ -8,7 +8,11 @@
     <div class="content-page">
         <div class="templates tickets-template">
             <div class="page-header">
-                <h1>{{ trans('projectsquare::tickets.tickets_list') }}</h1>
+                <h1>{{ trans('projectsquare::tickets.tickets_list') }}
+                     @include('projectsquare::includes.tooltip', [
+                        'text' => trans('projectsquare::tooltips.tickets')
+                  ])
+                </h1>
             </div>
 
             <form method="get">

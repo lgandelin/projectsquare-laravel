@@ -4,7 +4,11 @@
     @include('projectsquare::includes.project_bar', ['active' => 'tickets'])
     <div class="content-page">
         <div class="templates project-template">
-            <h1 class="page-header">{{ trans('projectsquare::project.tickets') }}</h1>
+            <h1 class="page-header">{{ trans('projectsquare::project.tickets') }}
+                @include('projectsquare::includes.tooltip', [
+                    'text' => trans('projectsquare::tooltips.tickets')
+                ])
+            </h1>
 
             <form method="get">
                 <div class="row">

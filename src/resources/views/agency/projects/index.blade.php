@@ -8,7 +8,11 @@
     <div class="content-page">
       <div class="templates">
         <div class="page-header">
-            <h1>{{ trans('projectsquare::projects.projects_list') }}</h1>
+            <h1>{{ trans('projectsquare::projects.projects_list') }}
+                @include('projectsquare::includes.tooltip', [
+                        'text' => trans('projectsquare::tooltips.projects_list')
+                  ])
+            </h1>
         </div>
               <a href="{{ route('projects_add') }}" class="btn pull-right add"></a>
             @if (isset($error))

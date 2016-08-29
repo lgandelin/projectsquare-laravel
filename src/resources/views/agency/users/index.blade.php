@@ -10,7 +10,7 @@
             <div class="page-header">
                 <h1>{{ trans('projectsquare::users.users_list') }}</h1>
                 @include('projectsquare::includes.tooltip', [
-                 'text' => trans('projectsquare::tooltips.contributors')
+                 'text' => trans('projectsquare::tooltips.contributors_list')
                 ])
             </div>
               <a href="{{ route('users_add') }}" class="btn pull-right add"></a>

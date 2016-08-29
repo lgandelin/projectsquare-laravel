@@ -8,7 +8,11 @@
      <div class="content-page">
         <div class="templates">
             <div class="page-header">
-                <h1>{{ trans('projectsquare::ticket_types.ticket_types_list') }}</h1>
+                <h1>{{ trans('projectsquare::ticket_types.ticket_types_list') }}
+                    @include('projectsquare::includes.tooltip', [
+                        'text' => trans('projectsquare::tooltips.tickets_types_list')
+                  ])
+                </h1>
             </div>
 
             <a href="{{ route('ticket_types_add') }}" class="btn pull-right add"></a>
