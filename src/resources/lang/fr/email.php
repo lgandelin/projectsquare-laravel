@@ -22,9 +22,8 @@ return [
     'install_project_2' => 'a été installée avec succès !',
     'platform_title' => 'Projectsquare', 
 
-    'platform_access_1' => 'Pour y accéder,',
-    'platform_access_2' => 'Cliquez ici',
-
+    'platform_access_1' => 'Pour accéder à la plateforme,',
+    'platform_access_2' => 'cliquez ici',
 
     'signature_1' => 'A bientôt !',
     'signature_2' => 'L\'équipe Projectsquare'
