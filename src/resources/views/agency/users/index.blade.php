@@ -32,6 +32,7 @@
                 <tr>
                     <th>#</th>
                     <th>{{ trans('projectsquare::users.name') }}</th>
+                    <th>{{ trans('projectsquare::users.avatar') }}</th>
                     <th>{{ trans('projectsquare::users.email') }}</th>
                     <th>{{ trans('projectsquare::generic.action') }}</th>
                 </tr>
@@ -42,6 +43,12 @@
                         <tr>
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->complete_name }}</td>
+                             <td>
+                                @include('projectsquare::includes.avatar', [
+                                    'id' => $user->id,
+                                    'name' => $user->complete_name
+                                ])
+                            </td>
                             <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                             <td align="right">
                                 <a href="{{ route('users_edit', ['id' => $user->id]) }}" class="btn see-more"></a>
