@@ -146,6 +146,11 @@ class EloquentTicketRepository implements TicketRepository
         return $ticket->states()->with('author_user', 'allocated_user', 'status')->paginate($limit);
     }
 
+    public function getTicketsByProjectID($projectID)
+    {
+        return Ticket::where('project_id', '=', $projectID)->get();
+    }
+
     public function deleteTicket($ticketID)
     {
         if (!$ticketModel = Ticket::find($ticketID)) {

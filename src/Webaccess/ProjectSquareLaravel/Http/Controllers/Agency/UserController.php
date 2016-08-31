@@ -4,6 +4,7 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Agency;
 
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
+use Webaccess\ProjectSquare\Requests\Clients\GetClientsRequest;
 
 class TwoPasswordsException extends \Exception {}
 
@@ -27,7 +28,7 @@ class UserController extends BaseController
     public function add()
     {
         return view('projectsquare::agency.users.add', [
-            'clients' => app()->make('ClientManager')->getClients(),
+            'clients' => app()->make('GetClientsInteractor')->execute(new GetClientsRequest()),
         ]);
     }
 
@@ -71,7 +72,7 @@ class UserController extends BaseController
 
         return view('projectsquare::agency.users.edit', [
             'user' => $user,
-            'clients' => app()->make('ClientManager')->getClients(),
+            'clients' => app()->make('GetClientsInteractor')->execute(new GetClientsRequest()),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
             'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,
         ]);

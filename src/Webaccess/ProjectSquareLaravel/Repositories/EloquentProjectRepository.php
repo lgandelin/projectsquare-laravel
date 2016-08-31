@@ -50,7 +50,7 @@ class EloquentProjectRepository implements ProjectRepository
         return Project::with('users')->find($projectID);
     }
 
-    public function getProjectsByClient($clientID)
+    public function getProjectsByClientID($clientID)
     {
         return Project::where('client_id', '=', $clientID)->get();
     }
@@ -67,6 +67,25 @@ class EloquentProjectRepository implements ProjectRepository
         $this->updateProject($project->id, $name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color, $tasksScheduledTime, $ticketsScheduledTime);
 
         return $project->id;
+    }
+
+    public function persistProject(ProjectEntity $project)
+    {
+        $projectModel = (!isset($project->id)) ? new Project() : Project::find($project->id);
+        $projectModel->name = $project->name;
+        $projectModel->client_id = $project->clientID;
+        $projectModel->color = $project->color;
+        $projectModel->tasks_scheduled_time = $project->tasksScheduledTime;
+        $projectModel->tickets_scheduled_time = $project->ticketsScheduledTime;
+        $projectModel->status = $project->status;
+        $projectModel->website_front_url = $project->website_front_url;
+        $projectModel->website_back_url = $project->website_back_url;
+
+        $projectModel->save();
+
+        $project->id = $projectModel->id;
+
+        return $project;
     }
 
     public function updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color, $tasksScheduledTime, $ticketsScheduledTime)

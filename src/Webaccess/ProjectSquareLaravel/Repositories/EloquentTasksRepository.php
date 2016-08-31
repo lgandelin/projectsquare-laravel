@@ -8,16 +8,16 @@ use Webaccess\ProjectSquareLaravel\Models\Task;
 
 class EloquentTasksRepository implements TaskRepository
 {
-    public function getTask($todoID)
+    public function getTask($taskID)
     {
-        $todoModel = $this->getTaskModel($todoID);
+        $taskModel = $this->getTaskModel($taskID);
 
-        return $this->getTaskEntity($todoModel);
+        return $this->getTaskEntity($taskModel);
     }
 
-    public function getTaskModel($todoID)
+    public function getTaskModel($taskID)
     {
-        return Task::find($todoID);
+        return Task::find($taskID);
     }
 
     public function getTasks($projectID = null, $statusID = null, $allocatedUserID = null, $entities = false)
@@ -63,55 +63,60 @@ class EloquentTasksRepository implements TaskRepository
         return $tasks;
     }
 
+    public function getTasksByProjectID($projectID)
+    {
+        return Task::where('project_id', '=', $projectID)->get();
+    }
+
     public function getTasksPaginatedList($limit, $projectID = null, $statusID = null, $allocatedUserID = null)
     {
         return $this->getTasksList($projectID, $statusID, $allocatedUserID)->paginate($limit);
     }
 
-    public function persistTask(TaskEntity $todo)
+    public function persistTask(TaskEntity $task)
     {
-        $todoModel = (!isset($todo->id)) ? new Task() : Task::find($todo->id);
-        $todoModel->title = $todo->title;
-        $todoModel->description = $todo->description;
-        $todoModel->estimated_time_days = $todo->estimatedTimeDays;
-        $todoModel->estimated_time_hours = $todo->estimatedTimeHours;
-        $todoModel->spent_time_days = $todo->spentTimeDays;
-        $todoModel->spent_time_hours = $todo->spentTimeHours;
-        $todoModel->project_id = $todo->projectID;
-        $todoModel->status_id = $todo->statusID;
-        $todoModel->allocated_user_id = $todo->allocatedUserID;
+        $taskModel = (!isset($task->id)) ? new Task() : Task::find($task->id);
+        $taskModel->title = $task->title;
+        $taskModel->description = $task->description;
+        $taskModel->estimated_time_days = $task->estimatedTimeDays;
+        $taskModel->estimated_time_hours = $task->estimatedTimeHours;
+        $taskModel->spent_time_days = $task->spentTimeDays;
+        $taskModel->spent_time_hours = $task->spentTimeHours;
+        $taskModel->project_id = $task->projectID;
+        $taskModel->status_id = $task->statusID;
+        $taskModel->allocated_user_id = $task->allocatedUserID;
 
-        $todoModel->save();
+        $taskModel->save();
 
-        $todo->id = $todoModel->id;
+        $task->id = $taskModel->id;
 
-        return $todo;
+        return $task;
     }
 
-    public function deleteTask($todoID)
+    public function deleteTask($taskID)
     {
-        $todo = $this->getTaskModel($todoID);
-        $todo->delete();
+        $task = $this->getTaskModel($taskID);
+        $task->delete();
     }
 
-    private function getTaskEntity($todoModel)
+    private function getTaskEntity($taskModel)
     {
-        if (!$todoModel) {
+        if (!$taskModel) {
             return false;
         }
 
-        $todo = new TaskEntity();
-        $todo->id = $todoModel->id;
-        $todo->title = $todoModel->title;
-        $todo->description = $todoModel->description;
-        $todo->estimatedTimeDays = $todoModel->estimated_time_days;
-        $todo->estimatedTimeHours = $todoModel->estimated_time_hours;
-        $todo->spentTimeDays = $todoModel->spent_time_days;
-        $todo->spentTimeHours = $todoModel->spent_time_hours;
-        $todo->projectID = $todoModel->project_id;
-        $todo->statusID = $todoModel->status_id;
-        $todo->allocatedUserID = $todoModel->allocated_user_id;
+        $task = new TaskEntity();
+        $task->id = $taskModel->id;
+        $task->title = $taskModel->title;
+        $task->description = $taskModel->description;
+        $task->estimatedTimeDays = $taskModel->estimated_time_days;
+        $task->estimatedTimeHours = $taskModel->estimated_time_hours;
+        $task->spentTimeDays = $taskModel->spent_time_days;
+        $task->spentTimeHours = $taskModel->spent_time_hours;
+        $task->projectID = $taskModel->project_id;
+        $task->statusID = $taskModel->status_id;
+        $task->allocatedUserID = $taskModel->allocated_user_id;
 
-        return $todo;
+        return $task;
     }
 }
