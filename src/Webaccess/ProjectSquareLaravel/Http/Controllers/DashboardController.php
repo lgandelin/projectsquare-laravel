@@ -5,6 +5,7 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 use Webaccess\ProjectSquare\Requests\Todos\GetTodosRequest;
+use Webaccess\ProjectSquare\Requests\Calendar\GetStepsRequest;
 
 class DashboardController extends BaseController
 {
@@ -22,18 +23,27 @@ class DashboardController extends BaseController
             'todos' => app()->make('GetTodosInteractor')->execute(new GetTodosRequest([
                 'userID' => $this->getUser()->id,
             ])),
+
+            'steps' => app()->make('GetStepsInteractor')->execute(new GetStepsRequest([
+                'projectID' => $this->getCurrentProject()->id,
+            ])),
         ]);
     }
 
     private function initWidgetsIfNecessary()
     {
+        $widgets[]= ['name' => 'tickets', 'width' => 7];
+        $widgets[]= ['name' => 'messages', 'width' => 5];
+        
+        if (!$this->isUserAClient()) {
+            $widgets[]= ['name' => 'tasks', 'width' => 12];
+            $widgets[]= ['name' => 'planning', 'width' => 12];
+        } else {
+            $widgets[]= ['name' => 'calendar', 'width' => 6];
+        }
+
         if (!isset($_COOKIE['dashboard-widgets'])) {
-            $_COOKIE['dashboard-widgets'] = json_encode([
-                ['name' => 'tasks', 'width' => 12],
-                ['name' => 'tickets', 'width' => 7],
-                ['name' => 'messages', 'width' => 5],
-                ['name' => 'planning', 'width' => 12],
-            ]);
+            $_COOKIE['dashboard-widgets'] = json_encode($widgets);
         }
     }
 }
