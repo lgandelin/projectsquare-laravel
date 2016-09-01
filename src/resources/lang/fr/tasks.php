@@ -33,4 +33,6 @@ return [
     'to_do' => 'A faire', 
     'in_progress' =>'En cours', 
     'done' => 'Terminé',
+
+    'title_required' => 'Vous devez renseignez un titre pour cette tâche',
 ];

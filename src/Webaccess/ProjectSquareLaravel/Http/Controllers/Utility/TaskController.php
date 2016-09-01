@@ -65,7 +65,7 @@ class TaskController extends BaseController
 
             $this->request->session()->flash('confirmation', trans('projectsquare::tasks.add_task_success'));
 
-            return redirect()->route('tasks_edit', ['id' => $response->task->id]);
+            return redirect()->route('tasks_index');
         } catch (\Exception $e) {
             $this->request->session()->flash('error', $e->getMessage());
         }

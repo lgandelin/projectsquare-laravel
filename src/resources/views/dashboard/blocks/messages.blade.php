@@ -1,17 +1,18 @@
 <div class="block last-messages"> 
     <div class="block-content table-responsive">
-        <h3>{{ trans('projectsquare::dashboard.messages') }}</h3>
-        @include('projectsquare::includes.tooltip', [
-            'text' => trans('projectsquare::tooltips.messages')
-        ])
-        @if ($is_client)
-            <a href="{{ route('project_messages', ['id' => $current_project->id]) }}" class="all pull-right"></a>
-            <button class="btn add create-conversation pull-right"></button>
-        @else
-            <a href="{{ route('messages_index') }}" class="all pull-right"></a>
-        @endif
+        <h3>{{ trans('projectsquare::dashboard.messages') }}
+            @include('projectsquare::includes.tooltip', [
+                'text' => trans('projectsquare::tooltips.messages')
+            ])
+            @if ($is_client)
+                <a href="{{ route('project_messages', ['id' => $current_project->id]) }}" class="all pull-right"></a>
+                <button class="btn add create-conversation pull-right"></button>
+            @else
+                <a href="{{ route('messages_index') }}" class="all pull-right"></a>
+            @endif
 
-        <a href="#" class="glyphicon glyphicon-move move-widget pull-right"></a>
+            <a href="#" class="glyphicon glyphicon-move move-widget pull-right"></a>
+        </h3>
 
         <table class="table table-striped">
              <thead>
@@ -19,7 +20,7 @@
                     <!--<th>#</th>-->
                      <!--<th>{{ trans('projectsquare::tickets.client') }} </th>-->
                     <th>{{ trans('projectsquare::messages.message') }} </th>
-                    <th>{{ trans('projectsquare::messages.allocated_user') }} </th>
+                    <th style="text-align:center">{{ trans('projectsquare::messages.author') }} </th>
                     <th>{{ trans('projectsquare::messages.date') }} </th>
                     <th>{{ trans('projectsquare::messages.action') }} </th>
 
