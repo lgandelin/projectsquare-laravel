@@ -25,16 +25,18 @@
             <input class="form-control" type="password" placeholder="{{ trans('projectsquare::my.password_confirmation') }}" name="password_confirmation" autocomplete="off" />
         </div>
     @else
-        <a href="{{ route('users_generate_password', ['id' => $user_id]) }}">
-            <span class="btn btn-primary button">
-                <span class="glyphicon glyphicon-repeat"></span>
-                {{ trans('projectsquare::users.generate_password') }}
-            </span>
-        </a>
-        <br/>
-        <span style="font-style: italic; display: inline-block;margin-top: 5px;">{{ trans('projectsquare::users.generate_password_notice') }}</span>
-    @endif
+        <div class="form-group">
+            <a href="{{ route('users_generate_password', ['id' => $user_id]) }}">
+                <span class="btn btn-primary button">
+                    <span class="glyphicon glyphicon-repeat"></span>
+                    {{ trans('projectsquare::users.generate_password') }}
+                </span></a>
 
+            @include('projectsquare::includes.tooltip', [
+                'text' => trans('projectsquare::users.generate_password_notice')
+            ])
+        </div>
+    @endif
 
     <div class="form-group">
         <label for="is_administrator">{{ trans('projectsquare::users.is_administrator') }}</label><br/>

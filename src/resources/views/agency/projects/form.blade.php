@@ -19,12 +19,20 @@
     </div>
 
     <div class="form-group">
-        <label for="name">{{ trans('projectsquare::projects.website_front_url') }}</label>
+        <label for="name">{{ trans('projectsquare::projects.website_front_url') }}
+            @include('projectsquare::includes.tooltip', [
+                'text' => trans('projectsquare::tooltips.project.front_url')
+            ])
+        </label>
         <input class="form-control" type="text" placeholder="{{ trans('projectsquare::projects.website_front_url') }}" name="website_front_url" @if (isset($project_website_front_url))value="{{ $project_website_front_url }}"@endif />
     </div>
 
     <div class="form-group">
-        <label for="name">{{ trans('projectsquare::projects.website_back_url') }}</label>
+        <label for="name">{{ trans('projectsquare::projects.website_back_url') }}
+            @include('projectsquare::includes.tooltip', [
+                'text' => trans('projectsquare::tooltips.project.cms_url')
+            ])
+        </label>
         <input class="form-control" type="text" placeholder="{{ trans('projectsquare::projects.website_back_url') }}" name="website_back_url" @if (isset($project_website_back_url))value="{{ $project_website_back_url }}"@endif />
     </div>
 
@@ -39,17 +47,29 @@
     </div>
 
     <div class="form-group">
-        <label for="name">{{ trans('projectsquare::projects.color') }}</label>
+        <label for="name">{{ trans('projectsquare::projects.color') }}
+            @include('projectsquare::includes.tooltip', [
+                'text' => trans('projectsquare::tooltips.project.color')
+            ])
+        </label>
         <input type="text" name="color" class="form-control colorpicker" data-control="saturation" placeholder="{{ trans('projectsquare::projects.color') }}"  @if (isset($project_color))value="{{ $project_color }}"@endif size="7">
     </div>
 
     <div class="form-group">
-        <label for="name">{{ trans('projectsquare::projects.tasks_scheduled_time') }}</label>
+        <label for="name">{{ trans('projectsquare::projects.tasks_scheduled_time') }}
+            @include('projectsquare::includes.tooltip', [
+                'text' => trans('projectsquare::tooltips.project.scheduled_time_reporting')
+            ])
+        </label>
         <input type="text" name="tasks_scheduled_time" class="form-control" placeholder="{{ trans('projectsquare::projects.scheduled_time_placeholder') }}"  @if (isset($project_tasks_scheduled_time))value="{{ $project_tasks_scheduled_time }}"@endif size="7">
     </div>
     
     <div class="form-group">
-        <label for="name">{{ trans('projectsquare::projects.tickets_scheduled_time') }}</label>
+        <label for="name">{{ trans('projectsquare::projects.tickets_scheduled_time') }}
+            @include('projectsquare::includes.tooltip', [
+                'text' => trans('projectsquare::tooltips.project.scheduled_time_reporting')
+            ])
+        </label>
         <input type="text" name="tickets_scheduled_time" class="form-control" placeholder="{{ trans('projectsquare::projects.scheduled_time_placeholder') }}"  @if (isset($project_tickets_scheduled_time))value="{{ $project_tickets_scheduled_time }}"@endif size="7">
     </div>
 
@@ -70,7 +90,11 @@
 
 @if (isset($project_id))
     <p>&nbsp;</p>
-    <h3>{{ trans('projectsquare::projects.project_resources') }}</h3>
+    <h3>{{ trans('projectsquare::projects.project_resources') }}
+        @include('projectsquare::includes.tooltip', [
+            'text' => trans('projectsquare::tooltips.project.project_resources')
+        ])
+    </h3>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -137,7 +161,12 @@
 
         <form action="{{ route('project_settings', ['id' => $project->id]) }}" method="post">
             <div class="form-group">
-                <label for="value">{{ trans('projectsquare::settings.acceptable_loading_time') }}</label>
+                <label for="value">
+                    {{ trans('projectsquare::settings.acceptable_loading_time') }}
+                    @include('projectsquare::includes.tooltip', [
+                        'text' => trans('projectsquare::tooltips.project.acceptable_loading_time')
+                    ])
+                </label>
                 <input class="form-control" type="text" placeholder="{{ trans('projectsquare::settings.acceptable_loading_time_placeholder') }}" name="value" @if (isset($acceptable_loading_time))value="{{ $acceptable_loading_time }}"@endif />
             </div>
 
@@ -160,7 +189,12 @@
 
         <form action="{{ route('project_settings', ['id' => $project->id]) }}" method="post">
             <div class="form-group">
-                <label for="value">{{ trans('projectsquare::settings.alert_loading_time_email') }}</label>
+                <label for="value">
+                    {{ trans('projectsquare::settings.alert_loading_time_email') }}
+                    @include('projectsquare::includes.tooltip', [
+                        'text' => trans('projectsquare::tooltips.project.email_loading_time')
+                    ])
+                </label>
                 <input class="form-control" type="text" placeholder="{{ trans('projectsquare::settings.alert_loading_time_email') }}" name="value" @if (isset($alert_loading_time_email))value="{{ $alert_loading_time_email }}"@endif />
             </div>
 
@@ -183,7 +217,12 @@
 
         <form action="{{ route('project_settings', ['id' => $project->id]) }}" method="post">
             <div class="form-group">
-                <label for="value">{{ trans('projectsquare::settings.slack_channel') }}</label>
+                <label for="value">
+                    {{ trans('projectsquare::settings.slack_channel') }}
+                    @include('projectsquare::includes.tooltip', [
+                        'text' => trans('projectsquare::tooltips.project.slack_channel')
+                    ])
+                </label>
                 <input class="form-control" type="text" placeholder="{{ trans('projectsquare::settings.slack_channel_placeholder') }}" name="value" @if (isset($slack_channel))value="{{ $slack_channel }}"@endif />
             </div>
 
@@ -206,7 +245,12 @@
 
         <form action="{{ route('project_settings', ['id' => $project->id]) }}" method="post">
             <div class="form-group">
-                <label for="value">{{ trans('projectsquare::settings.ga_view_id') }}</label>
+                <label for="value">
+                    {{ trans('projectsquare::settings.ga_view_id') }}
+                    @include('projectsquare::includes.tooltip', [
+                        'text' => trans('projectsquare::tooltips.project.profile_google_analytics')
+                    ])
+                </label>
                 <input class="form-control" type="text" placeholder="{{ trans('projectsquare::settings.ga_view_id_placeholder') }}" name="value" @if (isset($ga_view_id))value="{{ $ga_view_id }}"@endif />
             </div>
 

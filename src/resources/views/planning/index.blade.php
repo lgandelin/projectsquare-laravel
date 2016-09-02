@@ -92,6 +92,10 @@
 
                     <div id="my-tasks-list" class="tasks-list" style="display: none; float: left; width: 50%">
                         <h3>{{ trans('projectsquare::planning.allocated_tasks_list') }}</h3>
+
+                        @include('projectsquare::includes.tooltip', [
+                         'text' => trans('projectsquare::tooltips.allocated_tasks_list')
+                        ])
                         @foreach ($allocated_tasks as $task)
                             <div id="task-{{ $task->id }}"
                                  data-id="{{ $task->id }}"
@@ -114,6 +118,10 @@
 
                     <div id="non-allocated-tasks-list" class="tasks-list" style="display: none; float: left; width: 50%">
                         <h3>{{ trans('projectsquare::planning.non_allocated_tasks_list') }}</h3>
+
+                        @include('projectsquare::includes.tooltip', [
+                         'text' => trans('projectsquare::tooltips.non_allocated_tasks_list')
+                        ])
                         @foreach ($non_allocated_tasks as $task)
                             <div id="task-{{ $task->id }}"
                                  data-id="{{ $task->id }}"

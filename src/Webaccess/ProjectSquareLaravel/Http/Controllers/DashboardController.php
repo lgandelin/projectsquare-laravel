@@ -24,9 +24,9 @@ class DashboardController extends BaseController
                 'userID' => $this->getUser()->id,
             ])),
 
-            'steps' => app()->make('GetStepsInteractor')->execute(new GetStepsRequest([
+            'steps' => ($this->getCurrentProject()) ? app()->make('GetStepsInteractor')->execute(new GetStepsRequest([
                 'projectID' => $this->getCurrentProject()->id,
-            ])),
+            ])) : [],
         ]);
     }
 

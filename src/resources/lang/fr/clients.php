@@ -22,7 +22,7 @@ return [
 
     'client_not_found' => 'Une erreur est survenue lors de la récupération de ce client',
 
-    'client_accounts' => 'Comptes utilisateur',
+    'client_accounts' => 'Comptes utilisateurs',
     'add_user' => 'Ajouter un compte utilisateur',
     'edit_user' => 'Editer un compte utilisateur',
 

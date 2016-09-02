@@ -135,8 +135,8 @@ $(document).ready(function() {
         $('.left-bar-minified .menu .sub-menu').hide();
     });
 
-     //TOOLTRIP
-    $('.tooltips').tooltipster({
+     //TOOLTIPS
+    $('.tooltip-icon').tooltipster({
         animation: 'fade',
         theme: ['tooltipster-shadow', 'tooltipster-shadow-customized'],
         maxWidth : 300

@@ -4,7 +4,11 @@
     @include('projectsquare::includes.project_bar', ['active' => 'reporting'])
     <div class="content-page">
         <div class="templates reporting-template">
-            <h1 class="page-header">{{ trans('projectsquare::project.reporting') }}</h1>
+            <h1 class="page-header">{{ trans('projectsquare::project.reporting') }}
+                @include('projectsquare::includes.tooltip', [
+                    'text' => trans('projectsquare::tooltips.reporting_title')
+                ])
+            </h1>
 
             @if (sizeof($tasks) > 0)
                 <div class="row">

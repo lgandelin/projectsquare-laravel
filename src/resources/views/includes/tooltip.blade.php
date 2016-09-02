@@ -1,1 +1,1 @@
-<img class="tooltips" src="{{asset('img/tooltip.png')}}" title="{{ $text }}" />
+<img class="tooltip-icon" src="{{ asset('img/tooltip.png') }}" title="{{ $text }}" />

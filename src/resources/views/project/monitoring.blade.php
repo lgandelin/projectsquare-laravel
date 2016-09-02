@@ -5,9 +5,9 @@
     <div class="content-page">
         <div class="templates monitoring-template">
             <h1 class="page-header">{{ trans('projectsquare::project.monitoring') }}
-                  @include('projectsquare::includes.tooltip', [
-                        'text' => trans('projectsquare::tooltips.monitoring_title')
-                  ])
+                @include('projectsquare::includes.tooltip', [
+                    'text' => trans('projectsquare::tooltips.monitoring_title')
+                ])
             </h1>
 
             <div class="row" style="margin-top: 5rem">
@@ -34,12 +34,6 @@
                                     'text' => trans('projectsquare::tooltips.monitoring.max_loading_time')
                                 ])-->
                                 <span class="number" style="color: #fc9a24">{{ number_format($max_loading_time, 2) }}s</span>
-                            </li>
-                            <li>{{ trans('projectsquare::monitoring.requests_number') }} :
-                                @include('projectsquare::includes.tooltip', [
-                                    'text' => trans('projectsquare::tooltips.monitoring.requests_number')
-                                ]) 
-                                <span class="number">{{ count($requests) }}</span>
                             </li>
                         </ul>
                     </div>

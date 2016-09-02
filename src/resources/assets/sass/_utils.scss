@@ -68,7 +68,7 @@
     height: 40px;
 }
 
-.tooltips {
+.tooltip-icon {
     display: inline-block;
     width: 18px;
     height: 18px;
@@ -76,10 +76,6 @@
     margin-top: -6px;
     cursor: pointer;
 }
-
-/*.tooltipster-sidetip.tooltipster-shadow.tooltipster-shadow-customized .tooltipster-box {
-  
-}*/
 
 .tooltipster-sidetip.tooltipster-shadow.tooltipster-shadow-customized .tooltipster-content {
     color: $touareg;
