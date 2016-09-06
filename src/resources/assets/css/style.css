@@ -9694,7 +9694,7 @@ body {
     overflow: hidden;
     margin-bottom: 3rem; }
   .dashboard-content .block h3 {
-    display: inline-block;
+    display: block;
     margin-bottom: 2rem;
     margin-left: 1.7rem;
     margin-top: 0;
@@ -9715,8 +9715,9 @@ body {
   .dashboard-content .block .move-widget:hover {
     color: #c8dc1e;
     text-decoration: none; }
-  .dashboard-content .planning h3 {
-    display: block; }
+  .dashboard-content .calendar .block-content, .dashboard-content .planning .block-content {
+    padding-right: 1.6rem;
+    padding-left: 1.6rem; }
   .dashboard-content .last-tickets table tr {
     border-bottom: 1px solid #daddde; }
   .dashboard-content .last-tickets table tr:last-child {
@@ -9959,11 +9960,10 @@ body {
   background: none;
   border: 1px solid #84b4c2;
   color: #84b4c2;
-  border-radius: 0rem !important;
-  margin-right: 1.6rem; }
+  border-radius: 0rem !important; }
 
-.fc .fc-toolbar > * > :first-child {
-  margin-left: 1.6rem; }
+.fc .fc-button-group > :first-child {
+  margin-right: 1.6rem; }
 
 .fc-center h2 {
   color: #096a85;
