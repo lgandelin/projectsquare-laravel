@@ -103,6 +103,7 @@ class EloquentUserRepository implements UserRepository
     public function deleteUser($userID)
     {
         $user = self::getUserModel($userID);
+        $user->projects()->detach();
         $user->delete();
     }
 

@@ -12,6 +12,11 @@ use Webaccess\ProjectSquare\Context;
 use Webaccess\ProjectSquare\Contracts\EventManager;
 use Webaccess\ProjectSquare\Contracts\Translator;
 use Webaccess\ProjectSquare\Events\Events;
+use Webaccess\ProjectSquare\Interactors\Clients\GetClientInteractor;
+use Webaccess\ProjectSquare\Interactors\Clients\GetClientsInteractor;
+use Webaccess\ProjectSquare\Interactors\Clients\CreateClientInteractor;
+use Webaccess\ProjectSquare\Interactors\Clients\UpdateClientInteractor;
+use Webaccess\ProjectSquare\Interactors\Clients\DeleteClientInteractor;
 use Webaccess\ProjectSquare\Interactors\Planning\CreateEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Planning\DeleteEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Planning\GetEventInteractor;
@@ -51,6 +56,7 @@ use Webaccess\ProjectSquareLaravel\Listeners\MessageCreatedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\TicketCreatedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\TicketDeletedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\TicketUpdatedSlackNotification;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentClientRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentConversationRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentEventRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentMessageRepository;
@@ -62,7 +68,6 @@ use Webaccess\ProjectSquareLaravel\Repositories\EloquentTodoRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentUserRepository;
 use Webaccess\ProjectSquareLaravel\Services\AlertManager;
-use Webaccess\ProjectSquareLaravel\Services\ClientManager;
 use Webaccess\ProjectSquareLaravel\Services\ConversationManager;
 use Webaccess\ProjectSquareLaravel\Services\ProjectManager;
 use Webaccess\ProjectSquareLaravel\Services\RequestManager;
@@ -119,8 +124,40 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
 
     public function register()
     {
-        App::bind('ClientManager', function () {
-            return new ClientManager();
+        App::bind('GetClientsInteractor', function () {
+             return new GetClientsInteractor(
+                 new EloquentClientRepository()
+             );
+         });
+
+        App::bind('GetClientInteractor', function () {
+            return new GetClientInteractor(
+                new EloquentClientRepository()
+            );
+        });
+
+        App::bind('CreateClientInteractor', function () {
+            return new CreateClientInteractor(
+                new EloquentClientRepository()
+            );
+        });
+
+        App::bind('UpdateClientInteractor', function () {
+            return new UpdateClientInteractor(
+                new EloquentClientRepository()
+            );
+        });
+
+        App::bind('DeleteClientInteractor', function () {
+            return new DeleteClientInteractor(
+                new EloquentClientRepository(),
+                new EloquentProjectRepository(),
+                new EloquentUserRepository(),
+                new EloquentTicketRepository(),
+                new EloquentTasksRepository(),
+                new EloquentEventRepository(),
+                new EloquentNotificationRepository()
+            );
         });
 
         App::bind('ProjectManager', function () {
@@ -267,6 +304,7 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             return new DeleteTicketInteractor(
                 new EloquentTicketRepository(),
                 new EloquentProjectRepository(),
+                new EloquentUserRepository(),
                 new EloquentEventRepository(),
                 new EloquentNotificationRepository()
             );
@@ -373,6 +411,7 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             return new DeleteTaskInteractor(
                 new EloquentTasksRepository(),
                 new EloquentProjectRepository(),
+                new EloquentUserRepository(),
                 new EloquentEventRepository(),
                 new EloquentNotificationRepository()
             );

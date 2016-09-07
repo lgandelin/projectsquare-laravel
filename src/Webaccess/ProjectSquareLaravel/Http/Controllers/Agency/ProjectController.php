@@ -4,6 +4,7 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Agency;
 
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
+use Webaccess\ProjectSquare\Requests\Clients\GetClientsRequest;
 
 class ProjectController extends BaseController
 {
@@ -19,7 +20,7 @@ class ProjectController extends BaseController
     public function add()
     {
         return view('projectsquare::agency.projects.add', [
-            'clients' => app()->make('ClientManager')->getClients(),
+            'clients' => app()->make('GetClientsInteractor')->execute(new GetClientsRequest()),
         ]);
     }
 
@@ -65,7 +66,7 @@ class ProjectController extends BaseController
 
         return view('projectsquare::agency.projects.edit', [
             'project' => $project,
-            'clients' => app()->make('ClientManager')->getClients(),
+            'clients' => app()->make('GetClientsInteractor')->execute(new GetClientsRequest()),
             'roles' => app()->make('RoleManager')->getRoles(),
             'users' => app()->make('UserManager')->getAgencyUsers(),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
