@@ -39,8 +39,12 @@ class EloquentTasksRepository implements TaskRepository
             $tasks->where('status_id', '=', $statusID);
         }
 
-        if ($allocatedUserID) {
+        if ($allocatedUserID > 0) {
             $tasks->where('allocated_user_id', '=', $allocatedUserID);
+        }
+
+        if ($allocatedUserID === 0) {
+            $tasks->where('allocated_user_id', '=', '');
         }
 
         $tasks->orderBy('updated_at', 'DESC');
