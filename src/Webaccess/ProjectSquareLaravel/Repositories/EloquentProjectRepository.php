@@ -108,12 +108,15 @@ class EloquentProjectRepository implements ProjectRepository
     public function deleteProject($projectID)
     {
         $project = $this->getProjectModel($projectID);
+        $project->users()->detach();
         $project->delete();
     }
 
     public static function deleteProjectByClientID($clientID)
     {
-        Project::where('client_id', '=', $clientID)->delete();
+        $project = Project::where('client_id', '=', $clientID);
+        $project->users()->detach();
+        $project->delete();
     }
 
     public function addUserToProject($projectID, $userID, $roleID)
