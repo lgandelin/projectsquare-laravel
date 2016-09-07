@@ -55,3 +55,7 @@
         </div>
     </div>
 @endsection
+
+@section('scripts')
+    @include('projectsquare::includes/project_users_selection')
+@endsection

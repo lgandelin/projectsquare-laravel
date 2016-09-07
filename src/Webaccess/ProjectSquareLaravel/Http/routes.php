@@ -148,4 +148,6 @@ Route::group(['middleware' => ['web']], function () {
 
     //BETA FORM
     Route::post('/beta_form', array('as' => 'beta_form', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController@betaForm'));
+
+    Route::get('/project_users', array('as' => 'project_users', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@get_users'));
 });

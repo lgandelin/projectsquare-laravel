@@ -99,7 +99,7 @@ class TicketController extends BaseController
             'ticket_states' => app()->make('GetTicketInteractor')->getTicketStatesPaginatedList($ticketID, env('TICKET_STATES_PER_PAGE', 10)),
             'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
             'ticket_status' => app()->make('TicketStatusManager')->getTicketStatuses(),
-            'users' => app()->make('UserManager')->getUsersByProject($task->projectID),
+            'users' => app()->make('UserManager')->getUsersByProject($ticket->projectID),
             'files' => app()->make('FileManager')->getFilesByTicket($ticketID),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
             'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,

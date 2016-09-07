@@ -163,4 +163,17 @@ class ProjectController extends BaseController
             'ticket_statuses' => $ticketStatuses,
         ]);
     }
+
+    public function get_users()
+    {
+        try {
+            $users = (Input::get('project_id')) ? app()->make('UserManager')->getUsersByProject(Input::get('project_id')) : app()->make('UserManager')->getAgencyUsers();
+
+            return response()->json($users, 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
 }

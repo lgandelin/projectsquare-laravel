@@ -137,3 +137,7 @@
         </div>
     </div>
 @endsection
+
+@section('scripts')
+    @include('projectsquare::includes/project_users_selection', ['select_project_name' => 'filter_project', 'select_user_name' => 'filter_allocated_user'])
+@endsection
