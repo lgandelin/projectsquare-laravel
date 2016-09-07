@@ -21,7 +21,7 @@ class TaskController extends BaseController
                 'allocatedUserID' => Input::get('filter_allocated_user'),
             ])),
             'projects' => app()->make('ProjectManager')->getUserProjects($this->getUser()->id),
-            'users' => app()->make('UserManager')->getUsers(),
+            'users' => app()->make('UserManager')->getAgencyUsers(),
             'task_statuses' => self::getTasksStatuses(),
             'filters' => [
                 'project' => Input::get('filter_project'),
@@ -37,7 +37,7 @@ class TaskController extends BaseController
     {
         return view('projectsquare::tasks.add', [
             'projects' => app()->make('ProjectManager')->getProjects(),
-            'users' => app()->make('UserManager')->getAgencyUsers(),
+            'users' => ($this->getCurrentProject()) ? app()->make('UserManager')->getUsersByProject($this->getCurrentProject()->id) : app()->make('UserManager')->getAgencyUsers(),
             'current_project_id' => ($this->getCurrentProject()) ? $this->getCurrentProject()->id : null,
             'task_statuses' => self::getTasksStatuses(),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
@@ -90,7 +90,7 @@ class TaskController extends BaseController
             'task' => $task,
             'projects' => app()->make('ProjectManager')->getProjects(),
             'task_statuses' => self::getTasksStatuses(),
-            'users' => app()->make('UserManager')->getAgencyUsers(),
+            'users' => app()->make('UserManager')->getUsersByProject($task->projectID),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
             'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,
         ]);

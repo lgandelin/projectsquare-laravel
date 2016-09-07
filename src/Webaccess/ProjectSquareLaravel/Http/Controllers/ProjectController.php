@@ -22,7 +22,7 @@ class ProjectController extends BaseController
         return view('projectsquare::project.tasks', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'projects' => app()->make('ProjectManager')->getProjects(),
-            'users' => app()->make('UserManager')->getUsers(),
+            'users' => app()->make('UserManager')->getUsersByProject($projectID),
             'task_statuses' => TaskController::getTasksStatuses(),
             'filters' => [
                 'allocated_user' => Input::get('filter_allocated_user'),
@@ -44,7 +44,7 @@ class ProjectController extends BaseController
         return view('projectsquare::project.tickets', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'projects' => app()->make('ProjectManager')->getProjects(),
-            'users' => app()->make('UserManager')->getUsers(),
+            'users' => app()->make('UserManager')->getUsersByProject($projectID),
             'ticket_statuses' => app()->make('TicketStatusManager')->getTicketStatuses(),
             'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
             'filters' => [
