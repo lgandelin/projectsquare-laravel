@@ -75,7 +75,7 @@ class TicketController extends BaseController
             $response = app()->make('CreateTicketInteractor')->execute(new CreateTicketRequest($data));
 
             $this->request->session()->flash('confirmation', trans('projectsquare::tickets.add_ticket_success'));
-            return redirect()->route('tickets_edit', ['id' => $response->ticket->id]);
+            return redirect()->route('tickets_index');
         } catch (\Exception $e) {
             $this->request->session()->flash('error', $e->getMessage());
         }

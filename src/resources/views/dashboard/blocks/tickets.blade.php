@@ -1,19 +1,19 @@
 <div class="block last-tickets">
     <div class="block-content table-responsive">
         <h3>{{ trans('projectsquare::dashboard.last_tickets') }}
-            
-        </h3>
-        @include('projectsquare::includes.tooltip', [
-            'text' => trans('projectsquare::tooltips.tickets')
-        ])
-        @if ($is_client)
-            <a href="{{ route('project_tickets', ['id' => $current_project->id]) }}" class="all pull-right"></a>
-        @else
-            <a href="{{ route('tickets_index') }}" class="all pull-right"></a>
-        @endif
-        <a href="{{ route('tickets_add') }}" class="add pull-right"></a>
+        
+            @include('projectsquare::includes.tooltip', [
+                'text' => trans('projectsquare::tooltips.tickets')
+            ])
+            @if ($is_client)
+                <a href="{{ route('project_tickets', ['id' => $current_project->id]) }}" class="all pull-right"></a>
+            @else
+                <a href="{{ route('tickets_index') }}" class="all pull-right"></a>
+            @endif
+            <a href="{{ route('tickets_add') }}" class="add pull-right"></a>
 
-        <a href="#" class="glyphicon glyphicon-move move-widget pull-right"></a>
+            <a href="#" class="glyphicon glyphicon-move move-widget pull-right"></a>
+        </h3>
      
         <table class="table table-striped">
             <thead>

@@ -34,8 +34,9 @@
 
     .block {
 
+
         h3 {
-            display: inline-block;
+            display: block;
             margin-bottom: 2rem;
             margin-left: 1.7rem;
             margin-top: 0;
@@ -69,10 +70,11 @@
         }
     }
 
-     .planning {
+    .calendar, .planning {
 
-        h3 {
-            display:  block;
+        .block-content {
+            padding-right: 1.6rem;
+            padding-left: 1.6rem;
         }
     }
 

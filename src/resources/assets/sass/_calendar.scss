@@ -24,11 +24,10 @@
     border: 1px solid $light_blue;
     color: $light_blue;
     border-radius: 0rem !important;
-    margin-right: 1.6rem;
 }
 
-.fc .fc-toolbar > * > :first-child {
-    margin-left: 1.6rem;
+.fc .fc-button-group > :first-child {
+    margin-right: 1.6rem;
 }
 
 .fc-center {

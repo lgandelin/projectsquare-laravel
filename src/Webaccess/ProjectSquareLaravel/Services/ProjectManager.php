@@ -30,9 +30,9 @@ class ProjectManager
         return $this->repository->getUserProjects($userID);
     }
 
-    private function getProjectsByClient($clientID)
+    private function getProjectsByClientID($clientID)
     {
-        return $this->repository->getPRojectsByClient($clientID);
+        return $this->repository->getProjectsByClientID($clientID);
     }
 
     public function getProjectWithUsers($projectID)
@@ -72,7 +72,7 @@ class ProjectManager
 
     public function deleteProjectByClient($clientID)
     {
-        $projects = (new ProjectManager())->getProjectsByClient($clientID);
+        $projects = (new ProjectManager())->getProjectsByClientID($clientID);
         foreach ($projects as $project) {
             $this->deleteProject($project->id);
         }

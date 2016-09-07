@@ -80,14 +80,6 @@
 					padding: 3px 7px;
 				}
 			}
-
-			.active {
-
-				a {
-					border-bottom: 3px solid #c8dc1e;
-				}
-
-			}
 		}
 	}
 
@@ -115,5 +107,18 @@
 			}
 		}
 	}
+}
 
+@media only screen and (max-width:1450px) {
+	.project-bar {
+		.top-nav {
+
+			.active {
+				a {
+					border-bottom: none;
+					color: $green;
+				}
+			}
+		}
+	}
 }

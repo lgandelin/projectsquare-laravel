@@ -4,7 +4,11 @@
     @include('projectsquare::includes.project_bar', ['active' => 'reporting'])
     <div class="content-page">
         <div class="templates reporting-template">
-            <h1 class="page-header">{{ trans('projectsquare::project.reporting') }}</h1>
+            <h1 class="page-header">{{ trans('projectsquare::project.reporting') }}
+                @include('projectsquare::includes.tooltip', [
+                    'text' => trans('projectsquare::tooltips.reporting_title')
+                ])
+            </h1>
 
             @if (sizeof($tasks) > 0)
                 <div class="row">
@@ -44,7 +48,6 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <h3>{{ trans('projectsquare::reporting.time_tracking') }}</h3>
                         <ul>
-                            <li><strong>{{ trans('projectsquare::reporting.total_tasks_estimated_time') }} :</strong> @if ($total_tasks_estimated_time_days > 0){{ $total_tasks_estimated_time_days }} {{ trans('projectsquare::generic.days') }}@endif @if ($total_tasks_estimated_time_hours > 0){{ $total_tasks_estimated_time_hours }} {{ trans('projectsquare::generic.hours') }}@endif</li>
                             <li><strong>{{ trans('projectsquare::reporting.total_tasks_spent_time') }} :</strong> @if ($total_tasks_spent_time_days > 0){{ $total_tasks_spent_time_days }} {{ trans('projectsquare::generic.days') }}@endif @if ($total_tasks_spent_time_hours > 0){{ $total_tasks_spent_time_hours }} {{ trans('projectsquare::generic.hours') }}@endif</li>
                             <li><strong>{{ trans('projectsquare::reporting.total_tasks_remaining_time') }} :</strong> @if ($total_tasks_remaining_time_days > 0){{ $total_tasks_remaining_time_days }} {{ trans('projectsquare::generic.days') }}@endif @if ($total_tasks_remaining_time_hours > 0){{ $total_tasks_remaining_time_hours }} {{ trans('projectsquare::generic.hours') }}@endif @if ($total_tasks_remaining_time_days == 0 && $total_tasks_remaining_time_hours == 0) {{ trans('projectsquare::reporting.no_remaining_time') }} @endif</li>
                             <li><strong>{{ trans('projectsquare::reporting.project_tasks_scheduled_time') }} :</strong> @if ($project->tasksScheduledTime > 0){{ $project->tasksScheduledTime }} {{ trans('projectsquare::generic.days') }}@else {{ trans('projectsquare::reporting.non_configured') }} @endif</li>
@@ -91,7 +94,6 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <h3>{{ trans('projectsquare::reporting.time_tracking') }}</h3>
                         <ul>
-                            <li><strong>{{ trans('projectsquare::reporting.total_tickets_estimated_time') }} :</strong> @if ($total_tickets_estimated_time_days > 0){{ $total_tickets_estimated_time_days }} {{ trans('projectsquare::generic.days') }}@endif @if ($total_tickets_estimated_time_hours > 0){{ $total_tickets_estimated_time_hours }} {{ trans('projectsquare::generic.hours') }}@endif</li>
                             <li><strong>{{ trans('projectsquare::reporting.total_tickets_spent_time') }} :</strong> @if ($total_tickets_spent_time_days > 0){{ $total_tickets_spent_time_days }} {{ trans('projectsquare::generic.days') }}@endif @if ($total_tickets_spent_time_hours > 0){{ $total_tickets_spent_time_hours }} {{ trans('projectsquare::generic.hours') }}@endif</li>
                             <li><strong>{{ trans('projectsquare::reporting.total_tickets_remaining_time') }} :</strong> @if ($total_tickets_remaining_time_days > 0){{ $total_tickets_remaining_time_days }} {{ trans('projectsquare::generic.days') }}@endif @if ($total_tickets_remaining_time_hours > 0){{ $total_tickets_remaining_time_hours }} {{ trans('projectsquare::generic.hours') }}@endif @if ($total_tickets_remaining_time_days == 0 && $total_tickets_remaining_time_hours == 0) {{ trans('projectsquare::reporting.no_remaining_time') }} @endif</li>
                             <li><strong>{{ trans('projectsquare::reporting.project_tickets_scheduled_time') }} :</strong> @if ($project->ticketsScheduledTime > 0){{ $project->ticketsScheduledTime }} {{ trans('projectsquare::generic.days') }}@else {{ trans('projectsquare::reporting.non_configured') }} @endif</li>

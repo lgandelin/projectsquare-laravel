@@ -38,4 +38,6 @@ return [
     'generate_password' => 'Générer un nouveau mot de passe',
     'generate_password_notice' => 'Le mot de passe sera envoyé sur l\'adresse email du collaborateur',
     'password_generated_success' => 'Mot de passe généré avec succès.',
+
+    'avatar' => 'Avatar',
 ];

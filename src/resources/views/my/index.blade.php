@@ -23,60 +23,67 @@
                 </div>
             @endif
 
-            <div class="my-profile-template">
-                <form action="{{ route('my_profile_update') }}" method="post">
-                    <div class="form-group">
-                        <label for="first_name">{{ trans('projectsquare::users.first_name') }}</label>
-                        <input class="form-control" type="text" placeholder="{{ trans('projectsquare::users.first_name') }}" name="first_name" @if (isset($user->first_name))value="{{ $user->first_name }}"@endif />
+            <div class="my-profile-template row">
+                <div class="col-lg-8">
+                    <form action="{{ route('my_profile_update') }}" method="post">
+                        <div class="form-group">
+                            <label for="first_name">{{ trans('projectsquare::users.first_name') }}</label>
+                            <input class="form-control" type="text" placeholder="{{ trans('projectsquare::users.first_name') }}" name="first_name" @if (isset($user->first_name))value="{{ $user->first_name }}"@endif />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="last_name">{{ trans('projectsquare::users.last_name') }}</label>
+                            <input class="form-control" type="text" placeholder="{{ trans('projectsquare::users.last_name') }}" name="last_name" @if (isset($user->last_name))value="{{ $user->last_name }}"@endif />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">{{ trans('projectsquare::users.email') }}</label>
+                            <input class="form-control" type="text" placeholder="{{ trans('projectsquare::users.email') }}" name="email" @if (isset($user->email))value="{{ $user->email }}"@endif autocomplete="off" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">{{ trans('projectsquare::users.password') }}</label><br/>
+                            <input class="form-control" type="password" placeholder="@if (isset($user->id)){{ trans('projectsquare::users.password_leave_empty') }}@else{{ trans('projectsquare::users.password') }}@endif" name="password" autocomplete="off" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password_confirmation">{{ trans('projectsquare::my.password_confirmation') }}</label><br/>
+                            <input class="form-control" type="password" placeholder="@if (isset($user->id)){{ trans('projectsquare::users.password_leave_empty') }}@else{{ trans('projectsquare::my.password_confirmation') }}@endif" name="password_confirmation" autocomplete="off" />
+                        </div>
+
+
+                        <div class="form-group">
+                            <button type="submit" class="btn valid">
+                                <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
+                            </button>
+                            <a href="{{ \URL::previous() }}" class="btn btn-default back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
+                        </div>
+
+                        {!! csrf_field() !!}
+                        </form>
                     </div>
-
-                    <div class="form-group">
-                        <label for="last_name">{{ trans('projectsquare::users.last_name') }}</label>
-                        <input class="form-control" type="text" placeholder="{{ trans('projectsquare::users.last_name') }}" name="last_name" @if (isset($user->last_name))value="{{ $user->last_name }}"@endif />
+                    <div class="col-lg-offset-1 col-lg-3">
+                        <div class="form-group">
+                            <label for="avatar">{{ trans('projectsquare::my.avatar') }}
+                                @include('projectsquare::includes.tooltip', [
+                                    'text' => trans('projectsquare::tooltips.avatar')
+                                ])
+                            </label><br/>
+                            @include('projectsquare::includes.avatar', [
+                                'id' => $logged_in_user->id,
+                                'name' => $logged_in_user->complete_name
+                            ])
+                        </div>
+                        <form id="fileupload" action="{{ route('my_profile_upload_avatar') }}" method="POST" enctype="multipart/form-data">
+                            <span class="btn valid fileinput-button back">
+                                <i class="glyphicon glyphicon-picture"></i>
+                                <span>Parcourir</span>
+                                <!-- The file input field used as target for the file upload widget -->
+                                <input id="fileupload" type="file" name="files[]" data-url="{{ route('my_profile_upload_avatar') }}">
+                            </span>
+                        </form>
                     </div>
-
-                    <div class="form-group">
-                        <label for="email">{{ trans('projectsquare::users.email') }}</label>
-                        <input class="form-control" type="text" placeholder="{{ trans('projectsquare::users.email') }}" name="email" @if (isset($user->email))value="{{ $user->email }}"@endif autocomplete="off" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">{{ trans('projectsquare::users.password') }}</label><br/>
-                        <input class="form-control" type="password" placeholder="@if (isset($user->id)){{ trans('projectsquare::users.password_leave_empty') }}@else{{ trans('projectsquare::users.password') }}@endif" name="password" autocomplete="off" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password_confirmation">{{ trans('projectsquare::my.password_confirmation') }}</label><br/>
-                        <input class="form-control" type="password" placeholder="@if (isset($user->id)){{ trans('projectsquare::users.password_leave_empty') }}@else{{ trans('projectsquare::my.password_confirmation') }}@endif" name="password_confirmation" autocomplete="off" />
-                    </div>
-
-
-                    <div class="form-group">
-                        <button type="submit" class="btn valid">
-                            <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
-                        </button>
-                        <a href="{{ \URL::previous() }}" class="btn btn-default back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
-                    </div>
-
-                    {!! csrf_field() !!}
-
-                    <div class="form-group">
-                        <label for="avatar">{{ trans('projectsquare::my.avatar') }}</label><br/>
-                        @include('projectsquare::includes.avatar', [
-                            'id' => $logged_in_user->id,
-                            'name' => $logged_in_user->complete_name
-                        ])
-                    </div>
-                </form>
-
-                <form id="fileupload" action="{{ route('my_profile_upload_avatar') }}" method="POST" enctype="multipart/form-data">
-                    <span class="btn valid fileinput-button back">
-                        <i class="glyphicon glyphicon-picture"></i>
-                        <span>Parcourir</span>
-                        <!-- The file input field used as target for the file upload widget -->
-                        <input id="fileupload" type="file" name="files[]" data-url="{{ route('my_profile_upload_avatar') }}">
-                    </span>
-                </form>
+                </div>
             </div>
         </div>
     </div>
