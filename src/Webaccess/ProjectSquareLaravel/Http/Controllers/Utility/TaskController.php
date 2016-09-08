@@ -20,7 +20,7 @@ class TaskController extends BaseController
                 'statusID' => Input::get('filter_status'),
                 'allocatedUserID' => Input::get('filter_allocated_user'),
             ])),
-            'projects' => app()->make('ProjectManager')->getUserProjects($this->getUser()->id),
+            'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
             'users' => app()->make('UserManager')->getAgencyUsers(),
             'task_statuses' => self::getTasksStatuses(),
             'filters' => [
@@ -36,7 +36,7 @@ class TaskController extends BaseController
     public function add()
     {
         return view('projectsquare::tasks.add', [
-            'projects' => app()->make('ProjectManager')->getProjects(),
+            'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
             'users' => ($this->getCurrentProject()) ? app()->make('UserManager')->getUsersByProject($this->getCurrentProject()->id) : app()->make('UserManager')->getAgencyUsers(),
             'current_project_id' => ($this->getCurrentProject()) ? $this->getCurrentProject()->id : null,
             'task_statuses' => self::getTasksStatuses(),
@@ -88,7 +88,7 @@ class TaskController extends BaseController
 
         return view('projectsquare::tasks.edit', [
             'task' => $task,
-            'projects' => app()->make('ProjectManager')->getProjects(),
+            'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
             'task_statuses' => self::getTasksStatuses(),
             'users' => app()->make('UserManager')->getUsersByProject($task->projectID),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
