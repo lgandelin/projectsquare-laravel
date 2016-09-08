@@ -5,6 +5,7 @@ namespace Webaccess\ProjectSquareLaravel\Repositories;
 use Webaccess\ProjectSquare\Repositories\TaskRepository;
 use Webaccess\ProjectSquare\Entities\Task as TaskEntity;
 use Webaccess\ProjectSquareLaravel\Models\Task;
+use Webaccess\ProjectSquareLaravel\Models\User;
 
 class EloquentTasksRepository implements TaskRepository
 {
@@ -20,19 +21,29 @@ class EloquentTasksRepository implements TaskRepository
         return Task::find($taskID);
     }
 
-    public function getTasks($projectID = null, $statusID = null, $allocatedUserID = null, $entities = false)
+    public function getTasks($userID, $projectID = null, $statusID = null, $allocatedUserID = null, $entities = false)
     {
-        $tasks = $this->getTasksList($projectID, $statusID, $allocatedUserID, $entities);
+        $tasks = $this->getTasksList($userID, $projectID, $statusID, $allocatedUserID, $entities);
 
         return $entities ? $tasks : $tasks->get();
     }
 
-    public function getTasksList($projectID = null, $statusID = null, $allocatedUserID = null, $entities = false)
+    public function getTasksList($userID, $projectID = null, $statusID = null, $allocatedUserID = null, $entities = false)
     {
+        //Ressource projects
+        $projectIDs = User::find($userID)->projects->pluck('id')->toArray();
+
+        //Client project
+        $user = User::find($userID);
+        if (isset($user->client_id)) {
+            $project = Project::where('client_id', '=', $user->client_id)->first();
+            $projectIDs[]= $project->id;
+        }
+
+        $tasks = Task::whereIn('project_id', $projectIDs)->with('project', 'project.client')->with('project.client');
+
         if ($projectID) {
-            $tasks = Task::with('project', 'project.client')->with('project.client')->where('project_id', '=', $projectID);
-        } else {
-            $tasks = Task::with('project', 'project.client')->with('project.client');
+            $tasks->where('project_id', '=', $projectID);
         }
 
         if ($statusID) {
@@ -68,9 +79,9 @@ class EloquentTasksRepository implements TaskRepository
         return Task::where('project_id', '=', $projectID)->get();
     }
 
-    public function getTasksPaginatedList($limit, $projectID = null, $statusID = null, $allocatedUserID = null)
+    public function getTasksPaginatedList($userID, $limit, $projectID = null, $statusID = null, $allocatedUserID = null)
     {
-        return $this->getTasksList($projectID, $statusID, $allocatedUserID)->paginate($limit);
+        return $this->getTasksList($userID, $projectID, $statusID, $allocatedUserID)->paginate($limit);
     }
 
     public function persistTask(TaskEntity $task)

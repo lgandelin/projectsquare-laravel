@@ -29,7 +29,7 @@ class ProjectController extends BaseController
                 'status' => Input::get('filter_status'),
                 'type' => Input::get('filter_type'),
             ],
-            'tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList(env('TASKS_PER_PAGE', 10), new GetTasksRequest([
+            'tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest([
                 'projectID' => $projectID,
                 'statusID' => Input::get('filter_status'),
                 'allocatedUserID' => Input::get('filter_allocated_user'),

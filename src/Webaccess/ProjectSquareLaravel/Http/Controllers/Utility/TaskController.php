@@ -15,7 +15,7 @@ class TaskController extends BaseController
     public function index()
     {
         return view('projectsquare::tasks.index', [
-            'tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList(env('TASKS_PER_PAGE', 10), new GetTasksRequest([
+            'tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest([
                 'projectID' => Input::get('filter_project'),
                 'statusID' => Input::get('filter_status'),
                 'allocatedUserID' => Input::get('filter_allocated_user'),
