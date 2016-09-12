@@ -30,11 +30,15 @@ class EloquentTasksRepository implements TaskRepository
 
     public function getTasksList($userID, $projectID = null, $statusID = null, $allocatedUserID = null, $entities = false)
     {
+        $projectIDs = [];
+
         //Ressource projects
-        $projectIDs = User::find($userID)->projects->pluck('id')->toArray();
+        $user = User::find($userID);
+        if ($user->projects) {
+            $projectIDs = $user->projects->pluck('id')->toArray();
+        }
 
         //Client project
-        $user = User::find($userID);
         if (isset($user->client_id)) {
             $project = Project::where('client_id', '=', $user->client_id)->first();
             $projectIDs[]= $project->id;

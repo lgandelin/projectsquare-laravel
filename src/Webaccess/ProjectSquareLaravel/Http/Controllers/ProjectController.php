@@ -107,11 +107,12 @@ class ProjectController extends BaseController
         $project = app()->make('ProjectManager')->getProject($projectID);
 
         $tasks = app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
+            'userID' => $this->getUser()->id,
             'projectID' => $projectID,
             'statusID' => Input::get('filter_status'),
             'allocatedUserID' => Input::get('filter_allocated_user'),
         ]));
-        $tasksSpentTime = app()->make('GetTasksTotalTimeInteractor')->getTasksTotalSpentTime($projectID);
+        $tasksSpentTime = app()->make('GetTasksTotalTimeInteractor')->getTasksTotalSpentTime($this->getUser()->id, $projectID);
         $tasksScheduledTime = new \StdClass();
         $tasksScheduledTime->days = $project->tasksScheduledTime;
         $tasksScheduledTime->hours = 0;
@@ -145,14 +146,14 @@ class ProjectController extends BaseController
                 'allocated_user' => Input::get('filter_allocated_user'),
                 'status' => Input::get('filter_status'),
             ],
-            'todo_tasks_count' => app()->make('GetReportingIndicatorsInteractor')->getTasksCountByStatus($projectID, Task::TODO),
-            'in_progress_tasks_count' => app()->make('GetReportingIndicatorsInteractor')->getTasksCountByStatus($projectID, Task::IN_PROGRESS),
-            'completed_tasks_count' => app()->make('GetReportingIndicatorsInteractor')->getTasksCountByStatus($projectID, Task::COMPLETED),
+            'todo_tasks_count' => app()->make('GetReportingIndicatorsInteractor')->getTasksCountByStatus($this->getUser()->id, $projectID, Task::TODO),
+            'in_progress_tasks_count' => app()->make('GetReportingIndicatorsInteractor')->getTasksCountByStatus($this->getUser()->id, $projectID, Task::IN_PROGRESS),
+            'completed_tasks_count' => app()->make('GetReportingIndicatorsInteractor')->getTasksCountByStatus($this->getUser()->id, $projectID, Task::COMPLETED),
             'total_tasks_spent_time_days' => $tasksSpentTime->days,
             'total_tasks_spent_time_hours' => $tasksSpentTime->hours,
             'total_tasks_remaining_time_days' => $tasksRemainingTime->days,
             'total_tasks_remaining_time_hours' => $tasksRemainingTime->hours,
-            'tasks_progress_percentage' => app()->make('GetReportingIndicatorsInteractor')->getProgressPercentage($projectID, $tasks),
+            'tasks_progress_percentage' => app()->make('GetReportingIndicatorsInteractor')->getProgressPercentage($this->getUser()->id, $projectID, $tasks),
             'tasks_profitability_percentage' => app()->make('GetReportingIndicatorsInteractor')->getProfitabilityPercentage($project->tasksScheduledTime, $tasksSpentTime),
             'tickets_profitability_percentage' => app()->make('GetReportingIndicatorsInteractor')->getProfitabilityPercentage($project->ticketsScheduledTime, $ticketsSpentTime),
             'tickets' => $tickets,
