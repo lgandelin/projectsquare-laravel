@@ -23,12 +23,12 @@ class ConfigController extends Controller
 
     public function config_handler()
     {
-        $email = $this->request->get('email');
-        $password = $this->request->get('password');
+        $email = $this->request->email;
+        $password = $this->request->password;
 
         app()->make('UserManager')->createUser(
-            $this->request->get('first_name'),
-            $this->request->get('last_name'),
+            $this->request->first_name,
+            $this->request->last_name,
             $email,
             $password,
             null,

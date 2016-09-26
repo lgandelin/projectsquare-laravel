@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Mail;
 
 class SendEmailInstallCompletedCommand extends Command
 {
-    protected $signature = 'projectsquare:send-email-installation-completed {email} {url}';
+    protected $signature = 'projectsquare:send-email-installation-completed {email} {url} {ip_address}';
 
     protected $description = 'Envoie l\'email de fin d\'installation';
 
@@ -15,7 +15,8 @@ class SendEmailInstallCompletedCommand extends Command
     {
         $email = $this->argument('email');
         $url = $this->argument('url');
-        Mail::send('projectsquare::emails.install_completed', array('email' => $email, 'url' => $url), function ($message) use ($email) {
+        $ipAddress = $this->argument('ip_address');
+        Mail::send('projectsquare::emails.install_completed', array('email' => $email, 'url' => $url, 'ip_address' => $ipAddress), function ($message) use ($email) {
             $message->to($email)
                 ->from('no-reply@projectsquare.fr')
                 ->subject('[projectsquare] Votre plateforme a été installée avec succès !');
@@ -29,6 +30,7 @@ class SendEmailInstallCompletedCommand extends Command
         return [
             ['email', InputArgument::REQUIRED, 'The email adresse to send'],
             ['url', InputArgument::REQUIRED, 'The URL of the website'],
+            ['ip_address', InputArgument::REQUIRED, 'The IP address of the platform'],
         ];
     }
 }
