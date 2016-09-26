@@ -132,14 +132,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/planning/update', array('as' => 'events_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\PlanningController@update'));
     Route::post('/planning/delete', array('as' => 'events_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\PlanningController@delete'));
 
-    //INSTALL
-    Route::get('/install', array('as' => 'install1', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\InstallController@install1', 'middleware' => 'after_install'));
-    Route::post('/install1', array('as' => 'install1_handler', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\InstallController@install1_handler', 'middleware' => 'after_install'));
-
-    Route::get('/install_agency', array('as' => 'install2', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\InstallController@install2', 'middleware' => 'after_install'));
-    Route::post('/install2', array('as' => 'install2_handler', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\InstallController@install2_handler', 'middleware' => 'after_install'));
-
-    Route::get('/install3', array('as' => 'install3', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\InstallController@install3'));
+    //CONFIG
+    Route::get('/config', array('as' => 'config', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ConfigController@index', 'middleware' => 'after_config'));
+    Route::post('/config', array('as' => 'config_handler', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ConfigController@config_handler', 'middleware' => 'after_config'));
+    Route::get('/config_confirmation', array('as' => 'config_confirmation', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ConfigController@confirmation'));
 
     //MY
     Route::get('/my', array('as' => 'my', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\MyController@index'));

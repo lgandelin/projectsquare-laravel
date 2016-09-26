@@ -102,8 +102,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         $basePath = __DIR__.'/../../';
 
         $router->middleware('change_current_project', 'Webaccess\ProjectSquareLaravel\Http\Middleware\ChangeCurrentProject');
-        $router->middleware('before_install', 'Webaccess\ProjectSquareLaravel\Http\Middleware\BeforeInstall');
-        $router->middleware('after_install', 'Webaccess\ProjectSquareLaravel\Http\Middleware\AfterInstall');
+        $router->middleware('before_config', 'Webaccess\ProjectSquareLaravel\Http\Middleware\BeforeConfig');
+        $router->middleware('after_config', 'Webaccess\ProjectSquareLaravel\Http\Middleware\AfterConfig');
 
         include __DIR__.'/Http/routes.php';
 
