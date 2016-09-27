@@ -4,7 +4,7 @@ namespace Webaccess\ProjectSquareLaravel\Http\Middleware;
 
 use Closure;
 
-class AfterInstall
+class AfterConfig
 {
     public function handle($request, Closure $next)
     {

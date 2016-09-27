@@ -6,10 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Input;
 
-class InstallController extends Controller
+class ConfigController extends Controller
 {
     protected $request;
 
@@ -18,34 +16,19 @@ class InstallController extends Controller
         $this->request = $request;
     }
 
-    public function install1()
+    public function index()
     {
-        return view('projectsquare::install.install1', []);
+        return view('projectsquare::config.index', []);
     }
 
-    public function install1_handler()
+    public function config_handler()
     {
-        $this->request->session()->set('first_name', Input::get('first_name'));
-        $this->request->session()->set('last_name', Input::get('last_name'));
-        $this->request->session()->set('email', Input::get('email'));
-        $this->request->session()->set('password', Input::get('password'));
-
-        return redirect()->route('install2');
-    }
-
-    public function install2()
-    {
-        return view('projectsquare::install.install2', []);
-    }
-
-    public function install2_handler()
-    {
-        $email = $this->request->session()->get('email');
-        $password = $this->request->session()->get('password');
+        $email = $this->request->email;
+        $password = $this->request->password;
 
         app()->make('UserManager')->createUser(
-            $this->request->session()->get('first_name'),
-            $this->request->session()->get('last_name'),
+            $this->request->first_name,
+            $this->request->last_name,
             $email,
             $password,
             null,
@@ -58,15 +41,15 @@ class InstallController extends Controller
         $this->insertSeedsInDB();
 
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
-            return redirect()->route('install3');
+            return redirect()->route('dashboard');
         }
 
-        return redirect()->route('install1');
+        return redirect()->route('config');
     }
 
-    public function install3()
+    public function confirmation()
     {
-        return view('projectsquare::install.install3', []);
+        return view('projectsquare::config.confirmation', []);
     }
 
     private function insertSeedsInDB()

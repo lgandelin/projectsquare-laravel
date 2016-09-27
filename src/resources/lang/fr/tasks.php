@@ -23,6 +23,7 @@ return [
     'add_task' => 'Ajouter une tâche',
     'title_placeholder' => 'Titre de la tâche',
     'no_task_status_yet' => 'Aucun statut de tâche',
+    'no_project_yet' => 'Vous n\'avez pas encore créé de projet',
 
     'add_task_success' => 'Tâche créée avec succès',
     'delete_task_success' => 'Tâche supprimée avec succès',

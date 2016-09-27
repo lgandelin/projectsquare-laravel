@@ -28,6 +28,7 @@
         var route_ticket_unallocate= "{{ route('tickets_unallocate') }}";
         var route_task_unallocate= "{{ route('tasks_unallocate') }}";
         var route_beta_form= "{{ route('beta_form') }}";
+        var route_project_users= "{{ route('project_users') }}";
     </script>
 
     <input type="hidden" id="csrf_token" value="{!! csrf_token() !!}" />

@@ -23,8 +23,8 @@ class TicketController extends BaseController
                 Input::get('filter_status'),
                 Input::get('filter_type')
             ),
-            'projects' => app()->make('ProjectManager')->getUserProjects($this->getUser()->id),
-            'users' => app()->make('UserManager')->getUsers(),
+            'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
+            'users' => app()->make('UserManager')->getAgencyUsers(),
             'ticket_statuses' => app()->make('TicketStatusManager')->getTicketStatuses(),
             'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
             'filters' => [
@@ -41,10 +41,10 @@ class TicketController extends BaseController
     public function add()
     {
         return view('projectsquare::tickets.add', [
-            'projects' => app()->make('ProjectManager')->getProjects(),
+            'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
             'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
             'ticket_status' => app()->make('TicketStatusManager')->getTicketStatuses(),
-            'users' => app()->make('UserManager')->getAgencyUsers(),
+            'users' => ($this->getCurrentProject()) ? app()->make('UserManager')->getUsersByProject($this->getCurrentProject()->id) : app()->make('UserManager')->getAgencyUsers(),
             'current_project_id' => ($this->getCurrentProject()) ? $this->getCurrentProject()->id : null,
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
             'data' => ($this->request->session()->has('data')) ? $this->request->session()->get('data') : null
@@ -95,11 +95,11 @@ class TicketController extends BaseController
 
         return view('projectsquare::tickets.edit', [
             'ticket' => $ticket,
-            'projects' => app()->make('ProjectManager')->getProjects(),
+            'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
             'ticket_states' => app()->make('GetTicketInteractor')->getTicketStatesPaginatedList($ticketID, env('TICKET_STATES_PER_PAGE', 10)),
             'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
             'ticket_status' => app()->make('TicketStatusManager')->getTicketStatuses(),
-            'users' => app()->make('UserManager')->getAgencyUsers(),
+            'users' => app()->make('UserManager')->getUsersByProject($ticket->projectID),
             'files' => app()->make('FileManager')->getFilesByTicket($ticketID),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
             'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,

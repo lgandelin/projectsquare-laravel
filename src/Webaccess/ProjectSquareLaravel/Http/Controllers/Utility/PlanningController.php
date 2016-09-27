@@ -33,11 +33,13 @@ class PlanningController extends BaseController
         );
 
         $allocatedTasks = app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
+            'userID' => $this->getUser()->id,
             'projectID' => Input::get('filter_project'),
             'allocatedUserID' => $userID,
         ]));
 
         $nonAllocatedTasks = app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
+            'userID' => $this->getUser()->id,
             'projectID' => Input::get('filter_project'),
             'allocatedUserID' => 0,
         ]));
