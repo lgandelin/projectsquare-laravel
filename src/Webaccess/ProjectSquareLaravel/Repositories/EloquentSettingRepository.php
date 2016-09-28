@@ -23,4 +23,9 @@ class EloquentSettingRepository implements SettingRepository
         $setting->project_id = $projectID;
         $setting->save();
     }
+
+    public static function getSettingByKey($key)
+    {
+        return Setting::where('key', '=', $key)->first();
+    }
 }

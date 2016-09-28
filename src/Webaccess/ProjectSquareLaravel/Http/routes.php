@@ -146,4 +146,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/beta_form', array('as' => 'beta_form', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController@betaForm'));
 
     Route::get('/project_users', array('as' => 'project_users', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\ProjectController@get_users'));
+
+    //SETTINGS
+    Route::get('/settings', array('as' => 'settings_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\SettingsController@index'));
+    Route::post('/settings', array('as' => 'settings_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\SettingsController@update'));
 });

@@ -65,6 +65,7 @@
                         <li class="@if($current_route == 'agency/roles') {{ 'encours' }} @endif"><a href="{{ route('roles_index') }}">{{ trans('projectsquare::left_bar.profils') }}</a></li>
                         <li class="@if($current_route == 'ticket_types') {{ 'encours' }} @endif"><a href="{{ route('ticket_types_index') }}">{{ trans('projectsquare::left_bar.tickets_types') }}</a></li>
                         <li class="@if($current_route == 'ticket_statuses') {{ 'encours' }} @endif"><a href="{{ route('ticket_statuses_index') }}">{{ trans('projectsquare::left_bar.tickets_statuses') }}</a></li>
+                        <li class="@if($current_route == 'settings') {{ 'encours' }} @endif"><a href="{{ route('settings_index') }}">{{ trans('projectsquare::left_bar.settings') }}</a></li>
                     </ul>
                 </li>
             @endif

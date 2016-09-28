@@ -155,9 +155,9 @@ class ProjectController extends BaseController
                 Input::get('key'),
                 Input::get('value')
             );
-            $this->request->session()->flash('confirmation', trans('projectsquare::settings.update_setting_success'));
+            $this->request->session()->flash('confirmation', trans('projectsquare::project.update_setting_success'));
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', trans('projectsquare::settings.update_setting_error'));
+            $this->request->session()->flash('error', trans('projectsquare::project.update_setting_error'));
         }
 
         return redirect()->route('projects_edit', ['id' => Input::get('project_id')]);

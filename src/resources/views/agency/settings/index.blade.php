@@ -1,0 +1,51 @@
+@extends('projectsquare::default')
+
+@section('content')
+<!--<ol class="breadcrumb">
+    <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
+    <li class="active">{{ trans('projectsquare::settings.index') }}</li>
+</ol>-->
+<div class="content-page">
+    <div class="templates">
+        <div class="page-header">
+            <h1>{{ trans('projectsquare::settings.index') }}
+            </h1>
+        </div>
+
+        @if (isset($error))
+            <div class="info bg-danger">
+                {{ $error }}
+            </div>
+        @endif
+
+        @if (isset($confirmation))
+            <div class="info bg-success">
+                {{ $confirmation }}
+            </div>
+        @endif
+
+        <form action="{{ route('settings_update') }}" method="post">
+            <div class="form-group">
+                <label for="value">
+                    {{ trans('projectsquare::settings.slack') }}
+                    @include('projectsquare::includes.tooltip', [
+                        'text' => trans('projectsquare::tooltips.slack')
+                    ])
+                </label>
+                <input class="form-control" type="text" placeholder="{{ trans('projectsquare::settings.slack_placeholder') }}" name="value" @if (isset($slack))value="{{ $slack }}"@endif />
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn valid">
+                    <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
+                </button>
+            </div>
+
+            <input type="hidden" name="key" value="SLACK_URL" />
+
+            {!! csrf_field() !!}
+        </form>
+
+    </div>
+</div>
+@endsection

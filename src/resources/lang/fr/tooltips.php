@@ -41,4 +41,6 @@ return [
     ],
 
     'avatar' => 'Uploadez votre avatar pour permettre aux autres personnes de vous identifier facilement ;)',
+
+    'slack' => 'Pour connecter Projectsquare avec vos channels Slack, créez un webhook depuis votre interface Slack et copier l\'URL dans ce champ. Pour plus de détails, consulter la documentation.',
 ];
