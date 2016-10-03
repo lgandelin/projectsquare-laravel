@@ -40,4 +40,6 @@ return [
     'password_generated_success' => 'Mot de passe généré avec succès.',
 
     'avatar' => 'Avatar',
+
+    'users_limit_reached' => 'Limite d\'utilisateurs atteinte : veuillez vous connecter à votre compte Projectsquare et augmenter votre nombre d\'utilisateurs.',
 ];
