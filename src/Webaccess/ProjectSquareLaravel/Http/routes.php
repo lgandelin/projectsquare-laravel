@@ -150,7 +150,11 @@ Route::group(['middleware' => ['web']], function () {
     //SETTINGS
     Route::get('/settings', array('as' => 'settings_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\SettingsController@index'));
     Route::post('/settings', array('as' => 'settings_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\SettingsController@update'));
+});
 
-    //EXTERNAL ACTIONS
+Route::group(['middleware' => ['api']], function () {
+
+    //API
     Route::get('/api/users_count', array('as' => 'users_count', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\APIController@users_count'));
+    Route::post('/api/update_users_count', array('as' => 'udpate_users_count', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\APIController@update_users_count'));
 });
