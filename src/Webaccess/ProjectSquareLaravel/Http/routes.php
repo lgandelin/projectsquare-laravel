@@ -150,4 +150,7 @@ Route::group(['middleware' => ['web']], function () {
     //SETTINGS
     Route::get('/settings', array('as' => 'settings_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\SettingsController@index'));
     Route::post('/settings', array('as' => 'settings_update', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\SettingsController@update'));
+
+    //EXTERNAL ACTIONS
+    Route::get('/api/users_count', array('as' => 'users_count', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\APIController@users_count'));
 });
