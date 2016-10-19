@@ -203,13 +203,17 @@ $(document).ready(function() {
             $('#planning').fullCalendar('unselect');
         },
         drop: function(date, jsEvent, ui, resourceId) {
-            $(this).remove();
             $('.tickets-current-project').val($(this).data('project'));
             $('.tickets-current-ticket').val($(this).data('ticket'));
             $('.tasks-current-project').val($(this).data('project'));
             $('.tasks-current-task').val($(this).data('task'));
         },
         eventReceive: function(event, delta, revertFunc) {
+
+            if (event.allDay) {
+                return false;
+            }
+
             $('#event-infos .wrapper').show();
             $('#event-infos .loading').show();
 
@@ -246,6 +250,9 @@ $(document).ready(function() {
                     $('#event-infos .wrapper').find('.project_id').val(event.project_id);
 
                     $('#event-infos .loading').hide();
+
+                    if (event.ticket_id) $('#ticket-' + event.ticket_id).remove();
+                    if (event.task_id) $('#task-' + event.task_id).remove();
                 }
             });
         },
