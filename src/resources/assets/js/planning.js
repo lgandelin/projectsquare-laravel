@@ -23,45 +23,48 @@ $(document).ready(function() {
         eventRender: function(event, element) {
             element.append('<span class="delete-event glyphicon glyphicon-remove btn-delete"></span>');
             element.find(".delete-event").click(function() {
-                $('#event-infos .wrapper').hide();
 
-                var data = {
-                    event_id: event._id,
-                    _token: $('#csrf_token').val()
-                };
+                if (confirm('Etes-vous sûrs de vouloir supprimer cet élément ?')) {
+                    $('#event-infos .wrapper').hide();
 
-                $.ajax({
-                    type: "POST",
-                    url: route_event_delete,
-                    data: data,
-                    success: function(data) {
-                        $('#planning').fullCalendar('removeEvents', event._id);
-                        $('#event-infos .wrapper').hide();
-                        if (data.ticket_id) {
-                            var html = loadTemplate('ticket-template', {
-                                id: data.ticket_id,
-                                title: data.title,
-                                project_id: data.project_id,
-                                color: data.color,
-                                estimated_time: data.estimated_time
-                            });
-                            $('#my-tickets-list').append(html);
-                            initTicketDragAndDrop();
+                    var data = {
+                        event_id: event._id,
+                        _token: $('#csrf_token').val()
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        url: route_event_delete,
+                        data: data,
+                        success: function (data) {
+                            $('#planning').fullCalendar('removeEvents', event._id);
+                            $('#event-infos .wrapper').hide();
+                            if (data.ticket_id) {
+                                var html = loadTemplate('ticket-template', {
+                                    id: data.ticket_id,
+                                    title: data.title,
+                                    project_id: data.project_id,
+                                    color: data.color,
+                                    estimated_time: data.estimated_time
+                                });
+                                $('#my-tickets-list').append(html);
+                                initTicketDragAndDrop();
+                            }
+
+                            if (data.task_id) {
+                                var html = loadTemplate('task-template', {
+                                    id: data.task_id,
+                                    title: data.title,
+                                    project_id: data.project_id,
+                                    color: data.color,
+                                    estimated_time: data.estimated_time
+                                });
+                                $('#my-tasks-list').append(html);
+                                initTaskDragAndDrop();
+                            }
                         }
-
-                        if (data.task_id) {
-                            var html = loadTemplate('task-template', {
-                                id: data.task_id,
-                                title: data.title,
-                                project_id: data.project_id,
-                                color: data.color,
-                                estimated_time: data.estimated_time
-                            });
-                            $('#my-tasks-list').append(html);
-                            initTaskDragAndDrop();
-                        }
-                    }
-                });
+                    });
+                }
             });
         },
         eventDrop: function(event, delta, revertFunc) {
