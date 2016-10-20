@@ -32,7 +32,7 @@ class LoginController extends Controller
             'email' => Input::get('email'),
             'password' => Input::get('password'),
         ], Input::get('remember_token'))) {
-            return redirect()->intended('/');
+            return redirect()->route('dashboard');
         }
 
         return redirect()->route('login')->with([

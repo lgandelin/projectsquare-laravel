@@ -31,7 +31,6 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>#</th>
                     <th>{{ trans('projectsquare::clients.client') }}</th>
                     <th align="right">{{ trans('projectsquare::generic.action') }}</th>
                 </tr>
@@ -40,7 +39,6 @@
                 <tbody>
                     @foreach ($clients as $client)
                         <tr>
-                            <td>{{ $client->id }}</td>
                             <td>{{ $client->name }}</td>
                             <td align="right">
                                 <a href="{{ route('clients_edit', ['id' => $client->id]) }}" class="btn see-more"></a>

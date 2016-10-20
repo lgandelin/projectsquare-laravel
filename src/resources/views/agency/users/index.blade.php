@@ -30,7 +30,6 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>#</th>
                     <th>{{ trans('projectsquare::users.name') }}</th>
                     <th>{{ trans('projectsquare::users.avatar') }}</th>
                     <th>{{ trans('projectsquare::users.email') }}</th>
@@ -41,7 +40,6 @@
                 <tbody>
                     @foreach ($users as $user)
                         <tr>
-                            <td>{{ $user->id }}</td>
                             <td>{{ $user->complete_name }}</td>
                              <td>
                                 @include('projectsquare::includes.avatar', [

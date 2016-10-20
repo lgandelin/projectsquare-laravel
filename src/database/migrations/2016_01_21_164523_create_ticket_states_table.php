@@ -11,7 +11,7 @@ class CreateTicketStatesTable extends Migration
     public function up()
     {
         Schema::create('ticket_states', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id');
             $table->integer('ticket_id')->nullable();
             $table->integer('author_user_id')->nullable();
             $table->integer('allocated_user_id')->nullable();
