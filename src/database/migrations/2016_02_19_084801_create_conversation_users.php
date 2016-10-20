@@ -11,8 +11,8 @@ class CreateConversationUsers extends Migration
     public function up()
     {
         Schema::create('conversation_users', function (Blueprint $table) {
-            $table->integer('conversation_id');
-            $table->integer('user_id');
+            $table->uuid('conversation_id');
+            $table->uuid('user_id');
         });
     }
 

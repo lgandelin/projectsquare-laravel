@@ -183,7 +183,7 @@ class TicketController extends BaseController
                     Input::get('ticket_id')
                 );
 
-                $data->deleteUrl = action('\Webaccess\ProjectSquareLaravel\Http\Controllers\TicketController@delete_file', ['id' => $fileID]);
+                $data->deleteUrl = action('\Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\TicketController@delete_file', ['id' => $fileID]);
                 $data->deleteType = 'GET';
             }
 

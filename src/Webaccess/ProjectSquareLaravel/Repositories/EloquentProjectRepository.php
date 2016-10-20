@@ -66,9 +66,10 @@ class EloquentProjectRepository implements ProjectRepository
     public function createProject($name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color, $tasksScheduledTime, $ticketsScheduledTime)
     {
         $project = new Project();
-        $project->id = Uuid::uuid4()->toString();
+        $projectID =  Uuid::uuid4()->toString();
+        $project->id = $projectID;
         $project->save();
-        $this->updateProject($project->id, $name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color, $tasksScheduledTime, $ticketsScheduledTime);
+        $this->updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color, $tasksScheduledTime, $ticketsScheduledTime);
 
         return $project->id;
     }

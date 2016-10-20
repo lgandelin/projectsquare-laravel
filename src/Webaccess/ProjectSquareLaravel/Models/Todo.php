@@ -8,6 +8,8 @@ class Todo extends Model
 {
     protected $table = 'todos';
 
+    public $incrementing = false;
+
     protected $fillable = [
         'name', 'status',
     ];

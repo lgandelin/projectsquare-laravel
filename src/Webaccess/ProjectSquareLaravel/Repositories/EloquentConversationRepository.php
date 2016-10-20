@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Repositories;
 
+use Ramsey\Uuid\Uuid;
 use Webaccess\ProjectSquare\Entities\Conversation as ConversationEntity;
 use Webaccess\ProjectSquare\Repositories\ConversationRepository;
 use Webaccess\ProjectSquareLaravel\Models\Conversation;
@@ -53,7 +54,14 @@ class EloquentConversationRepository implements ConversationRepository
 
     public function persistConversation(ConversationEntity $conversation)
     {
-        $conversationModel = (!isset($conversation->id)) ? new Conversation() : Conversation::find($conversation->id);
+        if (!isset($conversation->id)) {
+            $conversationModel = new Conversation();
+            $conversationID = Uuid::uuid4()->toString();
+            $conversationModel->id = $conversationID;
+            $conversation->id = $conversationID;
+        } else {
+            Conversation::find($conversation->id);
+        }
         $conversationModel->title = $conversation->title;
         if ($project = $this->projectRepository->getProjectModel($conversation->projectID)) {
             $conversationModel->project()->associate($project);

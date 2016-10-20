@@ -5,6 +5,7 @@ namespace Webaccess\ProjectSquareLaravel\Repositories;
 use Ramsey\Uuid\Uuid;
 use Webaccess\ProjectSquare\Repositories\TaskRepository;
 use Webaccess\ProjectSquare\Entities\Task as TaskEntity;
+use Webaccess\ProjectSquareLaravel\Models\Project;
 use Webaccess\ProjectSquareLaravel\Models\Task;
 use Webaccess\ProjectSquareLaravel\Models\User;
 

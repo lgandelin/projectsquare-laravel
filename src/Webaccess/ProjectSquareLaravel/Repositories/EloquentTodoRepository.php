@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Repositories;
 
+use Ramsey\Uuid\Uuid;
 use Webaccess\ProjectSquare\Entities\Todo as TodoEntity;
 use Webaccess\ProjectSquare\Repositories\TodoRepository;
 use Webaccess\ProjectSquareLaravel\Models\Todo;
@@ -34,22 +35,28 @@ class EloquentTodoRepository implements TodoRepository
 
     public function persistTodo(TodoEntity $todo)
     {
-        $todoModel = (!isset($todo->id)) ? new Todo() : Todo::find($todo->id);
+        if (!isset($todo->id)) {
+            $todoModel = new Todo();
+            $todoID = Uuid::uuid4()->toString();
+            $todoModel->id = $todoID;
+            $todo->id = $todoID;
+        } else {
+            $todoModel = Todo::find($todo->id);
+        }
         $todoModel->name = $todo->name;
         $todoModel->user_id = $todo->userID;
         $todoModel->status = $todo->status;
 
         $todoModel->save();
 
-        $todo->id = $todoModel->id;
-
         return $todo;
     }
 
     public function removeTodo($todoID)
     {
-        $todo = $this->getTodoModel($todoID);
-        $todo->delete();
+        if ($todo = $this->getTodoModel($todoID)) {
+            $todo->delete();
+        }
     }
 
     private function getTodoEntity($todoModel)

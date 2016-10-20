@@ -15,7 +15,7 @@ class CreateStepsTable extends Migration
             $table->string('name');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
-            $table->integer('project_id')->nullable();
+            $table->uuid('project_id')->nullable();
             $table->string('color')->nullable();
             $table->timestamps();
         });
