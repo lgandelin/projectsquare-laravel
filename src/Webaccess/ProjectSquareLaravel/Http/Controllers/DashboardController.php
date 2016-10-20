@@ -13,7 +13,7 @@ class DashboardController extends BaseController
     {
         $this->initWidgetsIfNecessary();
         return view('projectsquare::dashboard.index', [
-            'widgets' => json_decode($_COOKIE['dashboard-widgets']),
+            'widgets' => json_decode($_COOKIE['dashboard-widgets-' . $this->getUser()->id]),
             'tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest()),
             'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList($this->getUser()->id, env('TICKETS_PER_PAGE', 10)),
             'conversations' => $this->isUserAClient() ? app()->make('ConversationManager')->getConversationsByProject($this->getCurrentProject()->id, 5) : app()->make('ConversationManager')->getConversations($this->getUser()->id, 5),
@@ -42,8 +42,8 @@ class DashboardController extends BaseController
             $widgets[]= ['name' => 'calendar', 'width' => 6];
         }
 
-        if (!isset($_COOKIE['dashboard-widgets'])) {
-            $_COOKIE['dashboard-widgets'] = json_encode($widgets);
+        if (!isset($_COOKIE['dashboard-widgets-' . $this->getUser()->id])) {
+            $_COOKIE['dashboard-widgets-' . $this->getUser()->id] = json_encode($widgets);
         }
     }
 }

@@ -22,6 +22,8 @@
         </div>
     </div>
 
+    <input type="hidden" id="current-user-id" value="{{ $logged_in_user->id }}" />
+
     @include('projectsquare::dashboard.new-message')
     @include('projectsquare::dashboard.create-conversation-modal')
     @include('projectsquare::templates.new-todo')
