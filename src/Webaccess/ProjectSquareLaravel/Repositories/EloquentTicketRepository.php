@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Repositories;
 
+use Ramsey\Uuid\Uuid;
 use Webaccess\ProjectSquare\Entities\Ticket as TicketEntity;
 use Webaccess\ProjectSquare\Entities\TicketState as TicketStateEntity;
 use Webaccess\ProjectSquareLaravel\Models\Ticket;
@@ -104,39 +105,42 @@ class EloquentTicketRepository implements TicketRepository
 
     public function getTicketWithStates($ticketID)
     {
-        $ticketModel = Ticket::with('states', 'states.author_user', 'states.allocated_user', 'states.status')->find($ticketID);
+        if ($ticketModel = Ticket::with('states', 'states.author_user', 'states.allocated_user', 'states.status')->find($ticketID)) {
 
-        $ticket = new TicketEntity();
-        $ticket->id = $ticketModel->id;
-        $ticket->title = $ticketModel->title;
-        $ticket->description = $ticketModel->description;
-        $ticket->projectID = $ticketModel->project_id;
-        $ticket->typeID = $ticketModel->type_id;
-        $ticket->lastStateID = $ticketModel->last_state_id;
-        $ticket->createdAt = $ticketModel->updated_at;
-        $ticket->updatedAt = $ticketModel->updated_at;
-        $ticket->states = [];
+            $ticket = new TicketEntity();
+            $ticket->id = $ticketModel->id;
+            $ticket->title = $ticketModel->title;
+            $ticket->description = $ticketModel->description;
+            $ticket->projectID = $ticketModel->project_id;
+            $ticket->typeID = $ticketModel->type_id;
+            $ticket->lastStateID = $ticketModel->last_state_id;
+            $ticket->createdAt = $ticketModel->updated_at;
+            $ticket->updatedAt = $ticketModel->updated_at;
+            $ticket->states = [];
 
-        foreach ($ticketModel->states as $state) {
-            $ticketState = new TicketStateEntity();
-            $ticketState->id = $state->id;
-            $ticketState->statusID = $state->status_id;
-            $ticketState->allocatedUserID = $state->allocated_user_id;
-            $ticketState->authorUserID = $state->author_user_id;
-            $ticketState->comments = $state->comments;
-            $ticketState->dueDate = $state->due_date;
-            $ticketState->estimatedTimeDays = $state->estimated_time_days;
-            $ticketState->estimatedTimeHours = $state->estimated_time_hours;
-            $ticketState->spentTimeDays = $state->spent_time_days;
-            $ticketState->spentTimeHours = $state->spent_time_hours;
-            $ticketState->priority = $state->priority;
-            $ticketState->ticketID = $state->ticket_id;
-            $ticketState->createdAt = $state->updated_at;
-            $ticketState->updatedAt = $state->updated_at;
-            $ticket->states[]= $ticketState;
+            foreach ($ticketModel->states as $state) {
+                $ticketState = new TicketStateEntity();
+                $ticketState->id = $state->id;
+                $ticketState->statusID = $state->status_id;
+                $ticketState->allocatedUserID = $state->allocated_user_id;
+                $ticketState->authorUserID = $state->author_user_id;
+                $ticketState->comments = $state->comments;
+                $ticketState->dueDate = $state->due_date;
+                $ticketState->estimatedTimeDays = $state->estimated_time_days;
+                $ticketState->estimatedTimeHours = $state->estimated_time_hours;
+                $ticketState->spentTimeDays = $state->spent_time_days;
+                $ticketState->spentTimeHours = $state->spent_time_hours;
+                $ticketState->priority = $state->priority;
+                $ticketState->ticketID = $state->ticket_id;
+                $ticketState->createdAt = $state->updated_at;
+                $ticketState->updatedAt = $state->updated_at;
+                $ticket->states[] = $ticketState;
+            }
+
+            return $ticket;
         }
 
-        return $ticket;
+        return false;
     }
 
     public function getTicketStatesPaginatedList($ticketID, $limit)
@@ -175,7 +179,14 @@ class EloquentTicketRepository implements TicketRepository
 
     public function persistTicket(TicketEntity $ticket)
     {
-        $ticketModel = (!isset($ticket->id)) ? new Ticket() : Ticket::find($ticket->id);
+        if (!isset($ticket->id)) {
+            $ticketModel = new Ticket();
+            $ticketID = Uuid::uuid4()->toString();
+            $ticketModel->id = $ticketID;
+            $ticket->id = $ticketID;
+        } else {
+            $ticketModel = Ticket::find($ticket->id);
+        }
         $ticketModel->title = $ticket->title;
         if ($project = $this->projectRepository->getProjectModel($ticket->projectID)) {
             $ticketModel->project()->associate($project);
@@ -184,14 +195,13 @@ class EloquentTicketRepository implements TicketRepository
         $ticketModel->type_id = $ticket->typeID;
         $ticketModel->save();
 
-        $ticket->id = $ticketModel->id;
-
         return $ticket;
     }
 
     public function persistTicketState(TicketStateEntity $ticketState)
     {
         $ticketStateModel = new TicketState();
+        $ticketStateModel->id = Uuid::uuid4()->toString();
         $ticketStateModel->ticket_id = $ticketState->ticketID;
         $ticketStateModel->author_user_id = $ticketState->authorUserID;
         $ticketStateModel->allocated_user_id = $ticketState->allocatedUserID;
@@ -207,8 +217,9 @@ class EloquentTicketRepository implements TicketRepository
         $ticketStateModel->comments = $ticketState->comments;
         $ticketStateModel->save();
 
-        $ticket = Ticket::find($ticketState->ticketID);
-        $ticket->last_state()->associate($ticketStateModel);
-        $ticket->save();
+        if ($ticket = Ticket::find($ticketState->ticketID)) {
+            $ticket->last_state()->associate($ticketStateModel);
+            $ticket->save();
+        }
     }
 }

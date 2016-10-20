@@ -9,6 +9,8 @@ class TicketState extends Model
 {
     protected $table = 'ticket_states';
 
+    public $incrementing = false;
+
     protected $fillable = [
         'priority',
         'due_date',
