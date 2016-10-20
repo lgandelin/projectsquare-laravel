@@ -26,7 +26,7 @@ class BaseController extends Controller
         $this->middleware('auth');
 
         if (Auth::user()) {
-            view()->share('logged_in_user', $this->getUser());
+            view()->share('logged_in_user', $this->getUserWithProjects());
         }
 
         view()->share('current_project', $this->getCurrentProject());
@@ -41,9 +41,16 @@ class BaseController extends Controller
 
     protected function getUser()
     {
-        if ($user = Auth::user()) {
+        if ($user = Auth::user())
+            return Auth::user();
+
+        return null;
+    }
+
+    protected function getUserWithProjects()
+    {
+        if ($user = Auth::user())
             return User::with('projects.client')->find($user->id);
-        }
 
         return null;
     }
