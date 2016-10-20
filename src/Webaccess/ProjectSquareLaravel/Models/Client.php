@@ -8,6 +8,8 @@ class Client extends Model
 {
     protected $table = 'clients';
 
+    public $incrementing = false;
+
     protected $fillable = [
         'name',
     ];
