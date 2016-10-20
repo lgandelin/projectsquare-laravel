@@ -57,7 +57,6 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>#</th>
                         <th>{{ trans('projectsquare::tickets.priority') }}</th>
                         <th>{{ trans('projectsquare::tickets.ticket') }}</th>
                         <th>{{ trans('projectsquare::tickets.type') }}</th>
@@ -72,7 +71,6 @@
                     <tbody>
                     @foreach ($tickets as $ticket)
                         <tr>
-                            <td>{{ $ticket->id }}</td>
                             <td>@if (isset($ticket->states[0]))<span class="priority priority-{{ $ticket->states[0]->priority }}"></span>@endif</td>
                             <td width="40%">{{ $ticket->title }}</td>
                             <td>@if (isset($ticket->type)){{ $ticket->type->name }}@endif</td>

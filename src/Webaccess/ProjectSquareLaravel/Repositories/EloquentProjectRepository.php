@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Repositories;
 
+use Ramsey\Uuid\Uuid;
 use Webaccess\ProjectSquareLaravel\Models\Project;
 use Webaccess\ProjectSquareLaravel\Models\User;
 use Webaccess\ProjectSquare\Repositories\ProjectRepository;
@@ -16,22 +17,24 @@ class EloquentProjectRepository implements ProjectRepository
 
     public function getProject($projectID)
     {
-        $projectModel = $this->getProjectModel($projectID);
+        if ($projectModel = $this->getProjectModel($projectID)) {
+            $project = new ProjectEntity();
+            $project->id = $projectModel->id;
+            $project->clientID = $projectModel->client_id;
+            $project->name = $projectModel->name;
+            $project->status = $projectModel->status;
+            $project->color = $projectModel->color;
+            $project->tasksScheduledTime = $projectModel->tasks_scheduled_time;
+            $project->ticketsScheduledTime = $projectModel->tickets_scheduled_time;
+            $project->websiteFrontURL = $projectModel->website_front_url;
+            $project->websiteBackURL = $projectModel->website_back_url;
+            $project->createdAt = $projectModel->created_at;
+            $project->udpatedAt = $projectModel->updated_at;
 
-        $project = new ProjectEntity();
-        $project->id = $projectModel->id;
-        $project->clientID = $projectModel->client_id;
-        $project->name = $projectModel->name;
-        $project->status = $projectModel->status;
-        $project->color = $projectModel->color;
-        $project->tasksScheduledTime = $projectModel->tasks_scheduled_time;
-        $project->ticketsScheduledTime = $projectModel->tickets_scheduled_time;
-        $project->websiteFrontURL = $projectModel->website_front_url;
-        $project->websiteBackURL = $projectModel->website_back_url;
-        $project->createdAt = $projectModel->created_at;
-        $project->udpatedAt = $projectModel->updated_at;
+            return $project;
+        }
 
-        return $project;
+        return false;
     }
 
     public function getProjects()
@@ -63,6 +66,7 @@ class EloquentProjectRepository implements ProjectRepository
     public function createProject($name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color, $tasksScheduledTime, $ticketsScheduledTime)
     {
         $project = new Project();
+        $project->id = Uuid::uuid4()->toString();
         $project->save();
         $this->updateProject($project->id, $name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color, $tasksScheduledTime, $ticketsScheduledTime);
 
@@ -71,7 +75,14 @@ class EloquentProjectRepository implements ProjectRepository
 
     public function persistProject(ProjectEntity $project)
     {
-        $projectModel = (!isset($project->id)) ? new Project() : Project::find($project->id);
+        if (!isset($project->id)) {
+            $projectModel = new Project();
+            $projectID = Uuid::uuid4()->toString();
+            $projectModel->id = $projectID;
+            $project->id = $projectID;
+        } else {
+            $projectModel = Project::find($project->id);
+        }
         $projectModel->name = $project->name;
         $projectModel->client_id = $project->clientID;
         $projectModel->color = $project->color;
@@ -83,26 +94,25 @@ class EloquentProjectRepository implements ProjectRepository
 
         $projectModel->save();
 
-        $project->id = $projectModel->id;
-
         return $project;
     }
 
     public function updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color, $tasksScheduledTime, $ticketsScheduledTime)
     {
-        $project = $this->getProjectModel($projectID);
-        $project->name = $name;
-        $project->client_id = $clientID;
-        $project->website_front_url = $websiteFrontURL;
-        $project->website_back_url = $websiteBackURL;
-        if ($refererID) {
-            $project->referer_id = $refererID;
+        if ($project = $this->getProjectModel($projectID)) {
+            $project->name = $name;
+            $project->client_id = $clientID;
+            $project->website_front_url = $websiteFrontURL;
+            $project->website_back_url = $websiteBackURL;
+            if ($refererID) {
+                $project->referer_id = $refererID;
+            }
+            $project->status = $status;
+            $project->color = $color;
+            $project->tickets_scheduled_time = $ticketsScheduledTime;
+            $project->tasks_scheduled_time = $tasksScheduledTime;
+            $project->save();
         }
-        $project->status = $status;
-        $project->color = $color;
-        $project->tickets_scheduled_time = $ticketsScheduledTime;
-        $project->tasks_scheduled_time = $tasksScheduledTime;
-        $project->save();
     }
 
     public function deleteProject($projectID)

@@ -16,9 +16,9 @@ class ChangeCurrentProject
      */
     public function handle($request, Closure $next)
     {
-        $projectID = str_replace('/project/', '', $request->getPathInfo());
+        $projectID = (isset($request->uuid) && $request->uuid != "") ? $request->uuid : null;
 
-        if (!$request->session()->has('current_project') || ($request->session()->has('current_project') && $projectID != $request->session()->get('current_project')->id)) {
+        if ($projectID && !$request->session()->has('current_project') || ($request->session()->has('current_project') && $projectID != $request->session()->get('current_project')->id)) {
             if ($project = app()->make('ProjectManager')->getProject($projectID)) {
                 $request->session()->set('current_project', $project);
             }
