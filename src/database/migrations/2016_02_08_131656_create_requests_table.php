@@ -12,7 +12,7 @@ class CreateRequestsTable extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('project_id')->nullable();
+            $table->uuid('project_id')->nullable();
             $table->integer('status_code')->nullable();
             $table->double('loading_time', 7, 5)->nullable();
             $table->timestamps();

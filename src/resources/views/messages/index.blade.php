@@ -40,7 +40,6 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th>#</th>
                     <th>{{ trans('projectsquare::messages.date') }}</th>
                     <th>{{ trans('projectsquare::messages.client') }}</th>
                     <th>{{ trans('projectsquare::messages.author') }}</th>
@@ -51,7 +50,6 @@
                 @foreach ($conversations as $conversation)
                     <tr>
                         <td class="priorities" style="border-left: 5px solid {{ $conversation->project->color }}"></td>
-                        <td >{{ $conversation->id }}</td>
                         <td >{{ date('d/m/Y H:i', strtotime($conversation->created_at)) }}</td>
                         <td><span class="text">{{ $conversation->project->client->name }}</span></td>
                         <td>

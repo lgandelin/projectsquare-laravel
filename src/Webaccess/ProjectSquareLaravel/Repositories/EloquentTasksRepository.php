@@ -2,8 +2,10 @@
 
 namespace Webaccess\ProjectSquareLaravel\Repositories;
 
+use Ramsey\Uuid\Uuid;
 use Webaccess\ProjectSquare\Repositories\TaskRepository;
 use Webaccess\ProjectSquare\Entities\Task as TaskEntity;
+use Webaccess\ProjectSquareLaravel\Models\Project;
 use Webaccess\ProjectSquareLaravel\Models\Task;
 use Webaccess\ProjectSquareLaravel\Models\User;
 
@@ -90,7 +92,14 @@ class EloquentTasksRepository implements TaskRepository
 
     public function persistTask(TaskEntity $task)
     {
-        $taskModel = (!isset($task->id)) ? new Task() : Task::find($task->id);
+        if (!isset($task->id)) {
+            $taskModel = new Task();
+            $taskID = Uuid::uuid4()->toString();
+            $taskModel->id = $taskID;
+            $task->id = $taskID;
+        } else {
+            $taskModel = Task::find($task->id);
+        }
         $taskModel->title = $task->title;
         $taskModel->description = $task->description;
         $taskModel->estimated_time_days = $task->estimatedTimeDays;
@@ -102,8 +111,6 @@ class EloquentTasksRepository implements TaskRepository
         $taskModel->allocated_user_id = $task->allocatedUserID;
 
         $taskModel->save();
-
-        $task->id = $taskModel->id;
 
         return $task;
     }

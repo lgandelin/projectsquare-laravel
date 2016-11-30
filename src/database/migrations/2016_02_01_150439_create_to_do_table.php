@@ -11,7 +11,7 @@ class CreateToDoTable extends Migration
     public function up()
     {
         Schema::create('to_do', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id')->primary('id');
             $table->string('name')->nullable();
             $table->boolean('status')->nullable();
             $table->timestamps();

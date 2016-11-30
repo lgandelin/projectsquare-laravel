@@ -14,7 +14,7 @@ class CreateAlertsTable extends Migration
             $table->increments('id');
             $table->string('type')->nullable();
             $table->string('variables')->nullable();
-            $table->integer('project_id')->nullable();
+            $table->uuid('project_id')->nullable();
             $table->timestamps();
         });
     }

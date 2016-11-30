@@ -48,7 +48,6 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>#</th>
                     <th>{{ trans('projectsquare::tasks.task') }}</th>
                     <th>{{ trans('projectsquare::tasks.allocated_user') }}</th>
                     <th>{{ trans('projectsquare::tasks.status') }}</th>
@@ -60,7 +59,6 @@
                 <tbody>
                 @foreach ($tasks as $task)
                     <tr>
-                        <td>{{ $task->id }}</td>
                         <td>{{ $task->title }}</td>
                         <td>
                             @if (isset($task->allocated_user))

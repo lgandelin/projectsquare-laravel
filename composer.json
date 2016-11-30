@@ -11,7 +11,8 @@
     "require": {
         "php": ">=5.5.9",
         "illuminate/support": "~5.2",
-        "intervention/image": "~2.3.5"
+        "intervention/image": "~2.3.5",
+        "ramsey/uuid": "^3.5"
     },
     "require-dev": {
         "codeception/codeception": "^2.1"

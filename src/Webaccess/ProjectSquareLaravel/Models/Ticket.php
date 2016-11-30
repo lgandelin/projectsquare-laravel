@@ -8,6 +8,8 @@ class Ticket extends Model
 {
     protected $table = 'tickets';
 
+    public $incrementing = false;
+
     protected $fillable = [
         'title',
         'description',

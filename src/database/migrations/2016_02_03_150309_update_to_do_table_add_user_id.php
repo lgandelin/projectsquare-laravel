@@ -11,7 +11,7 @@ class UpdateToDoTableAddUserId extends Migration
     public function up()
     {
         Schema::table('to_do', function (Blueprint $table) {
-            $table->string('user_id')->after('status')->nullable();
+            $table->uuid('user_id')->after('status')->nullable();
         });
     }
 

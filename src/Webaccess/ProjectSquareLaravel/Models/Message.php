@@ -8,6 +8,8 @@ class Message extends Model
 {
     protected $table = 'messages';
 
+    public $incrementing = false;
+
     protected $fillable = [
         'content',
     ];

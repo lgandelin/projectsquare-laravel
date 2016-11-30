@@ -81,7 +81,6 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>#</th>
                             <th>{{ trans('projectsquare::tickets.priority') }}</th>
                             <th>{{ trans('projectsquare::tickets.ticket') }}</th>
                             <th>{{ trans('projectsquare::tickets.client') }}</th>
@@ -98,7 +97,6 @@
                         @foreach ($tickets as $ticket)
                             <tr>
                                 <td class="priorities" style="border-left: 10px solid {{ $ticket->project->color }}"></td>
-                                <td>{{ $ticket->id }}</td>
                                 <td>@if (isset($ticket->last_state))<span class="priority priority-{{ $ticket->last_state->priority }}"></span>@endif</td>
                                 <td>{{ $ticket->title }}</td>
                                 <td>{{ $ticket->project->client->name }}</td>

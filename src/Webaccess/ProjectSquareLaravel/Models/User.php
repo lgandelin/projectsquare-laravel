@@ -8,6 +8,12 @@ class User extends Model
 {
     protected $table = 'users';
 
+    public $incrementing = false;
+
+    public $casts = [
+        'id' => 'string'
+    ];
+
     protected $fillable = [
         'email',
         'password',

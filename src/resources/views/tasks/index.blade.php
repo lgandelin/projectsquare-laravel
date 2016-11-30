@@ -73,7 +73,6 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th>#</th>
                     <th>{{ trans('projectsquare::tasks.task') }}</th>
                     <th>{{ trans('projectsquare::tasks.client') }}</th>
                     <th>{{ trans('projectsquare::tasks.allocated_user') }}</th>
@@ -87,7 +86,6 @@
                 @foreach ($tasks as $task)
                     <tr>
                         <td @if (isset($task->project))style="border-left: 10px solid {{ $task->project->color }}"@endif></td>
-                        <td>{{ $task->id }}</td>
                         <td>{{ $task->title }}</td>
                         <td>@if (isset($task->project)){{ $task->project->client->name }}@endif</td>
                         <td>

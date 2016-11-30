@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Repositories;
 
+use Ramsey\Uuid\Uuid;
 use Webaccess\ProjectSquare\Entities\User as UserEntity;
 use Webaccess\ProjectSquareLaravel\Models\Message;
 use Webaccess\ProjectSquareLaravel\Models\Project;
@@ -63,41 +64,44 @@ class EloquentUserRepository implements UserRepository
     public function createUser($firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $isAdministrator=false)
     {
         $user = new User();
+        $userID = Uuid::uuid4()->toString();
+        $user->id = $userID;
         $user->save();
-        self::updateUser($user->id, $firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $isAdministrator);
+        self::updateUser($userID, $firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $isAdministrator);
     }
 
     public function updateUser($userID, $firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $isAdministrator=false)
     {
-        $user = self::getUserModel($userID);
-        if ($firstName != null) {
-            $user->first_name = $firstName;
+        if ($user = self::getUserModel($userID)) {
+            if ($firstName != null) {
+                $user->first_name = $firstName;
+            }
+            if ($lastName != null) {
+                $user->last_name = $lastName;
+            }
+            if ($email != null) {
+                $user->email = $email;
+            }
+            if ($password) {
+                $user->password = $password;
+            }
+            if ($mobile) {
+                $user->mobile = $mobile;
+            }
+            if ($phone) {
+                $user->phone = $phone;
+            }
+            if ($clientID != null) {
+                $user->client_id = $clientID;
+            }
+            if ($clientRole != null) {
+                $user->client_role = $clientRole;
+            }
+            if ($isAdministrator != null) {
+                $user->is_administrator = $isAdministrator;
+            }
+            $user->save();
         }
-        if ($lastName != null) {
-            $user->last_name = $lastName;
-        }
-        if ($email != null) {
-            $user->email = $email;
-        }
-        if ($password) {
-            $user->password = $password;
-        }
-        if ($mobile) {
-            $user->mobile = $mobile;
-        }
-        if ($phone) {
-            $user->phone = $phone;
-        }
-        if ($clientID != null) {
-            $user->client_id = $clientID;
-        }
-        if ($clientRole != null) {
-            $user->client_role = $clientRole;
-        }
-        if ($isAdministrator != null) {
-            $user->is_administrator = $isAdministrator;
-        }
-        $user->save();
     }
 
     public function deleteUser($userID)

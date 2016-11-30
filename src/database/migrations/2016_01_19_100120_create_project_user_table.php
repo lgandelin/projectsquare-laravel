@@ -11,8 +11,8 @@ class CreateProjectUserTable extends Migration
     public function up()
     {
         Schema::create('user_projects', function (Blueprint $table) {
-            $table->integer('user_id');
-            $table->integer('project_id');
+            $table->uuid('user_id');
+            $table->uuid('project_id');
             $table->integer('role_id');
         });
     }

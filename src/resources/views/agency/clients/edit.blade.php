@@ -44,7 +44,6 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>#</th>
                     <th>{{ trans('projectsquare::users.name') }}</th>
                     <th>{{ trans('projectsquare::users.email') }}</th>
                     <th>{{ trans('projectsquare::users.role') }}</th>
@@ -55,7 +54,6 @@
                 <tbody>
                 @foreach ($users as $user)
                     <tr>
-                        <td>{{ $user->id }}</td>
                         <td>{{ $user->complete_name }}</td>
                         <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                         <td>{{ $user->client_role }}</td>

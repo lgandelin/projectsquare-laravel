@@ -13,13 +13,13 @@ class CreateTasksTable extends Migration
     public function up()
     {
         Schema::create('tasks', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id')->primary('id');
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->string('estimated_time')->nullable();
             $table->integer('status_id')->nullable();
-            $table->integer('project_id')->nullable();
-            $table->integer('allocated_user_id')->nullable();
+            $table->uuid('project_id')->nullable();
+            $table->uuid('allocated_user_id')->nullable();
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Repositories;
 
+use Ramsey\Uuid\Uuid;
 use Webaccess\ProjectSquareLaravel\Models\Client;
 use Webaccess\ProjectSquare\Entities\Client as ClientEntity;
 use Webaccess\ProjectSquare\Repositories\ClientRepository;
@@ -33,6 +34,7 @@ class EloquentClientRepository implements ClientRepository
     public static function createClient($name, $address)
     {
         $client = new Client();
+        $client->id = Uuid::uuid4()->toString();
         $client->save();
         self::updateClient($client->id, $name, $address);
 
@@ -41,12 +43,17 @@ class EloquentClientRepository implements ClientRepository
 
     public function persistClient(ClientEntity $client)
     {
-        $clientModel = (!isset($client->id)) ? new Client() : Client::find($client->id);
+        if (!isset($client->id)) {
+            $clientModel = new Client();
+            $clientID = Uuid::uuid4()->toString();
+            $clientModel->id = $clientID;
+            $client->id = $clientID;
+        } else {
+            $clientModel = Client::find($client->id);
+        }
         $clientModel->name = $client->name;
         $clientModel->address = $client->address;
         $clientModel->save();
-
-        $client->id = $clientModel->id;
 
         return $client;
     }

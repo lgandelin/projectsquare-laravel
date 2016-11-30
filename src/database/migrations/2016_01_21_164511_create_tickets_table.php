@@ -11,8 +11,8 @@ class CreateTicketsTable extends Migration
     public function up()
     {
         Schema::create('tickets', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('project_id')->nullable();
+            $table->uuid('id')->primary('id');
+            $table->uuid('project_id')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->integer('type_id')->nullable();
