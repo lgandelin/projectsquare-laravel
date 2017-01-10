@@ -32,7 +32,7 @@ class Ticket extends Model
 
     public function states()
     {
-        return $this->hasMany('Webaccess\ProjectSquareLaravel\Models\TicketState')->orderBy('id', 'DESC');
+        return $this->hasMany('Webaccess\ProjectSquareLaravel\Models\TicketState')->orderBy('created_at', 'DESC');
     }
 
     public function files()
