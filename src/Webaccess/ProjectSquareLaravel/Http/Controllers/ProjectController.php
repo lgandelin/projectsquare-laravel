@@ -19,6 +19,8 @@ class ProjectController extends BaseController
 
     public function tasks($projectID)
     {
+        $this->request->session()->set('tasks_interface', 'project');
+
         return view('projectsquare::project.tasks', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'projects' => app()->make('ProjectManager')->getProjects(),
@@ -41,6 +43,8 @@ class ProjectController extends BaseController
 
     public function tickets($projectID)
     {
+        $this->request->session()->set('tickets_interface', 'project');
+
         return view('projectsquare::project.tickets', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'projects' => app()->make('ProjectManager')->getProjects(),
@@ -82,6 +86,8 @@ class ProjectController extends BaseController
 
     public function messages($projectID)
     {
+        $this->request->session()->set('messages_interface', 'project');
+
         return view('projectsquare::project.messages', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'conversations' => app()->make('ConversationManager')->getConversationsByProject($projectID),

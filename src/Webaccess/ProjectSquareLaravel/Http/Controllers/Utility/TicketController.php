@@ -14,6 +14,8 @@ class TicketController extends BaseController
 {
     public function index()
     {
+        $this->request->session()->set('tickets_interface', 'tickets');
+
         return view('projectsquare::tickets.index', [
             'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
                 $this->getUser()->id,
@@ -47,7 +49,8 @@ class TicketController extends BaseController
             'users' => ($this->getCurrentProject()) ? app()->make('UserManager')->getUsersByProject($this->getCurrentProject()->id) : app()->make('UserManager')->getAgencyUsers(),
             'current_project_id' => ($this->getCurrentProject()) ? $this->getCurrentProject()->id : null,
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
-            'data' => ($this->request->session()->has('data')) ? $this->request->session()->get('data') : null
+            'data' => ($this->request->session()->has('data')) ? $this->request->session()->get('data') : null,
+            'back_link' => ($this->request->session()->get('tickets_interface') === 'project') ? route('project_tickets', ['uuid' => $this->getCurrentProject()->id]) : route('tickets_index')
         ]);
     }
 
@@ -103,6 +106,7 @@ class TicketController extends BaseController
             'files' => app()->make('FileManager')->getFilesByTicket($ticketID),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
             'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,
+            'back_link' => ($this->request->session()->get('tickets_interface') === 'project') ? route('project_tickets', ['uuid' => $this->getCurrentProject()->id]) : route('tickets_index')
         ]);
     }
 
