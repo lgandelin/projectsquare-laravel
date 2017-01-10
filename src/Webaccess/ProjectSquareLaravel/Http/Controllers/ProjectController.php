@@ -115,8 +115,6 @@ class ProjectController extends BaseController
         $tasks = app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
             'userID' => $this->getUser()->id,
             'projectID' => $projectID,
-            'statusID' => Input::get('filter_status'),
-            'allocatedUserID' => Input::get('filter_allocated_user'),
         ]));
         $tasksSpentTime = app()->make('GetTasksTotalTimeInteractor')->getTasksTotalSpentTime($this->getUser()->id, $projectID);
         $tasksScheduledTime = new \StdClass();
@@ -127,8 +125,8 @@ class ProjectController extends BaseController
         $tickets = app()->make('GetTicketInteractor')->getTicketsList(
             $this->getUser()->id,
             $projectID,
-            Input::get('filter_allocated_user'),
-            Input::get('filter_status')
+            null,
+            null
         );
         $ticketsSpentTime = app()->make('GetTicketsTotalTimeInteractor')->getTicketsTotalSpentTime($this->getUser()->id, $projectID);
         $ticketsScheduledTime = new \StdClass();
@@ -159,7 +157,7 @@ class ProjectController extends BaseController
             'total_tasks_spent_time_hours' => $tasksSpentTime->hours,
             'total_tasks_remaining_time_days' => $tasksRemainingTime->days,
             'total_tasks_remaining_time_hours' => $tasksRemainingTime->hours,
-            'tasks_progress_percentage' => app()->make('GetReportingIndicatorsInteractor')->getProgressPercentage($this->getUser()->id, $projectID, $tasks),
+            'tasks_progress_percentage' => app()->make('GetReportingIndicatorsInteractor')->getProgressPercentage($this->getUser()->id, $projectID, $project->tasksScheduledTime),
             'tasks_profitability_percentage' => app()->make('GetReportingIndicatorsInteractor')->getProfitabilityPercentage($project->tasksScheduledTime, $tasksSpentTime),
             'tickets_profitability_percentage' => app()->make('GetReportingIndicatorsInteractor')->getProfitabilityPercentage($project->ticketsScheduledTime, $ticketsSpentTime),
             'tickets' => $tickets,
