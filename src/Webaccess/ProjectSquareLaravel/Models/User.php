@@ -2,9 +2,9 @@
 
 namespace Webaccess\ProjectSquareLaravel\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model
+class User extends Authenticatable
 {
     protected $table = 'users';
 
