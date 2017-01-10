@@ -47,7 +47,7 @@ class TaskController extends BaseController
 
     public function store()
     {
-        //try {
+        try {
             $data = [
                 'title' => Input::get('title'),
                 'description' => Input::get('description'),
@@ -66,9 +66,9 @@ class TaskController extends BaseController
             $this->request->session()->flash('confirmation', trans('projectsquare::tasks.add_task_success'));
 
             return redirect()->route('tasks_index');
-        /*} catch (\Exception $e) {
+        } catch (\Exception $e) {
             $this->request->session()->flash('error', $e->getMessage());
-        }*/
+        }
 
         return redirect()->route('tasks_add');
     }
