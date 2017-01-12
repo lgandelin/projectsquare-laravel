@@ -10,7 +10,7 @@
     <script src="{{ asset('js/global.js') }}"></script>
    
     <script>
-        var route_message_reply = "{{ route('messages_reply') }}";
+        var route_message_reply = "{{ route('conversations_reply') }}";
         var route_add_conversation = "{{ route('add_conversation') }}";
         var route_event_create = "{{ route('events_create') }}";
         var route_event_update = "{{ route('events_update') }}";

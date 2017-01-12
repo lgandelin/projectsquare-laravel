@@ -60,7 +60,7 @@
                         </td>
                         <td><span class="text">{{ $conversation->title }}</span></td>
                         <td align="right">
-                            <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-primary see-more"></a>
+                            <a href="{{ route('conversations_view', ['id' => $conversation->id]) }}" class="btn btn-primary see-more"></a>
                         </td>
                     </tr>
                 @endforeach

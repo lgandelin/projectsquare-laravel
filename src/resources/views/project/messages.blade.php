@@ -48,7 +48,7 @@
                             <td>{{ $conversation->title }}</td>
                             <td width="50%">@if (isset($conversation->messages[count($conversation->messages) - 1])){{ str_limit($conversation->messages[count($conversation->messages) - 1]->content, 200) }}@endif</td>
                             <td align="right">
-                                <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn see-more"></a>
+                                <a href="{{ route('conversations_view', ['id' => $conversation->id]) }}" class="btn see-more"></a>
                             </td>
                         </tr>
                     @endforeach

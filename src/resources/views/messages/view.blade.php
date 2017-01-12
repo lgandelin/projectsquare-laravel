@@ -3,7 +3,7 @@
 @section('content')
     <!--<ol class="breadcrumb">
         <li><a href="{{ route('dashboard') }}">Tableau de bord</a></li>
-        <li><a href="{{ route('messages_index') }}">Messages</a></li>
+        <li><a href="{{ route('conversations_index') }}">Messages</a></li>
         <li class="active">{{ $conversation->title }}</li>
     </ol>-->
 

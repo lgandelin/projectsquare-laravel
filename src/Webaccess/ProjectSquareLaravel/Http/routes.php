@@ -119,9 +119,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/ticket_statuses/delete/{id}', array('as' => 'ticket_statuses_delete', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Agency\TicketStatusController@delete'));
 
     //MESSAGES
-    Route::get('/conversations', array('as' => 'messages_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\MessageController@index'));
-    Route::post('/conversations/reply', array('as' => 'messages_reply', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\MessageController@reply'));
-    Route::get('/conversations/{id}', array('as' => 'conversation', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\MessageController@view'));
+    Route::get('/conversations', array('as' => 'conversations_index', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\MessageController@index'));
+    Route::post('/conversations/reply', array('as' => 'conversations_reply', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\MessageController@reply'));
+    Route::get('/conversations/{id}', array('as' => 'conversations_view', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\MessageController@view'));
     Route::post('/conversations', array('as' => 'add_conversation', 'uses' => 'Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\MessageController@addConversation'));
 
     //MONITORING
