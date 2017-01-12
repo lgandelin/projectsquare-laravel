@@ -53,6 +53,7 @@ use Webaccess\ProjectSquare\Interactors\Tasks\UpdateTaskInteractor;
 use Webaccess\ProjectSquare\Interactors\Tasks\DeleteTaskInteractor;
 use Webaccess\ProjectSquareLaravel\Listeners\ConversationCreatedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\MessageCreatedSlackNotification;
+use Webaccess\ProjectSquareLaravel\Listeners\TicketCreatedEmailNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\TicketCreatedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\TicketDeletedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\TicketUpdatedSlackNotification;
@@ -94,6 +95,7 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         //Event::listen(\Webaccess\ProjectSquareLaravel\Events\ConversationCreatedEvent::class, \Webaccess\ProjectSquareLaravel\Listeners\ConversationCreatedEmailNotification::class);
 
         Context::get('event_dispatcher')->addListener(Events::CREATE_TICKET, array(new TicketCreatedSlackNotification(), 'handle'));
+        Context::get('event_dispatcher')->addListener(Events::CREATE_TICKET, array(new TicketCreatedEmailNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::UPDATE_TICKET, array(new TicketUpdatedSlackNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::DELETE_TICKET, array(new TicketDeletedSlackNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::CREATE_CONVERSATION, array(new ConversationCreatedSlackNotification(), 'handle'));
