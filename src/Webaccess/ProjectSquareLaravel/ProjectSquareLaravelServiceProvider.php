@@ -450,7 +450,7 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             'Webaccess\ProjectSquareLaravel\Commands\AlertStatusCodeCommand',
             'Webaccess\ProjectSquareLaravel\Commands\PurgeRequestsCommand',
             'Webaccess\ProjectSquareLaravel\Commands\SendEmailInstallCompletedCommand',
-            'Webaccess\ProjectSquareLaravel\Commands\SavePlatformURLCommand',
+            'Webaccess\ProjectSquareLaravel\Commands\SavePlatformInfosCommand',
         ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Repositories;
 
+use Ramsey\Uuid\Uuid;
 use Webaccess\ProjectSquare\Entities\Message as MessageEntity;
 use Webaccess\ProjectSquare\Repositories\MessageRepository;
 use Webaccess\ProjectSquareLaravel\Models\Message;
@@ -49,13 +50,18 @@ class EloquentMessageRepository implements MessageRepository
 
     public function persistMessage(MessageEntity $message)
     {
-        $messageModel = (!isset($message->id)) ? new Message() : Message::find($message->id);
+        if (!isset($message->id)) {
+            $messageModel = new Message();
+            $modelID = Uuid::uuid4()->toString();
+            $messageModel->id = $modelID;
+            $message->id = $modelID;
+        } else {
+            $messageModel = Message::find($message->id);
+        }
         $messageModel->content = $message->content;
         $messageModel->user_id = $message->userID;
         $messageModel->conversation_id = $message->conversationID;
         $messageModel->save();
-
-        $message->id = $messageModel->id;
 
         return $message;
     }

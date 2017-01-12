@@ -8,7 +8,7 @@
                 <a href="{{ route('project_messages', ['id' => $current_project->id]) }}" class="all pull-right"></a>
                 <button class="btn add create-conversation pull-right"></button>
             @else
-                <a href="{{ route('messages_index') }}" class="all pull-right"></a>
+                <a href="{{ route('conversations_index') }}" class="all pull-right"></a>
             @endif
 
             <a href="#" class="glyphicon glyphicon-move move-widget pull-right"></a>
@@ -49,7 +49,7 @@
                     </td>
 
                     <td align="center">
-                        <!--<a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn btn-sm btn-primary see-more" style="margin-right: 1rem"></a>-->
+                        <!--<a href="{{ route('conversations_view', ['id' => $conversation->id]) }}" class="btn btn-sm btn-primary see-more" style="margin-right: 1rem"></a>-->
                         <button class="button-message pull-right reply-message" data-id="{{ $conversation->id }}"><span class="glyphicon-comment"></span></button>
                     </td>
                 </tr>

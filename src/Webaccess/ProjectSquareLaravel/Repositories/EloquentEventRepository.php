@@ -10,9 +10,11 @@ class EloquentEventRepository implements EventRepository
 {
     public function getEvent($eventID)
     {
-        $eventModel = $this->getEventModel($eventID);
+        if ($eventModel = $this->getEventModel($eventID)) {
+            return $this->getEventEntity($eventModel);
+        }
 
-        return $this->getEventEntity($eventModel);
+        return false;
     }
 
     public function getEventModel($eventID)

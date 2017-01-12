@@ -8,6 +8,8 @@ class Conversation extends Model
 {
     protected $table = 'conversations';
 
+    public $incrementing = false;
+
     protected $fillable = [
         'title',
     ];

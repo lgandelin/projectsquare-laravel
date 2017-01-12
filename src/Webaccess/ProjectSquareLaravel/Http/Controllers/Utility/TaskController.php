@@ -14,6 +14,8 @@ class TaskController extends BaseController
 {
     public function index()
     {
+        $this->request->session()->set('tasks_interface', 'tasks');
+
         return view('projectsquare::tasks.index', [
             'tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest([
                 'projectID' => Input::get('filter_project'),
@@ -41,7 +43,8 @@ class TaskController extends BaseController
             'current_project_id' => ($this->getCurrentProject()) ? $this->getCurrentProject()->id : null,
             'task_statuses' => self::getTasksStatuses(),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
-            'data' => ($this->request->session()->has('data')) ? $this->request->session()->get('data') : null
+            'data' => ($this->request->session()->has('data')) ? $this->request->session()->get('data') : null,
+            'back_link' => ($this->request->session()->get('tasks_interface') === 'project') ? route('project_tasks', ['uuid' => $this->getCurrentProject()->id]) : route('tasks_index')
         ]);
     }
 
@@ -93,6 +96,7 @@ class TaskController extends BaseController
             'users' => app()->make('UserManager')->getUsersByProject($task->projectID),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
             'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,
+            'back_link' => ($this->request->session()->get('tasks_interface') === 'project') ? route('project_tasks', ['uuid' => $this->getCurrentProject()->id]) : route('tasks_index')
         ]);
     }
 

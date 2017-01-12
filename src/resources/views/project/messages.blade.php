@@ -25,7 +25,6 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>#</th>
                         <th>{{ trans('projectsquare::messages.date') }}</th>
                         <th>{{ trans('projectsquare::messages.author') }}</th>
                         <th>{{ trans('projectsquare::messages.title') }}</th>
@@ -36,19 +35,20 @@
                     <tbody>
                     @foreach ($conversations as $conversation)
                         <tr>
-                            <td>{{ $conversation->id }}</td>
                             <td>{{ date('d/m/Y H:i', strtotime($conversation->created_at)) }}</td>
                             <td>
-                                @include('projectsquare::includes.avatar', [
-                                    'id' => $conversation->messages[sizeof($conversation->messages) - 1]->user->id,
-                                    'name' => $conversation->messages[sizeof($conversation->messages) - 1]->user->complete_name
-                                ])
+                                @if (count($conversation->messages) > 0)
+                                    @include('projectsquare::includes.avatar', [
+                                        'id' => $conversation->messages[sizeof($conversation->messages) - 1]->user->id,
+                                        'name' => $conversation->messages[sizeof($conversation->messages) - 1]->user->complete_name
+                                    ])
+                                @endif
                             </td>
 
                             <td>{{ $conversation->title }}</td>
                             <td width="50%">@if (isset($conversation->messages[count($conversation->messages) - 1])){{ str_limit($conversation->messages[count($conversation->messages) - 1]->content, 200) }}@endif</td>
                             <td align="right">
-                                <a href="{{ route('conversation', ['id' => $conversation->id]) }}" class="btn see-more"></a>
+                                <a href="{{ route('conversations_view', ['id' => $conversation->id]) }}" class="btn see-more"></a>
                             </td>
                         </tr>
                     @endforeach

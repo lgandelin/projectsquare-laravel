@@ -11,7 +11,7 @@ class UpdateFilesTableAddProjectId extends Migration
     public function up()
     {
         Schema::table('files', function (Blueprint $table) {
-            $table->integer('project_id')->after('ticket_id')->nullable();
+            $table->uuid('project_id')->after('ticket_id')->nullable();
         });
     }
 

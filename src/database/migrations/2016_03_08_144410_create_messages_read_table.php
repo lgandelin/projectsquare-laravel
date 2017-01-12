@@ -11,8 +11,8 @@ class CreateMessagesReadTable extends Migration
     public function up()
     {
         Schema::create('messages_read', function (Blueprint $table) {
-            $table->integer('user_id');
-            $table->integer('message_id');
+            $table->uuid('user_id');
+            $table->uuid('message_id');
             $table->boolean('read');
         });
     }

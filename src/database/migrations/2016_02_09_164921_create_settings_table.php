@@ -14,7 +14,7 @@ class CreateSettingsTable extends Migration
             $table->increments('id');
             $table->string('key')->nullable();
             $table->string('value')->nullable();
-            $table->integer('project_id')->nullable();
+            $table->uuid('project_id')->nullable();
             $table->timestamps();
         });
     }

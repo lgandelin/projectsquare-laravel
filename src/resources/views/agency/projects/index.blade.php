@@ -1,10 +1,6 @@
 @extends('projectsquare::default')
 
 @section('content')
-    <!--<ol class="breadcrumb">
-        <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
-        <li class="active">{{ trans('projectsquare::projects.projects_list') }}</li>
-    </ol>-->
     <div class="content-page">
       <div class="templates">
         <div class="page-header">
@@ -30,7 +26,6 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>#</th>
                     <th>{{ trans('projectsquare::projects.client') }}</th>
                     <th>{{ trans('projectsquare::projects.project') }}</th>
                     <th>{{ trans('projectsquare::generic.action') }}</th>
@@ -40,7 +35,6 @@
                 <tbody>
                     @foreach ($projects as $project)
                         <tr>
-                            <td>{{ $project->id }}</td>
                             <td>@if (isset($project->client)){{ $project->client->name }}@endif</td>
                             <td>{{ $project->name }}</td>
                             <td align="right">

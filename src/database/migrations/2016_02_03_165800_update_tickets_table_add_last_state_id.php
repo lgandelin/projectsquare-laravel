@@ -11,7 +11,7 @@ class UpdateTicketsTableAddLastStateId extends Migration
     public function up()
     {
         Schema::table('tickets', function (Blueprint $table) {
-            $table->string('last_state_id')->after('type_id')->nullable();
+            $table->uuid('last_state_id')->after('type_id')->nullable();
         });
     }
 

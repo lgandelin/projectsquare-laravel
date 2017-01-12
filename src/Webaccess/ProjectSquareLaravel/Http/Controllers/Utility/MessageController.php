@@ -13,6 +13,8 @@ class MessageController extends BaseController
 {
     public function index()
     {
+        $this->request->session()->set('messages_interface', 'messages');
+
         return view('projectsquare::messages.index', [
             'conversations' => app()->make('ConversationManager')->getConversationsPaginatedList($this->getUser()->id, env('CONVERSATIONS_PER_PAGE', 10), Input::get('filter_project')),
             'projects' => app()->make('ProjectManager')->getUserProjects($this->getUser()->id),
@@ -49,6 +51,7 @@ class MessageController extends BaseController
     {
         return view('projectsquare::messages.view', [
             'conversation' => app()->make('ConversationManager')->getConversationModel($conversationID),
+            'back_link' => ($this->request->session()->get('messages_interface') === 'project') ? route('project_messages', ['uuid' => $this->getCurrentProject()->id]) : route('conversations_index')
         ]);
     }
 

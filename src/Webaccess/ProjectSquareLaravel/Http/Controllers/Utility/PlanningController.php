@@ -4,6 +4,7 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Utility;
 
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Decorators\EventDecorator;
+use Webaccess\ProjectSquare\Entities\Task;
 use Webaccess\ProjectSquare\Exceptions\Planning\EventUpdateNotAuthorizedException;
 use Webaccess\ProjectSquare\Requests\Planning\CreateEventRequest;
 use Webaccess\ProjectSquare\Requests\Planning\DeleteEventRequest;
@@ -141,11 +142,11 @@ class PlanningController extends BaseController
                 'eventID' => Input::get('event_id')
             ]));
 
-            if (isset($event->ticketID) && $event->ticketID > 0) {
+            if (isset($event->ticketID) && $event->ticketID != "") {
                 $ticket = app()->make('GetTicketInteractor')->getTicketWithStates($event->ticketID);
             }
 
-            if (isset($event->taskID) && $event->taskID > 0) {
+            if (isset($event->taskID) && $event->taskID != "") {
                 $task = app()->make('GetTaskInteractor')->execute(new GetTaskRequest([
                     'taskID' => $event->taskID
                 ]));
@@ -217,6 +218,10 @@ class PlanningController extends BaseController
             if (sizeof($events) > 0) {
                 unset($tasks[$i]);
             }
+
+            //Remove completed tasks
+            if ($task->status_id == Task::COMPLETED)
+                unset($tasks[$i]);
         }
 
         return $tasks;

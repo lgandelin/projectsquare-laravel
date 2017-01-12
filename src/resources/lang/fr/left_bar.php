@@ -14,4 +14,5 @@ return [
     'profils' => 'Profils', 
     'tickets_types' => 'Types de tickets', 
     'tickets_statuses' => 'Statuts de tickets',
+    'settings' => 'Réglages',
 ];

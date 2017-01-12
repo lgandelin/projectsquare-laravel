@@ -11,24 +11,26 @@ class MessageCreatedSlackNotification
     public function handle(CreateMessageEvent $event)
     {
         $message = $event->message;
-        $message = (new EloquentMessageRepository())->getMessageModel($message->id);
+        if ($message = (new EloquentMessageRepository())->getMessageModel($message->id) && isset($message->conversation) && isset($message->user)) {
 
-        $lines = [
-            'Projet : *['.$message->conversation->project->client->name.'] '.$message->conversation->project->name.'*',
-            'Auteur : *'.$message->user->complete_name.'*',
-            'Message : '.$message->content,
-            route('conversation', ['id' => $message->conversation->id]),
-        ];
+            $lines = [
+                (isset($message->conversation->project) && isset($message->conversation->project->client)) ? 'Projet : *[' . $message->conversation->project->client->name . '] ' . $message->conversation->project->name . '*' : '',
+                'Auteur : *' . $message->user->complete_name . '*',
+                'Message : ' . $message->content,
+                route('conversation', ['id' => $message->conversation->id]),
+            ];
 
-        $settingSlackChannel = app()->make('SettingManager')->getSettingByKeyAndProject('SLACK_CHANNEL', $message->conversation->project->id);
+            $settingSlackChannel = app()->make('SettingManager')->getSettingByKeyAndProject('SLACK_CHANNEL', $message->conversation->project->id);
 
-        SlackTool::send(
-            'Nouveau message dans la conversation : '.$message->conversation->title,
-            implode("\n", $lines),
-            $message->user->complete_name,
-            route('conversation', ['id' => $message->conversation->id]),
-            ($settingSlackChannel) ? $settingSlackChannel->value : '',
-            '#32B1DB'
-        );
+            SlackTool::send(
+                'Nouveau message dans la conversation : ' . $message->conversation->title,
+                implode("\n", $lines),
+                $message->user->complete_name,
+                route('conversation', ['id' => $message->conversation->id]),
+                ($settingSlackChannel) ? $settingSlackChannel->value : '',
+                '#32B1DB'
+            );
+
+        }
     }
 }

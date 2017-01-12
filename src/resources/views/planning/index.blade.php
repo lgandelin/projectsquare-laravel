@@ -1,10 +1,6 @@
 @extends('projectsquare::default')
 
 @section('content')
-    <!--<ol class="breadcrumb">
-        <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
-        <li class="active">{{ trans('projectsquare::planning.planning') }}</li>
-    </ol>-->
     <div class="content-page">
         <div class="templates planning-template">
             <div class="page-header">
@@ -102,13 +98,13 @@
                                  data-project="@if (isset($task->project)){{ $task->project->id }}@endif"
                                  data-task="{{ $task->id }}"
                                  data-color="@if (isset($task->project)){{ $task->project->color }}@endif"
-                                 data-event='{"title":"#{{ $task->id }} - {{ $task->title }}"}'
+                                 data-event='{"title":"{{ $task->title }}"}'
                                  data-duration="02:00"
                                  class="task fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="@if (isset($task->project))background: {{ $task->project->color }};@endif margin-bottom: 1rem; width: 90%; border: none !important;"
                                     >
                                 <div class="fc-content">
                                     <div class="fc-title">
-                                        #{{ $task->id }} - {{ $task->title }}
+                                        {{ $task->title }}
                                         <span class="unallocate-task glyphicon glyphicon-remove pull-right"></span>
                                     </div>
                                 </div>
@@ -128,11 +124,11 @@
                                  data-project="@if (isset($task->project)){{ $task->project->id }}@endif"
                                  data-task="{{ $task->id }}"
                                  data-color="@if (isset($task->project)){{ $task->project->color }}@endif"
-                                 data-event='{"title":"#{{ $task->id }} - {{ $task->title }}"}'
+                                 data-event='{"title":"{{ $task->title }}"}'
                                  data-duration="02:00"
                                  class="task fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="@if (isset($task->project))background: {{ $task->project->color }};@endif margin-bottom: 1rem; width: 90%; border: none !important;"
                                     >
-                                <div class="fc-content"><div class="fc-title">#{{ $task->id }} - {{ $task->title }}</div></div>
+                                <div class="fc-content"><div class="fc-title">{{ $task->title }}</div></div>
                             </div>
                         @endforeach
                     </div>
@@ -149,13 +145,13 @@
                                  data-project="@if (isset($ticket->project)){{ $ticket->project->id }}@endif"
                                  data-ticket="{{ $ticket->id }}"
                                  data-color="@if (isset($ticket->project)){{ $ticket->project->color }}@endif"
-                                 data-event='{"title":"#{{ $ticket->id }} - {{ $ticket->title }}"}'
+                                 data-event='{"title":"{{ $ticket->title }}"}'
                                  data-duration="02:00"
                                  class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="@if (isset($ticket->project))background: {{ $ticket->project->color }};@endif margin-bottom: 1rem; width: 90%; border: none !important;"
                             >
                                 <div class="fc-content">
                                     <div class="fc-title">
-                                        #{{ $ticket->id }} - {{ $ticket->title }}
+                                        {{ $ticket->title }}
                                         <span class="unallocate-ticket glyphicon glyphicon-remove pull-right"></span>
                                     </div>
                                 </div>
@@ -175,11 +171,11 @@
                                  data-project="@if (isset($ticket->project)){{ $ticket->project->id }}@endif"
                                  data-ticket="{{ $ticket->id }}"
                                  data-color="@if (isset($ticket->project)){{ $ticket->project->color }}@endif"
-                                 data-event='{"title":"#{{ $ticket->id }} - {{ $ticket->title }}"}'
+                                 data-event='{"title":"{{ $ticket->title }}"}'
                                  data-duration="02:00"
                                  class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="@if (isset($ticket->project))background: {{ $ticket->project->color }};@endif margin-bottom: 1rem; width: 90%; border: none !important;"
                             >
-                                <div class="fc-content"><div class="fc-title">#{{ $ticket->id }} - {{ $ticket->title }}</div></div>
+                                <div class="fc-content"><div class="fc-title">{{ $ticket->title }}</div></div>
                             </div>
                         @endforeach
                     </div>
@@ -200,12 +196,12 @@
                      data-project="@{{project_id}}"
                      data-ticket="@{{id}}"
                      data-color="@{{color}}"
-                     data-event='{"title":"#@{{id}} - @{{title}}"}'
+                     data-event='{"title":"@{{title}}"}'
                      data-duration="02:00"
                      class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: @{{color}}; margin-bottom: 1rem; width: 90%; border: none !important;"
                 >
                     <div class="fc-content"><div class="fc-title">
-                        #@{{id}} - @{{title}}
+                        @{{title}}
                         <span class="unallocate-ticket glyphicon glyphicon-remove pull-right"></span>
                     </div></div>
                 </div>
@@ -217,12 +213,12 @@
                      data-project="@{{project_id}}"
                      data-task="@{{id}}"
                      data-color="@{{color}}"
-                     data-event='{"title":"#@{{id}} - @{{title}}"}'
+                     data-event='{"title":"@{{title}}"}'
                      data-duration="02:00"
                      class="task fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: @{{color}}; margin-bottom: 1rem; width: 90%; border: none !important;"
                         >
                     <div class="fc-content"><div class="fc-title">
-                        #@{{id}} - @{{title}}
+                        @{{title}}
                         <span class="unallocate-task glyphicon glyphicon-remove pull-right"></span>
                     </div></div>
                 </div>

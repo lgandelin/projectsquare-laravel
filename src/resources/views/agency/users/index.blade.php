@@ -1,10 +1,6 @@
 @extends('projectsquare::default')
 
 @section('content')
-    <!--<ol class="breadcrumb">
-        <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
-        <li class="active">{{ trans('projectsquare::users.users_list') }}</li>
-    </ol>-->
     <div class="content-page">
         <div class="templates">
             <div class="page-header">
@@ -30,7 +26,6 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>#</th>
                     <th>{{ trans('projectsquare::users.name') }}</th>
                     <th>{{ trans('projectsquare::users.avatar') }}</th>
                     <th>{{ trans('projectsquare::users.email') }}</th>
@@ -41,7 +36,6 @@
                 <tbody>
                     @foreach ($users as $user)
                         <tr>
-                            <td>{{ $user->id }}</td>
                             <td>{{ $user->complete_name }}</td>
                              <td>
                                 @include('projectsquare::includes.avatar', [

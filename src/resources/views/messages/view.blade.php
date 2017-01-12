@@ -1,12 +1,6 @@
 @extends('projectsquare::default')
 
 @section('content')
-    <!--<ol class="breadcrumb">
-        <li><a href="{{ route('dashboard') }}">Tableau de bord</a></li>
-        <li><a href="{{ route('messages_index') }}">Messages</a></li>
-        <li class="active">{{ $conversation->title }}</li>
-    </ol>-->
-
     <div class="content-page">
         <div class="templates message-view-template">
             <div class="page-header">
@@ -50,7 +44,7 @@
                     </div>
 
                     <div class="submit">
-                        <a href="{{ \URL::previous() }}" class="btn back button pull-right"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.back') }}</a>
+                        <a href="{{ $back_link }}" class="btn back button pull-right"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.back') }}</a>
                         <button class="btn button pull-right reply-message" data-id="{{ $message->id }}" style="margin-right: 1rem;"><span class="glyphicon glyphicon-comment"></span> {{ trans('projectsquare::messages.reply_message') }}</button>
                     </div>
                 </div>

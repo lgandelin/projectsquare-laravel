@@ -1,11 +1,6 @@
 @extends('projectsquare::default')
 
 @section('content')
-    <!--<ol class="breadcrumb">
-        <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
-        <li><a href="{{ route('tickets_index') }}">{{ trans('projectsquare::tickets.tickets_list') }}</a></li>
-        <li class="active">{{ trans('projectsquare::tickets.edit_ticket') }}</li>
-    </ol>-->
     <div class="content-page">
         <div class="templates">
             <div class="page-header">

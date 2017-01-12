@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "66c3b443099ea002daee7fb574b2de97",
-    "content-hash": "3d89a3ce04fb63804f0ee9d734165e9b",
+    "hash": "b8e68bd6cb4f5e5b935cf730fdf659d8",
+    "content-hash": "c3c4ac2610133f94c2bd89b377cfc137",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -145,12 +145,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "b7e4d3ad18a984f5c80df47ccd70483067f8e24e"
+                "reference": "de13c1dcbb5bb1d8146bdbe4c700cc491b2501ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/b7e4d3ad18a984f5c80df47ccd70483067f8e24e",
-                "reference": "b7e4d3ad18a984f5c80df47ccd70483067f8e24e",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/de13c1dcbb5bb1d8146bdbe4c700cc491b2501ee",
+                "reference": "de13c1dcbb5bb1d8146bdbe4c700cc491b2501ee",
                 "shasum": ""
             },
             "require": {
@@ -174,12 +174,12 @@
             "authors": [
                 {
                     "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
+                    "email": "taylor@laravel.com"
                 }
             ],
             "description": "The Illuminate Contracts package.",
-            "homepage": "http://laravel.com",
-            "time": "2016-07-10 20:29:55"
+            "homepage": "https://laravel.com",
+            "time": "2016-10-09 13:50:03"
         },
         {
             "name": "illuminate/support",
@@ -187,12 +187,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "6aae288b90be2f8acdd00168109e894ade5923c7"
+                "reference": "6df6a6c0dcef28749425f73f5880152d13b140ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/6aae288b90be2f8acdd00168109e894ade5923c7",
-                "reference": "6aae288b90be2f8acdd00168109e894ade5923c7",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/6df6a6c0dcef28749425f73f5880152d13b140ad",
+                "reference": "6df6a6c0dcef28749425f73f5880152d13b140ad",
                 "shasum": ""
             },
             "require": {
@@ -207,7 +207,6 @@
             },
             "suggest": {
                 "illuminate/filesystem": "Required to use the composer class (5.2.*).",
-                "jeremeamia/superclosure": "Required to be able to serialize closures (~2.2).",
                 "symfony/process": "Required to use the composer class (3.2.*).",
                 "symfony/var-dumper": "Required to use the dd function (3.2.*)."
             },
@@ -232,12 +231,12 @@
             "authors": [
                 {
                     "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
+                    "email": "taylor@laravel.com"
                 }
             ],
             "description": "The Illuminate Support package.",
-            "homepage": "http://laravel.com",
-            "time": "2016-07-17 19:51:08"
+            "homepage": "https://laravel.com",
+            "time": "2016-10-13 21:07:32"
         },
         {
             "name": "intervention/image",
@@ -397,6 +396,87 @@
                 "response"
             ],
             "time": "2015-05-04 20:22:00"
+        },
+        {
+            "name": "ramsey/uuid",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ramsey/uuid.git",
+                "reference": "2d19c68f5cc8b414936aff8a236fe9578f42e57b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/2d19c68f5cc8b414936aff8a236fe9578f42e57b",
+                "reference": "2d19c68f5cc8b414936aff8a236fe9578f42e57b",
+                "shasum": ""
+            },
+            "require": {
+                "paragonie/random_compat": "^1.0|^2.0",
+                "php": ">=5.4"
+            },
+            "replace": {
+                "rhumsaa/uuid": "self.version"
+            },
+            "require-dev": {
+                "apigen/apigen": "^4.1",
+                "codeception/aspect-mock": "1.0.0",
+                "goaop/framework": "1.0.0-alpha.2",
+                "ircmaxell/random-lib": "^1.1",
+                "jakub-onderka/php-parallel-lint": "^0.9.0",
+                "mockery/mockery": "^0.9.4",
+                "moontoast/math": "^1.1",
+                "php-mock/php-mock-phpunit": "^0.3|^1.1",
+                "phpunit/phpunit": "^4.7|>=5.0 <5.4",
+                "satooshi/php-coveralls": "^0.6.1",
+                "squizlabs/php_codesniffer": "^2.3"
+            },
+            "suggest": {
+                "ext-libsodium": "Provides the PECL libsodium extension for use with the SodiumRandomGenerator",
+                "ext-uuid": "Provides the PECL UUID extension for use with the PeclUuidTimeGenerator and PeclUuidRandomGenerator",
+                "ircmaxell/random-lib": "Provides RandomLib for use with the RandomLibAdapter",
+                "moontoast/math": "Provides support for converting UUID to 128-bit integer (in string form).",
+                "ramsey/uuid-console": "A console application for generating UUIDs with ramsey/uuid",
+                "ramsey/uuid-doctrine": "Allows the use of Ramsey\\Uuid\\Uuid as Doctrine field type."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ramsey\\Uuid\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marijn Huizendveld",
+                    "email": "marijn.huizendveld@gmail.com"
+                },
+                {
+                    "name": "Thibaud Fabre",
+                    "email": "thibaud@aztech.io"
+                },
+                {
+                    "name": "Ben Ramsey",
+                    "email": "ben@benramsey.com",
+                    "homepage": "https://benramsey.com"
+                }
+            ],
+            "description": "Formerly rhumsaa/uuid. A PHP 5.4+ library for generating RFC 4122 version 1, 3, 4, and 5 universally unique identifiers (UUID).",
+            "homepage": "https://github.com/ramsey/uuid",
+            "keywords": [
+                "guid",
+                "identifier",
+                "uuid"
+            ],
+            "time": "2016-10-07 13:31:56"
         }
     ],
     "packages-dev": [
@@ -1261,12 +1341,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "55e309591b7e5e37ed5a10ead07bfeda11194539"
+                "reference": "5338ab6d2ff98f12a4024e4e962cdfd1c0541e44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/55e309591b7e5e37ed5a10ead07bfeda11194539",
-                "reference": "55e309591b7e5e37ed5a10ead07bfeda11194539",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/5338ab6d2ff98f12a4024e4e962cdfd1c0541e44",
+                "reference": "5338ab6d2ff98f12a4024e4e962cdfd1c0541e44",
                 "shasum": ""
             },
             "require": {
@@ -1278,7 +1358,7 @@
                 "myclabs/deep-copy": "~1.3",
                 "php": "^5.6 || ^7.0",
                 "phpspec/prophecy": "^1.3.1",
-                "phpunit/php-code-coverage": "^4.0",
+                "phpunit/php-code-coverage": "^4.0.1",
                 "phpunit/php-file-iterator": "~1.4",
                 "phpunit/php-text-template": "~1.2",
                 "phpunit/php-timer": "^1.0.6",
@@ -1331,7 +1411,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-07-13 17:40:22"
+            "time": "2016-10-03 13:01:43"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -1339,12 +1419,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "363392d7d849dc05902d88cc1d7046805b6b5f2d"
+                "reference": "238d7a2723bce689c79eeac9c7d5e1d623bb9dc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/363392d7d849dc05902d88cc1d7046805b6b5f2d",
-                "reference": "363392d7d849dc05902d88cc1d7046805b6b5f2d",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/238d7a2723bce689c79eeac9c7d5e1d623bb9dc2",
+                "reference": "238d7a2723bce689c79eeac9c7d5e1d623bb9dc2",
                 "shasum": ""
             },
             "require": {
@@ -1390,7 +1470,54 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2016-07-02 15:30:03"
+            "time": "2016-10-09 07:01:45"
+        },
+        {
+            "name": "psr/log",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Log\\": "Psr/Log/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "homepage": "https://github.com/php-fig/log",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "time": "2016-10-10 12:19:37"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -2076,6 +2203,63 @@
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
             "time": "2016-06-29 05:43:10"
+        },
+        {
+            "name": "symfony/debug",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/debug.git",
+                "reference": "61de4883414e3a640ffac1798d411a37dc71bc20"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/61de4883414e3a640ffac1798d411a37dc71bc20",
+                "reference": "61de4883414e3a640ffac1798d411a37dc71bc20",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "psr/log": "~1.0"
+            },
+            "conflict": {
+                "symfony/http-kernel": ">=2.3,<2.3.24|~2.4.0|>=2.5,<2.5.9|>=2.6,<2.6.2"
+            },
+            "require-dev": {
+                "symfony/class-loader": "~2.8|~3.0",
+                "symfony/http-kernel": "~2.8|~3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Debug\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Debug Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-09-30 10:45:11"
         },
         {
             "name": "symfony/dom-crawler",

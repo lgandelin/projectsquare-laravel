@@ -15,5 +15,5 @@ return [
     'browsers' => 'Navigateurs', 
     'platform' => 'Plateforme',
     'countries' => 'Pays', 
-    'id' => 'Identifiant de vue Google Analytics non configurée pour ce projet.', 
+    'id' => 'Identifiant de vue Google Analytics non configuré pour ce projet.',
 ];

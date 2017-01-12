@@ -162,12 +162,12 @@
         <form action="{{ route('project_settings', ['id' => $project->id]) }}" method="post">
             <div class="form-group">
                 <label for="value">
-                    {{ trans('projectsquare::settings.acceptable_loading_time') }}
+                    {{ trans('projectsquare::project.acceptable_loading_time') }}
                     @include('projectsquare::includes.tooltip', [
                         'text' => trans('projectsquare::tooltips.project.acceptable_loading_time')
                     ])
                 </label>
-                <input class="form-control" type="text" placeholder="{{ trans('projectsquare::settings.acceptable_loading_time_placeholder') }}" name="value" @if (isset($acceptable_loading_time))value="{{ $acceptable_loading_time }}"@endif />
+                <input class="form-control" type="text" placeholder="{{ trans('projectsquare::project.acceptable_loading_time_placeholder') }}" name="value" @if (isset($acceptable_loading_time))value="{{ $acceptable_loading_time }}"@endif />
             </div>
 
             <div class="form-group">
@@ -190,12 +190,12 @@
         <form action="{{ route('project_settings', ['id' => $project->id]) }}" method="post">
             <div class="form-group">
                 <label for="value">
-                    {{ trans('projectsquare::settings.alert_loading_time_email') }}
+                    {{ trans('projectsquare::project.alert_loading_time_email') }}
                     @include('projectsquare::includes.tooltip', [
                         'text' => trans('projectsquare::tooltips.project.email_loading_time')
                     ])
                 </label>
-                <input class="form-control" type="text" placeholder="{{ trans('projectsquare::settings.alert_loading_time_email') }}" name="value" @if (isset($alert_loading_time_email))value="{{ $alert_loading_time_email }}"@endif />
+                <input class="form-control" type="text" placeholder="{{ trans('projectsquare::project.alert_loading_time_email') }}" name="value" @if (isset($alert_loading_time_email))value="{{ $alert_loading_time_email }}"@endif />
             </div>
 
             <div class="form-group">
@@ -218,12 +218,12 @@
         <form action="{{ route('project_settings', ['id' => $project->id]) }}" method="post">
             <div class="form-group">
                 <label for="value">
-                    {{ trans('projectsquare::settings.slack_channel') }}
+                    {{ trans('projectsquare::project.slack_channel') }}
                     @include('projectsquare::includes.tooltip', [
                         'text' => trans('projectsquare::tooltips.project.slack_channel')
                     ])
                 </label>
-                <input class="form-control" type="text" placeholder="{{ trans('projectsquare::settings.slack_channel_placeholder') }}" name="value" @if (isset($slack_channel))value="{{ $slack_channel }}"@endif />
+                <input class="form-control" type="text" placeholder="{{ trans('projectsquare::project.slack_channel_placeholder') }}" name="value" @if (isset($slack_channel))value="{{ $slack_channel }}"@endif />
             </div>
 
             <div class="form-group">
@@ -246,12 +246,12 @@
         <form action="{{ route('project_settings', ['id' => $project->id]) }}" method="post">
             <div class="form-group">
                 <label for="value">
-                    {{ trans('projectsquare::settings.ga_view_id') }}
+                    {{ trans('projectsquare::project.ga_view_id') }}
                     @include('projectsquare::includes.tooltip', [
                         'text' => trans('projectsquare::tooltips.project.profile_google_analytics')
                     ])
                 </label>
-                <input class="form-control" type="text" placeholder="{{ trans('projectsquare::settings.ga_view_id_placeholder') }}" name="value" @if (isset($ga_view_id))value="{{ $ga_view_id }}"@endif />
+                <input class="form-control" type="text" placeholder="{{ trans('projectsquare::project.ga_view_id_placeholder') }}" name="value" @if (isset($ga_view_id))value="{{ $ga_view_id }}"@endif />
             </div>
 
             <div class="form-group">

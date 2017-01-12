@@ -1,11 +1,6 @@
 @extends('projectsquare::default')
 
 @section('content')
-    <!--<ol class="breadcrumb">
-        <li><a href="{{ route('dashboard') }}">{{ trans('projectsquare::dashboard.panel_title') }}</a></li>
-        <li><a href="{{ route('tickets_index') }}">{{ trans('projectsquare::tickets.tickets_list') }}</a></li>
-        <li class="active">{{ trans('projectsquare::tickets.add_ticket') }}</li>
-    </ol>-->
     <div class="content-page">
         <div class="templates">
             <div class="page-header">
@@ -66,7 +61,7 @@
                             <button type="submit" class="btn valid">
                                 <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                             </button>
-                            <a href="{{ \URL::previous() }}" class="btn btn-default back">
+                            <a href="{{ $back_link }}" class="btn btn-default back">
                                 <span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.back') }}
                             </a>
                         </div>

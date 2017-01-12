@@ -58,15 +58,20 @@ class UserManager
             throw new \Exception(trans('projectsquare::users.email_already_existing_error'));
         }
 
-        $this->repository->createUser($firstName, $lastName, $email, Hash::make($password), $mobile, $phone, $clientID, $clientRole, $isAdministrator);
+        if ($platform = Platform::first()) {
 
-        $platform = Platform::first();
+            if (isset($platform->users_limit) && sizeof($this->getAgencyUsers()) >= $platform->users_limit) {
+                throw new \Exception(trans('projectsquare::users.users_limit_reached'));
+            }
 
-        Mail::send('projectsquare::emails.user_account_created', array('email' => $email, 'first_name' => $firstName, 'last_name' => $lastName, 'password' => $password, 'url' => $platform->url), function ($message) use ($email) {
-            $message->to($email)
-                ->from('no-reply@projectsquare.fr')
-                ->subject('[projectsquare] Votre compte a été créé avec succès');
-        });
+            $this->repository->createUser($firstName, $lastName, $email, Hash::make($password), $mobile, $phone, $clientID, $clientRole, $isAdministrator);
+
+            Mail::send('projectsquare::emails.user_account_created', array('email' => $email, 'first_name' => $firstName, 'last_name' => $lastName, 'password' => $password, 'url' => isset($platform->url) ? $platform->url : $platform->url), function ($message) use ($email) {
+                $message->to($email)
+                    ->from('no-reply@projectsquare.fr')
+                    ->subject('[projectsquare] Votre compte a été créé avec succès');
+            });
+        }
     }
 
     public function updateUser($userID, $firstName, $lastName, $email, $password=null, $mobile=null, $phone=null, $clientID=null, $clientRole=null, $isAdministrator=null)

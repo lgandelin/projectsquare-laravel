@@ -137,7 +137,7 @@ $(document).ready(function() {
         }
         var string = JSON.stringify(widgets);
         if (string != "") {
-            createCookie('dashboard-widgets', JSON.stringify(widgets));
+            createCookie('dashboard-widgets-' + $('#current-user-id').val(), JSON.stringify(widgets));
         }
     }
 });
