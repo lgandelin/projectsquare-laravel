@@ -2,9 +2,6 @@
 
 @section('content')
     @if (!$is_client)
-        <!--<ol class="breadcrumb">
-            <li class="active">{{ trans('projectsquare::dashboard.panel_title') }}</li>
-        </ol>-->
     @else
         @include('projectsquare::includes.project_bar', ['active' => 'dashboard', 'project' => $current_project])
     @endif
