@@ -3,6 +3,7 @@
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Utility;
 
 use Illuminate\Support\Facades\Input;
+use Webaccess\ProjectSquare\Requests\Notifications\ReadNotificationRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\CreateTicketRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\DeleteTicketRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\UpdateTicketInfosRequest;
@@ -88,6 +89,19 @@ class TicketController extends BaseController
 
     public function edit($ticketID)
     {
+        //Read linked notification
+        $notifications = $this->getUnreadNotifications();
+        if (is_array($notifications) && sizeof($notifications) > 0) {
+            foreach ($notifications as $notification) {
+                if ($notification->entityID == $ticketID) {
+                    app()->make('ReadNotificationInteractor')->execute(new ReadNotificationRequest([
+                        'notificationID' => $notification->id,
+                        'userID' => $this->getUser()->id,
+                    ]));
+                }
+            }
+        }
+
         try {
             $ticket = app()->make('GetTicketInteractor')->getTicketWithStates($ticketID, $this->getUser()->id);
         } catch (\Exception $e) {
