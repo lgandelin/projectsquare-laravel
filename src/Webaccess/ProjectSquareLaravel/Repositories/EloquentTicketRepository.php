@@ -26,8 +26,9 @@ class EloquentTicketRepository implements TicketRepository
 
         if (!$statusID) {
             foreach ($tickets as $i => $ticket) {
+
                 //Remove archived tickets
-                if (isset($ticket->last_state->status) && $ticket->last_state->status && $ticket->last_state->status->id == env('ARCHIVED_TICKET_STATUS_ID')) {
+                if (isset($ticket->last_state->status) && $ticket->last_state->status && !$ticket->last_state->status->include_in_planning) {
                     unset($tickets[$i]);
                 }
             }

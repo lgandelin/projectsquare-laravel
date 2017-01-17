@@ -188,17 +188,8 @@ class PlanningController extends BaseController
     {
         foreach ($tickets as $i => $ticket) {
 
-            //Remove tickets already scheduled
-            $events = app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
-                'ticketID' => $ticket->id
-            ]));
-
-            if (count($events) > 0) {
-                unset($tickets[$i]);
-            }
-
             //Remove archived tickets
-            if (isset($ticket->last_state->status) && $ticket->last_state->status && $ticket->last_state->status->id == env('ARCHIVED_TICKET_STATUS_ID')) {
+            if (isset($ticket->last_state->status) && !$ticket->last_state->status->include_in_planning) {
                 unset($tickets[$i]);
             }
         }

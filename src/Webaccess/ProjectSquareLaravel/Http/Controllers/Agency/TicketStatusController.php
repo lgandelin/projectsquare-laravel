@@ -25,7 +25,10 @@ class TicketStatusController extends BaseController
     public function store()
     {
         try {
-            app()->make('TicketStatusManager')->createTicketStatus(Input::get('name'));
+            app()->make('TicketStatusManager')->createTicketStatus(
+                Input::get('name'),
+                Input::get('include_in_planning') === 'y' ? 1 : 0
+            );
             $this->request->session()->flash('confirmation', trans('projectsquare::ticket_statuses.add_ticket_status_success'));
         } catch (\Exception $e) {
             $this->request->session()->flash('error', trans('projectsquare::ticket_statuses.add_ticket_status_error'));
@@ -56,7 +59,8 @@ class TicketStatusController extends BaseController
         try {
             app()->make('TicketStatusManager')->updateTicketStatus(
                 Input::get('ticket_status_id'),
-                Input::get('name')
+                Input::get('name'),
+                Input::get('include_in_planning') === 'y' ? 1 : 0
             );
             $this->request->session()->flash('confirmation', trans('projectsquare::ticket_statuses.edit_ticket_status_success'));
         } catch (\Exception $e) {

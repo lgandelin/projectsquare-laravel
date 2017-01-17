@@ -10,5 +10,6 @@ class TicketStatus extends Model
 
     protected $fillable = [
         'name',
+        'include_in_planning'
     ];
 }
