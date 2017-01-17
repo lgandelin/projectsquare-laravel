@@ -56,6 +56,7 @@ use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteStatusCodeEvent;
 use Webaccess\ProjectSquareLaravel\Listeners\AlertWebsiteLoadingTimeSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\AlertWebsiteStatusCodeSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\ConversationCreatedSlackNotification;
+use Webaccess\ProjectSquareLaravel\Listeners\MessageCreatedEmailNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\MessageCreatedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\TaskCreatedEmailNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\TicketCreatedEmailNotification;
@@ -103,6 +104,7 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         Context::get('event_dispatcher')->addListener(Events::DELETE_TICKET, array(new TicketDeletedSlackNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::CREATE_CONVERSATION, array(new ConversationCreatedSlackNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::CREATE_MESSAGE, array(new MessageCreatedSlackNotification(), 'handle'));
+        //Context::get('event_dispatcher')->addListener(Events::CREATE_MESSAGE, array(new MessageCreatedEmailNotification(), 'handle'));
 
         Context::get('event_dispatcher')->addListener(Events::CREATE_TASK, array(new TaskCreatedEmailNotification(), 'handle'));
 

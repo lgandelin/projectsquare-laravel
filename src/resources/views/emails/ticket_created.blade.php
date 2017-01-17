@@ -1,6 +1,6 @@
 Un nouveau ticket vous a été assigné :<br/>
 
-<strong>{{ $ticket->title }}</strong>
+<strong>{{ $ticket->title }}</strong><br/><br/>
 
 @if (isset($ticket->project) && isset($ticket->project->client))<strong>Projet :</strong> [{{ $ticket->project->client->name }}] {{ $ticket->project->name }}@endif<br/><br/>
 @if (isset($ticket->type))<strong>Type:</strong> {{ $ticket->type->name }}<br/><br/>@endif

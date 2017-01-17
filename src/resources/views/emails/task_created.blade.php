@@ -1,6 +1,6 @@
 Une nouvelle tâche vous a été assignée :<br/>
 
-<strong>{{ $task->title }}</strong>
+<strong>{{ $task->title }}</strong><br/><br/>
 
 @if (isset($task->project) && isset($task->project->client))<strong>Projet :</strong> [{{ $task->project->client->name }}] {{ $task->project->name }}@endif<br/><br/>
 @if (isset($task->status))<strong>Etat :</strong> @if ($task->status == 1) A faire @elseif ($task->status == 2) En cours @else Terminé @endif<br/><br/>@endif
