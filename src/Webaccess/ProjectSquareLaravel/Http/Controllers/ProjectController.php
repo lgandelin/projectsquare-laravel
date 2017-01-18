@@ -56,6 +56,7 @@ class ProjectController extends BaseController
                 'status' => Input::get('filter_status'),
                 'type' => Input::get('filter_type'),
             ],
+
             'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
                 $this->getUser()->id,
                 env('TICKETS_PER_PAGE', 10),
