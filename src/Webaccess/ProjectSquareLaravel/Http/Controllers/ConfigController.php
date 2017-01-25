@@ -55,12 +55,12 @@ class ConfigController extends Controller
     private function insertSeedsInDB()
     {
         //Ticket statuses
-        DB::table('ticket_statuses')->insert(['name' => 'A faire']);
-        DB::table('ticket_statuses')->insert(['name' => 'En cours']);
-        DB::table('ticket_statuses')->insert(['name' => 'A recetter']);
-        DB::table('ticket_statuses')->insert(['name' => 'A livrer en prod']);
-        DB::table('ticket_statuses')->insert(['name' => 'En production']);
-        DB::table('ticket_statuses')->insert(['name' => 'Archivé']);
+        DB::table('ticket_statuses')->insert(['name' => 'A faire', 'include_in_planning' => true]);
+        DB::table('ticket_statuses')->insert(['name' => 'En cours', 'include_in_planning' => true]);
+        DB::table('ticket_statuses')->insert(['name' => 'A recetter', 'include_in_planning' => true]);
+        DB::table('ticket_statuses')->insert(['name' => 'A livrer en prod', 'include_in_planning' => true]);
+        DB::table('ticket_statuses')->insert(['name' => 'En production', 'include_in_planning' => true]);
+        DB::table('ticket_statuses')->insert(['name' => 'Archivé', 'include_in_planning' => false]);
 
         //Ticket types
         DB::table('ticket_types')->insert(['name' => 'Bug']);
@@ -72,6 +72,6 @@ class ConfigController extends Controller
         DB::table('roles')->insert(['name' => 'Chef de projet']);
         DB::table('roles')->insert(['name' => 'Chef de projet technique']);
         DB::table('roles')->insert(['name' => 'Développeur']);
-        DB::table('roles')->insert(['name' => 'Webdesigner']);
+        DB::table('roles')->insert(['name' => 'Web designer']);
     }
 }
