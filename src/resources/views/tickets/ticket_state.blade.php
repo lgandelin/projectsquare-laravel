@@ -57,7 +57,7 @@
                 <select class="form-control" name="priority">
                     <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
                     @for ($i = 1; $i <= 5; $i++)
-                    <option value="{{ $i }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->priority == $i)selected="selected"@endif>{{ $i }}</option>
+                    <option value="{{ $i }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->priority == $i)selected="selected"@endif>{{ trans('projectsquare::generic.priority-' . $i) }}</option>
                     @endfor
                 </select>
             </div>

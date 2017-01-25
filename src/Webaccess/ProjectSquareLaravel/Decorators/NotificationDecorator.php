@@ -24,7 +24,7 @@ class NotificationDecorator
                 } elseif ($notification->type == 'MESSAGE_CREATED') {
                     $message = (new EloquentMessageRepository())->getMessage($notification->entityID);
                     $user = app()->make('UserManager')->getUser($message->userID);
-                    $notification->link = $message ? route('conversation', ['id' => $message->conversationID]) : '';
+                    $notification->link = $message ? route('conversations_view', ['id' => $message->conversationID]) : '';
                     $notification->author_name = $user ? $user->firstName.' '.$user->lastName : '';
                 } elseif ($notification->type == 'TICKET_CREATED') {
                     $ticket = (new EloquentTicketRepository())->getTicket($notification->entityID);

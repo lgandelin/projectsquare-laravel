@@ -25,14 +25,14 @@ class TicketStatusManager
         return $ticketStatus;
     }
 
-    public static function createTicketStatus($name)
+    public static function createTicketStatus($name, $include_in_planning = true)
     {
-        EloquentTicketStatusRepository::createTicketStatus($name);
+        EloquentTicketStatusRepository::createTicketStatus($name, $include_in_planning);
     }
 
-    public static function updateTicketStatus($ticketStatusID, $name)
+    public static function updateTicketStatus($ticketStatusID, $name, $include_in_planning = true)
     {
-        EloquentTicketStatusRepository::updateTicketStatus($ticketStatusID, $name);
+        EloquentTicketStatusRepository::updateTicketStatus($ticketStatusID, $name, $include_in_planning);
     }
 
     public static function deleteTicketStatus($ticketStatusID)

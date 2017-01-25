@@ -4,7 +4,7 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Project;
 
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Requests\Notifications\CreateNotificationRequest;
-use Webaccess\ProjectSquare\Responses\Notifications\CreateNotificationInteractor;
+use Webaccess\ProjectSquare\Interactors\Notifications\CreateNotificationInteractor;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentNotificationRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;

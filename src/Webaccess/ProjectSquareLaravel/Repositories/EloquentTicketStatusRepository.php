@@ -22,17 +22,18 @@ class EloquentTicketStatusRepository implements TicketStatusRepository
         return TicketStatus::paginate($limit);
     }
 
-    public static function createTicketStatus($name)
+    public static function createTicketStatus($name, $include_in_planning)
     {
         $ticketStatus = new TicketStatus();
         $ticketStatus->save();
-        self::updateTicketStatus($ticketStatus->id, $name);
+        self::updateTicketStatus($ticketStatus->id, $name, $include_in_planning);
     }
 
-    public static function updateTicketStatus($ticketStatusID, $name)
+    public static function updateTicketStatus($ticketStatusID, $name, $include_in_planning)
     {
         $ticketStatus = TicketStatus::find($ticketStatusID);
         $ticketStatus->name = $name;
+        $ticketStatus->include_in_planning = $include_in_planning;
         $ticketStatus->save();
     }
 

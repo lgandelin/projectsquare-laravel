@@ -22,7 +22,8 @@
             @include('projectsquare::agency.ticket_statuses.form', [
                 'form_action' => route('ticket_statuses_update'),
                 'ticket_status_id' => $ticket_status->id,
-                'ticket_status_name' => $ticket_status->name
+                'ticket_status_name' => $ticket_status->name,
+                'ticket_status_include_in_planning' => $ticket_status->include_in_planning
             ])
         </div>
     </div>

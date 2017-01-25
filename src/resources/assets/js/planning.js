@@ -250,9 +250,6 @@ $(document).ready(function() {
                     $('#event-infos .wrapper').find('.project_id').val(event.project_id);
 
                     $('#event-infos .loading').hide();
-
-                    if (event.ticket_id) $('#ticket-' + event.ticket_id).remove();
-                    if (event.task_id) $('#task-' + event.task_id).remove();
                 }
             });
         },

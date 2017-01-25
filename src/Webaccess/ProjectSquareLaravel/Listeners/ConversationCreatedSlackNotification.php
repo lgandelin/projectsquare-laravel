@@ -17,7 +17,7 @@ class ConversationCreatedSlackNotification
                 'Titre : *' . $conversation->title . '*',
                 'Auteur : *' . $conversation->messages[0]->user->complete_name . '*',
                 'Message : ' . $conversation->messages[0]->content,
-                route('conversation', ['id' => $conversation->id]),
+                route('conversations_view', ['id' => $conversation->id]),
             ];
 
             $settingSlackChannel = app()->make('SettingManager')->getSettingByKeyAndProject('SLACK_CHANNEL', $conversation->project->id);
@@ -26,7 +26,7 @@ class ConversationCreatedSlackNotification
                 'Nouvelle conversation : ' . $conversation->title,
                 implode("\n", $lines),
                 $conversation->messages[0]->user->complete_name,
-                route('conversation', ['id' => $conversation->id]),
+                route('conversations_view', ['id' => $conversation->id]),
                 ($settingSlackChannel) ? $settingSlackChannel->value : '',
                 '#32B1DB'
             );
