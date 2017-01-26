@@ -5,6 +5,7 @@ namespace Webaccess\ProjectSquareLaravel;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Intervention\Image\Facades\Image;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -99,27 +100,36 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         Event::listen(AlertWebsiteStatusCodeEvent::class, AlertWebsiteStatusCodeSlackNotification::class);
 
         Context::get('event_dispatcher')->addListener(Events::CREATE_TICKET, array(new TicketCreatedSlackNotification(), 'handle'));
-        Context::get('event_dispatcher')->addListener(Events::CREATE_TICKET, array(new TicketCreatedEmailNotification(), 'handle'));
+        //Context::get('event_dispatcher')->addListener(Events::CREATE_TICKET, array(new TicketCreatedEmailNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::UPDATE_TICKET, array(new TicketUpdatedSlackNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::DELETE_TICKET, array(new TicketDeletedSlackNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::CREATE_CONVERSATION, array(new ConversationCreatedSlackNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::CREATE_MESSAGE, array(new MessageCreatedSlackNotification(), 'handle'));
         //Context::get('event_dispatcher')->addListener(Events::CREATE_MESSAGE, array(new MessageCreatedEmailNotification(), 'handle'));
+        //Context::get('event_dispatcher')->addListener(Events::CREATE_TASK, array(new TaskCreatedEmailNotification(), 'handle'));
 
-        Context::get('event_dispatcher')->addListener(Events::CREATE_TASK, array(new TaskCreatedEmailNotification(), 'handle'));
-
-
+        //Patterns
         $basePath = __DIR__.'/../../';
 
         $router->middleware('change_current_project', 'Webaccess\ProjectSquareLaravel\Http\Middleware\ChangeCurrentProject');
         $router->middleware('before_config', 'Webaccess\ProjectSquareLaravel\Http\Middleware\BeforeConfig');
         $router->middleware('after_config', 'Webaccess\ProjectSquareLaravel\Http\Middleware\AfterConfig');
 
-        include __DIR__.'/Http/routes.php';
+        //Routes
+        Route::pattern('uuid', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
+
+        Route::group(['namespace' => 'Webaccess\ProjectSquareLaravel\Http\Controllers', 'middleware' => 'web'], function ($router) use ($basePath) {
+            require $basePath . 'routes/web.php';
+        });
+
+        Route::group(['namespace' => 'Webaccess\ProjectSquareLaravel\Http\Controllers', 'middleware' => 'api'], function ($router) use ($basePath) {
+            require $basePath . 'routes/api.php';
+        });
 
         $this->loadViewsFrom($basePath.'resources/views/', 'projectsquare');
         $this->loadTranslationsFrom($basePath.'resources/lang/', 'projectsquare');
 
+        //Assets publications
         $this->publishes([
             $basePath.'resources/assets/css' => base_path('public/css'),
             $basePath.'resources/assets/js' => base_path('public/js'),
