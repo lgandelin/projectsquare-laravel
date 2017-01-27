@@ -22,7 +22,6 @@ class EloquentProjectRepository implements ProjectRepository
             $project->id = $projectModel->id;
             $project->clientID = $projectModel->client_id;
             $project->name = $projectModel->name;
-            $project->status = $projectModel->status;
             $project->color = $projectModel->color;
             $project->tasksScheduledTime = $projectModel->tasks_scheduled_time;
             $project->ticketsScheduledTime = $projectModel->tickets_scheduled_time;
@@ -63,13 +62,13 @@ class EloquentProjectRepository implements ProjectRepository
         return Project::with('client')->orderBy('updated_at', 'DESC')->paginate($limit);
     }
 
-    public function createProject($name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color, $tasksScheduledTime, $ticketsScheduledTime)
+    public function createProject($name, $clientID, $websiteFrontURL, $websiteBackURL, $color, $tasksScheduledTime, $ticketsScheduledTime)
     {
         $project = new Project();
         $projectID =  Uuid::uuid4()->toString();
         $project->id = $projectID;
         $project->save();
-        $this->updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color, $tasksScheduledTime, $ticketsScheduledTime);
+        $this->updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, $color, $tasksScheduledTime, $ticketsScheduledTime);
 
         return $project->id;
     }
@@ -89,7 +88,6 @@ class EloquentProjectRepository implements ProjectRepository
         $projectModel->color = $project->color;
         $projectModel->tasks_scheduled_time = $project->tasksScheduledTime;
         $projectModel->tickets_scheduled_time = $project->ticketsScheduledTime;
-        $projectModel->status = $project->status;
         $projectModel->website_front_url = $project->website_front_url;
         $projectModel->website_back_url = $project->website_back_url;
 
@@ -98,20 +96,16 @@ class EloquentProjectRepository implements ProjectRepository
         return $project;
     }
 
-    public function updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, $refererID, $status, $color, $tasksScheduledTime, $ticketsScheduledTime)
+    public function updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, $color, $tasksScheduledTime, $ticketsScheduledTime)
     {
         if ($project = $this->getProjectModel($projectID)) {
             $project->name = $name;
             $project->client_id = $clientID;
             $project->website_front_url = $websiteFrontURL;
             $project->website_back_url = $websiteBackURL;
-            if ($refererID) {
-                $project->referer_id = $refererID;
-            }
-            $project->status = $status;
             $project->color = $color;
-            $project->tickets_scheduled_time = $ticketsScheduledTime;
-            $project->tasks_scheduled_time = $tasksScheduledTime;
+            $project->tickets_scheduled_time = ($ticketsScheduledTime != "") ? $ticketsScheduledTime : 0;
+            $project->tasks_scheduled_time = ($tasksScheduledTime != "") ? $tasksScheduledTime : 0;
             $project->save();
         }
     }

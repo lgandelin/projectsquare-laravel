@@ -14,7 +14,6 @@ class CreateProjectsTable extends Migration
             $table->uuid('id')->primary('id');
             $table->string('name')->nullable();
             $table->uuid('client_id')->nullable();
-            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }

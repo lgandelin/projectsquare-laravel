@@ -32,8 +32,6 @@ class ProjectController extends BaseController
                 Input::get('client_id'),
                 Input::get('website_front_url'),
                 Input::get('website_back_url'),
-                $this->getUser()->id,
-                Input::get('status'),
                 Input::get('color'),
                 Input::get('tasks_scheduled_time'),
                 Input::get('tickets_scheduled_time')
@@ -46,7 +44,6 @@ class ProjectController extends BaseController
 
             return redirect()->route('projects_index');
         }
-
     }
 
     public function edit($projectID)
@@ -87,7 +84,6 @@ class ProjectController extends BaseController
                 Input::get('client_id'),
                 Input::get('website_front_url'),
                 Input::get('website_back_url'),
-                Input::get('status'),
                 Input::get('color'),
                 Input::get('tasks_scheduled_time'),
                 Input::get('tickets_scheduled_time')

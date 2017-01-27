@@ -37,16 +37,6 @@
     </div>
 
     <div class="form-group">
-        <label for="name">{{ trans('projectsquare::projects.status') }}</label>
-        <select class="form-control" name="status">
-            <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
-            @for ($i = 1; $i <= 3; $i++)
-                <option value="{{ $i }}" @if (isset($project) && $project->status == $i)selected="selected"@endif>{{ trans('projectsquare::projects.status_' . $i) }}</option>
-            @endfor
-        </select>
-    </div>
-
-    <div class="form-group">
         <label for="name">{{ trans('projectsquare::projects.color') }}
             @include('projectsquare::includes.tooltip', [
                 'text' => trans('projectsquare::tooltips.project.color')
