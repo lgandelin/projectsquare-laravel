@@ -39,29 +39,6 @@ $(document).ready(function() {
                         success: function (data) {
                             $('#planning').fullCalendar('removeEvents', event._id);
                             $('#event-infos .wrapper').hide();
-                            if (data.ticket_id) {
-                                var html = loadTemplate('ticket-template', {
-                                    id: data.ticket_id,
-                                    title: data.title,
-                                    project_id: data.project_id,
-                                    color: data.color,
-                                    estimated_time: data.estimated_time
-                                });
-                                $('#my-tickets-list').append(html);
-                                initTicketDragAndDrop();
-                            }
-
-                            if (data.task_id) {
-                                var html = loadTemplate('task-template', {
-                                    id: data.task_id,
-                                    title: data.title,
-                                    project_id: data.project_id,
-                                    color: data.color,
-                                    estimated_time: data.estimated_time
-                                });
-                                $('#my-tasks-list').append(html);
-                                initTaskDragAndDrop();
-                            }
                         }
                     });
                 }

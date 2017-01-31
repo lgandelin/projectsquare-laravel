@@ -13,7 +13,7 @@ class UpdateEventsTableAddTaskId extends Migration
     public function up()
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->integer('task_id')->after('ticket_id')->nullable();
+            $table->uuid('task_id')->after('ticket_id')->nullable();
         });
     }
 
