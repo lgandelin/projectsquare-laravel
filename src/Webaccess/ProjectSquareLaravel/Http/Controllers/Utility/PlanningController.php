@@ -201,15 +201,6 @@ class PlanningController extends BaseController
     {
         foreach ($tasks as $i => $task) {
 
-            //Remove tasks already scheduled
-            $events = app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
-                'taskID' => $task->id
-            ]));
-
-            if (sizeof($events) > 0) {
-                unset($tasks[$i]);
-            }
-
             //Remove completed tasks
             if ($task->status_id == Task::COMPLETED)
                 unset($tasks[$i]);
