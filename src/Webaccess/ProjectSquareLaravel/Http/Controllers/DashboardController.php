@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 use Webaccess\ProjectSquare\Requests\Todos\GetTodosRequest;
@@ -9,8 +10,10 @@ use Webaccess\ProjectSquare\Requests\Calendar\GetStepsRequest;
 
 class DashboardController extends BaseController
 {
-    public function index()
+    public function index(Request $request)
     {
+        parent::__construct($request);
+
         $this->initWidgetsIfNecessary();
 
         return view('projectsquare::dashboard.index', [

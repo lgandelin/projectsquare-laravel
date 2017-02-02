@@ -28,7 +28,7 @@
                     <div class="form-inline">
                         <div class="form-group">
                             <input type="text" class="form-control new-todo" placeholder="nouvelle tâche" name="name" id="name" required autocomplete="off" />
-                            <button type="submit" class="btn add btn-valid-create-todo" />
+                            <button type="submit" class="btn add btn-valid-create-todo"></button>
                         </div>
                     </div>
                 </div>

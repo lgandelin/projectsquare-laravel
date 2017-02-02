@@ -10,13 +10,16 @@ use Webaccess\ProjectSquare\Requests\Tickets\DeleteTicketRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\UpdateTicketInfosRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\UpdateTicketRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
+use Webaccess\ProjectSquareLaravel\Tools\StringTool;
 use Webaccess\ProjectSquareLaravel\Tools\UploadTool;
 
 class TicketController extends BaseController
 {
-    public function index()
+    public function index(Request $request)
     {
-        $this->request->session()->put('tickets_interface', 'tickets');
+        parent::__construct($request);
+
+        $request->session()->put('tickets_interface', 'tickets');
 
         return view('projectsquare::tickets.index', [
             'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
@@ -37,27 +40,31 @@ class TicketController extends BaseController
                 'status' => Input::get('filter_status'),
                 'type' => Input::get('filter_type'),
             ],
-            'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
-            'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,
+            'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
+            'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
     }
 
-    public function add()
+    public function add(Request $request)
     {
+        parent::__construct($request);
+
         return view('projectsquare::tickets.add', [
             'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
             'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
             'ticket_status' => app()->make('TicketStatusManager')->getTicketStatuses(),
             'users' => ($this->getCurrentProject()) ? app()->make('UserManager')->getUsersByProject($this->getCurrentProject()->id) : app()->make('UserManager')->getAgencyUsers(),
             'current_project_id' => ($this->getCurrentProject()) ? $this->getCurrentProject()->id : null,
-            'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
-            'data' => ($this->request->session()->has('data')) ? $this->request->session()->get('data') : null,
-            'back_link' => ($this->request->session()->get('tickets_interface') === 'project') ? route('project_tickets', ['uuid' => $this->getCurrentProject()->id]) : route('tickets_index')
+            'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
+            'data' => ($request->session()->has('data')) ? $request->session()->get('data') : null,
+            'back_link' => ($request->session()->get('tickets_interface') === 'project') ? route('project_tickets', ['uuid' => $this->getCurrentProject()->id]) : route('tickets_index')
         ]);
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        parent::__construct($request);
+
         try {
             $data = [
                 'title' => Input::get('title'),
@@ -69,27 +76,31 @@ class TicketController extends BaseController
                 'allocatedUserID' => Input::get('allocated_user_id'),
                 'priority' => Input::get('priority'),
                 'dueDate' => \DateTime::createFromFormat('d/m/Y', Input::get('due_date')),
-                'estimatedTimeDays' => Input::get('estimated_time_days') > 0 ? Input::get('estimated_time_days') : 0,
-                'estimatedTimeHours' => Input::get('estimated_time_hours') > 0 ? Input::get('estimated_time_hours') : 0,
+                'estimatedTimeDays' => StringTool::formatNumber(Input::get('estimated_time_days')),
+                'estimatedTimeHours' => StringTool::formatNumber(Input::get('estimated_time_hours')),
                 'spentTimeDays' => 0,
                 'spentTimeHours' => 0,
                 'comments' => Input::get('comments'),
                 'requesterUserID' => $this->getUser()->id,
             ];
-            $this->request->session()->flash('data', $data);
+            $request->session()->flash('data', $data);
             $response = app()->make('CreateTicketInteractor')->execute(new CreateTicketRequest($data));
 
-            $this->request->session()->flash('confirmation', trans('projectsquare::tickets.add_ticket_success'));
+            $request->session()->flash('confirmation', trans('projectsquare::tickets.add_ticket_success'));
             return redirect()->route('tickets_index');
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', $e->getMessage());
+            $request->session()->flash('error', $e->getMessage());
         }
 
         return redirect()->route('tickets_add');
     }
 
-    public function edit($ticketID)
+    public function edit(Request $request)
     {
+        parent::__construct($request);
+
+        $ticketID = $request->uuid;
+
         //Read linked notification
         $notifications = $this->getUnreadNotifications();
         if (is_array($notifications) && sizeof($notifications) > 0) {
@@ -106,7 +117,7 @@ class TicketController extends BaseController
         try {
             $ticket = app()->make('GetTicketInteractor')->getTicketWithStates($ticketID, $this->getUser()->id);
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', $e->getMessage());
+            $request->session()->flash('error', $e->getMessage());
 
             return redirect()->route('tickets_index');
         }
@@ -119,14 +130,16 @@ class TicketController extends BaseController
             'ticket_status' => app()->make('TicketStatusManager')->getTicketStatuses(),
             'users' => app()->make('UserManager')->getUsersByProject($ticket->projectID),
             'files' => app()->make('FileManager')->getFilesByTicket($ticketID),
-            'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
-            'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,
-            'back_link' => ($this->request->session()->get('tickets_interface') === 'project') ? route('project_tickets', ['uuid' => $this->getCurrentProject()->id]) : route('tickets_index')
+            'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
+            'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
+            'back_link' => ($request->session()->get('tickets_interface') === 'project') ? route('project_tickets', ['uuid' => $this->getCurrentProject()->id]) : route('tickets_index')
         ]);
     }
 
-    public function updateInfos()
+    public function updateInfos(Request $request)
     {
+        parent::__construct($request);
+
         try {
             app()->make('UpdateTicketInfosInteractor')->execute(new UpdateTicketInfosRequest([
                 'ticketID' => Input::get('ticket_id'),
@@ -137,16 +150,18 @@ class TicketController extends BaseController
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
-            $this->request->session()->flash('confirmation', trans('projectsquare::tickets.edit_ticket_success'));
+            $request->session()->flash('confirmation', trans('projectsquare::tickets.edit_ticket_success'));
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', trans('projectsquare::tickets.edit_ticket_error'));
+            $request->session()->flash('error', trans('projectsquare::tickets.edit_ticket_error'));
         }
 
         return redirect()->route('tickets_edit', ['id' => Input::get('ticket_id')]);
     }
 
-    public function update()
+    public function update(Request $request)
     {
+        parent::__construct($request);
+
         try {
             app()->make('UpdateTicketInteractor')->execute(new UpdateTicketRequest([
                 'ticketID' => Input::get('ticket_id'),
@@ -155,32 +170,36 @@ class TicketController extends BaseController
                 'allocatedUserID' => Input::get('allocated_user_id'),
                 'priority' => Input::get('priority'),
                 'dueDate' => \DateTime::createFromFormat('d/m/Y', Input::get('due_date')),
-                'estimatedTimeDays' => Input::get('estimated_time_days') > 0 ? Input::get('estimated_time_days') : 0,
-                'estimatedTimeHours' => Input::get('estimated_time_hours') > 0 ? Input::get('estimated_time_hours') : 0,
-                'spentTimeDays' => Input::get('spent_time_days'),
-                'spentTimeHours' => Input::get('spent_time_hours'),
+                'estimatedTimeDays' => StringTool::formatNumber(Input::get('estimated_time_days')),
+                'estimatedTimeHours' => StringTool::formatNumber(Input::get('estimated_time_hours')),
+                'spentTimeDays' => StringTool::formatNumber(Input::get('spent_time_days')),
+                'spentTimeHours' => StringTool::formatNumber(Input::get('spent_time_hours')),
                 'comments' => Input::get('comments'),
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
-            $this->request->session()->flash('confirmation', trans('projectsquare::tickets.edit_ticket_success'));
+            $request->session()->flash('confirmation', trans('projectsquare::tickets.edit_ticket_success'));
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', $e->getMessage());
+            $request->session()->flash('error', $e->getMessage());
         }
 
         return redirect()->route('tickets_edit', ['id' => Input::get('ticket_id')]);
     }
 
-    public function delete($ticketID)
+    public function delete(Request $request)
     {
+        parent::__construct($request);
+
+        $ticketID = $request->uuid;
+
         try {
             app()->make('DeleteTicketInteractor')->execute(new DeleteTicketRequest([
                 'ticketID' => $ticketID,
                 'requesterUserID' => $this->getUser()->id,
             ]));
-            $this->request->session()->flash('confirmation', trans('projectsquare::tickets.delete_ticket_success'));
+            $request->session()->flash('confirmation', trans('projectsquare::tickets.delete_ticket_success'));
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', $e->getMessage());
+            $request->session()->flash('error', $e->getMessage());
         }
 
         return redirect()->route('tickets_index');
@@ -212,20 +231,26 @@ class TicketController extends BaseController
         }
     }
 
-    public function delete_file($fileID)
+    public function delete_file(Request $request)
     {
+        parent::__construct($request);
+
+        $fileID = $request->id;
+
         try {
             app()->make('FileManager')->deleteFile($fileID);
-            $this->request->session()->flash('confirmation', trans('projectsquare::files.delete_file_success'));
+            $request->session()->flash('confirmation', trans('projectsquare::files.delete_file_success'));
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', trans('projectsquare::files.delete_file_error'));
+            $request->session()->flash('error', trans('projectsquare::files.delete_file_error'));
         }
 
         return redirect()->back();
     }
 
-    public function unallocate()
+    public function unallocate(Request $request)
     {
+        parent::__construct($request);
+
         try {
             app()->make('UpdateTicketInteractor')->execute(new UpdateTicketRequest([
                 'ticketID' => Input::get('ticket_id'),
@@ -235,8 +260,13 @@ class TicketController extends BaseController
 
             return response()->json(['success' => true], 200);
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', $e->getMessage());
+            $request->session()->flash('error', $e->getMessage());
             return response()->json(['error' => $e->getMessage()], 500);
         }
+    }
+
+    protected function formatNumber($number)
+    {
+        return str_replace(',', '.', $number);
     }
 }

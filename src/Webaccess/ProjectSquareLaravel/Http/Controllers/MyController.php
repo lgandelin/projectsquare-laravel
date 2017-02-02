@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquareLaravel\Tools\UploadTool;
 
@@ -9,17 +10,22 @@ class TwoPasswordsException extends \Exception {}
 
 class MyController extends BaseController
 {
-    public function index()
+    public function index(Request $request)
     {
+        parent::__construct($request);
+        
         return view('projectsquare::my.index', [
             'user' => $this->getUser(),
-            'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
-            'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,
+            'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
+            'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
     }
 
-    public function udpate_profile()
+    public function udpate_profile(Request $request)
     {
+
+        parent::__construct($request);
+        
         $userID = $this->getUser()->id;
         try {
             if (Input::get('password') != '' && Input::get('password') != Input::get('password_confirmation')) {
@@ -32,12 +38,12 @@ class MyController extends BaseController
                     Input::get('email'),
                     Input::get('password')
                 );
-                $this->request->session()->flash('confirmation', trans('projectsquare::my.edit_profile_success'));
+                $request->session()->flash('confirmation', trans('projectsquare::my.edit_profile_success'));
             }
         } catch (TwoPasswordsException $e) {
-            $this->request->session()->flash('error', 'Les deux mots de passe ne correspondent pas');
+            $request->session()->flash('error', 'Les deux mots de passe ne correspondent pas');
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', trans('projectsquare::my.edit_profile_error'));
+            $request->session()->flash('error', trans('projectsquare::my.edit_profile_error'));
         }
 
         return redirect()->route('my', ['id' => Input::get('user_id')]);

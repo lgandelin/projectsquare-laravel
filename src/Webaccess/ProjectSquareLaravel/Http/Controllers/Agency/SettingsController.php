@@ -2,31 +2,37 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Agency;
 
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 
 class SettingsController extends BaseController
 {
-    public function index()
+    public function index(Request $request)
     {
+        parent::__construct($request);
+
         $slack = app()->make('SettingManager')->getSettingByKey('SLACK_URL');
 
         return view('projectsquare::agency.settings.index', [
             'slack' => ($slack) ? $slack->value : null,
+            'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
+            'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
     }
 
-    public function update()
+    public function update(Request $request)
     {
+        parent::__construct($request);
+
         try {
             app()->make('SettingManager')->createOrUpdateSetting(
                 null,
-                $this->request->key,
-                $this->request->value
+                $request->key,
+                $request->value
             );
-            $this->request->session()->flash('confirmation', trans('projectsquare::settings.update_setting_success'));
+            $request->session()->flash('confirmation', trans('projectsquare::settings.update_setting_success'));
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', trans('projectsquare::settings.update_setting_error'));
+            $request->session()->flash('error', trans('projectsquare::settings.update_setting_error'));
         }
 
         return redirect()->route('settings_index');

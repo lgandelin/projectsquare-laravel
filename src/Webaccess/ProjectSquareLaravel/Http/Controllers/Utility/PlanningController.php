@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Utility;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Decorators\EventDecorator;
 use Webaccess\ProjectSquare\Entities\Task;
@@ -17,8 +18,10 @@ use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 
 class PlanningController extends BaseController
 {
-    public function index()
+    public function index(Request $request)
     {
+        parent::__construct($request);
+
         $userID = (Input::get('filter_user')) ? Input::get('filter_user') : $this->getUser()->id;
 
         $allocatedTickets = app()->make('GetTicketInteractor')->getTicketsList(

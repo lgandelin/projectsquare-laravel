@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Utility;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Decorators\ReplyMessageDecorator;
 use Webaccess\ProjectSquare\Exceptions\Messages\MessageReplyNotAuthorizedException;
@@ -11,9 +12,11 @@ use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 
 class MessageController extends BaseController
 {
-    public function index()
+    public function index(Request $request)
     {
-        $this->request->session()->put('messages_interface', 'messages');
+        parent::__construct($request);
+
+        $request->session()->put('messages_interface', 'messages');
 
         return view('projectsquare::messages.index', [
             'conversations' => app()->make('ConversationManager')->getConversationsPaginatedList($this->getUser()->id, env('CONVERSATIONS_PER_PAGE', 10), Input::get('filter_project')),
@@ -51,7 +54,7 @@ class MessageController extends BaseController
     {
         return view('projectsquare::messages.view', [
             'conversation' => app()->make('ConversationManager')->getConversationModel($conversationID),
-            'back_link' => ($this->request->session()->get('messages_interface') === 'project') ? route('project_messages', ['uuid' => $this->getCurrentProject()->id]) : route('conversations_index')
+            'back_link' => ($request->session()->get('messages_interface') === 'project') ? route('project_messages', ['uuid' => $this->getCurrentProject()->id]) : route('conversations_index')
         ]);
     }
 

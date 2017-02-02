@@ -15,4 +15,9 @@ class StringTool
 
         return $string;
     }
+
+    public static function formatNumber($number)
+    {
+        return str_replace(',', '.', $number);
+    }
 }

@@ -115,16 +115,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         $router->aliasMiddleware('before_config', \Webaccess\ProjectSquareLaravel\Http\Middleware\BeforeConfig::class);
         $router->aliasMiddleware('after_config', \Webaccess\ProjectSquareLaravel\Http\Middleware\AfterConfig::class);
 
-        //Routes
-        Route::pattern('uuid', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
-
-        Route::group(['namespace' => 'Webaccess\ProjectSquareLaravel\Http\Controllers', 'middleware' => 'web'], function ($router) use ($basePath) {
-            require $basePath . 'routes/web.php';
-        });
-
-        Route::group(['namespace' => 'Webaccess\ProjectSquareLaravel\Http\Controllers', 'middleware' => 'api'], function ($router) use ($basePath) {
-            require $basePath . 'routes/api.php';
-        });
+        $this->loadRoutesFrom($basePath . 'routes/web.php');
+        $this->loadRoutesFrom($basePath . 'routes/api.php');
 
         $this->loadViewsFrom($basePath.'resources/views/', 'projectsquare');
         $this->loadTranslationsFrom($basePath.'resources/lang/', 'projectsquare');

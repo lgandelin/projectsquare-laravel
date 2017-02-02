@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Project;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Requests\Notifications\CreateNotificationRequest;
 use Webaccess\ProjectSquare\Interactors\Notifications\CreateNotificationInteractor;
@@ -13,8 +14,12 @@ use Webaccess\ProjectSquareLaravel\Tools\UploadTool;
 
 class FilesController extends BaseController
 {
-    public function index($projectID)
+    public function index(Request $request)
     {
+        parent::__construct($request);
+
+        $projectID = $request->uuid;
+
         return view('projectsquare::project.files', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'files' => app()->make('FileManager')->getFilesByProject($projectID),
@@ -50,13 +55,17 @@ class FilesController extends BaseController
         }
     }
 
-    public function delete($fileID)
+    public function delete(Request $request)
     {
+        parent::__construct($request);
+
+        $fileID = $request->id;
+
         try {
             app()->make('FileManager')->deleteFile($fileID);
-            $this->request->session()->flash('confirmation', trans('projectsquare::files.delete_file_success'));
+            $request->session()->flash('confirmation', trans('projectsquare::files.delete_file_success'));
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', trans('projectsquare::files.delete_file_error'));
+            $request->session()->flash('error', trans('projectsquare::files.delete_file_error'));
         }
 
         return redirect()->back();

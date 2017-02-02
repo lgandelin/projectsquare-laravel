@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Project;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Decorators\StepDecorator;
 use Webaccess\ProjectSquare\Requests\Calendar\CreateStepRequest;
@@ -13,8 +14,12 @@ use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 
 class CalendarController extends BaseController
 {
-    public function index($projectID)
+    public function index(Request $request)
     {
+        parent::__construct($request);
+
+        $projectID = $request->uuid;
+
         return view('projectsquare::project.calendar', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'steps' => app()->make('GetStepsInteractor')->execute(new GetStepsRequest([

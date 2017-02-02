@@ -27,16 +27,15 @@ class BaseController extends Controller
 
         if (Auth::user()) {
             view()->share('logged_in_user', $this->getUserWithProjects());
+            view()->share('current_project', $this->getCurrentProject());
+            view()->share('current_route', $request->route()->getName());
+            view()->share('notifications', $this->getUnreadNotifications());
+            view()->share('is_client', $this->isUserAClient());
+            view()->share('is_admin', $this->isUserAnAdmin());
+            view()->share('todos', $this->getTodos());
+            view()->share('todos_count', $this->getUncompleteTodosCount());
+            view()->share('left_bar', isset($_COOKIE['left-bar']) ? $_COOKIE['left-bar'] : 'opened');
         }
-
-        view()->share('current_project', $this->getCurrentProject());
-        view()->share('current_route', $request->route()->getName());
-        view()->share('notifications', $this->getUnreadNotifications());
-        view()->share('is_client', $this->isUserAClient());
-        view()->share('is_admin', $this->isUserAnAdmin());
-        view()->share('todos', $this->getTodos());
-        view()->share('todos_count', $this->getUncompleteTodosCount());
-        view()->share('left_bar', isset($_COOKIE['left-bar']) ? $_COOKIE['left-bar'] : 'opened');
     }
 
     protected function getUser()

@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Agency;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 use Webaccess\ProjectSquare\Requests\Clients\GetClientRequest;
@@ -19,45 +20,55 @@ class ClientController extends BaseController
         return view('projectsquare::clients.index');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        parent::__construct($request);
+
         return view('projectsquare::agency.clients.index', [
             'clients' => app()->make('GetClientsInteractor')->getClientsPaginatedList(10, new GetClientsRequest()),
-            'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
-            'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,
+            'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
+            'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
     }
 
-    public function add()
+    public function add(Request $request)
     {
+        parent::__construct($request);
+
         return view('projectsquare::agency.clients.add');
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        parent::__construct($request);
+
         try {
             $response = app()->make('CreateClientInteractor')->execute(new CreateClientRequest([
                 'name' => Input::get('name'),
                 'address' => Input::get('address'),
             ]));
 
-            $this->request->session()->flash('confirmation', trans('projectsquare::clients.add_client_success'));
+            $request->session()->flash('confirmation', trans('projectsquare::clients.add_client_success'));
 
             return redirect()->route('clients_edit', ['id' => $response->client->id]);
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', trans('projectsquare::clients.add_client_error'));
+            $request->session()->flash('error', trans('projectsquare::clients.add_client_error'));
             return redirect()->route('clients_index');
         }
     }
 
-    public function edit($clientID)
+    public function edit(Request $request)
     {
+        parent::__construct($request);
+
+        $clientID = $request->uuid;
+
         try {
             $client = app()->make('GetClientInteractor')->execute(new GetClientRequest([
                 'clientID' => $clientID,
             ]));
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', $e->getMessage());
+            $request->session()->flash('error', $e->getMessage());
 
             return redirect()->route('clients_index');
         }
@@ -65,13 +76,15 @@ class ClientController extends BaseController
         return view('projectsquare::agency.clients.edit', [
             'client' => $client,
             'users' => app()->make('UserManager')->getUsersByClient($clientID),
-            'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
-            'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,
+            'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
+            'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
     }
 
-    public function update()
+    public function update(Request $request)
     {
+        parent::__construct($request);
+
         try {
             app()->make('UpdateClientInteractor')->execute(new UpdateClientRequest([
                 'clientID' => Input::get('client_id'),
@@ -79,38 +92,46 @@ class ClientController extends BaseController
                 'address' => Input::get('address'),
             ]));
 
-            $this->request->session()->flash('confirmation', trans('projectsquare::clients.edit_client_success'));
+            $request->session()->flash('confirmation', trans('projectsquare::clients.edit_client_success'));
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', trans('projectsquare::clients.edit_client_error'));
+            $request->session()->flash('error', trans('projectsquare::clients.edit_client_error'));
         }
 
         return redirect()->route('clients_edit', ['id' => Input::get('client_id')]);
     }
 
-    public function delete($clientID)
+    public function delete(Request $request)
     {
+        parent::__construct($request);
+
+        $clientID = $request->uuid;
+
         try {
             app()->make('DeleteClientInteractor')->execute(new DeleteClientRequest([
                 'clientID' => $clientID,
                 'requesterUserID' => $this->getUser()->id,
             ]));
 
-            $this->request->session()->flash('confirmation', trans('projectsquare::clients.delete_client_success'));
+            $request->session()->flash('confirmation', trans('projectsquare::clients.delete_client_success'));
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', trans('projectsquare::clients.delete_client_error'));
+            $request->session()->flash('error', trans('projectsquare::clients.delete_client_error'));
         }
 
         return redirect()->route('clients_index');
     }
 
-    public function add_user($clientID)
+    public function add_user(Request $request)
     {
+        parent::__construct($request);
+
+        $clientID = $request->uuid;
+
         try {
             $client = app()->make('GetClientInteractor')->execute(new GetClientRequest([
                 'clientID' => $clientID,
             ]));
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', $e->getMessage());
+            $request->session()->flash('error', $e->getMessage());
 
             return redirect()->route('clients_edit', ['id' => Input::get('client_id')]);
         }
@@ -120,8 +141,10 @@ class ClientController extends BaseController
         ]);
     }
 
-    public function store_user()
+    public function store_user(Request $request)
     {
+        parent::__construct($request);
+
         try {
             if (Input::get('password') != '' && Input::get('password') != Input::get('password_confirmation')) {
                 throw new TwoPasswordsException();
@@ -137,24 +160,29 @@ class ClientController extends BaseController
                     Input::get('client_role'),
                     false
                 );
-                $this->request->session()->flash('confirmation', trans('projectsquare::users.add_user_success'));
+                $request->session()->flash('confirmation', trans('projectsquare::users.add_user_success'));
             }
         } catch (TwoPasswordsException $e) {
-            $this->request->session()->flash('error', 'Les deux mots de passe ne correspondent pas');
+            $request->session()->flash('error', 'Les deux mots de passe ne correspondent pas');
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', trans('projectsquare::users.add_user_error'));
+            $request->session()->flash('error', trans('projectsquare::users.add_user_error'));
         }
 
         return redirect()->route('clients_edit', ['id' => Input::get('client_id')]);
     }
 
 
-    public function edit_user($clientID, $userID)
+    public function edit_user(Request $request)
     {
+        parent::__construct($request);
+
+        $clientID = $request->uuid;
+        $userID = $request->user_id;
+
         try {
             $user = app()->make('UserManager')->getUser($userID);
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', trans('projectsquare::users.user_not_found'));
+            $request->session()->flash('error', trans('projectsquare::users.user_not_found'));
 
             return redirect()->route('clients_edit', ['id' => Input::get('client_id')]);
         }
@@ -164,7 +192,7 @@ class ClientController extends BaseController
                 'clientID' => $clientID,
             ]));
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', $e->getMessage());
+            $request->session()->flash('error', $e->getMessage());
 
             return redirect()->route('clients_edit', ['id' => Input::get('client_id')]);
         }
@@ -175,8 +203,10 @@ class ClientController extends BaseController
         ]);
     }
 
-    public function update_user()
+    public function update_user(Request $request)
     {
+        parent::__construct($request);
+
         try {
             app()->make('UserManager')->updateUser(
                 Input::get('user_id'),
@@ -190,21 +220,26 @@ class ClientController extends BaseController
                 Input::get('client_role'),
                 false
             );
-            $this->request->session()->flash('confirmation', trans('projectsquare::users.edit_user_success'));
+            $request->session()->flash('confirmation', trans('projectsquare::users.edit_user_success'));
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', trans('projectsquare::users.edit_user_error'));
+            $request->session()->flash('error', trans('projectsquare::users.edit_user_error'));
         }
 
         return redirect()->route('clients_edit', ['id' => Input::get('client_id')]);
     }
 
-    public function delete_user($clientID, $userID)
+    public function delete_user(Request $request)
     {
+        parent::__construct($request);
+
+        $clientID = $request->uuid;
+        $userID = $request->user_id;
+
         try {
             app()->make('UserManager')->deleteUser($userID);
-            $this->request->session()->flash('confirmation', trans('projectsquare::users.delete_user_success'));
+            $request->session()->flash('confirmation', trans('projectsquare::users.delete_user_success'));
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', trans('projectsquare::users.delete_user_error'));
+            $request->session()->flash('error', trans('projectsquare::users.delete_user_error'));
         }
 
         return redirect()->route('clients_edit', ['id' => $clientID]);
