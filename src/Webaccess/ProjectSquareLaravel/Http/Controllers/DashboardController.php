@@ -12,6 +12,7 @@ class DashboardController extends BaseController
     public function index()
     {
         $this->initWidgetsIfNecessary();
+
         return view('projectsquare::dashboard.index', [
             'widgets' => json_decode($_COOKIE['dashboard-widgets-' . $this->getUser()->id]),
             'tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest()),

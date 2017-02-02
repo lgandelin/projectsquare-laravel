@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Utility;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Requests\Notifications\ReadNotificationRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\CreateTicketRequest;
@@ -15,7 +16,7 @@ class TicketController extends BaseController
 {
     public function index()
     {
-        $this->request->session()->set('tickets_interface', 'tickets');
+        $this->request->session()->put('tickets_interface', 'tickets');
 
         return view('projectsquare::tickets.index', [
             'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(

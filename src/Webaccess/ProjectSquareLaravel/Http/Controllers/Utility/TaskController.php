@@ -15,7 +15,7 @@ class TaskController extends BaseController
 {
     public function index()
     {
-        $this->request->session()->set('tasks_interface', 'tasks');
+        $this->request->session()->put('tasks_interface', 'tasks');
 
         return view('projectsquare::tasks.index', [
             'tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest([

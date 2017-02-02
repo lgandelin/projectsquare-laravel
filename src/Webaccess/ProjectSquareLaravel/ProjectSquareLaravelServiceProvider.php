@@ -111,9 +111,9 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         //Patterns
         $basePath = __DIR__.'/../../';
 
-        $router->aliasMiddleware('change_current_project', Webaccess\ProjectSquareLaravel\Http\Middleware\ChangeCurrentProject::class);
-        $router->aliasMiddleware('before_config', Webaccess\ProjectSquareLaravel\Http\Middleware\BeforeConfig::class);
-        $router->aliasMiddleware('after_config', Webaccess\ProjectSquareLaravel\Http\Middleware\AfterConfig::class);
+        $router->aliasMiddleware('change_current_project', \Webaccess\ProjectSquareLaravel\Http\Middleware\ChangeCurrentProject::class);
+        $router->aliasMiddleware('before_config', \Webaccess\ProjectSquareLaravel\Http\Middleware\BeforeConfig::class);
+        $router->aliasMiddleware('after_config', \Webaccess\ProjectSquareLaravel\Http\Middleware\AfterConfig::class);
 
         //Routes
         Route::pattern('uuid', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');

@@ -13,7 +13,7 @@ class MessageController extends BaseController
 {
     public function index()
     {
-        $this->request->session()->set('messages_interface', 'messages');
+        $this->request->session()->put('messages_interface', 'messages');
 
         return view('projectsquare::messages.index', [
             'conversations' => app()->make('ConversationManager')->getConversationsPaginatedList($this->getUser()->id, env('CONVERSATIONS_PER_PAGE', 10), Input::get('filter_project')),

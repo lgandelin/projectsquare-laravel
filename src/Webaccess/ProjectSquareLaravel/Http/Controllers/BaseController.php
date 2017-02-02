@@ -73,7 +73,7 @@ class BaseController extends Controller
         if ($this->isUserAClient()) {
             if ($client = Client::find($this->getUser()->client_id)) {
                 $project = Project::where('client_id', '=', $client->id)->first();
-                $this->request->session()->set('current_project', $project);
+                $this->request->session()->put('current_project', $project);
             }
         }
 
