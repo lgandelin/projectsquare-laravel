@@ -18,6 +18,6 @@ class StringTool
 
     public static function formatNumber($number)
     {
-        return str_replace(',', '.', $number);
+        return $number ? str_replace(',', '.', $number) : 0;
     }
 }

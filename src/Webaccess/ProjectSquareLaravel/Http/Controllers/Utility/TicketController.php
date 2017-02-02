@@ -264,9 +264,4 @@ class TicketController extends BaseController
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-
-    protected function formatNumber($number)
-    {
-        return str_replace(',', '.', $number);
-    }
 }
