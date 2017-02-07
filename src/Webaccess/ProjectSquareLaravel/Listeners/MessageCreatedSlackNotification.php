@@ -30,7 +30,6 @@ class MessageCreatedSlackNotification
                 ($settingSlackChannel) ? $settingSlackChannel->value : '',
                 '#32B1DB'
             );
-
         }
     }
 }

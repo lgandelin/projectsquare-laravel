@@ -57,12 +57,14 @@ use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteStatusCodeEvent;
 use Webaccess\ProjectSquareLaravel\Listeners\AlertWebsiteLoadingTimeSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\AlertWebsiteStatusCodeSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\ConversationCreatedSlackNotification;
-use Webaccess\ProjectSquareLaravel\Listeners\MessageCreatedEmailNotification;
+//use Webaccess\ProjectSquareLaravel\Listeners\MessageCreatedEmailNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\MessageCreatedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\TaskCreatedEmailNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\TicketCreatedEmailNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\TicketCreatedSlackNotification;
+use Webaccess\ProjectSquareLaravel\Listeners\TicketDeletedEmailNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\TicketDeletedSlackNotification;
+use Webaccess\ProjectSquareLaravel\Listeners\TicketUpdatedEmailNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\TicketUpdatedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentClientRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentConversationRepository;
@@ -100,13 +102,17 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         Event::listen(AlertWebsiteStatusCodeEvent::class, AlertWebsiteStatusCodeSlackNotification::class);
 
         Context::get('event_dispatcher')->addListener(Events::CREATE_TICKET, array(new TicketCreatedSlackNotification(), 'handle'));
-        //Context::get('event_dispatcher')->addListener(Events::CREATE_TICKET, array(new TicketCreatedEmailNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::UPDATE_TICKET, array(new TicketUpdatedSlackNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::DELETE_TICKET, array(new TicketDeletedSlackNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::CREATE_CONVERSATION, array(new ConversationCreatedSlackNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::CREATE_MESSAGE, array(new MessageCreatedSlackNotification(), 'handle'));
+
+        Context::get('event_dispatcher')->addListener(Events::CREATE_TICKET, array(new TicketCreatedEmailNotification(), 'handle'));
+        Context::get('event_dispatcher')->addListener(Events::UPDATE_TICKET, array(new TicketUpdatedEmailNotification(), 'handle'));
+        Context::get('event_dispatcher')->addListener(Events::DELETE_TICKET, array(new TicketDeletedEmailNotification(), 'handle'));
+
+        Context::get('event_dispatcher')->addListener(Events::CREATE_TASK, array(new TaskCreatedEmailNotification(), 'handle'));
         //Context::get('event_dispatcher')->addListener(Events::CREATE_MESSAGE, array(new MessageCreatedEmailNotification(), 'handle'));
-        //Context::get('event_dispatcher')->addListener(Events::CREATE_TASK, array(new TaskCreatedEmailNotification(), 'handle'));
 
         //Patterns
         $basePath = __DIR__.'/../../';

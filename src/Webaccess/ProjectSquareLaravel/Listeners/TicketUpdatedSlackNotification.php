@@ -3,7 +3,9 @@
 namespace Webaccess\ProjectSquareLaravel\Listeners;
 
 use Webaccess\ProjectSquare\Events\Tickets\UpdateTicketEvent;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
+use Webaccess\ProjectSquareLaravel\Services\TicketStatusManager;
 use Webaccess\ProjectSquareLaravel\Tools\SlackTool;
 
 class TicketUpdatedSlackNotification
@@ -11,47 +13,64 @@ class TicketUpdatedSlackNotification
     public function handle(UpdateTicketEvent $event)
     {
         $ticket = (new EloquentTicketRepository())->getTicketWithStates($event->ticketID);
+        $project = (new EloquentProjectRepository())->getProjectModel($ticket->projectID);
 
-        $lines = [];
+        $lines = [
+            (isset($project) && isset($project->client)) ? '*Projet :* ['.$project->client->name.'] '.$project->name : '',
+        ];
         $modificationMade = false;
 
-        if (isset($ticket->states[0]->status) && isset($ticket->states[1]->status) && $ticket->states[0]->status->name != $ticket->states[1]->status->name) {
-            $lines[] = 'Etat du ticket modifié : *'.$ticket->states[1]->status->name.'* => *'.$ticket->states[0]->status->name.'*';
-            $modificationMade = true;
+        if (isset($ticket->states[0]->statusID)) {
+            $newStatus = TicketStatusManager::getTicketStatus($ticket->states[0]->statusID);
+            $oldStatus = TicketStatusManager::getTicketStatus($ticket->states[1]->statusID);
+
+            if ($newStatus->id != $oldStatus->id) {
+                $lines[] = '*Statut :* '.$oldStatus->name.' => '.$newStatus->name;
+                $modificationMade = true;
+            }
         }
 
-        if (isset($ticket->states[0]->allocated_user) && isset($ticket->states[1]->allocated_user) && $ticket->states[0]->allocated_user->id != $ticket->states[1]->allocated_user->id) {
-            $lines[] = 'Utilisateur assigné modifié : *'.$ticket->states[1]->allocated_user->complete_name.'* => *'.$ticket->states[0]->allocated_user->complete_name.'*';
+        $newAllocatedUser = null;
+        if (isset($ticket->states[0]->allocatedUserID)) {
+            $newAllocatedUser = app()->make('UserManager')->getUser($ticket->states[0]->allocatedUserID);
+        }
+
+        $oldAllocatedUser = null;
+        if (isset($ticket->states[1]->allocatedUserID)) {
+            $oldAllocatedUser = app()->make('UserManager')->getUser($ticket->states[1]->allocatedUserID);
+        }
+
+        if ($newAllocatedUser != $oldAllocatedUser) {
+            $lines[] = '*Utilisateur assigné :* '.$oldAllocatedUser->firstName . ' ' . $oldAllocatedUser->lastName .' => '.$newAllocatedUser->firstName . ' ' . $newAllocatedUser->lastName;
             $modificationMade = true;
         }
 
         if ($ticket->states[0]->priority != $ticket->states[1]->priority) {
-            $lines[] = 'Priorité modifiée : *'.$ticket->states[1]->priority.'* => *'.$ticket->states[0]->priority.'*';
+            $lines[] = '*Priorité :* '.trans('projectsquare::generic.priority-'.$ticket->states[1]->priority).' => '.trans('projectsquare::generic.priority-'.$ticket->states[0]->priority);
             $modificationMade = true;
         }
 
         if ($ticket->states[0]->dueDate != $ticket->states[1]->dueDate) {
-            $lines[] = 'Echéance : *'.$ticket->states[1]->dueDate.'* => *'.$ticket->states[0]->dueDate.'*';
+            $lines[] = '*Echéance :* '.($ticket->states[1]->dueDate != '' ? $ticket->states[1]->dueDate : 'N/A').' => '.($ticket->states[0]->dueDate != '' ? $ticket->states[0]->dueDate : 'N/A');
             $modificationMade = true;
         }
 
         if ($ticket->states[0]->comments) {
-            $lines[] = 'Commentaires : '.$ticket->states[0]->comments;
+            $lines[] = '*Commentaires :* '.$ticket->states[0]->comments;
             $modificationMade = true;
         }
-
-        $lines[] = route('tickets_edit', ['id' => $ticket->id]);
 
         $settingSlackChannel = app()->make('SettingManager')->getSettingByKeyAndProject('SLACK_CHANNEL', $ticket->projectID);
 
         if ($modificationMade) {
+
             SlackTool::send(
                 'Modification du ticket : '.$ticket->title,
                 implode("\n", $lines),
-                (isset($ticket->states[0]) && isset($ticket->states[0]->author_user)) ? $ticket->states[0]->author_user->complete_name : '',
-                route('tickets_edit', ['id' => $ticket->id]),
+                'Louis Gandelin',
+                route('tickets_edit', ['uuid' => $ticket->id]),
                 ($settingSlackChannel) ? $settingSlackChannel->value : '',
-                '#36a64f'
+                (isset($project) && $project->color != '') ? $project->color : '#36a64f'
             );
         }
     }

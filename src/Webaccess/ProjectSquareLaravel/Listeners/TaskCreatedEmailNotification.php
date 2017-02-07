@@ -12,14 +12,15 @@ class TaskCreatedEmailNotification
     {
         if ($task = Task::find($event->taskID)) {
 
-            $user = app()->make('UserManager')->getUser($task->allocated_user_id);
-            $email = $user->email;
+            if ($user = app()->make('UserManager')->getUser($task->allocated_user_id)) {
+                $email = $user->email;
 
-            Mail::send('projectsquare::emails.task_created', array('task' => $task, 'user' => $user), function ($message) use ($email, $task) {
-                $message->to($email)
-                    ->from('no-reply@projectsquare.fr')
-                    ->subject('[projectsquare] Une nouvelle tâche vous a été assignée');
-            });
+                Mail::send('projectsquare::emails.task_created', array('task' => $task, 'user' => $user), function ($message) use ($email, $task) {
+                    $message->to($email)
+                        ->from('no-reply@projectsquare.io')
+                        ->subject('[projectsquare] Une nouvelle tâche vous a été assignée');
+                });
+            }
         }
     }
 }
