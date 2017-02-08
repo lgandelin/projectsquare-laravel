@@ -64,6 +64,7 @@ use Webaccess\ProjectSquareLaravel\Listeners\Messages\Slack\ConversationCreatedS
 use Webaccess\ProjectSquareLaravel\Listeners\Messages\Slack\MessageCreatedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\Tasks\Emails\TaskCreatedEmailNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\Tasks\Emails\TaskDeletedEmailNotification;
+use Webaccess\ProjectSquareLaravel\Listeners\Tasks\Emails\TaskUpdatedEmailNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\Tasks\Slack\TaskCreatedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\Tasks\Slack\TaskDeletedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\Tasks\Slack\TaskUpdatedSlackNotification;
@@ -121,8 +122,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         Context::get('event_dispatcher')->addListener(Events::DELETE_TASK, array(new TaskDeletedSlackNotification(), 'handle'));
 
         Context::get('event_dispatcher')->addListener(Events::CREATE_TASK, array(new TaskCreatedEmailNotification(), 'handle'));
+        Context::get('event_dispatcher')->addListener(Events::UPDATE_TASK, array(new TaskUpdatedEmailNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::DELETE_TASK, array(new TaskDeletedEmailNotification(), 'handle'));
-
 
         //TODO
         Context::get('event_dispatcher')->addListener(Events::CREATE_CONVERSATION, array(new ConversationCreatedSlackNotification(), 'handle'));

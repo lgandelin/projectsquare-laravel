@@ -10,13 +10,23 @@ class TaskDeletedEmailNotification
 {
     public function handle(DeleteTaskEvent $event)
     {
-        $task = Task::where('id', '=', $event->task->id)->with('project', 'project.client', 'allocated_user')->first();
-        $email = $task->allocated_user->email;
+        if (isset($event->task->id) && $event->task->id) {
+            if ($task = Task::where('id', '=', $event->task->id)->with('project', 'project.client', 'allocated_user')->first()) {
 
-        Mail::send('projectsquare::emails.task_deleted', array('task' => $task), function ($message) use ($email, $task) {
-            $message->to($email)
-                ->from('no-reply@projectsquare.io')
-                ->subject('[projectsquare] Suppression de la tâche : ' . $task->title);
-        });
+                if (isset($task->allocated_user)) {
+                    $setting = app()->make('SettingManager')->getSettingByKeyAndUser('EMAIL_NOTIFICATION_TASK_DELETED', $task->allocated_user->id);
+
+                    if ($setting && boolval($setting->value) === true) {
+                        $email = $task->allocated_user->email;
+
+                        Mail::send('projectsquare::emails.task_deleted', array('task' => $task), function ($message) use ($email, $task) {
+                            $message->to($email)
+                                ->from('no-reply@projectsquare.io')
+                                ->subject('[projectsquare] Suppression de la tâche : ' . $task->title);
+                        });
+                    }
+                }
+            }
+        }
     }
 }

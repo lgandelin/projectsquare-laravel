@@ -4,9 +4,6 @@ namespace Webaccess\ProjectSquareLaravel\Listeners\Tickets\Slack;
 
 use Webaccess\ProjectSquare\Events\Tickets\UpdateTicketEvent;
 use Webaccess\ProjectSquareLaravel\Models\Ticket;
-use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
-use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
-use Webaccess\ProjectSquareLaravel\Services\TicketStatusManager;
 use Webaccess\ProjectSquareLaravel\Tools\SlackTool;
 use Webaccess\ProjectSquareLaravel\Tools\StringTool;
 

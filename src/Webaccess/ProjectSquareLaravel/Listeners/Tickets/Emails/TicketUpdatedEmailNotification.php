@@ -4,27 +4,29 @@ namespace Webaccess\ProjectSquareLaravel\Listeners\Tickets\Emails;
 
 use Illuminate\Support\Facades\Mail;
 use Webaccess\ProjectSquare\Events\Tickets\UpdateTicketEvent;
-use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
-use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
-use Webaccess\ProjectSquareLaravel\Services\TicketStatusManager;
+use Webaccess\ProjectSquareLaravel\Models\Ticket;
 
 class TicketUpdatedEmailNotification
 {
     public function handle(UpdateTicketEvent $event)
     {
-        $ticket = (new EloquentTicketRepository())->getTicketWithStates($event->ticketID);
-        $project = (new EloquentProjectRepository())->getProjectModel($ticket->projectID);
-        $author_user = app()->make('UserManager')->getUser($ticket->states[0]->authorUserID);
-        $newStatus = TicketStatusManager::getTicketStatus($ticket->states[0]->statusID);
+        if (isset($event->ticketID) && $event->ticketID) {
+            if ($ticket = Ticket::where('id', '=', $event->ticketID)->with('project', 'project.client', 'states', 'states.allocated_user', 'states.author_user', 'states.status')->first()) {
 
-        if ($user = app()->make('UserManager')->getUser($ticket->states[0]->allocatedUserID)) {
-            $email = $user->email;
+                if (isset($ticket->states[0]->allocated_user)) {
+                    $setting = app()->make('SettingManager')->getSettingByKeyAndUser('EMAIL_NOTIFICATION_TICKET_UPDATED', $ticket->states[0]->allocated_user->id);
 
-            Mail::send('projectsquare::emails.ticket_updated', array('ticket' => $ticket, 'project' => $project, 'user' => $user, 'author_user' => $author_user, 'new_status' => $newStatus), function ($message) use ($email, $ticket) {
-                $message->to($email)
-                    ->from('no-reply@projectsquare.io')
-                    ->subject('[projectsquare] Modification du ticket : ' . $ticket->title);
-            });
+                    if ($setting && boolval($setting->value) === true) {
+                        $email = $ticket->states[0]->allocated_user->email;
+
+                        Mail::send('projectsquare::emails.ticket_updated', array('ticket' => $ticket), function ($message) use ($email, $ticket) {
+                            $message->to($email)
+                                ->from('no-reply@projectsquare.io')
+                                ->subject('[projectsquare] Modification du ticket : ' . $ticket->title);
+                        });
+                    }
+                }
+            }
         }
     }
 }

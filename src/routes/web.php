@@ -141,8 +141,9 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
 
     //MY
     Route::get('/my', array('as' => 'my', 'uses' => 'MyController@index'));
-    Route::post('/my/profile_update', array('as' => 'my_profile_update', 'uses' => 'MyController@udpate_profile'));
-    Route::post('/my/profile_upload_avatar', array('as' => 'my_profile_upload_avatar', 'uses' => 'MyController@upload_avatar'));
+    Route::post('/my/udpate_profile', array('as' => 'my_profile_update', 'uses' => 'MyController@udpate_profile'));
+    Route::post('/my/upload_avatar', array('as' => 'my_profile_upload_avatar', 'uses' => 'MyController@upload_avatar'));
+    Route::post('/my/update_notifications', array('as' => 'my_profile_update_notifications', 'uses' => 'MyController@update_notifications'));
 
     //BETA FORM
     Route::post('/beta_form', array('as' => 'beta_form', 'uses' => 'BaseController@betaForm'));
