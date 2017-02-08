@@ -1,6 +1,6 @@
 <?php
 
-namespace Webaccess\ProjectSquareLaravel\Listeners;
+namespace Webaccess\ProjectSquareLaravel\Listeners\Messages\Emails;
 
 use Illuminate\Support\Facades\Mail;
 use Webaccess\ProjectSquare\Events\Messages\CreateMessageEvent;

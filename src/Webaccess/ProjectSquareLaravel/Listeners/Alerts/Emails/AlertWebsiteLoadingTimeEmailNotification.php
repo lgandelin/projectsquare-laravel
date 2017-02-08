@@ -1,6 +1,6 @@
 <?php
 
-namespace Webaccess\ProjectSquareLaravel\Listeners;
+namespace Webaccess\ProjectSquareLaravel\Listeners\Alerts\Emails;
 
 use Illuminate\Support\Facades\Mail;
 use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteLoadingTimeEvent;

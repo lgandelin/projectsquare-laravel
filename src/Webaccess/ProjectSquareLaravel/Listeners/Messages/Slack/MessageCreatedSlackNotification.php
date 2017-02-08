@@ -1,6 +1,6 @@
 <?php
 
-namespace Webaccess\ProjectSquareLaravel\Listeners;
+namespace Webaccess\ProjectSquareLaravel\Listeners\Messages\Slack;
 
 use Webaccess\ProjectSquare\Events\Messages\CreateMessageEvent;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentMessageRepository;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Webaccess\ProjectSquareLaravel\Listeners;
+namespace Webaccess\ProjectSquareLaravel\Listeners\Tickets\Emails;
 
 use Illuminate\Support\Facades\Mail;
 use Webaccess\ProjectSquare\Events\Tickets\CreateTicketEvent;

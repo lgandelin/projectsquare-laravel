@@ -1,6 +1,6 @@
 <?php
 
-namespace Webaccess\ProjectSquareLaravel\Listeners;
+namespace Webaccess\ProjectSquareLaravel\Listeners\Tasks\Emails;
 
 use Illuminate\Support\Facades\Mail;
 use Webaccess\ProjectSquare\Events\Tasks\CreateTaskEvent;

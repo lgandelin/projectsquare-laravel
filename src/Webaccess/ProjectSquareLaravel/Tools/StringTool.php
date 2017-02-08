@@ -20,4 +20,9 @@ class StringTool
     {
         return $number ? str_replace(',', '.', $number) : 0;
     }
+
+    public static function getShortID($uuid)
+    {
+        return substr($uuid, 0, 8);
+    }
 }

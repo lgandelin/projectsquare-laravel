@@ -54,18 +54,25 @@ use Webaccess\ProjectSquare\Interactors\Tasks\UpdateTaskInteractor;
 use Webaccess\ProjectSquare\Interactors\Tasks\DeleteTaskInteractor;
 use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteLoadingTimeEvent;
 use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteStatusCodeEvent;
-use Webaccess\ProjectSquareLaravel\Listeners\AlertWebsiteLoadingTimeSlackNotification;
-use Webaccess\ProjectSquareLaravel\Listeners\AlertWebsiteStatusCodeSlackNotification;
-use Webaccess\ProjectSquareLaravel\Listeners\ConversationCreatedSlackNotification;
-//use Webaccess\ProjectSquareLaravel\Listeners\MessageCreatedEmailNotification;
-use Webaccess\ProjectSquareLaravel\Listeners\MessageCreatedSlackNotification;
-use Webaccess\ProjectSquareLaravel\Listeners\TaskCreatedEmailNotification;
-use Webaccess\ProjectSquareLaravel\Listeners\TicketCreatedEmailNotification;
-use Webaccess\ProjectSquareLaravel\Listeners\TicketCreatedSlackNotification;
-use Webaccess\ProjectSquareLaravel\Listeners\TicketDeletedEmailNotification;
-use Webaccess\ProjectSquareLaravel\Listeners\TicketDeletedSlackNotification;
-use Webaccess\ProjectSquareLaravel\Listeners\TicketUpdatedEmailNotification;
-use Webaccess\ProjectSquareLaravel\Listeners\TicketUpdatedSlackNotification;
+use Webaccess\ProjectSquareLaravel\Http\Middleware\AfterConfig;
+use Webaccess\ProjectSquareLaravel\Http\Middleware\BeforeConfig;
+use Webaccess\ProjectSquareLaravel\Http\Middleware\ChangeCurrentProject;
+use Webaccess\ProjectSquareLaravel\Listeners\Alerts\Slack\AlertWebsiteLoadingTimeSlackNotification;
+use Webaccess\ProjectSquareLaravel\Listeners\Alerts\Slack\AlertWebsiteStatusCodeSlackNotification;
+use Webaccess\ProjectSquareLaravel\Listeners\Messages\Emails\MessageCreatedEmailNotification;
+use Webaccess\ProjectSquareLaravel\Listeners\Messages\Slack\ConversationCreatedSlackNotification;
+use Webaccess\ProjectSquareLaravel\Listeners\Messages\Slack\MessageCreatedSlackNotification;
+use Webaccess\ProjectSquareLaravel\Listeners\Tasks\Emails\TaskCreatedEmailNotification;
+use Webaccess\ProjectSquareLaravel\Listeners\Tasks\Emails\TaskDeletedEmailNotification;
+use Webaccess\ProjectSquareLaravel\Listeners\Tasks\Slack\TaskCreatedSlackNotification;
+use Webaccess\ProjectSquareLaravel\Listeners\Tasks\Slack\TaskDeletedSlackNotification;
+use Webaccess\ProjectSquareLaravel\Listeners\Tasks\Slack\TaskUpdatedSlackNotification;
+use Webaccess\ProjectSquareLaravel\Listeners\Tickets\Emails\TicketCreatedEmailNotification;
+use Webaccess\ProjectSquareLaravel\Listeners\Tickets\Emails\TicketDeletedEmailNotification;
+use Webaccess\ProjectSquareLaravel\Listeners\Tickets\Emails\TicketUpdatedEmailNotification;
+use Webaccess\ProjectSquareLaravel\Listeners\Tickets\Slack\TicketCreatedSlackNotification;
+use Webaccess\ProjectSquareLaravel\Listeners\Tickets\Slack\TicketDeletedSlackNotification;
+use Webaccess\ProjectSquareLaravel\Listeners\Tickets\Slack\TicketUpdatedSlackNotification;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentClientRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentConversationRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentEventRepository;
@@ -104,22 +111,30 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         Context::get('event_dispatcher')->addListener(Events::CREATE_TICKET, array(new TicketCreatedSlackNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::UPDATE_TICKET, array(new TicketUpdatedSlackNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::DELETE_TICKET, array(new TicketDeletedSlackNotification(), 'handle'));
-        Context::get('event_dispatcher')->addListener(Events::CREATE_CONVERSATION, array(new ConversationCreatedSlackNotification(), 'handle'));
-        Context::get('event_dispatcher')->addListener(Events::CREATE_MESSAGE, array(new MessageCreatedSlackNotification(), 'handle'));
 
         Context::get('event_dispatcher')->addListener(Events::CREATE_TICKET, array(new TicketCreatedEmailNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::UPDATE_TICKET, array(new TicketUpdatedEmailNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::DELETE_TICKET, array(new TicketDeletedEmailNotification(), 'handle'));
 
+        Context::get('event_dispatcher')->addListener(Events::CREATE_TASK, array(new TaskCreatedSlackNotification(), 'handle'));
+        Context::get('event_dispatcher')->addListener(Events::UPDATE_TASK, array(new TaskUpdatedSlackNotification(), 'handle'));
+        Context::get('event_dispatcher')->addListener(Events::DELETE_TASK, array(new TaskDeletedSlackNotification(), 'handle'));
+
         Context::get('event_dispatcher')->addListener(Events::CREATE_TASK, array(new TaskCreatedEmailNotification(), 'handle'));
-        //Context::get('event_dispatcher')->addListener(Events::CREATE_MESSAGE, array(new MessageCreatedEmailNotification(), 'handle'));
+        Context::get('event_dispatcher')->addListener(Events::DELETE_TASK, array(new TaskDeletedEmailNotification(), 'handle'));
+
+
+        //TODO
+        Context::get('event_dispatcher')->addListener(Events::CREATE_CONVERSATION, array(new ConversationCreatedSlackNotification(), 'handle'));
+        Context::get('event_dispatcher')->addListener(Events::CREATE_MESSAGE, array(new MessageCreatedSlackNotification(), 'handle'));
+        Context::get('event_dispatcher')->addListener(Events::CREATE_MESSAGE, array(new MessageCreatedEmailNotification(), 'handle'));
 
         //Patterns
         $basePath = __DIR__.'/../../';
 
-        $router->aliasMiddleware('change_current_project', \Webaccess\ProjectSquareLaravel\Http\Middleware\ChangeCurrentProject::class);
-        $router->aliasMiddleware('before_config', \Webaccess\ProjectSquareLaravel\Http\Middleware\BeforeConfig::class);
-        $router->aliasMiddleware('after_config', \Webaccess\ProjectSquareLaravel\Http\Middleware\AfterConfig::class);
+        $router->aliasMiddleware('change_current_project', ChangeCurrentProject::class);
+        $router->aliasMiddleware('before_config', BeforeConfig::class);
+        $router->aliasMiddleware('after_config', AfterConfig::class);
 
         $this->loadRoutesFrom($basePath . 'routes/web.php');
         $this->loadRoutesFrom($basePath . 'routes/api.php');
