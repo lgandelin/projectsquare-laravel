@@ -50,8 +50,12 @@ class MessageController extends BaseController
         }
     }
 
-    public function view($conversationID)
+    public function view(Request $request)
     {
+        parent::__construct($request);
+
+        $conversationID = $request->id;
+
         return view('projectsquare::messages.view', [
             'conversation' => app()->make('ConversationManager')->getConversationModel($conversationID),
             'back_link' => ($request->session()->get('messages_interface') === 'project') ? route('project_messages', ['uuid' => $this->getCurrentProject()->id]) : route('conversations_index')

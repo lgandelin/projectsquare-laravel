@@ -125,8 +125,9 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         Context::get('event_dispatcher')->addListener(Events::UPDATE_TASK, array(new TaskUpdatedEmailNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::DELETE_TASK, array(new TaskDeletedEmailNotification(), 'handle'));
 
-        //TODO
         Context::get('event_dispatcher')->addListener(Events::CREATE_CONVERSATION, array(new ConversationCreatedSlackNotification(), 'handle'));
+
+        //TODO
         Context::get('event_dispatcher')->addListener(Events::CREATE_MESSAGE, array(new MessageCreatedSlackNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::CREATE_MESSAGE, array(new MessageCreatedEmailNotification(), 'handle'));
 

@@ -81,6 +81,7 @@ class MyController extends BaseController
                 'EMAIL_NOTIFICATION_TICKET_UPDATED',
                 'EMAIL_NOTIFICATION_TICKET_DELETED',
             ];
+
             foreach ($keys as $key) {
                 app()->make('SettingManager')->createOrUpdateUserSetting(
                     $this->getUser()->id,
