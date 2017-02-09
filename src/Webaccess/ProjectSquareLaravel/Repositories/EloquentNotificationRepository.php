@@ -34,7 +34,7 @@ class EloquentNotificationRepository implements NotificationRepository
     public function getUnreadNotifications($userID)
     {
         $notifications = [];
-        $notificationsModel = Notification::where('user_id', '=', $userID)->where('read', '=', 0);
+        $notificationsModel = Notification::where('user_id', '=', $userID)->orderBy('created_at', 'desc')->where('read', '=', 0);
         foreach ($notificationsModel->get() as $notificationModel) {
             $notifications[] = $this->getNotificationEntity($notificationModel);
         }

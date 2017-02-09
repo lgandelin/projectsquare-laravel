@@ -22,6 +22,7 @@ class MyController extends BaseController
             'email_notification_task_created' => app()->make('SettingManager')->getSettingByKeyAndUser('EMAIL_NOTIFICATION_TASK_CREATED', $this->getUser()->id),
             'email_notification_task_updated' => app()->make('SettingManager')->getSettingByKeyAndUser('EMAIL_NOTIFICATION_TASK_UPDATED', $this->getUser()->id),
             'email_notification_task_deleted' => app()->make('SettingManager')->getSettingByKeyAndUser('EMAIL_NOTIFICATION_TASK_DELETED', $this->getUser()->id),
+            'email_notification_message_created' => app()->make('SettingManager')->getSettingByKeyAndUser('EMAIL_NOTIFICATION_MESSAGE_CREATED', $this->getUser()->id),
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
@@ -80,6 +81,7 @@ class MyController extends BaseController
                 'EMAIL_NOTIFICATION_TICKET_CREATED',
                 'EMAIL_NOTIFICATION_TICKET_UPDATED',
                 'EMAIL_NOTIFICATION_TICKET_DELETED',
+                'EMAIL_NOTIFICATION_MESSAGE_CREATED',
             ];
 
             foreach ($keys as $key) {

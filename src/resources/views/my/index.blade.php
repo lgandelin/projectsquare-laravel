@@ -86,7 +86,7 @@
                     <h2>{{ trans('projectsquare::my.email_notifications') }}</h2>
 
                     <form action="{{ route('my_profile_update_notifications') }}" method="post">
-                        <div class="form-group">
+                        <div class="form-group col-lg-4">
 
                             <strong>Tâches</strong><br/>
 
@@ -105,9 +105,8 @@
                             <label class="inline">
                                 <input type="checkbox" name="email_notification_task_deleted" @if ($email_notification_task_deleted && $email_notification_task_deleted->value == "1")checked="checked"@endif /> A la suppression d'une tâche
                             </label>
-
-                            <br/><br/>
-
+                        </div>
+                        <div class="form-group col-lg-4">
                             <strong>Tickets</strong><br/>
 
                             <label class="inline">
@@ -127,15 +126,22 @@
                             </label>
 
                             {!! csrf_field() !!}
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <strong>Messages</strong><br/>
 
-                            <br><br>
+                            <label class="inline">
+                                <input type="checkbox" name="email_notification_message_created" @if ($email_notification_message_created && $email_notification_message_created->value == "1")checked="checked"@endif /> A la création d'un message
+                            </label>
 
-                            <div class="form-group">
-                                <button type="submit" class="btn valid">
-                                    <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
-                                </button>
-                                <a href="{{ route('dashboard') }}" class="btn btn-default back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
-                            </div>
+                            {!! csrf_field() !!}
+                        </div>
+
+                        <div class="form-group" style="clear:both">
+                            <button type="submit" class="btn valid">
+                                <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
+                            </button>
+                            <a href="{{ route('dashboard') }}" class="btn btn-default back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
                         </div>
                     </form>
                 </div>
