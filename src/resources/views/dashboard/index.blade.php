@@ -30,13 +30,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="{{ asset('js/vendor/fullcalendar/lib/moment.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
-    <script src="{{ asset('js/vendor/fullcalendar/lang-all.js') }}"></script>
+    <script src="{{ asset('js/vendor/fullcalendar/locale-all.js') }}"></script>
     <script>
         var defaultDate = "{{ date('Y-m-d') }}";
         var events = [
             @foreach ($events as $event)
             {
-                id: {{ $event->id }},
+                id: "{{ $event->id }}",
                 title: "{{ $event->name }}",
                 start: "{{ $event->startTime->format(DATE_ISO8601) }}",
                 end: "{{ $event->endTime->format(DATE_ISO8601) }}",

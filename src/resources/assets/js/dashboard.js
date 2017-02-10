@@ -11,7 +11,7 @@ $(document).ready(function() {
         defaultDate: defaultDate,
         defaultView: "agendaWeek",
         editable: false,
-        lang: 'fr',
+        locale: 'fr',
         aspectRatio: 2,
         weekNumbers: true,
         weekends: false,

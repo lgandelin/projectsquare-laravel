@@ -9,7 +9,7 @@ $(document).ready(function() {
         defaultDate: defaultDate,
         defaultView: "agendaWeek",
         editable: true,
-        lang: 'fr',
+        locale: 'fr',
         aspectRatio: 2,
         weekNumbers: true,
         weekends: false,

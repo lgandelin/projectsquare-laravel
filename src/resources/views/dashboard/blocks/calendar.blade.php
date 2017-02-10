@@ -16,13 +16,13 @@
     @parent
     <script src="{{ asset('js/vendor/fullcalendar/lib/moment.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
-    <script src="{{ asset('js/vendor/fullcalendar/lang-all.js') }}"></script>
+    <script src="{{ asset('js/vendor/fullcalendar/locale-all.js') }}"></script>
     <script>
         var defaultDate = "{{ date('Y-m-d') }}";
         var steps = [
             @foreach ($steps as $step)
             {
-                id: {{ $step->id }},
+                id: "{{ $step->id }}",
                 title: "{{ $step->name }}",
                 start: "{{ $step->startTime->format(DATE_ISO8601) }}",
                 end: "{{ $step->endTime->format(DATE_ISO8601) }}",
