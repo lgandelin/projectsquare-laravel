@@ -22,7 +22,7 @@ class OccupationController extends BaseController
         ];
 
         $months = [];
-        for ($m = 0; $m < 12; $m++) {
+        for ($m = 0; $m < 6; $m++) {
             $month = new \StdClass();
             $month->calendars = [];
 
