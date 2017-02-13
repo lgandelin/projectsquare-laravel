@@ -24,6 +24,11 @@ class UserManager
         return $this->repository->getAgencyUsers();
     }
 
+    public function getUsersByRole($roleID = null)
+    {
+        return $this->repository->getUsersByRole($roleID);
+    }
+
     public function getUsersByClient($clientID)
     {
         return $this->repository->getClientUsers($clientID);

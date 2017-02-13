@@ -4,6 +4,7 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Utility;
 
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 use Webaccess\ProjectSquareLaravel\Tools\Calendar\Calendar;
@@ -15,26 +16,23 @@ class OccupationController extends BaseController
     {
         parent::__construct($request);
 
-        //@TODO
-        $users = [
-            '1a103d3e-d22b-41bf-99da-76fb879f70a2',
-            '388fa60b-4f3c-4b4e-98ec-c568194132cd'
-        ];
+        $users = app()->make('UserManager')->getUsersByRole(Input::get('filter_role'));
+        $roles = app()->make('RoleManager')->getRoles();
 
         $months = [];
         for ($m = 0; $m < 6; $m++) {
             $month = new \StdClass();
             $month->calendars = [];
 
-            foreach ($users as $userID) {
+            foreach ($users as $user) {
                 $calendar = new Calendar(1, Day::MONDAY, date('m') + $m, date('Y'), 4);
                 $rawEvents = app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
-                    'userID' => $userID,
+                    'userID' => $user->id,
                 ]));
 
                 $calendar->setEvents($rawEvents);
                 $calendar->calculateMonths();
-                $calendar->user = app()->make('UserManager')->getUser($userID);
+                $calendar->user = $user;
 
                 foreach ($calendar->getMonths() as $monthObject) {
                     foreach ($monthObject->getDays() as $day) {
@@ -65,6 +63,10 @@ class OccupationController extends BaseController
             'month_labels' => ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
             'months' => $months,
             'today' => (new DateTime())->setTime(0, 0, 0),
+            'roles' => $roles,
+            'filters' => [
+                'role' => Input::get('filter_role'),
+            ],
         ]);
     }
 }

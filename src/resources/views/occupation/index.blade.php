@@ -8,33 +8,55 @@
             </div>
 
             <div class="row">
+                <form method="get">
+
+                    <h2>{{ trans('projectsquare::tasks.filters.filters') }}</h2>
+
+                    <div class="form-group col-md-2">
+                        <select class="form-control" name="filter_role" id="filter_role">
+                            <option value="">{{ trans('projectsquare::occupation.filters.by_role') }}</option>
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}" @if ($filters['role'] == $role->id)selected="selected" @endif>{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <input class="btn button" type="submit" value="{{ trans('projectsquare::generic.valid') }}" />
+                    </div>
+                </form>
+                <hr/>
+            </div>
+
+            <div class="row">
                 @foreach ($months as $i => $month)
                     <div class="month" @if ($i > 0)style="display:none"@endif data-month="{{ $i }}">
-                        <?php $firstMonth = $month->calendars[0]->getMonths()[0] ?>
-                        <h2><span class="previous" style="display: none"><<</span> {{ $month_labels[$firstMonth->getNumber()] }} {{ $firstMonth->getYear() }} <span class="next">>></span></h2>
+                        @if (isset($month->calendars[0]))
+                            <?php $firstMonth = $month->calendars[0]->getMonths()[0] ?>
+                            <h2><span class="previous" style="display: none"><<</span> {{ $month_labels[$firstMonth->getNumber()] }} {{ $firstMonth->getYear() }} <span class="next">>></span></h2>
 
-                        <table>
-                            <tr>
-                                <th>Equipe</th>
-                                @foreach ($firstMonth->getDays() as $day)
-                                    @if ($day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SATURDAY && $day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SUNDAY)
-                                        <th>{{ $day->getNumber() }}</th>
-                                    @endif
-                                @endforeach
-                            </tr>
-                            @foreach ($month->calendars as $calendar)
+                            <table>
                                 <tr>
-                                    <td style="border:1px solid #999;">{{ $calendar->user->firstName }} {{ substr($calendar->user->lastName, 0, 1) }}.</td>
-                                    @foreach ($calendar->getMonths()[0]->getDays() as $day)
+                                    <th>Equipe</th>
+                                    @foreach ($firstMonth->getDays() as $day)
                                         @if ($day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SATURDAY && $day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SUNDAY)
-                                            <td style="text-align: center; font-size: 12px; border:1px solid #999; width: 50px; height: 50px; @if (sizeof($day->getEvents()) > 0)background: {{ $day->color }};@endif @if($day->getDateTime()->setTime(0, 0, 0) == $today)border: 2px solid #000; @endif">
-                                                <span @if ($day->isDisabled())style="color:#ccc"@endif></span>
-                                            </td>
+                                            <th>{{ $day->getNumber() }}</th>
                                         @endif
                                     @endforeach
                                 </tr>
-                            @endforeach
-                        </table>
+                                @foreach ($month->calendars as $calendar)
+                                    <tr>
+                                        <td style="border:1px solid #999;">{{ $calendar->user->first_name }} {{ substr($calendar->user->last_name, 0, 1) }}.</td>
+                                        @foreach ($calendar->getMonths()[0]->getDays() as $day)
+                                            @if ($day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SATURDAY && $day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SUNDAY)
+                                                <td style="text-align: center; font-size: 12px; border:1px solid #999; width: 50px; height: 50px; @if (sizeof($day->getEvents()) > 0)background: {{ $day->color }};@endif @if ($day->isDisabled())background:#ededed @endif @if($day->getDateTime()->setTime(0, 0, 0) == $today)border: 2px solid #000; @endif">
+                                                </td>
+                                            @endif
+                                        @endforeach
+                                    </tr>
+                                @endforeach
+                            </table>
+                        @endif
                     </div>
                 @endforeach
             </div>
