@@ -9,17 +9,15 @@ class Calendar {
     private $_startingMonth;
     private $_startingYear;
     private $_months;
-    private $_weeksNumber;
     private $_events;
 
-    public function __construct($monthsNumber = null, $firstDayOfWeek = null, $startingMonth = null, $startingYear = null, $weeksNumber = null)
+    public function __construct($monthsNumber = null, $firstDayOfWeek = null, $startingMonth = null, $startingYear = null)
     {
         $this->_monthsNumber = $monthsNumber;
         $this->_firstDayOfWeek = ($firstDayOfWeek != null) ? $firstDayOfWeek : 0;
         $this->_months = array();
         $this->_startingMonth = ($startingMonth) ? $startingMonth : date('n');
         $this->_startingYear = ($startingYear) ? $startingYear : date('Y');
-        $this->_weeksNumber = 0;
         $this->_events = array();
     }
 

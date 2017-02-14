@@ -46,17 +46,19 @@
                                 </h2>
                             </div>
                             <table>
-                                <tr>
-                                    <th>&nbsp;</th>
+                                <tr class="weeks-row">
+                                    <th style="border:none">&nbsp;</th>
                                     @foreach ($month->weeks as $weekNumber)
                                         <th colspan="5" class="week">Semaine {{ $weekNumber }}</th>
                                     @endforeach
                                 </tr>
                                 <tr>
-                                    <th>&nbsp;</th>
+                                    <th style="border:none">&nbsp;</th>
+                                    <?php $index = 0; ?>
                                     @foreach ($firstMonth->getDays() as $day)
                                         @if ($day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SATURDAY && $day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SUNDAY)
-                                            <th class="@if($day->getDateTime()->setTime(0, 0, 0) == $today) today @endif @if($day->isDisabled()) disabled @endif">{{ $day->getNumber() }}</th>
+                                            <?php $index++; ?>
+                                            <th class="day @if($day->getDateTime()->setTime(0, 0, 0) == $today) today @endif @if($day->isDisabled()) disabled @endif" @if($index%5 == 0)style="border-right-width: 2px"@endif>{{ $day->getNumber() }}</th>
                                         @endif
                                     @endforeach
                                 </tr>
@@ -68,10 +70,23 @@
                                                 'name' => $calendar->user->complete_name
                                             ])
                                         </td>
-                                        @foreach ($calendar->getMonths()[0]->getDays() as $day)
+                                        <?php $index = 0; ?>
+                                        @foreach ($calendar->getMonths()[0]->getDays() as $i => $day)
                                             @if ($day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SATURDAY && $day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SUNDAY)
-                                                <td @if ($day->isDisabled())class="disabled"@endif>
+                                                <?php $index++; ?>
+                                                <td @if ($day->isDisabled())class="disabled"@endif @if($index%5 == 0)style="border-right-width: 2px"@endif>
                                                     <span class="work-hours" style="height:{{ ($day->hours_scheduled)*7 }}px;"></span>
+
+                                                    @if ($day->getEvents())
+                                                        <div class="events-detail">
+                                                            @foreach ($day->getEvents() as $event)
+                                                                <div class="event" style="background: {{ isset($event->color) ? $event->color : '#3a87ad' }}">
+                                                                    <span class="time">{{ $event->startTime->format('H:i') }} - {{ $event->endTime->format('H:i') }}</span>
+                                                                    <span class="name">{{ $event->name }}</span>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    @endif
                                                 </td>
                                             @endif
                                         @endforeach
@@ -85,6 +100,7 @@
             </div>
 
             <input type="hidden" id="months_index" value="0" />
+            <input type="hidden" id="months_number" value="{{ sizeof($months) }}" />
         </div>
     </div>
 @endsection
@@ -96,11 +112,11 @@
             $('.month[data-month=' + index + ']').show();
             $('#months_index').val(index);
 
-            $('.previous').show();
-            $('.next').show();
+            $('.previous').removeClass('disabled');
+            $('.next').removeClass('disabled');
 
-            if (index == 0) $('.previous').hide();
-            if (index == 5) $('.next').hide();
+            if (index == 0) $('.previous').addClass('disabled');
+            if (index == parseInt($('#months_number').val()) - 1) $('.next').addClass('disabled');
         }
 
         $(document).ready(function() {
@@ -117,7 +133,7 @@
 
             $('.next').click(function() {
                 var index = $('#months_index').val();
-                if (index < 5) {
+                if (index < parseInt($('#months_number').val()) - 1) {
                     index++;
                     displayMonth(index);
                 }

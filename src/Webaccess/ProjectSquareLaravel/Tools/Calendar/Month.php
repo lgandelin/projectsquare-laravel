@@ -85,7 +85,8 @@ class Month {
     private function _addDaysOfPreviousMonth()
     {
         $previousMonthsDaysNumber = $this->_firstDayNumber - $this->_firstDayOfWeek;
-        $previousMonthsDaysNumber = ($previousMonthsDaysNumber < 0) ? ($previousMonthsDaysNumber + 7) : $previousMonthsDaysNumber;
+        if ($previousMonthsDaysNumber < 0) $previousMonthsDaysNumber = $previousMonthsDaysNumber + 7;
+        if ($previousMonthsDaysNumber == 5) $previousMonthsDaysNumber = 0;
 
         for ($i = $previousMonthsDaysNumber; $i > 0; $i--) {
             $previousMonthDay = $this->getDateTime();
@@ -97,8 +98,8 @@ class Month {
     private function _addDaysOfNextMonth()
     {
         $lastDayOfMonth = $this->_days[sizeof($this->_days) - 1];
-        $nextMonthDaysNumber = 7 - ($lastDayOfMonth->getDayOfWeek() - $this->_firstDayOfWeek + 1);
-        $nextMonthDaysNumber = ($nextMonthDaysNumber == 7) ? 0 : $nextMonthDaysNumber;
+        $nextMonthDaysNumber = 5 - ($lastDayOfMonth->getDayOfWeek() - $this->_firstDayOfWeek + 1);
+        $nextMonthDaysNumber = ($nextMonthDaysNumber == 5) ? 0 : $nextMonthDaysNumber;
 
         for ($i = 1; $i <= $nextMonthDaysNumber; $i++) {
             $nextMonthDay = $lastDayOfMonth->getDateTime();
@@ -135,6 +136,14 @@ class Month {
         }
         $day->setDisabled($disabled);
         $this->_days[]= $day;
+    }
+
+    public function _removeDay($number) {
+        foreach ($this->_days as $i => $day) {
+            if ($day->getNumber() == $number) {
+                unset($this->_days[$i]);
+            }
+        }
     }
 
     public function getDaysNumber()

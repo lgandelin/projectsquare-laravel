@@ -13504,39 +13504,40 @@ body {
 /* line 221, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .form-inline .add {
   margin-right: 0;
+  margin-bottom: 0;
 }
-/* line 225, ../sass/layout/_top_bar.scss */
+/* line 226, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .form-inline .valid {
   padding: 0.5rem;
   height: 30px;
 }
-/* line 233, ../sass/layout/_top_bar.scss */
+/* line 234, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu .todo {
   position: relative;
 }
-/* line 237, ../sass/layout/_top_bar.scss */
+/* line 238, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu .avatar {
   border-radius: 50%;
   border: 1px solid #c8dc1e;
   width: 50px;
   height: auto;
 }
-/* line 244, ../sass/layout/_top_bar.scss */
+/* line 245, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu .avatar:hover {
   opacity: 0.9;
 }
-/* line 248, ../sass/layout/_top_bar.scss */
+/* line 249, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu .out {
   vertical-align: middle;
 }
-/* line 252, ../sass/layout/_top_bar.scss */
+/* line 253, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu .out .log-out {
   display: block;
   width: 33px;
   height: 32px;
   background: url(../img/top-bar/log-out.png) no-repeat center center;
 }
-/* line 259, ../sass/layout/_top_bar.scss */
+/* line 260, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu .out .log-out:hover {
   background: url(../img/top-bar/log-out-hover.png) no-repeat center center;
 }
@@ -14159,11 +14160,12 @@ body {
 }
 
 /* line 29, ../sass/_calendar.scss */
-.fc .fc-button-group > :first-child {
+.fc .fc-left button:first-child,
+.fc .fc-right button {
   margin-right: 1.6rem;
 }
 
-/* line 34, ../sass/_calendar.scss */
+/* line 35, ../sass/_calendar.scss */
 .fc-center h2 {
   color: #096a85;
   font-family: "AvantGarde-Book";
@@ -14180,6 +14182,49 @@ body {
   background: #84b4c2 !important;
   color: white !important;
   text-shadow: none;
+}
+
+/* line 52, ../sass/_calendar.scss */
+.fc-event {
+  border-radius: 0;
+}
+/* line 55, ../sass/_calendar.scss */
+.fc-event .fc-content {
+  padding: 5px;
+}
+/* line 59, ../sass/_calendar.scss */
+.fc-event .fc-bg {
+  opacity: 0;
+}
+/* line 63, ../sass/_calendar.scss */
+.fc-event .delete-event {
+  float: right;
+  top: -35px;
+  right: 5px;
+  z-index: 999;
+}
+/* line 70, ../sass/_calendar.scss */
+.fc-event .delete-event:hover {
+  color: #c8dc1e;
+  opacity: 1;
+}
+
+/* line 76, ../sass/_calendar.scss */
+.fc-day-grid-event {
+  margin: 0;
+}
+/* line 79, ../sass/_calendar.scss */
+.fc-day-grid-event .delete-event {
+  top: -20px;
+}
+/* line 83, ../sass/_calendar.scss */
+.fc-day-grid-event .fc-time {
+  margin-right: 1rem;
+}
+
+/* line 88, ../sass/_calendar.scss */
+.fc-ltr .fc-time-grid .fc-event-container {
+  margin: 0;
 }
 
 /* line 1, ../sass/_planning.scss */
@@ -14273,43 +14318,107 @@ body {
   white-space: nowrap;
   cursor: pointer;
 }
-/* line 39, ../sass/_occupation.scss */
+/* line 36, ../sass/_occupation.scss */
+.occupation-template .month .header .disabled {
+  color: #999;
+  border-color: #999;
+  cursor: default;
+}
+/* line 43, ../sass/_occupation.scss */
+.occupation-template .month table {
+  border: 2px solid #999;
+}
+/* line 46, ../sass/_occupation.scss */
+.occupation-template .month table .weeks-row th:first-child {
+  border-right: 2px solid #999;
+}
+/* line 51, ../sass/_occupation.scss */
 .occupation-template .month table tr th {
   text-align: center;
   border: 1px solid #999;
 }
-/* line 44, ../sass/_occupation.scss */
+/* line 55, ../sass/_occupation.scss */
 .occupation-template .month table tr td {
   text-align: center;
   border: 1px solid #999;
   width: 56px;
   height: 56px;
   vertical-align: bottom;
+  position: relative;
 }
-/* line 51, ../sass/_occupation.scss */
+/* line 63, ../sass/_occupation.scss */
 .occupation-template .month table tr td img {
   display: inline-block;
 }
-/* line 56, ../sass/_occupation.scss */
+/* line 67, ../sass/_occupation.scss */
+.occupation-template .month table tr td .events-detail {
+  position: absolute;
+  display: none;
+  background: white;
+  border-top: 1px solid #ccc;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
+  width: 200px;
+  top: 55px;
+  left: 55px;
+  z-index: 999;
+  text-align: left;
+}
+/* line 79, ../sass/_occupation.scss */
+.occupation-template .month table tr td .events-detail .event {
+  padding: 5px;
+  color: white;
+  border-bottom: 1px solid white;
+}
+/* line 84, ../sass/_occupation.scss */
+.occupation-template .month table tr td .events-detail .event .time {
+  font-size: 11px;
+  display: block;
+  margin-bottom: 5px;
+}
+/* line 90, ../sass/_occupation.scss */
+.occupation-template .month table tr td .events-detail .event .name {
+  display: block;
+  font-size: 13px;
+}
+/* line 96, ../sass/_occupation.scss */
+.occupation-template .month table tr td .events-detail .event:last-child {
+  border: none;
+}
+/* line 103, ../sass/_occupation.scss */
+.occupation-template .month table tr td:hover .work-hours {
+  opacity: 0.8;
+}
+/* line 107, ../sass/_occupation.scss */
+.occupation-template .month table tr td:hover .events-detail {
+  display: block;
+}
+/* line 112, ../sass/_occupation.scss */
 .occupation-template .month table tr .user {
   vertical-align: middle;
+  min-width: 53px;
 }
-/* line 60, ../sass/_occupation.scss */
+/* line 117, ../sass/_occupation.scss */
 .occupation-template .month table tr .today {
   color: white;
   background: #096a85;
 }
-/* line 65, ../sass/_occupation.scss */
+/* line 122, ../sass/_occupation.scss */
 .occupation-template .month table tr .work-hours {
   display: block;
   background: #c8dc1e;
 }
-/* line 70, ../sass/_occupation.scss */
+/* line 127, ../sass/_occupation.scss */
 .occupation-template .month table tr .week {
   font-weight: bold;
   color: #096a85;
+  border-right: 2px solid #999;
+  padding: 3px 0;
 }
-/* line 75, ../sass/_occupation.scss */
+/* line 134, ../sass/_occupation.scss */
+.occupation-template .month table tr .day {
+  padding: 3px 0;
+}
+/* line 138, ../sass/_occupation.scss */
 .occupation-template .month table tr .disabled {
   background: #f1f1f1;
   color: #bbb;

@@ -19,37 +19,45 @@ class OccupationController extends BaseController
         $users = app()->make('UserManager')->getUsersByRole(Input::get('filter_role'));
         $roles = app()->make('RoleManager')->getRoles();
 
-        $months = [];
+        $events = [];
+        foreach ($users as $user) {
+            $events[$user->id] = app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
+                'userID' => $user->id,
+            ]));
+        }
 
+        $months = [];
         for ($m = 0; $m < 6; $m++) {
             $month = new \StdClass();
             $month->calendars = [];
             $month->weeks = [];
 
             foreach ($users as $user) {
-                $calendar = new Calendar(1, Day::MONDAY, date('m') + $m, date('Y'), 4);
-                $rawEvents = app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
-                    'userID' => $user->id,
-                ]));
+                $calendar = new Calendar(1, Day::MONDAY, date('m') + $m, date('Y'));
 
-                $calendar->setEvents($rawEvents);
+                $calendar->setEvents($events[$user->id]);
                 $calendar->calculateMonths();
                 $calendar->user = $user;
 
                 foreach ($calendar->getMonths() as $monthObject) {
-                    foreach ($monthObject->getDays() as $day) {
-                        $hoursScheduled = 0;
-                        foreach ($day->getEvents() as $i => $event) {
-                            $diff = $event->endTime->diff($event->startTime);
-                            $hoursScheduled += $diff->h;
-                        }
-
+                    foreach ($monthObject->getDays() as $i => $day) {
                         $dateTime = $day->getDateTime();
-                        if (!in_array($dateTime->format('W'), $month->weeks)) {
-                            $month->weeks[]= $dateTime->format('W');
-                        }
+                        $day->hours_scheduled = 0;
 
-                        $day->hours_scheduled = ($hoursScheduled) < 8 ? $hoursScheduled : 8;
+                        if ($dateTime->format('w') != Day::SATURDAY && $dateTime->format('w') != Day::SUNDAY) {
+                            $hoursScheduled = 0;
+
+                            foreach ($day->getEvents() as $j => $event) {
+                                $diff = $event->endTime->diff($event->startTime);
+                                $hoursScheduled += $diff->h;
+                            }
+
+                            if (!in_array($dateTime->format('W'), $month->weeks)/* && $dateTime->format('m') == date('m') + $m*/) {
+                                $month->weeks[] = $dateTime->format('W');
+                            }
+
+                            $day->hours_scheduled = ($hoursScheduled) < 8 ? $hoursScheduled : 8;
+                        }
                     }
                 }
                 $month->calendars[]= $calendar;
