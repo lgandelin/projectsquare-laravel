@@ -3,13 +3,16 @@
 @section('content')
     <div class="content-page">
         <div class="templates occupation-template">
-            <div class="page-header">
-                <h1>{{ trans('projectsquare::occupation.occupation') }}</h1>
+
+            <div class="page-header col-lg-12 col-md-12">
+                <div class="row">
+
+                    <h1>{{ trans('projectsquare::occupation.occupation') }}</h1>
+                </div>
             </div>
 
-            <div class="row">
-                <form method="get">
-
+            <form method="get">
+                <div class="row">
                     <h2>{{ trans('projectsquare::tasks.filters.filters') }}</h2>
 
                     <div class="form-group col-md-2">
@@ -24,32 +27,51 @@
                     <div class="col-md-2">
                         <input class="btn button" type="submit" value="{{ trans('projectsquare::generic.valid') }}" />
                     </div>
-                </form>
-                <hr/>
-            </div>
+                </div>
+            </form>
+
+            <hr/>
 
             <div class="row">
+                <div class="col-lg-12 col-md-12">
                 @foreach ($months as $i => $month)
                     <div class="month" @if ($i > 0)style="display:none"@endif data-month="{{ $i }}">
                         @if (isset($month->calendars[0]))
-                            <?php $firstMonth = $month->calendars[0]->getMonths()[0] ?>
-                            <h2><span class="previous" style="display: none"><<</span> {{ $month_labels[$firstMonth->getNumber()] }} {{ $firstMonth->getYear() }} <span class="next">>></span></h2>
-
+                            <div class="header">
+                                <?php $firstMonth = $month->calendars[0]->getMonths()[0] ?>
+                                <h2>
+                                    <button type="button" class="fc-prev-button fc-button fc-state-default fc-corner-left previous"><span class="fc-icon fc-icon-left-single-arrow"></span></button>
+                                    {{ $month_labels[$firstMonth->getNumber()] }} {{ $firstMonth->getYear() }}
+                                    <button type="button" class="fc-next-button fc-button fc-state-default fc-corner-right next"><span class="fc-icon fc-icon-right-single-arrow"></span></button>
+                                </h2>
+                            </div>
                             <table>
                                 <tr>
-                                    <th>Equipe</th>
+                                    <th>&nbsp;</th>
+                                    @foreach ($month->weeks as $weekNumber)
+                                        <th colspan="5" class="week">Semaine {{ $weekNumber }}</th>
+                                    @endforeach
+                                </tr>
+                                <tr>
+                                    <th>&nbsp;</th>
                                     @foreach ($firstMonth->getDays() as $day)
                                         @if ($day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SATURDAY && $day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SUNDAY)
-                                            <th>{{ $day->getNumber() }}</th>
+                                            <th class="@if($day->getDateTime()->setTime(0, 0, 0) == $today) today @endif @if($day->isDisabled()) disabled @endif">{{ $day->getNumber() }}</th>
                                         @endif
                                     @endforeach
                                 </tr>
                                 @foreach ($month->calendars as $calendar)
                                     <tr>
-                                        <td style="border:1px solid #999;">{{ $calendar->user->first_name }} {{ substr($calendar->user->last_name, 0, 1) }}.</td>
+                                        <td class="user">
+                                            @include('projectsquare::includes.avatar', [
+                                                'id' => $calendar->user->id,
+                                                'name' => $calendar->user->complete_name
+                                            ])
+                                        </td>
                                         @foreach ($calendar->getMonths()[0]->getDays() as $day)
                                             @if ($day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SATURDAY && $day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SUNDAY)
-                                                <td style="text-align: center; font-size: 12px; border:1px solid #999; width: 50px; height: 50px; @if (sizeof($day->getEvents()) > 0)background: {{ $day->color }};@endif @if ($day->isDisabled())background:#ededed @endif @if($day->getDateTime()->setTime(0, 0, 0) == $today)border: 2px solid #000; @endif">
+                                                <td @if ($day->isDisabled())class="disabled"@endif>
+                                                    <span class="work-hours" style="height:{{ ($day->hours_scheduled)*7 }}px;"></span>
                                                 </td>
                                             @endif
                                         @endforeach
@@ -59,6 +81,7 @@
                         @endif
                     </div>
                 @endforeach
+                </div>
             </div>
 
             <input type="hidden" id="months_index" value="0" />

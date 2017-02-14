@@ -72,6 +72,10 @@ class EloquentUserRepository implements UserRepository
             }
         }
 
+        usort($users, function($a, $b) {
+            return $a->last_name > $b->last_name;
+        });
+
         return $users;
     }
 

@@ -1,0 +1,82 @@
+.occupation-template {
+    
+    form {
+        h2 {
+            margin-left: 1.5rem
+        }
+    }
+
+    .month {
+        max-width: 1500px;
+        margin-top: 1rem;
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+
+            .next {
+                margin-left: 4rem;
+            }
+            
+            .previous {
+                margin-right: 4rem;
+            }
+
+            button {
+                background: none;
+                border: 1px solid #84b4c2;
+                color: #84b4c2;
+                border-radius: 0rem !important;
+                padding: 0.4em .8em .3em .8em;
+                font-size: .8em;
+                white-space: nowrap;
+                cursor: pointer;
+            }
+        }
+
+        table {
+            tr {
+                th {
+                    text-align: center;
+                    border: 1px solid #999;
+                }
+
+                td {
+                    text-align: center;
+                    border: 1px solid #999;
+                    width: 56px;
+                    height: 56px;
+                    vertical-align: bottom;
+                    
+                    img {
+                        display: inline-block;
+                    }
+                }
+
+                .user {
+                    vertical-align: middle;
+                }
+
+                .today {
+                    color: white;
+                    background: $touareg;
+                }
+                
+                .work-hours {
+                    display: block;
+                    background: $green;
+                }
+
+                .week {
+                    font-weight: bold;
+                    color: $touareg;
+                }
+
+                .disabled {
+                    background: #f1f1f1;
+                    color: #bbb;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,12 @@
+- lien sur les tâches/tickets dans les listes
+- occupation : jauge qui se remplit en fonction du nb d'heures dans la journée
+	. à l'avenir, pouvoir remplir le nb d'heures travailliées par jour / par mois (par défaut au niveau agence)
+	et au niveau individuel par collaborateur
+	. pouvoir définir les jours travaillés (ex: du mardi au samedi)
+- gestion des tâches "réunion"
+- augmenter le temps de la session
+- notifications desktop
+- tâches/tickets : séparer commentaires de l'historique
+- pouvoir rechercher dans la liste des tickets
+- occupation : classer l'équipe par ordre alphabétique
+	. augmenter la case de l'équipe

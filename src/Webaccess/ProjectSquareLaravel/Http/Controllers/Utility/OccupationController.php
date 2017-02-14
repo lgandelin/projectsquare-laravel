@@ -20,9 +20,11 @@ class OccupationController extends BaseController
         $roles = app()->make('RoleManager')->getRoles();
 
         $months = [];
+
         for ($m = 0; $m < 6; $m++) {
             $month = new \StdClass();
             $month->calendars = [];
+            $month->weeks = [];
 
             foreach ($users as $user) {
                 $calendar = new Calendar(1, Day::MONDAY, date('m') + $m, date('Y'), 4);
@@ -42,18 +44,14 @@ class OccupationController extends BaseController
                             $hoursScheduled += $diff->h;
                         }
 
-                        if ($hoursScheduled >= 6) {
-                            $day->color = 'red';
-                        } elseif ($hoursScheduled >= 3) {
-                            $day->color = 'orange';
-                        } elseif ($hoursScheduled > 0) {
-                            $day->color = 'green';
-                        } else {
-                            $day->color = 'white';
+                        $dateTime = $day->getDateTime();
+                        if (!in_array($dateTime->format('W'), $month->weeks)) {
+                            $month->weeks[]= $dateTime->format('W');
                         }
+
+                        $day->hours_scheduled = ($hoursScheduled) < 8 ? $hoursScheduled : 8;
                     }
                 }
-
                 $month->calendars[]= $calendar;
             }
             $months[]= $month;
