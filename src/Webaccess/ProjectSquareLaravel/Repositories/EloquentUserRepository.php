@@ -67,7 +67,7 @@ class EloquentUserRepository implements UserRepository
         foreach (Project::all() as $project) {
             foreach($project->users()->get() as $user) {
                 if ($user->pivot->role_id == $roleID || $roleID == null) {
-                    $users[]= $user;
+                    $users[$user->id] = $user;
                 }
             }
         }

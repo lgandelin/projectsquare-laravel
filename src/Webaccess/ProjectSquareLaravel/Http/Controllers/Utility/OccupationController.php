@@ -52,7 +52,7 @@ class OccupationController extends BaseController
                                 $hoursScheduled += $diff->h;
                             }
 
-                            if (!in_array($dateTime->format('W'), $month->weeks)/* && $dateTime->format('m') == date('m') + $m*/) {
+                            if (!in_array($dateTime->format('W'), $month->weeks)) {
                                 $month->weeks[] = $dateTime->format('W');
                             }
 
