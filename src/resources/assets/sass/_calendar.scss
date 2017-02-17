@@ -26,7 +26,8 @@
     border-radius: 0rem !important;
 }
 
-.fc .fc-button-group > :first-child {
+.fc .fc-left button:first-child,
+.fc .fc-right button {
     margin-right: 1.6rem;
 }
 
@@ -37,7 +38,6 @@
     }
 }
 
-
 .fc-unthemed .fc-today {
     background: #f9fbe6;
 }
@@ -47,4 +47,44 @@
     background: $light_blue !important;
     color: white !important;
     text-shadow: none;
+}
+
+.fc-event {
+    border-radius: 0;
+
+    .fc-content {
+        padding: 5px;
+    }
+    
+    .fc-bg {
+        opacity: 0;
+    }
+
+    .delete-event {
+        float: right;
+        top: -35px;
+        right: 5px;
+        z-index: 999;
+    }
+
+    .delete-event:hover {
+        color: $green;
+        opacity: 1;
+    }
+}
+
+.fc-day-grid-event {
+    margin: 0;
+
+    .delete-event {
+        top: -20px;
+    }
+    
+    .fc-time {
+        margin-right: 1rem;
+    }
+}
+
+.fc-ltr .fc-time-grid .fc-event-container {
+    margin: 0;
 }

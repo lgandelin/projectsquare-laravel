@@ -17,7 +17,7 @@ return [
     'ticket_status' => 'Statuts de ticket',
     'label' => 'Libellé',
     'name_placeholder' => 'ex : A valider, A recetter ...',
-    'include_in_planning' => 'Inclure dans le planning les tickets dans cet état',
+    'include_in_planning' => 'Inclure dans les listes ou le planning les tickets dans cet état',
 
     'ticket_status_not_found' => 'Une erreur est survenue lors de la récupération de ce statut de ticket',
 ];

@@ -10,6 +10,7 @@ use Webaccess\ProjectSquare\Requests\Tickets\DeleteTicketRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\UpdateTicketInfosRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\UpdateTicketRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
+use Webaccess\ProjectSquareLaravel\Tools\FilterTool;
 use Webaccess\ProjectSquareLaravel\Tools\StringTool;
 use Webaccess\ProjectSquareLaravel\Tools\UploadTool;
 
@@ -21,15 +22,17 @@ class TicketController extends BaseController
 
         $request->session()->put('tickets_interface', 'tickets');
 
+        $tickets = app()->make('GetTicketInteractor')->getTicketsPaginatedList(
+            $this->getUser()->id,
+            env('TICKETS_PER_PAGE', 10),
+            Input::get('filter_project'),
+            Input::get('filter_allocated_user'),
+            Input::get('filter_status'),
+            Input::get('filter_type')
+        );
+
         return view('projectsquare::tickets.index', [
-            'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
-                $this->getUser()->id,
-                env('TICKETS_PER_PAGE', 10),
-                Input::get('filter_project'),
-                Input::get('filter_allocated_user'),
-                Input::get('filter_status'),
-                Input::get('filter_type')
-            ),
+            'tickets' => Input::get('filter_status') ? $tickets : FilterTool::filterTicketList($tickets),
             'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
             'users' => app()->make('UserManager')->getAgencyUsers(),
             'ticket_statuses' => app()->make('TicketStatusManager')->getTicketStatuses(),
