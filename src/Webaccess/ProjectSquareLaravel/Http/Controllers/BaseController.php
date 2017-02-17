@@ -64,7 +64,7 @@ class BaseController extends Controller
             return (new NotificationDecorator())->decorate($notifications);
         }
 
-        return 0;
+        return [];
     }
 
     protected function getCurrentProject()

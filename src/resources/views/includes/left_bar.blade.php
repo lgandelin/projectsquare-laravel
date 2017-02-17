@@ -30,6 +30,7 @@
             preg_match('/tickets_/', $current_route) ||
             preg_match('/conversations_/', $current_route) ||
             preg_match('/planning/', $current_route) ||
+            preg_match('/occupation/', $current_route) ||
             preg_match('/monitoring_/', $current_route)) {{ 'encours' }} @endif">
                 <span class="line utils">
                     <span class="border"></span>
@@ -49,6 +50,8 @@
                     </li>
 
                     <li class="@if (preg_match('/planning/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('planning') }}">Planning</a></li>
+
+                    <li class="@if (preg_match('/occupation/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('occupation') }}">Occupation</a></li>
 
                     <li class="@if (preg_match('/monitoring_/', $current_route)) {{ 'encours' }} @endif">
                         <a href="{{ route('monitoring_index') }}">{{ trans('projectsquare::left_bar.monitoring_alerts') }}</a>

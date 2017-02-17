@@ -7,6 +7,7 @@ use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 use Webaccess\ProjectSquare\Requests\Todos\GetTodosRequest;
 use Webaccess\ProjectSquare\Requests\Calendar\GetStepsRequest;
+use Webaccess\ProjectSquareLaravel\Tools\FilterTool;
 
 class DashboardController extends BaseController
 {
@@ -18,8 +19,10 @@ class DashboardController extends BaseController
 
         return view('projectsquare::dashboard.index', [
             'widgets' => json_decode($_COOKIE['dashboard-widgets-' . $this->getUser()->id]),
-            'tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest()),
-            'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList($this->getUser()->id, env('TICKETS_PER_PAGE', 10)),
+            'tasks' => FilterTool::filterTaskList(app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest([
+                'allocatedUserID' => $this->getUser()->id
+            ]))),
+            'tickets' => FilterTool::filterTicketList(app()->make('GetTicketInteractor')->getTicketsPaginatedList($this->getUser()->id, env('TICKETS_PER_PAGE', 10), null, $this->getUser()->id)),
             'conversations' => $this->isUserAClient() ? app()->make('ConversationManager')->getConversationsByProject($this->getCurrentProject()->id, 5) : app()->make('ConversationManager')->getConversations($this->getUser()->id, 5),
             'events' => app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
                 'userID' => $this->getUser()->id,
@@ -27,7 +30,6 @@ class DashboardController extends BaseController
             'todos' => app()->make('GetTodosInteractor')->execute(new GetTodosRequest([
                 'userID' => $this->getUser()->id,
             ])),
-
             'steps' => ($this->getCurrentProject()) ? app()->make('GetStepsInteractor')->execute(new GetStepsRequest([
                 'projectID' => $this->getCurrentProject()->id,
             ])) : [],
@@ -38,7 +40,7 @@ class DashboardController extends BaseController
     {
         $widgets[]= ['name' => 'tickets', 'width' => 7];
         $widgets[]= ['name' => 'messages', 'width' => 5];
-        
+
         if (!$this->isUserAClient()) {
             $widgets[]= ['name' => 'tasks', 'width' => 12];
             $widgets[]= ['name' => 'planning', 'width' => 12];

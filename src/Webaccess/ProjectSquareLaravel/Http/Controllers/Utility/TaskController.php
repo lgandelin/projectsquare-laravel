@@ -13,6 +13,7 @@ use Webaccess\ProjectSquare\Requests\Tasks\UpdateTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\DeleteTaskRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 use Webaccess\ProjectSquareLaravel\Models\User;
+use Webaccess\ProjectSquareLaravel\Tools\FilterTool;
 use Webaccess\ProjectSquareLaravel\Tools\StringTool;
 
 class TaskController extends BaseController
@@ -23,12 +24,14 @@ class TaskController extends BaseController
 
         $request->session()->put('tasks_interface', 'tasks');
 
+        $tasks = app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest([
+            'projectID' => Input::get('filter_project'),
+            'statusID' => Input::get('filter_status'),
+            'allocatedUserID' => Input::get('filter_allocated_user'),
+        ]));
+
         return view('projectsquare::tasks.index', [
-            'tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest([
-                'projectID' => Input::get('filter_project'),
-                'statusID' => Input::get('filter_status'),
-                'allocatedUserID' => Input::get('filter_allocated_user'),
-            ])),
+            'tasks' => Input::get('filter_status') ? $tasks : FilterTool::filterTaskList($tasks),
             'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
             'users' => app()->make('UserManager')->getAgencyUsers(),
             'task_statuses' => self::getTasksStatuses(),

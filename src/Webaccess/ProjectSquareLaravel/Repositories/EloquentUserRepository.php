@@ -11,6 +11,11 @@ use Webaccess\ProjectSquare\Repositories\UserRepository;
 
 class EloquentUserRepository implements UserRepository
 {
+    public function getUserModel($userID)
+    {
+        return User::find($userID);
+    }
+
     public function getAgencyUsersPaginatedList($limit)
     {
         return User::whereNull('client_id')->paginate($limit);
@@ -29,11 +34,6 @@ class EloquentUserRepository implements UserRepository
     public function getUsers()
     {
         return User::all();
-    }
-
-    public function getUserModel($userID)
-    {
-        return User::find($userID);
     }
 
     public function getUser($userID)
@@ -59,6 +59,24 @@ class EloquentUserRepository implements UserRepository
     public function getUsersByProject($projectID)
     {
         return Project::find($projectID)->users;
+    }
+
+    public function getUsersByRole($roleID)
+    {
+        $users = [];
+        foreach (Project::all() as $project) {
+            foreach($project->users()->get() as $user) {
+                if ($user->pivot->role_id == $roleID || $roleID == null) {
+                    $users[$user->id] = $user;
+                }
+            }
+        }
+
+        usort($users, function($a, $b) {
+            return $a->last_name > $b->last_name;
+        });
+
+        return $users;
     }
 
     public function createUser($firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $isAdministrator=false)
