@@ -112,20 +112,20 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         Context::get('event_dispatcher')->addListener(Events::UPDATE_TICKET, array(new TicketUpdatedSlackNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::DELETE_TICKET, array(new TicketDeletedSlackNotification(), 'handle'));
 
-        Context::get('event_dispatcher')->addListener(Events::CREATE_TICKET, array(new TicketCreatedEmailNotification(), 'handle'));
-        Context::get('event_dispatcher')->addListener(Events::UPDATE_TICKET, array(new TicketUpdatedEmailNotification(), 'handle'));
-        Context::get('event_dispatcher')->addListener(Events::DELETE_TICKET, array(new TicketDeletedEmailNotification(), 'handle'));
+        //Context::get('event_dispatcher')->addListener(Events::CREATE_TICKET, array(new TicketCreatedEmailNotification(), 'handle'));
+        //Context::get('event_dispatcher')->addListener(Events::UPDATE_TICKET, array(new TicketUpdatedEmailNotification(), 'handle'));
+        //Context::get('event_dispatcher')->addListener(Events::DELETE_TICKET, array(new TicketDeletedEmailNotification(), 'handle'));
 
         Context::get('event_dispatcher')->addListener(Events::CREATE_TASK, array(new TaskCreatedSlackNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::UPDATE_TASK, array(new TaskUpdatedSlackNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::DELETE_TASK, array(new TaskDeletedSlackNotification(), 'handle'));
 
-        Context::get('event_dispatcher')->addListener(Events::CREATE_TASK, array(new TaskCreatedEmailNotification(), 'handle'));
-        Context::get('event_dispatcher')->addListener(Events::UPDATE_TASK, array(new TaskUpdatedEmailNotification(), 'handle'));
-        Context::get('event_dispatcher')->addListener(Events::DELETE_TASK, array(new TaskDeletedEmailNotification(), 'handle'));
+        //Context::get('event_dispatcher')->addListener(Events::CREATE_TASK, array(new TaskCreatedEmailNotification(), 'handle'));
+        //Context::get('event_dispatcher')->addListener(Events::UPDATE_TASK, array(new TaskUpdatedEmailNotification(), 'handle'));
+        //Context::get('event_dispatcher')->addListener(Events::DELETE_TASK, array(new TaskDeletedEmailNotification(), 'handle'));
 
         Context::get('event_dispatcher')->addListener(Events::CREATE_MESSAGE, array(new MessageCreatedSlackNotification(), 'handle'));
-        Context::get('event_dispatcher')->addListener(Events::CREATE_MESSAGE, array(new MessageCreatedEmailNotification(), 'handle'));
+        //Context::get('event_dispatcher')->addListener(Events::CREATE_MESSAGE, array(new MessageCreatedEmailNotification(), 'handle'));
 
         //Patterns
         $basePath = __DIR__.'/../../';
