@@ -1,4 +1,4 @@
-Une nouvelle tâche vous a été assignée :<br/><br/>
+Une tâche a été modifiée :<br/><br/>
 
 <strong>{{ $task->title }}</strong><br/><br/>
 

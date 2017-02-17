@@ -9,11 +9,16 @@ class Setting extends Model
     protected $table = 'settings';
 
     protected $fillable = [
-        'key', 'int_value', 'string_value',
+        'key', 'value',
     ];
 
     public function project()
     {
         return $this->belongsTo('Webaccess\ProjectSquareLaravel\Models\Project');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('Webaccess\ProjectSquareLaravel\Models\User');
     }
 }

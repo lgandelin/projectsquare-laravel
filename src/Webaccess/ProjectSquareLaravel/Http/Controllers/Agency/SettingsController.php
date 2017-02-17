@@ -25,8 +25,26 @@ class SettingsController extends BaseController
         parent::__construct($request);
 
         try {
-            app()->make('SettingManager')->createOrUpdateSetting(
+            app()->make('SettingManager')->createOrUpdateProjectSetting(
                 null,
+                $request->key,
+                $request->value
+            );
+            $request->session()->flash('confirmation', trans('projectsquare::settings.update_setting_success'));
+        } catch (\Exception $e) {
+            $request->session()->flash('error', trans('projectsquare::settings.update_setting_error'));
+        }
+
+        return redirect()->route('settings_index');
+    }
+
+    public function update_personal_settings(Request $request)
+    {
+        parent::__construct($request);
+
+        try {
+            app()->make('SettingManager')->createOrUpdateUserSetting(
+                $this->getUser()->id,
                 $request->key,
                 $request->value
             );

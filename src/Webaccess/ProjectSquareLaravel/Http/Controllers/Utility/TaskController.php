@@ -125,6 +125,13 @@ class TaskController extends BaseController
             return redirect()->route('tasks_index');
         }
 
+        if (!$task) {
+            $request->session()->flash('error', trans('projectsquare::tasks.task_not_found'));
+
+            return redirect()->route('tasks_index');
+        }
+
+
         return view('projectsquare::tasks.edit', [
             'task' => $task,
             'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),

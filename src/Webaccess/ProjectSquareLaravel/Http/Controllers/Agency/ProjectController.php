@@ -173,7 +173,7 @@ class ProjectController extends BaseController
         parent::__construct($request);
         
         try {
-            app()->make('SettingManager')->createOrUpdateSetting(
+            app()->make('SettingManager')->createOrUpdateProjectSetting(
                 Input::get('project_id'),
                 Input::get('key'),
                 Input::get('value')

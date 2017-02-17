@@ -8,11 +8,10 @@ class SlackTool
     {
         $payload = [
             'channel' => $channel,
-            'text' => null,
+            'text' => $title,
             'attachments' => [
                 [
                     'color' => $color,
-                    'title' => $title,
                     'author_name' => $authorName,
                     'title_link' => $link,
                     'text' => $description,

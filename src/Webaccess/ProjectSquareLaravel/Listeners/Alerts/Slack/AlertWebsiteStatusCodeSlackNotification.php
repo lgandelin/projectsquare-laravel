@@ -1,6 +1,6 @@
 <?php
 
-namespace Webaccess\ProjectSquareLaravel\Listeners;
+namespace Webaccess\ProjectSquareLaravel\Listeners\Alerts\Slack;
 
 use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteStatusCodeEvent;
 use Webaccess\ProjectSquareLaravel\Tools\SlackTool;
