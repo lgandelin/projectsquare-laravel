@@ -3,6 +3,7 @@
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Entities\Task;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\TaskController;
@@ -10,16 +11,22 @@ use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 
 class ProjectController extends BaseController
 {
-    public function index($projectID)
+    public function index(Request $request)
     {
+        parent::__construct($request);
+
         return view('projectsquare::project.cms', [
-            'project' => app()->make('ProjectManager')->getProject($projectID),
+            'project' => app()->make('ProjectManager')->getProject($request->uuid),
         ]);
     }
 
-    public function tasks($projectID)
+    public function tasks(Request $request)
     {
-        $this->request->session()->set('tasks_interface', 'project');
+        parent::__construct($request);
+
+        $projectID = $request->uuid;
+
+        $request->session()->put('tasks_interface', 'project');
 
         return view('projectsquare::project.tasks', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
@@ -36,14 +43,18 @@ class ProjectController extends BaseController
                 'statusID' => Input::get('filter_status'),
                 'allocatedUserID' => Input::get('filter_allocated_user'),
             ])),
-            'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
-            'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,
+            'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
+            'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
     }
 
-    public function tickets($projectID)
+    public function tickets(Request $request)
     {
-        $this->request->session()->set('tickets_interface', 'project');
+        parent::__construct($request);
+
+        $projectID = $request->uuid;
+
+        $request->session()->put('tickets_interface', 'project');
 
         return view('projectsquare::project.tickets', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
@@ -56,7 +67,6 @@ class ProjectController extends BaseController
                 'status' => Input::get('filter_status'),
                 'type' => Input::get('filter_type'),
             ],
-
             'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
                 $this->getUser()->id,
                 env('TICKETS_PER_PAGE', 10),
@@ -65,13 +75,17 @@ class ProjectController extends BaseController
                 Input::get('filter_status'),
                 Input::get('filter_type')
             ),
-            'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
-            'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,
+            'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
+            'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
     }
 
-    public function monitoring($projectID)
+    public function monitoring(Request $request)
     {
+        parent::__construct($request);
+
+        $projectID = $request->uuid;
+
         $requests = app()->make('RequestManager')->getRequestsByProject($projectID)->get();
 
         return view('projectsquare::project.monitoring', [
@@ -85,20 +99,28 @@ class ProjectController extends BaseController
         ]);
     }
 
-    public function messages($projectID)
+    public function messages(Request $request)
     {
-        $this->request->session()->set('messages_interface', 'project');
+        parent::__construct($request);
+
+        $projectID = $request->uuid;
+
+        $request->session()->put('messages_interface', 'project');
 
         return view('projectsquare::project.messages', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'conversations' => app()->make('ConversationManager')->getConversationsByProject($projectID),
-            'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
-            'confirmation' => ($this->request->session()->has('confirmation')) ? $this->request->session()->get('confirmation') : null,
+            'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
+            'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
     }
 
-    public function seo($projectID)
+    public function seo(Request $request)
     {
+        parent::__construct($request);
+
+        $projectID = $request->uuid;
+
         $gaViewID = app()->make('SettingManager')->getSettingByKeyAndProject('GA_VIEW_ID', $projectID);
 
         return view('projectsquare::project.seo', [
@@ -109,8 +131,12 @@ class ProjectController extends BaseController
         ]);
     }
 
-    public function reporting($projectID)
+    public function reporting(Request $request)
     {
+        parent::__construct($request);
+
+        $projectID = $request->uuid;
+
         $project = app()->make('ProjectManager')->getProject($projectID);
 
         $tasks = app()->make('GetTasksInteractor')->execute(new GetTasksRequest([

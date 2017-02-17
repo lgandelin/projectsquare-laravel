@@ -12,7 +12,6 @@ class Project extends Model
 
     protected $fillable = [
         'name',
-        'status',
         'website_front_url',
         'website_back_url',
         'color',
@@ -23,11 +22,6 @@ class Project extends Model
     public function client()
     {
         return $this->belongsTo('Webaccess\ProjectSquareLaravel\Models\Client');
-    }
-
-    public function referer()
-    {
-        return $this->belongsTo('Webaccess\ProjectSquareLaravel\Models\User');
     }
 
     public function users()

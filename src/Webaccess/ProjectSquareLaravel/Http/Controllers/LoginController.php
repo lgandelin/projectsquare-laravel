@@ -81,7 +81,7 @@ class LoginController extends Controller
         Mail::send('projectsquare::emails.password', array('password' => $newPassword), function ($message) use ($userEmail) {
 
             $message->to($userEmail)
-                ->from('no-reply@projectsquare.fr')
+                ->from('no-reply@projectsquare.io')
                 ->subject('[projectsquare] Votre nouveau mot de passe');
         });
     }

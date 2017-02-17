@@ -13,9 +13,9 @@ class UpdateUsersTableAddPhoneAndRole extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('mobile')->after('password');
-            $table->string('phone')->after('mobile');
-            $table->string('client_role')->after('client_id');
+            $table->string('mobile')->after('password')->nullable();
+            $table->string('phone')->after('mobile')->nullable();
+            $table->string('client_role')->after('client_id')->nullable();
         });
     }
 

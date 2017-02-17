@@ -13,7 +13,7 @@ class UpdateClientsTableAddAddress extends Migration
     public function up()
     {
         Schema::table('clients', function (Blueprint $table) {
-            $table->text('address')->after('name');
+            $table->text('address')->after('name')->nullable();
         });
     }
 

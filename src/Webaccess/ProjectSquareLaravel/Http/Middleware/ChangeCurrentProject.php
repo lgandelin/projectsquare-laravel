@@ -20,7 +20,7 @@ class ChangeCurrentProject
 
         if ($projectID && !$request->session()->has('current_project') || ($request->session()->has('current_project') && $projectID != $request->session()->get('current_project')->id)) {
             if ($project = app()->make('ProjectManager')->getProject($projectID)) {
-                $request->session()->set('current_project', $project);
+                $request->session()->put('current_project', $project);
             }
         }
 

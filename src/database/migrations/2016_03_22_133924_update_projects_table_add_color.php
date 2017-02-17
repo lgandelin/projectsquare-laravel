@@ -11,7 +11,7 @@ class UpdateProjectsTableAddColor extends Migration
     public function up()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->string('color')->after('referer_id')->nullable();
+            $table->string('color')->after('client_id')->nullable();
         });
     }
 

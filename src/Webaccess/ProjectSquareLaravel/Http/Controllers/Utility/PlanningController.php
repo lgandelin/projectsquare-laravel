@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Utility;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Decorators\EventDecorator;
 use Webaccess\ProjectSquare\Entities\Task;
@@ -17,8 +18,10 @@ use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 
 class PlanningController extends BaseController
 {
-    public function index()
+    public function index(Request $request)
     {
+        parent::__construct($request);
+
         $userID = (Input::get('filter_user')) ? Input::get('filter_user') : $this->getUser()->id;
 
         $allocatedTickets = app()->make('GetTicketInteractor')->getTicketsList(
@@ -200,15 +203,6 @@ class PlanningController extends BaseController
     protected function filterTaskList($tasks)
     {
         foreach ($tasks as $i => $task) {
-
-            //Remove tasks already scheduled
-            $events = app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
-                'taskID' => $task->id
-            ]));
-
-            if (sizeof($events) > 0) {
-                unset($tasks[$i]);
-            }
 
             //Remove completed tasks
             if ($task->status_id == Task::COMPLETED)

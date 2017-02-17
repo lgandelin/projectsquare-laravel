@@ -16,8 +16,18 @@ class SettingManager
         return EloquentSettingRepository::getSettingByKeyAndProject($key, $projectID);
     }
 
-    public static function createOrUpdateSetting($projectID, $key, $value)
+    public static function getSettingByKeyAndUser($key, $userID)
     {
-        return EloquentSettingRepository::createOrUpdateSetting($projectID, $key, $value);
+        return EloquentSettingRepository::getSettingByKeyAndUser($key, $userID);
+    }
+
+    public static function createOrUpdateProjectSetting($projectID, $key, $value)
+    {
+        EloquentSettingRepository::createOrUpdateProjectSetting($projectID, $key, $value);
+    }
+
+    public static function createOrUpdateUserSetting($userID, $key, $value)
+    {
+        EloquentSettingRepository::createOrUpdateUserSetting($userID, $key, $value);
     }
 }

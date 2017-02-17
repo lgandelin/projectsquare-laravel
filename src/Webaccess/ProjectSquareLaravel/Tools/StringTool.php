@@ -15,4 +15,14 @@ class StringTool
 
         return $string;
     }
+
+    public static function formatNumber($number)
+    {
+        return $number ? str_replace(',', '.', $number) : 0;
+    }
+
+    public static function getShortID($uuid)
+    {
+        return substr($uuid, 0, 8);
+    }
 }

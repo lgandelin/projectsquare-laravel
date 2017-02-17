@@ -35,5 +35,11 @@ return [
     'in_progress' =>'En cours', 
     'done' => 'Terminé',
 
+    'state_1' => 'A faire',
+    'state_2' => 'En cours',
+    'state_3' => 'Terminé',
+
     'title_required' => 'Vous devez renseignez un titre pour cette tâche',
+
+    'task_not_found' => 'Une erreur est survenue lors de la récupération de cette tâche',
 ];
