@@ -47,7 +47,7 @@ class TicketUpdatedSlackNotification
                     $modificationMade = true;
                 }
 
-                $settingSlackChannel = app()->make('SettingManager')->getSettingByKeyAndProject('SLACK_CHANNEL', $ticket->projectID);
+                $settingSlackChannel = app()->make('SettingManager')->getSettingByKeyAndProject('SLACK_CHANNEL', $ticket->project->id);
 
                 if ($modificationMade) {
                     SlackTool::send(
