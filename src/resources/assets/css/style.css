@@ -13047,6 +13047,55 @@ input:focus, textarea:focus, select:focus {
   color: #a3b1bd !important;
 }
 
+/* line 1, ../sass/includes/_tabs.scss */
+.tabs {
+  overflow: hidden;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  border-bottom: 1px solid #c8cecc;
+  background: white;
+}
+/* line 10, ../sass/includes/_tabs.scss */
+.tabs li {
+  float: left;
+  color: #096a85;
+  font-family: "AvantGarde-Book";
+  font-size: 1.7rem;
+  border-right: 1px solid #c8cecc;
+  border-bottom: 1px solid #c8cecc;
+  background: #f4f8f9;
+}
+/* line 21, ../sass/includes/_tabs.scss */
+.tabs li a {
+  color: #096a85;
+  font-family: "AvantGarde-Book";
+  padding: 1.8rem 2.3rem 1.5rem 2.3rem;
+  display: block;
+}
+/* line 28, ../sass/includes/_tabs.scss */
+.tabs li a:hover {
+  text-decoration: none;
+}
+/* line 33, ../sass/includes/_tabs.scss */
+.tabs .current, .tabs li:hover {
+  background: white;
+  border-bottom: 5px solid #c8dc1e;
+}
+/* line 38, ../sass/includes/_tabs.scss */
+.tabs .border-bottom {
+  height: 58px;
+  overflow: auto;
+  float: none;
+  background: white;
+  border-bottom: 1px solid #c8cecc;
+  border-right: none;
+}
+/* line 47, ../sass/includes/_tabs.scss */
+.tabs .border-bottom:hover {
+  border-bottom: 1px solid #c8cecc;
+}
+
 /* line 1, ../sass/layout/_layout.scss */
 html {
   height: 100%;
@@ -14418,132 +14467,81 @@ body {
   color: #bbb;
 }
 
-/* line 1, ../sass/_agency-projects.scss */
-.agency-projects-template {
-  background: white;
-}
-/* line 4, ../sass/_agency-projects.scss */
-.agency-projects-template .tabs {
-  overflow: hidden;
-  list-style: none;
-  padding-left: 0;
-  margin-bottom: 0;
-  border-bottom: 1px solid #c8cecc;
-}
-/* line 11, ../sass/_agency-projects.scss */
-.agency-projects-template .tabs li {
-  float: left;
-  color: #096a85;
-  font-family: "AvantGarde-Book";
-  font-size: 1.8rem;
-  border-right: 1px solid #c8cecc;
-  border-bottom: 1px solid #c8cecc;
-  background: #f4f8f9;
-}
-/* line 22, ../sass/_agency-projects.scss */
-.agency-projects-template .tabs li a {
-  color: #096a85;
-  font-family: "AvantGarde-Book";
-  padding: 1.8rem 3.5rem 1.5rem 3.5rem;
-  display: block;
-}
-/* line 29, ../sass/_agency-projects.scss */
-.agency-projects-template .tabs li a:hover {
-  text-decoration: none;
-}
-/* line 34, ../sass/_agency-projects.scss */
-.agency-projects-template .tabs .current, .agency-projects-template .tabs li:hover {
-  background: white;
-  border-bottom: 5px solid #c8dc1e;
-}
-/* line 39, ../sass/_agency-projects.scss */
-.agency-projects-template .tabs .border-bottom {
-  height: 59px;
-  overflow: auto;
-  float: none;
-  background: white;
-  border-bottom: 1px solid #c8cecc;
-  border-right: none;
-}
-/* line 48, ../sass/_agency-projects.scss */
-.agency-projects-template .tabs .border-bottom:hover {
-  border-bottom: 1px solid #c8cecc;
-}
-
 @media only screen and (max-width: 1450px) and (min-width: 1200px) {
-  /* line 7, ../sass/includes/_responsive.scss */
-  .project-bar .top-nav li {
-    padding-left: 1rem;
-    padding-right: 1rem;
+  /* line 5, ../sass/includes/_responsive.scss */
+  .tabs li a {
+    padding-left: 1.3rem;
+    padding-right: 1.3rem;
     font-size: 1.6rem;
   }
+  /* line 12, ../sass/includes/_responsive.scss */
+  .tabs .border-bottom {
+    height: 56px;
+  }
 
-  /* line 20, ../sass/includes/_responsive.scss */
+  /* line 22, ../sass/includes/_responsive.scss */
   .last-messages .table .conversation .text-conversation {
     min-width: 250px;
   }
 }
-@media only screen and (max-width: 1200px) and (min-width: 1024px) {
-  /* line 33, ../sass/includes/_responsive.scss */
-  .project-bar .top-nav li {
-    padding-left: 0rem;
-    padding-right: 0rem;
-    font-size: 1.5rem;
+@media only screen and (max-width: 1200px) and (min-width: 1000px) {
+  /* line 34, ../sass/includes/_responsive.scss */
+  .tabs li a {
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 1.4rem;
+  }
+  /* line 43, ../sass/includes/_responsive.scss */
+  .tabs .border-bottom {
+    height: 41px;
   }
 }
-@media only screen and (max-width: 1024px) {
-  /* line 49, ../sass/includes/_responsive.scss */
+@media only screen and (max-width: 1000px) {
+  /* line 56, ../sass/includes/_responsive.scss */
   .planning .fc-toolbar .fc-left, .planning-template .fc-toolbar .fc-left, .settings-template .fc-toolbar .fc-left {
     margin-bottom: 2rem;
   }
-  /* line 53, ../sass/includes/_responsive.scss */
+  /* line 60, ../sass/includes/_responsive.scss */
   .planning .fc-toolbar .fc-right, .planning-template .fc-toolbar .fc-right, .settings-template .fc-toolbar .fc-right {
     float: left;
     margin-bottom: 2rem;
   }
 
-  /* line 64, ../sass/includes/_responsive.scss */
+  /* line 70, ../sass/includes/_responsive.scss */
   .left-bar ul .menu .toggle-left-bar {
     display: none;
   }
 
-  /* line 74, ../sass/includes/_responsive.scss */
-  .project-bar .top-nav li {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    font-size: 1.4rem;
-  }
   /* line 79, ../sass/includes/_responsive.scss */
-  .project-bar .top-nav li a {
-    padding: 3px 7px;
+  .tabs li {
+    border-bottom: 5px solid white;
+  }
+  /* line 83, ../sass/includes/_responsive.scss */
+  .tabs .border-bottom {
+    display: none;
   }
 
-  /* line 89, ../sass/includes/_responsive.scss */
+  /* line 91, ../sass/includes/_responsive.scss */
   .table tr td .btn, .table .template-upload td .btn {
     margin-right: 1rem;
     padding: 5px 10px;
   }
-  /* line 92, ../sass/includes/_responsive.scss */
+  /* line 94, ../sass/includes/_responsive.scss */
   .table tr td .btn .glyphicon-remove, .table tr td .btn .glyphicon, .table .template-upload td .btn .glyphicon-remove, .table .template-upload td .btn .glyphicon {
     margin-right: 0rem;
   }
-  /* line 95, ../sass/includes/_responsive.scss */
+  /* line 97, ../sass/includes/_responsive.scss */
   .table tr td .btn .value, .table .template-upload td .btn .value {
     display: none;
   }
-  /* line 100, ../sass/includes/_responsive.scss */
+  /* line 102, ../sass/includes/_responsive.scss */
   .table tr td .delete, .table .template-upload td .delete {
     float: right;
   }
-  /* line 105, ../sass/includes/_responsive.scss */
+  /* line 107, ../sass/includes/_responsive.scss */
   .table tr .file_button, .table .template-upload .file_button {
     width: 115px;
-  }
-}
-@media only screen and (max-width: 1450px) {
-  /* line 117, ../sass/includes/_responsive.scss */
-  .project-bar .top-nav .active a {
-    border-bottom: none;
-    color: #c8dc1e;
   }
 }

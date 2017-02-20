@@ -127,7 +127,7 @@ $(document).ready(function() {
         }
     });
 
-    if (!$('.left-bar').hasClass('left-bar-minified') && ($(window).width() <=1024)) {
+    if (!$('.left-bar').hasClass('left-bar-minified') && ($(window).width() <= 1000)) {
         $('.left-bar .toggle-left-bar').trigger('click');
     }
 
