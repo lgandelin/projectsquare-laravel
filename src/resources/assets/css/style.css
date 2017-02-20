@@ -13071,11 +13071,6 @@ body {
   margin-left: 68px;
 }
 
-/* line 21, ../sass/layout/_layout.scss */
-.content-page {
-  margin: 3rem;
-}
-
 /* line 1, ../sass/layout/_left_bar.scss */
 .left-bar {
   padding: 0rem 0 0rem 0;
@@ -13606,16 +13601,15 @@ body {
 .templates {
   background: white;
   padding: 2.5rem;
-  border: 1px solid #bdc0c1;
 }
-/* line 6, ../sass/_utils.scss */
+/* line 5, ../sass/_utils.scss */
 .templates .page-header {
   font-size: 2.5rem;
   color: #096a85;
   font-family: "AvantGarde-Book";
   margin-top: 0rem;
 }
-/* line 12, ../sass/_utils.scss */
+/* line 11, ../sass/_utils.scss */
 .templates .page-header h1 {
   font-size: 25px;
   color: #096a85;
@@ -13623,50 +13617,50 @@ body {
   display: inline-block;
 }
 
-/* line 21, ../sass/_utils.scss */
+/* line 20, ../sass/_utils.scss */
 .text-seo {
   color: #096a85;
   font-weight: 400;
 }
 
-/* line 26, ../sass/_utils.scss */
+/* line 25, ../sass/_utils.scss */
 .info {
   padding: 1rem;
   margin-bottom: 2rem;
   clear: both;
 }
 
-/* line 32, ../sass/_utils.scss */
+/* line 31, ../sass/_utils.scss */
 .priority-1 {
   background: #334D5C;
 }
 
-/* line 36, ../sass/_utils.scss */
+/* line 35, ../sass/_utils.scss */
 .priority-2 {
   background: #45B29D;
 }
 
-/* line 40, ../sass/_utils.scss */
+/* line 39, ../sass/_utils.scss */
 .priority-3 {
   background: #EFC94C;
 }
 
-/* line 44, ../sass/_utils.scss */
+/* line 43, ../sass/_utils.scss */
 .priority-4 {
   background: #E27A3F;
 }
 
-/* line 48, ../sass/_utils.scss */
+/* line 47, ../sass/_utils.scss */
 .priority-5 {
   background: #DF5A49;
 }
 
-/* line 52, ../sass/_utils.scss */
+/* line 51, ../sass/_utils.scss */
 .task-status-completed {
   text-decoration: line-through;
 }
 
-/* line 56, ../sass/_utils.scss */
+/* line 55, ../sass/_utils.scss */
 .badge {
   padding: 6px 8px 3px 8px;
   border-radius: 18px;
@@ -13675,7 +13669,7 @@ body {
   color: #096a85;
 }
 
-/* line 64, ../sass/_utils.scss */
+/* line 63, ../sass/_utils.scss */
 .avatar {
   border-radius: 50%;
   border: 1px solid #c8dc1e;
@@ -13683,7 +13677,7 @@ body {
   height: 40px;
 }
 
-/* line 71, ../sass/_utils.scss */
+/* line 70, ../sass/_utils.scss */
 .tooltip-icon {
   display: inline-block;
   width: 18px;
@@ -13693,7 +13687,7 @@ body {
   cursor: pointer;
 }
 
-/* line 80, ../sass/_utils.scss */
+/* line 79, ../sass/_utils.scss */
 .tooltipster-sidetip.tooltipster-shadow.tooltipster-shadow-customized .tooltipster-content {
   color: #096a85;
   font-family: "MyriadPro-Regular";
@@ -14422,6 +14416,58 @@ body {
 .occupation-template .month table tr .disabled {
   background: #f1f1f1;
   color: #bbb;
+}
+
+/* line 1, ../sass/_agency-projects.scss */
+.agency-projects-template {
+  background: white;
+}
+/* line 4, ../sass/_agency-projects.scss */
+.agency-projects-template .tabs {
+  overflow: hidden;
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+  border-bottom: 1px solid #c8cecc;
+}
+/* line 11, ../sass/_agency-projects.scss */
+.agency-projects-template .tabs li {
+  float: left;
+  color: #096a85;
+  font-family: "AvantGarde-Book";
+  font-size: 1.6rem;
+  border-right: 1px solid #c8cecc;
+  border-bottom: 1px solid #c8cecc;
+  background: #f4f8f9;
+}
+/* line 22, ../sass/_agency-projects.scss */
+.agency-projects-template .tabs li a {
+  color: #096a85;
+  font-family: "AvantGarde-Book";
+  padding: 1.8rem 3.5rem 1.5rem 3.5rem;
+  display: block;
+}
+/* line 29, ../sass/_agency-projects.scss */
+.agency-projects-template .tabs li a:hover {
+  text-decoration: none;
+}
+/* line 34, ../sass/_agency-projects.scss */
+.agency-projects-template .tabs .current, .agency-projects-template .tabs li:hover {
+  background: white;
+  border-bottom: 5px solid #c8dc1e;
+}
+/* line 39, ../sass/_agency-projects.scss */
+.agency-projects-template .tabs .border-bottom {
+  height: 56px;
+  overflow: auto;
+  float: none;
+  background: white;
+  border-bottom: 1px solid #c8cecc;
+  border-right: none;
+}
+/* line 48, ../sass/_agency-projects.scss */
+.agency-projects-template .tabs .border-bottom:hover {
+  border-bottom: 1px solid #c8cecc;
 }
 
 @media only screen and (max-width: 1450px) and (min-width: 1200px) {

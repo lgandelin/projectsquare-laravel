@@ -1,0 +1,52 @@
+.agency-projects-template {
+    background: white;
+
+    .tabs {
+        overflow: hidden;
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 0;
+        border-bottom: 1px solid #c8cecc;
+        
+        li {
+            float: left;
+
+            color: $touareg;
+            font-family: $typo1;
+            font-size: 1.6rem;
+
+            border-right: 1px solid #c8cecc;
+            border-bottom: 1px solid #c8cecc;
+            background: #f4f8f9;
+
+            a {
+                color: $touareg;
+                font-family: $typo1;
+                padding: 1.8rem 3.5rem 1.5rem 3.5rem;
+                display: block;
+            }
+
+            a:hover {
+                text-decoration: none;
+            }
+        }
+
+        .current, li:hover {
+            background: white;
+            border-bottom: 5px solid $green;
+        }
+
+        .border-bottom {
+            height: 56px;
+            overflow: auto;
+            float: none;
+            background: white;
+            border-bottom: 1px solid #c8cecc;
+            border-right: none;
+        }
+
+        .border-bottom:hover {
+            border-bottom: 1px solid #c8cecc;
+        }
+    }
+}

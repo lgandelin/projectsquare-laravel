@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="content-page">
-        <div class="templates">
-            <div class="page-header">
+        <div class="templates agency-projects-template">
+            <!--<div class="page-header">
                 <h1>{{ trans('projectsquare::projects.add_project') }}</h1>
-            </div>
+            </div>-->
 
             @include('projectsquare::agency.projects.form', [
                 'form_action' => route('projects_store'),
