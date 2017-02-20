@@ -5,17 +5,14 @@
         <div class="agency-projects-template">
 
             <ul class="tabs">
-                <li class="current"><a href="#">Infos</a></li>
-                <li><a href="#">Tâches</a></li>
-                <li><a href="#">Equipe</a></li>
-                <li><a href="#">Configuration</a></li>
+                <li @if ($tab == 'infos')class="current"@endif><a href="{{ route('projects_edit', ['uuid' => $project->id]) }}">Infos</a></li>
+                <li><a href="{{ route('projects_edit_tasks', ['uuid' => $project->id]) }}">Tâches</a></li>
+                <li><a href="{{ route('projects_edit_team', ['uuid' => $project->id]) }}">Equipe</a></li>
+                <li @if ($tab == 'config')class="current"@endif><a href="{{ route('projects_edit_config', ['uuid' => $project->id]) }}">Configuration</a></li>
                 <li class="border-bottom"></li>
             </ul>
 
             <div class="templates">
-                <div class="page-header">
-                    <h1>{{ trans('projectsquare::projects.edit_project') }}</h1>
-                </div>
 
                 @if (isset($error))
                     <div class="info bg-danger">
@@ -29,7 +26,7 @@
                     </div>
                 @endif
 
-                @include('projectsquare::agency.projects.form', [
+                @include('projectsquare::agency.projects.' . $tab, [
                     'form_action' => route('projects_update'),
                     'project_id' => $project->id,
                     'project_name' => $project->name,

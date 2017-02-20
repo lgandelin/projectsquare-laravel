@@ -4,6 +4,8 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Agency;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Webaccess\ProjectSquare\Requests\Projects\CreateProjectRequest;
+use Webaccess\ProjectSquare\Requests\Projects\UpdateProjectRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 use Webaccess\ProjectSquare\Requests\Clients\GetClientsRequest;
 use Webaccess\ProjectSquareLaravel\Tools\StringTool;
@@ -35,18 +37,15 @@ class ProjectController extends BaseController
         parent::__construct($request);
 
         try {
-            $projectID = app()->make('ProjectManager')->createProject(
-                Input::get('name'),
-                Input::get('client_id'),
-                Input::get('website_front_url'),
-                Input::get('website_back_url'),
-                Input::get('color'),
-                StringTool::formatNumber(Input::get('tasks_scheduled_time')),
-                StringTool::formatNumber(Input::get('tickets_scheduled_time'))
-            );
+            $response = app()->make('CreateProjectInteractor')->execute(new CreateProjectRequest([
+                'name' => Input::get('name'),
+                'clientID' => Input::get('client_id'),
+                'color' => Input::get('color'),
+            ]));
+
             $request->session()->flash('confirmation', trans('projectsquare::projects.add_project_success'));
 
-            return redirect()->route('projects_edit', ['id' => $projectID]);
+            return redirect()->route('projects_edit', ['id' => $response->project->id]);
         } catch (\Exception $e) {
             $request->session()->flash('error', trans('projectsquare::projects.add_project_error'));
 
@@ -55,6 +54,43 @@ class ProjectController extends BaseController
     }
 
     public function edit(Request $request)
+    {
+        parent::__construct($request);
+
+        $projectID = $request->uuid;
+
+        try {
+            $project = app()->make('ProjectManager')->getProjectWithUsers($projectID);
+        } catch (\Exception $e) {
+            $request->session()->flash('error', $e->getMessage());
+
+            return redirect()->route('projects_index');
+        }
+
+        return view('projectsquare::agency.projects.edit', [
+            'tab' => 'infos',
+            'project' => $project,
+            'clients' => app()->make('GetClientsInteractor')->execute(new GetClientsRequest()),
+            'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
+            'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
+        ]);
+    }
+
+    public function edit_tasks(Request $request)
+    {
+        parent::__construct($request);
+
+        $projectID = $request->uuid;
+    }
+
+    public function edit_team(Request $request)
+    {
+        parent::__construct($request);
+
+        $projectID = $request->uuid;
+    }
+
+    public function edit_config(Request $request)
     {
         parent::__construct($request);
 
@@ -74,10 +110,8 @@ class ProjectController extends BaseController
         }
 
         return view('projectsquare::agency.projects.edit', [
+            'tab' => 'config',
             'project' => $project,
-            'clients' => app()->make('GetClientsInteractor')->execute(new GetClientsRequest()),
-            'roles' => app()->make('RoleManager')->getRoles(),
-            'users' => app()->make('UserManager')->getAgencyUsers(),
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
             'acceptable_loading_time' => ($settingAcceptableLoadingTime) ? $settingAcceptableLoadingTime->value : null,
@@ -87,27 +121,47 @@ class ProjectController extends BaseController
         ]);
     }
 
+
+
     public function update(Request $request)
     {
         parent::__construct($request);
 
         try {
-            app()->make('ProjectManager')->updateProject(
-                Input::get('project_id'),
-                Input::get('name'),
-                Input::get('client_id'),
-                Input::get('website_front_url'),
-                Input::get('website_back_url'),
-                Input::get('color'),
-                StringTool::formatNumber(Input::get('tasks_scheduled_time')),
-                StringTool::formatNumber(Input::get('tickets_scheduled_time'))
-            );
+            app()->make('UpdateProjectInteractor')->execute(new UpdateProjectRequest([
+                'projectID' => Input::get('project_id'),
+                'name' => Input::get('name'),
+                'clientID' => Input::get('client_id'),
+                'color' => Input::get('color'),
+            ]));
+
             $request->session()->flash('confirmation', trans('projectsquare::projects.edit_project_success'));
         } catch (\Exception $e) {
             $request->session()->flash('error', trans('projectsquare::projects.edit_project_error'));
         }
 
         return redirect()->route('projects_edit', ['id' => Input::get('project_id')]);
+    }
+
+    public function update_config(Request $request)
+    {
+        parent::__construct($request);
+
+        try {
+            app()->make('UpdateProjectInteractor')->execute(new UpdateProjectRequest([
+                'projectID' => Input::get('project_id'),
+                'websiteFrontURL' => Input::get('website_front_url'),
+                'websiteBackURL' => Input::get('website_back_url'),
+                'tasksScheduledTime' => StringTool::formatNumber(Input::get('tasks_scheduled_time')),
+                'ticketsScheduledTime' => StringTool::formatNumber(Input::get('tickets_scheduled_time'))
+            ]));
+
+            $request->session()->flash('confirmation', trans('projectsquare::projects.edit_project_success'));
+        } catch (\Exception $e) {
+            $request->session()->flash('error', trans('projectsquare::projects.edit_project_error'));
+        }
+
+        return redirect()->route('projects_edit_config', ['id' => Input::get('project_id')]);
     }
 
     public function delete(Request $request)
@@ -183,6 +237,6 @@ class ProjectController extends BaseController
             $request->session()->flash('error', trans('projectsquare::project.update_setting_error'));
         }
 
-        return redirect()->route('projects_edit', ['id' => Input::get('project_id')]);
+        return redirect()->route('projects_edit_config', ['id' => Input::get('project_id')]);
     }
 }

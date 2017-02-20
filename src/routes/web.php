@@ -77,7 +77,11 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
     Route::get('/agency/projects/add', array('as' => 'projects_add', 'uses' => 'Agency\ProjectController@add'));
     Route::post('/agency/projects/add', array('as' => 'projects_store', 'uses' => 'Agency\ProjectController@store'));
     Route::get('/agency/projects/{uuid}', array('as' => 'projects_edit', 'uses' => 'Agency\ProjectController@edit'));
+    Route::get('/agency/projects/{uuid}/tasks', array('as' => 'projects_edit_tasks', 'uses' => 'Agency\ProjectController@edit_tasks'));
+    Route::get('/agency/projects/{uuid}/team', array('as' => 'projects_edit_team', 'uses' => 'Agency\ProjectController@edit_team'));
+    Route::get('/agency/projects/{uuid}/config', array('as' => 'projects_edit_config', 'uses' => 'Agency\ProjectController@edit_config'));
     Route::post('/agency/projects', array('as' => 'projects_update', 'uses' => 'Agency\ProjectController@update'));
+    Route::post('/agency/projects/config', array('as' => 'projects_update_config', 'uses' => 'Agency\ProjectController@update_config'));
     Route::get('/agency/projects/delete/{uuid}', array('as' => 'projects_delete', 'uses' => 'Agency\ProjectController@delete'));
     Route::post('/agency/projects/add_user', array('as' => 'projects_add_user', 'uses' => 'Agency\ProjectController@add_user'));
     Route::get('/agency/projects/delete_user/{uuid}/{user_id}', array('as' => 'projects_delete_user', 'uses' => 'Agency\ProjectController@delete_user'));

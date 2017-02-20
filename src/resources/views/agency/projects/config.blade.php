@@ -1,22 +1,5 @@
-<form action="{{ $form_action }}" method="post">
-    <div class="form-group">
-        <label for="name">{{ trans('projectsquare::projects.label') }}</label>
-        <input class="form-control" type="text" placeholder="{{ trans('projectsquare::projects.name_placeholder') }}" name="name" @if (isset($project_name))value="{{ $project_name }}"@endif />
-    </div>
-
-    <div class="form-group">
-        <label for="name">{{ trans('projectsquare::projects.client') }}</label>
-        @if (isset($clients))
-            <select class="form-control" name="client_id">
-                <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
-                @foreach ($clients as $client)
-                    <option value="{{ $client->id }}" @if (isset($project) && $project->client_id == $client->id)selected="selected"@endif>{{ $client->name }}</option>
-                @endforeach
-            </select>
-        @else
-            <div class="info bg-info">{{ trans('projectsquare::no_client_yet') }}</div>
-        @endif
-    </div>
+<form action="{{ route('projects_update_config') }}" method="post">
+    <h3>{{ trans('projectsquare::project.urls') }}</h3>
 
     <div class="form-group">
         <label for="name">{{ trans('projectsquare::projects.website_front_url') }}
@@ -36,14 +19,7 @@
         <input class="form-control" type="text" placeholder="{{ trans('projectsquare::projects.website_back_url') }}" name="website_back_url" @if (isset($project_website_back_url))value="{{ $project_website_back_url }}"@endif />
     </div>
 
-    <div class="form-group">
-        <label for="name">{{ trans('projectsquare::projects.color') }}
-            @include('projectsquare::includes.tooltip', [
-                'text' => trans('projectsquare::tooltips.project.color')
-            ])
-        </label>
-        <input type="text" name="color" class="form-control colorpicker" data-control="saturation" placeholder="{{ trans('projectsquare::projects.color') }}"  @if (isset($project_color))value="{{ $project_color }}"@endif size="7">
-    </div>
+    <h3>{{ trans('projectsquare::project.scheduled_times') }}</h3>
 
     <div class="form-group">
         <label for="name">{{ trans('projectsquare::projects.tasks_scheduled_time') }}
@@ -53,7 +29,7 @@
         </label>
         <input type="text" name="tasks_scheduled_time" class="form-control" placeholder="{{ trans('projectsquare::projects.scheduled_time_placeholder') }}"  @if (isset($project_tasks_scheduled_time))value="{{ $project_tasks_scheduled_time }}"@endif size="7">
     </div>
-    
+
     <div class="form-group">
         <label for="name">{{ trans('projectsquare::projects.tickets_scheduled_time') }}
             @include('projectsquare::includes.tooltip', [
@@ -79,74 +55,8 @@
 </form>
 
 @if (isset($project_id))
-    <p>&nbsp;</p>
-    <h3>{{ trans('projectsquare::projects.project_resources') }}
-        @include('projectsquare::includes.tooltip', [
-            'text' => trans('projectsquare::tooltips.project.project_resources')
-        ])
-    </h3>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>{{ trans('projectsquare::users.user') }}</th>
-                <th>{{ trans('projectsquare::roles.role') }}</th>
-                <th>{{ trans('projectsquare::generic.action') }}</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($project->users as $user)
-                <tr>
-                    <td>{{ $user->complete_name }}</td>
-                    <td>{{ $user->role->name }}</td>
-                    <td align="right">
-                        <a href="{{ route('projects_delete_user', ['project_id' => $project_id, 'user_id' => $user->id]) }}" class="btn cancel btn-delete">
-                        </a>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
 
-    <h3>{{ trans('projectsquare::projects.add_resource') }}</h3>
-    <form action="{{ route('projects_add_user') }}" method="post">
-        <div class="row">
-            <div class="col-md-3">
-                <label for="user_id">{{ trans('projectsquare::users.user') }}</label>
-                @if (isset($users))
-                    <select class="form-control" name="user_id">
-                        <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
-                        @foreach ($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->complete_name }}</option>
-                        @endforeach
-                    </select>
-                @endif
-            </div>
-
-            <div class="col-md-3">
-                <label for="role_id">{{ trans('projectsquare::roles.role') }}</label>
-                @if (isset($roles))
-                    <select class="form-control" name="role_id">
-                        <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
-                        @foreach ($roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
-                        @endforeach
-                    </select>
-                @else
-                    <div class="info bg-info">{{ trans('projectsquare::no_role_yet') }}</div>
-                @endif
-            </div>
-        </div>
-
-        <button type="submit" class="btn valid" style="margin-top: 1.5rem">
-            <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
-        </button>
-
-        <input type="hidden" name="project_id" value="{{ $project_id }}" />
-
-        {!! csrf_field() !!}
-    </form>
-
-    <div class="settings-template" style="margin-top: 5rem">
+    <div class="settings-template" >
         <h3>{{ trans('projectsquare::project.settings') }}</h3>
 
         <form action="{{ route('project_settings', ['id' => $project->id]) }}" method="post">
@@ -262,11 +172,3 @@
         </form>
     </div>
 @endif
-
-@section('scripts')
-    <script>
-        $('.colorpicker').minicolors({
-            theme: 'bootstrap'
-        });
-    </script>
-@endsection
