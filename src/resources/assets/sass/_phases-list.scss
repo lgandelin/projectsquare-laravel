@@ -3,19 +3,57 @@
     .phases {
         margin-bottom: 5rem;
 
+        .phase, .task {
+
+            .phase-wrapper, .task-wrapper {
+                margin-bottom: 2rem;
+                padding: 1.5rem 2rem;
+
+                color: $touareg;
+                font-size: 2rem;
+
+                border: 2px solid $touareg;
+                cursor: pointer;
+
+                .btn-delete {
+                    margin-top: 6px;
+                    float: right;
+                }
+
+                input[type="text"] {
+                    min-width: 250px;
+                    padding: 0;
+                    outline: 0;
+                    border: none !important;
+                }
+
+                .name {
+                    display: inline-block;
+                }
+
+                i.valid-phase-rename, i.valid-task-rename {
+                    margin-left: 20px;
+                    color: $green;
+                    margin-right: 5px;
+                    font-size: 17px;
+                }
+
+                i.cancel-phase-rename, i.cancel-task-rename {
+                    color: #960216;
+                    font-size: 17px;
+                }
+            }
+        }
+        
         .phase {
-            padding: 1.5rem 2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 6rem;
 
-            color: $touareg;
-            font-size: 2rem;
+            .tasks {
+                margin-left: 8rem;
 
-            border: 2px solid $touareg;
-            cursor: pointer;
-
-            .btn-delete {
-                margin-top: 6px;
-                float: right;
+                .task-wrapper {
+                    margin-bottom: 0.75rem;
+                }
             }
         }
     }
