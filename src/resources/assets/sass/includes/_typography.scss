@@ -40,6 +40,11 @@ ul {
     padding-left: 2rem;
 }
 
+a:focus {
+	outline: 0;
+	text-decoration: none;
+}
+
 @font-face {
 	font-family: "AvantGarde-Book";
 	src: url('../fonts/AvantGarde-Book.woff'),

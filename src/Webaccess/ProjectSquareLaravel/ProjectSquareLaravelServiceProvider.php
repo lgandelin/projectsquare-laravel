@@ -18,6 +18,11 @@ use Webaccess\ProjectSquare\Interactors\Clients\GetClientsInteractor;
 use Webaccess\ProjectSquare\Interactors\Clients\CreateClientInteractor;
 use Webaccess\ProjectSquare\Interactors\Clients\UpdateClientInteractor;
 use Webaccess\ProjectSquare\Interactors\Clients\DeleteClientInteractor;
+use Webaccess\ProjectSquare\Interactors\Phases\CreatePhaseInteractor;
+use Webaccess\ProjectSquare\Interactors\Phases\DeletePhaseInteractor;
+use Webaccess\ProjectSquare\Interactors\Phases\GetPhaseInteractor;
+use Webaccess\ProjectSquare\Interactors\Phases\GetPhasesInteractor;
+use Webaccess\ProjectSquare\Interactors\Phases\UpdatePhaseInteractor;
 use Webaccess\ProjectSquare\Interactors\Planning\CreateEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Planning\DeleteEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Planning\GetEventInteractor;
@@ -80,6 +85,7 @@ use Webaccess\ProjectSquareLaravel\Repositories\EloquentConversationRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentEventRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentMessageRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentNotificationRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentPhaseRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentStepRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTasksRepository;
@@ -486,6 +492,41 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
 
         App::bind('GetRemainingTimeinteractor', function () {
             return new GetRemainingTimeinteractor();
+        });
+
+        App::bind('GetPhaseInteractor', function () {
+            return new GetPhaseInteractor(
+                new EloquentPhaseRepository()
+            );
+        });
+
+        App::bind('GetPhasesInteractor', function () {
+            return new GetPhasesInteractor(
+                new EloquentPhaseRepository()
+            );
+        });
+
+        App::bind('CreatePhaseInteractor', function () {
+            return new CreatePhaseInteractor(
+                new EloquentPhaseRepository(),
+                new EloquentProjectRepository(),
+                new EloquentUserRepository()
+            );
+        });
+
+        App::bind('UpdatePhaseInteractor', function () {
+            return new UpdatePhaseInteractor(
+                new EloquentPhaseRepository(),
+                new EloquentProjectRepository(),
+                new EloquentUserRepository()
+            );
+        });
+
+        App::bind('DeletePhaseInteractor', function () {
+            return new DeletePhaseInteractor(
+                new EloquentPhaseRepository(),
+                new EloquentUserRepository()
+            );
         });
 
         Context::set('GetProjectInteractor', app()->make('GetProjectInteractor'));

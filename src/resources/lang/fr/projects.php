@@ -38,4 +38,8 @@ return [
     'user_not_found' => 'Une erreur est survenue lors de la récupération de ce collaborateur',
 
     'user_not_authorized' => 'Vous n\'êtes pas autorisé à créer ou modifier de projet',
+
+    'infos' => 'Informations du projet',
+    'tasks' => 'Tâches',
+    'config' => 'Configuration',
 ];

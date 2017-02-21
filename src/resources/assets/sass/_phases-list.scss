@@ -1,0 +1,33 @@
+.phases-list {
+
+    .phases {
+        margin-bottom: 5rem;
+
+        .phase {
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+
+            color: $touareg;
+            font-size: 2rem;
+
+            border: 2px solid $touareg;
+            cursor: pointer;
+
+            .btn-delete {
+                margin-top: 6px;
+                float: right;
+            }
+        }
+    }
+
+    .placeholder {
+        padding: 1.5rem 2rem;
+        margin-bottom: 2rem;
+
+        color: #c0cbcf;
+        font-size: 2rem;
+
+        border: 2px dashed #c0cbcf;
+        cursor: pointer;
+    }
+}

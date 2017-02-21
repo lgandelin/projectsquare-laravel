@@ -6,7 +6,7 @@
 
             <ul class="tabs">
                 <li @if ($tab == 'infos')class="current"@endif><a href="{{ route('projects_edit', ['uuid' => $project->id]) }}">Infos</a></li>
-                <li><a href="{{ route('projects_edit_tasks', ['uuid' => $project->id]) }}">Tâches</a></li>
+                <li @if ($tab == 'tasks')class="current"@endif><a href="{{ route('projects_edit_tasks', ['uuid' => $project->id]) }}">Tâches</a></li>
                 <li><a href="{{ route('projects_edit_team', ['uuid' => $project->id]) }}">Equipe</a></li>
                 <li @if ($tab == 'config')class="current"@endif><a href="{{ route('projects_edit_config', ['uuid' => $project->id]) }}">Configuration</a></li>
                 <li class="border-bottom"></li>

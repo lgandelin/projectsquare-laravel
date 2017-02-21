@@ -4,6 +4,7 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Agency;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
 use Webaccess\ProjectSquare\Requests\Projects\CreateProjectRequest;
 use Webaccess\ProjectSquare\Requests\Projects\UpdateProjectRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
@@ -81,6 +82,25 @@ class ProjectController extends BaseController
         parent::__construct($request);
 
         $projectID = $request->uuid;
+
+        try {
+            $project = app()->make('ProjectManager')->getProjectWithUsers($projectID);
+            $phases = app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
+                'projectID' => $projectID
+            ]));
+        } catch (\Exception $e) {
+            $request->session()->flash('error', $e->getMessage());
+
+            return redirect()->route('projects_index');
+        }
+
+        return view('projectsquare::agency.projects.edit', [
+            'tab' => 'tasks',
+            'project' => $project,
+            'phases' => $phases,
+            'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
+            'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
+        ]);
     }
 
     public function edit_team(Request $request)
@@ -156,6 +176,30 @@ class ProjectController extends BaseController
                 'ticketsScheduledTime' => StringTool::formatNumber(Input::get('tickets_scheduled_time'))
             ]));
 
+            app()->make('SettingManager')->createOrUpdateProjectSetting(
+                Input::get('project_id'),
+                'ACCEPTABLE_LOADING_TIME',
+                Input::get('ACCEPTABLE_LOADING_TIME')
+            );
+
+            app()->make('SettingManager')->createOrUpdateProjectSetting(
+                Input::get('project_id'),
+                'ALERT_LOADING_TIME_EMAIL',
+                Input::get('ALERT_LOADING_TIME_EMAIL')
+            );
+
+            app()->make('SettingManager')->createOrUpdateProjectSetting(
+                Input::get('project_id'),
+                'SLACK_CHANNEL',
+                Input::get('SLACK_CHANNEL')
+            );
+
+            app()->make('SettingManager')->createOrUpdateProjectSetting(
+                Input::get('project_id'),
+                'GA_VIEW_ID',
+                Input::get('GA_VIEW_ID')
+            );
+
             $request->session()->flash('confirmation', trans('projectsquare::projects.edit_project_success'));
         } catch (\Exception $e) {
             $request->session()->flash('error', trans('projectsquare::projects.edit_project_error'));
@@ -220,23 +264,5 @@ class ProjectController extends BaseController
         }
 
         return redirect()->route('projects_edit', ['id' => $projectID]);
-    }
-
-    public function update_settings(Request $request)
-    {
-        parent::__construct($request);
-        
-        try {
-            app()->make('SettingManager')->createOrUpdateProjectSetting(
-                Input::get('project_id'),
-                Input::get('key'),
-                Input::get('value')
-            );
-            $request->session()->flash('confirmation', trans('projectsquare::project.update_setting_success'));
-        } catch (\Exception $e) {
-            $request->session()->flash('error', trans('projectsquare::project.update_setting_error'));
-        }
-
-        return redirect()->route('projects_edit_config', ['id' => Input::get('project_id')]);
     }
 }

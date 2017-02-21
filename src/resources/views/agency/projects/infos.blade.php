@@ -1,3 +1,7 @@
+<div class="page-header">
+    <h1>{{ trans('projectsquare::projects.infos') }}</h1>
+</div>
+
 <form action="{{ $form_action }}" method="post">
     <div class="form-group">
         <label for="name">{{ trans('projectsquare::projects.label') }}</label>
