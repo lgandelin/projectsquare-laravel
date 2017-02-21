@@ -45,18 +45,20 @@ class OccupationController extends BaseController
                         $day->hours_scheduled = 0;
 
                         if ($dateTime->format('w') != Day::SATURDAY && $dateTime->format('w') != Day::SUNDAY) {
-                            $hoursScheduled = 0;
+                            $minutesScheduled = 0;
 
                             foreach ($day->getEvents() as $j => $event) {
                                 $diff = $event->endTime->diff($event->startTime);
-                                $hoursScheduled += $diff->h;
+                                $minutesScheduled += ($diff->h * 60) + $diff->i;
                             }
 
                             if (!in_array($dateTime->format('W'), $month->weeks)) {
                                 $month->weeks[] = $dateTime->format('W');
                             }
 
-                            $day->hours_scheduled = ($hoursScheduled) < 8 ? $hoursScheduled : 8;
+                            $hoursScheduled = $minutesScheduled / 60;
+
+                            $day->hours_scheduled = ($hoursScheduled > 8) ? 8 : $hoursScheduled;
                         }
                     }
                 }
