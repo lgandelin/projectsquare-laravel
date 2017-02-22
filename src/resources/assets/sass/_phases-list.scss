@@ -13,14 +13,13 @@
                 font-size: 2rem;
 
                 border: 2px solid $touareg;
-                cursor: pointer;
 
-                .btn-delete {
+                .delete-phase, .delete-task {
                     margin-top: 6px;
                     float: right;
                 }
 
-                input[type="text"] {
+                .input-phase-name, .input-task-name {
                     min-width: 250px;
                     padding: 0;
                     outline: 0;
@@ -28,7 +27,12 @@
                 }
 
                 .name {
+                    cursor: pointer;
                     display: inline-block;
+                }
+
+                .name:hover {
+                    color: #6a7376;
                 }
 
                 i.valid-phase-rename, i.valid-task-rename {
@@ -42,17 +46,42 @@
                     color: #960216;
                     font-size: 17px;
                 }
+
+                .input-task-duration {
+                    width: 90px;
+                    float: right;
+                    margin-right: 15rem;
+                    padding: 0.5rem 1rem 0.3rem 1rem;
+
+                    font-size: 1.4rem;
+
+                    border: 1px solid $touareg !important;
+                }
             }
         }
         
         .phase {
-            margin-bottom: 6rem;
+            .toggle-tasks {
+                margin-right: 2rem;
+                margin-top: 4px;
+                float: right;
+
+                cursor: pointer;
+            }
+
+            .toggle-tasks:hover {
+                color: $green;
+            }
 
             .tasks {
                 margin-left: 8rem;
 
                 .task-wrapper {
                     margin-bottom: 0.75rem;
+                }
+
+                > .placeholder {
+                    margin-bottom: 4rem;
                 }
             }
         }

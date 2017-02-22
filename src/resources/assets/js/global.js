@@ -96,7 +96,7 @@ $(document).ready(function() {
     });
 
     //DELETE BUTTONS
-    $('.btn-delete').click(function(e) {
+    $(document).on('click', '.btn-delete', function() {
         if (!confirm('Etes-vous sûrs de vouloir supprimer cet élément ?')) {
             return false;
         }

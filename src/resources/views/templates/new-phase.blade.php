@@ -2,7 +2,7 @@
     <div class="phase" data-id="@{{ id }}" data-name="@{{ name }}">
         <div class="phase-wrapper">
             <span class="name">@{{ name }}</span>
-            <a href="#" class="btn cancel btn-delete delete-phase"></a>
+            <a href="#" class="btn cancel delete-phase"></a>
         </div>
 
         <div class="tasks">

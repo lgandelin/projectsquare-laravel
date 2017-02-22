@@ -14490,49 +14490,73 @@ body {
   color: #096a85;
   font-size: 2rem;
   border: 2px solid #096a85;
-  cursor: pointer;
 }
-/* line 18, ../sass/_phases-list.scss */
-.phases-list .phases .phase .phase-wrapper .btn-delete, .phases-list .phases .phase .task-wrapper .btn-delete, .phases-list .phases .task .phase-wrapper .btn-delete, .phases-list .phases .task .task-wrapper .btn-delete {
+/* line 17, ../sass/_phases-list.scss */
+.phases-list .phases .phase .phase-wrapper .delete-phase, .phases-list .phases .phase .phase-wrapper .delete-task, .phases-list .phases .phase .task-wrapper .delete-phase, .phases-list .phases .phase .task-wrapper .delete-task, .phases-list .phases .task .phase-wrapper .delete-phase, .phases-list .phases .task .phase-wrapper .delete-task, .phases-list .phases .task .task-wrapper .delete-phase, .phases-list .phases .task .task-wrapper .delete-task {
   margin-top: 6px;
   float: right;
 }
-/* line 23, ../sass/_phases-list.scss */
-.phases-list .phases .phase .phase-wrapper input[type="text"], .phases-list .phases .phase .task-wrapper input[type="text"], .phases-list .phases .task .phase-wrapper input[type="text"], .phases-list .phases .task .task-wrapper input[type="text"] {
+/* line 22, ../sass/_phases-list.scss */
+.phases-list .phases .phase .phase-wrapper .input-phase-name, .phases-list .phases .phase .phase-wrapper .input-task-name, .phases-list .phases .phase .task-wrapper .input-phase-name, .phases-list .phases .phase .task-wrapper .input-task-name, .phases-list .phases .task .phase-wrapper .input-phase-name, .phases-list .phases .task .phase-wrapper .input-task-name, .phases-list .phases .task .task-wrapper .input-phase-name, .phases-list .phases .task .task-wrapper .input-task-name {
   min-width: 250px;
   padding: 0;
   outline: 0;
   border: none !important;
 }
-/* line 30, ../sass/_phases-list.scss */
+/* line 29, ../sass/_phases-list.scss */
 .phases-list .phases .phase .phase-wrapper .name, .phases-list .phases .phase .task-wrapper .name, .phases-list .phases .task .phase-wrapper .name, .phases-list .phases .task .task-wrapper .name {
+  cursor: pointer;
   display: inline-block;
 }
 /* line 34, ../sass/_phases-list.scss */
+.phases-list .phases .phase .phase-wrapper .name:hover, .phases-list .phases .phase .task-wrapper .name:hover, .phases-list .phases .task .phase-wrapper .name:hover, .phases-list .phases .task .task-wrapper .name:hover {
+  color: #6a7376;
+}
+/* line 38, ../sass/_phases-list.scss */
 .phases-list .phases .phase .phase-wrapper i.valid-phase-rename, .phases-list .phases .phase .phase-wrapper i.valid-task-rename, .phases-list .phases .phase .task-wrapper i.valid-phase-rename, .phases-list .phases .phase .task-wrapper i.valid-task-rename, .phases-list .phases .task .phase-wrapper i.valid-phase-rename, .phases-list .phases .task .phase-wrapper i.valid-task-rename, .phases-list .phases .task .task-wrapper i.valid-phase-rename, .phases-list .phases .task .task-wrapper i.valid-task-rename {
   margin-left: 20px;
   color: #c8dc1e;
   margin-right: 5px;
   font-size: 17px;
 }
-/* line 41, ../sass/_phases-list.scss */
+/* line 45, ../sass/_phases-list.scss */
 .phases-list .phases .phase .phase-wrapper i.cancel-phase-rename, .phases-list .phases .phase .phase-wrapper i.cancel-task-rename, .phases-list .phases .phase .task-wrapper i.cancel-phase-rename, .phases-list .phases .phase .task-wrapper i.cancel-task-rename, .phases-list .phases .task .phase-wrapper i.cancel-phase-rename, .phases-list .phases .task .phase-wrapper i.cancel-task-rename, .phases-list .phases .task .task-wrapper i.cancel-phase-rename, .phases-list .phases .task .task-wrapper i.cancel-task-rename {
   color: #960216;
   font-size: 17px;
 }
-/* line 48, ../sass/_phases-list.scss */
-.phases-list .phases .phase {
-  margin-bottom: 6rem;
+/* line 50, ../sass/_phases-list.scss */
+.phases-list .phases .phase .phase-wrapper .input-task-duration, .phases-list .phases .phase .task-wrapper .input-task-duration, .phases-list .phases .task .phase-wrapper .input-task-duration, .phases-list .phases .task .task-wrapper .input-task-duration {
+  width: 90px;
+  float: right;
+  margin-right: 15rem;
+  padding: 0.5rem 1rem 0.3rem 1rem;
+  font-size: 1.4rem;
+  border: 1px solid #096a85 !important;
 }
-/* line 51, ../sass/_phases-list.scss */
+/* line 64, ../sass/_phases-list.scss */
+.phases-list .phases .phase .toggle-tasks {
+  margin-right: 2rem;
+  margin-top: 4px;
+  float: right;
+  cursor: pointer;
+}
+/* line 72, ../sass/_phases-list.scss */
+.phases-list .phases .phase .toggle-tasks:hover {
+  color: #c8dc1e;
+}
+/* line 76, ../sass/_phases-list.scss */
 .phases-list .phases .phase .tasks {
   margin-left: 8rem;
 }
-/* line 54, ../sass/_phases-list.scss */
+/* line 79, ../sass/_phases-list.scss */
 .phases-list .phases .phase .tasks .task-wrapper {
   margin-bottom: 0.75rem;
 }
-/* line 61, ../sass/_phases-list.scss */
+/* line 83, ../sass/_phases-list.scss */
+.phases-list .phases .phase .tasks > .placeholder {
+  margin-bottom: 4rem;
+}
+/* line 90, ../sass/_phases-list.scss */
 .phases-list .placeholder {
   padding: 1.5rem 2rem;
   margin-bottom: 2rem;

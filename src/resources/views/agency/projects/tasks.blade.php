@@ -9,17 +9,24 @@
                 <div class="phase-wrapper">
                     <span class="name">{{ $phase->name }}</span>
                     <a href="#" class="btn cancel btn-delete delete-phase"></a>
+                    <span class="glyphicon glyphicon-triangle-top toggle-tasks"></span>
                 </div>
 
                 <div class="tasks">
-                    <div class="task-wrapper">
-                        <span class="name">Tâche 1</span>
-                        <a href="#" class="btn cancel btn-delete delete-task"></a>
+                    <div class="task" data-id="task-1" data-name="Tâche 1" data-phase="{{ $phase->id }}">
+                        <div class="task-wrapper">
+                            <span class="name">Tâche 1</span>
+                            <a href="#" class="btn cancel delete-task"></a>
+                            <input class="input-task-duration" type="text" placeholder="durée en j." />
+                        </div>
                     </div>
 
-                    <div class="task-wrapper">
-                        <span class="name">Tâche 2</span>
-                        <a href="#" class="btn cancel btn-delete delete-task"></a>
+                    <div class="task" data-id="task-2" data-name="Tâche 2" data-phase="{{ $phase->id }}">
+                        <div class="task-wrapper">
+                            <span class="name">Tâche 2</span>
+                            <a href="#" class="btn cancel delete-task"></a>
+                            <input class="input-task-duration" type="text" placeholder="durée en j." />
+                        </div>
                     </div>
 
                     <div class="placeholder add-task">Ajouter une tâche</div>
