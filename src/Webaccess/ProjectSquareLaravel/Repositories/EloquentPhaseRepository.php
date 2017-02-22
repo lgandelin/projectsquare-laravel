@@ -3,6 +3,7 @@
 namespace Webaccess\ProjectSquareLaravel\Repositories;
 
 use DateTime;
+use Ramsey\Uuid\Uuid;
 use Webaccess\ProjectSquare\Entities\Phase as PhaseEntity;
 use Webaccess\ProjectSquare\Repositories\PhaseRepository;
 use Webaccess\ProjectSquareLaravel\Models\Phase;
@@ -11,9 +12,11 @@ class EloquentPhaseRepository implements PhaseRepository
 {
     public function getPhase($phaseID)
     {
-        $phaseModel = $this->getPhaseModel($phaseID);
+        if ($phaseModel = $this->getPhaseModel($phaseID)) {
+            return $this->getPhaseEntity($phaseModel);
+        }
 
-        return $this->getPhaseEntity($phaseModel);
+        return false;
     }
 
     public function getPhaseModel($phaseID)
@@ -36,10 +39,18 @@ class EloquentPhaseRepository implements PhaseRepository
 
     public function persistPhase(PhaseEntity $phase)
     {
-        $phaseModel = (!isset($phase->id)) ? new Phase() : Phase::find($phase->id);
+        if (!isset($phase->id)) {
+            $phaseModel = new Phase();
+            $phaseID = Uuid::uuid4()->toString();
+            $phaseModel->id = $phaseID;
+            $phase->id = $phaseID;
+        } else {
+            $phaseModel = Phase::find($phase->id);
+        }
+        
         $phaseModel->name = $phase->name;
         $phaseModel->order = $phase->order;
-        $phaseModel->due_date = $phase->dueDate->format('Y-m-d H:i:s');
+        if ($phase->dueDate) $phaseModel->due_date = $phase->dueDate->format('Y-m-d H:i:s');
         $phaseModel->project_id = $phase->projectID;
 
         $phaseModel->save();

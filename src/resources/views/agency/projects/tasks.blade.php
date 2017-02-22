@@ -13,21 +13,15 @@
                 </div>
 
                 <div class="tasks">
-                    <div class="task" data-id="task-1" data-name="Tâche 1" data-phase="{{ $phase->id }}">
-                        <div class="task-wrapper">
-                            <span class="name">Tâche 1</span>
-                            <a href="#" class="btn cancel delete-task"></a>
-                            <input class="input-task-duration" type="text" placeholder="durée en j." />
+                    @foreach ($phase->tasks as $task)
+                        <div class="task" data-id="{{ $task->id }}" data-name="{{ $task->title }}" data-phase="{{ $phase->id }}" data-duration="{{ $task->estimated_time_days }}">
+                            <div class="task-wrapper">
+                                <span class="name">{{ $task->title }}</span>
+                                <a href="#" class="btn cancel delete-task"></a>
+                                <input class="input-task-duration" type="text" placeholder="durée en j." value="{{ $task->estimated_time_days }}" />
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="task" data-id="task-2" data-name="Tâche 2" data-phase="{{ $phase->id }}">
-                        <div class="task-wrapper">
-                            <span class="name">Tâche 2</span>
-                            <a href="#" class="btn cancel delete-task"></a>
-                            <input class="input-task-duration" type="text" placeholder="durée en j." />
-                        </div>
-                    </div>
+                    @endforeach
 
                     <div class="placeholder add-task">Ajouter une tâche</div>
                 </div>
@@ -35,7 +29,14 @@
         @endforeach
     </div>
     <div class="placeholder add-phase">Ajouter une phase</div>
+
+    <span class="loading" style="display: none">En chargement ...</span>
+    <button class="btn valid-phases"><i class="glyphicon glyphicon-ok"></i> Valider</button>
 </div>
+
+<input type="hidden" id="phase_ids_to_delete" value="" />
+<input type="hidden" id="task_ids_to_delete" value="" />
+<input type="hidden" id="project_id" value="{{ $project_id }}" />
 
 @include ('projectsquare::templates.new-phase')
 @include ('projectsquare::templates.new-task')

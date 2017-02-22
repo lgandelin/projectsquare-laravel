@@ -85,6 +85,7 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
     Route::get('/agency/projects/delete/{uuid}', array('as' => 'projects_delete', 'uses' => 'Agency\ProjectController@delete'));
     Route::post('/agency/projects/add_user', array('as' => 'projects_add_user', 'uses' => 'Agency\ProjectController@add_user'));
     Route::get('/agency/projects/delete_user/{uuid}/{user_id}', array('as' => 'projects_delete_user', 'uses' => 'Agency\ProjectController@delete_user'));
+    Route::post('/agency/projects/tasks', array('as' => 'projects_update_tasks', 'uses' => 'Agency\ProjectController@update_tasks'));
 
     Route::get('/agency/clients', array('as' => 'clients_index', 'uses' => 'Agency\ClientController@index'));
     Route::get('/agency/clients/add', array('as' => 'clients_add', 'uses' => 'Agency\ClientController@add'));

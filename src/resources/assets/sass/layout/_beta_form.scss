@@ -1,7 +1,7 @@
 .beta-form {
     position: fixed;
     bottom: 0px;
-    right: 0px;
+    left: 0px;
     z-index: 999;
 
     .icon {
@@ -9,12 +9,12 @@
         background: white;
         border: 1px solid #bdc0c1;
         border-bottom: none;
-        border-right: none;
+        border-left: none;
         cursor: pointer;
         color: $touareg;
     }
 }
 
-.beta-form:hover {
-    opacity: 0.8;
+.beta-form:hover .glyphicon {
+    color: $green;
 }

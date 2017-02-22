@@ -4,9 +4,16 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Agency;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Webaccess\ProjectSquare\Entities\Task;
+use Webaccess\ProjectSquare\Requests\Phases\CreatePhaseRequest;
+use Webaccess\ProjectSquare\Requests\Phases\DeletePhaseRequest;
 use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
+use Webaccess\ProjectSquare\Requests\Phases\UpdatePhaseRequest;
 use Webaccess\ProjectSquare\Requests\Projects\CreateProjectRequest;
 use Webaccess\ProjectSquare\Requests\Projects\UpdateProjectRequest;
+use Webaccess\ProjectSquare\Requests\Tasks\CreateTaskRequest;
+use Webaccess\ProjectSquare\Requests\Tasks\DeleteTaskRequest;
+use Webaccess\ProjectSquare\Requests\Tasks\UpdateTaskRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 use Webaccess\ProjectSquare\Requests\Clients\GetClientsRequest;
 use Webaccess\ProjectSquareLaravel\Tools\StringTool;
@@ -88,6 +95,9 @@ class ProjectController extends BaseController
             $phases = app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
                 'projectID' => $projectID
             ]));
+            foreach ($phases as $phase) {
+                $phase->tasks = app()->make('GetTasksInteractor')->getTasksByPhaseID($phase->id);
+            }
         } catch (\Exception $e) {
             $request->session()->flash('error', $e->getMessage());
 
@@ -161,6 +171,95 @@ class ProjectController extends BaseController
         }
 
         return redirect()->route('projects_edit', ['id' => Input::get('project_id')]);
+    }
+
+    public function update_tasks(Request $request)
+    {
+        parent::__construct($request);
+
+        try {
+            $phases = json_decode($request->phases);
+
+            $phaseIDs = [];
+            foreach ($phases as $i => $phase) {
+                if ($phase->id == "") {
+                    $response = app()->make('CreatePhaseInteractor')->execute(new CreatePhaseRequest([
+                        'name' => $phase->name,
+                        'projectID' => $request->project_id,
+                        'order' => ($i + 1),
+                        'requesterUserID' => $this->getUser()->id
+                    ]));
+                    $phaseIDs[]= $response->phase->id;
+                } else {
+                    $response = app()->make('UpdatePhaseInteractor')->execute(new UpdatePhaseRequest([
+                        'phaseID' => $phase->id,
+                        'name' => $phase->name,
+                        'order' => ($i + 1),
+                        'requesterUserID' => $this->getUser()->id
+                    ]));
+                    $phaseIDs[]= $phase->id;
+                }
+
+                foreach ($phase->tasks as $j => $task) {
+                    if ($task->id == "") {
+                        app()->make('CreateTaskInteractor')->execute(new CreateTaskRequest([
+                            'title' => $task->name,
+                            'statusID' => Task::TODO,
+                            'estimatedTimeDays' => (isset($task->duration) && $task->duration != "") ? $task->duration : null,
+                            'phaseID' => ($phase->id == "") ? $response->phase->id : $phase->id,
+                            'projectID' => $request->project_id,
+                            'requesterUserID' => $this->getUser()->id
+                        ]));
+                    } else {
+                        app()->make('UpdateTaskInteractor')->execute(new UpdateTaskRequest([
+                            'taskID' => $task->id,
+                            'title' => $task->name,
+                            'statusID' => Task::TODO,
+                            'estimatedTimeDays' => (isset($task->duration) && $task->duration != "") ? $task->duration : null,
+                            'requesterUserID' => $this->getUser()->id
+                        ]));
+                    }
+                }
+            }
+
+            if ($request->phase_ids_to_delete != "") {
+                $phaseIDs = explode(',', $request->phase_ids_to_delete);
+
+                foreach ($phaseIDs as $phaseID) {
+                    if ($phaseID != "") {
+                        app()->make('DeletePhaseInteractor')->execute(new DeletePhaseRequest([
+                            'phaseID' => $phaseID,
+                            'requesterUserID' => $this->getUser()->id
+                        ]));
+                    }
+                }
+            }
+
+            if ($request->task_ids_to_delete != "") {
+                $taskIDs = explode(',', $request->task_ids_to_delete);
+
+                foreach ($taskIDs as $taskID) {
+                    if ($taskID != "") {
+                        app()->make('DeleteTaskInteractor')->execute(new DeleteTaskRequest([
+                            'taskID' => $taskID,
+                            'requesterUserID' => $this->getUser()->id
+                        ]));
+                    }
+                }
+            }
+
+            $request->session()->flash('confirmation', trans('projectsquare::projects.edit_project_success'));
+
+            return response()->json([
+                'message' => trans('projectsquare::projects.edit_project_success')
+            ], 200);
+        } catch (\Exception $e) {
+            $request->session()->flash('error', trans('projectsquare::projects.edit_project_error'));
+
+            return response()->json([
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     public function update_config(Request $request)

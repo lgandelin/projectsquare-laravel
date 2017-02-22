@@ -35,6 +35,8 @@
                     'project_color' => $project->color,
                     'project_tasks_scheduled_time' => $project->tasks_scheduled_time,
                     'project_tickets_scheduled_time' => $project->tickets_scheduled_time,
+                    'error' => isset($error) ? $error : null,
+                    'confirmation' => isset($confirmation) ? $confirmation : null,
                 ])
             </div>
         </div>

@@ -85,6 +85,11 @@ class EloquentTasksRepository implements TaskRepository
         return Task::where('project_id', '=', $projectID)->get();
     }
 
+    public function getTasksByPhaseID($phaseID)
+    {
+        return Task::where('phase_id', '=', $phaseID)->get();
+    }
+
     public function getTasksPaginatedList($userID, $limit, $projectID = null, $statusID = null, $allocatedUserID = null)
     {
         return $this->getTasksList($userID, $projectID, $statusID, $allocatedUserID)->paginate($limit);
@@ -106,6 +111,7 @@ class EloquentTasksRepository implements TaskRepository
         $taskModel->estimated_time_hours = $task->estimatedTimeHours;
         $taskModel->spent_time_days = $task->spentTimeDays;
         $taskModel->spent_time_hours = $task->spentTimeHours;
+        $taskModel->phase_id = $task->phaseID;
         $taskModel->project_id = $task->projectID;
         $taskModel->status_id = $task->statusID;
         $taskModel->allocated_user_id = $task->allocatedUserID;
@@ -136,6 +142,7 @@ class EloquentTasksRepository implements TaskRepository
         $task->spentTimeDays = $taskModel->spent_time_days;
         $task->spentTimeHours = $taskModel->spent_time_hours;
         $task->projectID = $taskModel->project_id;
+        $task->phaseID = $taskModel->phase_id;
         $task->statusID = $taskModel->status_id;
         $task->allocatedUserID = $taskModel->allocated_user_id;
 

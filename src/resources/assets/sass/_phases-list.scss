@@ -1,4 +1,5 @@
 .phases-list {
+    overflow: hidden;
 
     .phases {
         margin-bottom: 5rem;
@@ -36,6 +37,7 @@
                 }
 
                 i.valid-phase-rename, i.valid-task-rename {
+                    cursor: pointer;
                     margin-left: 20px;
                     color: $green;
                     margin-right: 5px;
@@ -43,6 +45,7 @@
                 }
 
                 i.cancel-phase-rename, i.cancel-task-rename {
+                    cursor: pointer;
                     color: #960216;
                     font-size: 17px;
                 }
@@ -96,5 +99,47 @@
 
         border: 2px dashed #c0cbcf;
         cursor: pointer;
+    }
+
+    .placeholder:hover {
+        color: #6a7376;
+        border: 2px dashed #6a7376;
+    }
+
+    .valid-phases {
+        margin-top: 3rem;
+        float: right;
+        color: $touareg;
+        padding: 1.5rem 5rem 1.5rem 4rem;
+
+        font-size: 2rem;
+
+        border: none;
+        background: $green;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+
+        i {
+            font-size: 19px;
+        }
+    }
+
+    .valid-phases:focus {
+        outline: 0;
+    }
+    
+    .valid-phases:hover {
+        opacity: 0.8;
+    }
+
+    .loading {
+        @extend .valid-phases;
+        background: $light_blue;
+        color: white;
+    }
+
+    .loading:hover {
+        opacity: 1;
     }
 }
