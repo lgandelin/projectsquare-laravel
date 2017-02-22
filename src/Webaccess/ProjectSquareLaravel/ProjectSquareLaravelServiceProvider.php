@@ -526,7 +526,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         App::bind('DeletePhaseInteractor', function () {
             return new DeletePhaseInteractor(
                 new EloquentPhaseRepository(),
-                new EloquentUserRepository()
+                new EloquentUserRepository(),
+                new EloquentTasksRepository()
             );
         });
 

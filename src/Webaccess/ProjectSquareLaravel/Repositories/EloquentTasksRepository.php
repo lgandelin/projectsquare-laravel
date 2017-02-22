@@ -127,6 +127,11 @@ class EloquentTasksRepository implements TaskRepository
         $task->delete();
     }
 
+    public function deleteTasksByPhaseID($phaseID)
+    {
+        Task::where('phase_id', $phaseID)->delete();
+    }
+
     private function getTaskEntity($taskModel)
     {
         if (!$taskModel) {

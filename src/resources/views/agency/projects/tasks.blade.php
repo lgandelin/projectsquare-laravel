@@ -30,7 +30,7 @@
     </div>
     <div class="placeholder add-phase">Ajouter une phase</div>
 
-    <span class="loading" style="display: none">En chargement ...</span>
+    <span class="loading" style="display: none">Sauvegarde ...</span>
     <button class="btn valid-phases"><i class="glyphicon glyphicon-ok"></i> Valider</button>
 </div>
 

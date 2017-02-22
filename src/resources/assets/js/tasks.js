@@ -56,7 +56,7 @@ $(document).ready(function() {
         });
 
         var task = $(html);
-        $('.phases-list .phase[data-id="' + phase.attr('data-id') + '"] .tasks .placeholder')
+        phase.find('.tasks .placeholder')
             .before(task);
 
         task.find('.name').trigger('click');
