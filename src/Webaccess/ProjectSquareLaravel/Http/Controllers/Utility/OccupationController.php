@@ -17,8 +17,24 @@ class OccupationController extends BaseController
         parent::__construct($request);
 
         $users = app()->make('UserManager')->getUsersByRole(Input::get('filter_role'));
-        $roles = app()->make('RoleManager')->getRoles();
 
+        return view('projectsquare::occupation.index', [
+            'month_labels' => ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            'calendars' => self::CalendarsByUsers($users),
+            'today' => (new DateTime())->setTime(0, 0, 0),
+            'roles' => app()->make('RoleManager')->getRoles(),
+            'filters' => [
+                'role' => Input::get('filter_role'),
+            ],
+        ]);
+    }
+
+    /**
+     * @param $users
+     * @return array
+     */
+    public static function getCalendarsByUsers($users)
+    {
         $events = [];
         foreach ($users as $user) {
             $events[$user->id] = app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
@@ -26,7 +42,7 @@ class OccupationController extends BaseController
             ]));
         }
 
-        $months = [];
+        $calendars = [];
         for ($m = 0; $m < 6; $m++) {
             $month = new \StdClass();
             $month->calendars = [];
@@ -62,19 +78,11 @@ class OccupationController extends BaseController
                         }
                     }
                 }
-                $month->calendars[]= $calendar;
+                $month->calendars[] = $calendar;
             }
-            $months[]= $month;
+            $calendars[] = $month;
         }
 
-        return view('projectsquare::occupation.index', [
-            'month_labels' => ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-            'months' => $months,
-            'today' => (new DateTime())->setTime(0, 0, 0),
-            'roles' => $roles,
-            'filters' => [
-                'role' => Input::get('filter_role'),
-            ],
-        ]);
+        return $calendars;
     }
 }

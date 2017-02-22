@@ -14377,22 +14377,23 @@ body {
 .occupation-template .month .header .disabled {
   color: #999;
   border-color: #999;
+  outline: 0;
   cursor: default;
 }
-/* line 43, ../sass/_occupation.scss */
+/* line 44, ../sass/_occupation.scss */
 .occupation-template .month table {
   border: 2px solid #999;
 }
-/* line 46, ../sass/_occupation.scss */
+/* line 47, ../sass/_occupation.scss */
 .occupation-template .month table .weeks-row th:first-child {
   border-right: 2px solid #999;
 }
-/* line 51, ../sass/_occupation.scss */
+/* line 52, ../sass/_occupation.scss */
 .occupation-template .month table tr th {
   text-align: center;
   border: 1px solid #999;
 }
-/* line 55, ../sass/_occupation.scss */
+/* line 56, ../sass/_occupation.scss */
 .occupation-template .month table tr td {
   text-align: center;
   border: 1px solid #999;
@@ -14401,11 +14402,11 @@ body {
   vertical-align: bottom;
   position: relative;
 }
-/* line 63, ../sass/_occupation.scss */
+/* line 64, ../sass/_occupation.scss */
 .occupation-template .month table tr td img {
   display: inline-block;
 }
-/* line 67, ../sass/_occupation.scss */
+/* line 68, ../sass/_occupation.scss */
 .occupation-template .month table tr td .events-detail {
   position: absolute;
   display: none;
@@ -14418,120 +14419,120 @@ body {
   z-index: 999;
   text-align: left;
 }
-/* line 79, ../sass/_occupation.scss */
+/* line 80, ../sass/_occupation.scss */
 .occupation-template .month table tr td .events-detail .event {
   padding: 5px;
   color: white;
   border-bottom: 1px solid white;
 }
-/* line 84, ../sass/_occupation.scss */
+/* line 85, ../sass/_occupation.scss */
 .occupation-template .month table tr td .events-detail .event .time {
   font-size: 11px;
   display: block;
   margin-bottom: 5px;
 }
-/* line 90, ../sass/_occupation.scss */
+/* line 91, ../sass/_occupation.scss */
 .occupation-template .month table tr td .events-detail .event .name {
   display: block;
   font-size: 13px;
 }
-/* line 96, ../sass/_occupation.scss */
+/* line 97, ../sass/_occupation.scss */
 .occupation-template .month table tr td .events-detail .event:last-child {
   border: none;
 }
-/* line 103, ../sass/_occupation.scss */
+/* line 104, ../sass/_occupation.scss */
 .occupation-template .month table tr td:hover .work-hours {
   opacity: 0.8;
 }
-/* line 107, ../sass/_occupation.scss */
+/* line 108, ../sass/_occupation.scss */
 .occupation-template .month table tr td:hover .events-detail {
   display: block;
 }
-/* line 112, ../sass/_occupation.scss */
+/* line 113, ../sass/_occupation.scss */
 .occupation-template .month table tr .user {
   vertical-align: middle;
   min-width: 53px;
 }
-/* line 117, ../sass/_occupation.scss */
+/* line 118, ../sass/_occupation.scss */
 .occupation-template .month table tr .today {
   color: white;
   background: #096a85;
 }
-/* line 122, ../sass/_occupation.scss */
+/* line 123, ../sass/_occupation.scss */
 .occupation-template .month table tr .work-hours {
   display: block;
   background: #c8dc1e;
 }
-/* line 127, ../sass/_occupation.scss */
+/* line 128, ../sass/_occupation.scss */
 .occupation-template .month table tr .week {
   font-weight: bold;
   color: #096a85;
   border-right: 2px solid #999;
   padding: 3px 0;
 }
-/* line 134, ../sass/_occupation.scss */
+/* line 135, ../sass/_occupation.scss */
 .occupation-template .month table tr .day {
   padding: 3px 0;
 }
-/* line 138, ../sass/_occupation.scss */
+/* line 139, ../sass/_occupation.scss */
 .occupation-template .month table tr .disabled {
   background: #f1f1f1;
   color: #bbb;
 }
 
-/* line 1, ../sass/_phases-list.scss */
-.phases-list {
+/* line 1, ../sass/_project-tasks.scss */
+.project-tasks {
   overflow: hidden;
 }
-/* line 4, ../sass/_phases-list.scss */
-.phases-list .phases {
+/* line 4, ../sass/_project-tasks.scss */
+.project-tasks .phases {
   margin-bottom: 5rem;
 }
-/* line 9, ../sass/_phases-list.scss */
-.phases-list .phases .phase .phase-wrapper, .phases-list .phases .phase .task-wrapper, .phases-list .phases .task .phase-wrapper, .phases-list .phases .task .task-wrapper {
+/* line 9, ../sass/_project-tasks.scss */
+.project-tasks .phases .phase .phase-wrapper, .project-tasks .phases .phase .task-wrapper, .project-tasks .phases .task .phase-wrapper, .project-tasks .phases .task .task-wrapper {
   margin-bottom: 2rem;
   padding: 1.5rem 2rem;
   color: #096a85;
   font-size: 2rem;
   border: 2px solid #096a85;
 }
-/* line 18, ../sass/_phases-list.scss */
-.phases-list .phases .phase .phase-wrapper .delete-phase, .phases-list .phases .phase .phase-wrapper .delete-task, .phases-list .phases .phase .task-wrapper .delete-phase, .phases-list .phases .phase .task-wrapper .delete-task, .phases-list .phases .task .phase-wrapper .delete-phase, .phases-list .phases .task .phase-wrapper .delete-task, .phases-list .phases .task .task-wrapper .delete-phase, .phases-list .phases .task .task-wrapper .delete-task {
+/* line 18, ../sass/_project-tasks.scss */
+.project-tasks .phases .phase .phase-wrapper .delete-phase, .project-tasks .phases .phase .phase-wrapper .delete-task, .project-tasks .phases .phase .task-wrapper .delete-phase, .project-tasks .phases .phase .task-wrapper .delete-task, .project-tasks .phases .task .phase-wrapper .delete-phase, .project-tasks .phases .task .phase-wrapper .delete-task, .project-tasks .phases .task .task-wrapper .delete-phase, .project-tasks .phases .task .task-wrapper .delete-task {
   margin-top: 6px;
   float: right;
 }
-/* line 23, ../sass/_phases-list.scss */
-.phases-list .phases .phase .phase-wrapper .input-phase-name, .phases-list .phases .phase .phase-wrapper .input-task-name, .phases-list .phases .phase .task-wrapper .input-phase-name, .phases-list .phases .phase .task-wrapper .input-task-name, .phases-list .phases .task .phase-wrapper .input-phase-name, .phases-list .phases .task .phase-wrapper .input-task-name, .phases-list .phases .task .task-wrapper .input-phase-name, .phases-list .phases .task .task-wrapper .input-task-name {
+/* line 23, ../sass/_project-tasks.scss */
+.project-tasks .phases .phase .phase-wrapper .input-phase-name, .project-tasks .phases .phase .phase-wrapper .input-task-name, .project-tasks .phases .phase .task-wrapper .input-phase-name, .project-tasks .phases .phase .task-wrapper .input-task-name, .project-tasks .phases .task .phase-wrapper .input-phase-name, .project-tasks .phases .task .phase-wrapper .input-task-name, .project-tasks .phases .task .task-wrapper .input-phase-name, .project-tasks .phases .task .task-wrapper .input-task-name {
   min-width: 250px;
   padding: 0;
   outline: 0;
   border: none !important;
 }
-/* line 30, ../sass/_phases-list.scss */
-.phases-list .phases .phase .phase-wrapper .name, .phases-list .phases .phase .task-wrapper .name, .phases-list .phases .task .phase-wrapper .name, .phases-list .phases .task .task-wrapper .name {
+/* line 30, ../sass/_project-tasks.scss */
+.project-tasks .phases .phase .phase-wrapper .name, .project-tasks .phases .phase .task-wrapper .name, .project-tasks .phases .task .phase-wrapper .name, .project-tasks .phases .task .task-wrapper .name {
   cursor: pointer;
   display: inline-block;
 }
-/* line 35, ../sass/_phases-list.scss */
-.phases-list .phases .phase .phase-wrapper .name:hover, .phases-list .phases .phase .task-wrapper .name:hover, .phases-list .phases .task .phase-wrapper .name:hover, .phases-list .phases .task .task-wrapper .name:hover {
+/* line 35, ../sass/_project-tasks.scss */
+.project-tasks .phases .phase .phase-wrapper .name:hover, .project-tasks .phases .phase .task-wrapper .name:hover, .project-tasks .phases .task .phase-wrapper .name:hover, .project-tasks .phases .task .task-wrapper .name:hover {
   color: #6a7376;
 }
-/* line 39, ../sass/_phases-list.scss */
-.phases-list .phases .phase .phase-wrapper i.valid-phase-rename, .phases-list .phases .phase .phase-wrapper i.valid-task-rename, .phases-list .phases .phase .task-wrapper i.valid-phase-rename, .phases-list .phases .phase .task-wrapper i.valid-task-rename, .phases-list .phases .task .phase-wrapper i.valid-phase-rename, .phases-list .phases .task .phase-wrapper i.valid-task-rename, .phases-list .phases .task .task-wrapper i.valid-phase-rename, .phases-list .phases .task .task-wrapper i.valid-task-rename {
+/* line 39, ../sass/_project-tasks.scss */
+.project-tasks .phases .phase .phase-wrapper i.valid-phase-rename, .project-tasks .phases .phase .phase-wrapper i.valid-task-rename, .project-tasks .phases .phase .task-wrapper i.valid-phase-rename, .project-tasks .phases .phase .task-wrapper i.valid-task-rename, .project-tasks .phases .task .phase-wrapper i.valid-phase-rename, .project-tasks .phases .task .phase-wrapper i.valid-task-rename, .project-tasks .phases .task .task-wrapper i.valid-phase-rename, .project-tasks .phases .task .task-wrapper i.valid-task-rename {
   cursor: pointer;
   margin-left: 20px;
   color: #c8dc1e;
   margin-right: 5px;
   font-size: 17px;
 }
-/* line 47, ../sass/_phases-list.scss */
-.phases-list .phases .phase .phase-wrapper i.cancel-phase-rename, .phases-list .phases .phase .phase-wrapper i.cancel-task-rename, .phases-list .phases .phase .task-wrapper i.cancel-phase-rename, .phases-list .phases .phase .task-wrapper i.cancel-task-rename, .phases-list .phases .task .phase-wrapper i.cancel-phase-rename, .phases-list .phases .task .phase-wrapper i.cancel-task-rename, .phases-list .phases .task .task-wrapper i.cancel-phase-rename, .phases-list .phases .task .task-wrapper i.cancel-task-rename {
+/* line 47, ../sass/_project-tasks.scss */
+.project-tasks .phases .phase .phase-wrapper i.cancel-phase-rename, .project-tasks .phases .phase .phase-wrapper i.cancel-task-rename, .project-tasks .phases .phase .task-wrapper i.cancel-phase-rename, .project-tasks .phases .phase .task-wrapper i.cancel-task-rename, .project-tasks .phases .task .phase-wrapper i.cancel-phase-rename, .project-tasks .phases .task .phase-wrapper i.cancel-task-rename, .project-tasks .phases .task .task-wrapper i.cancel-phase-rename, .project-tasks .phases .task .task-wrapper i.cancel-task-rename {
   cursor: pointer;
   color: #960216;
   font-size: 17px;
 }
-/* line 53, ../sass/_phases-list.scss */
-.phases-list .phases .phase .phase-wrapper .input-task-duration, .phases-list .phases .phase .task-wrapper .input-task-duration, .phases-list .phases .task .phase-wrapper .input-task-duration, .phases-list .phases .task .task-wrapper .input-task-duration {
+/* line 53, ../sass/_project-tasks.scss */
+.project-tasks .phases .phase .phase-wrapper .input-task-duration, .project-tasks .phases .phase .task-wrapper .input-task-duration, .project-tasks .phases .task .phase-wrapper .input-task-duration, .project-tasks .phases .task .task-wrapper .input-task-duration {
   width: 90px;
   float: right;
   margin-right: 15rem;
@@ -14539,31 +14540,31 @@ body {
   font-size: 1.4rem;
   border: 1px solid #096a85 !important;
 }
-/* line 67, ../sass/_phases-list.scss */
-.phases-list .phases .phase .toggle-tasks {
+/* line 67, ../sass/_project-tasks.scss */
+.project-tasks .phases .phase .toggle-tasks {
   margin-right: 2rem;
   margin-top: 4px;
   float: right;
   cursor: pointer;
 }
-/* line 75, ../sass/_phases-list.scss */
-.phases-list .phases .phase .toggle-tasks:hover {
+/* line 75, ../sass/_project-tasks.scss */
+.project-tasks .phases .phase .toggle-tasks:hover {
   color: #c8dc1e;
 }
-/* line 79, ../sass/_phases-list.scss */
-.phases-list .phases .phase .tasks {
+/* line 79, ../sass/_project-tasks.scss */
+.project-tasks .phases .phase .tasks {
   margin-left: 8rem;
 }
-/* line 82, ../sass/_phases-list.scss */
-.phases-list .phases .phase .tasks .task-wrapper {
+/* line 82, ../sass/_project-tasks.scss */
+.project-tasks .phases .phase .tasks .task-wrapper {
   margin-bottom: 0.75rem;
 }
-/* line 86, ../sass/_phases-list.scss */
-.phases-list .phases .phase .tasks > .placeholder {
+/* line 86, ../sass/_project-tasks.scss */
+.project-tasks .phases .phase .tasks > .placeholder {
   margin-bottom: 4rem;
 }
-/* line 93, ../sass/_phases-list.scss */
-.phases-list .placeholder {
+/* line 93, ../sass/_project-tasks.scss */
+.project-tasks .placeholder {
   padding: 1.5rem 2rem;
   margin-bottom: 2rem;
   color: #c0cbcf;
@@ -14571,13 +14572,13 @@ body {
   border: 2px dashed #c0cbcf;
   cursor: pointer;
 }
-/* line 104, ../sass/_phases-list.scss */
-.phases-list .placeholder:hover {
+/* line 104, ../sass/_project-tasks.scss */
+.project-tasks .placeholder:hover {
   color: #6a7376;
   border: 2px dashed #6a7376;
 }
-/* line 109, ../sass/_phases-list.scss */
-.phases-list .valid-phases, .phases-list .loading {
+/* line 109, ../sass/_project-tasks.scss */
+.project-tasks .valid-phases, .project-tasks .loading {
   margin-top: 3rem;
   float: right;
   color: #096a85;
@@ -14589,25 +14590,25 @@ body {
   -moz-border-radius: 0;
   border-radius: 0;
 }
-/* line 123, ../sass/_phases-list.scss */
-.phases-list .valid-phases i, .phases-list .loading i {
+/* line 123, ../sass/_project-tasks.scss */
+.project-tasks .valid-phases i, .project-tasks .loading i {
   font-size: 19px;
 }
-/* line 128, ../sass/_phases-list.scss */
-.phases-list .valid-phases:focus, .phases-list .loading:focus {
+/* line 128, ../sass/_project-tasks.scss */
+.project-tasks .valid-phases:focus, .project-tasks .loading:focus {
   outline: 0;
 }
-/* line 132, ../sass/_phases-list.scss */
-.phases-list .valid-phases:hover, .phases-list .loading:hover {
+/* line 132, ../sass/_project-tasks.scss */
+.project-tasks .valid-phases:hover, .project-tasks .loading:hover {
   opacity: 0.8;
 }
-/* line 136, ../sass/_phases-list.scss */
-.phases-list .loading {
+/* line 136, ../sass/_project-tasks.scss */
+.project-tasks .loading {
   background: #84b4c2;
   color: white;
 }
-/* line 142, ../sass/_phases-list.scss */
-.phases-list .loading:hover {
+/* line 142, ../sass/_project-tasks.scss */
+.project-tasks .loading:hover {
   opacity: 1;
 }
 

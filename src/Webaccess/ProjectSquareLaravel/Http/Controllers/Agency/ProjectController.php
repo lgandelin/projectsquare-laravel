@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Agency;
 
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Entities\Task;
@@ -16,6 +17,7 @@ use Webaccess\ProjectSquare\Requests\Tasks\DeleteTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\UpdateTaskRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 use Webaccess\ProjectSquare\Requests\Clients\GetClientsRequest;
+use Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\OccupationController;
 use Webaccess\ProjectSquareLaravel\Tools\StringTool;
 
 class ProjectController extends BaseController
@@ -118,6 +120,39 @@ class ProjectController extends BaseController
         parent::__construct($request);
 
         $projectID = $request->uuid;
+
+        try {
+            $project = app()->make('ProjectManager')->getProjectWithUsers($projectID);
+            $phases = app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
+                'projectID' => $projectID
+            ]));
+            foreach ($phases as $phase) {
+                $phase->tasks = app()->make('GetTasksInteractor')->getTasksByPhaseID($phase->id);
+            }
+
+            $users = app()->make('UserManager')->getUsersByRole(Input::get('filter_role'));
+        } catch (\Exception $e) {
+            $request->session()->flash('error', $e->getMessage());
+
+            return redirect()->route('projects_index');
+        }
+
+        return view('projectsquare::agency.projects.edit', [
+            'tab' => 'team',
+            'project' => $project,
+            'phases' => $phases,
+
+            'month_labels' => ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            'calendars' => OccupationController::getCalendarsByUsers($users),
+            'today' => (new DateTime())->setTime(0, 0, 0),
+            'roles' => app()->make('RoleManager')->getRoles(),
+            'filters' => [
+                'role' => Input::get('filter_role'),
+            ],
+
+            'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
+            'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
+        ]);
     }
 
     public function edit_config(Request $request)

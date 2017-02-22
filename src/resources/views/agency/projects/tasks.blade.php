@@ -2,7 +2,7 @@
     <h1>{{ trans('projectsquare::projects.tasks') }}</h1>
 </div>
 
-<div class="phases-list">
+<div class="project-tasks">
     <div class="phases">
         @foreach ($phases as $phase)
             <div class="phase" data-id="{{ $phase->id }}" data-name="{{ $phase->name }}">
@@ -42,6 +42,6 @@
 @include ('projectsquare::templates.new-task')
 
 @section('scripts')
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-<script src="{{ asset('js/tasks.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="{{ asset('js/tasks.js') }}"></script>
 @endsection

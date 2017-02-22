@@ -1,69 +1,59 @@
+<div class="page-header">
+    <h1>{{ trans('projectsquare::projects.team') }}</h1>
+</div>
 
-@if (isset($project_id))
-    <p>&nbsp;</p>
-    <h3>{{ trans('projectsquare::projects.project_resources') }}
-        @include('projectsquare::includes.tooltip', [
-            'text' => trans('projectsquare::tooltips.project.project_resources')
-        ])
-    </h3>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>{{ trans('projectsquare::users.user') }}</th>
-            <th>{{ trans('projectsquare::roles.role') }}</th>
-            <th>{{ trans('projectsquare::generic.action') }}</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach ($project->users as $user)
-            <tr>
-                <td>{{ $user->complete_name }}</td>
-                <td>{{ $user->role->name }}</td>
-                <td align="right">
-                    <a href="{{ route('projects_delete_user', ['project_id' => $project_id, 'user_id' => $user->id]) }}" class="btn cancel btn-delete">
-                    </a>
-                </td>
-            </tr>
+<div class="team">
+    <div class="phases">
+        @foreach ($phases as $phase)
+            <div class="phase" data-id="{{ $phase->id }}" data-name="{{ $phase->name }}">
+                <div class="phase-wrapper">
+                    <span class="name">{{ $phase->name }}</span>
+                </div>
+
+                <div class="tasks">
+                    @foreach ($phase->tasks as $task)
+                        <div class="task" data-id="{{ $task->id }}" data-name="{{ $task->title }}" data-phase="{{ $phase->id }}" data-duration="{{ $task->estimated_time_days }}">
+                            <div class="task-wrapper">
+                                <span class="name">{{ $task->title }}</span>
+                                <span class="duration">{{ $task->estimated_time_days }}j</span>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         @endforeach
-        </tbody>
-    </table>
+    </div>
 
-    <h3>{{ trans('projectsquare::projects.add_resource') }}</h3>
-    <form action="{{ route('projects_add_user') }}" method="post">
-        <div class="row">
-            <div class="col-md-3">
-                <label for="user_id">{{ trans('projectsquare::users.user') }}</label>
-                @if (isset($users))
-                    <select class="form-control" name="user_id">
-                        <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
-                        @foreach ($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->complete_name }}</option>
-                        @endforeach
-                    </select>
-                @endif
-            </div>
+    <div class="occupation-template">
+        <form method="get">
+            <div class="row">
+                <h2>{{ trans('projectsquare::tasks.filters.filters') }}</h2>
 
-            <div class="col-md-3">
-                <label for="role_id">{{ trans('projectsquare::roles.role') }}</label>
-                @if (isset($roles))
-                    <select class="form-control" name="role_id">
-                        <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+                <div class="form-group col-md-2">
+                    <select class="form-control" name="filter_role" id="filter_role">
+                        <option value="">{{ trans('projectsquare::occupation.filters.by_role') }}</option>
                         @foreach ($roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            <option value="{{ $role->id }}" @if ($filters['role'] == $role->id)selected="selected" @endif>{{ $role->name }}</option>
                         @endforeach
                     </select>
-                @else
-                    <div class="info bg-info">{{ trans('projectsquare::no_role_yet') }}</div>
-                @endif
+                </div>
+
+                <div class="col-md-2">
+                    <input class="btn button" type="submit" value="{{ trans('projectsquare::generic.valid') }}" />
+                </div>
             </div>
-        </div>
+        </form>
 
-        <button type="submit" class="btn valid" style="margin-top: 1.5rem">
-            <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
-        </button>
+        <hr/>
 
-        <input type="hidden" name="project_id" value="{{ $project_id }}" />
+        @include('projectsquare::occupation.includes.calendar')
+    </div>
+</div>
 
-        {!! csrf_field() !!}
-    </form>
-@endif
+<input type="hidden" id="project_id" value="{{ $project_id }}" />
+
+@section('scripts')
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="{{ asset('js/occupation.js') }}"></script>
+    <script src="{{ asset('js/project-team.js') }}"></script>
+@endsection

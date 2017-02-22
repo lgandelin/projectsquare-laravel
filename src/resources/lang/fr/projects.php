@@ -41,5 +41,6 @@ return [
 
     'infos' => 'Informations du projet',
     'tasks' => 'Tâches',
+    'team' => 'Equipe',
     'config' => 'Configuration',
 ];
