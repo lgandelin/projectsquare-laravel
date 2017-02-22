@@ -1,17 +1,17 @@
 $(document).ready(function() {
 
     //Phase management
-    $('.phases-list').on('click', '.add-phase', function() {
+    $('.project-tasks').on('click', '.add-phase', function() {
         var html = loadTemplate('phase-template', {
             name: '',
         });
 
-        $('.phases-list .phases')
+        $('.project-tasks .phases')
             .append(html)
             .find('.phase:last-child .name').trigger('click');
     });
 
-    $('.phases-list').on('click', '.phase .phase-wrapper > .name', function() {
+    $('.project-tasks').on('click', '.phase .phase-wrapper > .name', function() {
         var text = $(this).text();
         var width = $(this).width();
         var phase = $(this).closest('.phase');
@@ -19,7 +19,7 @@ $(document).ready(function() {
         phase.find('.input-phase-name').width(width).focus().val(text);
     });
 
-    $('.phases-list').on('click', '.phase .valid-phase-rename', function() {
+    $('.project-tasks').on('click', '.phase .valid-phase-rename', function() {
         var phase = $(this).closest('.phase');
         var text = phase.find('.input-phase-name').val();
         phase.attr('data-name', text);
@@ -27,7 +27,7 @@ $(document).ready(function() {
         phase.find('.input-phase-name, i').remove();
     });
 
-    $('.phases-list').on('click', '.phase .cancel-phase-rename', function() {
+    $('.project-tasks').on('click', '.phase .cancel-phase-rename', function() {
         var phase = $(this).closest('.phase');
         phase.find('.phase-wrapper > .name').text(phase.attr('data-name')).show();
         phase.find('.input-phase-name, i').remove();
@@ -37,7 +37,7 @@ $(document).ready(function() {
         }
     });
 
-    $('.phases-list').on('click', '.delete-phase', function() {
+    $('.project-tasks').on('click', '.delete-phase', function() {
         if (confirm('Etes-vous sûrs de vouloir supprimer cet élément ?')) {
             var phase = $(this).closest('.phase');
             $('#phase_ids_to_delete').val($('#phase_ids_to_delete').val()+phase.attr('data-id')+',');
@@ -48,7 +48,7 @@ $(document).ready(function() {
     });
 
     //Task management
-    $('.phases-list').on('click', '.phase .add-task', function() {
+    $('.project-tasks').on('click', '.phase .add-task', function() {
         var phase = $(this).closest('.phase');
         var html = loadTemplate('task-template', {
             name: '',
@@ -62,7 +62,7 @@ $(document).ready(function() {
         task.find('.name').trigger('click');
     });
 
-    $('.phases-list').on('click', '.phase .task .name', function() {
+    $('.project-tasks').on('click', '.phase .task .name', function() {
         var text = $(this).text();
         var width = $(this).width();
         var task = $(this).closest('.task');
@@ -71,7 +71,7 @@ $(document).ready(function() {
     });
 
 
-    $('.phases-list').on('click', '.phase .task .valid-task-rename', function() {
+    $('.project-tasks').on('click', '.phase .task .valid-task-rename', function() {
         var task = $(this).closest('.task');
         var text = task.find('input[type="text"]').val();
         task.attr('data-name', text);
@@ -79,7 +79,7 @@ $(document).ready(function() {
         task.find('.input-task-name, i').remove();
     });
 
-    $('.phases-list').on('click', '.phase .task .cancel-task-rename', function() {
+    $('.project-tasks').on('click', '.phase .task .cancel-task-rename', function() {
         var task = $(this).closest('.task');
         task.find('.task-wrapper > .name').text(task.attr('data-name')).show();
         task.find('.input-task-name, i').remove();
@@ -89,7 +89,7 @@ $(document).ready(function() {
         }
     });
 
-    $('.phases-list').on('click', '.delete-task', function() {
+    $('.project-tasks').on('click', '.delete-task', function() {
         if (confirm('Etes-vous sûrs de vouloir supprimer cet élément ?')) {
             var task = $(this).closest('.task');
             $('#task_ids_to_delete').val($('#task_ids_to_delete').val()+task.attr('data-id')+',');
@@ -99,13 +99,13 @@ $(document).ready(function() {
         return false;
     });
 
-    $('.phases-list').on('focusout', '.input-task-duration', function() {
+    $('.project-tasks').on('focusout', '.input-task-duration', function() {
         var task = $(this).closest('.task');
         task.attr('data-duration', $(this).val());
     });
 
     //Phase and task validation by entering keys
-    $('.phases-list').on('keydown', '.phase .phase-wrapper .input-phase-name', function (e) {
+    $('.project-tasks').on('keydown', '.phase .phase-wrapper .input-phase-name', function (e) {
         if (e.which == 13) {
             var phase = $(this).closest('.phase');
             phase.find('.valid-phase-rename').trigger('click');
@@ -119,7 +119,7 @@ $(document).ready(function() {
         }
     });
 
-    $('.phases-list').on('keydown', '.phase .task-wrapper .input-task-name', function (e) {
+    $('.project-tasks').on('keydown', '.phase .task-wrapper .input-task-name', function (e) {
         if (e.which == 13) {
             var task = $(this).closest('.task');
             task.find('.valid-task-rename').trigger('click');
@@ -134,19 +134,19 @@ $(document).ready(function() {
     });
 
     //Toggle tasks list
-    $('.phases-list').on('click', '.phase .toggle-tasks', function() {
+    $('.project-tasks').on('click', '.phase .toggle-tasks', function() {
         $(this).toggleClass('glyphicon-triangle-bottom').toggleClass('glyphicon-triangle-top');
         var phase = $(this).closest('.phase');
         phase.find('.tasks').slideToggle();
     });
 
     //Validate
-    $('.phases-list .valid-phases').click(function() {
+    $('.project-tasks .valid-phases').click(function() {
         $(this).hide();
         $('.loading').show();
         var phases = [];
 
-        $('.phases-list .phase').each(function() {
+        $('.project-tasks .phase').each(function() {
             var tasks = [];
 
             $(this).find('.task').each(function() {

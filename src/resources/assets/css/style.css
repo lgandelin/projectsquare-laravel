@@ -14612,6 +14612,75 @@ body {
   opacity: 1;
 }
 
+/* line 3, ../sass/_project-team.scss */
+.team-template .phases {
+  width: 50%;
+  padding-top: 5rem;
+  padding-right: 2.5rem;
+  margin-bottom: 10rem;
+  max-height: 500px;
+  overflow-y: scroll;
+}
+/* line 11, ../sass/_project-team.scss */
+.team-template .phases .phase {
+  margin-bottom: 5rem;
+}
+/* line 14, ../sass/_project-team.scss */
+.team-template .phases .phase .phase-wrapper {
+  padding: 1rem 2rem;
+  margin-bottom: 1rem;
+  background: #f4f8f9;
+}
+/* line 20, ../sass/_project-team.scss */
+.team-template .phases .phase .phase-wrapper .name {
+  font-family: "AvantGarde-Book";
+  font-size: 1.6rem;
+  color: #2f677e;
+}
+/* line 28, ../sass/_project-team.scss */
+.team-template .phases .tasks {
+  margin-left: 6rem;
+}
+/* line 31, ../sass/_project-team.scss */
+.team-template .phases .tasks .task-wrapper {
+  padding: 1.2rem 2rem 1.2rem 4rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+  background: #096a85;
+}
+/* line 38, ../sass/_project-team.scss */
+.team-template .phases .tasks .task-wrapper .name {
+  font-family: "AvantGarde-Book";
+  font-size: 1.6rem;
+  color: white;
+}
+/* line 44, ../sass/_project-team.scss */
+.team-template .phases .tasks .task-wrapper .avatar {
+  position: absolute;
+  left: -20px;
+  top: 3px;
+}
+/* line 50, ../sass/_project-team.scss */
+.team-template .phases .tasks .task-wrapper .duration {
+  float: right;
+  margin-right: 6rem;
+  margin-top: 3px;
+  color: white;
+  font-family: "MyriadPro-Regular";
+  font-size: 14px;
+}
+/* line 60, ../sass/_project-team.scss */
+.team-template .phases .tasks .task-wrapper .drag-task {
+  float: right;
+  color: white;
+  font-size: 21px;
+  cursor: pointer;
+}
+/* line 69, ../sass/_project-team.scss */
+.team-template .phases .tasks .task-wrapper .drag-task:hover {
+  color: #c8dc1e;
+}
+
 @media only screen and (max-width: 1450px) and (min-width: 1200px) {
   /* line 5, ../sass/includes/_responsive.scss */
   .tabs li a {

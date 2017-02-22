@@ -20,7 +20,7 @@ class OccupationController extends BaseController
 
         return view('projectsquare::occupation.index', [
             'month_labels' => ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-            'calendars' => self::CalendarsByUsers($users),
+            'calendars' => self::getCalendarsByUsers($users),
             'today' => (new DateTime())->setTime(0, 0, 0),
             'roles' => app()->make('RoleManager')->getRoles(),
             'filters' => [

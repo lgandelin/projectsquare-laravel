@@ -1,8 +1,8 @@
 <div class="page-header">
-    <h1>{{ trans('projectsquare::projects.team') }}</h1>
+    <h1>{{ trans('projectsquare::projects.attribution') }}</h1>
 </div>
 
-<div class="team">
+<div class="team-template">
     <div class="phases">
         @foreach ($phases as $phase)
             <div class="phase" data-id="{{ $phase->id }}" data-name="{{ $phase->name }}">
@@ -14,8 +14,15 @@
                     @foreach ($phase->tasks as $task)
                         <div class="task" data-id="{{ $task->id }}" data-name="{{ $task->title }}" data-phase="{{ $phase->id }}" data-duration="{{ $task->estimated_time_days }}">
                             <div class="task-wrapper">
+                                @if (isset($task->allocated_user))
+                                    @include('projectsquare::includes.avatar', [
+                                        'id' => $task->allocated_user->id,
+                                        'name' => $task->allocated_user->complete_name
+                                    ])
+                                @endif
+                                <i class="glyphicon glyphicon-move drag-task"></i>
                                 <span class="name">{{ $task->title }}</span>
-                                <span class="duration">{{ $task->estimated_time_days }}j</span>
+                                @if ($task->estimated_time_days)<span class="duration">{{ $task->estimated_time_days }} j</span>@endif
                             </div>
                         </div>
                     @endforeach

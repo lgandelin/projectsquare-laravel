@@ -1,0 +1,75 @@
+.team-template {
+    
+    .phases {
+        width: 50%;
+        padding-top: 5rem;
+        padding-right: 2.5rem;
+        margin-bottom: 10rem;
+        max-height: 500px;
+        overflow-y: scroll;
+
+        .phase {
+            margin-bottom: 5rem;
+
+            .phase-wrapper {
+                padding: 1rem 2rem;
+                margin-bottom: 1rem;
+
+                background: #f4f8f9;
+
+                .name {
+                    font-family: $typo1;
+                    font-size: 1.6rem;
+                    color: #2f677e;
+                }
+            }
+        }
+
+        .tasks {
+            margin-left: 6rem;
+
+            .task-wrapper {
+                padding: 1.2rem 2rem 1.2rem 4rem;
+                margin-bottom: 0.5rem;
+                position: relative;
+
+                background: $touareg;
+
+                .name {
+                    font-family: $typo1;
+                    font-size: 1.6rem;
+                    color: white;
+                }
+
+                .avatar {
+                    position: absolute;
+                    left: -20px;
+                    top: 3px;
+                }
+                
+                .duration {
+                    float: right;
+                    margin-right: 6rem;
+                    margin-top: 3px;
+
+                    color: white;
+                    font-family: $typo2;
+                    font-size: 14px;
+                }
+
+                .drag-task {
+                    float: right;
+
+                    color: white;
+                    font-size: 21px;
+
+                    cursor: pointer;
+                }
+
+                .drag-task:hover {
+                    color: $green;
+                }
+            }
+        }
+    }
+}
