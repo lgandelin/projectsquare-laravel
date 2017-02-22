@@ -23,14 +23,69 @@
                     color: #2f677e;
                 }
             }
+
+            .task-wrapper {
+                padding: 1.2rem 2rem 1.2rem 4rem;
+                margin-bottom: 0.5rem;
+                position: relative;
+
+                background: $touareg;
+
+                .name {
+                    font-family: $typo1;
+                    font-size: 1.6rem;
+                    color: white;
+                }
+
+                .avatar {
+                    position: absolute;
+                    left: -20px;
+                    top: 3px;
+                }
+
+                .duration {
+                    float: right;
+                    margin-right: 6rem;
+                    margin-top: 3px;
+
+                    color: white;
+                    font-family: $typo2;
+                    font-size: 14px;
+                }
+
+                .drag-task {
+                    float: right;
+
+                    color: white;
+                    font-size: 21px;
+
+                    cursor: pointer;
+                }
+
+                .drag-task:hover {
+                    color: $green;
+                }
+            }
         }
 
         .tasks {
             margin-left: 6rem;
+
+            .disabled {
+                .drag-task {
+                    opacity: 0.25;
+                    cursor: default;
+                }
+
+                .drag-task:hover {
+                    color: white;
+                }
+            }
         }
     }
 }
-.task-wrapper {
+
+.ui-draggable-dragging {
     padding: 1.2rem 2rem 1.2rem 4rem;
     margin-bottom: 0.5rem;
     position: relative;
@@ -66,21 +121,5 @@
         font-size: 21px;
 
         cursor: pointer;
-    }
-
-    .drag-task:hover {
-        color: $green;
-    }
-}
-
-.disabled {
-
-    .drag-task {
-        opacity: 0.25;
-        cursor: default;
-    }
-
-    .drag-task:hover {
-        color: white;
     }
 }

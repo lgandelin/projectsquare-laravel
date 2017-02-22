@@ -21,5 +21,36 @@ function initTasksDragAndDrop() {
             return clone
         },
         appendTo: 'body',
+        stop: function(event, ui) {
+            $('.user-day').css('background', 'white');
+        }
+    });
+
+
+    $('.occupation-template .user-day').droppable({
+        accept: '.task-wrapper',
+        over: function (event, ui) {
+            $('.user-day').css('background', 'white');
+            var task_duration = ui.draggable.closest('.task').attr('data-duration');
+            var element = $(this);
+            for (var i = 0; i < task_duration; i++) {
+                element.css('background', 'orange');
+                element = element.next();
+            }
+        },
+        out: function(event, ui) {
+        },
+        drop: function (event, ui) {
+            var task_id = ui.draggable.closest('.task').attr('data-id');
+            var user_id = $(this).attr('data-user');
+            var day = $(this).attr('data-day');
+
+            console.log('Task : ' + task_id);
+            console.log('User : ' + user_id);
+            console.log('Day : ' + day);
+
+            $('.user-day').css('background', 'white');
+        },
+        tolerance: 'pointer'
     });
 }

@@ -40,7 +40,7 @@
                                 @foreach ($calendar->getMonths()[0]->getDays() as $i => $day)
                                     @if ($day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SATURDAY && $day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SUNDAY)
                                         <?php $index++; ?>
-                                        <td @if ($day->isDisabled())class="disabled"@endif @if($index%5 == 0)style="border-right-width: 2px"@endif>
+                                        <td class="user-day" data-user="{{ $calendar->user->id }}" data-day="{{ $day->getDateTime()->format('Y-m-d') }}" @if ($day->isDisabled())class="disabled"@endif @if($index%5 == 0)style="border-right-width: 2px"@endif>
                                             <span class="work-hours" style="height:{{ ($day->hours_scheduled)*7 }}px;"></span>
 
                                             @if ($day->getEvents())
