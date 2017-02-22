@@ -13,7 +13,7 @@
                 <div class="tasks">
                     @foreach ($phase->tasks as $task)
                         <div class="task" data-id="{{ $task->id }}" data-name="{{ $task->title }}" data-phase="{{ $phase->id }}" data-duration="{{ $task->estimated_time_days }}">
-                            <div class="task-wrapper">
+                            <div class="task-wrapper @if(isset($task->allocated_user)) disabled @endif">
                                 @if (isset($task->allocated_user))
                                     @include('projectsquare::includes.avatar', [
                                         'id' => $task->allocated_user->id,

@@ -12,8 +12,8 @@
             margin-bottom: 5rem;
 
             .phase-wrapper {
-                padding: 1rem 2rem;
-                margin-bottom: 1rem;
+                padding: 1.25rem 2rem;
+                margin-bottom: 1.5rem;
 
                 background: #f4f8f9;
 
@@ -27,49 +27,60 @@
 
         .tasks {
             margin-left: 6rem;
-
-            .task-wrapper {
-                padding: 1.2rem 2rem 1.2rem 4rem;
-                margin-bottom: 0.5rem;
-                position: relative;
-
-                background: $touareg;
-
-                .name {
-                    font-family: $typo1;
-                    font-size: 1.6rem;
-                    color: white;
-                }
-
-                .avatar {
-                    position: absolute;
-                    left: -20px;
-                    top: 3px;
-                }
-                
-                .duration {
-                    float: right;
-                    margin-right: 6rem;
-                    margin-top: 3px;
-
-                    color: white;
-                    font-family: $typo2;
-                    font-size: 14px;
-                }
-
-                .drag-task {
-                    float: right;
-
-                    color: white;
-                    font-size: 21px;
-
-                    cursor: pointer;
-                }
-
-                .drag-task:hover {
-                    color: $green;
-                }
-            }
         }
+    }
+}
+.task-wrapper {
+    padding: 1.2rem 2rem 1.2rem 4rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+
+    background: $touareg;
+
+    .name {
+        font-family: $typo1;
+        font-size: 1.6rem;
+        color: white;
+    }
+
+    .avatar {
+        position: absolute;
+        left: -20px;
+        top: 3px;
+    }
+
+    .duration {
+        float: right;
+        margin-right: 6rem;
+        margin-top: 3px;
+
+        color: white;
+        font-family: $typo2;
+        font-size: 14px;
+    }
+
+    .drag-task {
+        float: right;
+
+        color: white;
+        font-size: 21px;
+
+        cursor: pointer;
+    }
+
+    .drag-task:hover {
+        color: $green;
+    }
+}
+
+.disabled {
+
+    .drag-task {
+        opacity: 0.25;
+        cursor: default;
+    }
+
+    .drag-task:hover {
+        color: white;
     }
 }

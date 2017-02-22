@@ -14627,8 +14627,8 @@ body {
 }
 /* line 14, ../sass/_project-team.scss */
 .team-template .phases .phase .phase-wrapper {
-  padding: 1rem 2rem;
-  margin-bottom: 1rem;
+  padding: 1.25rem 2rem;
+  margin-bottom: 1.5rem;
   background: #f4f8f9;
 }
 /* line 20, ../sass/_project-team.scss */
@@ -14641,27 +14641,28 @@ body {
 .team-template .phases .tasks {
   margin-left: 6rem;
 }
-/* line 31, ../sass/_project-team.scss */
-.team-template .phases .tasks .task-wrapper {
+
+/* line 33, ../sass/_project-team.scss */
+.task-wrapper {
   padding: 1.2rem 2rem 1.2rem 4rem;
   margin-bottom: 0.5rem;
   position: relative;
   background: #096a85;
 }
-/* line 38, ../sass/_project-team.scss */
-.team-template .phases .tasks .task-wrapper .name {
+/* line 40, ../sass/_project-team.scss */
+.task-wrapper .name {
   font-family: "AvantGarde-Book";
   font-size: 1.6rem;
   color: white;
 }
-/* line 44, ../sass/_project-team.scss */
-.team-template .phases .tasks .task-wrapper .avatar {
+/* line 46, ../sass/_project-team.scss */
+.task-wrapper .avatar {
   position: absolute;
   left: -20px;
   top: 3px;
 }
-/* line 50, ../sass/_project-team.scss */
-.team-template .phases .tasks .task-wrapper .duration {
+/* line 52, ../sass/_project-team.scss */
+.task-wrapper .duration {
   float: right;
   margin-right: 6rem;
   margin-top: 3px;
@@ -14669,16 +14670,26 @@ body {
   font-family: "MyriadPro-Regular";
   font-size: 14px;
 }
-/* line 60, ../sass/_project-team.scss */
-.team-template .phases .tasks .task-wrapper .drag-task {
+/* line 62, ../sass/_project-team.scss */
+.task-wrapper .drag-task {
   float: right;
   color: white;
   font-size: 21px;
   cursor: pointer;
 }
-/* line 69, ../sass/_project-team.scss */
-.team-template .phases .tasks .task-wrapper .drag-task:hover {
+/* line 71, ../sass/_project-team.scss */
+.task-wrapper .drag-task:hover {
   color: #c8dc1e;
+}
+
+/* line 78, ../sass/_project-team.scss */
+.disabled .drag-task {
+  opacity: 0.25;
+  cursor: default;
+}
+/* line 83, ../sass/_project-team.scss */
+.disabled .drag-task:hover {
+  color: white;
 }
 
 @media only screen and (max-width: 1450px) and (min-width: 1200px) {
