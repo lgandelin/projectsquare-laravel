@@ -58,21 +58,26 @@ class OccupationController extends BaseController
                 foreach ($calendar->getMonths() as $monthObject) {
                     foreach ($monthObject->getDays() as $i => $day) {
                         $dateTime = $day->getDateTime();
+
                         $day->hours_scheduled = 0;
 
                         if ($dateTime->format('w') != Day::SATURDAY && $dateTime->format('w') != Day::SUNDAY) {
-                            $minutesScheduled = 0;
+                            $hoursScheduled = 0;
 
                             foreach ($day->getEvents() as $j => $event) {
-                                $diff = $event->endTime->diff($event->startTime);
-                                $minutesScheduled += ($diff->h * 60) + $diff->i;
+                                if ($event->endTime->format('Y-m-d') == $dateTime->format('Y-m-d')) {
+                                    $startTimeOfDay = clone $event->endTime;
+                                    $startTimeOfDay->setTime(9, 0, 0);
+                                    $interval = $event->endTime->diff($startTimeOfDay);
+                                    $hoursScheduled += $interval->h;
+                                } else {
+                                    $hoursScheduled += 8;
+                                }
                             }
 
                             if (!in_array($dateTime->format('W'), $month->weeks)) {
                                 $month->weeks[] = $dateTime->format('W');
                             }
-
-                            $hoursScheduled = $minutesScheduled / 60;
 
                             $day->hours_scheduled = ($hoursScheduled > 8) ? 8 : $hoursScheduled;
                         }

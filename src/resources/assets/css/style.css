@@ -14254,7 +14254,7 @@ body {
 /* line 63, ../sass/_calendar.scss */
 .fc-event .delete-event {
   float: right;
-  top: -35px;
+  top: -25px;
   right: 5px;
   z-index: 999;
 }
@@ -14265,19 +14265,24 @@ body {
 }
 
 /* line 76, ../sass/_calendar.scss */
+.fc-time-grid-event .fc-time {
+  display: none;
+}
+
+/* line 80, ../sass/_calendar.scss */
 .fc-day-grid-event {
   margin: 0;
 }
-/* line 79, ../sass/_calendar.scss */
+/* line 83, ../sass/_calendar.scss */
 .fc-day-grid-event .delete-event {
   top: -20px;
 }
-/* line 83, ../sass/_calendar.scss */
+/* line 87, ../sass/_calendar.scss */
 .fc-day-grid-event .fc-time {
   margin-right: 1rem;
 }
 
-/* line 88, ../sass/_calendar.scss */
+/* line 92, ../sass/_calendar.scss */
 .fc-ltr .fc-time-grid .fc-event-container {
   margin: 0;
 }
@@ -14421,7 +14426,7 @@ body {
 }
 /* line 80, ../sass/_occupation.scss */
 .occupation-template .month table tr td .events-detail .event {
-  padding: 5px;
+  padding: 5px 5px 5px 10px;
   color: white;
   border-bottom: 1px solid white;
 }
@@ -14429,52 +14434,51 @@ body {
 .occupation-template .month table tr td .events-detail .event .time {
   font-size: 11px;
   display: block;
-  margin-bottom: 5px;
 }
-/* line 91, ../sass/_occupation.scss */
+/* line 90, ../sass/_occupation.scss */
 .occupation-template .month table tr td .events-detail .event .name {
   display: block;
   font-size: 13px;
 }
-/* line 97, ../sass/_occupation.scss */
+/* line 96, ../sass/_occupation.scss */
 .occupation-template .month table tr td .events-detail .event:last-child {
   border: none;
 }
-/* line 104, ../sass/_occupation.scss */
+/* line 103, ../sass/_occupation.scss */
 .occupation-template .month table tr td:hover .work-hours {
   opacity: 0.8;
 }
-/* line 108, ../sass/_occupation.scss */
+/* line 107, ../sass/_occupation.scss */
 .occupation-template .month table tr td:hover .events-detail {
   display: block;
 }
-/* line 113, ../sass/_occupation.scss */
+/* line 112, ../sass/_occupation.scss */
 .occupation-template .month table tr .user {
   vertical-align: middle;
   min-width: 53px;
 }
-/* line 118, ../sass/_occupation.scss */
+/* line 117, ../sass/_occupation.scss */
 .occupation-template .month table tr .today {
   color: white;
   background: #096a85;
 }
-/* line 123, ../sass/_occupation.scss */
+/* line 122, ../sass/_occupation.scss */
 .occupation-template .month table tr .work-hours {
   display: block;
   background: #c8dc1e;
 }
-/* line 128, ../sass/_occupation.scss */
+/* line 127, ../sass/_occupation.scss */
 .occupation-template .month table tr .week {
   font-weight: bold;
   color: #096a85;
   border-right: 2px solid #999;
   padding: 3px 0;
 }
-/* line 135, ../sass/_occupation.scss */
+/* line 134, ../sass/_occupation.scss */
 .occupation-template .month table tr .day {
   padding: 3px 0;
 }
-/* line 139, ../sass/_occupation.scss */
+/* line 138, ../sass/_occupation.scss */
 .occupation-template .month table tr .disabled {
   background: #f1f1f1;
   color: #bbb;
@@ -14614,7 +14618,7 @@ body {
 
 /* line 3, ../sass/_project-team.scss */
 .team-template .phases {
-  width: 50%;
+  max-width: 1450px;
   padding-top: 5rem;
   padding-right: 2.5rem;
   margin-bottom: 10rem;
@@ -14690,26 +14694,31 @@ body {
   color: white;
 }
 
-/* line 88, ../sass/_project-team.scss */
+/* line 89, ../sass/_project-team.scss */
+.occupation-template .preview {
+  background: orange;
+}
+
+/* line 94, ../sass/_project-team.scss */
 .ui-draggable-dragging {
   padding: 1.2rem 2rem 1.2rem 4rem;
   margin-bottom: 0.5rem;
   position: relative;
   background: #096a85;
 }
-/* line 95, ../sass/_project-team.scss */
+/* line 101, ../sass/_project-team.scss */
 .ui-draggable-dragging .name {
   font-family: "AvantGarde-Book";
   font-size: 1.6rem;
   color: white;
 }
-/* line 101, ../sass/_project-team.scss */
+/* line 107, ../sass/_project-team.scss */
 .ui-draggable-dragging .avatar {
   position: absolute;
   left: -20px;
   top: 3px;
 }
-/* line 107, ../sass/_project-team.scss */
+/* line 113, ../sass/_project-team.scss */
 .ui-draggable-dragging .duration {
   float: right;
   margin-right: 6rem;
@@ -14718,12 +14727,27 @@ body {
   font-family: "MyriadPro-Regular";
   font-size: 14px;
 }
-/* line 117, ../sass/_project-team.scss */
+/* line 123, ../sass/_project-team.scss */
 .ui-draggable-dragging .drag-task {
   float: right;
   color: white;
   font-size: 21px;
   cursor: pointer;
+}
+
+/* line 133, ../sass/_project-team.scss */
+#calendars {
+  position: relative;
+}
+/* line 136, ../sass/_project-team.scss */
+#calendars .loading {
+  background: rgba(255, 255, 255, 0.75) url("../img/loading.gif") center center no-repeat;
+  position: absolute;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  max-width: 1500px;
+  display: none;
 }
 
 @media only screen and (max-width: 1450px) and (min-width: 1200px) {

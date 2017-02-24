@@ -53,7 +53,9 @@
 
         <hr/>
 
-        @include('projectsquare::occupation.includes.calendar')
+        <div id="calendars">
+            @include('projectsquare::occupation.includes.calendar')
+        </div>
     </div>
 </div>
 

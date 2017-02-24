@@ -10,22 +10,43 @@ function displayMonth(index) {
     if (index == parseInt($('#months_number').val()) - 1) $('.next').addClass('disabled');
 }
 
-$(document).ready(function() {
-    displayMonth(0);
-
-    $('.previous').click(function() {
-        var index = $('#months_index').val();
-        if (index > 0) {
-            index--;
-            displayMonth(index);
-        }
+function initCalendarNavigation() {
+    $('.occupation-template .previous').click(function() {
+        displayPreviousMonth();
     });
 
-    $('.next').click(function() {
-        var index = $('#months_index').val();
-        if (index < parseInt($('#months_number').val()) - 1) {
-            index++;
-            displayMonth(index);
+    $('.occupation-template .next').click(function() {
+        displayNextMonth();
+    });
+}
+
+function displayPreviousMonth() {
+    var index = $('#months_index').val();
+    if (index > 0) {
+        index--;
+        displayMonth(index);
+    }
+}
+
+function displayNextMonth() {
+    var index = $('#months_index').val();
+    if (index < parseInt($('#months_number').val()) - 1) {
+        index++;
+        displayMonth(index);
+    }
+}
+
+$(document).ready(function() {
+    displayMonth(0);
+    initCalendarNavigation();
+
+    $(document).keydown(function (e) {
+        if (e.which == 39) {
+            displayNextMonth();
         }
-    })
+
+        if (e.which == 37) {
+            displayPreviousMonth();
+        }
+    });
 });

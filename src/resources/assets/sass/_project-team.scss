@@ -1,7 +1,7 @@
 .team-template {
     
     .phases {
-        width: 50%;
+        max-width: 1450px;
         padding-top: 5rem;
         padding-right: 2.5rem;
         margin-bottom: 10rem;
@@ -85,6 +85,12 @@
     }
 }
 
+.occupation-template {
+    .preview {
+        background: orange;
+    }
+ }
+
 .ui-draggable-dragging {
     padding: 1.2rem 2rem 1.2rem 4rem;
     margin-bottom: 0.5rem;
@@ -121,5 +127,19 @@
         font-size: 21px;
 
         cursor: pointer;
+    }
+}
+
+#calendars {
+    position: relative;
+
+    .loading {
+        background: rgba(255, 255, 255, 0.75) url('../img/loading.gif') center center no-repeat;
+        position: absolute;
+        z-index: 9999;
+        width: 100%;
+        height: 100%;
+        max-width: 1500px;
+        display: none;
     }
 }

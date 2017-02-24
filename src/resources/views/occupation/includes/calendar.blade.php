@@ -1,3 +1,4 @@
+<div class="loading"></div>
 <div class="row">
     <div class="col-lg-12 col-md-12">
         @foreach ($calendars as $i => $month)
@@ -40,15 +41,17 @@
                                 @foreach ($calendar->getMonths()[0]->getDays() as $i => $day)
                                     @if ($day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SATURDAY && $day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SUNDAY)
                                         <?php $index++; ?>
-                                        <td class="user-day" data-user="{{ $calendar->user->id }}" data-day="{{ $day->getDateTime()->format('Y-m-d') }}" @if ($day->isDisabled())class="disabled"@endif @if($index%5 == 0)style="border-right-width: 2px"@endif>
+                                        <td class="user-day @if($day->isDisabled()) disabled @endif" data-user="{{ $calendar->user->id }}" data-day="{{ $day->getDateTime()->format('Y-m-d') }}" @if ($day->isDisabled())class="disabled"@endif @if($index%5 == 0)style="border-right-width: 2px"@endif>
                                             <span class="work-hours" style="height:{{ ($day->hours_scheduled)*7 }}px;"></span>
 
                                             @if ($day->getEvents())
                                                 <div class="events-detail">
                                                     @foreach ($day->getEvents() as $event)
                                                         <div class="event" style="background: {{ isset($event->color) ? $event->color : '#3a87ad' }}">
-                                                            <span class="time">{{ $event->startTime->format('H:i') }} - {{ $event->endTime->format('H:i') }}</span>
                                                             <span class="name">{{ $event->name }}</span>
+                                                            @if ($event->endTime->diff($event->startTime)->d < 1 && $event->endTime->format('H:i') != '00:00')
+                                                                <span class="time">{{ $event->startTime->format('H:i') }} - {{ $event->endTime->format('H:i') }}</span>
+                                                            @endif
                                                         </div>
                                                     @endforeach
                                                 </div>
