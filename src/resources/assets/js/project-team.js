@@ -33,17 +33,13 @@ function initTasksDragAndDrop() {
 
     $('.occupation-template .user-day').droppable({
         accept: '.task-wrapper',
-        over: function (event, ui) {
-            var day_width = parseInt($('.user-day').first().width())+2;
-            var day_height = parseInt($('.user-day').first().height())+2;
-            var task_duration = ui.draggable.closest('.task').attr('data-duration');
-            ui.helper.css('width', task_duration * day_width).css('height', day_height).css('opacity', 0.5).css('background','orange').find('.name, .duration, .drag-task').hide();
-        },
         drop: function (event, ui) {
             var task = ui.draggable.closest('.task');
             var task_id = task.attr('data-id');
             var user_id = $(this).attr('data-user');
             var day = $(this).attr('data-day');
+
+            task.css('opacity', 0.8);
 
             var data = {
                 name: task.attr('data-name'),
@@ -76,7 +72,7 @@ function initTasksDragAndDrop() {
                     displayMonth(month_index);
 
                     //Update task in list
-                    $('.task[data-id="' + task_id + '"]').find('.task-wrapper').draggable('disable').addClass('disabled').prepend(data.avatar);
+                    $('.task[data-id="' + task_id + '"]').css('opacity', 1).find('.task-wrapper').draggable('disable').addClass('disabled').prepend(data.avatar);
                 },
                 error: function(data) {
                 }

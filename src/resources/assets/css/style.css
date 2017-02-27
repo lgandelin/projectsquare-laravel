@@ -14389,25 +14389,29 @@ body {
 .occupation-template .month table {
   border: 2px solid #999;
 }
-/* line 52, ../sass/_occupation.scss */
+/* line 49, ../sass/_occupation.scss */
+.occupation-template .month table .weeks-row th:first-child {
+  border-right: 2px solid #999;
+}
+/* line 54, ../sass/_occupation.scss */
 .occupation-template .month table tr th {
   text-align: center;
   border: 1px solid #999;
 }
-/* line 56, ../sass/_occupation.scss */
+/* line 60, ../sass/_occupation.scss */
 .occupation-template .month table tr td {
   text-align: center;
   border: 1px solid #999;
-  width: 56px;
-  height: 56px;
+  width: 55px;
+  height: 55px;
   vertical-align: bottom;
   position: relative;
 }
-/* line 64, ../sass/_occupation.scss */
+/* line 69, ../sass/_occupation.scss */
 .occupation-template .month table tr td img {
   display: inline-block;
 }
-/* line 68, ../sass/_occupation.scss */
+/* line 73, ../sass/_occupation.scss */
 .occupation-template .month table tr td .events-detail {
   position: absolute;
   display: none;
@@ -14420,60 +14424,61 @@ body {
   z-index: 999;
   text-align: left;
 }
-/* line 80, ../sass/_occupation.scss */
+/* line 85, ../sass/_occupation.scss */
 .occupation-template .month table tr td .events-detail .event {
   padding: 5px 5px 5px 10px;
   color: white;
   border-bottom: 1px solid white;
 }
-/* line 85, ../sass/_occupation.scss */
+/* line 90, ../sass/_occupation.scss */
 .occupation-template .month table tr td .events-detail .event .time {
   font-size: 11px;
   display: block;
 }
-/* line 90, ../sass/_occupation.scss */
+/* line 95, ../sass/_occupation.scss */
 .occupation-template .month table tr td .events-detail .event .name {
   display: block;
   font-size: 13px;
 }
-/* line 96, ../sass/_occupation.scss */
+/* line 101, ../sass/_occupation.scss */
 .occupation-template .month table tr td .events-detail .event:last-child {
   border: none;
 }
-/* line 103, ../sass/_occupation.scss */
+/* line 108, ../sass/_occupation.scss */
 .occupation-template .month table tr td:hover .work-hours {
   opacity: 0.8;
 }
-/* line 107, ../sass/_occupation.scss */
+/* line 112, ../sass/_occupation.scss */
 .occupation-template .month table tr td:hover .events-detail {
   display: block;
 }
-/* line 112, ../sass/_occupation.scss */
+/* line 117, ../sass/_occupation.scss */
 .occupation-template .month table tr .user {
   vertical-align: middle;
   min-width: 53px;
 }
-/* line 117, ../sass/_occupation.scss */
+/* line 122, ../sass/_occupation.scss */
 .occupation-template .month table tr .today {
   color: white;
   background: #096a85;
 }
-/* line 122, ../sass/_occupation.scss */
+/* line 127, ../sass/_occupation.scss */
 .occupation-template .month table tr .work-hours {
   display: block;
   background: #c8dc1e;
 }
-/* line 127, ../sass/_occupation.scss */
+/* line 132, ../sass/_occupation.scss */
 .occupation-template .month table tr .week {
   font-weight: bold;
   color: #096a85;
+  border-right: 2px solid #999;
   padding: 3px 0;
 }
-/* line 134, ../sass/_occupation.scss */
+/* line 139, ../sass/_occupation.scss */
 .occupation-template .month table tr .day {
   padding: 3px 0;
 }
-/* line 138, ../sass/_occupation.scss */
+/* line 143, ../sass/_occupation.scss */
 .occupation-template .month table tr .disabled {
   background: #f1f1f1;
   color: #bbb;
