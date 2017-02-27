@@ -5,11 +5,12 @@
 <div class="project-tasks">
     <div class="phases">
         @foreach ($phases as $phase)
-            <div class="phase" data-id="{{ $phase->id }}" data-name="{{ $phase->name }}">
+            <div class="phase" data-id="{{ $phase->id }}" data-name="{{ $phase->name }}" data-duration="{{ $phase->duration }}">
                 <div class="phase-wrapper">
                     <span class="name">{{ $phase->name }}</span>
-                    <a href="#" class="btn cancel btn-delete delete-phase"></a>
+                    <a tabindex="-1" href="#" class="btn cancel btn-delete delete-phase"></a>
                     <span class="glyphicon glyphicon-triangle-top toggle-tasks"></span>
+                    <span class="phase-duration"><span class="value">{{ $phase->duration }}</span> jour(s)</span>
                 </div>
 
                 <div class="tasks">
@@ -17,7 +18,7 @@
                         <div class="task" data-id="{{ $task->id }}" data-name="{{ $task->title }}" data-phase="{{ $phase->id }}" data-duration="{{ $task->estimated_time_days }}">
                             <div class="task-wrapper">
                                 <span class="name">{{ $task->title }}</span>
-                                <a href="#" class="btn cancel delete-task"></a>
+                                <a tabindex="-1" href="#" class="btn cancel delete-task"></a>
                                 <input class="input-task-duration" type="text" placeholder="durée en j." value="{{ $task->estimated_time_days }}" />
                             </div>
                         </div>

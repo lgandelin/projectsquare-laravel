@@ -2,7 +2,7 @@
     <h1>{{ trans('projectsquare::projects.attribution') }}</h1>
 </div>
 
-<div class="team-template">
+<div class="attribution-template">
     <div class="phases">
         @foreach ($phases as $phase)
             <div class="phase" data-id="{{ $phase->id }}" data-name="{{ $phase->name }}">

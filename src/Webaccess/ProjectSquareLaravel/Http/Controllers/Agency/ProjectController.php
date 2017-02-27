@@ -102,6 +102,11 @@ class ProjectController extends BaseController
             ]));
             foreach ($phases as $phase) {
                 $phase->tasks = app()->make('GetTasksInteractor')->getTasksByPhaseID($phase->id);
+                $phase->duration = 0;
+
+                foreach ($phase->tasks as $task) {
+                    $phase->duration += $task->estimated_time_days;
+                }
             }
         } catch (\Exception $e) {
             $request->session()->flash('error', $e->getMessage());
@@ -118,7 +123,7 @@ class ProjectController extends BaseController
         ]);
     }
 
-    public function edit_team(Request $request)
+    public function edit_attribution(Request $request)
     {
         parent::__construct($request);
 
@@ -141,7 +146,7 @@ class ProjectController extends BaseController
         }
 
         return view('projectsquare::agency.projects.edit', [
-            'tab' => 'team',
+            'tab' => 'attribution',
             'project' => $project,
             'phases' => $phases,
 

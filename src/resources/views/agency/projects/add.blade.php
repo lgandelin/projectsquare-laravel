@@ -7,7 +7,7 @@
             <ul class="tabs">
                 <li class="current"><a href="{{ route('projects_store') }}">Infos</a></li>
                 <li><a href="#">Tâches</a></li>
-                <li><a href="#">Equipe</a></li>
+                <li><a href="#">Attribution</a></li>
                 <li><a href="#">Configuration</a></li>
                 <li class="border-bottom"></li>
             </ul>

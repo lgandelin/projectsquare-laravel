@@ -92,16 +92,23 @@ $(document).ready(function() {
     $('.project-tasks').on('click', '.delete-task', function() {
         if (confirm('Etes-vous sûrs de vouloir supprimer cet élément ?')) {
             var task = $(this).closest('.task');
+            var phase = $(this).closest('.phase');
             $('#task_ids_to_delete').val($('#task_ids_to_delete').val()+task.attr('data-id')+',');
             task.remove();
+            update_phase_duration(phase.attr('data-id'));
         }
 
         return false;
     });
 
     $('.project-tasks').on('focusout', '.input-task-duration', function() {
+        var task_duration = parseFloat($(this).val());
+
         var task = $(this).closest('.task');
-        task.attr('data-duration', $(this).val());
+        task.attr('data-duration', task_duration);
+
+        var phase = $(this).closest('.phase');
+        update_phase_duration(phase.attr('data-id'));
     });
 
     //Phase and task validation by entering keys
@@ -189,3 +196,15 @@ $(document).ready(function() {
         });
     });
 });
+
+function update_phase_duration(phase_id) {
+    var phase = $('.phase[data-id="' + phase_id + '"]');
+    var phase_duration = 0;
+    phase.find('.task').each(function() {
+        var task_duration = parseFloat($(this).find('.input-task-duration').val());
+        phase_duration += task_duration
+    });
+
+    phase.attr('data-duration', phase_duration);
+    phase.find('.phase-duration .value').text(phase_duration);
+}

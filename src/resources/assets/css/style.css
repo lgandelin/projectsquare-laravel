@@ -14389,10 +14389,6 @@ body {
 .occupation-template .month table {
   border: 2px solid #999;
 }
-/* line 47, ../sass/_occupation.scss */
-.occupation-template .month table .weeks-row th:first-child {
-  border-right: 2px solid #999;
-}
 /* line 52, ../sass/_occupation.scss */
 .occupation-template .month table tr th {
   text-align: center;
@@ -14471,7 +14467,6 @@ body {
 .occupation-template .month table tr .week {
   font-weight: bold;
   color: #096a85;
-  border-right: 2px solid #999;
   padding: 3px 0;
 }
 /* line 134, ../sass/_occupation.scss */
@@ -14486,13 +14481,14 @@ body {
 
 /* line 1, ../sass/_project-tasks.scss */
 .project-tasks {
+  margin-top: 5rem;
   overflow: hidden;
 }
-/* line 4, ../sass/_project-tasks.scss */
+/* line 5, ../sass/_project-tasks.scss */
 .project-tasks .phases {
   margin-bottom: 5rem;
 }
-/* line 9, ../sass/_project-tasks.scss */
+/* line 10, ../sass/_project-tasks.scss */
 .project-tasks .phases .phase .phase-wrapper, .project-tasks .phases .phase .task-wrapper, .project-tasks .phases .task .phase-wrapper, .project-tasks .phases .task .task-wrapper {
   margin-bottom: 2rem;
   padding: 1.5rem 2rem;
@@ -14500,28 +14496,28 @@ body {
   font-size: 2rem;
   border: 2px solid #096a85;
 }
-/* line 18, ../sass/_project-tasks.scss */
+/* line 19, ../sass/_project-tasks.scss */
 .project-tasks .phases .phase .phase-wrapper .delete-phase, .project-tasks .phases .phase .phase-wrapper .delete-task, .project-tasks .phases .phase .task-wrapper .delete-phase, .project-tasks .phases .phase .task-wrapper .delete-task, .project-tasks .phases .task .phase-wrapper .delete-phase, .project-tasks .phases .task .phase-wrapper .delete-task, .project-tasks .phases .task .task-wrapper .delete-phase, .project-tasks .phases .task .task-wrapper .delete-task {
   margin-top: 6px;
   float: right;
 }
-/* line 23, ../sass/_project-tasks.scss */
+/* line 24, ../sass/_project-tasks.scss */
 .project-tasks .phases .phase .phase-wrapper .input-phase-name, .project-tasks .phases .phase .phase-wrapper .input-task-name, .project-tasks .phases .phase .task-wrapper .input-phase-name, .project-tasks .phases .phase .task-wrapper .input-task-name, .project-tasks .phases .task .phase-wrapper .input-phase-name, .project-tasks .phases .task .phase-wrapper .input-task-name, .project-tasks .phases .task .task-wrapper .input-phase-name, .project-tasks .phases .task .task-wrapper .input-task-name {
   min-width: 250px;
   padding: 0;
   outline: 0;
   border: none !important;
 }
-/* line 30, ../sass/_project-tasks.scss */
+/* line 31, ../sass/_project-tasks.scss */
 .project-tasks .phases .phase .phase-wrapper .name, .project-tasks .phases .phase .task-wrapper .name, .project-tasks .phases .task .phase-wrapper .name, .project-tasks .phases .task .task-wrapper .name {
   cursor: pointer;
   display: inline-block;
 }
-/* line 35, ../sass/_project-tasks.scss */
+/* line 36, ../sass/_project-tasks.scss */
 .project-tasks .phases .phase .phase-wrapper .name:hover, .project-tasks .phases .phase .task-wrapper .name:hover, .project-tasks .phases .task .phase-wrapper .name:hover, .project-tasks .phases .task .task-wrapper .name:hover {
   color: #6a7376;
 }
-/* line 39, ../sass/_project-tasks.scss */
+/* line 40, ../sass/_project-tasks.scss */
 .project-tasks .phases .phase .phase-wrapper i.valid-phase-rename, .project-tasks .phases .phase .phase-wrapper i.valid-task-rename, .project-tasks .phases .phase .task-wrapper i.valid-phase-rename, .project-tasks .phases .phase .task-wrapper i.valid-task-rename, .project-tasks .phases .task .phase-wrapper i.valid-phase-rename, .project-tasks .phases .task .phase-wrapper i.valid-task-rename, .project-tasks .phases .task .task-wrapper i.valid-phase-rename, .project-tasks .phases .task .task-wrapper i.valid-task-rename {
   cursor: pointer;
   margin-left: 20px;
@@ -14529,13 +14525,13 @@ body {
   margin-right: 5px;
   font-size: 17px;
 }
-/* line 47, ../sass/_project-tasks.scss */
+/* line 48, ../sass/_project-tasks.scss */
 .project-tasks .phases .phase .phase-wrapper i.cancel-phase-rename, .project-tasks .phases .phase .phase-wrapper i.cancel-task-rename, .project-tasks .phases .phase .task-wrapper i.cancel-phase-rename, .project-tasks .phases .phase .task-wrapper i.cancel-task-rename, .project-tasks .phases .task .phase-wrapper i.cancel-phase-rename, .project-tasks .phases .task .phase-wrapper i.cancel-task-rename, .project-tasks .phases .task .task-wrapper i.cancel-phase-rename, .project-tasks .phases .task .task-wrapper i.cancel-task-rename {
   cursor: pointer;
   color: #960216;
   font-size: 17px;
 }
-/* line 53, ../sass/_project-tasks.scss */
+/* line 54, ../sass/_project-tasks.scss */
 .project-tasks .phases .phase .phase-wrapper .input-task-duration, .project-tasks .phases .phase .task-wrapper .input-task-duration, .project-tasks .phases .task .phase-wrapper .input-task-duration, .project-tasks .phases .task .task-wrapper .input-task-duration {
   width: 90px;
   float: right;
@@ -14544,30 +14540,44 @@ body {
   font-size: 1.4rem;
   border: 1px solid #096a85 !important;
 }
-/* line 67, ../sass/_project-tasks.scss */
+/* line 68, ../sass/_project-tasks.scss */
 .project-tasks .phases .phase .toggle-tasks {
   margin-right: 2rem;
   margin-top: 4px;
   float: right;
   cursor: pointer;
 }
-/* line 75, ../sass/_project-tasks.scss */
+/* line 76, ../sass/_project-tasks.scss */
 .project-tasks .phases .phase .toggle-tasks:hover {
   color: #c8dc1e;
 }
-/* line 79, ../sass/_project-tasks.scss */
+/* line 80, ../sass/_project-tasks.scss */
+.project-tasks .phases .phase .phase-duration {
+  width: 100px;
+  margin-top: 6px;
+  float: right;
+  margin-right: 10.5rem;
+  font-size: 1.4rem;
+  text-align: center;
+}
+/* line 89, ../sass/_project-tasks.scss */
+.project-tasks .phases .phase .phase-duration .value {
+  font-size: 2rem;
+  font-weight: bold;
+}
+/* line 95, ../sass/_project-tasks.scss */
 .project-tasks .phases .phase .tasks {
   margin-left: 8rem;
 }
-/* line 82, ../sass/_project-tasks.scss */
+/* line 98, ../sass/_project-tasks.scss */
 .project-tasks .phases .phase .tasks .task-wrapper {
   margin-bottom: 0.75rem;
 }
-/* line 86, ../sass/_project-tasks.scss */
+/* line 102, ../sass/_project-tasks.scss */
 .project-tasks .phases .phase .tasks > .placeholder {
   margin-bottom: 4rem;
 }
-/* line 93, ../sass/_project-tasks.scss */
+/* line 109, ../sass/_project-tasks.scss */
 .project-tasks .placeholder {
   padding: 1.5rem 2rem;
   margin-bottom: 2rem;
@@ -14576,12 +14586,12 @@ body {
   border: 2px dashed #c0cbcf;
   cursor: pointer;
 }
-/* line 104, ../sass/_project-tasks.scss */
+/* line 120, ../sass/_project-tasks.scss */
 .project-tasks .placeholder:hover {
   color: #6a7376;
   border: 2px dashed #6a7376;
 }
-/* line 109, ../sass/_project-tasks.scss */
+/* line 125, ../sass/_project-tasks.scss */
 .project-tasks .valid-phases, .project-tasks .loading {
   margin-top: 3rem;
   float: right;
@@ -14594,74 +14604,74 @@ body {
   -moz-border-radius: 0;
   border-radius: 0;
 }
-/* line 123, ../sass/_project-tasks.scss */
+/* line 139, ../sass/_project-tasks.scss */
 .project-tasks .valid-phases i, .project-tasks .loading i {
   font-size: 19px;
 }
-/* line 128, ../sass/_project-tasks.scss */
+/* line 144, ../sass/_project-tasks.scss */
 .project-tasks .valid-phases:focus, .project-tasks .loading:focus {
   outline: 0;
 }
-/* line 132, ../sass/_project-tasks.scss */
+/* line 148, ../sass/_project-tasks.scss */
 .project-tasks .valid-phases:hover, .project-tasks .loading:hover {
   opacity: 0.8;
 }
-/* line 136, ../sass/_project-tasks.scss */
+/* line 152, ../sass/_project-tasks.scss */
 .project-tasks .loading {
   background: #84b4c2;
   color: white;
 }
-/* line 142, ../sass/_project-tasks.scss */
+/* line 158, ../sass/_project-tasks.scss */
 .project-tasks .loading:hover {
   opacity: 1;
 }
 
-/* line 3, ../sass/_project-team.scss */
-.team-template .phases {
+/* line 3, ../sass/_project-attribution.scss */
+.attribution-template .phases {
   max-width: 1450px;
   padding-top: 5rem;
   padding-right: 2.5rem;
-  margin-bottom: 10rem;
+  margin-bottom: 5rem;
   max-height: 500px;
   overflow-y: scroll;
 }
-/* line 11, ../sass/_project-team.scss */
-.team-template .phases .phase {
+/* line 11, ../sass/_project-attribution.scss */
+.attribution-template .phases .phase {
   margin-bottom: 5rem;
 }
-/* line 14, ../sass/_project-team.scss */
-.team-template .phases .phase .phase-wrapper {
+/* line 14, ../sass/_project-attribution.scss */
+.attribution-template .phases .phase .phase-wrapper {
   padding: 1.25rem 2rem;
   margin-bottom: 1.5rem;
   background: #f4f8f9;
 }
-/* line 20, ../sass/_project-team.scss */
-.team-template .phases .phase .phase-wrapper .name {
+/* line 20, ../sass/_project-attribution.scss */
+.attribution-template .phases .phase .phase-wrapper .name {
   font-family: "AvantGarde-Book";
   font-size: 1.6rem;
   color: #2f677e;
 }
-/* line 27, ../sass/_project-team.scss */
-.team-template .phases .phase .task-wrapper {
+/* line 27, ../sass/_project-attribution.scss */
+.attribution-template .phases .phase .task-wrapper {
   padding: 1.2rem 2rem 1.2rem 4rem;
   margin-bottom: 0.5rem;
   position: relative;
   background: #096a85;
 }
-/* line 34, ../sass/_project-team.scss */
-.team-template .phases .phase .task-wrapper .name {
+/* line 34, ../sass/_project-attribution.scss */
+.attribution-template .phases .phase .task-wrapper .name {
   font-family: "AvantGarde-Book";
   font-size: 1.6rem;
   color: white;
 }
-/* line 40, ../sass/_project-team.scss */
-.team-template .phases .phase .task-wrapper .avatar {
+/* line 40, ../sass/_project-attribution.scss */
+.attribution-template .phases .phase .task-wrapper .avatar {
   position: absolute;
   left: -20px;
   top: 3px;
 }
-/* line 46, ../sass/_project-team.scss */
-.team-template .phases .phase .task-wrapper .duration {
+/* line 46, ../sass/_project-attribution.scss */
+.attribution-template .phases .phase .task-wrapper .duration {
   float: right;
   margin-right: 6rem;
   margin-top: 3px;
@@ -14669,57 +14679,57 @@ body {
   font-family: "MyriadPro-Regular";
   font-size: 14px;
 }
-/* line 56, ../sass/_project-team.scss */
-.team-template .phases .phase .task-wrapper .drag-task {
+/* line 56, ../sass/_project-attribution.scss */
+.attribution-template .phases .phase .task-wrapper .drag-task {
   float: right;
   color: white;
   font-size: 21px;
   cursor: pointer;
 }
-/* line 65, ../sass/_project-team.scss */
-.team-template .phases .phase .task-wrapper .drag-task:hover {
+/* line 65, ../sass/_project-attribution.scss */
+.attribution-template .phases .phase .task-wrapper .drag-task:hover {
   color: #c8dc1e;
 }
-/* line 71, ../sass/_project-team.scss */
-.team-template .phases .tasks {
+/* line 71, ../sass/_project-attribution.scss */
+.attribution-template .phases .tasks {
   margin-left: 6rem;
 }
-/* line 75, ../sass/_project-team.scss */
-.team-template .phases .tasks .disabled .drag-task {
+/* line 75, ../sass/_project-attribution.scss */
+.attribution-template .phases .tasks .disabled .drag-task {
   opacity: 0.25;
   cursor: default;
 }
-/* line 80, ../sass/_project-team.scss */
-.team-template .phases .tasks .disabled .drag-task:hover {
+/* line 80, ../sass/_project-attribution.scss */
+.attribution-template .phases .tasks .disabled .drag-task:hover {
   color: white;
 }
 
-/* line 89, ../sass/_project-team.scss */
+/* line 89, ../sass/_project-attribution.scss */
 .occupation-template .preview {
   background: orange;
 }
 
-/* line 94, ../sass/_project-team.scss */
-.ui-draggable-dragging {
+/* line 94, ../sass/_project-attribution.scss */
+.task-wrapper.ui-draggable-dragging {
   padding: 1.2rem 2rem 1.2rem 4rem;
   margin-bottom: 0.5rem;
   position: relative;
   background: #096a85;
 }
-/* line 101, ../sass/_project-team.scss */
-.ui-draggable-dragging .name {
+/* line 101, ../sass/_project-attribution.scss */
+.task-wrapper.ui-draggable-dragging .name {
   font-family: "AvantGarde-Book";
   font-size: 1.6rem;
   color: white;
 }
-/* line 107, ../sass/_project-team.scss */
-.ui-draggable-dragging .avatar {
+/* line 107, ../sass/_project-attribution.scss */
+.task-wrapper.ui-draggable-dragging .avatar {
   position: absolute;
   left: -20px;
   top: 3px;
 }
-/* line 113, ../sass/_project-team.scss */
-.ui-draggable-dragging .duration {
+/* line 113, ../sass/_project-attribution.scss */
+.task-wrapper.ui-draggable-dragging .duration {
   float: right;
   margin-right: 6rem;
   margin-top: 3px;
@@ -14727,19 +14737,19 @@ body {
   font-family: "MyriadPro-Regular";
   font-size: 14px;
 }
-/* line 123, ../sass/_project-team.scss */
-.ui-draggable-dragging .drag-task {
+/* line 123, ../sass/_project-attribution.scss */
+.task-wrapper.ui-draggable-dragging .drag-task {
   float: right;
   color: white;
   font-size: 21px;
   cursor: pointer;
 }
 
-/* line 133, ../sass/_project-team.scss */
+/* line 133, ../sass/_project-attribution.scss */
 #calendars {
   position: relative;
 }
-/* line 136, ../sass/_project-team.scss */
+/* line 136, ../sass/_project-attribution.scss */
 #calendars .loading {
   background: rgba(255, 255, 255, 0.75) url("../img/loading.gif") center center no-repeat;
   position: absolute;
