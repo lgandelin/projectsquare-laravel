@@ -12,6 +12,7 @@ function initTasksDragAndDrop() {
         snap: '.user-day',
         revertDuration: 0,
         tolerance: 'pointer',
+        handle: '.drag-task',
         cursor: 'move',
         cursorAt: { left: 20, top: 20 },
         helper: function(e) {

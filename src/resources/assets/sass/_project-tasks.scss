@@ -16,6 +16,9 @@
 
                 border: 2px solid $touareg;
 
+                background: white;
+                cursor: move;
+
                 .delete-phase, .delete-task {
                     margin-top: 6px;
                     float: right;

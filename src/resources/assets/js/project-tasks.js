@@ -147,6 +147,19 @@ $(document).ready(function() {
         phase.find('.tasks').slideToggle();
     });
 
+    //Tasks sortable
+    $('.project-tasks .phase .tasks').sortable({
+        items: ".task:not(.placeholder)",
+        tolerance: 'pointer',
+        helper: "clone",
+    }).disableSelection();
+
+    //Phases sortable
+    $('.project-tasks .phases').sortable({
+        items: ".phase:not(.placeholder)",
+        tolerance: 'pointer',
+    }).disableSelection();
+
     //Validate
     $('.project-tasks .valid-phases').click(function() {
         $(this).hide();

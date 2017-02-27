@@ -87,7 +87,7 @@ class EloquentTasksRepository implements TaskRepository
 
     public function getTasksByPhaseID($phaseID)
     {
-        return Task::where('phase_id', '=', $phaseID)->get();
+        return Task::where('phase_id', '=', $phaseID)->orderBy('order', 'asc')->get();
     }
 
     public function getTasksPaginatedList($userID, $limit, $projectID = null, $statusID = null, $allocatedUserID = null)
@@ -115,6 +115,7 @@ class EloquentTasksRepository implements TaskRepository
         $taskModel->project_id = $task->projectID;
         $taskModel->status_id = $task->statusID;
         $taskModel->allocated_user_id = $task->allocatedUserID;
+        $taskModel->order = $task->order;
 
         $taskModel->save();
 
@@ -150,6 +151,7 @@ class EloquentTasksRepository implements TaskRepository
         $task->phaseID = $taskModel->phase_id;
         $task->statusID = $taskModel->status_id;
         $task->allocatedUserID = $taskModel->allocated_user_id;
+        $task->order = $taskModel->order;
 
         return $task;
     }

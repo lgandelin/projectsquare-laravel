@@ -248,6 +248,7 @@ class ProjectController extends BaseController
                         app()->make('CreateTaskInteractor')->execute(new CreateTaskRequest([
                             'title' => $task->name,
                             'statusID' => Task::TODO,
+                            'order' => ($j + 1),
                             'estimatedTimeDays' => (isset($task->duration) && $task->duration != "") ? $task->duration : null,
                             'phaseID' => ($phase->id == "") ? $response->phase->id : $phase->id,
                             'projectID' => $request->project_id,
@@ -259,6 +260,7 @@ class ProjectController extends BaseController
                             'title' => $task->name,
                             'statusID' => Task::TODO,
                             'allocatedUserID' => 0,
+                            'order' => ($j + 1),
                             'estimatedTimeDays' => (isset($task->duration) && $task->duration != "") ? $task->duration : null,
                             'requesterUserID' => $this->getUser()->id,
                         ]));
