@@ -1,0 +1,50 @@
+.tabs {
+    overflow: hidden;
+    padding-left: 0;
+    margin-bottom: 0;
+
+    list-style: none;
+    border-bottom: 1px solid #c8cecc;
+    background: white;
+
+    li {
+        float: left;
+
+        color: $touareg;
+        font-family: $typo1;
+        font-size: 1.7rem;
+
+        border-right: 1px solid #c8cecc;
+        border-bottom: 1px solid #c8cecc;
+        background: #f4f8f9;
+
+        a {
+            color: $touareg;
+            font-family: $typo1;
+            padding: 1.8rem 2.3rem 1.5rem 2.3rem;
+            display: block;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+    }
+
+    .current, li:hover {
+        background: white;
+        border-bottom: 5px solid $green;
+    }
+
+    .border-bottom {
+        height: 58px;
+        overflow: auto;
+        float: none;
+        background: white;
+        border-bottom: 1px solid #c8cecc;
+        border-right: none;
+    }
+
+    .border-bottom:hover {
+        border-bottom: 1px solid #c8cecc;
+    }
+}

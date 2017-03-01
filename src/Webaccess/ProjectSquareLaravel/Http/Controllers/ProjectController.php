@@ -35,7 +35,6 @@ class ProjectController extends BaseController
             'allocatedUserID' => Input::get('filter_allocated_user'),
         ]));
 
-
         return view('projectsquare::project.tasks', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'projects' => app()->make('ProjectManager')->getProjects(),

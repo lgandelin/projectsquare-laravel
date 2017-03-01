@@ -17,8 +17,24 @@ class OccupationController extends BaseController
         parent::__construct($request);
 
         $users = app()->make('UserManager')->getUsersByRole(Input::get('filter_role'));
-        $roles = app()->make('RoleManager')->getRoles();
 
+        return view('projectsquare::occupation.index', [
+            'month_labels' => ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            'calendars' => self::getCalendarsByUsers($users),
+            'today' => (new DateTime())->setTime(0, 0, 0),
+            'roles' => app()->make('RoleManager')->getRoles(),
+            'filters' => [
+                'role' => Input::get('filter_role'),
+            ],
+        ]);
+    }
+
+    /**
+     * @param $users
+     * @return array
+     */
+    public static function getCalendarsByUsers($users)
+    {
         $events = [];
         foreach ($users as $user) {
             $events[$user->id] = app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
@@ -26,7 +42,7 @@ class OccupationController extends BaseController
             ]));
         }
 
-        $months = [];
+        $calendars = [];
         for ($m = 0; $m < 6; $m++) {
             $month = new \StdClass();
             $month->calendars = [];
@@ -42,37 +58,36 @@ class OccupationController extends BaseController
                 foreach ($calendar->getMonths() as $monthObject) {
                     foreach ($monthObject->getDays() as $i => $day) {
                         $dateTime = $day->getDateTime();
+
                         $day->hours_scheduled = 0;
 
                         if ($dateTime->format('w') != Day::SATURDAY && $dateTime->format('w') != Day::SUNDAY) {
                             $hoursScheduled = 0;
 
                             foreach ($day->getEvents() as $j => $event) {
-                                $diff = $event->endTime->diff($event->startTime);
-                                $hoursScheduled += $diff->h;
+                                if ($event->endTime->format('Y-m-d') == $dateTime->format('Y-m-d')) {
+                                    $startTimeOfDay = clone $event->endTime;
+                                    $startTimeOfDay->setTime(9, 0, 0);
+                                    $interval = $event->endTime->diff($startTimeOfDay);
+                                    $hoursScheduled += $interval->h;
+                                } else {
+                                    $hoursScheduled += 8;
+                                }
                             }
 
                             if (!in_array($dateTime->format('W'), $month->weeks)) {
                                 $month->weeks[] = $dateTime->format('W');
                             }
 
-                            $day->hours_scheduled = ($hoursScheduled) < 8 ? $hoursScheduled : 8;
+                            $day->hours_scheduled = ($hoursScheduled > 8) ? 8 : $hoursScheduled;
                         }
                     }
                 }
-                $month->calendars[]= $calendar;
+                $month->calendars[] = $calendar;
             }
-            $months[]= $month;
+            $calendars[] = $month;
         }
 
-        return view('projectsquare::occupation.index', [
-            'month_labels' => ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-            'months' => $months,
-            'today' => (new DateTime())->setTime(0, 0, 0),
-            'roles' => $roles,
-            'filters' => [
-                'role' => Input::get('filter_role'),
-            ],
-        ]);
+        return $calendars;
     }
 }

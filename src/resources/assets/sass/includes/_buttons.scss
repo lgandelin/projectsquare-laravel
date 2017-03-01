@@ -84,3 +84,9 @@
 .add:hover {
     background: url(../img/dashboard/add-hover.png)no-repeat;
 }
+
+.btn:active, .btn.active {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}

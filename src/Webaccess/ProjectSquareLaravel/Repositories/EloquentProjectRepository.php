@@ -62,17 +62,6 @@ class EloquentProjectRepository implements ProjectRepository
         return Project::with('client')->orderBy('updated_at', 'DESC')->paginate($limit);
     }
 
-    public function createProject($name, $clientID, $websiteFrontURL, $websiteBackURL, $color, $tasksScheduledTime, $ticketsScheduledTime)
-    {
-        $project = new Project();
-        $projectID =  Uuid::uuid4()->toString();
-        $project->id = $projectID;
-        $project->save();
-        $this->updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, $color, $tasksScheduledTime, $ticketsScheduledTime);
-
-        return $project->id;
-    }
-
     public function persistProject(ProjectEntity $project)
     {
         if (!isset($project->id)) {
@@ -88,26 +77,12 @@ class EloquentProjectRepository implements ProjectRepository
         $projectModel->color = $project->color;
         $projectModel->tasks_scheduled_time = $project->tasksScheduledTime;
         $projectModel->tickets_scheduled_time = $project->ticketsScheduledTime;
-        $projectModel->website_front_url = $project->website_front_url;
-        $projectModel->website_back_url = $project->website_back_url;
+        $projectModel->website_front_url = $project->websiteFrontURL;
+        $projectModel->website_back_url = $project->websiteBackURL;
 
         $projectModel->save();
 
         return $project;
-    }
-
-    public function updateProject($projectID, $name, $clientID, $websiteFrontURL, $websiteBackURL, $color, $tasksScheduledTime, $ticketsScheduledTime)
-    {
-        if ($project = $this->getProjectModel($projectID)) {
-            $project->name = $name;
-            $project->client_id = $clientID;
-            $project->website_front_url = $websiteFrontURL;
-            $project->website_back_url = $websiteBackURL;
-            $project->color = $color;
-            $project->tickets_scheduled_time = ($ticketsScheduledTime != "") ? $ticketsScheduledTime : 0;
-            $project->tasks_scheduled_time = ($tasksScheduledTime != "") ? $tasksScheduledTime : 0;
-            $project->save();
-        }
     }
 
     public function deleteProject($projectID)

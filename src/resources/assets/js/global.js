@@ -96,7 +96,7 @@ $(document).ready(function() {
     });
 
     //DELETE BUTTONS
-    $('.btn-delete').click(function(e) {
+    $(document).on('click', '.table-responsive .btn-delete', function() {
         if (!confirm('Etes-vous sûrs de vouloir supprimer cet élément ?')) {
             return false;
         }
@@ -127,7 +127,7 @@ $(document).ready(function() {
         }
     });
 
-    if (!$('.left-bar').hasClass('left-bar-minified') && ($(window).width() <=1024)) {
+    if (!$('.left-bar').hasClass('left-bar-minified') && ($(window).width() <= 1000)) {
         $('.left-bar .toggle-left-bar').trigger('click');
     }
 

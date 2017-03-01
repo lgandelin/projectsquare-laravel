@@ -39,7 +39,7 @@ class TicketCreatedSlackNotification
                 $lines[] = '*Commentaires :*  ' . $ticket->states[0]->comments;
             }
 
-            $settingSlackChannel = app()->make('SettingManager')->getSettingByKeyAndProject('SLACK_CHANNEL', $ticket->projectID);
+            $settingSlackChannel = app()->make('SettingManager')->getSettingByKeyAndProject('SLACK_CHANNEL', $ticket->project->id);
 
             SlackTool::send(
                 ((isset($ticket->project) && isset($ticket->project->client)) ? '<' . route('project_index', ['id' => $ticket->project->id]) . '|*['.$ticket->project->client->name.'] '.$ticket->project->name . '*>' : '') . ' *Un nouveau ticket a été créé*',

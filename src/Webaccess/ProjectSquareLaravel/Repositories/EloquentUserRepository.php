@@ -40,7 +40,7 @@ class EloquentUserRepository implements UserRepository
     {
         $user = null;
         if ($userModel = $this->getUserModel($userID)) {
-            $user = $this->getEntityFromModel($userModel);
+            $user = self::getEntityFromModel($userModel);
         }
 
         return $user;
@@ -50,7 +50,7 @@ class EloquentUserRepository implements UserRepository
     {
         $user = null;
         if ($userModel = User::where('email', '=', $userEmail)->first()) {
-            $user = $this->getEntityFromModel($userModel);
+            $user = self::getEntityFromModel($userModel);
         }
 
         return $user;
@@ -150,7 +150,7 @@ class EloquentUserRepository implements UserRepository
         $user->save();
     }
 
-    private function getEntityFromModel($userModel)
+    public static function getEntityFromModel($userModel)
     {
         $user = new UserEntity();
         $user->id = $userModel->id;

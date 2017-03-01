@@ -1,14 +1,16 @@
-
 @media only screen and (max-width:1450px) and (min-width: 1200px) {
 
-	.project-bar {
-		.top-nav {
-
-			li {
-				padding-left: 1rem;
-				padding-right: 1rem;
+	.tabs {
+		li {
+			a {
+				padding-left: 1.3rem;
+				padding-right: 1.3rem;
 				font-size: 1.6rem;
 			}
+		}
+
+		.border-bottom {
+			height: 56px;
 		}
 	}
 
@@ -25,22 +27,27 @@
 	}
 }
 
-@media only screen and (max-width:1200px) and (min-width: 1024px) {
+@media only screen and (max-width:1200px) and (min-width: 1000px) {
 
-	.project-bar {
-		.top-nav {
-
-			li {
-				padding-left: 0rem;
-				padding-right: 0rem;
-				font-size: 1.5rem;
+	.tabs {
+		li {
+			a {
+				padding-left: 0.6rem;
+				padding-right: 0.6rem;
+				padding-top: 1rem;
+				padding-bottom: 1rem;
+				font-size: 1.4rem;
 			}
+		}
+
+		.border-bottom {
+			height: 41px;
 		}
 	}
 }
 
 
-@media only screen and (max-width:1024px) {
+@media only screen and (max-width:1000px) {
 
 	.planning, .planning-template, .settings-template {
 
@@ -59,7 +66,6 @@
 
 	.left-bar {
 		ul {
-
 			.menu {
 				.toggle-left-bar {
 					display: none;
@@ -68,18 +74,14 @@
 		}
 	}
 
-	.project-bar {
-		.top-nav {
+	.tabs {
 
-			li {
-				padding-left: 0.5rem;
-				padding-right: 0.5rem;
-				font-size: 1.4rem;
+		li {
+			border-bottom: 5px solid white;
+		}
 
-				a {
-					padding: 3px 7px;
-				}
-			}
+		.border-bottom {
+			display: none;
 		}
 	}
 
@@ -104,20 +106,6 @@
 
 			.file_button {
 				width: 115px;
-			}
-		}
-	}
-}
-
-@media only screen and (max-width:1450px) {
-	.project-bar {
-		.top-nav {
-
-			.active {
-				a {
-					border-bottom: none;
-					color: $green;
-				}
 			}
 		}
 	}

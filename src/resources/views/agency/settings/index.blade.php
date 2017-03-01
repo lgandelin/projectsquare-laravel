@@ -4,8 +4,7 @@
     <div class="content-page">
         <div class="templates">
             <div class="page-header">
-                <h1>{{ trans('projectsquare::settings.index') }}
-                </h1>
+                <h1>{{ trans('projectsquare::settings.index') }}</h1>
             </div>
 
             @if (isset($error))

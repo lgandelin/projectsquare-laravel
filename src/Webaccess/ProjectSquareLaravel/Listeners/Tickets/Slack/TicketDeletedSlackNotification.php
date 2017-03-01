@@ -19,7 +19,7 @@ class TicketDeletedSlackNotification
                     (isset($ticket->states[0]->allocated_user) && $ticket->states[0]->allocated_user->id) ? '*Utilisateur assigné :* ' . $ticket->states[0]->allocated_user->complete_name : '',
                 ];
 
-                $settingSlackChannel = app()->make('SettingManager')->getSettingByKeyAndProject('SLACK_CHANNEL', $ticket->projectID);
+                $settingSlackChannel = app()->make('SettingManager')->getSettingByKeyAndProject('SLACK_CHANNEL', $ticket->project->id);
 
                 SlackTool::send(
                     ((isset($ticket->project) && isset($ticket->project->client)) ? '<' . route('project_index', ['id' => $ticket->project->id]) . '|*[' . $ticket->project->client->name . '] ' . $ticket->project->name . '*>' : '') . ' *Un ticket a été supprimé*',

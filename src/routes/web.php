@@ -77,11 +77,16 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
     Route::get('/agency/projects/add', array('as' => 'projects_add', 'uses' => 'Agency\ProjectController@add'));
     Route::post('/agency/projects/add', array('as' => 'projects_store', 'uses' => 'Agency\ProjectController@store'));
     Route::get('/agency/projects/{uuid}', array('as' => 'projects_edit', 'uses' => 'Agency\ProjectController@edit'));
+    Route::get('/agency/projects/{uuid}/tasks', array('as' => 'projects_edit_tasks', 'uses' => 'Agency\ProjectController@edit_tasks'));
+    Route::get('/agency/projects/{uuid}/attribution', array('as' => 'projects_edit_attribution', 'uses' => 'Agency\ProjectController@edit_attribution'));
+    Route::get('/agency/projects/{uuid}/config', array('as' => 'projects_edit_config', 'uses' => 'Agency\ProjectController@edit_config'));
     Route::post('/agency/projects', array('as' => 'projects_update', 'uses' => 'Agency\ProjectController@update'));
+    Route::post('/agency/projects/config', array('as' => 'projects_update_config', 'uses' => 'Agency\ProjectController@update_config'));
     Route::get('/agency/projects/delete/{uuid}', array('as' => 'projects_delete', 'uses' => 'Agency\ProjectController@delete'));
     Route::post('/agency/projects/add_user', array('as' => 'projects_add_user', 'uses' => 'Agency\ProjectController@add_user'));
     Route::get('/agency/projects/delete_user/{uuid}/{user_id}', array('as' => 'projects_delete_user', 'uses' => 'Agency\ProjectController@delete_user'));
-    Route::post('/agency/projects/{uuid}/settings', array('as' => 'project_settings', 'uses' => 'Agency\ProjectController@update_settings'));
+    Route::post('/agency/projects/tasks', array('as' => 'projects_update_tasks', 'uses' => 'Agency\ProjectController@update_tasks'));
+    Route::post('/agency/projects/allocate_task_in_planning', array('as' => 'projects_allocate_task_in_planning', 'uses' => 'Agency\ProjectController@allocate_task_in_planning'));
 
     Route::get('/agency/clients', array('as' => 'clients_index', 'uses' => 'Agency\ClientController@index'));
     Route::get('/agency/clients/add', array('as' => 'clients_add', 'uses' => 'Agency\ClientController@add'));
