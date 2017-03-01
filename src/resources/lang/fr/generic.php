@@ -19,9 +19,7 @@ return [
     'days' => 'jour(s)',
     'hours' => 'heure(s)',
 
-    'priority-1' => 'Très haute',
-    'priority-2' => 'Haute',
-    'priority-3' => 'Normale',
-    'priority-4' => 'Basse',
-    'priority-5' => 'Très basse',
+    'priority-1' => 'Haute',
+    'priority-2' => 'Normale',
+    'priority-3' => 'Basse',
 ];
