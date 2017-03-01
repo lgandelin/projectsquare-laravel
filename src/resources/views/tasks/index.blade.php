@@ -6,8 +6,8 @@
             <div class="page-header">
                 <h1>{{ trans('projectsquare::tasks.tasks_list') }}
                      @include('projectsquare::includes.tooltip', [
-                            'text' => trans('projectsquare::tooltips.tasks')
-                      ])
+                        'text' => trans('projectsquare::tooltips.tasks')
+                     ])
                 </h1>
             </div>
 

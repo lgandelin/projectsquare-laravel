@@ -270,7 +270,6 @@ class ProjectController extends BaseController
                         app()->make('UpdateTaskInteractor')->execute(new UpdateTaskRequest([
                             'taskID' => $task->id,
                             'title' => $task->name,
-                            'statusID' => Task::TODO,
                             'allocatedUserID' => 0,
                             'order' => ($j + 1),
                             'estimatedTimeDays' => (isset($task->duration) && $task->duration != "") ? $task->duration : null,

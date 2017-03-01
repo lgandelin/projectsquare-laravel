@@ -143,6 +143,9 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
     //OCCUPATION
     Route::get('/occupation', array('as' => 'occupation', 'uses' => 'Utility\OccupationController@index'));
 
+    //PROGRESS
+    Route::get('/progress', array('as' => 'progress', 'uses' => 'Utility\ProgressController@index'));
+
     //CONFIG
     Route::get('/config', array('as' => 'config', 'uses' => 'ConfigController@index', 'middleware' => 'after_config'));
     Route::post('/config', array('as' => 'config_handler', 'uses' => 'ConfigController@config_handler', 'middleware' => 'after_config'));

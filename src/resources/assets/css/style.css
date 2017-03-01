@@ -12987,8 +12987,8 @@ a:focus {
 
 /* line 48, ../sass/includes/_table.scss */
 .table > tbody > tr > td {
-  padding-top: 1rem !important;
-  padding-bottom: 1rem !important;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 /* line 55, ../sass/includes/_table.scss */
@@ -14765,6 +14765,48 @@ body {
   height: 100%;
   max-width: 1500px;
   display: none;
+}
+
+/* line 3, ../sass/_progress.scss */
+.progress-template .project {
+  margin-bottom: 3rem;
+}
+/* line 7, ../sass/_progress.scss */
+.progress-template .project .header {
+  color: white;
+  font-family: "AvantGarde-Book";
+  font-size: 2.0rem;
+  padding: 1rem 2.5rem;
+}
+/* line 14, ../sass/_progress.scss */
+.progress-template .project td {
+  padding: 2rem;
+}
+/* line 18, ../sass/_progress.scss */
+.progress-template .project .progress-percentage {
+  font-size: 3.2rem;
+  text-align: center;
+}
+/* line 23, ../sass/_progress.scss */
+.progress-template .project .total-percentage {
+  font-size: 4rem;
+  text-align: center;
+  background: #5497aa;
+  color: white;
+}
+/* line 31, ../sass/_progress.scss */
+.progress-template .project .phase .name {
+  display: block;
+  margin-bottom: 1rem;
+}
+/* line 38, ../sass/_progress.scss */
+.progress-template .project .phase .tasks .task {
+  float: left;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #5497aa;
+  margin-right: 1px;
+  margin-bottom: 1px;
 }
 
 @media only screen and (max-width: 1450px) and (min-width: 1200px) {

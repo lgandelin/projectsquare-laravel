@@ -6,7 +6,6 @@
 
             <div class="page-header col-lg-12 col-md-12">
                 <div class="row">
-
                     <h1>{{ trans('projectsquare::occupation.occupation') }}</h1>
                 </div>
             </div>

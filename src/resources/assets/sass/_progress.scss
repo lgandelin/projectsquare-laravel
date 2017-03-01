@@ -1,0 +1,49 @@
+.progress-template {
+
+    .project {
+
+        margin-bottom: 3rem;
+
+        .header {
+            color: white;
+            font-family: $typo1;
+            font-size: 2.0rem;
+            padding: 1rem 2.5rem;
+        }
+
+        td {
+            padding: 2rem;
+        }
+
+        .progress-percentage {
+            font-size: 3.2rem;
+            text-align: center;
+        }
+
+        .total-percentage {
+            font-size: 4rem;
+            text-align: center;
+            background: #5497aa;
+            color: white;
+        }
+
+        .phase {
+            .name {
+                display: block;
+                margin-bottom: 1rem;
+            }
+
+            .tasks {
+                
+                .task {
+                    float: left;
+                    width: 25px;
+                    height: 25px;
+                    border: 1px solid #5497aa;
+                    margin-right: 1px;
+                    margin-bottom: 1px;
+                }
+            }
+        }
+    }
+}
