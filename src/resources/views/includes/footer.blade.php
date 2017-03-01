@@ -23,12 +23,14 @@
         var route_step_delete = "{{ route('steps_delete') }}";
         var route_step_get_infos = "{{ route('steps_get_infos') }}";
         var route_todo_create = "{{ route('todos_create') }}";
-        var route_todo_update= "{{ route('todos_update') }}";
-        var route_todo_delete= "{{ route('todos_delete') }}";
-        var route_ticket_unallocate= "{{ route('tickets_unallocate') }}";
-        var route_task_unallocate= "{{ route('tasks_unallocate') }}";
-        var route_beta_form= "{{ route('beta_form') }}";
-        var route_project_users= "{{ route('project_users') }}";
+        var route_todo_update = "{{ route('todos_update') }}";
+        var route_todo_delete = "{{ route('todos_delete') }}";
+        var route_ticket_unallocate = "{{ route('tickets_unallocate') }}";
+        var route_task_unallocate = "{{ route('tasks_unallocate') }}";
+        var route_beta_form = "{{ route('beta_form') }}";
+        var route_project_users = "{{ route('project_users') }}";
+        var route_udpate_tasks = "{{ route('projects_update_tasks') }}";
+        var route_allocate_task_in_planning = "{{ route('projects_allocate_task_in_planning') }}";
     </script>
 
     <input type="hidden" id="csrf_token" value="{!! csrf_token() !!}" />

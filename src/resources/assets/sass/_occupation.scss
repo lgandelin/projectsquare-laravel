@@ -36,12 +36,15 @@
             .disabled {
                 color: #999;
                 border-color: #999;
+                outline: 0;
                 cursor: default;
             }
         }
 
         table {
+            //width: 100%;
             border: 2px solid #999;
+            //table-layout: fixed;
 
             .weeks-row th:first-child {
                 border-right: 2px solid #999;
@@ -51,14 +54,17 @@
                 th {
                     text-align: center;
                     border: 1px solid #999;
+                    //overflow: hidden;
                 }
+
                 td {
                     text-align: center;
                     border: 1px solid #999;
-                    width: 56px;
-                    height: 56px;
+                    width: 55px;
+                    height: 55px;
                     vertical-align: bottom;
                     position: relative;
+                    //overflow: hidden;
 
                     img {
                         display: inline-block;
@@ -77,14 +83,13 @@
                         text-align: left;
 
                         .event {
-                            padding: 5px;
+                            padding: 5px 5px 5px 10px;
                             color: white;
                             border-bottom: 1px solid white;
 
                             .time {
                                 font-size: 11px;
                                 display: block;
-                                margin-bottom: 5px;
                             }
 
                             .name {

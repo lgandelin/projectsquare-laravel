@@ -5,6 +5,7 @@ namespace Webaccess\ProjectSquareLaravel\Repositories;
 use Ramsey\Uuid\Uuid;
 use Webaccess\ProjectSquare\Repositories\TaskRepository;
 use Webaccess\ProjectSquare\Entities\Task as TaskEntity;
+use Webaccess\ProjectSquare\Entities\User as UserEntity;
 use Webaccess\ProjectSquareLaravel\Models\Project;
 use Webaccess\ProjectSquareLaravel\Models\Task;
 use Webaccess\ProjectSquareLaravel\Models\User;
@@ -85,6 +86,22 @@ class EloquentTasksRepository implements TaskRepository
         return Task::where('project_id', '=', $projectID)->get();
     }
 
+    public function getTasksByPhaseID($phaseID)
+    {
+        $tasks = Task::with('allocated_user')->where('phase_id', '=', $phaseID)->orderBy('order', 'asc')->get();
+
+        $result = [];
+        foreach ($tasks as $taskModel) {
+            $task = $this->getTaskEntity($taskModel);
+            if ($taskModel->allocated_user) {
+                $task->allocatedUser = EloquentUserRepository::getEntityFromModel($taskModel->allocated_user);
+            }
+            $result[]= $task;
+        }
+
+        return $result;
+    }
+
     public function getTasksPaginatedList($userID, $limit, $projectID = null, $statusID = null, $allocatedUserID = null)
     {
         return $this->getTasksList($userID, $projectID, $statusID, $allocatedUserID)->paginate($limit);
@@ -106,9 +123,11 @@ class EloquentTasksRepository implements TaskRepository
         $taskModel->estimated_time_hours = $task->estimatedTimeHours;
         $taskModel->spent_time_days = $task->spentTimeDays;
         $taskModel->spent_time_hours = $task->spentTimeHours;
+        $taskModel->phase_id = $task->phaseID;
         $taskModel->project_id = $task->projectID;
         $taskModel->status_id = $task->statusID;
         $taskModel->allocated_user_id = $task->allocatedUserID;
+        $taskModel->order = $task->order;
 
         $taskModel->save();
 
@@ -119,6 +138,11 @@ class EloquentTasksRepository implements TaskRepository
     {
         $task = $this->getTaskModel($taskID);
         $task->delete();
+    }
+
+    public function deleteTasksByPhaseID($phaseID)
+    {
+        Task::where('phase_id', $phaseID)->delete();
     }
 
     private function getTaskEntity($taskModel)
@@ -136,8 +160,10 @@ class EloquentTasksRepository implements TaskRepository
         $task->spentTimeDays = $taskModel->spent_time_days;
         $task->spentTimeHours = $taskModel->spent_time_hours;
         $task->projectID = $taskModel->project_id;
+        $task->phaseID = $taskModel->phase_id;
         $task->statusID = $taskModel->status_id;
         $task->allocatedUserID = $taskModel->allocated_user_id;
+        $task->order = $taskModel->order;
 
         return $task;
     }

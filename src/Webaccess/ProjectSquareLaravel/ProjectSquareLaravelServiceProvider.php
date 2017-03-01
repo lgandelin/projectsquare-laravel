@@ -18,6 +18,12 @@ use Webaccess\ProjectSquare\Interactors\Clients\GetClientsInteractor;
 use Webaccess\ProjectSquare\Interactors\Clients\CreateClientInteractor;
 use Webaccess\ProjectSquare\Interactors\Clients\UpdateClientInteractor;
 use Webaccess\ProjectSquare\Interactors\Clients\DeleteClientInteractor;
+use Webaccess\ProjectSquare\Interactors\Phases\CreatePhaseInteractor;
+use Webaccess\ProjectSquare\Interactors\Phases\DeletePhaseInteractor;
+use Webaccess\ProjectSquare\Interactors\Phases\GetPhaseInteractor;
+use Webaccess\ProjectSquare\Interactors\Phases\GetPhasesInteractor;
+use Webaccess\ProjectSquare\Interactors\Phases\UpdatePhaseInteractor;
+use Webaccess\ProjectSquare\Interactors\Planning\AllocateTaskInPlanningInteractor;
 use Webaccess\ProjectSquare\Interactors\Planning\CreateEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Planning\DeleteEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Planning\GetEventInteractor;
@@ -32,6 +38,8 @@ use Webaccess\ProjectSquare\Interactors\Calendar\GetStepsInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\CreateStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\DeleteStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\UpdateStepInteractor;
+use Webaccess\ProjectSquare\Interactors\Projects\CreateProjectInteractor;
+use Webaccess\ProjectSquare\Interactors\Projects\UpdateProjectInteractor;
 use Webaccess\ProjectSquare\Interactors\Reporting\GetRemainingTimeInteractor;
 use Webaccess\ProjectSquare\Interactors\Reporting\GetReportingIndicatorsInteractor;
 use Webaccess\ProjectSquare\Interactors\Reporting\GetTasksTotalTimeInteractor;
@@ -78,6 +86,7 @@ use Webaccess\ProjectSquareLaravel\Repositories\EloquentConversationRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentEventRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentMessageRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentNotificationRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentPhaseRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentStepRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTasksRepository;
@@ -255,6 +264,22 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             );
         });
 
+        App::bind('CreateProjectInteractor', function () {
+            return new CreateProjectInteractor(
+                new EloquentProjectRepository(),
+                new EloquentUserRepository(),
+                new EloquentClientRepository()
+            );
+        });
+
+        App::bind('UpdateProjectInteractor', function () {
+            return new UpdateProjectInteractor(
+                new EloquentProjectRepository(),
+                new EloquentUserRepository(),
+                new EloquentClientRepository()
+            );
+        });
+
         App::bind('GetProjectsInteractor', function () {
             return new GetProjectsInteractor(
                 new EloquentProjectRepository()
@@ -426,6 +451,7 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             return new CreateTaskInteractor(
                 new EloquentTasksRepository(),
                 new EloquentProjectRepository(),
+                new EloquentPhaseRepository(),
                 new EloquentUserRepository(),
                 new EloquentNotificationRepository()
             );
@@ -468,6 +494,55 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
 
         App::bind('GetRemainingTimeinteractor', function () {
             return new GetRemainingTimeinteractor();
+        });
+
+        App::bind('GetPhaseInteractor', function () {
+            return new GetPhaseInteractor(
+                new EloquentPhaseRepository()
+            );
+        });
+
+        App::bind('GetPhasesInteractor', function () {
+            return new GetPhasesInteractor(
+                new EloquentPhaseRepository(),
+                new EloquentTasksRepository()
+            );
+        });
+
+        App::bind('CreatePhaseInteractor', function () {
+            return new CreatePhaseInteractor(
+                new EloquentPhaseRepository(),
+                new EloquentProjectRepository(),
+                new EloquentUserRepository()
+            );
+        });
+
+        App::bind('UpdatePhaseInteractor', function () {
+            return new UpdatePhaseInteractor(
+                new EloquentPhaseRepository(),
+                new EloquentProjectRepository(),
+                new EloquentUserRepository()
+            );
+        });
+
+        App::bind('DeletePhaseInteractor', function () {
+            return new DeletePhaseInteractor(
+                new EloquentPhaseRepository(),
+                new EloquentUserRepository(),
+                new EloquentTasksRepository()
+            );
+        });
+
+
+        App::bind('AllocateTaskInPlanningInteractor', function () {
+            return new AllocateTaskInPlanningInteractor(
+                new EloquentEventRepository(),
+                new EloquentTasksRepository(),
+                new EloquentUserRepository(),
+                new EloquentNotificationRepository(),
+                new EloquentTicketRepository(),
+                new EloquentProjectRepository()
+            );
         });
 
         Context::set('GetProjectInteractor', app()->make('GetProjectInteractor'));

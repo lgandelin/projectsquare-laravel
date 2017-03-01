@@ -221,7 +221,7 @@ class TaskController extends BaseController
             app()->make('UpdateTaskInteractor')->execute(new UpdateTaskRequest([
                 'taskID' => Input::get('task_id'),
                 'requesterUserID' => $this->getUser()->id,
-                'allocatedUserID' => 0
+                'allocatedUserID' => null
             ]));
 
             return response()->json(['success' => true], 200);

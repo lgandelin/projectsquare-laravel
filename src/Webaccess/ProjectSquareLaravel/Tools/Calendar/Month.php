@@ -112,12 +112,11 @@ class Month {
     {
         for ($day = 1; $day <= $this->_daysNumber; $day++) {
             $date = new DateTime($this->_year . '-' . $this->_number . '-' . $day);
-
             $events = array();
             foreach ($this->_events as $i => $event) {
                 $time = clone $event->startTime;
                 $time->setTime(0, 0, 0);
-                if ($time == $date) {
+                if ($time == $date || ($date > $event->startTime && $date < $event->endTime)) {
                     $events[]= $event;
                 }
             }

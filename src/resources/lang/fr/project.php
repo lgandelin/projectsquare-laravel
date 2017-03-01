@@ -14,6 +14,9 @@ return [
     'files' => 'Fichiers',
     'reporting' => 'Reporting',
 
+    'urls' => 'URLs',
+    'scheduled_times' => 'Temps prévus',
+
     //SETTINGS
     'acceptable_loading_time' => 'Temps de réponse du serveur acceptable (en secondes)',
     'acceptable_loading_time_placeholder' => 'ex: 1.5',
