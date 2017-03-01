@@ -77,6 +77,7 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
     Route::get('/agency/projects/add', array('as' => 'projects_add', 'uses' => 'Agency\ProjectController@add'));
     Route::post('/agency/projects/add', array('as' => 'projects_store', 'uses' => 'Agency\ProjectController@store'));
     Route::get('/agency/projects/{uuid}', array('as' => 'projects_edit', 'uses' => 'Agency\ProjectController@edit'));
+    Route::get('/agency/projects/{uuid}/team', array('as' => 'projects_edit_team', 'uses' => 'Agency\ProjectController@edit_team'));
     Route::get('/agency/projects/{uuid}/tasks', array('as' => 'projects_edit_tasks', 'uses' => 'Agency\ProjectController@edit_tasks'));
     Route::get('/agency/projects/{uuid}/attribution', array('as' => 'projects_edit_attribution', 'uses' => 'Agency\ProjectController@edit_attribution'));
     Route::get('/agency/projects/{uuid}/config', array('as' => 'projects_edit_config', 'uses' => 'Agency\ProjectController@edit_config'));

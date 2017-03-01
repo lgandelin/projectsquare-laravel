@@ -42,7 +42,9 @@ class ProjectManager
         }
 
         foreach ($project->users as $user) {
-            $user->role = RoleManager::getRole($user->pivot->role_id);
+            if (isset($user->pivot) && isset($user->pivot->role_id)) {
+                $user->role = RoleManager::getRole($user->pivot->role_id);
+            }
         }
 
         return $project;
