@@ -12980,40 +12980,40 @@ a:focus {
   color: #096a85;
   top: 8px;
 }
-/* line 43, ../sass/includes/_table.scss */
+/* line 42, ../sass/includes/_table.scss */
 .table > tbody > tr td:last-child {
   min-width: 100px;
 }
 
-/* line 50, ../sass/includes/_table.scss */
+/* line 49, ../sass/includes/_table.scss */
 .cancel {
   width: 16px;
   height: 16px;
   background: url(../img/cancel.png) no-repeat;
 }
 
-/* line 56, ../sass/includes/_table.scss */
+/* line 55, ../sass/includes/_table.scss */
 .table > tbody > tr > td {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
-/* line 63, ../sass/includes/_table.scss */
+/* line 62, ../sass/includes/_table.scss */
 .table thead {
   font-family: "MyriadPro-Regular";
   color: #8fafbc;
   font-size: 1.8rem;
 }
-/* line 68, ../sass/includes/_table.scss */
+/* line 67, ../sass/includes/_table.scss */
 .table thead th:last-child {
   text-align: right;
   padding-right: 3.5rem;
 }
-/* line 73, ../sass/includes/_table.scss */
+/* line 72, ../sass/includes/_table.scss */
 .table thead th {
   font-weight: 400;
 }
-/* line 77, ../sass/includes/_table.scss */
+/* line 76, ../sass/includes/_table.scss */
 .table thead th:first-child {
   padding-left: 1.8rem;
 }
@@ -13686,36 +13686,11 @@ body {
 }
 
 /* line 31, ../sass/_utils.scss */
-.priority-1 {
-  background: #334D5C;
-}
-
-/* line 35, ../sass/_utils.scss */
-.priority-2 {
-  background: #45B29D;
-}
-
-/* line 39, ../sass/_utils.scss */
-.priority-3 {
-  background: #EFC94C;
-}
-
-/* line 43, ../sass/_utils.scss */
-.priority-4 {
-  background: #E27A3F;
-}
-
-/* line 47, ../sass/_utils.scss */
-.priority-5 {
-  background: #DF5A49;
-}
-
-/* line 51, ../sass/_utils.scss */
 .task-status-completed {
   text-decoration: line-through;
 }
 
-/* line 55, ../sass/_utils.scss */
+/* line 35, ../sass/_utils.scss */
 .badge {
   padding: 6px 8px 3px 8px;
   border-radius: 18px;
@@ -13724,7 +13699,7 @@ body {
   color: #096a85;
 }
 
-/* line 63, ../sass/_utils.scss */
+/* line 43, ../sass/_utils.scss */
 .avatar {
   border-radius: 50%;
   border: 1px solid #c8dc1e;
@@ -13732,7 +13707,7 @@ body {
   height: 40px;
 }
 
-/* line 70, ../sass/_utils.scss */
+/* line 50, ../sass/_utils.scss */
 .tooltip-icon {
   display: inline-block;
   width: 18px;
@@ -13742,7 +13717,7 @@ body {
   cursor: pointer;
 }
 
-/* line 79, ../sass/_utils.scss */
+/* line 59, ../sass/_utils.scss */
 .tooltipster-sidetip.tooltipster-shadow.tooltipster-shadow-customized .tooltipster-content {
   color: #096a85;
   font-family: "MyriadPro-Regular";
@@ -14007,8 +13982,8 @@ body {
 
 /* line 6, ../sass/_tickets.scss */
 .priority {
-  width: 24px;
-  height: 25px;
+  width: 25px;
+  height: 30px;
   display: block;
 }
 
