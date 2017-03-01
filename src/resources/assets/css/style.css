@@ -12973,40 +12973,47 @@ a:focus {
   height: 16px;
   background: url(../img/cancel.png) no-repeat;
 }
-/* line 35, ../sass/includes/_table.scss */
+/* line 34, ../sass/includes/_table.scss */
+.table > tbody > tr > td .move-widget {
+  font-size: 2.5rem;
+  margin-right: 1rem;
+  color: #096a85;
+  top: 8px;
+}
+/* line 43, ../sass/includes/_table.scss */
 .table > tbody > tr td:last-child {
   min-width: 100px;
 }
 
-/* line 42, ../sass/includes/_table.scss */
+/* line 50, ../sass/includes/_table.scss */
 .cancel {
   width: 16px;
   height: 16px;
   background: url(../img/cancel.png) no-repeat;
 }
 
-/* line 48, ../sass/includes/_table.scss */
+/* line 56, ../sass/includes/_table.scss */
 .table > tbody > tr > td {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
-/* line 55, ../sass/includes/_table.scss */
+/* line 63, ../sass/includes/_table.scss */
 .table thead {
   font-family: "MyriadPro-Regular";
   color: #8fafbc;
   font-size: 1.8rem;
 }
-/* line 60, ../sass/includes/_table.scss */
+/* line 68, ../sass/includes/_table.scss */
 .table thead th:last-child {
   text-align: right;
   padding-right: 3.5rem;
 }
-/* line 65, ../sass/includes/_table.scss */
+/* line 73, ../sass/includes/_table.scss */
 .table thead th {
   font-weight: 400;
 }
-/* line 69, ../sass/includes/_table.scss */
+/* line 77, ../sass/includes/_table.scss */
 .table thead th:first-child {
   padding-left: 1.8rem;
 }
