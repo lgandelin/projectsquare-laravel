@@ -5,6 +5,7 @@
         <div class="templates">
             <div class="page-header">
                 <h1>{{ trans('projectsquare::tickets.add_ticket') }}</h1>
+                <a href="{{ $back_link }}" class="btn back"></a>
             </div>
 
             @if (isset($error))
@@ -61,9 +62,6 @@
                             <button type="submit" class="btn valid">
                                 <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                             </button>
-                            <a href="{{ $back_link }}" class="btn btn-default back">
-                                <span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.back') }}
-                            </a>
                         </div>
                     </div>
 

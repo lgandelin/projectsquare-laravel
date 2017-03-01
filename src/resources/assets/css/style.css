@@ -12814,46 +12814,50 @@ a.fc-more:hover {
 
 /* line 39, ../sass/includes/_buttons.scss */
 .back {
-  border: 1px solid #84b4c2;
-  border-radius: 0px;
-  color: #096a85;
-  background: none;
+  background: url(../img/back/back.png) no-repeat;
+  width: 28px;
+  height: 28px;
+  float: right;
 }
 
 /* line 46, ../sass/includes/_buttons.scss */
 .back:hover {
-  background: #84b4c2;
-  color: white;
+  background: url(../img/back/back-hover.png) no-repeat;
 }
 
-/* line 51, ../sass/includes/_buttons.scss */
+/* line 50, ../sass/includes/_buttons.scss */
 .users {
   margin-top: 2rem;
 }
 
-/* line 55, ../sass/includes/_buttons.scss */
+/* line 54, ../sass/includes/_buttons.scss */
 .delete {
   border-radius: 0px;
   background: #ca2e44;
   color: white;
 }
-/* line 60, ../sass/includes/_buttons.scss */
+/* line 59, ../sass/includes/_buttons.scss */
 .delete .picto-delete {
   color: white;
 }
 
-/* line 65, ../sass/includes/_buttons.scss */
+/* line 64, ../sass/includes/_buttons.scss */
 .delete:hover {
   color: white;
   opacity: 0.8;
 }
 
+<<<<<<< 2f992214a8376f31a67cb242c59f9e16b39e9f46
 /* line 71, ../sass/includes/_buttons.scss */
 .btn .glyphicon, .btn .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .btn .icon, .btn .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .btn .icon, .btn .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .btn .icon, .btn .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .btn .icon, .btn .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .btn .icon {
+=======
+/* line 70, ../sass/includes/_buttons.scss */
+.btn .glyphicon {
+>>>>>>> Added new back picto
   margin-right: 0.5rem;
 }
 
-/* line 76, ../sass/includes/_buttons.scss */
+/* line 75, ../sass/includes/_buttons.scss */
 .add {
   width: 25px;
   height: 26px;
@@ -12862,12 +12866,12 @@ a.fc-more:hover {
   background: url(../img/dashboard/add.png) no-repeat;
 }
 
-/* line 84, ../sass/includes/_buttons.scss */
+/* line 83, ../sass/includes/_buttons.scss */
 .add:hover {
   background: url(../img/dashboard/add-hover.png) no-repeat;
 }
 
-/* line 88, ../sass/includes/_buttons.scss */
+/* line 87, ../sass/includes/_buttons.scss */
 .btn:active, .btn.active {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;

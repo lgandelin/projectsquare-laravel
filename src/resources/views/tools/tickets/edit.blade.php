@@ -5,6 +5,7 @@
         <div class="templates">
             <div class="page-header">
                 <h1>{{ trans('projectsquare::tickets.edit_ticket') }}</h1>
+                <a href="{{ $back_link }}" class="btn back"></a>
             </div>
 
             @if (isset($error))
