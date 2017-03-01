@@ -5,6 +5,7 @@ namespace Webaccess\ProjectSquareLaravel\Repositories;
 use Ramsey\Uuid\Uuid;
 use Webaccess\ProjectSquare\Repositories\TaskRepository;
 use Webaccess\ProjectSquare\Entities\Task as TaskEntity;
+use Webaccess\ProjectSquare\Entities\User as UserEntity;
 use Webaccess\ProjectSquareLaravel\Models\Project;
 use Webaccess\ProjectSquareLaravel\Models\Task;
 use Webaccess\ProjectSquareLaravel\Models\User;
@@ -87,7 +88,18 @@ class EloquentTasksRepository implements TaskRepository
 
     public function getTasksByPhaseID($phaseID)
     {
-        return Task::where('phase_id', '=', $phaseID)->orderBy('order', 'asc')->get();
+        $tasks = Task::with('allocated_user')->where('phase_id', '=', $phaseID)->orderBy('order', 'asc')->get();
+
+        $result = [];
+        foreach ($tasks as $taskModel) {
+            $task = $this->getTaskEntity($taskModel);
+            if ($taskModel->allocated_user) {
+                $task->allocatedUser = EloquentUserRepository::getEntityFromModel($taskModel->allocated_user);
+            }
+            $result[]= $task;
+        }
+
+        return $result;
     }
 
     public function getTasksPaginatedList($userID, $limit, $projectID = null, $statusID = null, $allocatedUserID = null)

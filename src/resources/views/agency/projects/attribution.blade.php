@@ -12,17 +12,17 @@
 
                 <div class="tasks">
                     @foreach ($phase->tasks as $task)
-                        <div class="task" data-id="{{ $task->id }}" data-name="{{ $task->title }}" data-phase="{{ $phase->id }}" data-duration="{{ $task->estimated_time_days }}">
-                            <div class="task-wrapper @if(isset($task->allocated_user)) disabled @endif">
-                                @if (isset($task->allocated_user))
+                        <div class="task" data-id="{{ $task->id }}" data-name="{{ $task->title }}" data-phase="{{ $phase->id }}" data-duration="{{ $task->estimatedTimeDays }}">
+                            <div class="task-wrapper @if(isset($task->allocatedUserID)) disabled @endif">
+                                @if (isset($task->allocatedUser))
                                     @include('projectsquare::includes.avatar', [
-                                        'id' => $task->allocated_user->id,
-                                        'name' => $task->allocated_user->complete_name
+                                        'id' => $task->allocatedUser->id,
+                                        'name' => $task->allocatedUser->firstName . ' ' . $task->allocatedUser->lastName
                                     ])
                                 @endif
                                 <i class="glyphicon glyphicon-move drag-task"></i>
                                 <span class="name">{{ $task->title }}</span>
-                                @if ($task->estimated_time_days)<span class="duration">{{ $task->estimated_time_days }} j</span>@endif
+                                @if ($task->estimatedTimeDays)<span class="duration">{{ $task->estimatedTimeDays }} j</span>@endif
                             </div>
                         </div>
                     @endforeach

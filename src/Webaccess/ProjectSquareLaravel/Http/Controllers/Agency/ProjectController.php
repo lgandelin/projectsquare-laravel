@@ -98,14 +98,6 @@ class ProjectController extends BaseController
             $phases = app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
                 'projectID' => $projectID
             ]));
-            foreach ($phases as $phase) {
-                $phase->tasks = app()->make('GetTasksInteractor')->getTasksByPhaseID($phase->id);
-                $phase->duration = 0;
-
-                foreach ($phase->tasks as $task) {
-                    $phase->duration += $task->estimated_time_days;
-                }
-            }
         } catch (\Exception $e) {
             $request->session()->flash('error', $e->getMessage());
 
@@ -132,9 +124,6 @@ class ProjectController extends BaseController
             $phases = app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
                 'projectID' => $projectID
             ]));
-            foreach ($phases as $phase) {
-                $phase->tasks = app()->make('GetTasksInteractor')->getTasksByPhaseID($phase->id);
-            }
             $users = app()->make('UserManager')->getUsersByRole(Input::get('filter_role'));
         } catch (\Exception $e) {
             $request->session()->flash('error', $e->getMessage());

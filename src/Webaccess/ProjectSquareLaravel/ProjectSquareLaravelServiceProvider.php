@@ -504,7 +504,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
 
         App::bind('GetPhasesInteractor', function () {
             return new GetPhasesInteractor(
-                new EloquentPhaseRepository()
+                new EloquentPhaseRepository(),
+                new EloquentTasksRepository()
             );
         });
 
