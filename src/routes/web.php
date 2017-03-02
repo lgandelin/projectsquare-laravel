@@ -139,11 +139,9 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
     Route::post('/planning/update', array('as' => 'events_update', 'uses' => 'Utility\PlanningController@update'));
     Route::post('/planning/delete', array('as' => 'events_delete', 'uses' => 'Utility\PlanningController@delete'));
 
-    //OCCUPATION
-    Route::get('/occupation', array('as' => 'occupation', 'uses' => 'Utility\OccupationController@index'));
-
-    //PROGRESS
-    Route::get('/progress', array('as' => 'progress', 'uses' => 'Utility\ProgressController@index'));
+    //MANAGEMENT
+    Route::get('/progress', array('as' => 'progress', 'uses' => 'Management\ProgressController@index'));
+    Route::get('/occupation', array('as' => 'occupation', 'uses' => 'Management\OccupationController@index'));
 
     //CONFIG
     Route::get('/config', array('as' => 'config', 'uses' => 'ConfigController@index', 'middleware' => 'after_config'));

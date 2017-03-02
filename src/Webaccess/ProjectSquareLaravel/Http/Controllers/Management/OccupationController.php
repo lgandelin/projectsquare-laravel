@@ -1,6 +1,6 @@
 <?php
 
-namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Utility;
+namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Management;
 
 use DateTime;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ class OccupationController extends BaseController
 
         $users = app()->make('UserManager')->getUsersByRole(Input::get('filter_role'));
 
-        return view('projectsquare::occupation.index', [
+        return view('projectsquare::management.occupation.index', [
             'month_labels' => ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
             'calendars' => self::getCalendarsByUsers($users),
             'today' => (new DateTime())->setTime(0, 0, 0),

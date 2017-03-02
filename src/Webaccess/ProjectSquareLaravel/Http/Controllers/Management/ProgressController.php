@@ -1,6 +1,6 @@
 <?php
 
-namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Utility;
+namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Management;
 
 use Illuminate\Http\Request;
 use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
@@ -20,7 +20,7 @@ class ProgressController extends BaseController
             ]));
         }
 
-        return view('projectsquare::progress.index', [
+        return view('projectsquare::management.progress.index', [
             'projects' => $projects
         ]);
     }
