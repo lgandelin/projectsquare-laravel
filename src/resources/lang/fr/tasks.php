@@ -5,6 +5,7 @@ return [
 
     'title' => 'Titre',
     'task' => 'Tâche',
+    'phase' => 'Phase',
     'allocated_user' => 'Traité par',
     'client' => 'Client',
     'status' => 'Statut',
@@ -17,6 +18,7 @@ return [
         'by_project' => 'par projet',
         'by_allocated_user' => 'par collaborateur',
         'by_status' => 'par statut',
+        'by_phase' => 'par phase',
         'filters' => 'Filtres',
     ],
 

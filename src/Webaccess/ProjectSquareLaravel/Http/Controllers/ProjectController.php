@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Entities\Task;
+use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\Tools\TaskController;
 use Webaccess\ProjectSquareLaravel\Tools\FilterTool;
@@ -32,18 +33,23 @@ class ProjectController extends BaseController
         $tasks = app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest([
             'projectID' => $projectID,
             'statusID' => Input::get('filter_status'),
+            'phaseID' => Input::get('filter_phase'),
             'allocatedUserID' => Input::get('filter_allocated_user'),
         ]));
 
         return view('projectsquare::project.tasks', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'projects' => app()->make('ProjectManager')->getProjects(),
+            'phases' => app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
+                'projectID' => $projectID
+            ])),
             'users' => app()->make('UserManager')->getUsersByProject($projectID),
             'task_statuses' => TaskController::getTasksStatuses(),
             'filters' => [
                 'allocated_user' => Input::get('filter_allocated_user'),
                 'status' => Input::get('filter_status'),
                 'type' => Input::get('filter_type'),
+                'phase' => Input::get('filter_phase'),
             ],
             'tasks' => Input::get('filter_status') ? $tasks : FilterTool::filterTaskList($tasks),
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,

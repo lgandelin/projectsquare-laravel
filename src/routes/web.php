@@ -31,6 +31,7 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
     Route::post('/projects/calendar/create', array('as' => 'steps_create', 'uses' => 'Project\CalendarController@create'));
     Route::post('/projects/calendar/update', array('as' => 'steps_update', 'uses' => 'Project\CalendarController@update'));
     Route::post('/projects/calendar/delete', array('as' => 'steps_delete', 'uses' => 'Project\CalendarController@delete'));
+    Route::get('/project/users', array('as' => 'project_users', 'uses' => 'ProjectController@get_users'));
 
     //TOOLS
     Route::get('/tools/tickets', array('as' => 'tickets_index', 'uses' => 'Tools\TicketController@index'));
