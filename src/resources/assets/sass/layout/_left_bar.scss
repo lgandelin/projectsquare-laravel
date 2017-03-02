@@ -70,7 +70,6 @@
                 li:last-child {
                     padding-bottom: 1rem;
                 }
-
             }
 
             .title {
@@ -90,23 +89,47 @@
                 overflow: hidden;
             }
 
+            .icon {
+                color: white;
+                font-size: 2.5rem;
+                margin: 20px 0 0 20px;
+                display: block;
+            }
 
-            .img-dashboard {
-                background: url(../img/left-bar/picto-dashboard.png) no-repeat 21px center;
-
-                padding-top: 0rem;
+            .dashboard {
+                .icon {
+                    @extend .glyphicon;
+                    @extend .glyphicon-dashboard;
+                }
             }
 
             .projects {
-                background: url(../img/left-bar/picto-project.png) no-repeat 18px center;
+                .icon {
+                    @extend .glyphicon;
+                    @extend .glyphicon-folder-open;
+                    font-size: 2.0rem;
+                }
             }
 
-            .utils {
-                background: url(../img/left-bar/picto-utils.png) no-repeat 21px center;
+            .management {
+                .icon {
+                    @extend .glyphicon;
+                    @extend .glyphicon-pushpin;
+                }
             }
 
-            .agency {
-                background: url(../img/left-bar/agency.png) no-repeat 21px center;
+            .tools {
+                .icon {
+                    @extend .glyphicon;
+                    @extend .glyphicon-wrench;
+                }
+            }
+
+            .administration {
+                .icon {
+                    @extend .glyphicon;
+                    @extend .glyphicon-cog;
+                }
             }
         }
 
@@ -120,12 +143,14 @@
             }
         }
 
-        .encours {
+        .menu.encours {
+            .icon {
+                color: $green;
+            }
 
             .title {
                 color: $green;
             }
-
 
             .encours a {
                 color: $green;
@@ -143,35 +168,8 @@
         }
 
         .menu:hover {
-            .title {
+            .title, .icon {
                 color: $green;
-            }
-        }
-
-        .menu:first-child:hover, .encours {
-            .img-dashboard {
-                background: url(../img/left-bar/picto-dashboard-hover.png) no-repeat 21px center;
-            }
-        }
-
-        .menu:nth-child(2):hover, .encours {
-
-            .projects {
-                background: url(../img/left-bar/picto-project-hover.png) no-repeat 18px center;
-            }
-        }
-
-        .menu:nth-child(3):hover, .encours {
-
-            .utils {
-                background: url(../img/left-bar/picto-utils-hover.png) no-repeat 21px center;
-            }
-        }
-
-        .menu:nth-child(4):hover, .encours {
-
-            .agency {
-                background: url(../img/left-bar/agency-hover.png) no-repeat 21px center;
             }
         }
 
