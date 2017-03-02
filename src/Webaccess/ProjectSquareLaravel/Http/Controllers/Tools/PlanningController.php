@@ -5,7 +5,6 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Tools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Decorators\EventDecorator;
-use Webaccess\ProjectSquare\Entities\Task;
 use Webaccess\ProjectSquare\Exceptions\Planning\EventUpdateNotAuthorizedException;
 use Webaccess\ProjectSquare\Requests\Planning\CreateEventRequest;
 use Webaccess\ProjectSquare\Requests\Planning\DeleteEventRequest;
@@ -54,10 +53,10 @@ class PlanningController extends BaseController
                 'userID' => $userID,
                 'projectID' => Input::get('filter_project'),
             ])),
-            'allocated_tickets' => $this->filterTicketList($allocatedTickets),
-            'non_allocated_tickets' => $this->filterTicketList($nonAllocatedTickets),
-            'allocated_tasks' => $this->filterTaskList($allocatedTasks),
-            'non_allocated_tasks' => $this->filterTaskList($nonAllocatedTasks),
+            'allocated_tickets' => $allocatedTickets,
+            'non_allocated_tickets' => $nonAllocatedTickets,
+            'allocated_tasks' => $allocatedTasks,
+            'non_allocated_tasks' => $nonAllocatedTasks,
             'filters' => [
                 'project' => Input::get('filter_project'),
                 'user' => Input::get('filter_user'),
@@ -185,30 +184,5 @@ class PlanningController extends BaseController
                 'error' => $e->getMessage(),
             ], 500);
         }
-    }
-
-    protected function filterTicketList($tickets)
-    {
-        foreach ($tickets as $i => $ticket) {
-
-            //Remove archived tickets
-            if (isset($ticket->last_state->status) && !$ticket->last_state->status->include_in_planning) {
-                unset($tickets[$i]);
-            }
-        }
-
-        return $tickets;
-    }
-
-    protected function filterTaskList($tasks)
-    {
-        foreach ($tasks as $i => $task) {
-
-            //Remove completed tasks
-            if ($task->status_id == Task::COMPLETED)
-                unset($tasks[$i]);
-        }
-
-        return $tasks;
     }
 }

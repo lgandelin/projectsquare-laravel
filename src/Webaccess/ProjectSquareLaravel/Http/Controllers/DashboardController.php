@@ -7,7 +7,6 @@ use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 use Webaccess\ProjectSquare\Requests\Todos\GetTodosRequest;
 use Webaccess\ProjectSquare\Requests\Calendar\GetStepsRequest;
-use Webaccess\ProjectSquareLaravel\Tools\FilterTool;
 
 class DashboardController extends BaseController
 {
@@ -19,10 +18,15 @@ class DashboardController extends BaseController
 
         return view('projectsquare::dashboard.index', [
             'widgets' => json_decode($_COOKIE['dashboard-widgets-' . $this->getUser()->id]),
-            'tasks' => FilterTool::filterTaskList(app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest([
+            'tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest([
                 'allocatedUserID' => $this->getUser()->id
-            ]))),
-            'tickets' => FilterTool::filterTicketList(app()->make('GetTicketInteractor')->getTicketsPaginatedList($this->getUser()->id, env('TICKETS_PER_PAGE', 10), null, $this->getUser()->id)),
+            ])),
+            'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
+                $this->getUser()->id,
+                env('TICKETS_PER_PAGE', 10),
+                null,
+                $this->getUser()->id
+            ),
             'conversations' => $this->isUserAClient() ? app()->make('ConversationManager')->getConversationsByProject($this->getCurrentProject()->id, 5) : app()->make('ConversationManager')->getConversations($this->getUser()->id, 5),
             'events' => app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
                 'userID' => $this->getUser()->id,

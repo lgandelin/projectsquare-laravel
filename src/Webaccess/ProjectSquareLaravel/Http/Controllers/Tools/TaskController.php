@@ -13,7 +13,6 @@ use Webaccess\ProjectSquare\Requests\Tasks\UpdateTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\DeleteTaskRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 use Webaccess\ProjectSquareLaravel\Models\User;
-use Webaccess\ProjectSquareLaravel\Tools\FilterTool;
 use Webaccess\ProjectSquareLaravel\Tools\StringTool;
 
 class TaskController extends BaseController
@@ -31,7 +30,7 @@ class TaskController extends BaseController
         ]));
 
         return view('projectsquare::tools.tasks.index', [
-            'tasks' => Input::get('filter_status') ? $tasks : FilterTool::filterTaskList($tasks),
+            'tasks' => $tasks,
             'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
             'users' => app()->make('UserManager')->getAgencyUsers(),
             'task_statuses' => self::getTasksStatuses(),

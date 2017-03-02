@@ -55,6 +55,8 @@ class EloquentTasksRepository implements TaskRepository
 
         if ($statusID) {
             $tasks->where('status_id', '=', $statusID);
+        } else {
+            $tasks->where('status_id', '!=', TaskEntity::COMPLETED);
         }
 
         if ($allocatedUserID > 0) {
