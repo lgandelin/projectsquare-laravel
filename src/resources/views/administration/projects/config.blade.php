@@ -1,5 +1,6 @@
 <div class="page-header">
     <h1>{{ trans('projectsquare::projects.config') }}</h1>
+    <a href="{{ route('projects_index') }}" class="btn back"></a>
 </div>
 
 <form action="{{ route('projects_update_config') }}" method="post">
@@ -27,8 +28,6 @@
         <button type="submit" class="btn valid">
             <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
         </button>
-
-        <a href="{{ route('projects_index') }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
     </div>
 
 
@@ -57,8 +56,6 @@
         <button type="submit" class="btn valid">
             <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
         </button>
-
-        <a href="{{ route('projects_index') }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
     </div>
 
 
@@ -109,8 +106,6 @@
         <button type="submit" class="btn valid">
             <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
         </button>
-
-        <a href="{{ route('projects_index') }}" class="btn back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
     </div>
 
     @if (isset($project_id))

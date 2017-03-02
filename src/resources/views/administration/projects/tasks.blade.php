@@ -1,5 +1,6 @@
 <div class="page-header">
     <h1>{{ trans('projectsquare::projects.tasks') }}</h1>
+    <a href="{{ route('projects_index') }}" class="btn back"></a>
 </div>
 
 <div class="project-tasks">
