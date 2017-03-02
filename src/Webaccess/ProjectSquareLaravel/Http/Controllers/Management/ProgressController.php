@@ -4,6 +4,7 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Management;
 
 use Illuminate\Http\Request;
 use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
+use Webaccess\ProjectSquare\Requests\Projects\GetProjectProgressRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 
 class ProgressController extends BaseController
@@ -17,6 +18,10 @@ class ProgressController extends BaseController
         foreach ($projects as $project) {
             $project->phases = app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
                 'projectID' => $project->id
+            ]));
+            $project->progress = app()->make('GetProjectProgressInteractor')->execute(new GetProjectProgressRequest([
+                'projectID' => $project->id,
+                'phases' => $project->phases
             ]));
         }
 

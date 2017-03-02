@@ -14742,28 +14742,28 @@ body {
 
 /* line 3, ../sass/_progress.scss */
 .progress-template .project {
-  max-width: 800px;
   margin-bottom: 3rem;
 }
-/* line 7, ../sass/_progress.scss */
+/* line 6, ../sass/_progress.scss */
 .progress-template .project .header {
   color: white;
   font-family: "AvantGarde-Book";
   font-size: 2.0rem;
   padding: 1.5rem 3rem;
 }
-/* line 14, ../sass/_progress.scss */
+/* line 13, ../sass/_progress.scss */
 .progress-template .project td {
-  padding: 2rem;
+  padding: 1.5rem;
 }
-/* line 18, ../sass/_progress.scss */
+/* line 17, ../sass/_progress.scss */
 .progress-template .project .progress-percentage {
-  font-size: 3.2rem;
+  font-size: 2.7rem;
   text-align: center;
 }
-/* line 23, ../sass/_progress.scss */
+/* line 22, ../sass/_progress.scss */
 .progress-template .project .total-percentage {
-  font-size: 4rem;
+  padding: 1.5rem;
+  font-size: 3.2rem;
   text-align: center;
   background: #5497aa;
   color: white;
@@ -14773,7 +14773,13 @@ body {
   display: block;
   margin-bottom: 1rem;
 }
-/* line 38, ../sass/_progress.scss */
+/* line 35, ../sass/_progress.scss */
+.progress-template .project .phase .name .duration {
+  margin-top: 0.75rem;
+  float: right;
+  font-size: 1.3rem;
+}
+/* line 44, ../sass/_progress.scss */
 .progress-template .project .phase .tasks .task {
   float: left;
   width: 25px;
@@ -14781,6 +14787,32 @@ body {
   border: 1px solid #5497aa;
   margin-right: 1px;
   margin-bottom: 1px;
+  position: relative;
+}
+/* line 53, ../sass/_progress.scss */
+.progress-template .project .phase .tasks .task .description {
+  position: absolute;
+  display: none;
+  background: white;
+  border-top: 1px solid #ccc;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
+  width: 200px;
+  top: 25px;
+  left: 25px;
+  z-index: 999;
+  text-align: left;
+  padding: 0.75rem 1.25rem;
+}
+/* line 66, ../sass/_progress.scss */
+.progress-template .project .phase .tasks .task .description .name {
+  display: inline;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+/* line 79, ../sass/_progress.scss */
+.progress-template .project .phase .tasks .task:hover .description {
+  font-size: 13px;
+  display: block;
 }
 
 @media only screen and (max-width: 1450px) and (min-width: 1200px) {
