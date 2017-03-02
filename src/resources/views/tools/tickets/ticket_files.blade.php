@@ -67,7 +67,7 @@
     </div>
 </form>
 
-@include('projectsquare::tickets.fileupload')
+@include('projectsquare::tools.tickets.fileupload')
 
 <script src="{{ asset('js/vendor/jquery.fileupload/vendor/jquery.ui.widget.js') }}"></script>
 <script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
