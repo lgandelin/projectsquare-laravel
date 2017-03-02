@@ -42,7 +42,6 @@
                 <button type="submit" class="btn valid">
                     <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                 </button>
-                <a href="{{ $back_link }}" class="btn back"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.back') }}</a>
             </div>
         </div>
 
@@ -56,7 +55,7 @@
                 <label for="priority">{{ trans('projectsquare::tickets.priority') }}</label>
                 <select class="form-control" name="priority">
                     <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
-                    @for ($i = 1; $i <= 5; $i++)
+                    @for ($i = 1; $i <= 3; $i++)
                     <option value="{{ $i }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->priority == $i)selected="selected"@endif>{{ trans('projectsquare::generic.priority-' . $i) }}</option>
                     @endfor
                 </select>

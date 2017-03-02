@@ -5,6 +5,7 @@
         <div class="templates">
             <div class="page-header">
                 <h1>{{ trans('projectsquare::users.add_user') }}</h1>
+                 <a href="{{ route('users_index') }}" class="btn back"></a>
             </div>
 
             @include('projectsquare::administration.users.form', [

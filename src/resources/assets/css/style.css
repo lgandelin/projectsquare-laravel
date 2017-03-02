@@ -12814,46 +12814,45 @@ a.fc-more:hover {
 
 /* line 39, ../sass/includes/_buttons.scss */
 .back {
-  border: 1px solid #84b4c2;
-  border-radius: 0px;
-  color: #096a85;
-  background: none;
+  background: url(../img/back/back.png) no-repeat;
+  width: 28px;
+  height: 28px;
+  float: right;
 }
 
 /* line 46, ../sass/includes/_buttons.scss */
 .back:hover {
-  background: #84b4c2;
-  color: white;
+  background: url(../img/back/back-hover.png) no-repeat;
 }
 
-/* line 51, ../sass/includes/_buttons.scss */
+/* line 50, ../sass/includes/_buttons.scss */
 .users {
   margin-top: 2rem;
 }
 
-/* line 55, ../sass/includes/_buttons.scss */
+/* line 54, ../sass/includes/_buttons.scss */
 .delete {
   border-radius: 0px;
   background: #ca2e44;
   color: white;
 }
-/* line 60, ../sass/includes/_buttons.scss */
+/* line 59, ../sass/includes/_buttons.scss */
 .delete .picto-delete {
   color: white;
 }
 
-/* line 65, ../sass/includes/_buttons.scss */
+/* line 64, ../sass/includes/_buttons.scss */
 .delete:hover {
   color: white;
   opacity: 0.8;
 }
 
-/* line 71, ../sass/includes/_buttons.scss */
+/* line 70, ../sass/includes/_buttons.scss */
 .btn .glyphicon, .btn .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .btn .icon, .btn .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .btn .icon, .btn .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .btn .icon, .btn .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .btn .icon, .btn .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .btn .icon {
   margin-right: 0.5rem;
 }
 
-/* line 76, ../sass/includes/_buttons.scss */
+/* line 75, ../sass/includes/_buttons.scss */
 .add {
   width: 25px;
   height: 26px;
@@ -12862,12 +12861,12 @@ a.fc-more:hover {
   background: url(../img/dashboard/add.png) no-repeat;
 }
 
-/* line 84, ../sass/includes/_buttons.scss */
+/* line 83, ../sass/includes/_buttons.scss */
 .add:hover {
   background: url(../img/dashboard/add-hover.png) no-repeat;
 }
 
-/* line 88, ../sass/includes/_buttons.scss */
+/* line 87, ../sass/includes/_buttons.scss */
 .btn:active, .btn.active {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -12907,7 +12906,6 @@ h2, h3 {
 /* line 27, ../sass/includes/_typography.scss */
 h3 {
   margin-top: 3rem;
-  display: inline-block;
 }
 
 /* line 32, ../sass/includes/_typography.scss */
@@ -12973,40 +12971,47 @@ a:focus {
   height: 16px;
   background: url(../img/cancel.png) no-repeat;
 }
-/* line 35, ../sass/includes/_table.scss */
+/* line 34, ../sass/includes/_table.scss */
+.table > tbody > tr > td .move-widget {
+  font-size: 2.5rem;
+  margin-right: 1rem;
+  color: #096a85;
+  top: 8px;
+}
+/* line 42, ../sass/includes/_table.scss */
 .table > tbody > tr td:last-child {
   min-width: 100px;
 }
 
-/* line 42, ../sass/includes/_table.scss */
+/* line 49, ../sass/includes/_table.scss */
 .cancel {
   width: 16px;
   height: 16px;
   background: url(../img/cancel.png) no-repeat;
 }
 
-/* line 48, ../sass/includes/_table.scss */
+/* line 55, ../sass/includes/_table.scss */
 .table > tbody > tr > td {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
-/* line 55, ../sass/includes/_table.scss */
+/* line 62, ../sass/includes/_table.scss */
 .table thead {
   font-family: "MyriadPro-Regular";
   color: #8fafbc;
   font-size: 1.8rem;
 }
-/* line 60, ../sass/includes/_table.scss */
+/* line 67, ../sass/includes/_table.scss */
 .table thead th:last-child {
   text-align: right;
   padding-right: 3.5rem;
 }
-/* line 65, ../sass/includes/_table.scss */
+/* line 72, ../sass/includes/_table.scss */
 .table thead th {
   font-weight: 400;
 }
-/* line 69, ../sass/includes/_table.scss */
+/* line 76, ../sass/includes/_table.scss */
 .table thead th:first-child {
   padding-left: 1.8rem;
 }
@@ -13679,36 +13684,11 @@ body {
 }
 
 /* line 31, ../sass/_utils.scss */
-.priority-1 {
-  background: #334D5C;
-}
-
-/* line 35, ../sass/_utils.scss */
-.priority-2 {
-  background: #45B29D;
-}
-
-/* line 39, ../sass/_utils.scss */
-.priority-3 {
-  background: #EFC94C;
-}
-
-/* line 43, ../sass/_utils.scss */
-.priority-4 {
-  background: #E27A3F;
-}
-
-/* line 47, ../sass/_utils.scss */
-.priority-5 {
-  background: #DF5A49;
-}
-
-/* line 51, ../sass/_utils.scss */
 .task-status-completed {
   text-decoration: line-through;
 }
 
-/* line 55, ../sass/_utils.scss */
+/* line 35, ../sass/_utils.scss */
 .badge {
   padding: 6px 8px 3px 8px;
   border-radius: 18px;
@@ -13717,7 +13697,7 @@ body {
   color: #096a85;
 }
 
-/* line 63, ../sass/_utils.scss */
+/* line 43, ../sass/_utils.scss */
 .avatar {
   border-radius: 50%;
   border: 1px solid #c8dc1e;
@@ -13725,7 +13705,7 @@ body {
   height: 40px;
 }
 
-/* line 70, ../sass/_utils.scss */
+/* line 50, ../sass/_utils.scss */
 .tooltip-icon {
   display: inline-block;
   width: 18px;
@@ -13735,7 +13715,7 @@ body {
   cursor: pointer;
 }
 
-/* line 79, ../sass/_utils.scss */
+/* line 59, ../sass/_utils.scss */
 .tooltipster-sidetip.tooltipster-shadow.tooltipster-shadow-customized .tooltipster-content {
   color: #096a85;
   font-family: "MyriadPro-Regular";
@@ -14000,8 +13980,8 @@ body {
 
 /* line 6, ../sass/_tickets.scss */
 .priority {
-  width: 24px;
-  height: 25px;
+  width: 25px;
+  height: 30px;
   display: block;
 }
 
@@ -14043,6 +14023,16 @@ body {
 /* line 42, ../sass/_tickets.scss */
 .tickets-template h2 {
   margin-left: 1.5rem;
+}
+/* line 46, ../sass/_tickets.scss */
+.tickets-template .table-responsive {
+  max-height: 410px;
+  clear: right;
+}
+
+/* line 54, ../sass/_tickets.scss */
+.ticket-infos .form-group textarea.form-control {
+  height: 185px;
 }
 
 /* line 1, ../sass/_tasks.scss */
