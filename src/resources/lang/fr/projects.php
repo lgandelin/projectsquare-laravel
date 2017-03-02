@@ -40,6 +40,7 @@ return [
     'user_not_authorized' => 'Vous n\'êtes pas autorisé à créer ou modifier de projet',
 
     'infos' => 'Informations du projet',
+    'team' => 'Equipe',
     'tasks' => 'Tâches',
     'attribution' => 'Attribution',
     'config' => 'Configuration',

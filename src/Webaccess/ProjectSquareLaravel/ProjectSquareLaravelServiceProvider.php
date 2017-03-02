@@ -39,11 +39,8 @@ use Webaccess\ProjectSquare\Interactors\Calendar\CreateStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\DeleteStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Calendar\UpdateStepInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\CreateProjectInteractor;
+use Webaccess\ProjectSquare\Interactors\Projects\GetProjectProgressInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\UpdateProjectInteractor;
-use Webaccess\ProjectSquare\Interactors\Reporting\GetRemainingTimeInteractor;
-use Webaccess\ProjectSquare\Interactors\Reporting\GetReportingIndicatorsInteractor;
-use Webaccess\ProjectSquare\Interactors\Reporting\GetTasksTotalTimeInteractor;
-use Webaccess\ProjectSquare\Interactors\Reporting\GetTicketsTotalTimeInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectsInteractor;
 use Webaccess\ProjectSquare\Interactors\Todos\CreateTodoInteractor;
@@ -474,28 +471,6 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             );
         });
 
-        App::bind('GetTasksTotalTimeInteractor', function () {
-            return new GetTasksTotalTimeInteractor(
-                new EloquentTasksRepository()
-            );
-        });
-
-        App::bind('GetReportingIndicatorsInteractor', function () {
-            return new GetReportingIndicatorsInteractor(
-                new EloquentTasksRepository()
-            );
-        });
-
-        App::bind('GetTicketsTotalTimeInteractor', function () {
-            return new GetTicketsTotalTimeInteractor(
-                new EloquentTicketRepository()
-            );
-        });
-
-        App::bind('GetRemainingTimeinteractor', function () {
-            return new GetRemainingTimeinteractor();
-        });
-
         App::bind('GetPhaseInteractor', function () {
             return new GetPhaseInteractor(
                 new EloquentPhaseRepository()
@@ -533,6 +508,11 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             );
         });
 
+        App::bind('GetProjectProgressInteractor', function () {
+            return new GetProjectProgressInteractor(
+                new EloquentProjectRepository()
+            );
+        });
 
         App::bind('AllocateTaskInPlanningInteractor', function () {
             return new AllocateTaskInPlanningInteractor(

@@ -15,7 +15,6 @@
             <li @if ($active == 'tickets')class="current"@endif><a href="{{ route('project_tickets', ['id' => $project->id]) }}">{{ trans('projectsquare::project.tickets') }}</a></li>
             <li @if ($active == 'messages')class="current"@endif><a href="{{ route('project_messages', ['id' => $project->id]) }}">{{ trans('projectsquare::project.messages') }}</a></li>
             <li @if ($active == 'files')class="current"@endif><a href="{{ route('project_files', ['id' => $project->id]) }}">{{ trans('projectsquare::project.files') }}</a></li>
-            @if (!$is_client)<li @if ($active == 'reporting')class="current"@endif><a href="{{ route('project_reporting', ['id' => $project->id]) }}">{{ trans('projectsquare::project.reporting') }}</a></li>@endif
             <li class="border-bottom"></li>
         </ul>
     </nav>

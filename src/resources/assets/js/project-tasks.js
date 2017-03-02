@@ -215,7 +215,8 @@ function update_phase_duration(phase_id) {
     var phase_duration = 0;
     phase.find('.task').each(function() {
         var task_duration = parseFloat($(this).find('.input-task-duration').val());
-        phase_duration += task_duration
+        if (!isNaN(task_duration))
+            phase_duration += task_duration
     });
 
     phase.attr('data-duration', phase_duration);
