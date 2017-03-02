@@ -6,8 +6,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Entities\Task;
-use Webaccess\ProjectSquareLaravel\Http\Controllers\Utility\TaskController;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
+use Webaccess\ProjectSquareLaravel\Http\Controllers\Tools\TaskController;
 use Webaccess\ProjectSquareLaravel\Tools\FilterTool;
 
 class ProjectController extends BaseController

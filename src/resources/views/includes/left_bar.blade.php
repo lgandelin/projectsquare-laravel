@@ -31,8 +31,6 @@
             preg_match('/tickets_/', $current_route) ||
             preg_match('/conversations_/', $current_route) ||
             preg_match('/planning/', $current_route) ||
-            preg_match('/occupation/', $current_route) ||
-            preg_match('/progress/', $current_route) ||
             preg_match('/monitoring_/', $current_route)) {{ 'encours' }} @endif">
                 <span class="line tools" title="{{ trans('projectsquare::left_bar.tools') }}">
                     <span class="border"><span class="icon"></span></span>
@@ -51,7 +49,7 @@
                         <a href="{{ route('conversations_index') }}">{{ trans('projectsquare::left_bar.messages') }}</a>
                     </li>
 
-                    <li class="@if (preg_match('/planning/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('planning') }}">Planning</a></li>
+                    <li class="@if (preg_match('/planning/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('planning') }}">{{ trans('projectsquare::left_bar.planning') }}</a></li>
 
                     <li class="@if (preg_match('/monitoring_/', $current_route)) {{ 'encours' }} @endif">
                         <a href="{{ route('monitoring_index') }}">{{ trans('projectsquare::left_bar.monitoring_alerts') }}</a>
@@ -69,8 +67,8 @@
                         <h3 class="title">{{ trans('projectsquare::left_bar.management') }}</h3>
                     </span>
                     <ul class="sub-menu">
-                        <li class="@if (preg_match('/progress/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('progress') }}">Avancement</a></li>
-                        <li class="@if (preg_match('/occupation/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('occupation') }}">Occupation</a></li>
+                        <li class="@if (preg_match('/progress/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('progress') }}">{{ trans('projectsquare::left_bar.progress') }}</a></li>
+                        <li class="@if (preg_match('/occupation/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('occupation') }}">{{ trans('projectsquare::left_bar.occupation') }}</a></li>
                         <li class="@if (preg_match('/clients_/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('clients_index') }}">{{ trans('projectsquare::left_bar.clients') }}</a></li>
                         <li class="@if (preg_match('/projects_/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('projects_index') }}">{{ trans('projectsquare::left_bar.projects') }}</a></li>
                     </ul>
