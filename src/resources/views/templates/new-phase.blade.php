@@ -1,5 +1,5 @@
 <script id="phase-template" type="text/x-handlebars-template">
-    <div class="phase" data-id="" data-name="@{{ name }}" data-duration="0">
+    <div class="phase" data-id="@{{ id }}" data-name="@{{ name }}" data-duration="0" data-temp="1">
         <div class="phase-wrapper">
             <span class="name">@{{ name }}</span>
             <a href="#" tabindex="-1" class="btn cancel delete-phase"></a>

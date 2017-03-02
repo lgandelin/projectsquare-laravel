@@ -3,6 +3,7 @@ $(document).ready(function() {
     //Phase management
     $('.project-tasks').on('click', '.add-phase', function() {
         var html = loadTemplate('phase-template', {
+            id: uniqid(),
             name: '',
         });
 
@@ -32,7 +33,7 @@ $(document).ready(function() {
         phase.find('.phase-wrapper > .name').text(phase.attr('data-name')).show();
         phase.find('.input-phase-name, i').remove();
 
-        if (phase.attr('data-id') == "") {
+        if (phase.attr('data-temp') != "") {
             phase.remove();
         }
     });
@@ -51,6 +52,7 @@ $(document).ready(function() {
     $('.project-tasks').on('click', '.phase .add-task', function() {
         var phase = $(this).closest('.phase');
         var html = loadTemplate('task-template', {
+            id: uniqid(),
             name: '',
             phase: phase.attr('data-id')
         });
@@ -84,7 +86,7 @@ $(document).ready(function() {
         task.find('.task-wrapper > .name').text(task.attr('data-name')).show();
         task.find('.input-task-name, i').remove();
 
-        if (task.attr('data-id') == "") {
+        if (task.attr('data-temp') != "") {
             task.remove();
         }
     });
@@ -173,7 +175,8 @@ $(document).ready(function() {
                 var task = {
                     id: $(this).attr('data-id'),
                     name: $(this).attr('data-name'),
-                    duration: $(this).attr('data-duration')
+                    duration: $(this).attr('data-duration'),
+                    is_new: $(this).attr('data-temp')
                 };
 
                 tasks.push(task);
@@ -182,6 +185,7 @@ $(document).ready(function() {
             var phase = {
                 id: $(this).attr('data-id'),
                 name: $(this).attr('data-name'),
+                is_new: $(this).attr('data-temp'),
                 tasks: tasks
             };
 

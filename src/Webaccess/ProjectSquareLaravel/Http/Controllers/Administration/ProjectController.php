@@ -234,10 +234,9 @@ class ProjectController extends BaseController
 
         try {
             $phases = json_decode($request->phases);
-
             $phaseIDs = [];
             foreach ($phases as $i => $phase) {
-                if ($phase->id == "") {
+                if (isset($phase->is_new) && $phase->is_new == "1") {
                     $response = app()->make('CreatePhaseInteractor')->execute(new CreatePhaseRequest([
                         'name' => $phase->name,
                         'projectID' => $request->project_id,
@@ -256,13 +255,13 @@ class ProjectController extends BaseController
                 }
 
                 foreach ($phase->tasks as $j => $task) {
-                    if ($task->id == "") {
+                    if (isset($task->is_new) && $task->is_new == "1") {
                         app()->make('CreateTaskInteractor')->execute(new CreateTaskRequest([
                             'title' => $task->name,
                             'statusID' => Task::TODO,
                             'order' => ($j + 1),
                             'estimatedTimeDays' => (isset($task->duration) && $task->duration != "") ? $task->duration : null,
-                            'phaseID' => ($phase->id == "") ? $response->phase->id : $phase->id,
+                            'phaseID' => (isset($phase->is_new) && $phase->is_new == "1") ? $response->phase->id : $phase->id,
                             'projectID' => $request->project_id,
                             'requesterUserID' => $this->getUser()->id
                         ]));
@@ -336,7 +335,7 @@ class ProjectController extends BaseController
 
             $users = app()->make('UserManager')->getUsersByRole(Input::get('filter_role'));
 
-            $calendars = view('projectsquare::occupation.includes.calendar', [
+            $calendars = view('projectsquare::management.occupation.includes.calendar', [
                 'month_labels' => ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
                 'calendars' => OccupationController::getCalendarsByUsers($users),
                 'today' => (new DateTime())->setTime(0, 0, 0),
