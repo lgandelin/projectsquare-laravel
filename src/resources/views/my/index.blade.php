@@ -5,6 +5,7 @@
         <div class="templates">
             <div class="page-header">
                 <h1>{{ trans('projectsquare::my.panel_title') }}</h1>
+                <a href="{{ route('dashboard') }}" class=" back"></a>
             </div>
 
             @if (isset($error))
@@ -54,7 +55,7 @@
                             <button type="submit" class="btn valid">
                                 <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                             </button>
-                            <a href="{{ route('dashboard') }}" class="btn btn-default back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
+                           
                         </div>
 
                         {!! csrf_field() !!}
@@ -73,7 +74,7 @@
                         ])
                     </div>
                     <form id="fileupload" action="{{ route('my_profile_upload_avatar') }}" method="POST" enctype="multipart/form-data">
-                        <span class="btn valid fileinput-button back">
+                        <span class="btn valid fileinput-button">
                             <i class="glyphicon glyphicon-picture"></i>
                             <span>Parcourir</span>
                             <!-- The file input field used as target for the file upload widget -->
@@ -141,7 +142,6 @@
                             <button type="submit" class="btn valid">
                                 <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
                             </button>
-                            <a href="{{ route('dashboard') }}" class="btn btn-default back"><i class="glyphicon glyphicon-arrow-left"></i> {{ trans('projectsquare::generic.back') }}</a>
                         </div>
                     </form>
                 </div>

@@ -12950,6 +12950,11 @@ ul {
 }
 
 /* line 43, ../sass/includes/_typography.scss */
+a {
+  color: #096a85;
+}
+
+/* line 47, ../sass/includes/_typography.scss */
 a:focus {
   outline: 0;
   text-decoration: none;
@@ -12983,33 +12988,37 @@ a:focus {
 }
 /* line 17, ../sass/includes/_table.scss */
 .table > tbody > tr td:last-child {
-  min-width: 100px;
+  min-width: 125px;
+}
+/* line 21, ../sass/includes/_table.scss */
+.table > tbody > tr .entity_title {
+  text-decoration: underline;
 }
 
-/* line 24, ../sass/includes/_table.scss */
+/* line 28, ../sass/includes/_table.scss */
 .table > tbody > tr > td {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
-/* line 31, ../sass/includes/_table.scss */
+/* line 35, ../sass/includes/_table.scss */
 .table thead {
   font-family: "MyriadPro-Regular";
   color: #8fafbc;
   font-size: 1.8rem;
 }
-/* line 36, ../sass/includes/_table.scss */
+/* line 40, ../sass/includes/_table.scss */
 .table thead th:last-child {
   text-align: right;
   padding-right: 3.5rem;
 }
-/* line 41, ../sass/includes/_table.scss */
+/* line 45, ../sass/includes/_table.scss */
 .table thead th {
   font-weight: 400;
 }
-/* line 45, ../sass/includes/_table.scss */
+/* line 49, ../sass/includes/_table.scss */
 .table thead th:first-child {
-  padding-left: 1.8rem;
+  padding-left: 1rem;
 }
 
 /* line 1, ../sass/includes/_form.scss */
@@ -13977,8 +13986,8 @@ body {
 
 /* line 6, ../sass/_tickets.scss */
 .priority {
-  width: 25px;
-  height: 30px;
+  width: 20px;
+  height: 25px;
   display: block;
 }
 

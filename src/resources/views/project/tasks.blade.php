@@ -65,7 +65,7 @@
                 <tbody>
                 @foreach ($tasks as $task)
                     <tr>
-                        <td>{{ $task->title }}</td>
+                        <td><a href="{{ route('tasks_edit', ['id' => $task->id]) }}">{{ $task->title }}</a></td>
                         <td>@if ($task->phase){{ $task->phase->name }}@endif</td>
                         <td>
                             @if (isset($task->allocated_user))

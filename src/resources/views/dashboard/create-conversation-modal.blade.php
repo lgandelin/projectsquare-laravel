@@ -19,7 +19,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn valid valid-create-conversation"><i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::conversations.validate') }}</button>
-                    <button type="button" class="btn back" data-dismiss="modal"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::conversations.cancel') }}</button>
+                    <button type="button" class="btn" data-dismiss="modal"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::conversations.cancel') }}</button>
                 </div>
             </form>
         </div>
