@@ -1,17 +1,17 @@
 <nav class="left-bar @if ($left_bar == 'closed') left-bar-minified @endif">
     <ul>
         <li class="menu @if ($current_route == 'dashboard') encours @endif">
-            <span class="line img-dashboard">
+            <span class="line dashboard" title="{{ trans('projectsquare::left_bar.dashboard') }}">
                 <a href="{{ route('dashboard') }}">
-                    <span class="border"></span>
+                    <span class="border"><span class="icon"></span></span>
                     <h3 class="title">{{ trans('projectsquare::left_bar.dashboard') }}</h3>
                 </a>
             </span>
         </li>
         @if (!$is_client)
             <li class="menu @if (preg_match('/project_/', $current_route)) {{ 'encours' }} @endif">
-                <span class="line projects">
-                    <span class="border"></span>
+                <span class="line projects" title="{{ trans('projectsquare::left_bar.projects') }}">
+                    <span class="border"><span class="icon"></span></span>
                     <h3 class="title">{{ trans('projectsquare::left_bar.projects') }}</h3>
                 </span>
                 <ul class="sub-menu">
@@ -26,15 +26,15 @@
                     @endforeach
                 </ul>
             </li>
+
             <li class="menu @if (preg_match('/tasks_/', $current_route) ||
             preg_match('/tickets_/', $current_route) ||
             preg_match('/conversations_/', $current_route) ||
             preg_match('/planning/', $current_route) ||
-            preg_match('/occupation/', $current_route) ||
             preg_match('/monitoring_/', $current_route)) {{ 'encours' }} @endif">
-                <span class="line utils">
-                    <span class="border"></span>
-                    <h3 class="title">{{ trans('projectsquare::left_bar.utilities') }}</h3>
+                <span class="line tools" title="{{ trans('projectsquare::left_bar.tools') }}">
+                    <span class="border"><span class="icon"></span></span>
+                    <h3 class="title">{{ trans('projectsquare::left_bar.tools') }}</h3>
                 </span>
                 <ul class="sub-menu">
                     <li class="@if (preg_match('/tasks_/', $current_route)) {{ 'encours' }} @endif">
@@ -49,9 +49,7 @@
                         <a href="{{ route('conversations_index') }}">{{ trans('projectsquare::left_bar.messages') }}</a>
                     </li>
 
-                    <li class="@if (preg_match('/planning/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('planning') }}">Planning</a></li>
-
-                    <li class="@if (preg_match('/occupation/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('occupation') }}">Occupation</a></li>
+                    <li class="@if (preg_match('/planning/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('planning') }}">{{ trans('projectsquare::left_bar.planning') }}</a></li>
 
                     <li class="@if (preg_match('/monitoring_/', $current_route)) {{ 'encours' }} @endif">
                         <a href="{{ route('monitoring_index') }}">{{ trans('projectsquare::left_bar.monitoring_alerts') }}</a>
@@ -62,18 +60,32 @@
             @if ($is_admin)
                 <li class="menu @if (preg_match('/clients_/', $current_route) ||
                  preg_match('/projects_/', $current_route) ||
-                 preg_match('/roles_/', $current_route) ||
+                 preg_match('/occupation/', $current_route) ||
+                 preg_match('/progress/', $current_route)) {{ 'encours' }} @endif">
+                    <span class="line management" title="{{ trans('projectsquare::left_bar.management') }}">
+                        <span class="border"><span class="icon"></span></span>
+                        <h3 class="title">{{ trans('projectsquare::left_bar.management') }}</h3>
+                    </span>
+                    <ul class="sub-menu">
+                        <li class="@if (preg_match('/progress/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('progress') }}">{{ trans('projectsquare::left_bar.progress') }}</a></li>
+                        <li class="@if (preg_match('/occupation/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('occupation') }}">{{ trans('projectsquare::left_bar.occupation') }}</a></li>
+                        <li class="@if (preg_match('/clients_/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('clients_index') }}">{{ trans('projectsquare::left_bar.clients') }}</a></li>
+                        <li class="@if (preg_match('/projects_/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('projects_index') }}">{{ trans('projectsquare::left_bar.projects') }}</a></li>
+                    </ul>
+                </li>
+            @endif
+
+            @if ($is_admin)
+                <li class="menu @if (preg_match('/roles_/', $current_route) ||
                  preg_match('/ticket_types_/', $current_route) ||
                  preg_match('/ticket_statuses_/', $current_route) ||
                  preg_match('/users_/', $current_route) ||
                  preg_match('/settings/', $current_route)) {{ 'encours' }} @endif">
-                    <span class="line agency">
-                        <span class="border"></span>
-                        <h3 class="title">{{ trans('projectsquare::left_bar.agency') }}</h3>
+                    <span class="line administration" title="{{ trans('projectsquare::left_bar.administration') }}">
+                        <span class="border"><span class="icon"></span></span>
+                        <h3 class="title">{{ trans('projectsquare::left_bar.administration') }}</h3>
                     </span>
                     <ul class="sub-menu">
-                        <li class="@if (preg_match('/clients_/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('clients_index') }}">{{ trans('projectsquare::left_bar.clients') }}</a></li>
-                        <li class="@if (preg_match('/projects_/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('projects_index') }}">{{ trans('projectsquare::left_bar.projects') }}</a></li>
                         <li class="@if (preg_match('/users_/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('users_index') }}">{{ trans('projectsquare::left_bar.users') }}</a></li>
                         <li class="@if (preg_match('/roles_/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('roles_index') }}">{{ trans('projectsquare::left_bar.profils') }}</a></li>
                         <li class="@if (preg_match('/ticket_types_/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('ticket_types_index') }}">{{ trans('projectsquare::left_bar.tickets_types') }}</a></li>

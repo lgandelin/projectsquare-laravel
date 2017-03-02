@@ -1,0 +1,87 @@
+.progress-template {
+
+    .project {
+        margin-bottom: 3rem;
+
+        .header {
+            color: white;
+            font-family: $typo1;
+            font-size: 2.0rem;
+            padding: 1.5rem 3rem;
+        }
+
+        td {
+            padding: 1.5rem;
+        }
+
+        .progress-percentage {
+            font-size: 2.7rem;
+            text-align: center;
+        }
+
+        .total-percentage {
+            padding: 1.5rem;
+            font-size: 3.2rem;
+            text-align: center;
+            background: #5497aa;
+            color: white;
+        }
+
+        .phase {
+            .name {
+                display: block;
+                margin-bottom: 1rem;
+
+                .duration {
+                    margin-top: 0.75rem;
+                    float: right;
+                    font-size: 1.3rem;
+                }
+            }
+
+            .tasks {
+                
+                .task {
+                    float: left;
+                    width: 25px;
+                    height: 25px;
+                    border: 1px solid #5497aa;
+                    margin-right: 1px;
+                    margin-bottom: 1px;
+                    position: relative;
+
+                    .description {
+                        position: absolute;
+                        display: none;
+                        background: white;
+                        border-top: 1px solid #ccc;
+                        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
+                        width: 200px;
+                        top: 25px;
+                        left: 25px;
+                        z-index: 999;
+                        text-align: left;
+                        padding: 0.75rem 1.25rem;
+                        
+                        .name {
+                            display: inline;
+                            font-weight: bold;
+                            font-size: 1.4rem;
+                        }
+                        
+                        .duration {
+                            
+                        }
+                    }
+                }
+
+                .task:hover {
+                    .description {
+                        font-size: 13px;
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
