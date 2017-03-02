@@ -14030,6 +14030,11 @@ body {
 .tickets-template h2 {
   margin-left: 1.5rem;
 }
+/* line 46, ../sass/_tickets.scss */
+.tickets-template .table-responsive {
+  overflow: auto;
+  height: 400px;
+}
 
 /* line 1, ../sass/_tasks.scss */
 .tasks-template h2 {
