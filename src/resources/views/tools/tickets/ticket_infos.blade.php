@@ -20,14 +20,7 @@
                 @endif
             </div>
 
-            <div class="form-group">
-                <button type="submit" class="btn valid">
-                    <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
-                </button>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
+             <div class="form-group">
                 <label for="type_id">{{ trans('projectsquare::tickets.type') }}</label>
                 @if (isset($ticket_types))
                 <select class="form-control" name="type_id">
@@ -40,6 +33,14 @@
                 <div class="info bg-info">{{ trans('projectsquare::tickets.no_ticket_type_yet') }}</div>
                 @endif
             </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn valid">
+                    <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
+                </button>
+            </div>
+        </div>
+        <div class="col-md-6">
 
             <div class="form-group">
                 <label for="description">{{ trans('projectsquare::tickets.description') }}</label>

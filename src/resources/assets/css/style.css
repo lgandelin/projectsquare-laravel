@@ -12847,13 +12847,8 @@ a.fc-more:hover {
   opacity: 0.8;
 }
 
-<<<<<<< 2f992214a8376f31a67cb242c59f9e16b39e9f46
-/* line 71, ../sass/includes/_buttons.scss */
-.btn .glyphicon, .btn .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .btn .icon, .btn .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .btn .icon, .btn .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .btn .icon, .btn .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .btn .icon, .btn .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .btn .icon {
-=======
 /* line 70, ../sass/includes/_buttons.scss */
-.btn .glyphicon {
->>>>>>> Added new back picto
+.btn .glyphicon, .btn .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .btn .icon, .btn .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .btn .icon, .btn .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .btn .icon, .btn .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .btn .icon, .btn .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .btn .icon {
   margin-right: 0.5rem;
 }
 
@@ -12911,7 +12906,6 @@ h2, h3 {
 /* line 27, ../sass/includes/_typography.scss */
 h3 {
   margin-top: 3rem;
-  display: inline-block;
 }
 
 /* line 32, ../sass/includes/_typography.scss */
@@ -14032,8 +14026,13 @@ body {
 }
 /* line 46, ../sass/_tickets.scss */
 .tickets-template .table-responsive {
-  overflow: auto;
-  height: 400px;
+  max-height: 410px;
+  clear: right;
+}
+
+/* line 54, ../sass/_tickets.scss */
+.ticket-infos .form-group textarea.form-control {
+  height: 185px;
 }
 
 /* line 1, ../sass/_tasks.scss */

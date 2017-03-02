@@ -44,7 +44,15 @@
     }
 
     .table-responsive {
-        overflow: auto;
-        height: 400px;
+        max-height: 410px;
+        clear: right;
+    }
+}
+
+.ticket-infos {
+    .form-group {
+        textarea.form-control {
+            height: 185px;
+        }
     }
 }

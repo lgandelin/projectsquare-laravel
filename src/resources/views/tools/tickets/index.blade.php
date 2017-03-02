@@ -70,9 +70,9 @@
                     {{ $confirmation }}
                 </div>
             @endif
-
+            <a href="{{ route('tickets_add') }}" class="btn pull-right add create-ticket"></a>
             <div class="table-responsive">
-                <a href="{{ route('tickets_add') }}" class="btn pull-right add create-ticket"></a>
+               
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -118,8 +118,9 @@
                                 <td>@if (isset($ticket->last_state) && $ticket->last_state->estimated_time_days > 0){{ $ticket->last_state->estimated_time_days }} {{ trans('projectsquare::generic.days') }}@endif @if (isset($ticket->last_state) && $ticket->last_state->estimated_time_hours > 0){{ $ticket->last_state->estimated_time_hours }} {{ trans('projectsquare::generic.hours') }}@endif</td>
                                 <td>@if (isset($ticket->last_state) && $ticket->last_state->spent_time_days > 0){{ $ticket->last_state->spent_time_days }} {{ trans('projectsquare::generic.days') }}@endif @if (isset($ticket->last_state) && $ticket->last_state->spent_time_hours > 0){{ $ticket->last_state->spent_time_hours }} {{ trans('projectsquare::generic.hours') }}@endif</td>
                                 <td align="right">
-                                    <a href="#" class="glyphicon glyphicon-move move-widget"></a>
                                     <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}" class="btn see-more"></a>
+                                    <a href="#" class="glyphicon glyphicon-move move-widget"></a>
+                                    
                                     <a href="{{ route('tickets_delete', ['id' => $ticket->id]) }}" class="btn cancel btn-delete"></a>
                                 </td>
                             </tr>
