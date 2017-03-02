@@ -40,7 +40,7 @@
                                 @endforeach
                                 <tr>
                                     <td>&nbsp;</td>
-                                    <td class="progress-percentage total-percentage">@if ($project->progress !== null && $project->progress !== ""){{ $project->progress }} %@endif</td>
+                                    <td width="20%" class="progress-percentage total-percentage">@if ($project->progress !== null && $project->progress !== ""){{ $project->progress }} %@endif</td>
                                 </tr>
                             </table>
                         </div>
