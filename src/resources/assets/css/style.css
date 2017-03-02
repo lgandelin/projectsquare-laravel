@@ -14005,15 +14005,6 @@ body {
   color: #243f75;
 }
 
-/* line 82, ../sass/_project.scss */
-.reporting-template h2 {
-  margin-left: 1rem;
-  color: #096a85;
-  font-size: 2.3rem;
-  margin-top: 2rem;
-  margin-bottom: 0;
-}
-
 /* line 1, ../sass/_tickets.scss */
 .status {
   display: inline-block;
@@ -14769,6 +14760,7 @@ body {
 
 /* line 3, ../sass/_progress.scss */
 .progress-template .project {
+  max-width: 800px;
   margin-bottom: 3rem;
 }
 /* line 7, ../sass/_progress.scss */
@@ -14776,7 +14768,7 @@ body {
   color: white;
   font-family: "AvantGarde-Book";
   font-size: 2.0rem;
-  padding: 1rem 2.5rem;
+  padding: 1.5rem 3rem;
 }
 /* line 14, ../sass/_progress.scss */
 .progress-template .project td {

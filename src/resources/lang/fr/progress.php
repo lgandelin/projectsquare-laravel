@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'progress' => 'Etat d\'avancement des projets',
+    'project_progress' => 'Etat d\'avancement des projets',
+    'phases_tasks' => 'Phases / Tâches',
+    'progress' => 'Avancement',
 ];

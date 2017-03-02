@@ -51,7 +51,6 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
     Route::get('/project/{uuid}/project_seo', array('as' => 'project_seo', 'uses' => 'ProjectController@seo', 'middleware' => 'change_current_project'));
     Route::get('/project/{uuid}/messages', array('as' => 'project_messages', 'uses' => 'ProjectController@messages', 'middleware' => 'change_current_project'));
     Route::get('/project/{uuid}/calendar', array('as' => 'project_calendar', 'uses' => 'Project\CalendarController@index', 'middleware' => 'change_current_project'));
-    Route::get('/project/{uuid}/reporting', array('as' => 'project_reporting', 'uses' => 'ProjectController@reporting', 'middleware' => 'change_current_project'));
     Route::get('/project/{uuid}/files', array('as' => 'project_files', 'uses' => 'Project\FilesController@index', 'middleware' => 'change_current_project'));
 
     //PROJECT FILES

@@ -4,7 +4,7 @@
     <div class="content-page">
         <div class="templates progress-template">
             <div class="page-header">
-                <h1>{{ trans('projectsquare::progress.progress') }}</h1>
+                <h1>{{ trans('projectsquare::progress.project_progress') }}</h1>
             </div>
 
 
@@ -15,8 +15,8 @@
                         <div class="header" style="background:{{ $project->color }}">{{ $project->name }}</div>
                         <table class="table table-bordered">
                             <tr>
-                                <td>Phases / Tâches</td>
-                                <td>Avancement</td>
+                                <td>{{ trans('projectsquare::progress.phases_tasks') }}</td>
+                                <td>{{ trans('projectsquare::progress.progress') }}</td>
                             </tr>
 
                             @foreach ($project->phases as $phase)
@@ -30,7 +30,7 @@
                                             @endforeach
                                         </div>
                                     </td>
-                                    <td class="progress-percentage" width="20%">
+                                    <td class="progress-percentage" width="15%">
                                         33 %
                                     </td>
                                 </tr>
