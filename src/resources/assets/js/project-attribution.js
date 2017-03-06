@@ -52,6 +52,10 @@ function initTasksDragAndDrop() {
                 _token: $('#csrf_token').val()
             };
 
+            if (ui.helper.offset().left != $(this).offset().left) {
+                ui.helper.animate({ 'left': $(this).offset().left}, 500);
+            }
+
             $('#calendars .loading').show();
 
             var month_index = $('#months_index').val();
