@@ -43,13 +43,13 @@ class OccupationController extends BaseController
         }
 
         $calendars = [];
-        for ($m = 0; $m < 6; $m++) {
+        for ($m = 0; $m < 8; $m++) {
             $month = new \StdClass();
             $month->calendars = [];
             $month->weeks = [];
 
             foreach ($users as $user) {
-                $calendar = new Calendar(1, Day::MONDAY, date('m') + $m, date('Y'));
+                $calendar = new Calendar(1, Day::MONDAY, date('m') + $m - 2, date('Y'));
 
                 $calendar->setEvents($events[$user->id]);
                 $calendar->calculateMonths();

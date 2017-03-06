@@ -37,7 +37,8 @@ function displayNextMonth() {
 }
 
 $(document).ready(function() {
-    displayMonth(0);
+    var d = new Date();
+    displayMonth(2);
     initCalendarNavigation();
 
     $(document).keydown(function (e) {
