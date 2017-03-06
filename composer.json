@@ -21,6 +21,5 @@
         "psr-4": {
             "Webaccess\\ProjectSquareLaravel\\": "src/Webaccess/ProjectSquareLaravel"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }

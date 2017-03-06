@@ -14717,47 +14717,54 @@ body {
   display: none;
 }
 
-/* line 3, ../sass/_progress.scss */
-.progress-template .project {
+/* line 4, ../sass/_progress.scss */
+.progress-template .project,
+.spent-time-template .project {
   margin-bottom: 3rem;
 }
-/* line 6, ../sass/_progress.scss */
-.progress-template .project .header {
+/* line 7, ../sass/_progress.scss */
+.progress-template .project .header,
+.spent-time-template .project .header {
   color: white;
   font-family: "AvantGarde-Book";
   font-size: 2.0rem;
   padding: 1.5rem 3rem;
 }
-/* line 13, ../sass/_progress.scss */
-.progress-template .project td {
+/* line 14, ../sass/_progress.scss */
+.progress-template .project td,
+.spent-time-template .project td {
   padding: 1.5rem;
 }
-/* line 17, ../sass/_progress.scss */
-.progress-template .project .progress-percentage {
+/* line 18, ../sass/_progress.scss */
+.progress-template .project .phase-value,
+.spent-time-template .project .phase-value {
   font-size: 2.7rem;
   text-align: center;
 }
-/* line 22, ../sass/_progress.scss */
-.progress-template .project .total-percentage {
+/* line 23, ../sass/_progress.scss */
+.progress-template .project .total,
+.spent-time-template .project .total {
   padding: 1.5rem;
   font-size: 3.2rem;
   text-align: center;
-  background: #5497aa;
   color: white;
 }
 /* line 31, ../sass/_progress.scss */
-.progress-template .project .phase .name {
+.progress-template .project .phase .name,
+.spent-time-template .project .phase .name {
   display: block;
   margin-bottom: 1rem;
 }
 /* line 35, ../sass/_progress.scss */
-.progress-template .project .phase .name .duration {
+.progress-template .project .phase .name .duration,
+.spent-time-template .project .phase .name .duration {
   margin-top: 0.75rem;
   float: right;
   font-size: 1.3rem;
 }
 /* line 44, ../sass/_progress.scss */
-.progress-template .project .phase .tasks .task {
+.progress-template .project .phase .tasks .task,
+.spent-time-template .project .phase .tasks .task {
   float: left;
   width: 25px;
   height: 25px;
@@ -14767,7 +14774,8 @@ body {
   position: relative;
 }
 /* line 53, ../sass/_progress.scss */
-.progress-template .project .phase .tasks .task .description {
+.progress-template .project .phase .tasks .task .description,
+.spent-time-template .project .phase .tasks .task .description {
   position: absolute;
   display: none;
   background: white;
@@ -14781,15 +14789,35 @@ body {
   padding: 0.75rem 1.25rem;
 }
 /* line 66, ../sass/_progress.scss */
-.progress-template .project .phase .tasks .task .description .name {
-  display: inline;
+.progress-template .project .phase .tasks .task .description .name,
+.spent-time-template .project .phase .tasks .task .description .name {
+  display: block;
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
+  margin-bottom: 5px;
 }
-/* line 79, ../sass/_progress.scss */
-.progress-template .project .phase .tasks .task:hover .description {
+/* line 73, ../sass/_progress.scss */
+.progress-template .project .phase .tasks .task .description .duration,
+.spent-time-template .project .phase .tasks .task .description .duration {
+  color: #333;
+}
+/* line 77, ../sass/_progress.scss */
+.progress-template .project .phase .tasks .task .description .avatar,
+.spent-time-template .project .phase .tasks .task .description .avatar {
+  float: right;
+  width: 30px;
+  height: 30px;
+}
+/* line 86, ../sass/_progress.scss */
+.progress-template .project .phase .tasks .task:hover .description,
+.spent-time-template .project .phase .tasks .task:hover .description {
   font-size: 13px;
   display: block;
+}
+
+/* line 96, ../sass/_progress.scss */
+.progress-template .total {
+  background: #5497aa;
 }
 
 @media only screen and (max-width: 1450px) and (min-width: 1200px) {

@@ -1,4 +1,5 @@
-.progress-template {
+.progress-template,
+.spent-time-template {
 
     .project {
         margin-bottom: 3rem;
@@ -14,16 +15,15 @@
             padding: 1.5rem;
         }
 
-        .progress-percentage {
+        .phase-value {
             font-size: 2.7rem;
             text-align: center;
         }
 
-        .total-percentage {
+        .total {
             padding: 1.5rem;
             font-size: 3.2rem;
             text-align: center;
-            background: #5497aa;
             color: white;
         }
 
@@ -64,13 +64,20 @@
                         padding: 0.75rem 1.25rem;
                         
                         .name {
-                            display: inline;
+                            display: block;
                             font-weight: bold;
-                            font-size: 1.4rem;
+                            font-size: 1.6rem;
+                            margin-bottom: 5px;
                         }
                         
                         .duration {
-                            
+                            color: #333;
+                        }
+
+                        .avatar {
+                            float: right;
+                            width: 30px;
+                            height: 30px;
                         }
                     }
                 }
@@ -84,4 +91,8 @@
             }
         }
     }
+}
+
+.progress-template .total {
+    background: #5497aa;
 }

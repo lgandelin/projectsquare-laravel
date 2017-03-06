@@ -12,6 +12,7 @@ return [
     'management' => 'Pilotage',
     'progress' => 'Etat d\'avancement',
     'occupation' => 'Occupation',
+    'spent_time' => 'Temps passé',
     'administration' => 'Administration',
     'clients' => 'Clients',
     'users' => 'Collaborateurs', 

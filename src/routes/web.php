@@ -72,6 +72,7 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
 
     //MANAGEMENT
     Route::get('/management/progress', array('as' => 'progress', 'uses' => 'Management\ProgressController@index'));
+    Route::get('/management/spent-time', array('as' => 'spent_time', 'uses' => 'Management\SpentTimeController@index'));
     Route::get('/management/occupation', array('as' => 'occupation', 'uses' => 'Management\OccupationController@index'));
 
     //ADMINISTRATION
