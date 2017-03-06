@@ -68,7 +68,11 @@ class OccupationController extends BaseController
                                 if ($event->endTime->format('Y-m-d') == $dateTime->format('Y-m-d')) {
                                     $startTimeOfDay = clone $event->endTime;
                                     $startTimeOfDay->setTime(9, 0, 0);
+
                                     $interval = $event->endTime->diff($startTimeOfDay);
+                                    if ($event->startTime->format('Y-m-d') == $dateTime->format('Y-m-d')) {
+                                        $interval = $event->endTime->diff($event->startTime);
+                                    }
                                     $hoursScheduled += $interval->h;
                                 } else {
                                     $hoursScheduled += 8;
