@@ -28,29 +28,12 @@
                     padding: 0;
                     outline: 0;
                     border: none !important;
+                    color: $touareg;
                 }
 
-                .name {
-                    cursor: pointer;
-                    display: inline-block;
-                }
-
-                .name:hover {
+                .input-phase-name:hover, .input-task-name:hover,
+                .input-phase-name:focus, .input-task-name:focus {
                     color: #6a7376;
-                }
-
-                i.valid-phase-rename, i.valid-task-rename {
-                    cursor: pointer;
-                    margin-left: 20px;
-                    color: $green;
-                    margin-right: 5px;
-                    font-size: 17px;
-                }
-
-                i.cancel-phase-rename, i.cancel-task-rename {
-                    cursor: pointer;
-                    color: #960216;
-                    font-size: 17px;
                 }
 
                 .input-task-duration {
