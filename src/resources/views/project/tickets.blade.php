@@ -43,10 +43,6 @@
                             @endforeach
                         </select>
                     </div>
-
-                    <div class="col-md-2">
-                        <input class="btn button" type="submit" value="{{ trans('projectsquare::generic.valid') }}" />
-                    </div>
                 </div>
             </form>
             <hr/>

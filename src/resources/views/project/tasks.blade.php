@@ -12,7 +12,6 @@
 
             <form method="get">
                 <div class="row">
-
                     <h2>{{ trans('projectsquare::tasks.filters.filters') }}</h2>
 
                     @if (!$is_client)
@@ -42,10 +41,6 @@
                                 <option value="{{ $phase->id }}" @if ($filters['phase'] == $phase->id)selected="selected" @endif>{{ $phase->name }}</option>
                             @endforeach
                         </select>
-                    </div>
-
-                    <div class="col-md-2">
-                        <input class="btn button" type="submit" value="{{ trans('projectsquare::generic.valid') }}" />
                     </div>
                 </div>
             </form>
