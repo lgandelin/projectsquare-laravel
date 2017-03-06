@@ -13,7 +13,7 @@ $(document).ready(function() {
         aspectRatio: 2,
         weekNumbers: true,
         weekends: false,
-        minTime: '09:00',
+        minTime: '08:00',
         maxTime: '19:00',
         /*businessHours: {
             start: '09:00',

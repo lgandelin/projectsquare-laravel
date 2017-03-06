@@ -13144,14 +13144,14 @@ body {
   position: absolute;
   top: 90px;
   left: 0;
-  bottom: 0;
   z-index: 99;
   background: #0a6a86;
 }
-/* line 12, ../sass/layout/_left_bar.scss */
+/* line 11, ../sass/layout/_left_bar.scss */
 .left-bar > ul {
   list-style: none;
   padding-left: 0rem;
+  margin-bottom: 0;
 }
 /* line 16, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu {
@@ -13300,16 +13300,17 @@ body {
 /* line 199, ../sass/layout/_left_bar.scss */
 .left-bar-minified {
   width: 68px;
+  bottom: 0;
 }
-/* line 202, ../sass/layout/_left_bar.scss */
+/* line 204, ../sass/layout/_left_bar.scss */
 .left-bar-minified .menu {
   position: relative;
 }
-/* line 205, ../sass/layout/_left_bar.scss */
+/* line 207, ../sass/layout/_left_bar.scss */
 .left-bar-minified .menu .title {
   display: none;
 }
-/* line 209, ../sass/layout/_left_bar.scss */
+/* line 211, ../sass/layout/_left_bar.scss */
 .left-bar-minified .menu .sub-menu {
   display: none;
   background: #222 !important;
@@ -13318,11 +13319,11 @@ body {
   top: 0;
   width: 185px;
 }
-/* line 217, ../sass/layout/_left_bar.scss */
+/* line 219, ../sass/layout/_left_bar.scss */
 .left-bar-minified .menu .sub-menu li {
   margin-left: 0 !important;
 }
-/* line 222, ../sass/layout/_left_bar.scss */
+/* line 224, ../sass/layout/_left_bar.scss */
 .left-bar-minified .menu .toggle-left-bar {
   text-align: center;
   margin-right: 0;

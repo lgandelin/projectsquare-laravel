@@ -4,7 +4,6 @@
     position: absolute;
     top: 90px;
     left: 0;
-    bottom: 0;
     z-index: 99;
 
     background: #0a6a86;
@@ -12,6 +11,7 @@
     > ul {
         list-style: none;
         padding-left: 0rem;
+        margin-bottom: 0;
 
         .menu {
             padding: 0rem;
@@ -198,6 +198,8 @@
 
 .left-bar-minified {
     width: 68px;
+    bottom: 0;
+
 
     .menu {
         position: relative;
