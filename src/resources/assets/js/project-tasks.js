@@ -125,6 +125,13 @@ $(document).ready(function() {
             }
         });
     });
+
+    //Lose focus on enter
+    $(document).keypress(function(e) {
+        if (e.which == 13) {
+            $(':focus').blur();
+        }
+    });
 });
 
 function init_phases_sortable() {
