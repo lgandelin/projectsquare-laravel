@@ -52,7 +52,7 @@
                                         </tr>
                                     @endforeach
                                     <tr>
-                                        <td>&nbsp;</td>
+                                        <td style="text-align: right;">Total</td>
                                         <td width="20%" class="total">@if ($project->progress !== null && $project->progress !== ""){{ $project->progress }} %@endif</td>
                                     </tr>
                                 </table>

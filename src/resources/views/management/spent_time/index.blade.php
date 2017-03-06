@@ -57,7 +57,7 @@
                                         </tr>
                                     @endforeach
                                     <tr>
-                                        <td>&nbsp;</td>
+                                        <td style="text-align: right;">Total</td>
                                         <td width="20%" class="total" style="color: white; @if ($project->differenceSpentEstimated > 0) background-color: #f25f65;
                                         @elseif ($project->differenceSpentEstimated < 0) background-color: #b0d878; @endif">
                                             @if ($project->differenceSpentEstimated > 0)+{{ $project->differenceSpentEstimated }}j
