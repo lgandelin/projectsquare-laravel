@@ -15,6 +15,10 @@ $(document).ready(function() {
             _token: $('#csrf_token').val()
         };
 
+        $('#calendars .loading').show();
+
+        var month_index = $('#months_index').val();
+
         $.ajax({
             type: "POST",
             url: route_task_unallocate,
@@ -23,8 +27,19 @@ $(document).ready(function() {
                 task.find('.task-wrapper').removeClass('allocated');
                 task.find('.avatar').remove();
                 task.css('opacity', 1.0);
-                task.find('.task-wrapper').draggable('enable');
                 initTasksDragAndDrop();
+                task.find('.task-wrapper').draggable('enable');
+
+                //Updates calendar
+                $('#calendars .loading').hide();
+                $('#calendars').html(data.calendars);
+
+                //Reinit drag and drop
+                initTasksDragAndDrop();
+
+                //Reinit calendar
+                initCalendarNavigation();
+                displayMonth(month_index);
             },
             error: function(data) {
                 data = $.parseJSON(data.responseText);
@@ -95,7 +110,7 @@ function initTasksDragAndDrop() {
 
             $.ajax({
                 type: "POST",
-                url: route_allocate_task_in_planning,
+                url: route_allocate_and_schedule_task,
                 data: data,
                 success: function(data) {
                     //Updates calendar

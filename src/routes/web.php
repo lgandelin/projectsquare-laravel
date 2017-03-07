@@ -98,7 +98,7 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
     Route::post('/administration/projects/add_user', array('as' => 'projects_add_user', 'uses' => 'Administration\ProjectController@add_user'));
     Route::get('/administration/projects/delete_user/{uuid}/{user_id}', array('as' => 'projects_delete_user', 'uses' => 'Administration\ProjectController@delete_user'));
     Route::post('/administration/projects/tasks', array('as' => 'projects_update_tasks', 'uses' => 'Administration\ProjectController@update_tasks'));
-    Route::post('/administration/projects/allocate_task_in_planning', array('as' => 'projects_allocate_task_in_planning', 'uses' => 'Administration\ProjectController@allocate_task_in_planning'));
+    Route::post('/administration/projects/allocate_and_schedule_task', array('as' => 'projects_allocate_and_schedule_task', 'uses' => 'Administration\ProjectController@allocate_and_schedule_task'));
 
     Route::get('/administration/clients', array('as' => 'clients_index', 'uses' => 'Administration\ClientController@index'));
     Route::get('/administration/clients/add', array('as' => 'clients_add', 'uses' => 'Administration\ClientController@add'));

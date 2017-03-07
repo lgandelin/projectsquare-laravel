@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Tools;
 
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -9,9 +10,11 @@ use Webaccess\ProjectSquare\Requests\Notifications\ReadNotificationRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\CreateTaskRequest;
+use Webaccess\ProjectSquare\Requests\Tasks\UnallocateTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\UpdateTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\DeleteTaskRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
+use Webaccess\ProjectSquareLaravel\Http\Controllers\Management\OccupationController;
 use Webaccess\ProjectSquareLaravel\Models\User;
 use Webaccess\ProjectSquareLaravel\Tools\StringTool;
 
@@ -217,13 +220,24 @@ class TaskController extends BaseController
         parent::__construct($request);
 
         try {
-            app()->make('UpdateTaskInteractor')->execute(new UpdateTaskRequest([
+            app()->make('UnallocateTaskInteractor')->execute(new UnallocateTaskRequest([
                 'taskID' => Input::get('task_id'),
                 'requesterUserID' => $this->getUser()->id,
                 'allocatedUserID' => null
             ]));
 
-            return response()->json(['success' => true], 200);
+            $users = app()->make('UserManager')->getUsersByRole(Input::get('filter_role'));
+
+            $calendars = view('projectsquare::management.occupation.includes.calendar', [
+                'month_labels' => ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                'calendars' => OccupationController::getCalendarsByUsers($users),
+                'today' => (new DateTime())->setTime(0, 0, 0),
+            ])->render();
+
+            return response()->json([
+                'success' => true,
+                'calendars' => $calendars
+            ], 200);
         } catch (\Exception $e) {
             $request->session()->flash('error', $e->getMessage());
             return response()->json(['error' => $e->getMessage()], 500);

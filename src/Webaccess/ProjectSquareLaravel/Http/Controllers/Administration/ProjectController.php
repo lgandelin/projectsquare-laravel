@@ -10,9 +10,9 @@ use Webaccess\ProjectSquare\Requests\Phases\CreatePhaseRequest;
 use Webaccess\ProjectSquare\Requests\Phases\DeletePhaseRequest;
 use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
 use Webaccess\ProjectSquare\Requests\Phases\UpdatePhaseRequest;
-use Webaccess\ProjectSquare\Requests\Planning\AllocateTaskInPlanningRequest;
 use Webaccess\ProjectSquare\Requests\Projects\CreateProjectRequest;
 use Webaccess\ProjectSquare\Requests\Projects\UpdateProjectRequest;
+use Webaccess\ProjectSquare\Requests\Tasks\AllocateAndScheduleTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\CreateTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\DeleteTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\UpdateTaskRequest;
@@ -318,7 +318,7 @@ class ProjectController extends BaseController
         }
     }
 
-    public function allocate_task_in_planning(Request $request)
+    public function allocate_and_schedule_task(Request $request)
     {
         parent::__construct($request);
 
@@ -326,7 +326,7 @@ class ProjectController extends BaseController
             $userID = Input::get('allocated_user_id') ? Input::get('allocated_user_id') : $this->getUser()->id;
             $user = app()->make('UserManager')->getUser($userID);
 
-            app()->make('AllocateTaskInPlanningInteractor')->execute(new AllocateTaskInPlanningRequest([
+            app()->make('AllocateAndScheduleTaskInteractor')->execute(new AllocateAndScheduleTaskRequest([
                 'userID' => $user->id,
                 'day' => new \DateTime(Input::get('start_time')),
                 'taskID' => Input::get('task_id'),
