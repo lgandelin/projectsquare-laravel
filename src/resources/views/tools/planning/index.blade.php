@@ -33,12 +33,9 @@
                             @endforeach
                         </select>
                     </div>
-
-                    <div class="col-md-2">
-                        <input class="btn button" type="submit" value="{{ trans('projectsquare::generic.valid') }}" />
-                    </div>
                 </div>
             </form>
+
             <hr/>
 
             <div class="row">
@@ -83,170 +80,33 @@
                             </div>
                         </form>
                     </div>
-
-                    <hr>
-
-                    <div id="my-tasks-list" class="tasks-list" style="display: none; float: left; width: 50%">
-                        <h3>{{ trans('projectsquare::planning.allocated_tasks_list') }}</h3>
-
-                        @include('projectsquare::includes.tooltip', [
-                         'text' => trans('projectsquare::tooltips.allocated_tasks_list')
-                        ])
-                        @foreach ($allocated_tasks as $task)
-                            <div id="task-{{ $task->id }}"
-                                 data-id="{{ $task->id }}"
-                                 data-project="@if (isset($task->project)){{ $task->project->id }}@endif"
-                                 data-task="{{ $task->id }}"
-                                 data-color="@if (isset($task->project)){{ $task->project->color }}@endif"
-                                 data-event='{"title":"{{ $task->title }}"}'
-                                 data-duration="02:00"
-                                 class="task fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="@if (isset($task->project))background: {{ $task->project->color }};@endif margin-bottom: 1rem; width: 90%; border: none !important;"
-                                    >
-                                <div class="fc-content">
-                                    <div class="fc-title">
-                                        {{ $task->title }}
-                                        <span class="unallocate-task glyphicon glyphicon-remove pull-right"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-
-                    <div id="non-allocated-tasks-list" class="tasks-list" style="display: none; float: left; width: 50%">
-                        <h3>{{ trans('projectsquare::planning.non_allocated_tasks_list') }}</h3>
-
-                        @include('projectsquare::includes.tooltip', [
-                         'text' => trans('projectsquare::tooltips.non_allocated_tasks_list')
-                        ])
-                        @foreach ($non_allocated_tasks as $task)
-                            <div id="task-{{ $task->id }}"
-                                 data-id="{{ $task->id }}"
-                                 data-project="@if (isset($task->project)){{ $task->project->id }}@endif"
-                                 data-task="{{ $task->id }}"
-                                 data-color="@if (isset($task->project)){{ $task->project->color }}@endif"
-                                 data-event='{"title":"{{ $task->title }}"}'
-                                 data-duration="02:00"
-                                 class="task fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="@if (isset($task->project))background: {{ $task->project->color }};@endif margin-bottom: 1rem; width: 90%; border: none !important;"
-                                    >
-                                <div class="fc-content"><div class="fc-title">{{ $task->title }}</div></div>
-                            </div>
-                        @endforeach
-                    </div>
-
-                    <div id="my-tickets-list" class="tickets-list" style="display: none; clear: both; float: left; width: 50%">
-                        <h3>{{ trans('projectsquare::planning.allocated_tickets_list') }}</h3>
-
-                        @include('projectsquare::includes.tooltip', [
-                         'text' => trans('projectsquare::tooltips.allocated_tickets_list')
-                        ])
-                        @foreach ($allocated_tickets as $ticket)
-                            <div id="ticket-{{ $ticket->id }}"
-                                 data-id="{{ $ticket->id }}"
-                                 data-project="@if (isset($ticket->project)){{ $ticket->project->id }}@endif"
-                                 data-ticket="{{ $ticket->id }}"
-                                 data-color="@if (isset($ticket->project)){{ $ticket->project->color }}@endif"
-                                 data-event='{"title":"{{ $ticket->title }}"}'
-                                 data-duration="02:00"
-                                 class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="@if (isset($ticket->project))background: {{ $ticket->project->color }};@endif margin-bottom: 1rem; width: 90%; border: none !important;"
-                            >
-                                <div class="fc-content">
-                                    <div class="fc-title">
-                                        {{ $ticket->title }}
-                                        <span class="unallocate-ticket glyphicon glyphicon-remove pull-right"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-
-                    <div id="non-allocated-tickets-list" class="tickets-list" style="display: none; float: left; width: 50%">
-                        <h3>{{ trans('projectsquare::planning.non_allocated_tickets_list') }}</h3>
-
-                        @include('projectsquare::includes.tooltip', [
-                         'text' => trans('projectsquare::tooltips.non_allocated_tickets_list')
-                        ])
-                        @foreach ($non_allocated_tickets as $ticket)
-                            <div id="ticket-{{ $ticket->id }}"
-                                 data-id="{{ $ticket->id }}"
-                                 data-project="@if (isset($ticket->project)){{ $ticket->project->id }}@endif"
-                                 data-ticket="{{ $ticket->id }}"
-                                 data-color="@if (isset($ticket->project)){{ $ticket->project->color }}@endif"
-                                 data-event='{"title":"{{ $ticket->title }}"}'
-                                 data-duration="02:00"
-                                 class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="@if (isset($ticket->project))background: {{ $ticket->project->color }};@endif margin-bottom: 1rem; width: 90%; border: none !important;"
-                            >
-                                <div class="fc-content"><div class="fc-title">{{ $ticket->title }}</div></div>
-                            </div>
-                        @endforeach
-                    </div>
                 </div>
-
-                <input type="hidden" class="tickets-current-project" />
-                <input type="hidden" class="tickets-current-ticket" />
-
-                <input type="hidden" class="tasks-current-project" />
-                <input type="hidden" class="tasks-current-task" />
 
                 <input type="hidden" id="user_id" value="{{ $userID }}" />
             </div>
-
-            <script id="ticket-template" type="text/x-handlebars-template">
-                <div id="ticket-@{{id}}"
-                     data-id="@{{id}}"
-                     data-project="@{{project_id}}"
-                     data-ticket="@{{id}}"
-                     data-color="@{{color}}"
-                     data-event='{"title":"@{{title}}"}'
-                     data-duration="02:00"
-                     class="ticket fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: @{{color}}; margin-bottom: 1rem; width: 90%; border: none !important;"
-                >
-                    <div class="fc-content"><div class="fc-title">
-                        @{{title}}
-                        <span class="unallocate-ticket glyphicon glyphicon-remove pull-right"></span>
-                    </div></div>
-                </div>
-            </script>
-
-            <script id="task-template" type="text/x-handlebars-template">
-                <div id="task-@{{id}}"
-                     data-id="@{{id}}"
-                     data-project="@{{project_id}}"
-                     data-task="@{{id}}"
-                     data-color="@{{color}}"
-                     data-event='{"title":"@{{title}}"}'
-                     data-duration="02:00"
-                     class="task fc-time-grid-event fc-v-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background: @{{color}}; margin-bottom: 1rem; width: 90%; border: none !important;"
-                        >
-                    <div class="fc-content"><div class="fc-title">
-                        @{{title}}
-                        <span class="unallocate-task glyphicon glyphicon-remove pull-right"></span>
-                    </div></div>
-                </div>
-            </script>
-        @endsection
-
-        @section('scripts')
-            <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-            <script src="{{ asset('js/vendor/fullcalendar/lib/moment.min.js') }}"></script>
-            <script src="{{ asset('js/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
-            <script src="{{ asset('js/vendor/fullcalendar/locale-all.js') }}"></script>
-            <script src="{{ asset('js/planning.js') }}"></script>
-            <script>
-                var defaultDate = "{{ date('Y-m-d') }}";
-                var events = [
-                    @foreach ($events as $event)
-                        {
-                            id: "{{ $event->id }}",
-                            title: "{{ $event->name }}",
-                            start: "{{ $event->startTime->format(DATE_ISO8601) }}",
-                            end: "{{ $event->endTime->format(DATE_ISO8601) }}",
-                            color: "{{ isset($event->color) ? $event->color : null }}",
-                            project_id: "{{ isset($event->project_id) ? $event->project_id : null }}",
-                        },
-                    @endforeach
-                ];
-            </script>
-            @include('projectsquare::includes/project_users_selection', ['select_project_name' => 'filter_project', 'select_user_name' => 'filter_user'])
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="{{ asset('js/vendor/fullcalendar/lib/moment.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/fullcalendar/locale-all.js') }}"></script>
+    <script src="{{ asset('js/planning.js') }}"></script>
+    <script>
+        var defaultDate = "{{ date('Y-m-d') }}";
+        var events = [
+            @foreach ($events as $event)
+                {
+                    id: "{{ $event->id }}",
+                    title: "{{ $event->name }}",
+                    start: "{{ $event->startTime->format(DATE_ISO8601) }}",
+                    end: "{{ $event->endTime->format(DATE_ISO8601) }}",
+                    color: "{{ isset($event->color) ? $event->color : null }}",
+                    project_id: "{{ isset($event->project_id) ? $event->project_id : null }}",
+                },
+            @endforeach
+        ];
+    </script>
 @endsection

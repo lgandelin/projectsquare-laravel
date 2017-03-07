@@ -12,24 +12,6 @@
                 font-family: $typo2;
                 color: $touareg ;
                 font-size: 1.8rem;
-
-                .see-more {
-                    width: 27px;
-                    height: 27px;
-                    border:none;
-                    background: url(../img/dashboard/see-more-1.png) no-repeat;
-                    margin-right: 0.5em;
-                }
-
-                .see-more:hover {
-                    background: url(../img/dashboard/see-more-hover-1.png) no-repeat;
-                }
-
-                 .cancel {
-                    width: 16px;
-                    height: 16px;
-                    background: url(../img/cancel.png) no-repeat;
-                }
             }
 
             td:last-child {
@@ -37,12 +19,6 @@
             }
         }
     }
-}
-
- .cancel {
-    width: 16px;
-    height: 16px;
-    background: url(../img/cancel.png) no-repeat;
 }
 
 .table > tbody > tr > td {

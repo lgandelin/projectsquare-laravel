@@ -142,6 +142,11 @@ $(document).ready(function() {
         maxWidth : 300
     });
 
+    //FILTERS
+    $('select[name^="filter_"]').on('change', function() {
+        $(this).closest('form').submit();
+    });
+
 });
 
 function reloadNotificationsPanel() {

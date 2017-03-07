@@ -5,6 +5,7 @@
         <div class="templates message-view-template">
             <div class="page-header">
                 <h1>{{ $conversation->title }}</h1>
+                <a href="{{ $back_link }}" class="btn back"></a>
             </div>
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -44,7 +45,6 @@
                     </div>
 
                     <div class="submit">
-                        <a href="{{ $back_link }}" class="btn back button pull-right"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.back') }}</a>
                         <button class="btn button pull-right reply-message" data-id="{{ $message->id }}" style="margin-right: 1rem;"><span class="glyphicon glyphicon-comment"></span> {{ trans('projectsquare::messages.reply_message') }}</button>
                     </div>
                 </div>

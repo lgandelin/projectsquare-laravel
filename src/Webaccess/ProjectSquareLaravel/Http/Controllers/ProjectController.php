@@ -5,10 +5,9 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use Webaccess\ProjectSquare\Entities\Task;
+use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\Tools\TaskController;
-use Webaccess\ProjectSquareLaravel\Tools\FilterTool;
 
 class ProjectController extends BaseController
 {
@@ -29,23 +28,26 @@ class ProjectController extends BaseController
 
         $request->session()->put('tasks_interface', 'project');
 
-        $tasks = app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest([
-            'projectID' => $projectID,
-            'statusID' => Input::get('filter_status'),
-            'allocatedUserID' => Input::get('filter_allocated_user'),
-        ]));
-
         return view('projectsquare::project.tasks', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'projects' => app()->make('ProjectManager')->getProjects(),
+            'phases' => app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
+                'projectID' => $projectID
+            ])),
             'users' => app()->make('UserManager')->getUsersByProject($projectID),
             'task_statuses' => TaskController::getTasksStatuses(),
             'filters' => [
                 'allocated_user' => Input::get('filter_allocated_user'),
                 'status' => Input::get('filter_status'),
                 'type' => Input::get('filter_type'),
+                'phase' => Input::get('filter_phase'),
             ],
-            'tasks' => Input::get('filter_status') ? $tasks : FilterTool::filterTaskList($tasks),
+            'tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest([
+                'projectID' => $projectID,
+                'statusID' => Input::get('filter_status'),
+                'phaseID' => Input::get('filter_phase'),
+                'allocatedUserID' => Input::get('filter_allocated_user'),
+            ])),
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
@@ -59,15 +61,6 @@ class ProjectController extends BaseController
 
         $request->session()->put('tickets_interface', 'project');
 
-        $tickets = app()->make('GetTicketInteractor')->getTicketsPaginatedList(
-            $this->getUser()->id,
-            env('TICKETS_PER_PAGE', 10),
-            $projectID,
-            Input::get('filter_allocated_user'),
-            Input::get('filter_status'),
-            Input::get('filter_type')
-        );
-
         return view('projectsquare::project.tickets', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'projects' => app()->make('ProjectManager')->getProjects(),
@@ -79,7 +72,14 @@ class ProjectController extends BaseController
                 'status' => Input::get('filter_status'),
                 'type' => Input::get('filter_type'),
             ],
-            'tickets' => Input::get('filter_status') ? $tickets : FilterTool::filterTicketList($tickets),
+            'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
+                $this->getUser()->id,
+                env('TICKETS_PER_PAGE', 10),
+                $projectID,
+                Input::get('filter_allocated_user'),
+                Input::get('filter_status'),
+                Input::get('filter_type')
+            ),
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
@@ -147,17 +147,5 @@ class ProjectController extends BaseController
                 'error' => $e->getMessage(),
             ], 500);
         }
-    }
-
-    protected function filterTaskList($tasks)
-    {
-        foreach ($tasks as $i => $task) {
-
-            //Remove completed tasks
-            if ($task->status_id == Task::COMPLETED)
-                unset($tasks[$i]);
-        }
-
-        return $tasks;
     }
 }

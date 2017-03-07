@@ -31,6 +31,7 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
     Route::post('/projects/calendar/create', array('as' => 'steps_create', 'uses' => 'Project\CalendarController@create'));
     Route::post('/projects/calendar/update', array('as' => 'steps_update', 'uses' => 'Project\CalendarController@update'));
     Route::post('/projects/calendar/delete', array('as' => 'steps_delete', 'uses' => 'Project\CalendarController@delete'));
+    Route::get('/project/users', array('as' => 'project_users', 'uses' => 'ProjectController@get_users'));
 
     //TOOLS
     Route::get('/tools/tickets', array('as' => 'tickets_index', 'uses' => 'Tools\TicketController@index'));
@@ -71,6 +72,7 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
 
     //MANAGEMENT
     Route::get('/management/progress', array('as' => 'progress', 'uses' => 'Management\ProgressController@index'));
+    Route::get('/management/spent-time', array('as' => 'spent_time', 'uses' => 'Management\SpentTimeController@index'));
     Route::get('/management/occupation', array('as' => 'occupation', 'uses' => 'Management\OccupationController@index'));
 
     //ADMINISTRATION
@@ -96,7 +98,7 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
     Route::post('/administration/projects/add_user', array('as' => 'projects_add_user', 'uses' => 'Administration\ProjectController@add_user'));
     Route::get('/administration/projects/delete_user/{uuid}/{user_id}', array('as' => 'projects_delete_user', 'uses' => 'Administration\ProjectController@delete_user'));
     Route::post('/administration/projects/tasks', array('as' => 'projects_update_tasks', 'uses' => 'Administration\ProjectController@update_tasks'));
-    Route::post('/administration/projects/allocate_task_in_planning', array('as' => 'projects_allocate_task_in_planning', 'uses' => 'Administration\ProjectController@allocate_task_in_planning'));
+    Route::post('/administration/projects/allocate_and_schedule_task', array('as' => 'projects_allocate_and_schedule_task', 'uses' => 'Administration\ProjectController@allocate_and_schedule_task'));
 
     Route::get('/administration/clients', array('as' => 'clients_index', 'uses' => 'Administration\ClientController@index'));
     Route::get('/administration/clients/add', array('as' => 'clients_add', 'uses' => 'Administration\ClientController@add'));

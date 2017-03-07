@@ -1,13 +1,14 @@
 <div class="page-header">
     <h1>{{ trans('projectsquare::projects.tasks') }}</h1>
+    <a href="{{ route('projects_index') }}" class="btn back"></a>
 </div>
 
 <div class="project-tasks">
     <div class="phases">
         @foreach ($phases as $phase)
-            <div class="phase" data-id="{{ $phase->id }}" data-name="{{ $phase->name }}" data-duration="{{ $phase->estimatedDuration }}">
+            <div class="phase" data-id="{{ $phase->id }}" data-duration="{{ $phase->estimatedDuration }}">
                 <div class="phase-wrapper">
-                    <span class="name">{{ $phase->name }}</span>
+                    <input type="text" class="input-phase-name" value="{{ $phase->name }}" />
                     <a tabindex="-1" href="#" class="btn cancel btn-delete delete-phase"></a>
                     <span class="glyphicon glyphicon-triangle-top toggle-tasks"></span>
                     <span class="phase-duration"><span class="value">{{ $phase->estimatedDuration }}</span> jour(s)</span>
@@ -15,9 +16,9 @@
 
                 <div class="tasks">
                     @foreach ($phase->tasks as $task)
-                        <div class="task" data-id="{{ $task->id }}" data-name="{{ $task->title }}" data-phase="{{ $phase->id }}" data-duration="{{ $task->estimatedTimeDays }}">
+                        <div class="task" data-id="{{ $task->id }}" data-phase="{{ $phase->id }}">
                             <div class="task-wrapper">
-                                <span class="name">{{ $task->title }}</span>
+                                <input type="text" class="input-task-name" value="{{ $task->title }}" />
                                 <a tabindex="-1" href="#" class="btn cancel delete-task"></a>
                                 <input class="input-task-duration" type="text" placeholder="durée en j." value="{{ $task->estimatedTimeDays }}" />
                             </div>

@@ -6,11 +6,11 @@
             <span class="preview"></span>
         </td>
         <td>
-            <p class="name">{%=file.name%}</p>
+            <span class="name">{%=file.name%}</span>
             <strong class="error text-danger"></strong>
         </td>
         <td width="150">
-            <p class="size">Processing...</p>
+            <span class="size">Processing...</span>
             
         </td>
         <td class="file_button" width="275">

@@ -56,6 +56,11 @@ class EloquentTicketRepository implements TicketRepository
             $tickets->whereHas('last_state.status', function ($query) use ($statusID) {
                 $query->where('id', '=', $statusID);
             });
+        } else {
+            //Keep only wanted states
+            $tickets->whereHas('last_state.status', function ($query) {
+                $query->where('include_in_planning', '=', true);
+            });
         }
 
         if ($allocatedUserID > 0) {
@@ -66,7 +71,9 @@ class EloquentTicketRepository implements TicketRepository
             $tickets->has('last_state.allocated_user', '=', 0);
         }
 
-        return $tickets->orderBy('updated_at', 'DESC');
+        $tickets->orderBy('updated_at', 'DESC');
+
+        return $tickets;
     }
 
     public function getTicket($ticketID, $userID = null)

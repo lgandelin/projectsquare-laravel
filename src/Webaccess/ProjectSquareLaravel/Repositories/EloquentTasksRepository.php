@@ -24,20 +24,20 @@ class EloquentTasksRepository implements TaskRepository
         return Task::find($taskID);
     }
 
-    public function getTasks($userID, $projectID = null, $statusID = null, $allocatedUserID = null, $entities = false)
+    public function getTasks($userID, $projectID = null, $statusID = null, $allocatedUserID = null, $phaseID = null, $entities = false)
     {
-        $tasks = $this->getTasksList($userID, $projectID, $statusID, $allocatedUserID, $entities);
+        $tasks = $this->getTasksList($userID, $projectID, $statusID, $allocatedUserID, $phaseID, $entities);
 
         return $entities ? $tasks : $tasks->get();
     }
 
-    public function getTasksList($userID, $projectID = null, $statusID = null, $allocatedUserID = null, $entities = false)
+    public function getTasksList($userID, $projectID = null, $statusID = null, $allocatedUserID = null, $phaseID = null, $entities = false)
     {
         $projectIDs = [];
 
         //Ressource projects
         $user = User::find($userID);
-        if ($user->projects) {
+        if ($user && $user->projects) {
             $projectIDs = $user->projects->pluck('id')->toArray();
         }
 
@@ -47,7 +47,7 @@ class EloquentTasksRepository implements TaskRepository
             $projectIDs[]= $project->id;
         }
 
-        $tasks = Task::whereIn('project_id', $projectIDs)->with('project', 'project.client')->with('project.client');
+        $tasks = Task::whereIn('project_id', $projectIDs)->with('project', 'project.client')->with('project.client')->with('phase');
 
         if ($projectID) {
             $tasks->where('project_id', '=', $projectID);
@@ -55,6 +55,8 @@ class EloquentTasksRepository implements TaskRepository
 
         if ($statusID) {
             $tasks->where('status_id', '=', $statusID);
+        } else {
+            $tasks->where('status_id', '!=', TaskEntity::COMPLETED);
         }
 
         if ($allocatedUserID > 0) {
@@ -63,6 +65,10 @@ class EloquentTasksRepository implements TaskRepository
 
         if ($allocatedUserID === 0) {
             $tasks->where('allocated_user_id', '=', '');
+        }
+
+        if ($phaseID) {
+            $tasks->where('phase_id', '=', $phaseID);
         }
 
         $tasks->orderBy('updated_at', 'DESC');
@@ -102,9 +108,9 @@ class EloquentTasksRepository implements TaskRepository
         return $result;
     }
 
-    public function getTasksPaginatedList($userID, $limit, $projectID = null, $statusID = null, $allocatedUserID = null)
+    public function getTasksPaginatedList($userID, $limit, $projectID = null, $statusID = null, $allocatedUserID = null, $phaseID = null)
     {
-        return $this->getTasksList($userID, $projectID, $statusID, $allocatedUserID)->paginate($limit);
+        return $this->getTasksList($userID, $projectID, $statusID, $allocatedUserID, $phaseID)->paginate($limit);
     }
 
     public function persistTask(TaskEntity $task)

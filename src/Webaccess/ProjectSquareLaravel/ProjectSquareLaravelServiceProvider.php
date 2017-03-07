@@ -23,7 +23,6 @@ use Webaccess\ProjectSquare\Interactors\Phases\DeletePhaseInteractor;
 use Webaccess\ProjectSquare\Interactors\Phases\GetPhaseInteractor;
 use Webaccess\ProjectSquare\Interactors\Phases\GetPhasesInteractor;
 use Webaccess\ProjectSquare\Interactors\Phases\UpdatePhaseInteractor;
-use Webaccess\ProjectSquare\Interactors\Planning\AllocateTaskInPlanningInteractor;
 use Webaccess\ProjectSquare\Interactors\Planning\CreateEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Planning\DeleteEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Planning\GetEventInteractor;
@@ -43,6 +42,7 @@ use Webaccess\ProjectSquare\Interactors\Projects\GetProjectProgressInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\UpdateProjectInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectInteractor;
 use Webaccess\ProjectSquare\Interactors\Projects\GetProjectsInteractor;
+use Webaccess\ProjectSquare\Interactors\Tasks\UnallocateTaskInteractor;
 use Webaccess\ProjectSquare\Interactors\Todos\CreateTodoInteractor;
 use Webaccess\ProjectSquare\Interactors\Todos\DeleteTodoInteractor;
 use Webaccess\ProjectSquare\Interactors\Todos\GetTodosInteractor;
@@ -57,6 +57,8 @@ use Webaccess\ProjectSquare\Interactors\Tasks\GetTaskInteractor;
 use Webaccess\ProjectSquare\Interactors\Tasks\CreateTaskInteractor;
 use Webaccess\ProjectSquare\Interactors\Tasks\UpdateTaskInteractor;
 use Webaccess\ProjectSquare\Interactors\Tasks\DeleteTaskInteractor;
+use Webaccess\ProjectSquare\Interactors\Tasks\AllocateAndScheduleTaskInteractor;
+use Webaccess\ProjectSquare\Interactors\Users\RemoveUserFromProjectInteractor;
 use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteLoadingTimeEvent;
 use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteStatusCodeEvent;
 use Webaccess\ProjectSquareLaravel\Http\Middleware\AfterConfig;
@@ -471,6 +473,27 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             );
         });
 
+        App::bind('AllocateAndScheduleTaskInteractor', function () {
+            return new AllocateAndScheduleTaskInteractor(
+                new EloquentEventRepository(),
+                new EloquentTasksRepository(),
+                new EloquentUserRepository(),
+                new EloquentNotificationRepository(),
+                new EloquentTicketRepository(),
+                new EloquentProjectRepository()
+            );
+        });
+
+        App::bind('UnallocateTaskInteractor', function () {
+            return new UnallocateTaskInteractor(
+                new EloquentTasksRepository(),
+                new EloquentProjectRepository(),
+                new EloquentEventRepository(),
+                new EloquentNotificationRepository()
+            );
+        });
+
+
         App::bind('GetPhaseInteractor', function () {
             return new GetPhaseInteractor(
                 new EloquentPhaseRepository()
@@ -514,14 +537,13 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             );
         });
 
-        App::bind('AllocateTaskInPlanningInteractor', function () {
-            return new AllocateTaskInPlanningInteractor(
-                new EloquentEventRepository(),
-                new EloquentTasksRepository(),
+        App::bind('RemoveUserFromProjectInteractor', function () {
+            return new RemoveUserFromProjectInteractor(
                 new EloquentUserRepository(),
-                new EloquentNotificationRepository(),
-                new EloquentTicketRepository(),
-                new EloquentProjectRepository()
+                new EloquentProjectRepository(),
+                new EloquentTasksRepository(),
+                new EloquentEventRepository(),
+                new EloquentNotificationRepository()
             );
         });
 

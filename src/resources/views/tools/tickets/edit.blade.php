@@ -5,6 +5,7 @@
         <div class="templates">
             <div class="page-header">
                 <h1>{{ trans('projectsquare::tickets.edit_ticket') }}</h1>
+                <a href="{{ $back_link }}" class="btn back"></a>
             </div>
 
             @if (isset($error))
@@ -20,22 +21,22 @@
             @endif
 
             <h3>{{ trans('projectsquare::tickets.ticket_data') }}</h3>
-            @include('projectsquare::tickets.ticket_infos')
+            @include('projectsquare::tools.tickets.ticket_infos')
 
             <hr/>
 
             <h3>{{ trans('projectsquare::tickets.ticket_state') }}</h3>
-            @include('projectsquare::tickets.ticket_state')
+            @include('projectsquare::tools.tickets.ticket_state')
 
             <hr/>
 
             <h3>{{ trans('projectsquare::tickets.files') }} <span class="badge badge-primary" style="margin-left: 1rem; margin-bottom: 2px;">{{ count($files) }}</span></h3>
-            @include('projectsquare::tickets.ticket_files')
+            @include('projectsquare::tools.tickets.ticket_files')
 
             <hr/>
 
             <h3>{{ trans('projectsquare::tickets.ticket_history') }} <span class="badge badge-primary" style="margin-left: 1rem; margin-bottom: 2px;">{{ count($ticket->states) }}</span></h3>
-            @include('projectsquare::tickets.ticket_history')
+            @include('projectsquare::tools.tickets.ticket_history')
 
             <hr/>
 

@@ -12,7 +12,6 @@
 
             <form method="get">
                 <div class="row">
-
                     <h2>{{ trans('projectsquare::tasks.filters.filters') }}</h2>
 
                     @if (!$is_client)
@@ -35,8 +34,13 @@
                         </select>
                     </div>
 
-                    <div class="col-md-2">
-                        <input class="btn button" type="submit" value="{{ trans('projectsquare::generic.valid') }}" />
+                    <div class="form-group col-md-2">
+                        <select class="form-control" name="filter_phase" id="filter_phase">
+                            <option value="">{{ trans('projectsquare::tasks.filters.by_phase') }}</option>
+                            @foreach ($phases as $phase)
+                                <option value="{{ $phase->id }}" @if ($filters['phase'] == $phase->id)selected="selected" @endif>{{ $phase->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
             </form>
@@ -49,6 +53,7 @@
                 <thead>
                 <tr>
                     <th>{{ trans('projectsquare::tasks.task') }}</th>
+                    <th>{{ trans('projectsquare::tasks.phase') }}</th>
                     <th>{{ trans('projectsquare::tasks.allocated_user') }}</th>
                     <th>{{ trans('projectsquare::tasks.status') }}</th>
                     <th>{{ trans('projectsquare::tasks.estimated_time') }}</th>
@@ -61,6 +66,7 @@
                 @foreach ($tasks as $task)
                     <tr>
                         <td>{{ $task->title }}</td>
+                        <td>@if ($task->phase){{ $task->phase->name }}@endif</td>
                         <td>
                             @if (isset($task->allocated_user))
                                 @include('projectsquare::includes.avatar', [

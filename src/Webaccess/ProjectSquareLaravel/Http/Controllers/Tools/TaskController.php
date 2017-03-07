@@ -9,11 +9,12 @@ use Webaccess\ProjectSquare\Requests\Notifications\ReadNotificationRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\CreateTaskRequest;
+use Webaccess\ProjectSquare\Requests\Tasks\UnallocateTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\UpdateTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\DeleteTaskRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
+use Webaccess\ProjectSquareLaravel\Http\Controllers\Management\OccupationController;
 use Webaccess\ProjectSquareLaravel\Models\User;
-use Webaccess\ProjectSquareLaravel\Tools\FilterTool;
 use Webaccess\ProjectSquareLaravel\Tools\StringTool;
 
 class TaskController extends BaseController
@@ -31,7 +32,7 @@ class TaskController extends BaseController
         ]));
 
         return view('projectsquare::tools.tasks.index', [
-            'tasks' => Input::get('filter_status') ? $tasks : FilterTool::filterTaskList($tasks),
+            'tasks' => $tasks,
             'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
             'users' => app()->make('UserManager')->getAgencyUsers(),
             'task_statuses' => self::getTasksStatuses(),
@@ -218,13 +219,21 @@ class TaskController extends BaseController
         parent::__construct($request);
 
         try {
-            app()->make('UpdateTaskInteractor')->execute(new UpdateTaskRequest([
+            app()->make('UnallocateTaskInteractor')->execute(new UnallocateTaskRequest([
                 'taskID' => Input::get('task_id'),
                 'requesterUserID' => $this->getUser()->id,
                 'allocatedUserID' => null
             ]));
 
-            return response()->json(['success' => true], 200);
+            $calendars = view('projectsquare::management.occupation.includes.calendar', [
+                'month_labels' => OccupationController::getMonthLabels(),
+                'calendars' => OccupationController::getUsersCalendarsByRole(Input::get('filter_role')),
+            ])->render();
+
+            return response()->json([
+                'success' => true,
+                'calendars' => $calendars
+            ], 200);
         } catch (\Exception $e) {
             $request->session()->flash('error', $e->getMessage());
             return response()->json(['error' => $e->getMessage()], 500);

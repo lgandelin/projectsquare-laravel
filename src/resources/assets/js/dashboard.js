@@ -16,7 +16,7 @@
         weekNumbers: true,
         weekends: false,
         minTime: '08:00',
-        maxTime: '21:00',
+        maxTime: '19:00',
         droppable: false,
         events: events,
         contentHeight: 'auto'

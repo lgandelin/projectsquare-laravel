@@ -5,12 +5,12 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Tools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Requests\Notifications\ReadNotificationRequest;
+use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\CreateTicketRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\DeleteTicketRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\UpdateTicketInfosRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\UpdateTicketRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
-use Webaccess\ProjectSquareLaravel\Tools\FilterTool;
 use Webaccess\ProjectSquareLaravel\Tools\StringTool;
 use Webaccess\ProjectSquareLaravel\Tools\UploadTool;
 
@@ -22,17 +22,17 @@ class TicketController extends BaseController
 
         $request->session()->put('tickets_interface', 'tickets');
 
-        $tickets = app()->make('GetTicketInteractor')->getTicketsPaginatedList(
-            $this->getUser()->id,
-            env('TICKETS_PER_PAGE', 10),
-            Input::get('filter_project'),
-            Input::get('filter_allocated_user'),
-            Input::get('filter_status'),
-            Input::get('filter_type')
-        );
-
         return view('projectsquare::tools.tickets.index', [
-            'tickets' => Input::get('filter_status') ? $tickets : FilterTool::filterTicketList($tickets),
+
+            //tickets variables
+            'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
+                $this->getUser()->id,
+                env('TICKETS_PER_PAGE', 10),
+                Input::get('filter_project'),
+                Input::get('filter_allocated_user'),
+                Input::get('filter_status'),
+                Input::get('filter_type')
+            ),
             'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
             'users' => app()->make('UserManager')->getAgencyUsers(),
             'ticket_statuses' => app()->make('TicketStatusManager')->getTicketStatuses(),
@@ -45,6 +45,18 @@ class TicketController extends BaseController
             ],
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
+
+            //planning variables
+            'events' => app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
+                'userID' => (Input::get('filter_planning_user')) ? Input::get('filter_planning_user') : $this->getUser()->id,
+                'projectID' => Input::get('filter_project'),
+            ])),
+            'filters_planning' => [
+                'project' => Input::get('filter_planning_project'),
+                'user' => Input::get('filter_planning_user'),
+            ],
+            'userID' => (Input::get('filter_planning_user')) ? Input::get('filter_planning_user') : $this->getUser()->id,
+            'currentUserID' => $this->getUser()->id,
         ]);
     }
 

@@ -10,9 +10,9 @@ use Webaccess\ProjectSquare\Requests\Phases\CreatePhaseRequest;
 use Webaccess\ProjectSquare\Requests\Phases\DeletePhaseRequest;
 use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
 use Webaccess\ProjectSquare\Requests\Phases\UpdatePhaseRequest;
-use Webaccess\ProjectSquare\Requests\Planning\AllocateTaskInPlanningRequest;
 use Webaccess\ProjectSquare\Requests\Projects\CreateProjectRequest;
 use Webaccess\ProjectSquare\Requests\Projects\UpdateProjectRequest;
+use Webaccess\ProjectSquare\Requests\Tasks\AllocateAndScheduleTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\CreateTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\DeleteTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\UpdateTaskRequest;
@@ -154,7 +154,6 @@ class ProjectController extends BaseController
             $phases = app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
                 'projectID' => $projectID
             ]));
-            $users = app()->make('UserManager')->getUsersByRole(Input::get('filter_role'));
         } catch (\Exception $e) {
             $request->session()->flash('error', $e->getMessage());
 
@@ -165,9 +164,8 @@ class ProjectController extends BaseController
             'tab' => 'attribution',
             'project' => $project,
             'phases' => $phases,
-            'month_labels' => ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-            'calendars' => OccupationController::getCalendarsByUsers($users),
-            'today' => (new DateTime())->setTime(0, 0, 0),
+            'month_labels' => OccupationController::getMonthLabels(),
+            'calendars' => OccupationController::getUsersCalendarsByRole(Input::get('filter_role')),
             'roles' => app()->make('RoleManager')->getRoles(),
             'filters' => [
                 'role' => Input::get('filter_role'),
@@ -234,10 +232,9 @@ class ProjectController extends BaseController
 
         try {
             $phases = json_decode($request->phases);
-
             $phaseIDs = [];
             foreach ($phases as $i => $phase) {
-                if ($phase->id == "") {
+                if (isset($phase->is_new) && $phase->is_new == "1") {
                     $response = app()->make('CreatePhaseInteractor')->execute(new CreatePhaseRequest([
                         'name' => $phase->name,
                         'projectID' => $request->project_id,
@@ -256,13 +253,13 @@ class ProjectController extends BaseController
                 }
 
                 foreach ($phase->tasks as $j => $task) {
-                    if ($task->id == "") {
+                    if (isset($task->is_new) && $task->is_new == "1") {
                         app()->make('CreateTaskInteractor')->execute(new CreateTaskRequest([
                             'title' => $task->name,
                             'statusID' => Task::TODO,
                             'order' => ($j + 1),
                             'estimatedTimeDays' => (isset($task->duration) && $task->duration != "") ? $task->duration : null,
-                            'phaseID' => ($phase->id == "") ? $response->phase->id : $phase->id,
+                            'phaseID' => (isset($phase->is_new) && $phase->is_new == "1") ? $response->phase->id : $phase->id,
                             'projectID' => $request->project_id,
                             'requesterUserID' => $this->getUser()->id
                         ]));
@@ -319,7 +316,7 @@ class ProjectController extends BaseController
         }
     }
 
-    public function allocate_task_in_planning(Request $request)
+    public function allocate_and_schedule_task(Request $request)
     {
         parent::__construct($request);
 
@@ -327,19 +324,16 @@ class ProjectController extends BaseController
             $userID = Input::get('allocated_user_id') ? Input::get('allocated_user_id') : $this->getUser()->id;
             $user = app()->make('UserManager')->getUser($userID);
 
-            app()->make('AllocateTaskInPlanningInteractor')->execute(new AllocateTaskInPlanningRequest([
+            app()->make('AllocateAndScheduleTaskInteractor')->execute(new AllocateAndScheduleTaskRequest([
                 'userID' => $user->id,
                 'day' => new \DateTime(Input::get('start_time')),
                 'taskID' => Input::get('task_id'),
                 'requesterUserID' => $user->id,
             ]));
 
-            $users = app()->make('UserManager')->getUsersByRole(Input::get('filter_role'));
-
-            $calendars = view('projectsquare::occupation.includes.calendar', [
-                'month_labels' => ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-                'calendars' => OccupationController::getCalendarsByUsers($users),
-                'today' => (new DateTime())->setTime(0, 0, 0),
+            $calendars = view('projectsquare::management.occupation.includes.calendar', [
+                'month_labels' => OccupationController::getMonthLabels(),
+                'calendars' => OccupationController::getUsersCalendarsByRole(Input::get('filter_role')),
             ])->render();
 
             $avatar = view('projectsquare::includes.avatar', [
@@ -454,7 +448,7 @@ class ProjectController extends BaseController
             $project = app()->make('ProjectManager')->getProject($projectID);
             $user = app()->make('UserManager')->getUser($userID);
 
-            app()->make('ProjectManager')->removeUserFromProject($projectID, $userID);
+            app()->make('ProjectManager')->removeUserFromProject($projectID, $userID, $this->getUser()->id);
             $request->session()->flash('confirmation', trans('projectsquare::projects.delete_user_from_project_success'));
         } catch (\Exception $e) {
             $request->session()->flash('error', trans('projectsquare::projects.delete_user_from_project_error'));

@@ -42,10 +42,6 @@
                             @endforeach
                         </select>
                     </div>
-
-                    <div class="col-md-2">
-                        <input class="btn button" type="submit" value="{{ trans('projectsquare::generic.valid') }}" />
-                    </div>
                 </div>
             </form>
 
@@ -70,6 +66,7 @@
                     <tr>
                         <th></th>
                         <th>{{ trans('projectsquare::tasks.task') }}</th>
+                        <th>{{ trans('projectsquare::tasks.phase') }}</th>
                         <th>{{ trans('projectsquare::tasks.client') }}</th>
                         <th>{{ trans('projectsquare::tasks.allocated_user') }}</th>
                         <th>{{ trans('projectsquare::tasks.status') }}</th>
@@ -84,6 +81,7 @@
                         <tr>
                             <td @if (isset($task->project))style="border-left: 10px solid {{ $task->project->color }}"@endif></td>
                             <td>{{ $task->title }}</td>
+                            <td>@if ($task->phase){{ $task->phase->name }}@endif</td>
                             <td>@if (isset($task->project)){{ $task->project->client->name }}@endif</td>
                             <td>
                                 @if (isset($task->allocated_user))

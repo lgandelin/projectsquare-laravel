@@ -37,15 +37,14 @@
 }
 
 .back {
-    border: 1px solid $light-blue;
-    border-radius: 0px;
-    color: $touareg;
-    background: none;
+    background: url(../img/back/back.png) no-repeat;
+    width: 28px;
+    height: 28px;
+    float: right;
 }
 
 .back:hover {
-    background: $light_blue;
-    color: white;
+    background: url(../img/back/back-hover.png) no-repeat;
 }
 
 .users {
@@ -89,4 +88,28 @@
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+}
+
+.see-more {
+    width: 27px;
+    height: 27px;
+    border:none;
+    background: url(../img/dashboard/see-more-1.png) no-repeat;
+    margin-right: 0.5em;
+}
+
+.see-more:hover {
+    background: url(../img/dashboard/see-more-hover-1.png) no-repeat;
+}
+
+.move-widget {
+    font-size: 2.5rem;
+    margin-right: 1rem;
+    color: #096a85;
+}
+
+.cancel {
+    width: 16px;
+    height: 16px;
+    background: url(../img/cancel.png) no-repeat;
 }

@@ -5,6 +5,7 @@
         <div class="templates">
             <div class="page-header">
                 <h1>{{ trans('projectsquare::roles.edit_role') }}</h1>
+                <a href="{{ route('roles_index') }}" class="btn back"></a>
             </div>
 
             @if (isset($error))

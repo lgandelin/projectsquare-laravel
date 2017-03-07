@@ -1,9 +1,58 @@
 $(document).ready(function() {
     initTasksDragAndDrop();
+
+    $('.attribution-template').on('click', '.task .allocated .unallocate-task', function() {
+
+        if (!confirm('Etes-vous sûrs de vouloir désattribuer cette tâche ?')) {
+            return false;
+        }
+
+        var task = $(this).closest('.task');
+        task.css('opacity', 0.8);
+
+        var data = {
+            task_id: task.attr('data-id'),
+            filter_role: $('select[name="filter_role"]').val(),
+            _token: $('#csrf_token').val()
+        };
+
+        $('#calendars .loading').show();
+
+        var month_index = $('#months_index').val();
+
+        $.ajax({
+            type: "POST",
+            url: route_task_unallocate,
+            data: data,
+            success: function(data) {
+                task.find('.task-wrapper').removeClass('allocated');
+                task.find('.avatar').remove();
+                task.css('opacity', 1.0);
+                initTasksDragAndDrop();
+                task.find('.task-wrapper').draggable('enable');
+
+                //Updates calendar
+                $('#calendars .loading').hide();
+                $('#calendars').html(data.calendars);
+
+                //Reinit drag and drop
+                initTasksDragAndDrop();
+
+                //Reinit calendar
+                initCalendarNavigation();
+                displayMonth(month_index);
+            },
+            error: function(data) {
+                data = $.parseJSON(data.responseText);
+                alert(data.message);
+                task.css('opacity', 1.0);
+            }
+        });
+    });
 });
 
 function initTasksDragAndDrop() {
-    $('.task-wrapper:not(.disabled)').draggable({
+    $('.task-wrapper:not(.allocated)').draggable({
         zIndex: 999,
         revert: function(valid) {
             $('.task-wrapper').css('opacity', 1);
@@ -12,7 +61,7 @@ function initTasksDragAndDrop() {
         snap: '.user-day',
         revertDuration: 0,
         tolerance: 'pointer',
-        handle: '.drag-task',
+        //handle: '.drag-task',
         cursor: 'move',
         cursorAt: { left: 20, top: 20 },
         helper: function(e) {
@@ -48,9 +97,14 @@ function initTasksDragAndDrop() {
                 start_time: day,
                 duration: task.attr('data-duration'),
                 task_id: task_id,
+                filter_role: $('select[name="filter_role"]').val(),
                 project_id: $('#project_id').val(),
                 _token: $('#csrf_token').val()
             };
+
+            if (ui.helper.offset().left != $(this).offset().left) {
+                ui.helper.animate({ 'left': $(this).offset().left}, 500);
+            }
 
             $('#calendars .loading').show();
 
@@ -58,7 +112,7 @@ function initTasksDragAndDrop() {
 
             $.ajax({
                 type: "POST",
-                url: route_allocate_task_in_planning,
+                url: route_allocate_and_schedule_task,
                 data: data,
                 success: function(data) {
                     //Updates calendar
@@ -73,7 +127,7 @@ function initTasksDragAndDrop() {
                     displayMonth(month_index);
 
                     //Update task in list
-                    $('.task[data-id="' + task_id + '"]').css('opacity', 1).find('.task-wrapper').draggable('disable').addClass('disabled').prepend(data.avatar);
+                    $('.task[data-id="' + task_id + '"]').css('opacity', 1).find('.task-wrapper').draggable('disable').addClass('allocated').prepend(data.avatar);
                 },
                 error: function(data) {
                 }

@@ -25,7 +25,7 @@
                             @foreach ($firstMonth->getDays() as $day)
                                 @if ($day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SATURDAY && $day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SUNDAY)
                                     <?php $index++; ?>
-                                    <th class="day @if($day->getDateTime()->setTime(0, 0, 0) == $today) today @endif @if($day->isDisabled()) disabled @endif" @if($index%5 == 0)style="border-right-width: 2px"@endif>{{ $day->getNumber() }}</th>
+                                    <th class="day @if($day->getDateTime()->format('Y-m-d') == date('Y-m-d')) today @endif @if($day->isDisabled()) disabled @endif" @if($index%5 == 0)style="border-right-width: 2px"@endif>{{ $day->getNumber() }}</th>
                                 @endif
                             @endforeach
                         </tr>
