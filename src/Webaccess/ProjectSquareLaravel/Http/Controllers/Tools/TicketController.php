@@ -5,6 +5,7 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Tools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Requests\Notifications\ReadNotificationRequest;
+use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\CreateTicketRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\DeleteTicketRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\UpdateTicketInfosRequest;
@@ -22,6 +23,8 @@ class TicketController extends BaseController
         $request->session()->put('tickets_interface', 'tickets');
 
         return view('projectsquare::tools.tickets.index', [
+
+            //tickets variables
             'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
                 $this->getUser()->id,
                 env('TICKETS_PER_PAGE', 10),
@@ -42,6 +45,18 @@ class TicketController extends BaseController
             ],
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
+
+            //planning variables
+            'events' => app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
+                'userID' => (Input::get('filter_planning_user')) ? Input::get('filter_planning_user') : $this->getUser()->id,
+                'projectID' => Input::get('filter_project'),
+            ])),
+            'filters_planning' => [
+                'project' => Input::get('filter_planning_project'),
+                'user' => Input::get('filter_planning_user'),
+            ],
+            'userID' => (Input::get('filter_planning_user')) ? Input::get('filter_planning_user') : $this->getUser()->id,
+            'currentUserID' => $this->getUser()->id,
         ]);
     }
 

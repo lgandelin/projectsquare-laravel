@@ -47,6 +47,17 @@
         max-height: 410px;
         clear: right;
     }
+
+    .ticket-dragndrop {
+        vertical-align: middle;
+        display: inline-block;
+        margin-top: 6px;
+
+        .move-widget:hover {
+            text-decoration: none;
+            color: $green;
+        }
+    }
 }
 
 .ticket-infos {
