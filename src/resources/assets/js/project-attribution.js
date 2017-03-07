@@ -12,6 +12,7 @@ $(document).ready(function() {
 
         var data = {
             task_id: task.attr('data-id'),
+            filter_role: $('select[name="filter_role"]').val(),
             _token: $('#csrf_token').val()
         };
 
@@ -96,6 +97,7 @@ function initTasksDragAndDrop() {
                 start_time: day,
                 duration: task.attr('data-duration'),
                 task_id: task_id,
+                filter_role: $('select[name="filter_role"]').val(),
                 project_id: $('#project_id').val(),
                 _token: $('#csrf_token').val()
             };

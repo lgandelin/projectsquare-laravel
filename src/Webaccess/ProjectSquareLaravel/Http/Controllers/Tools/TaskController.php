@@ -2,7 +2,6 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Tools;
 
-use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -226,12 +225,9 @@ class TaskController extends BaseController
                 'allocatedUserID' => null
             ]));
 
-            $users = app()->make('UserManager')->getUsersByRole(Input::get('filter_role'));
-
             $calendars = view('projectsquare::management.occupation.includes.calendar', [
-                'month_labels' => ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-                'calendars' => OccupationController::getCalendarsByUsers($users),
-                'today' => (new DateTime())->setTime(0, 0, 0),
+                'month_labels' => OccupationController::getMonthLabels(),
+                'calendars' => OccupationController::getUsersCalendarsByRole(Input::get('filter_role')),
             ])->render();
 
             return response()->json([

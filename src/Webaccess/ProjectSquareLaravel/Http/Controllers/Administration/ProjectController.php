@@ -154,7 +154,6 @@ class ProjectController extends BaseController
             $phases = app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
                 'projectID' => $projectID
             ]));
-            $users = app()->make('UserManager')->getUsersByRole(Input::get('filter_role'));
         } catch (\Exception $e) {
             $request->session()->flash('error', $e->getMessage());
 
@@ -165,9 +164,8 @@ class ProjectController extends BaseController
             'tab' => 'attribution',
             'project' => $project,
             'phases' => $phases,
-            'month_labels' => ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-            'calendars' => OccupationController::getCalendarsByUsers($users),
-            'today' => (new DateTime())->setTime(0, 0, 0),
+            'month_labels' => OccupationController::getMonthLabels(),
+            'calendars' => OccupationController::getUsersCalendarsByRole(Input::get('filter_role')),
             'roles' => app()->make('RoleManager')->getRoles(),
             'filters' => [
                 'role' => Input::get('filter_role'),
@@ -333,12 +331,9 @@ class ProjectController extends BaseController
                 'requesterUserID' => $user->id,
             ]));
 
-            $users = app()->make('UserManager')->getUsersByRole(Input::get('filter_role'));
-
             $calendars = view('projectsquare::management.occupation.includes.calendar', [
-                'month_labels' => ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-                'calendars' => OccupationController::getCalendarsByUsers($users),
-                'today' => (new DateTime())->setTime(0, 0, 0),
+                'month_labels' => OccupationController::getMonthLabels(),
+                'calendars' => OccupationController::getUsersCalendarsByRole(Input::get('filter_role')),
             ])->render();
 
             $avatar = view('projectsquare::includes.avatar', [

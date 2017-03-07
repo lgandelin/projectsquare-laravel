@@ -2,7 +2,6 @@
 
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Management;
 
-use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
@@ -16,12 +15,9 @@ class OccupationController extends BaseController
     {
         parent::__construct($request);
 
-        $users = app()->make('UserManager')->getUsersByRole(Input::get('filter_role'));
-
         return view('projectsquare::management.occupation.index', [
-            'month_labels' => ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-            'calendars' => self::getCalendarsByUsers($users),
-            'today' => (new DateTime())->setTime(0, 0, 0),
+            'month_labels' => self::getMonthLabels(),
+            'calendars' => self::getUsersCalendarsByRole(Input::get('filter_role')),
             'roles' => app()->make('RoleManager')->getRoles(),
             'filters' => [
                 'role' => Input::get('filter_role'),
@@ -30,11 +26,13 @@ class OccupationController extends BaseController
     }
 
     /**
-     * @param $users
+     * @param null $roleID
      * @return array
      */
-    public static function getCalendarsByUsers($users)
+    public static function getUsersCalendarsByRole($roleID = null)
     {
+        $users = app()->make('UserManager')->getUsersByRole($roleID);
+
         $events = [];
         foreach ($users as $user) {
             $events[$user->id] = app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
@@ -94,5 +92,13 @@ class OccupationController extends BaseController
         }
 
         return $calendars;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getMonthLabels()
+    {
+        return ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
     }
 }
