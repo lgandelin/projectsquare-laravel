@@ -37,7 +37,7 @@ class EloquentTasksRepository implements TaskRepository
 
         //Ressource projects
         $user = User::find($userID);
-        if ($user->projects) {
+        if ($user && $user->projects) {
             $projectIDs = $user->projects->pluck('id')->toArray();
         }
 

@@ -453,7 +453,7 @@ class ProjectController extends BaseController
             $project = app()->make('ProjectManager')->getProject($projectID);
             $user = app()->make('UserManager')->getUser($userID);
 
-            app()->make('ProjectManager')->removeUserFromProject($projectID, $userID);
+            app()->make('ProjectManager')->removeUserFromProject($projectID, $userID, $this->getUser()->id);
             $request->session()->flash('confirmation', trans('projectsquare::projects.delete_user_from_project_success'));
         } catch (\Exception $e) {
             $request->session()->flash('error', trans('projectsquare::projects.delete_user_from_project_error'));

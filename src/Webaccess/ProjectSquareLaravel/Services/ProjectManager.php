@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Services;
 
+use Webaccess\ProjectSquare\Requests\Users\RemoveUserFromProjectRequest;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
 
 class ProjectManager
@@ -84,8 +85,12 @@ class ProjectManager
         return $this->repository->isUserInProject($projectID, $userID);
     }
 
-    public function removeUserFromProject($projectID, $userID)
+    public function removeUserFromProject($projectID, $userID, $requesterUserID)
     {
-        $this->repository->removeUserFromProject($projectID, $userID);
+        app()->make('RemoveUserFromProjectInteractor')->execute(new RemoveUserFromProjectRequest([
+            'userID' => $userID,
+            'projectID' => $projectID,
+            'requesterUserID' => $requesterUserID,
+        ]));
     }
 }
