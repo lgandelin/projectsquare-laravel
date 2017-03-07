@@ -1,9 +1,42 @@
 $(document).ready(function() {
     initTasksDragAndDrop();
+
+    $('.attribution-template').on('click', '.task .allocated .unallocate-task', function() {
+
+        if (!confirm('Etes-vous sûrs de vouloir désattribuer cette tâche ?')) {
+            return false;
+        }
+
+        var task = $(this).closest('.task');
+        task.css('opacity', 0.8);
+
+        var data = {
+            task_id: task.attr('data-id'),
+            _token: $('#csrf_token').val()
+        };
+
+        $.ajax({
+            type: "POST",
+            url: route_task_unallocate,
+            data: data,
+            success: function(data) {
+                task.find('.task-wrapper').removeClass('allocated');
+                task.find('.avatar').remove();
+                task.css('opacity', 1.0);
+                task.find('.task-wrapper').draggable('enable');
+                initTasksDragAndDrop();
+            },
+            error: function(data) {
+                data = $.parseJSON(data.responseText);
+                alert(data.message);
+                task.css('opacity', 1.0);
+            }
+        });
+    });
 });
 
 function initTasksDragAndDrop() {
-    $('.task-wrapper:not(.disabled)').draggable({
+    $('.task-wrapper:not(.allocated)').draggable({
         zIndex: 999,
         revert: function(valid) {
             $('.task-wrapper').css('opacity', 1);
@@ -12,7 +45,7 @@ function initTasksDragAndDrop() {
         snap: '.user-day',
         revertDuration: 0,
         tolerance: 'pointer',
-        handle: '.drag-task',
+        //handle: '.drag-task',
         cursor: 'move',
         cursorAt: { left: 20, top: 20 },
         helper: function(e) {
@@ -77,7 +110,7 @@ function initTasksDragAndDrop() {
                     displayMonth(month_index);
 
                     //Update task in list
-                    $('.task[data-id="' + task_id + '"]').css('opacity', 1).find('.task-wrapper').draggable('disable').addClass('disabled').prepend(data.avatar);
+                    $('.task[data-id="' + task_id + '"]').css('opacity', 1).find('.task-wrapper').draggable('disable').addClass('allocated').prepend(data.avatar);
                 },
                 error: function(data) {
                 }

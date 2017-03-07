@@ -2,6 +2,7 @@
     
     .phases {
         max-width: 1450px;
+        margin-bottom: 5rem;
         padding-top: 5rem;
         padding-right: 2.5rem;
         max-height: 500px;
@@ -64,13 +65,31 @@
                 .drag-task:hover {
                     color: $green;
                 }
+
+                .unallocate-task {
+                    color: white;
+                    float: right;
+                    margin-right: 1rem;
+                    font-size: 20px;
+
+                    opacity: 0.25;
+                    cursor: default;
+                }
+
+                .unallocate-task:hover {
+                    color: white;
+                }
+            }
+
+            .task-wrapper:not(.allocated) {
+                cursor: move;
             }
         }
 
         .tasks {
             margin-left: 6rem;
 
-            .disabled {
+            .allocated {
                 .drag-task {
                     opacity: 0.25;
                     cursor: default;
@@ -78,6 +97,16 @@
 
                 .drag-task:hover {
                     color: white;
+                }
+
+                .unallocate-task {
+                    opacity: 1;
+                    color: white;
+                    cursor: pointer;
+                }
+
+                .unallocate-task:hover {
+                    color: $green;
                 }
             }
         }
@@ -126,6 +155,10 @@
         font-size: 21px;
 
         cursor: pointer;
+    }
+    
+    .unallocate-task {
+        display: none;
     }
 }
 

@@ -23,7 +23,7 @@ use Webaccess\ProjectSquare\Interactors\Phases\DeletePhaseInteractor;
 use Webaccess\ProjectSquare\Interactors\Phases\GetPhaseInteractor;
 use Webaccess\ProjectSquare\Interactors\Phases\GetPhasesInteractor;
 use Webaccess\ProjectSquare\Interactors\Phases\UpdatePhaseInteractor;
-use Webaccess\ProjectSquare\Interactors\Planning\AllocateTaskInPlanningInteractor;
+use Webaccess\ProjectSquare\Interactors\Planning\AllocateAndScheduleTaskInteractor;
 use Webaccess\ProjectSquare\Interactors\Planning\CreateEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Planning\DeleteEventInteractor;
 use Webaccess\ProjectSquare\Interactors\Planning\GetEventInteractor;
@@ -515,7 +515,7 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         });
 
         App::bind('AllocateTaskInPlanningInteractor', function () {
-            return new AllocateTaskInPlanningInteractor(
+            return new AllocateAndScheduleTaskInteractor(
                 new EloquentEventRepository(),
                 new EloquentTasksRepository(),
                 new EloquentUserRepository(),
