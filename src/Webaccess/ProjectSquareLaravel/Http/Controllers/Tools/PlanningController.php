@@ -23,40 +23,12 @@ class PlanningController extends BaseController
 
         $userID = (Input::get('filter_user')) ? Input::get('filter_user') : $this->getUser()->id;
 
-        $allocatedTickets = app()->make('GetTicketInteractor')->getTicketsList(
-            $userID,
-            Input::get('filter_project'),
-            $userID
-        );
-
-        $nonAllocatedTickets = app()->make('GetTicketInteractor')->getTicketsList(
-            $userID,
-            Input::get('filter_project'),
-            0
-        );
-
-        $allocatedTasks = app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
-            'userID' => $this->getUser()->id,
-            'projectID' => Input::get('filter_project'),
-            'allocatedUserID' => $userID,
-        ]));
-
-        $nonAllocatedTasks = app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
-            'userID' => $this->getUser()->id,
-            'projectID' => Input::get('filter_project'),
-            'allocatedUserID' => 0,
-        ]));
-
         return view('projectsquare::tools.planning.index', [
             'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
             'events' => app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
                 'userID' => $userID,
                 'projectID' => Input::get('filter_project'),
             ])),
-            'allocated_tickets' => $allocatedTickets,
-            'non_allocated_tickets' => $nonAllocatedTickets,
-            'allocated_tasks' => $allocatedTasks,
-            'non_allocated_tasks' => $nonAllocatedTasks,
             'filters' => [
                 'project' => Input::get('filter_project'),
                 'user' => Input::get('filter_user'),
