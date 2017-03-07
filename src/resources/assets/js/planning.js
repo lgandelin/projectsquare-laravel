@@ -183,17 +183,13 @@ $(document).ready(function() {
 
             $('#planning').fullCalendar('unselect');
         },
-        drop: function(date, jsEvent, ui, resourceId) {
-            $('.tickets-current-project').val($(this).data('project'));
-            $('.tickets-current-ticket').val($(this).data('ticket'));
-            $('.tasks-current-project').val($(this).data('project'));
-            $('.tasks-current-task').val($(this).data('task'));
-        },
         eventReceive: function(event, delta, revertFunc) {
 
             if (event.allDay) {
                 return false;
             }
+
+            console.log(event)
 
             $('#event-infos .wrapper').show();
             $('#event-infos .loading').show();
@@ -203,10 +199,8 @@ $(document).ready(function() {
                 name: event.title,
                 start_time: event.start.format(),
                 end_time: event.end.format(),
+                ticket_id: event.ticket_id,
                 user_id: $('#user_id').val(),
-                project_id: $('.tickets-current-project').val(),
-                ticket_id: $('.tickets-current-ticket').val(),
-                task_id: $('.tasks-current-task').val(),
                 _token: $('#csrf_token').val()
             };
 
@@ -217,9 +211,6 @@ $(document).ready(function() {
                 success: function(data) {
                     event._id = data.event.id;
                     event.color = data.event.color;
-                    event.project_id = $('.tickets-current-project').val();
-                    event.ticket_id = $('.tickets-current-ticket').val();
-                    event.task_id = $('.tasks-current-task').val();
                     $('#planning').fullCalendar('updateEvent', event);
 
                     $('#event-infos .wrapper').find('.id').val(data.event.id);
@@ -228,7 +219,7 @@ $(document).ready(function() {
                     $('#event-infos .wrapper').find('.start_time_hour').val(moment(data.event.start_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
                     $('#event-infos .wrapper').find('.end_time').val(moment(data.event.end_time).format('DD/MM/YYYY'));
                     $('#event-infos .wrapper').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
-                    $('#event-infos .wrapper').find('.project_id').val(event.project_id);
+                    $('#event-infos .wrapper').find('.project_id').val(data.event.project_id);
 
                     $('#event-infos .loading').hide();
                 }
@@ -271,95 +262,4 @@ $(document).ready(function() {
     $('#event-infos .btn-close').click(function() {
         $(this).parent().hide();
     });
-
-    //DRAG AND DROP
-    initTicketDragAndDrop()
-    initTaskDragAndDrop()
-
-    $('.tickets-list').show();
-    $('.tasks-list').show();
-
-    //UNALLOCATE TICKETS
-    $('.tickets-list').on('click', '.unallocate-ticket', function() {
-        var ticket = $(this).closest('.ticket');
-        var data = {
-            ticket_id: ticket.data('id'),
-            _token: $('#csrf_token').val()
-        };
-
-        $.ajax({
-            type: "POST",
-            url: route_ticket_unallocate,
-            data: data,
-            success: function(data) {
-                $('#ticket-' + ticket.data('id')).find('.unallocate-ticket').hide();
-                var html = $('#ticket-' + ticket.data('id'));
-                $('#non-allocated-tickets-list').append(html);
-            },
-            error: function(data) {
-                data = $.parseJSON(data.responseText);
-                alert(data.message)
-            }
-        });
-    });
-
-    //UNALLOCATE TASKS
-    $('.tasks-list').on('click', '.unallocate-task', function() {
-        var task = $(this).closest('.task');
-        var data = {
-            task_id: task.data('id'),
-            _token: $('#csrf_token').val()
-        };
-
-        $.ajax({
-            type: "POST",
-            url: route_task_unallocate,
-            data: data,
-            success: function(data) {
-                $('#task-' + task.data('id')).find('.unallocate-task').hide();
-                var html = $('#task-' + task.data('id'));
-                $('#non-allocated-tasks-list').append(html);
-            },
-            error: function(data) {
-                data = $.parseJSON(data.responseText);
-                alert(data.message)
-            }
-        });
-    });
 });
-
-function initTicketDragAndDrop() {
-    $('.tickets-list .ticket').each(function() {
-
-        // store data so the planning knows to render an event upon drop
-        $(this).data('event', {
-            title: $.trim($(this).text()), // use the element's text as the event title
-            stick: true // maintain when user navigates (see docs on the renderEvent method)
-        });
-
-        // make the event draggable using jQuery UI
-        $(this).draggable({
-            zIndex: 999,
-            revert: true,      // will cause the event to go back to its
-            revertDuration: 0  //  original position after the drag
-        });
-    });
-}
-
-function initTaskDragAndDrop() {
-    $('.tasks-list .task').each(function() {
-
-        // store data so the planning knows to render an event upon drop
-        $(this).data('event', {
-            title: $.trim($(this).text()), // use the element's text as the event title
-            stick: true // maintain when user navigates (see docs on the renderEvent method)
-        });
-
-        // make the event draggable using jQuery UI
-        $(this).draggable({
-            zIndex: 999,
-            revert: true,      // will cause the event to go back to its
-            revertDuration: 0  //  original position after the drag
-        });
-    });
-}

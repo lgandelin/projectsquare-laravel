@@ -20,7 +20,7 @@
                     <label for="allocated_user_id">{{ trans('projectsquare::tickets.allocated_user') }}</label>
                     @if (isset($users))
                     <select class="form-control" name="allocated_user_id">
-                        <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+                        <option value="0">{{ trans('projectsquare::generic.choose_value') }}</option>
                         @foreach ($users as $user)
                         <option value="{{ $user->id }}" @if (isset($ticket) && isset($ticket->states[0]) && $ticket->states[0]->allocatedUserID == $user->id)selected="selected"@endif>{{ $user->complete_name }}</option>
                         @endforeach

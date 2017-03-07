@@ -115,7 +115,14 @@
                                 <td>@if (isset($ticket->last_state) && $ticket->last_state->spent_time_days > 0){{ $ticket->last_state->spent_time_days }} {{ trans('projectsquare::generic.days') }}@endif @if (isset($ticket->last_state) && $ticket->last_state->spent_time_hours > 0){{ $ticket->last_state->spent_time_hours }} {{ trans('projectsquare::generic.hours') }}@endif</td>
                                 <td align="right">
                                     <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}" class="btn see-more"></a>
-                                    <a href="#" class="glyphicon glyphicon-move move-widget"></a>
+                                    <span class="ticket-dragndrop" id="ticket-{{ $ticket->id }}"
+                                          data-id="{{ $ticket->id }}"
+                                          data-title="{{ $ticket->title }}"
+                                          data-duration="{{ $ticket->last_state->estimated_time_hours }}:00"
+                                          data-project="{{ $ticket->project->id }}"
+                                    >
+                                        <a href="#" class="glyphicon glyphicon-move move-widget" title="Planifier le ticket"></a>
+                                    </span>
                                     
                                     <a href="{{ route('tickets_delete', ['id' => $ticket->id]) }}" class="btn cancel btn-delete"></a>
                                 </td>
@@ -222,6 +229,7 @@
     <script src="{{ asset('js/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/locale-all.js') }}"></script>
     <script src="{{ asset('js/planning.js') }}"></script>
+    <script src="{{ asset('js/tickets.js') }}"></script>
     <script>
         var defaultDate = "{{ date('Y-m-d') }}";
         var events = [
