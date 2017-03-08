@@ -128,9 +128,13 @@ $(document).ready(function() {
 
     //Lose focus on enter
     $(document).keypress(function(e) {
-        if (e.which == 13) {
+        if (e.which == 13 && !$('textarea[name="text"]').is(':focus')) {
             $(':focus').blur();
         }
+    });
+
+    $('.button-import-phases-tasks').click(function() {
+        $('#import-phases-tasks-modal').modal();
     });
 });
 

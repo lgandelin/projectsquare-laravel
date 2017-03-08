@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Entities\Task;
 use Webaccess\ProjectSquare\Requests\Phases\CreatePhaseRequest;
+use Webaccess\ProjectSquare\Requests\Phases\CreatePhasesAndTasksFromTextRequest;
 use Webaccess\ProjectSquare\Requests\Phases\DeletePhaseRequest;
 use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
 use Webaccess\ProjectSquare\Requests\Phases\UpdatePhaseRequest;
@@ -314,6 +315,27 @@ class ProjectController extends BaseController
                 'error' => $e->getMessage(),
             ], 500);
         }
+    }
+
+    public function import_phases_and_tasks_from_text(Request $request)
+    {
+        parent::__construct($request);
+
+        $projectID = Input::get('project_id');
+
+        try {
+            app()->make('CreatePhasesAndTasksFromTextInteractor')->execute(new CreatePhasesAndTasksFromTextRequest([
+                'text' => Input::get('text'),
+                'projectID' => $projectID,
+                'requesterUserID' => $this->getUser()->id,
+            ]));
+
+            $request->session()->flash('confirmation', trans('projectsquare::projects.import_phases_and_tasks_from_text_success'));
+        } catch (\Exception $e) {
+            $request->session()->flash('error', trans('projectsquare::projects.import_phases_and_tasks_from_text_error'));
+        }
+
+        return redirect()->route('projects_edit_tasks', ['uuid' => $projectID]);
     }
 
     public function allocate_and_schedule_task(Request $request)
