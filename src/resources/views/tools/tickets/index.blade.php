@@ -120,7 +120,7 @@
                                     <span class="ticket-dragndrop" id="ticket-{{ $ticket->id }}"
                                           data-id="{{ $ticket->id }}"
                                           data-title="{{ $ticket->title }}"
-                                          data-duration="{{ $ticket->last_state->estimated_time_hours }}:00"
+                                          data-duration="@if ($ticket->last_state->estimated_time_hours){{ $ticket->last_state->estimated_time_hours . ':00' }}@else {{ '02:00' }}@endif"
                                           data-project="{{ $ticket->project->id }}"
                                     >
                                         <a href="#" class="glyphicon glyphicon-move move-widget" title="Planifier le ticket"></a>
