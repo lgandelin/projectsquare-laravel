@@ -69,20 +69,23 @@
                 .unallocate-task {
                     color: white;
                     float: right;
-                    margin-right: 1rem;
                     font-size: 20px;
 
-                    opacity: 0.25;
+                    display: none;
                     cursor: default;
-                }
-
-                .unallocate-task:hover {
-                    color: white;
                 }
             }
 
             .task-wrapper:not(.allocated) {
                 cursor: move;
+            }
+
+            .task-wrapper:not(.allocated):hover {
+                opacity: 0.9;
+            }
+
+            .task.dragged {
+                opacity: 0.8;
             }
         }
 
@@ -91,7 +94,7 @@
 
             .allocated {
                 .drag-task {
-                    opacity: 0.25;
+                    display: none;
                     cursor: default;
                 }
 
@@ -100,7 +103,7 @@
                 }
 
                 .unallocate-task {
-                    opacity: 1;
+                    display: block;
                     color: white;
                     cursor: pointer;
                 }

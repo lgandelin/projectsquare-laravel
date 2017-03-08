@@ -13,7 +13,7 @@ class CreateProjectUserTable extends Migration
         Schema::create('user_projects', function (Blueprint $table) {
             $table->uuid('user_id');
             $table->uuid('project_id');
-            $table->integer('role_id');
+            $table->integer('role_id')->nullable();
         });
     }
 

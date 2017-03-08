@@ -14742,68 +14742,71 @@ body {
 .attribution-template .phases .phase .task-wrapper .unallocate-task {
   color: white;
   float: right;
-  margin-right: 1rem;
   font-size: 20px;
-  opacity: 0.25;
+  display: none;
   cursor: default;
 }
 /* line 79, ../sass/_project-attribution.scss */
-.attribution-template .phases .phase .task-wrapper .unallocate-task:hover {
-  color: white;
-}
-/* line 84, ../sass/_project-attribution.scss */
 .attribution-template .phases .phase .task-wrapper:not(.allocated) {
   cursor: move;
 }
-/* line 89, ../sass/_project-attribution.scss */
+/* line 83, ../sass/_project-attribution.scss */
+.attribution-template .phases .phase .task-wrapper:not(.allocated):hover {
+  opacity: 0.9;
+}
+/* line 87, ../sass/_project-attribution.scss */
+.attribution-template .phases .phase .task.dragged {
+  opacity: 0.8;
+}
+/* line 92, ../sass/_project-attribution.scss */
 .attribution-template .phases .tasks {
   margin-left: 6rem;
 }
-/* line 93, ../sass/_project-attribution.scss */
+/* line 96, ../sass/_project-attribution.scss */
 .attribution-template .phases .tasks .allocated .drag-task {
-  opacity: 0.25;
+  display: none;
   cursor: default;
 }
-/* line 98, ../sass/_project-attribution.scss */
+/* line 101, ../sass/_project-attribution.scss */
 .attribution-template .phases .tasks .allocated .drag-task:hover {
   color: white;
 }
-/* line 102, ../sass/_project-attribution.scss */
+/* line 105, ../sass/_project-attribution.scss */
 .attribution-template .phases .tasks .allocated .unallocate-task {
-  opacity: 1;
+  display: block;
   color: white;
   cursor: pointer;
 }
-/* line 108, ../sass/_project-attribution.scss */
+/* line 111, ../sass/_project-attribution.scss */
 .attribution-template .phases .tasks .allocated .unallocate-task:hover {
   color: #c8dc1e;
 }
 
-/* line 117, ../sass/_project-attribution.scss */
+/* line 120, ../sass/_project-attribution.scss */
 .occupation-template .preview {
   background: orange;
 }
 
-/* line 122, ../sass/_project-attribution.scss */
+/* line 125, ../sass/_project-attribution.scss */
 .task-wrapper.ui-draggable-dragging {
   padding: 1.2rem 2rem 1.2rem 4rem;
   margin-bottom: 0.5rem;
   position: relative;
   background: #096a85;
 }
-/* line 129, ../sass/_project-attribution.scss */
+/* line 132, ../sass/_project-attribution.scss */
 .task-wrapper.ui-draggable-dragging .name {
   font-family: "AvantGarde-Book";
   font-size: 1.6rem;
   color: white;
 }
-/* line 135, ../sass/_project-attribution.scss */
+/* line 138, ../sass/_project-attribution.scss */
 .task-wrapper.ui-draggable-dragging .avatar {
   position: absolute;
   left: -20px;
   top: 3px;
 }
-/* line 141, ../sass/_project-attribution.scss */
+/* line 144, ../sass/_project-attribution.scss */
 .task-wrapper.ui-draggable-dragging .duration {
   float: right;
   margin-right: 6rem;
@@ -14812,23 +14815,23 @@ body {
   font-family: "MyriadPro-Regular";
   font-size: 14px;
 }
-/* line 151, ../sass/_project-attribution.scss */
+/* line 154, ../sass/_project-attribution.scss */
 .task-wrapper.ui-draggable-dragging .drag-task {
   float: right;
   color: white;
   font-size: 21px;
   cursor: pointer;
 }
-/* line 160, ../sass/_project-attribution.scss */
+/* line 163, ../sass/_project-attribution.scss */
 .task-wrapper.ui-draggable-dragging .unallocate-task {
   display: none;
 }
 
-/* line 165, ../sass/_project-attribution.scss */
+/* line 168, ../sass/_project-attribution.scss */
 #calendars {
   position: relative;
 }
-/* line 168, ../sass/_project-attribution.scss */
+/* line 171, ../sass/_project-attribution.scss */
 #calendars .loading {
   background: rgba(255, 255, 255, 0.75) url("../img/loading.gif") center center no-repeat;
   position: absolute;
