@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel;
 
+use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Event;
@@ -62,6 +63,7 @@ use Webaccess\ProjectSquare\Interactors\Tasks\AllocateAndScheduleTaskInteractor;
 use Webaccess\ProjectSquare\Interactors\Users\RemoveUserFromProjectInteractor;
 use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteLoadingTimeEvent;
 use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteStatusCodeEvent;
+use Webaccess\ProjectSquareLaravel\Exceptions\ProjectSquareLaravelExceptionHandler;
 use Webaccess\ProjectSquareLaravel\Http\Middleware\AfterConfig;
 use Webaccess\ProjectSquareLaravel\Http\Middleware\BeforeConfig;
 use Webaccess\ProjectSquareLaravel\Http\Middleware\ChangeCurrentProject;
@@ -561,6 +563,11 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         Context::set('GetProjectInteractor', app()->make('GetProjectInteractor'));
 
         App::register('Intervention\Image\ImageServiceProvider');
+
+        App::singleton(
+            ExceptionHandler::class,
+            ProjectSquareLaravelExceptionHandler::class
+        );
 
         $this->commands([
             'Webaccess\ProjectSquareLaravel\Commands\CreateUserCommand',

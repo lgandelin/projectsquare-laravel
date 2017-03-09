@@ -137,7 +137,6 @@
             </div>
         </div>
 
-
         <div class="templates planning-template" style="padding-top: 10rem;">
             <div class="page-header">
                 <h1>{{ trans('projectsquare::planning.planning') }}

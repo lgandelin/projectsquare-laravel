@@ -15047,6 +15047,20 @@ body {
   background: #5497aa;
 }
 
+/* line 1, ../sass/_error-pages.scss */
+.error-template {
+  padding-top: 10%;
+  padding-bottom: 10%;
+  text-align: center;
+}
+/* line 6, ../sass/_error-pages.scss */
+.error-template h1 {
+  font-size: 25px;
+  color: #096a85;
+  font-family: "AvantGarde-Book";
+  display: inline-block;
+}
+
 @media only screen and (max-width: 1450px) and (min-width: 1200px) {
   /* line 5, ../sass/includes/_responsive.scss */
   .tabs li a {
