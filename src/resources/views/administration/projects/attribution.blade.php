@@ -4,33 +4,49 @@
 </div>
 
 <div class="attribution-template">
-    <div class="phases">
-        @foreach ($phases as $phase)
-            <div class="phase" data-id="{{ $phase->id }}" data-name="{{ $phase->name }}">
-                <div class="phase-wrapper">
-                    <span class="name">{{ $phase->name }}</span>
-                </div>
 
-                <div class="tasks">
-                    @foreach ($phase->tasks as $task)
-                        <div class="task" data-id="{{ $task->id }}" data-name="{{ $task->title }}" data-phase="{{ $phase->id }}" data-duration="{{ $task->estimatedTimeDays }}">
-                            <div class="task-wrapper @if(isset($task->allocatedUserID)) allocated @endif">
-                                @if (isset($task->allocatedUser))
-                                    @include('projectsquare::includes.avatar', [
-                                        'id' => $task->allocatedUser->id,
-                                        'name' => $task->allocatedUser->firstName . ' ' . $task->allocatedUser->lastName
-                                    ])
-                                @endif
-                                <i class="glyphicon glyphicon-user unallocate-task" title="Désattribuer la tâche"></i>
-                                <i class="glyphicon glyphicon-move drag-task" title="Attribuer la tâche à un collaborateur"></i>
-                                <span class="name">{{ $task->title }}</span>
-                                @if ($task->estimatedTimeDays)<span class="duration">{{ $task->estimatedTimeDays }} j</span>@endif
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-12 col-sm-12 pull-right">
+            <div class="notice">
+                <span class="title">Attribuez des tâches à vos collaborateurs</span>
+                <ul>
+                    <li>pour attribuer une tâche à un collaborateur, faites un "glisser-déposer" de la tâche directement dans le calendrier ci-dessous</li>
+                    <li>les tâches planifiées de cette manière sont automatiquement ajoutées aux plannings des collaborateurs</li>
+                    <li>une fois la tâche attribuée, il est possible de la désattribuer en cliquant sur l'icône <i class="glyphicon glyphicon-user"></i></li>
+                </ul>
             </div>
-        @endforeach
+        </div>
+
+        <div class="col-lg-8 col-md-12 col-sm-12">
+            <div class="phases">
+                @foreach ($phases as $phase)
+                    <div class="phase" data-id="{{ $phase->id }}" data-name="{{ $phase->name }}">
+                        <div class="phase-wrapper">
+                            <span class="name">{{ $phase->name }}</span>
+                        </div>
+
+                        <div class="tasks">
+                            @foreach ($phase->tasks as $task)
+                                <div class="task" data-id="{{ $task->id }}" data-name="{{ $task->title }}" data-phase="{{ $phase->id }}" data-duration="{{ $task->estimatedTimeDays }}">
+                                    <div class="task-wrapper @if(isset($task->allocatedUserID)) allocated @endif">
+                                        @if (isset($task->allocatedUser))
+                                            @include('projectsquare::includes.avatar', [
+                                                'id' => $task->allocatedUser->id,
+                                                'name' => $task->allocatedUser->firstName . ' ' . $task->allocatedUser->lastName
+                                            ])
+                                        @endif
+                                        <i class="glyphicon glyphicon-user unallocate-task" title="Désattribuer la tâche"></i>
+                                        <i class="glyphicon glyphicon-move drag-task" title="Attribuer la tâche à un collaborateur"></i>
+                                        <span class="name">{{ $task->title }}</span>
+                                        @if ($task->estimatedTimeDays)<span class="duration">{{ $task->estimatedTimeDays }} j</span>@endif
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
     </div>
 
     <div class="occupation-template">

@@ -55,7 +55,9 @@ function initTasksDragAndDrop() {
     $('.task-wrapper:not(.allocated)').draggable({
         zIndex: 999,
         revert: function(valid) {
-            $('.task').removeClass('dragged');
+            if (!valid) {
+                $('.task').removeClass('dragged');
+            }
             return true;
         },
         snap: '.user-day',

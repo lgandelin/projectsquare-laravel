@@ -24,7 +24,6 @@
                                             <td class="phase">
                                                 <span class="name">
                                                     {{ $phase->name }}
-                                                    <!-- @if ($phase->estimatedDuration > 0)<span class="duration">{{ $phase->estimatedDuration }} jour(s)</span>@endif -->
                                                 </span>
 
                                                 <div class="tasks">

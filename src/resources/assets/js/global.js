@@ -25,6 +25,9 @@ function uniqid() {
 
 $(document).ready(function() {
 
+    //NOTIFICATIONS
+    $('.info').delay(6000).fadeOut();
+
     //BETA FORM
     $('body').on('click', '.beta-form .toggle', function() {
         $('#beta-form-modal').modal('show');

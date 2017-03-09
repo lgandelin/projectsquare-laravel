@@ -41,7 +41,7 @@ return [
 
     'infos' => 'Informations du projet',
     'team' => 'Equipe',
-    'tasks' => 'Tâches',
+    'tasks' => 'Phases / Tâches',
     'attribution' => 'Attribution',
     'config' => 'Configuration',
 

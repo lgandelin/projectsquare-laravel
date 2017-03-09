@@ -62,3 +62,27 @@
     font-size: 12px;
     font-weight: 300;
 }
+
+.notice {
+    background: #ededed;
+    padding: 1.5rem;
+    color: #111;
+
+    .title {
+        font-weight: bold;
+        font-size: 1.8rem;
+        display: block;
+        margin-bottom: 1rem;
+    }
+
+    .highlight {
+        font-weight: bold;
+        color: $touareg;
+    }
+
+    ul {
+        li {
+            margin-bottom: 1rem;
+        }
+    }
+}

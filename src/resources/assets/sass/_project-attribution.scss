@@ -1,9 +1,13 @@
 .attribution-template {
-    
+
+    .notice {
+        float: right;
+        margin-bottom: 3rem;
+    }
+
     .phases {
-        max-width: 1450px;
         margin-bottom: 5rem;
-        padding-top: 5rem;
+        padding-top: 2.5rem;
         padding-right: 2.5rem;
         max-height: 500px;
         overflow-y: scroll;

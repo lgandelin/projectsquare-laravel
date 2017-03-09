@@ -1,6 +1,6 @@
 .project-tasks-template {
     .project-tasks {
-        margin-top: 5rem;
+        margin-top: 2rem;
         overflow: hidden;
 
         .phases {
@@ -108,13 +108,17 @@
             border: 2px dashed #6a7376;
         }
 
+        .valid-wrapper {
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
         .valid-phases {
-            margin-top: 3rem;
             float: right;
             color: $touareg;
-            padding: 1.5rem 5rem 1.5rem 4rem;
+            padding: 1rem 2.5rem 1rem 2.5rem;
 
-            font-size: 2rem;
+            font-size: 1.8rem;
 
             border: none;
             background: $green;
@@ -192,29 +196,12 @@
                 padding: 1rem;
             }
 
+            .placeholder {
+                color: #a3b1bd;
+            }
+
             .notice {
-                background: #ededed;
-                padding: 1.5rem;
-                color: #111;
                 margin-bottom: 3rem;
-
-                .title {
-                    font-weight: bold;
-                    font-size: 1.8rem;
-                    display: block;
-                    margin-bottom: 1rem;
-                }
-
-                .highlight {
-                    font-weight: bold;
-                    color: $touareg;
-                }
-
-                ul {
-                    li {
-                        margin-bottom: 1rem;
-                    }
-                }
             }
         }
 

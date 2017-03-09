@@ -2,10 +2,20 @@
     <div class="page-header">
         <h1>{{ trans('projectsquare::projects.tasks') }}</h1>
         <a href="{{ route('projects_index') }}" class="btn back"></a>
-        <span class="button-import-phases-tasks">Importer <i class="glyphicon glyphicon-save"></i></span>
+        <span class="button-import-phases-tasks">Importer <i class="glyphicon glyphicon-save"></i>
+            @include('projectsquare::includes.tooltip', [
+                'text' => trans('projectsquare::tooltips.import_phases_and_tasks')
+            ])
+        </span>
     </div>
 
     <div class="project-tasks">
+
+        <div class="valid-wrapper">
+            <span class="loading" style="display: none">Sauvegarde ...</span>
+            <button class="btn valid-phases"><i class="glyphicon glyphicon-ok"></i> Valider</button>
+        </div>
+
         <div class="phases">
             @foreach ($phases as $phase)
                 <div class="phase" data-id="{{ $phase->id }}" data-duration="{{ $phase->estimatedDuration }}">
@@ -60,12 +70,20 @@
                                 <ul>
                                     <li>les phases doivent être préfixées par un "<span class="highlight">#</span>"</li>
                                     <li>les phases et tâches doivent être sur une seule ligne</li>
-                                    <li>il est possible de spécifier des durées estimées aux tâches en rajoutant un "<span class="highlight">;</span>" suivi de la durée (en chiffres)</li>
+                                    <li>il est possible de spécifier une durée estimée aux tâches en rajoutant un "<span class="highlight">;</span>" suivi de la durée (en chiffres)</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-12">
-                            <textarea name="text" placeholder="# Phase 1&#x0a;Tâche 1; 1.5&#x0a;Tâche 2; 2.25&#x0a;&#x0a;# Phase 2&#x0a;Tâche 3; 5" rows="10"></textarea>
+                            <textarea name="text" data-placeholder="# Webdesign
+Création des mockups; 1
+Ergonomie; 1
+Déclinaisons webdesign; 3.5
+
+# Développement
+Création de la structure du site et des pages; 1.5
+Intégration; 3.5
+Tests et livraison; 0.5" rows="10"></textarea>
                         </div>
 
                         <input type="hidden" name="project_id" value="{{ $project_id }}" />
