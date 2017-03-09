@@ -30,36 +30,6 @@
         </button>
     </div>
 
-
-
-    <h3>{{ trans('projectsquare::project.scheduled_times') }}</h3>
-
-    <div class="form-group">
-        <label for="name">{{ trans('projectsquare::projects.tasks_scheduled_time') }}
-            @include('projectsquare::includes.tooltip', [
-                'text' => trans('projectsquare::tooltips.project.scheduled_time_reporting')
-            ])
-        </label>
-        <input type="text" name="tasks_scheduled_time" class="form-control" placeholder="{{ trans('projectsquare::projects.scheduled_time_placeholder') }}"  @if (isset($project_tasks_scheduled_time))value="{{ $project_tasks_scheduled_time }}"@endif size="7">
-    </div>
-
-    <div class="form-group">
-        <label for="name">{{ trans('projectsquare::projects.tickets_scheduled_time') }}
-            @include('projectsquare::includes.tooltip', [
-                'text' => trans('projectsquare::tooltips.project.scheduled_time_reporting')
-            ])
-        </label>
-        <input type="text" name="tickets_scheduled_time" class="form-control" placeholder="{{ trans('projectsquare::projects.scheduled_time_placeholder') }}"  @if (isset($project_tickets_scheduled_time))value="{{ $project_tickets_scheduled_time }}"@endif size="7">
-    </div>
-
-    <div class="form-group">
-        <button type="submit" class="btn valid">
-            <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
-        </button>
-    </div>
-
-
-
     <h3>{{ trans('projectsquare::project.settings') }}</h3>
 
     <div class="form-group">

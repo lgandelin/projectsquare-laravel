@@ -15,7 +15,11 @@
             }
 
             td:last-child {
-                min-width: 100px;
+                min-width: 125px;
+            }
+
+            .entity_title {
+                text-decoration: underline;
             }
         }
     }
@@ -43,7 +47,7 @@
         }
 
         th:first-child {
-            padding-left: 1.8rem;
+            padding-left: 1rem;
         }
     }
 }

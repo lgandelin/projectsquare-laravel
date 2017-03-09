@@ -30,7 +30,7 @@ function initTicketDragAndDrop() {
                 var day_width = parseInt($('.fc-time-grid-container td.fc-widget-content:not(.fc-axis)').first().width()) + 1;
                 var day_height = parseInt($('.fc-time-grid-container td.fc-widget-content:not(.fc-axis)').first().height()) + 1;
 
-                clone.css('width', day_width).css('height', 50).css('opacity', 0.5).css('background', 'orange');
+                clone.css('width', day_width).css('height', 100).css('opacity', 0.5).css('background', 'orange');
 
                 return clone
             },

@@ -15,8 +15,7 @@ class Project extends Model
         'website_front_url',
         'website_back_url',
         'color',
-        'tasks_scheduled_time',
-        'tickets_scheduled_time',
+        'status_id',
     ];
 
     public function client()

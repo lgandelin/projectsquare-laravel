@@ -1,9 +1,31 @@
+var formModified = 0;
+
 $(document).ready(function() {
 
+    //Inputs
     $('.input-phase-name, .input-task-name').autosizeInput();
+
+    var textarea = $('#import-phases-tasks-modal textarea[name="text"]');
+
+    if (textarea.val() == '') {
+        textarea.val(textarea.attr('data-placeholder')).addClass('placeholder');
+    }
+
+    textarea.on('focus', function() {
+        if (textarea.val() == textarea.attr('data-placeholder')) {
+            textarea.val('').removeClass('placeholder');
+        }
+    });
+
+    textarea.on('blur', function() {
+        if (textarea.val() == '') {
+            textarea.val(textarea.attr('data-placeholder')).addClass('placeholder');
+        }
+    });
 
     //Phase management
     $('.project-tasks').on('click', '.add-phase', function() {
+        formModified = 1;
         var html = loadTemplate('phase-template', {
             id: uniqid(),
             name: '',
@@ -18,6 +40,7 @@ $(document).ready(function() {
     });
 
     $('.project-tasks').on('click', '.delete-phase', function() {
+        formModified = 1;
         if (confirm('Etes-vous sûrs de vouloir supprimer cet élément ?')) {
             var phase = $(this).closest('.phase');
             if ($(phase).attr('data-temp') != "1")
@@ -30,6 +53,7 @@ $(document).ready(function() {
 
     //Task management
     $('.project-tasks').on('click', '.phase .add-task', function() {
+        formModified = 1;
         var phase = $(this).closest('.phase');
         var html = loadTemplate('task-template', {
             id: uniqid(),
@@ -45,6 +69,7 @@ $(document).ready(function() {
     });
 
     $('.project-tasks').on('click', '.delete-task', function() {
+        formModified = 1;
         if (confirm('Etes-vous sûrs de vouloir supprimer cet élément ?')) {
             var task = $(this).closest('.task');
             var phase = $(this).closest('.phase');
@@ -58,6 +83,7 @@ $(document).ready(function() {
     });
 
     $('.project-tasks').on('focusout', '.input-task-duration', function() {
+        formModified = 1;
         var phase = $(this).closest('.phase');
         update_phase_duration(phase.attr('data-id'));
     });
@@ -77,7 +103,9 @@ $(document).ready(function() {
 
     //Validate
     $('.project-tasks .valid-phases').click(function() {
-        $(this).hide();
+        formModified = 0;
+
+        $('.valid-phases').hide();
         $('.loading').show();
         var phases = [];
 
@@ -128,16 +156,32 @@ $(document).ready(function() {
 
     //Lose focus on enter
     $(document).keypress(function(e) {
-        if (e.which == 13) {
+        if (e.which == 13 && !$('textarea[name="text"]').is(':focus')) {
             $(':focus').blur();
         }
     });
+
+    $('.button-import-phases-tasks').click(function() {
+        $('#import-phases-tasks-modal').modal();
+    });
+
+    //Warn before leaving the page
+    window.onbeforeunload = confirmExit;
+
+    function confirmExit() {
+        if (formModified == 1) {
+            return "Vous n\'avez pas sauvegardé vos modifications, êtes-vous sûrs de vouloir quitter cette page ?";
+        }
+    }
 });
 
 function init_phases_sortable() {
     $('.project-tasks .phases').sortable({
         items: ".phase:not(.placeholder)",
         tolerance: 'pointer',
+        start: function(event, ui) {
+            formModified = 1;
+        },
     }).disableSelection();
 }
 
@@ -146,6 +190,9 @@ function init_tasks_sortable() {
         items: ".task:not(.placeholder)",
         tolerance: 'pointer',
         helper: "clone",
+        start: function(event, ui) {
+            formModified = 1;
+        },
     }).disableSelection();
 }
 

@@ -38,9 +38,13 @@ return [
         'email_loading_time' => 'Adresse email à avertir en cas de temps de réponse serveur trop long, ou code de réponse HTTP erreur reçue.',
         'slack_channel' => 'Recevez les notifications liés à ce projet directement dans Slack en renseignant le channel associé.',
         'profile_google_analytics' => "Cet ID profil Google Analytics (différent de l'ID de suivi) se trouve dans l'URL de votre tableau de bord Google Analytics, et correspond au dernier nombre situé après la lettre p (9 chiffres).",
+        'ressources' => 'Les ressources assignées à un projet pourront le voir dans la barre latérale des projets',
+        'status' => 'Les projets en statut "En cours" apparaissent dans la barre latérale des projets',
     ],
 
     'avatar' => 'Uploadez votre avatar pour permettre aux autres personnes de vous identifier facilement ;)',
 
     'slack' => 'Pour connecter Projectsquare avec vos channels Slack, créez un webhook depuis votre interface Slack et copier l\'URL dans ce champ. Pour plus de détails, consulter la documentation.',
+
+    'import_phases_and_tasks' => 'Importez rapidement vos phases et tâches à partir d\'une liste au format texte',
 ];

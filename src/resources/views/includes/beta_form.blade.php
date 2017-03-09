@@ -28,7 +28,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn valid valid-beta-form"><i class="glyphicon glyphicon-ok"></i>{{ trans('projectsquare::conversations.validate') }}</button>
-                    <button type="button" class="btn back" data-dismiss="modal"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::conversations.cancel') }}</button>
+                    <button type="button" class="btn button pull-right cancel-message" data-dismiss="modal"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::conversations.cancel') }}</button>
                 </div>
             </form>
         </div>

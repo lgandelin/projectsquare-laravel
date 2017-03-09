@@ -8,7 +8,7 @@ $(document).ready(function() {
         }
 
         var task = $(this).closest('.task');
-        task.css('opacity', 0.8);
+        task.addClass('dragged');
 
         var data = {
             task_id: task.attr('data-id'),
@@ -27,7 +27,7 @@ $(document).ready(function() {
             success: function(data) {
                 task.find('.task-wrapper').removeClass('allocated');
                 task.find('.avatar').remove();
-                task.css('opacity', 1.0);
+                task.removeClass('dragged');
                 initTasksDragAndDrop();
                 task.find('.task-wrapper').draggable('enable');
 
@@ -45,7 +45,7 @@ $(document).ready(function() {
             error: function(data) {
                 data = $.parseJSON(data.responseText);
                 alert(data.message);
-                task.css('opacity', 1.0);
+                task.removeClass('dragged');
             }
         });
     });
@@ -55,7 +55,9 @@ function initTasksDragAndDrop() {
     $('.task-wrapper:not(.allocated)').draggable({
         zIndex: 999,
         revert: function(valid) {
-            $('.task-wrapper').css('opacity', 1);
+            if (!valid) {
+                $('.task').removeClass('dragged');
+            }
             return true;
         },
         snap: '.user-day',
@@ -69,7 +71,7 @@ function initTasksDragAndDrop() {
             clone = original.clone().css({
                 width: original.width()
             });
-            original.css('opacity', 0.8);
+            original.closest('.task').addClass('dragged');
 
             var day_width = parseInt($('.user-day').first().width())+2;
             var day_height = parseInt($('.user-day').first().height())+2;
@@ -89,7 +91,7 @@ function initTasksDragAndDrop() {
             var user_id = $(this).attr('data-user');
             var day = $(this).attr('data-day');
 
-            task.css('opacity', 0.8);
+            task.addClass('dragged');
 
             var data = {
                 name: task.attr('data-name'),
@@ -127,7 +129,7 @@ function initTasksDragAndDrop() {
                     displayMonth(month_index);
 
                     //Update task in list
-                    $('.task[data-id="' + task_id + '"]').css('opacity', 1).find('.task-wrapper').draggable('disable').addClass('allocated').prepend(data.avatar);
+                    $('.task[data-id="' + task_id + '"]').removeClass('dragged').find('.task-wrapper').draggable('disable').addClass('allocated').prepend(data.avatar);
                 },
                 error: function(data) {
                 }

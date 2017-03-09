@@ -46,14 +46,6 @@ class TaskController extends BaseController
         ]);
     }
 
-    protected function getUserWithProjects()
-    {
-        if ($user = Auth::user())
-            return User::with('projects.client')->find($user->id);
-
-        return null;
-    }
-
     public function add(Request $request)
     {
         parent::__construct($request);

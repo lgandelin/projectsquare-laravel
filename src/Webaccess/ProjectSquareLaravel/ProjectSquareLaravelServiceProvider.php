@@ -19,6 +19,7 @@ use Webaccess\ProjectSquare\Interactors\Clients\CreateClientInteractor;
 use Webaccess\ProjectSquare\Interactors\Clients\UpdateClientInteractor;
 use Webaccess\ProjectSquare\Interactors\Clients\DeleteClientInteractor;
 use Webaccess\ProjectSquare\Interactors\Phases\CreatePhaseInteractor;
+use Webaccess\ProjectSquare\Interactors\Phases\CreatePhasesAndTasksFromTextInteractor;
 use Webaccess\ProjectSquare\Interactors\Phases\DeletePhaseInteractor;
 use Webaccess\ProjectSquare\Interactors\Phases\GetPhaseInteractor;
 use Webaccess\ProjectSquare\Interactors\Phases\GetPhasesInteractor;
@@ -528,6 +529,16 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
                 new EloquentPhaseRepository(),
                 new EloquentUserRepository(),
                 new EloquentTasksRepository()
+            );
+        });
+
+        App::bind('CreatePhasesAndTasksFromTextInteractor', function () {
+            return new CreatePhasesAndTasksFromTextInteractor(
+                new EloquentPhaseRepository(),
+                new EloquentTasksRepository(),
+                new EloquentProjectRepository(),
+                new EloquentUserRepository(),
+                new EloquentNotificationRepository()
             );
         });
 

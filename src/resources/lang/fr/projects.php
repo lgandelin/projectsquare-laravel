@@ -41,7 +41,10 @@ return [
 
     'infos' => 'Informations du projet',
     'team' => 'Equipe',
-    'tasks' => 'Tâches',
+    'tasks' => 'Phases / Tâches',
     'attribution' => 'Attribution',
     'config' => 'Configuration',
+
+    'import_phases_and_tasks_from_text_success' => 'Importation des phases et tâches effectuée avec succès',
+    'import_phases_and_tasks_from_text_error' => 'Une erreur est survenue lors de l\'importation des phases et tâches',
 ];

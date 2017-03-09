@@ -5,6 +5,7 @@
         <div class="templates">
             <div class="page-header">
                 <h1>{{ trans('projectsquare::clients.edit_user') }}</h1>
+                 <a href="{{ \URL::previous() }}" class="btn back"></a>
             </div>
 
             @if (isset($error))

@@ -1,10 +1,15 @@
 <div class="page-header">
-    <h1>{{ trans('projectsquare::projects.team') }}</h1>
+    <h1>{{ trans('projectsquare::projects.team') }}
+    </h1>
     <a href="{{ route('projects_index') }}" class="btn back"></a>
 </div>
 
 <div class="project-team">
-    <h3>{{ trans('projectsquare::projects.project_resources') }}</h3>
+    <h3>{{ trans('projectsquare::projects.project_resources') }}
+        @include('projectsquare::includes.tooltip', [
+            'text' => trans('projectsquare::tooltips.project.ressources')
+        ])
+    </h3>
     <table class="table table-striped">
         <thead>
         <tr>

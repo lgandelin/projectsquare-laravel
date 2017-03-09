@@ -54,8 +54,8 @@
                             <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                             <td>{{ $user->client_role }}</td>
                             <td align="right">
-                                <a href="{{ route('clients_edit_user', ['client_id' => $client->id, 'user_id' => $user->id]) }}" class="btn button"><span class="glyphicon glyphicon-pencil"></span> <span class="value">{{ trans('projectsquare::generic.edit') }}</span></a>
-                                <a href="{{ route('clients_delete_user', ['client_id' => $client->id, 'user_id' => $user->id]) }}" class="btn btn-delete delete"><span class="glyphicon glyphicon-remove"></span> <span class="value">{{ trans('projectsquare::generic.delete') }}</span></a>
+                                <a href="{{ route('clients_edit_user', ['client_id' => $client->id, 'user_id' => $user->id]) }}" class="btn button"><span class="glyphicon glyphicon-pencil edit"></span> <span class="value edit">{{ trans('projectsquare::generic.edit') }}</span></a>
+                                <a href="{{ route('clients_delete_user', ['client_id' => $client->id, 'user_id' => $user->id]) }}" class="btn btn-delete delete"><span class="glyphicon glyphicon-remove picto-delete"></span> <span class="value picto-delete">{{ trans('projectsquare::generic.delete') }}</span></a>
                             </td>
                         </tr>
                     @endforeach

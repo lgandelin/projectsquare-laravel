@@ -15,9 +15,7 @@ return [
     'reporting' => 'Reporting',
 
     'urls' => 'URLs',
-    'scheduled_times' => 'Temps prévus',
 
-    //SETTINGS
     'acceptable_loading_time' => 'Temps de réponse du serveur acceptable (en secondes)',
     'acceptable_loading_time_placeholder' => 'ex: 1.5',
     'alert_loading_time_email' => 'Adresse email à prévenir en cas de problème serveur',

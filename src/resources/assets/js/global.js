@@ -23,7 +23,17 @@ function uniqid() {
     return String.fromCharCode(n)+k;
 }
 
+//Overwrites ":contains" jQuery selector
+$.expr[':'].contains = function(a, i, m) {
+    return $(a).text().toUpperCase()
+            .indexOf(m[3].toUpperCase()) >= 0;
+};
+
 $(document).ready(function() {
+
+
+    //NOTIFICATIONS
+    $('.info').delay(6000).fadeOut();
 
     //BETA FORM
     $('body').on('click', '.beta-form .toggle', function() {
@@ -135,6 +145,11 @@ $(document).ready(function() {
         $('.left-bar-minified .menu .sub-menu').hide();
     });
 
+    //LEFT BAR SEARCH
+    $('.left-bar .filter-project input[type="text"]').on('keyup', function() {
+        filter_projects_list();
+    });
+
      //TOOLTIPS
     $('.tooltip-icon').tooltipster({
         animation: 'fade',
@@ -148,6 +163,22 @@ $(document).ready(function() {
     });
 
 });
+
+function filter_projects_list() {
+    var input_search = $('.left-bar .filter-project input[type="text"]');
+
+    $('.left-bar .menu .sub-menu-projects li:not(.filter-disabled)').each(function() {
+        var show = false;
+
+        if (input_search.val().length == 0 || $(this).is(':contains("' + input_search.val() + '")'))
+            show = true;
+
+        if (show)
+            $(this).fadeIn();
+        else
+            $(this).fadeOut();
+    });
+}
 
 function reloadNotificationsPanel() {
     var data = {
@@ -171,7 +202,7 @@ function reloadNotificationsPanel() {
                 for (i in data.notifications) {
                     var notification = data.notifications[i];
 
-                    if (!contains(notification_ids, notification.id)) {
+                    if (!array_contains(notification_ids, notification.id)) {
                         var html = loadTemplate('notification-template', notification);
                         $('.notifications').append(html);
                     }
@@ -187,7 +218,7 @@ function reloadNotificationsPanel() {
     });
 }
 
-function contains(array, obj) {
+function array_contains(array, obj) {
     for (var i = 0; i < array.length; i++) {
         if (array[i] === obj) {
             return true;

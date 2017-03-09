@@ -13,8 +13,7 @@ class ProgressController extends BaseController
     {
         parent::__construct($request);
 
-        $user = $this->getUserWithProjects();
-        $projects = $user->projects;
+        list($projects, $archived_projects) = $this->getProjects();
         foreach ($projects as $project) {
             $project->phases = app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
                 'projectID' => $project->id

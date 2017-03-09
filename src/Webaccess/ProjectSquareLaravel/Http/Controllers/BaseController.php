@@ -7,12 +7,12 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
+use Webaccess\ProjectSquare\Entities\Project as ProjectEntity;
 use Webaccess\ProjectSquare\Requests\Notifications\GetUnreadNotificationsRequest;
+use Webaccess\ProjectSquare\Requests\Todos\GetTodosRequest;
 use Webaccess\ProjectSquareLaravel\Models\Client;
 use Webaccess\ProjectSquareLaravel\Models\Project;
-use Webaccess\ProjectSquareLaravel\Models\User;
 use Webaccess\ProjectSquareLaravel\Decorators\NotificationDecorator;
-use Webaccess\ProjectSquare\Requests\Todos\GetTodosRequest;
 
 class BaseController extends Controller
 {
@@ -26,7 +26,10 @@ class BaseController extends Controller
         $this->middleware('auth');
 
         if (Auth::user()) {
-            view()->share('logged_in_user', $this->getUserWithProjects());
+            list($projects, $archived_projects) = $this->getProjects();
+            view()->share('logged_in_user', $this->getUser());
+            view()->share('in_progress_projects', $projects);
+            view()->share('archived_projects', $archived_projects);
             view()->share('current_project', $this->getCurrentProject());
             view()->share('current_route', $request->route()->getName());
             view()->share('notifications', $this->getUnreadNotifications());
@@ -42,14 +45,6 @@ class BaseController extends Controller
     {
         if ($user = Auth::user())
             return Auth::user();
-
-        return null;
-    }
-
-    protected function getUserWithProjects()
-    {
-        if ($user = Auth::user())
-            return User::with('projects.client')->find($user->id);
 
         return null;
     }
@@ -138,5 +133,25 @@ class BaseController extends Controller
         }
 
         return $result;
+    }
+
+    protected function getProjects()
+    {
+        $projects = [];
+        $archived_projects = [];
+
+        foreach (Project::orderBy('created_at', 'desc')->get() as $project) {
+            foreach($project->users as $user) {
+                if ($user->id == $this->getUser()->id) {
+                    if ($project->status_id == ProjectEntity::IN_PROGRESS) {
+                        $projects[]= $project;
+                    } else {
+                        $archived_projects[]= $project;
+                    }
+                }
+            }
+        }
+
+        return array($projects, $archived_projects);
     }
 }

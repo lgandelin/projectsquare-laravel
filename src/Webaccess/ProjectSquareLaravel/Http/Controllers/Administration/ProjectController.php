@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Entities\Task;
 use Webaccess\ProjectSquare\Requests\Phases\CreatePhaseRequest;
+use Webaccess\ProjectSquare\Requests\Phases\CreatePhasesAndTasksFromTextRequest;
 use Webaccess\ProjectSquare\Requests\Phases\DeletePhaseRequest;
 use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
 use Webaccess\ProjectSquare\Requests\Phases\UpdatePhaseRequest;
@@ -52,6 +53,7 @@ class ProjectController extends BaseController
                 'name' => Input::get('name'),
                 'clientID' => Input::get('client_id'),
                 'color' => Input::get('color'),
+                'statusID' => Input::get('status_id'),
             ]));
 
             app()->make('ProjectManager')->addUserToProject(
@@ -216,6 +218,7 @@ class ProjectController extends BaseController
                 'name' => Input::get('name'),
                 'clientID' => Input::get('client_id'),
                 'color' => Input::get('color'),
+                'statusID' => Input::get('status_id'),
             ]));
 
             $request->session()->flash('confirmation', trans('projectsquare::projects.edit_project_success'));
@@ -316,6 +319,27 @@ class ProjectController extends BaseController
         }
     }
 
+    public function import_phases_and_tasks_from_text(Request $request)
+    {
+        parent::__construct($request);
+
+        $projectID = Input::get('project_id');
+
+        try {
+            app()->make('CreatePhasesAndTasksFromTextInteractor')->execute(new CreatePhasesAndTasksFromTextRequest([
+                'text' => Input::get('text'),
+                'projectID' => $projectID,
+                'requesterUserID' => $this->getUser()->id,
+            ]));
+
+            $request->session()->flash('confirmation', trans('projectsquare::projects.import_phases_and_tasks_from_text_success'));
+        } catch (\Exception $e) {
+            $request->session()->flash('error', trans('projectsquare::projects.import_phases_and_tasks_from_text_error'));
+        }
+
+        return redirect()->route('projects_edit_tasks', ['uuid' => $projectID]);
+    }
+
     public function allocate_and_schedule_task(Request $request)
     {
         parent::__construct($request);
@@ -363,8 +387,6 @@ class ProjectController extends BaseController
                 'projectID' => Input::get('project_id'),
                 'websiteFrontURL' => Input::get('website_front_url'),
                 'websiteBackURL' => Input::get('website_back_url'),
-                'tasksScheduledTime' => StringTool::formatNumber(Input::get('tasks_scheduled_time')),
-                'ticketsScheduledTime' => StringTool::formatNumber(Input::get('tickets_scheduled_time'))
             ]));
 
             app()->make('SettingManager')->createOrUpdateProjectSetting(
