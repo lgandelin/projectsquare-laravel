@@ -12,8 +12,7 @@ class SpentTimeController extends BaseController
     {
         parent::__construct($request);
 
-        $user = $this->getUserWithProjects();
-        $projects = $user->projects;
+        $projects = []; //@TODO : get current projects
         foreach ($projects as $project) {
             $project->phases = app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
                 'projectID' => $project->id
