@@ -25,7 +25,7 @@
                 overflow: hidden;
                 display: block;
                 color: white;
-                padding-left: 2.7rem;
+                padding-left: 2rem;
             }
 
             h3 {
@@ -93,6 +93,21 @@
 
                 a:hover {
                     color: $green;
+                }
+            }
+
+            .filter-project {
+                cursor: default;
+                border: none;
+
+                padding-top: 18px !important;
+                padding-bottom: 18px;
+
+                input[type="text"] {
+                    font-family: $typo2;
+                    width: 84%;
+                    margin-left: 2rem;
+                    margin-right: 2rem;
                 }
             }
 
@@ -246,7 +261,7 @@
     width: 68px;
     bottom: 0;
 
-    .menu {
+    > ul .menu {
         position: relative;
 
         .title {
@@ -281,6 +296,17 @@
 
             a:hover {
                 color: $green !important;
+            }
+        }
+
+        .filter-project {
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important;
+
+            input[type="text"] {
+                width: 88%;
+                margin-left: 1rem;
+                margin-bottom: 0;
             }
         }
     }
