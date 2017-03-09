@@ -16,7 +16,7 @@
                     <h3 class="title">{{ trans('projectsquare::left_bar.projects') }}</h3>
                 </span>
                 <ul class="sub-menu">
-                    @foreach ($projects as $project)
+                    @foreach ($in_progress_projects as $project)
                     <li class="@if (isset($current_project_id) && $current_project_id == $project->id) encours @endif" style="border-left: 3px solid {{ $project->color }}">
                         <?php $route = preg_match('/project_/', $current_route) ? $current_route : 'project_index'; ?>
                         <a href="{{ route($route, ['id' => $project->id]) }}" @if (preg_match('/project_/', $current_route) && isset($current_project_id) && $current_project_id == $project->id) style="color: #c8dc1e" @endif">
@@ -24,6 +24,20 @@
                             <span title="{{ $project->name }}">{{$project->name}}</span>
                         </a>
                     </li>
+                    @endforeach
+
+                    @if (sizeof($archived_projects) > 0)
+                        <li class="archived-project archived-project-title"><i class="glyphicon glyphicon-folder-open"></i> Archives</li>
+                    @endif
+
+                    @foreach ($archived_projects as $project)
+                        <li class="archived-project @if (isset($current_project_id) && $current_project_id == $project->id) encours @endif">
+                            <?php $route = preg_match('/project_/', $current_route) ? $current_route : 'project_index'; ?>
+                            <a href="{{ route($route, ['id' => $project->id]) }}" @if (preg_match('/project_/', $current_route) && isset($current_project_id) && $current_project_id == $project->id) style="color: #c8dc1e" @endif">
+                            <!--{{ $project->name }}-->
+                            <span title="{{ $project->name }}">{{$project->name}}</span>
+                            </a>
+                        </li>
                     @endforeach
                 </ul>
             </li>

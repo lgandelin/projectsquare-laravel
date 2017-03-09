@@ -41,9 +41,8 @@
         </label>
         <select class="form-control" name="status_id">
             <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
-            <option value="1" @if (isset($project) && $project_status_id == 1)selected="selected"@endif>En attente</option>
-            <option value="2" @if (isset($project) && $project_status_id == 2 || !isset($project_id))selected="selected"@endif>En cours</option>
-            <option value="3" @if (isset($project) && $project_status_id == 3)selected="selected"@endif>Archivé</option>
+            <option value="{{ Webaccess\ProjectSquare\Entities\Project::IN_PROGRESS }}" @if (isset($project) && $project_status_id == Webaccess\ProjectSquare\Entities\Project::IN_PROGRESS || !isset($project_id))selected="selected"@endif>En cours</option>
+            <option value="{{ Webaccess\ProjectSquare\Entities\Project::ARCHIVED }}" @if (isset($project) && $project_status_id == Webaccess\ProjectSquare\Entities\Project::ARCHIVED)selected="selected"@endif>Archivé</option>
         </select>
     </div>
 
