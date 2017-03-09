@@ -34,6 +34,20 @@
     </div>
 
     <div class="form-group">
+        <label for="status_id">{{ trans('projectsquare::projects.status') }}
+            @include('projectsquare::includes.tooltip', [
+                'text' => trans('projectsquare::tooltips.project.status')
+            ])
+        </label>
+        <select class="form-control" name="status_id">
+            <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+            <option value="1" @if (isset($project) && $project_status_id == 1)selected="selected"@endif>En attente</option>
+            <option value="2" @if (isset($project) && $project_status_id == 2 || !isset($project_id))selected="selected"@endif>En cours</option>
+            <option value="3" @if (isset($project) && $project_status_id == 3)selected="selected"@endif>Archivé</option>
+        </select>
+    </div>
+
+    <div class="form-group">
         <button type="submit" class="btn valid">
             <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
         </button>

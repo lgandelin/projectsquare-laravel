@@ -23,8 +23,7 @@ class EloquentProjectRepository implements ProjectRepository
             $project->clientID = $projectModel->client_id;
             $project->name = $projectModel->name;
             $project->color = $projectModel->color;
-            $project->tasksScheduledTime = $projectModel->tasks_scheduled_time;
-            $project->ticketsScheduledTime = $projectModel->tickets_scheduled_time;
+            $project->statusID = $projectModel->status_id;
             $project->websiteFrontURL = $projectModel->website_front_url;
             $project->websiteBackURL = $projectModel->website_back_url;
             $project->createdAt = $projectModel->created_at;
@@ -75,8 +74,7 @@ class EloquentProjectRepository implements ProjectRepository
         $projectModel->name = $project->name;
         $projectModel->client_id = $project->clientID;
         $projectModel->color = $project->color;
-        $projectModel->tasks_scheduled_time = $project->tasksScheduledTime;
-        $projectModel->tickets_scheduled_time = $project->ticketsScheduledTime;
+        $projectModel->status_Id = $project->statusID;
         $projectModel->website_front_url = $project->websiteFrontURL;
         $projectModel->website_back_url = $project->websiteBackURL;
 

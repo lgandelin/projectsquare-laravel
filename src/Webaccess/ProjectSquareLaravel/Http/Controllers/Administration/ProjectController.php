@@ -53,6 +53,7 @@ class ProjectController extends BaseController
                 'name' => Input::get('name'),
                 'clientID' => Input::get('client_id'),
                 'color' => Input::get('color'),
+                'statusID' => Input::get('status_id'),
             ]));
 
             app()->make('ProjectManager')->addUserToProject(
@@ -217,6 +218,7 @@ class ProjectController extends BaseController
                 'name' => Input::get('name'),
                 'clientID' => Input::get('client_id'),
                 'color' => Input::get('color'),
+                'statusID' => Input::get('status_id'),
             ]));
 
             $request->session()->flash('confirmation', trans('projectsquare::projects.edit_project_success'));
@@ -385,8 +387,6 @@ class ProjectController extends BaseController
                 'projectID' => Input::get('project_id'),
                 'websiteFrontURL' => Input::get('website_front_url'),
                 'websiteBackURL' => Input::get('website_back_url'),
-                'tasksScheduledTime' => StringTool::formatNumber(Input::get('tasks_scheduled_time')),
-                'ticketsScheduledTime' => StringTool::formatNumber(Input::get('tickets_scheduled_time'))
             ]));
 
             app()->make('SettingManager')->createOrUpdateProjectSetting(

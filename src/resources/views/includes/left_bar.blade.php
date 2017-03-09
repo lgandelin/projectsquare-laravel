@@ -8,6 +8,7 @@
                 </a>
             </span>
         </li>
+
         @if (!$is_client)
             <li class="menu @if (preg_match('/project_/', $current_route)) {{ 'encours' }} @endif">
                 <span class="line projects" title="{{ trans('projectsquare::left_bar.projects') }}">
@@ -15,7 +16,7 @@
                     <h3 class="title">{{ trans('projectsquare::left_bar.projects') }}</h3>
                 </span>
                 <ul class="sub-menu">
-                    @foreach ($logged_in_user->projects as $project)
+                    @foreach ($projects as $project)
                     <li class="@if (isset($current_project_id) && $current_project_id == $project->id) encours @endif" style="border-left: 3px solid {{ $project->color }}">
                         <?php $route = preg_match('/project_/', $current_route) ? $current_route : 'project_index'; ?>
                         <a href="{{ route($route, ['id' => $project->id]) }}" @if (preg_match('/project_/', $current_route) && isset($current_project_id) && $current_project_id == $project->id) style="color: #c8dc1e" @endif">
