@@ -10,12 +10,6 @@
     </div>
 
     <div class="project-tasks">
-
-        <div class="valid-wrapper">
-            <span class="loading" style="display: none">Sauvegarde ...</span>
-            <button class="btn valid-phases"><i class="glyphicon glyphicon-ok"></i> Valider</button>
-        </div>
-
         <div class="phases">
             @foreach ($phases as $phase)
                 <div class="phase" data-id="{{ $phase->id }}" data-duration="{{ $phase->estimatedDuration }}">

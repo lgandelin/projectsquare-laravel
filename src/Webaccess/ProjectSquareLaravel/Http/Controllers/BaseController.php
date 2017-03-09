@@ -135,7 +135,7 @@ class BaseController extends Controller
         return $result;
     }
 
-    private function getProjects()
+    protected function getProjects()
     {
         $projects = [];
         $archived_projects = [];
