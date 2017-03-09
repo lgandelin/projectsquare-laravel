@@ -80,9 +80,7 @@
                     @foreach ($tasks as $task)
                         <tr>
                             <td @if (isset($task->project))style="border-left: 10px solid {{ $task->project->color }}"@endif></td>
-                            <td class="entity_title"> 
-                                <a href="{{ route('tasks_edit', ['id' => $task->id]) }}">{{ $task->title }}</a>
-                            </td>
+                            <td class="entity_title"><a href="{{ route('tasks_edit', ['id' => $task->id]) }}">{{ $task->title }}</a></td>
                             <td>@if ($task->phase){{ $task->phase->name }}@endif</td>
                             <td>@if (isset($task->project)){{ $task->project->client->name }}@endif</td>
                             <td>

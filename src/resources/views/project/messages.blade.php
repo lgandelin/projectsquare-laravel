@@ -25,6 +25,7 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
+                        <th></th>
                         <th>{{ trans('projectsquare::messages.date') }}</th>
                         <th>{{ trans('projectsquare::messages.author') }}</th>
                         <th>{{ trans('projectsquare::messages.title') }}</th>
@@ -35,6 +36,7 @@
                     <tbody>
                     @foreach ($conversations as $conversation)
                         <tr>
+                            <td style="border-left: 10px solid {{ $conversation->project->color }}"></td>
                             <td>{{ date('d/m/Y H:i', strtotime($conversation->created_at)) }}</td>
                             <td>
                                 @if (count($conversation->messages) > 0)
