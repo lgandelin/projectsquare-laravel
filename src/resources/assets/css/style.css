@@ -12994,29 +12994,33 @@ a:focus {
 .table > tbody > tr .entity_title {
   text-decoration: underline;
 }
+/* line 24, ../sass/includes/_table.scss */
+.table > tbody > tr .entity_title a:hover {
+  color: #84b4c2;
+}
 
-/* line 28, ../sass/includes/_table.scss */
+/* line 32, ../sass/includes/_table.scss */
 .table > tbody > tr > td {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
-/* line 35, ../sass/includes/_table.scss */
+/* line 39, ../sass/includes/_table.scss */
 .table thead {
   font-family: "MyriadPro-Regular";
   color: #8fafbc;
   font-size: 1.8rem;
 }
-/* line 40, ../sass/includes/_table.scss */
+/* line 44, ../sass/includes/_table.scss */
 .table thead th:last-child {
   text-align: right;
   padding-right: 3.5rem;
 }
-/* line 45, ../sass/includes/_table.scss */
+/* line 49, ../sass/includes/_table.scss */
 .table thead th {
   font-weight: 400;
 }
-/* line 49, ../sass/includes/_table.scss */
+/* line 53, ../sass/includes/_table.scss */
 .table thead th:first-child {
   padding-left: 1rem;
 }

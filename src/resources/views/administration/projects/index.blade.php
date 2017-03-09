@@ -26,8 +26,8 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>{{ trans('projectsquare::projects.client') }}</th>
                     <th>{{ trans('projectsquare::projects.project') }}</th>
+                    <th>{{ trans('projectsquare::projects.client') }}</th>
                     <th>{{ trans('projectsquare::generic.action') }}</th>
                 </tr>
                 </thead>
@@ -35,8 +35,8 @@
                 <tbody>
                     @foreach ($projects as $project)
                         <tr>
+                            <td class="entity_title"><a href="{{ route('projects_edit', ['id' => $project->id]) }}">{{ $project->name }}</a></td>
                             <td>@if (isset($project->client)){{ $project->client->name }}@endif</td>
-                            <td>{{ $project->name }}</td>
                             <td align="right">
                                 <a href="{{ route('projects_edit', ['id' => $project->id]) }}" class="btn see-more"></a>
                                 <a href="{{ route('projects_delete', ['id' => $project->id]) }}" class="btn cancel btn-delete"></a>

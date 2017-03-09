@@ -29,7 +29,7 @@
             <tbody>
             @foreach ($tasks as $task)
                 <tr>
-                    <td class="entity_title"style="border-left: 10px solid @if (isset($task->project)) {{ $task->project->color }} @endif"> <a href="{{ route('tasks_edit', ['id' => $task->id]) }}">{{ $task->title }}</a></td>
+                    <td class="entity_title" style="border-left: 10px solid @if (isset($task->project)) {{ $task->project->color }} @endif"> <a href="{{ route('tasks_edit', ['id' => $task->id]) }}">{{ $task->title }}</a></td>
                     <td>
                         @if (isset($task->allocated_user))
                             @include('projectsquare::includes.avatar', [

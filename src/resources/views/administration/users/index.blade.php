@@ -36,7 +36,7 @@
                 <tbody>
                     @foreach ($users as $user)
                         <tr>
-                            <td>{{ $user->complete_name }}</td>
+                            <td class="entity_title"><a href="{{ route('users_edit', ['id' => $user->id]) }}">{{ $user->complete_name }}</a></td>
                              <td>
                                 @include('projectsquare::includes.avatar', [
                                     'id' => $user->id,

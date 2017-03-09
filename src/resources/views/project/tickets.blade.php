@@ -69,7 +69,7 @@
                     @foreach ($tickets as $ticket)
                         <tr>
                             <td>@if (isset($ticket->states[0]))<span class="priority priority-{{ $ticket->states[0]->priority }}" title="{{ trans('projectsquare::generic.priority-' . $ticket->states[0]->priority) }}"></span>@endif</td>
-                            <td width="40%"><a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}">{{ $ticket->title }}</a></td>
+                            <td width="40%" class="entity_title"><a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}">{{ $ticket->title }}</a></td>
                             <td>@if (isset($ticket->type)){{ $ticket->type->name }}@endif</td>
                             <td>
                                 @if (isset($ticket->states[0]) && isset($ticket->states[0]->author_user))
