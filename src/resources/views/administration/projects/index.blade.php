@@ -26,6 +26,7 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
+                    <th></th>
                     <th>{{ trans('projectsquare::projects.project') }}</th>
                     <th>{{ trans('projectsquare::projects.client') }}</th>
                     <th>{{ trans('projectsquare::generic.action') }}</th>
@@ -35,6 +36,7 @@
                 <tbody>
                     @foreach ($projects as $project)
                         <tr>
+                            <td style="border-left: 5px solid {{ $project->color }}"></td>
                             <td class="entity_title"><a href="{{ route('projects_edit', ['id' => $project->id]) }}">{{ $project->name }}</a></td>
                             <td>@if (isset($project->client)){{ $project->client->name }}@endif</td>
                             <td align="right">
