@@ -38,7 +38,7 @@
                             <td class="entity_title"><a href="{{ route('clients_edit', ['id' => $client->id]) }}">{{ $client->name }}</a></td>
                             <td align="right">
                                 <a href="{{ route('clients_edit', ['id' => $client->id]) }}" class="btn see-more"></a>
-                                <a href="{{ route('clients_delete', ['id' => $client->id]) }}" class="btn cancel"></a>
+                                <a href="{{ route('clients_delete', ['id' => $client->id]) }}" class="btn cancel btn-delete"></a>
                             </td>
                         </tr>
                     @endforeach

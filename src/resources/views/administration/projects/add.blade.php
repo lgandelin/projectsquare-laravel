@@ -14,7 +14,6 @@
             </ul>
 
             <div class="templates">
-
                 @include('projectsquare::administration.projects.infos', [
                     'form_action' => route('projects_store'),
                 ])

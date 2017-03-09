@@ -18,10 +18,9 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <!--<th>#</th>-->    
-                <th>{{ trans('projectsquare::tickets.priority') }}</th>
+                <th></th>
                 <th>{{ trans('projectsquare::tickets.ticket') }}</th>
-                <!--<th>{{ trans('projectsquare::tickets.client') }} </th>--> 
+                <th style="text-align: center;">{{ trans('projectsquare::tickets.priority') }}</th>
                 <th>{{ trans('projectsquare::tickets.type') }}</th>
                 <th>{{ trans('projectsquare::tickets.status') }}</th>
                 <th>{{ trans('projectsquare::tickets.allocated_user') }}</th>
@@ -33,12 +32,11 @@
             <tbody>
             @foreach ($tickets as $ticket)
                 <tr>
-                    <!-- <td>{{ $ticket->id }}</td> -->
-                    <td class="priorities" style="border-left: 10px solid {{ $ticket->project->color }}">@if (isset($ticket->last_state))<span class="priority priority-{{ $ticket->last_state->priority }}" title="{{ trans('projectsquare::generic.priority-' . $ticket->last_state->priority) }}"></span>@endif</td>
+                    <td style="border-left: 10px solid {{ $ticket->project->color }}"></td>
                     <td class="entity_title"><a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}">{{ $ticket->title }}</a></td>
-                   <!-- <td>{{ $ticket->project->client->name }}</td>--> 
+                    <td align="center">@if (isset($ticket->last_state))<span class="priority priority-{{ $ticket->last_state->priority }}" title="{{ trans('projectsquare::generic.priority-' . $ticket->last_state->priority) }}"></span>@endif</td>
                     <td>@if (isset($ticket->type)){{ $ticket->type->name }}@endif</td>
-                       <td width="10%">@if (isset($ticket->last_state) && isset($ticket->last_state->status))<span class=" text status">{{ $ticket->last_state->status->name }}</span>@endif</td>
+                    <td width="10%">@if (isset($ticket->last_state) && isset($ticket->last_state->status))<span class=" text status">{{ $ticket->last_state->status->name }}</span>@endif</td>
                     <td>
                         @if (isset($ticket->last_state) && $ticket->last_state->allocated_user)
                             @include('projectsquare::includes.avatar', [
