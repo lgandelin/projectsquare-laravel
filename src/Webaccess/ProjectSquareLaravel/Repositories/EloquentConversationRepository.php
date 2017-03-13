@@ -7,6 +7,7 @@ use Webaccess\ProjectSquare\Entities\Conversation as ConversationEntity;
 use Webaccess\ProjectSquare\Entities\Project as ProjectEntity;
 use Webaccess\ProjectSquare\Repositories\ConversationRepository;
 use Webaccess\ProjectSquareLaravel\Models\Conversation;
+use Webaccess\ProjectSquareLaravel\Models\Project;
 use Webaccess\ProjectSquareLaravel\Models\User;
 
 class EloquentConversationRepository implements ConversationRepository
