@@ -63,7 +63,6 @@ function initTasksDragAndDrop() {
         snap: '.user-day',
         revertDuration: 0,
         tolerance: 'pointer',
-        //handle: '.drag-task',
         cursor: 'move',
         cursorAt: { left: 20, top: 20 },
         helper: function(e) {
@@ -90,6 +89,10 @@ function initTasksDragAndDrop() {
             var task_id = task.attr('data-id');
             var user_id = $(this).attr('data-user');
             var day = $(this).attr('data-day');
+            var duration = task.attr('data-duration');
+            if (duration == "" || duration == 0) {
+                duration = 8;
+            }
 
             task.addClass('dragged');
 
@@ -97,7 +100,7 @@ function initTasksDragAndDrop() {
                 name: task.attr('data-name'),
                 allocated_user_id: user_id,
                 start_time: day,
-                duration: task.attr('data-duration'),
+                duration: duration,
                 task_id: task_id,
                 filter_role: $('select[name="filter_role"]').val(),
                 project_id: $('#project_id').val(),

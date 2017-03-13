@@ -24,7 +24,7 @@ class PlanningController extends BaseController
         $userID = (Input::get('filter_user')) ? Input::get('filter_user') : $this->getUser()->id;
 
         return view('projectsquare::tools.planning.index', [
-            'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
+            'projects' => app()->make('GetProjectsInteractor')->getCurrentProjects($this->getUser()->id),
             'events' => app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
                 'userID' => $userID,
                 'projectID' => Input::get('filter_project'),

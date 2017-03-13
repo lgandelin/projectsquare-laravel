@@ -30,7 +30,6 @@ class ProjectController extends BaseController
 
         return view('projectsquare::project.tasks', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
-            'projects' => app()->make('ProjectManager')->getProjects(),
             'phases' => app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
                 'projectID' => $projectID
             ])),
@@ -63,7 +62,6 @@ class ProjectController extends BaseController
 
         return view('projectsquare::project.tickets', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
-            'projects' => app()->make('ProjectManager')->getProjects(),
             'users' => app()->make('UserManager')->getUsersByProject($projectID),
             'ticket_statuses' => app()->make('TicketStatusManager')->getTicketStatuses(),
             'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),

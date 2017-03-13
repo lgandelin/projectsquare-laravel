@@ -3,6 +3,7 @@
 namespace Webaccess\ProjectSquareLaravel\Repositories;
 
 use Ramsey\Uuid\Uuid;
+use Webaccess\ProjectSquare\Entities\Project as ProjectEntity;
 use Webaccess\ProjectSquare\Entities\Ticket as TicketEntity;
 use Webaccess\ProjectSquare\Entities\TicketState as TicketStateEntity;
 use Webaccess\ProjectSquareLaravel\Models\Ticket;
@@ -33,7 +34,8 @@ class EloquentTicketRepository implements TicketRepository
     private function getTickets($userID, $projectID = null, $allocatedUserID = null, $statusID = null, $typeID = null)
     {
         //Ressource projects
-        $projectIDs = User::find($userID)->projects->pluck('id')->toArray();
+        $projects = User::find($userID)->projects()->where('status_id', '=', ProjectEntity::IN_PROGRESS);
+        $projectIDs = $projects->pluck('id')->toArray();
 
         //Client project
         $user = User::find($userID);

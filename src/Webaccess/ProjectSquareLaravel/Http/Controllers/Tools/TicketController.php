@@ -33,7 +33,7 @@ class TicketController extends BaseController
                 Input::get('filter_status'),
                 Input::get('filter_type')
             ),
-            'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
+            'projects' => app()->make('GetProjectsInteractor')->getCurrentProjects($this->getUser()->id),
             'users' => app()->make('UserManager')->getAgencyUsers(),
             'ticket_statuses' => app()->make('TicketStatusManager')->getTicketStatuses(),
             'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
@@ -139,7 +139,7 @@ class TicketController extends BaseController
 
         return view('projectsquare::tools.tickets.edit', [
             'ticket' => $ticket,
-            'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
+            'projects' => app()->make('GetProjectsInteractor')->getCurrentProjects($this->getUser()->id),
             'ticket_states' => app()->make('GetTicketInteractor')->getTicketStatesPaginatedList($ticketID, env('TICKET_STATES_PER_PAGE', 10)),
             'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
             'ticket_status' => app()->make('TicketStatusManager')->getTicketStatuses(),

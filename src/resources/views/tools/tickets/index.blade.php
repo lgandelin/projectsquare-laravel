@@ -13,7 +13,6 @@
 
             <form method="get">
                 <div class="row">
-
                     <h2> {{ trans('projectsquare::tasks.filters.filters') }}</h2>
 
                     <div class="form-group col-md-2">
@@ -66,9 +65,9 @@
                     {{ $confirmation }}
                 </div>
             @endif
+
             <a href="{{ route('tickets_add') }}" class="btn pull-right add create-ticket"></a>
             <div class="table-responsive">
-               
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -123,7 +122,6 @@
                                     >
                                         <a href="#" class="glyphicon glyphicon-move move-widget" title="Planifier le ticket"></a>
                                     </span>
-                                    
                                     <a href="{{ route('tickets_delete', ['id' => $ticket->id]) }}" class="btn cancel btn-delete"></a>
                                 </td>
                             </tr>
@@ -137,12 +135,12 @@
             </div>
         </div>
 
-        <div class="templates planning-template" style="padding-top: 10rem;">
+        <div class="templates planning-template" style="padding-top: 3rem;">
             <div class="page-header">
                 <h1>{{ trans('projectsquare::planning.planning') }}
                     @include('projectsquare::includes.tooltip', [
                         'text' => trans('projectsquare::tooltips.planning')
-                  ])
+                    ])
                 </h1>
             </div>
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Requests\Notifications\ReadNotificationRequest;
+use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\CreateTaskRequest;
@@ -33,7 +34,7 @@ class TaskController extends BaseController
 
         return view('projectsquare::tools.tasks.index', [
             'tasks' => $tasks,
-            'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
+            'projects' => app()->make('GetProjectsInteractor')->getCurrentProjects($this->getUser()->id),
             'users' => app()->make('UserManager')->getAgencyUsers(),
             'task_statuses' => self::getTasksStatuses(),
             'filters' => [
@@ -43,6 +44,18 @@ class TaskController extends BaseController
             ],
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
+
+            //planning variables
+            'events' => app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
+                'userID' => (Input::get('filter_planning_user')) ? Input::get('filter_planning_user') : $this->getUser()->id,
+                'projectID' => Input::get('filter_project'),
+            ])),
+            'filters_planning' => [
+                'project' => Input::get('filter_planning_project'),
+                'user' => Input::get('filter_planning_user'),
+            ],
+            'userID' => (Input::get('filter_planning_user')) ? Input::get('filter_planning_user') : $this->getUser()->id,
+            'currentUserID' => $this->getUser()->id,
         ]);
     }
 
@@ -130,7 +143,7 @@ class TaskController extends BaseController
 
         return view('projectsquare::tools.tasks.edit', [
             'task' => $task,
-            'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
+            'projects' => app()->make('GetProjectsInteractor')->getCurrentProjects($this->getUser()->id),
             'task_statuses' => self::getTasksStatuses(),
             'users' => app()->make('UserManager')->getUsersByProject($task->projectID),
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,

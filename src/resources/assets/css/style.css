@@ -14161,9 +14161,25 @@ body {
   height: 185px;
 }
 
-/* line 1, ../sass/_tasks.scss */
+/* line 2, ../sass/_tasks.scss */
 .tasks-template h2 {
   margin-left: 1.5rem;
+}
+/* line 6, ../sass/_tasks.scss */
+.tasks-template .table-responsive {
+  max-height: 410px;
+  clear: right;
+}
+/* line 11, ../sass/_tasks.scss */
+.tasks-template .task-dragndrop {
+  vertical-align: middle;
+  display: inline-block;
+  margin-top: 6px;
+}
+/* line 16, ../sass/_tasks.scss */
+.tasks-template .task-dragndrop .move-widget:hover {
+  text-decoration: none;
+  color: #c8dc1e;
 }
 
 /* line 1, ../sass/_messages.scss */
