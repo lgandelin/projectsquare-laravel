@@ -145,12 +145,23 @@ class BaseController extends Controller
         $archived_projects = [];
 
         foreach (Project::orderBy('created_at', 'desc')->get() as $project) {
-            foreach($project->users as $user) {
-                if ($user->id == $this->getUser()->id) {
+
+            if ($this->isUserAClient()) {
+                if ($project->client_id == $this->getUser()->client_id) {
                     if ($project->status_id == ProjectEntity::IN_PROGRESS) {
-                        $projects[]= $project;
+                        $projects[] = $project;
                     } else {
-                        $archived_projects[]= $project;
+                        $archived_projects[] = $project;
+                    }
+                }
+            } else {
+                foreach ($project->users as $user) {
+                    if ($user->id == $this->getUser()->id) {
+                        if ($project->status_id == ProjectEntity::IN_PROGRESS) {
+                            $projects[] = $project;
+                        } else {
+                            $archived_projects[] = $project;
+                        }
                     }
                 }
             }
