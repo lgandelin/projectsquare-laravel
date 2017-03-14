@@ -20,7 +20,7 @@
                 @endforeach
             </select>
         @else
-            <div class="info bg-info">{{ trans('projectsquare::no_client_yet') }}</div>
+            <div class="info bg-info">{{ trans('projectsquare::projects.no_client_yet') }}</div>
         @endif
     </div>
 

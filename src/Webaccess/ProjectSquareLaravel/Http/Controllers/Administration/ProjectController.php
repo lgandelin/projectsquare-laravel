@@ -20,6 +20,7 @@ use Webaccess\ProjectSquare\Requests\Tasks\UpdateTaskRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 use Webaccess\ProjectSquare\Requests\Clients\GetClientsRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\Management\OccupationController;
+use Webaccess\ProjectSquareLaravel\Models\Role;
 use Webaccess\ProjectSquareLaravel\Tools\StringTool;
 
 class ProjectController extends BaseController
@@ -59,7 +60,7 @@ class ProjectController extends BaseController
             app()->make('ProjectManager')->addUserToProject(
                 $response->project->id,
                 $this->getUser()->id,
-                null
+                Role::first()->id
             );
 
             $request->session()->flash('confirmation', trans('projectsquare::projects.add_project_success'));
