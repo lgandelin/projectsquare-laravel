@@ -40,7 +40,7 @@ class EloquentTicketRepository implements TicketRepository
         //Client project
         $user = User::find($userID);
         if (isset($user->client_id)) {
-            $project = Project::where('client_id', '=', $user->client_id)->first();
+            $project = Project::where('client_id', '=', $user->client_id)->where('status_id', '=', ProjectEntity::IN_PROGRESS)->orderBy('created_at', 'DESC')->first();
             $projectIDs[]= $project->id;
         }
 
