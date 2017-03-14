@@ -4,8 +4,8 @@ namespace Webaccess\ProjectSquareLaravel\Repositories;
 
 use Ramsey\Uuid\Uuid;
 use Webaccess\ProjectSquare\Repositories\TaskRepository;
+use Webaccess\ProjectSquare\Entities\Project as ProjectEntity;
 use Webaccess\ProjectSquare\Entities\Task as TaskEntity;
-use Webaccess\ProjectSquare\Entities\User as UserEntity;
 use Webaccess\ProjectSquareLaravel\Models\Project;
 use Webaccess\ProjectSquareLaravel\Models\Task;
 use Webaccess\ProjectSquareLaravel\Models\User;
@@ -38,12 +38,14 @@ class EloquentTasksRepository implements TaskRepository
         //Ressource projects
         $user = User::find($userID);
         if ($user && $user->projects) {
-            $projectIDs = $user->projects->pluck('id')->toArray();
+            $projects = $user->projects()->where('status_id', '=', ProjectEntity::IN_PROGRESS);
+            $projectIDs = $projects->pluck('id')->toArray();
         }
 
         //Client project
         if (isset($user->client_id)) {
-            $project = Project::where('client_id', '=', $user->client_id)->first();
+            $project = Project::where('client_id', '=', $user->client_id)->where('status_id', '=', ProjectEntity::IN_PROGRESS)->orderBy('created_at', 'DESC')->first();
+
             $projectIDs[]= $project->id;
         }
 

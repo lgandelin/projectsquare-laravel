@@ -18,16 +18,24 @@ class DashboardController extends BaseController
 
         return view('projectsquare::dashboard.index', [
             'widgets' => json_decode($_COOKIE['dashboard-widgets-' . $this->getUser()->id]),
-            'tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest([
-                'allocatedUserID' => $this->getUser()->id
-            ])),
+            'tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList(
+                $this->getUser()->id,
+                env('TASKS_PER_PAGE', 10),
+                new GetTasksRequest([
+                    'allocatedUserID' => $this->getUser()->id
+                ])
+            ),
             'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
                 $this->getUser()->id,
                 env('TICKETS_PER_PAGE', 10),
                 null,
                 $this->getUser()->id
             ),
-            'conversations' => $this->isUserAClient() ? app()->make('ConversationManager')->getConversationsByProject($this->getCurrentProject()->id, 5) : app()->make('ConversationManager')->getConversations($this->getUser()->id, 5),
+            'conversations' => app()->make('ConversationManager')->getConversationsPaginatedList(
+                $this->getUser()->id,
+                null,
+                env('CONVERSATIONS_PER_PAGE', 10)
+            ),
             'events' => app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
                 'userID' => $this->getUser()->id,
             ])),

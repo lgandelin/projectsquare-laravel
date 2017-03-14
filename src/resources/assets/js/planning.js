@@ -189,8 +189,6 @@ $(document).ready(function() {
                 return false;
             }
 
-            console.log(event)
-
             $('#event-infos .wrapper').show();
             $('#event-infos .loading').show();
 
@@ -200,6 +198,7 @@ $(document).ready(function() {
                 start_time: event.start.format(),
                 end_time: event.end.format(),
                 ticket_id: event.ticket_id,
+                task_id: event.task_id,
                 user_id: $('#user_id').val(),
                 _token: $('#csrf_token').val()
             };

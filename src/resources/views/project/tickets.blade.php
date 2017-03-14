@@ -53,8 +53,9 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>{{ trans('projectsquare::tickets.priority') }}</th>
+                        <th></th>
                         <th>{{ trans('projectsquare::tickets.ticket') }}</th>
+                        <th style="text-align:center">{{ trans('projectsquare::tickets.priority') }}</th>
                         <th>{{ trans('projectsquare::tickets.type') }}</th>
                         <th>{{ trans('projectsquare::tickets.author_user') }}</th>
                         <th>{{ trans('projectsquare::tickets.allocated_user') }}</th>
@@ -68,8 +69,9 @@
                     <tbody>
                     @foreach ($tickets as $ticket)
                         <tr>
-                            <td>@if (isset($ticket->states[0]))<span class="priority priority-{{ $ticket->states[0]->priority }}" title="{{ trans('projectsquare::generic.priority-' . $ticket->states[0]->priority) }}"></span>@endif</td>
-                            <td width="40%"><a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}">{{ $ticket->title }}</a></td>
+                            <td style="border-left: 10px solid {{ $ticket->project->color }}"></td>
+                            <td class="entity_title"><a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}">{{ $ticket->title }}</a></td>
+                            <td align="center">@if (isset($ticket->states[0]))<span class="priority priority-{{ $ticket->states[0]->priority }}" title="{{ trans('projectsquare::generic.priority-' . $ticket->states[0]->priority) }}"></span>@endif</td>
                             <td>@if (isset($ticket->type)){{ $ticket->type->name }}@endif</td>
                             <td>
                                 @if (isset($ticket->states[0]) && isset($ticket->states[0]->author_user))

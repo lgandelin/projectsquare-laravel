@@ -26,8 +26,10 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>{{ trans('projectsquare::projects.client') }}</th>
+                    <th></th>
                     <th>{{ trans('projectsquare::projects.project') }}</th>
+                    <th>{{ trans('projectsquare::projects.client') }}</th>
+                    <th>{{ trans('projectsquare::projects.status') }}</th>
                     <th>{{ trans('projectsquare::generic.action') }}</th>
                 </tr>
                 </thead>
@@ -35,8 +37,14 @@
                 <tbody>
                     @foreach ($projects as $project)
                         <tr>
+                            <td style="border-left: 5px solid {{ $project->color }}"></td>
+                            <td class="entity_title"><a href="{{ route('projects_edit', ['id' => $project->id]) }}">{{ $project->name }}</a></td>
                             <td>@if (isset($project->client)){{ $project->client->name }}@endif</td>
-                            <td>{{ $project->name }}</td>
+                            <td>
+                                @if ($project->status_id == Webaccess\ProjectSquare\Entities\Project::IN_PROGRESS)En cours
+                                @elseif ($project->status_id == Webaccess\ProjectSquare\Entities\Project::ARCHIVED)Archivé
+                                @endif
+                            </td>
                             <td align="right">
                                 <a href="{{ route('projects_edit', ['id' => $project->id]) }}" class="btn see-more"></a>
                                 <a href="{{ route('projects_delete', ['id' => $project->id]) }}" class="btn cancel btn-delete"></a>

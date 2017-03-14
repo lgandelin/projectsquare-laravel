@@ -32,17 +32,18 @@
                     <thead>
                     <tr>
                         <th></th>
+                        <th>{{ trans('projectsquare::messages.title') }}</th>
                         <th>{{ trans('projectsquare::messages.date') }}</th>
                         <th>{{ trans('projectsquare::messages.client') }}</th>
                         <th>{{ trans('projectsquare::messages.author') }}</th>
-                        <th>{{ trans('projectsquare::messages.title') }}</th>
                         <th>{{ trans('projectsquare::messages.action') }}</th>
                     </tr>
                     </thead>
                     @foreach ($conversations as $conversation)
                         <tr>
-                            <td class="priorities" style="border-left: 5px solid {{ $conversation->project->color }}"></td>
-                            <td >{{ date('d/m/Y H:i', strtotime($conversation->created_at)) }}</td>
+                            <td style="border-left: 10px solid {{ $conversation->project->color }}"></td>
+                            <td class="entity_title"><a href="{{ route('conversations_view', ['id' => $conversation->id]) }}"><span class="text">{{ $conversation->title }}</span></a></td>
+                            <td>{{ date('d/m/Y H:i', strtotime($conversation->created_at)) }}</td>
                             <td><span class="text">{{ $conversation->project->client->name }}</span></td>
                             <td>
                                 @include('projectsquare::includes.avatar', [
@@ -50,7 +51,6 @@
                                     'name' => $conversation->messages[sizeof($conversation->messages) - 1]->user->complete_name
                                 ])
                             </td>
-                            <td><span class="text">{{ $conversation->title }}</span></td>
                             <td align="right">
                                 <a href="{{ route('conversations_view', ['id' => $conversation->id]) }}" class="btn btn-primary see-more"></a>
                             </td>

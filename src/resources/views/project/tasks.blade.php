@@ -52,6 +52,7 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
+                    <th></th>
                     <th>{{ trans('projectsquare::tasks.task') }}</th>
                     <th>{{ trans('projectsquare::tasks.phase') }}</th>
                     <th>{{ trans('projectsquare::tasks.allocated_user') }}</th>
@@ -65,7 +66,8 @@
                 <tbody>
                 @foreach ($tasks as $task)
                     <tr>
-                        <td><a href="{{ route('tasks_edit', ['id' => $task->id]) }}">{{ $task->title }}</a></td>
+                        <td @if (isset($task->project))style="border-left: 5px solid {{ $task->project->color }}"@endif></td>
+                        <td class="entity_title"><a href="{{ route('tasks_edit', ['id' => $task->id]) }}">{{ $task->title }}</a></td>
                         <td>@if ($task->phase){{ $task->phase->name }}@endif</td>
                         <td>
                             @if (isset($task->allocated_user))

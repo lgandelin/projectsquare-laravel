@@ -13,7 +13,6 @@
 
             <form method="get">
                 <div class="row">
-
                     <h2> {{ trans('projectsquare::tasks.filters.filters') }}</h2>
 
                     <div class="form-group col-md-2">
@@ -66,15 +65,15 @@
                     {{ $confirmation }}
                 </div>
             @endif
+
             <a href="{{ route('tickets_add') }}" class="btn pull-right add create-ticket"></a>
             <div class="table-responsive">
-               
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th></th>
-                            <th>{{ trans('projectsquare::tickets.priority') }}</th>
                             <th>{{ trans('projectsquare::tickets.ticket') }}</th>
+                            <th style="text-align: center;">{{ trans('projectsquare::tickets.priority') }}</th>
                             <th>{{ trans('projectsquare::tickets.client') }}</th>
                             <th>{{ trans('projectsquare::tickets.type') }}</th>
                             <th>{{ trans('projectsquare::tickets.author_user') }}</th>
@@ -89,11 +88,9 @@
                     <tbody>
                         @foreach ($tickets as $ticket)
                             <tr>
-                                <td class="priorities" style="border-left: 10px solid {{ $ticket->project->color }}"></td>
-                                <td>@if (isset($ticket->last_state))<span class="priority priority-{{ $ticket->last_state->priority }}" title="{{ trans('projectsquare::generic.priority-' . $ticket->last_state->priority) }}"></span>@endif</td>
-                                <td class="entity_title">
-                                    <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}">{{ $ticket->title }}</a>
-                                </td>
+                                <td style="border-left: 10px solid {{ $ticket->project->color }}"></td>
+                                <td class="entity_title"><a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}">{{ $ticket->title }}</a></td>
+                                <td align="center">@if (isset($ticket->last_state))<span class="priority priority-{{ $ticket->last_state->priority }}" title="{{ trans('projectsquare::generic.priority-' . $ticket->last_state->priority) }}"></span>@endif</td>
                                 <td>{{ $ticket->project->client->name }}</td>
                                 <td>@if (isset($ticket->type)){{ $ticket->type->name }}@endif</td>
                                 <td>
@@ -125,7 +122,6 @@
                                     >
                                         <a href="#" class="glyphicon glyphicon-move move-widget" title="Planifier le ticket"></a>
                                     </span>
-                                    
                                     <a href="{{ route('tickets_delete', ['id' => $ticket->id]) }}" class="btn cancel btn-delete"></a>
                                 </td>
                             </tr>
@@ -139,13 +135,12 @@
             </div>
         </div>
 
-
-        <div class="templates planning-template" style="padding-top: 10rem;">
+        <div class="templates planning-template" style="padding-top: 3rem;">
             <div class="page-header">
                 <h1>{{ trans('projectsquare::planning.planning') }}
                     @include('projectsquare::includes.tooltip', [
                         'text' => trans('projectsquare::tooltips.planning')
-                  ])
+                    ])
                 </h1>
             </div>
 

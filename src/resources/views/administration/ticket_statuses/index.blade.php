@@ -28,7 +28,6 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>#</th>
                         <th>{{ trans('projectsquare::ticket_statuses.ticket_status') }}</th>
                         <th>{{ trans('projectsquare::generic.action') }}</th>
                     </tr>
@@ -37,8 +36,7 @@
                 <tbody>
                     @foreach ($ticket_statuses as $ticket_status)
                         <tr>
-                            <td>{{ $ticket_status->id }}</td>
-                            <td>{{ $ticket_status->name }}</td>
+                            <td class="entity_title"><a href="{{ route('ticket_statuses_edit', ['id' => $ticket_status->id]) }}">{{ $ticket_status->name }}</a></td>
                             <td align="right">
                                 <a href="{{ route('ticket_statuses_edit', ['id' => $ticket_status->id]) }}" class="btn see-more"></a>
                                 <a href="{{ route('ticket_statuses_delete', ['id' => $ticket_status->id]) }}" class="btn cancel btn-delete"></a>

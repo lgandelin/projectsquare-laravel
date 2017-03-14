@@ -182,7 +182,7 @@ function init_phases_sortable() {
         start: function(event, ui) {
             formModified = 1;
         },
-    }).disableSelection();
+    });
 }
 
 function init_tasks_sortable() {
@@ -193,7 +193,7 @@ function init_tasks_sortable() {
         start: function(event, ui) {
             formModified = 1;
         },
-    }).disableSelection();
+    });
 }
 
 function update_phase_duration(phase_id) {

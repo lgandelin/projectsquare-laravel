@@ -19,8 +19,8 @@ class MessageController extends BaseController
         $request->session()->put('messages_interface', 'messages');
 
         return view('projectsquare::tools.messages.index', [
-            'conversations' => app()->make('ConversationManager')->getConversationsPaginatedList($this->getUser()->id, env('CONVERSATIONS_PER_PAGE', 10), Input::get('filter_project')),
-            'projects' => app()->make('ProjectManager')->getUserProjects($this->getUser()->id),
+            'conversations' => app()->make('ConversationManager')->getConversationsPaginatedList($this->getUser()->id, Input::get('filter_project'), env('CONVERSATIONS_PER_PAGE', 10)),
+            'projects' => app()->make('GetProjectsInteractor')->getCurrentProjects($this->getUser()->id),
             'filters' => [
                 'project' => Input::get('filter_project'),
             ],

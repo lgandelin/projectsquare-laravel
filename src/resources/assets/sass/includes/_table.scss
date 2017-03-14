@@ -20,6 +20,10 @@
 
             .entity_title {
                 text-decoration: underline;
+
+                a:hover {
+                    color: $light_blue;
+                }
             }
         }
     }

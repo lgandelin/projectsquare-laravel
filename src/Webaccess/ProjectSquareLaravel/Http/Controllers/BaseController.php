@@ -66,7 +66,7 @@ class BaseController extends Controller
     {
         if ($this->isUserAClient()) {
             if ($client = Client::find($this->getUser()->client_id)) {
-                $project = Project::where('client_id', '=', $client->id)->first();
+                $project = Project::where('client_id', '=', $client->id)->where('status_id', '=', ProjectEntity::IN_PROGRESS)->orderBy('created_at', 'DESC')->first();
                 $this->request->session()->put('current_project', $project);
             }
         }

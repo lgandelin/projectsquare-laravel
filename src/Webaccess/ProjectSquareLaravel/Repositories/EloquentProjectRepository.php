@@ -61,6 +61,22 @@ class EloquentProjectRepository implements ProjectRepository
         return Project::with('client')->orderBy('updated_at', 'DESC')->paginate($limit);
     }
 
+    public function getCurrentProjects($userID)
+    {
+        $projects = [];
+        foreach (Project::orderBy('created_at', 'desc')->get() as $project) {
+            foreach ($project->users as $user) {
+                if ($user->id == $userID) {
+                    if ($project->status_id == ProjectEntity::IN_PROGRESS) {
+                        $projects[]= $project;
+                    }
+                }
+            }
+        }
+
+        return $projects;
+    }
+
     public function persistProject(ProjectEntity $project)
     {
         if (!isset($project->id)) {
