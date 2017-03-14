@@ -124,7 +124,14 @@ class EloquentProjectRepository implements ProjectRepository
         $user = User::find($userID);
         $project = $this->getProjectModel($projectID);
 
-        return count($project->users()->where('user_id', '=', $userID)->get()) > 0 || $user->client_id == $project->client_id;
+        if (
+            $project->client_id != null && $user->client_id == $project->client_id ||
+            count($project->users()->where('user_id', '=', $userID)->get()) > 0
+        ) {
+            return true;
+        }
+
+        return false;
     }
 
     public function removeUserFromProject($projectID, $userID)

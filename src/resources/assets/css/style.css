@@ -13219,7 +13219,7 @@ body {
 }
 /* line 70, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu .sub-menu li:last-child {
-  padding-bottom: 1rem;
+  padding-bottom: 18px;
 }
 /* line 75, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu li.archived-project-title {
@@ -13300,52 +13300,48 @@ body {
 .left-bar > ul .menu:nth-child(2) .sub-menu li:first-child {
   padding-top: 0;
 }
-/* line 187, ../sass/layout/_left_bar.scss */
-.left-bar > ul .menu:nth-child(2) .sub-menu li:last-child {
-  padding-bottom: 0;
-}
-/* line 192, ../sass/layout/_left_bar.scss */
+/* line 188, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu:nth-child(2) .sub-menu::-webkit-scrollbar {
   width: 5px;
 }
-/* line 196, ../sass/layout/_left_bar.scss */
+/* line 192, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu:nth-child(2) .sub-menu::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
-/* line 200, ../sass/layout/_left_bar.scss */
+/* line 196, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu:nth-child(2) .sub-menu::-webkit-scrollbar-thumb {
   background-color: #b4d2dc;
   outline: 1px solid slategrey;
 }
-/* line 206, ../sass/layout/_left_bar.scss */
+/* line 202, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu.encours .icon {
   color: #c8dc1e;
 }
-/* line 210, ../sass/layout/_left_bar.scss */
+/* line 206, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu.encours .title {
   color: #c8dc1e;
 }
-/* line 214, ../sass/layout/_left_bar.scss */
+/* line 210, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu.encours .encours {
   background: #0c7594;
 }
-/* line 216, ../sass/layout/_left_bar.scss */
+/* line 212, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu.encours .encours a {
   color: #c8dc1e;
 }
-/* line 224, ../sass/layout/_left_bar.scss */
+/* line 220, ../sass/layout/_left_bar.scss */
 .left-bar > ul > .menu:first-child a {
   padding-left: 0rem;
 }
-/* line 228, ../sass/layout/_left_bar.scss */
+/* line 224, ../sass/layout/_left_bar.scss */
 .left-bar > ul > .menu:first-child h3 {
   margin-top: 0;
 }
-/* line 234, ../sass/layout/_left_bar.scss */
+/* line 230, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu:hover .title, .left-bar > ul .menu:hover .icon {
   color: #c8dc1e;
 }
-/* line 239, ../sass/layout/_left_bar.scss */
+/* line 235, ../sass/layout/_left_bar.scss */
 .left-bar > ul .toggle-left-bar {
   height: 68px;
   text-align: right;
@@ -13356,29 +13352,29 @@ body {
   padding-top: 2rem;
   cursor: pointer;
 }
-/* line 250, ../sass/layout/_left_bar.scss */
+/* line 246, ../sass/layout/_left_bar.scss */
 .left-bar > ul .toggle-left-bar:hover {
   color: #c8dc1e;
 }
-/* line 255, ../sass/layout/_left_bar.scss */
+/* line 251, ../sass/layout/_left_bar.scss */
 .left-bar a:hover {
   text-decoration: none;
 }
 
-/* line 260, ../sass/layout/_left_bar.scss */
+/* line 256, ../sass/layout/_left_bar.scss */
 .left-bar-minified {
   width: 68px;
   bottom: 0;
 }
-/* line 264, ../sass/layout/_left_bar.scss */
+/* line 260, ../sass/layout/_left_bar.scss */
 .left-bar-minified > ul .menu {
   position: relative;
 }
-/* line 267, ../sass/layout/_left_bar.scss */
+/* line 263, ../sass/layout/_left_bar.scss */
 .left-bar-minified > ul .menu .title {
   display: none;
 }
-/* line 271, ../sass/layout/_left_bar.scss */
+/* line 267, ../sass/layout/_left_bar.scss */
 .left-bar-minified > ul .menu .sub-menu {
   display: none;
   background: #222 !important;
@@ -13387,34 +13383,34 @@ body {
   top: 0;
   width: 185px;
 }
-/* line 279, ../sass/layout/_left_bar.scss */
+/* line 275, ../sass/layout/_left_bar.scss */
 .left-bar-minified > ul .menu .sub-menu li {
   margin-left: 0 !important;
 }
-/* line 284, ../sass/layout/_left_bar.scss */
+/* line 280, ../sass/layout/_left_bar.scss */
 .left-bar-minified > ul .menu .toggle-left-bar {
   text-align: center;
   margin-right: 0;
   border-right: 1px solid #9dc3cf;
 }
-/* line 290, ../sass/layout/_left_bar.scss */
+/* line 286, ../sass/layout/_left_bar.scss */
 .left-bar-minified > ul .menu li.archived-project-title, .left-bar-minified > ul .menu li.archived-project {
   color: #ccc !important;
 }
-/* line 293, ../sass/layout/_left_bar.scss */
+/* line 289, ../sass/layout/_left_bar.scss */
 .left-bar-minified > ul .menu li.archived-project-title a, .left-bar-minified > ul .menu li.archived-project-title i, .left-bar-minified > ul .menu li.archived-project a, .left-bar-minified > ul .menu li.archived-project i {
   color: #ccc !important;
 }
-/* line 297, ../sass/layout/_left_bar.scss */
+/* line 293, ../sass/layout/_left_bar.scss */
 .left-bar-minified > ul .menu li.archived-project-title a:hover, .left-bar-minified > ul .menu li.archived-project a:hover {
   color: #c8dc1e !important;
 }
-/* line 302, ../sass/layout/_left_bar.scss */
+/* line 298, ../sass/layout/_left_bar.scss */
 .left-bar-minified > ul .menu .filter-project {
   padding-top: 1rem !important;
   padding-bottom: 1rem !important;
 }
-/* line 306, ../sass/layout/_left_bar.scss */
+/* line 302, ../sass/layout/_left_bar.scss */
 .left-bar-minified > ul .menu .filter-project input[type="text"] {
   width: 88%;
   margin-left: 1rem;

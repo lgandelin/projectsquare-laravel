@@ -31,9 +31,8 @@ $.expr[':'].contains = function(a, i, m) {
 
 $(document).ready(function() {
 
-
     //NOTIFICATIONS
-    $('.info').delay(6000).fadeOut();
+    $('.info').delay(15000).fadeOut();
 
     //BETA FORM
     $('body').on('click', '.beta-form .toggle', function() {
