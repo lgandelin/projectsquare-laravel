@@ -32,8 +32,6 @@
                 <tr class="conversation" id="conversation-{{ $conversation->id }}" data-id="{{ $conversation->id }}">
 
                     <td class="text-conversation" style="border-left: 10px solid {{ $conversation->project->color }}" width="50%">
-                        <!--{{ $conversation->project->client->name }}{{ $conversation->title }}</strong><br></td>-->
-
                        {{ str_limit($conversation->messages[sizeof($conversation->messages) - 1]->content, 100) }}
                     </td>
 
