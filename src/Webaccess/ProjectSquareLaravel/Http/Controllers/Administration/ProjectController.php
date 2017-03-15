@@ -17,6 +17,7 @@ use Webaccess\ProjectSquare\Requests\Tasks\AllocateAndScheduleTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\CreateTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\DeleteTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\UpdateTaskRequest;
+use Webaccess\ProjectSquare\Requests\Users\AddUserToProjectRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 use Webaccess\ProjectSquare\Requests\Clients\GetClientsRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\Management\OccupationController;
@@ -62,6 +63,12 @@ class ProjectController extends BaseController
                 $this->getUser()->id,
                 Role::first()->id
             );
+
+            app()->make('AddUserToProjectInteractor')->execute(new AddUserToProjectRequest([
+                'projectID' => $response->project->id,
+                'userID' => $this->getUser()->id,
+                'roleID' => Role::first()->id
+            ]));
 
             $request->session()->flash('confirmation', trans('projectsquare::projects.add_project_success'));
 
@@ -447,11 +454,12 @@ class ProjectController extends BaseController
             $user = app()->make('UserManager')->getUser(Input::get('user_id'));
             $role = Input::get('role_id') ? app()->make('RoleManager')->getRole(Input::get('role_id')) : null;
 
-            app()->make('ProjectManager')->addUserToProject(
-                Input::get('project_id'),
-                Input::get('user_id'),
-                Input::get('role_id')
-            );
+            app()->make('AddUserToProjectInteractor')->execute(new AddUserToProjectRequest([
+                'projectID' => Input::get('project_id'),
+                'userID' => Input::get('user_id'),
+                'roleID' => Input::get('role_id')
+            ]));
+
             $request->session()->flash('confirmation', trans('projectsquare::projects.add_user_to_project_success'));
         } catch (\Exception $e) {
             $request->session()->flash('error', $e->getMessage());

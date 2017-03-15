@@ -60,6 +60,7 @@ use Webaccess\ProjectSquare\Interactors\Tasks\CreateTaskInteractor;
 use Webaccess\ProjectSquare\Interactors\Tasks\UpdateTaskInteractor;
 use Webaccess\ProjectSquare\Interactors\Tasks\DeleteTaskInteractor;
 use Webaccess\ProjectSquare\Interactors\Tasks\AllocateAndScheduleTaskInteractor;
+use Webaccess\ProjectSquare\Interactors\Users\AddUserToProjectInteractor;
 use Webaccess\ProjectSquare\Interactors\Users\RemoveUserFromProjectInteractor;
 use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteLoadingTimeEvent;
 use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteStatusCodeEvent;
@@ -546,6 +547,13 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
 
         App::bind('GetProjectProgressInteractor', function () {
             return new GetProjectProgressInteractor(
+                new EloquentProjectRepository()
+            );
+        });
+
+        App::bind('AddUserToProjectInteractor', function () {
+            return new AddUserToProjectInteractor(
+                new EloquentUserRepository(),
                 new EloquentProjectRepository()
             );
         });

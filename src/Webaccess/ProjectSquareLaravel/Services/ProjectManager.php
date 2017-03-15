@@ -71,15 +71,6 @@ class ProjectManager
         }
     }
 
-    public function addUserToProject($projectID, $userID, $roleID)
-    {
-        if ($this->isUserInProject($projectID, $userID)) {
-            throw new \Exception(trans('projectsquare::projects.user_already_in_project'));
-        }
-
-        $this->repository->addUserToProject($projectID, $userID, $roleID);
-    }
-
     public function isUserInProject($projectID, $userID)
     {
         return $this->repository->isUserInProject($projectID, $userID);

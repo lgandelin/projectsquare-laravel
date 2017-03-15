@@ -15,7 +15,6 @@ use Webaccess\ProjectSquare\Requests\Tasks\UpdateTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\DeleteTaskRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\Management\OccupationController;
-use Webaccess\ProjectSquareLaravel\Models\User;
 use Webaccess\ProjectSquareLaravel\Tools\StringTool;
 
 class TaskController extends BaseController
