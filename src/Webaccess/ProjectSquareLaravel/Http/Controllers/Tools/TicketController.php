@@ -65,7 +65,7 @@ class TicketController extends BaseController
         parent::__construct($request);
 
         return view('projectsquare::tools.tickets.add', [
-            'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
+            'projects' => app()->make('GetProjectsInteractor')->getCurrentProjects($this->getUser()->id),
             'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
             'ticket_status' => app()->make('TicketStatusManager')->getTicketStatuses(),
             'users' => ($this->getCurrentProject()) ? app()->make('UserManager')->getUsersByProject($this->getCurrentProject()->id) : app()->make('UserManager')->getAgencyUsers(),
@@ -102,6 +102,10 @@ class TicketController extends BaseController
             $response = app()->make('CreateTicketInteractor')->execute(new CreateTicketRequest($data));
 
             $request->session()->flash('confirmation', trans('projectsquare::tickets.add_ticket_success'));
+
+            if ($this->isUserAClient())
+                return redirect()->route('project_tickets', ['uuid' => $this->getCurrentProject()->id]);
+
             return redirect()->route('tickets_index');
         } catch (\Exception $e) {
             $request->session()->flash('error', $e->getMessage());
@@ -217,6 +221,9 @@ class TicketController extends BaseController
             $request->session()->flash('error', $e->getMessage());
         }
 
+        if ($this->isUserAClient())
+            return redirect()->route('project_tickets', ['uuid' => $this->getCurrentProject()->id]);
+        
         return redirect()->route('tickets_index');
     }
 
