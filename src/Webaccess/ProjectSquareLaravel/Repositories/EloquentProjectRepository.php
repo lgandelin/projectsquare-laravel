@@ -64,11 +64,18 @@ class EloquentProjectRepository implements ProjectRepository
     public function getCurrentProjects($userID)
     {
         $projects = [];
-        foreach (Project::orderBy('created_at', 'desc')->get() as $project) {
-            foreach ($project->users as $user) {
-                if ($user->id == $userID) {
-                    if ($project->status_id == ProjectEntity::IN_PROGRESS) {
-                        $projects[]= $project;
+        $user = User::find($userID);
+
+
+        if (isset($user->client_id) && $user->client_id != null) {
+            $projects = Project::where('client_id', '=', $user->client_id)->where('status_id', '=', ProjectEntity::IN_PROGRESS)->orderBy('created_at', 'DESC')->get();
+        } else {
+            foreach (Project::orderBy('created_at', 'desc')->get() as $project) {
+                foreach ($project->users as $user) {
+                    if ($user->id == $userID) {
+                        if ($project->status_id == ProjectEntity::IN_PROGRESS) {
+                            $projects[]= $project;
+                        }
                     }
                 }
             }
