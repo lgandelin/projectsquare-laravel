@@ -9,11 +9,6 @@
             </div>
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="header">
-                    <!--<a href="{{ route('project_index', ['id' => $conversation->project->id]) }}"><span class="label label-primary">{{ $conversation->project->client->name }}</span> {{ $conversation->project->name }}</a>
-                    <span class="badge pull-right count"><span class="number">{{ count($conversation->messages) }}</span> @if (count($conversation->messages) > 1)messages @else message @endif</span>-->
-                </div>
-
                 <div class="conversation">
                     @foreach ($conversation->messages as $i => $message)
                         <tr>

@@ -66,9 +66,11 @@
                 li:first-child {
                     padding-top: 1rem;
                 }
+            }
 
+            .sub-menu:not(.sub-menu-projects) {
                 li:last-child {
-                    padding-bottom: 18px;
+                    padding-bottom: 1rem;
                 }
             }
 

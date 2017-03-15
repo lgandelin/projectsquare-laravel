@@ -29,7 +29,7 @@
                                     <select class="form-control" disabled>
                                         <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
                                         @foreach ($projects as $project)
-                                            <option value="{{ $project->id }}" @if ((isset($data['projectID']) && $data['projectID'] == $project->id) || ($current_project_id == $project->id))selected="selected"@endif>[{{ $project->client->name }}] {{ $project->name }}</option>
+                                            <option value="{{ $project->id }}" @if ((isset($data['projectID']) && $data['projectID'] == $project->id) || ($current_project_id == $project->id))selected="selected"@endif>@if (isset($project->client))[{{ $project->client->name }}]@endif {{ $project->name }}</option>
                                         @endforeach
                                     </select>
                                     <input type="hidden" name="project_id" value="{{ $current_project_id }}" />
@@ -44,7 +44,7 @@
                                     <select class="form-control" name="project_id" @if (isset($ticket) && $ticket->id) disabled @endif>
                                     <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
                                     @foreach ($projects as $project)
-                                        <option value="{{ $project->id }}" @if ((isset($data['projectID']) && $data['projectID'] == $project->id) || ($current_project_id == $project->id))selected="selected"@endif>[{{ $project->client->name }}] {{ $project->name }}</option>
+                                        <option value="{{ $project->id }}" @if ((isset($data['projectID']) && $data['projectID'] == $project->id) || ($current_project_id == $project->id))selected="selected"@endif>@if (isset($project->client))[{{ $project->client->name }}]@endif {{ $project->name }}</option>
                                     @endforeach
                                     </select>
                                 @else
