@@ -3,7 +3,7 @@ var formModified = 0;
 $(document).ready(function() {
 
     //Inputs
-    $('.input-phase-name, .input-task-name').autosizeInput();
+    $('.input-task-name, .input-phase-name').autosizeInput();
 
     var textarea = $('#import-phases-tasks-modal textarea[name="text"]');
 
@@ -35,6 +35,8 @@ $(document).ready(function() {
             .append(html)
             .find('.phase:last-child .input-phase-name').focus();
 
+        $('.input-task-name, .input-phase-name').autosizeInput();
+
         //Tasks sortable
         init_tasks_sortable();
     });
@@ -64,6 +66,8 @@ $(document).ready(function() {
         var task = $(html);
         phase.find('.tasks .placeholder')
             .before(task);
+
+        $('.input-task-name, .input-phase-name').autosizeInput();
 
         task.find('.input-task-name').focus();
     });
