@@ -307,7 +307,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
                 new EloquentNotificationRepository(),
                 new EloquentTicketRepository(),
                 new EloquentProjectRepository(),
-                new EloquentTasksRepository()
+                new EloquentTasksRepository(),
+                new EloquentUserRepository()
             );
         });
 
@@ -463,7 +464,9 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         App::bind('UpdateTaskInteractor', function () {
             return new UpdateTaskInteractor(
                 new EloquentTasksRepository(),
-                new EloquentProjectRepository()
+                new EloquentProjectRepository(),
+                new EloquentUserRepository(),
+                new EloquentNotificationRepository()
             );
         });
 
@@ -493,10 +496,10 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
                 new EloquentTasksRepository(),
                 new EloquentProjectRepository(),
                 new EloquentEventRepository(),
-                new EloquentNotificationRepository()
+                new EloquentNotificationRepository(),
+                new EloquentUserRepository()
             );
         });
-
 
         App::bind('GetPhaseInteractor', function () {
             return new GetPhaseInteractor(

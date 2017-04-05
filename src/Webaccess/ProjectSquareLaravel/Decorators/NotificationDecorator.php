@@ -30,7 +30,7 @@ class NotificationDecorator
                     $ticket = (new EloquentTicketRepository())->getTicket($notification->entityID);
                     $notification->ticket_title = $ticket->title;
                     $notification->link = route('tickets_edit', ['id' => $ticket->id]);
-                } elseif ($notification->type == 'TASK_CREATED') {
+                } elseif ($notification->type == 'TASK_CREATED' || $notification->type == 'TASK_UPDATED') {
                     $task = (new EloquentTasksRepository())->getTask($notification->entityID);
                     $notification->task_title = $task ? $task->title : '';
                     $notification->link = $task ? route('tasks_edit', ['id' => $task->id]) : '';
