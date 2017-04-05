@@ -117,7 +117,7 @@
                         @if (!$is_client)
                             <div class="form-group">
                                 <label for="estimated_time">{{ trans('projectsquare::tasks.estimated_time') }}</label><br>
-                                <input class="form-control" type="text" name="estimated_time_hours" style="display: inline-block; width: 5rem; margin-right: 0.5rem;" value="{{{ $data['estimatedTimeHours'] }}}" /> {{ trans('projectsquare::generic.hours') }}
+                                <input class="form-control" type="text" name="estimated_time_hours" style="display: inline-block; width: 6rem; margin-right: 0.5rem;" value="{{{ $data['estimatedTimeHours'] }}}" /> {{ trans('projectsquare::generic.hours') }}
                             </div>
                         @endif
                     </div>
@@ -137,6 +137,7 @@
                                 @endfor
                             </select>
                         </div>
+
                     </div>
                 </div>
 

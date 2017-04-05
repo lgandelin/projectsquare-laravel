@@ -29,8 +29,8 @@ class UpdateProjectsTableAddStatusDeleteTimes extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
             $table->dropColumn('status_id');
-            $table->float('tasks_scheduled_time')->after('color')->nullable();
-            $table->float('tickets_scheduled_time')->after('tasks_scheduled_time')->nullable();
+            $table->double('tasks_scheduled_time', 8, 3)->after('color')->nullable();
+            $table->double('tickets_scheduled_time', 8, 3)->after('tasks_scheduled_time')->nullable();
         });
     }
 }
