@@ -69,10 +69,6 @@ $(document).ready(function() {
         $('.todos').hide(200);
     });
 
-    setTimeout(function() {
-        setInterval(reloadNotificationsPanel, 15000);
-    }, 15000);
-
     $('.notifications').on('click', '.notification .status', function() {
         $(this).toggleClass('read', 'not-read');
 
@@ -177,53 +173,6 @@ function filter_projects_list() {
         else
             $(this).fadeOut();
     });
-}
-
-function reloadNotificationsPanel() {
-    var data = {
-        _token: $('#csrf_token').val()
-    };
-
-    $.ajax({
-        type: "GET",
-        url: route_get_notifications,
-        data: data,
-        success: function(data) {
-            if (data.notifications && data.notifications.length > 0) {
-                $('.notifications-link').find('.badge').addClass('new-notifications');
-                $('.notifications-link').find('.badge').text(data.notifications.length);
-
-                var notification_ids = [];
-                $('.notifications .notification').each(function() {
-                    notification_ids.push(parseInt($(this).data('id')))
-                });
-
-                for (i in data.notifications) {
-                    var notification = data.notifications[i];
-
-                    if (!array_contains(notification_ids, notification.id)) {
-                        var html = loadTemplate('notification-template', notification);
-                        $('.notifications').append(html);
-                    }
-                }
-
-                $('.notifications .no-new-notifications').hide();
-            } else {
-                $('.notifications-link').find('.badge').removeClass('new-notifications');
-                $('.notifications-link').find('.badge').text('0');
-                $('.notifications .no-new-notifications').show();
-            }
-        }
-    });
-}
-
-function array_contains(array, obj) {
-    for (var i = 0; i < array.length; i++) {
-        if (array[i] === obj) {
-            return true;
-        }
-    }
-    return false;
 }
 
 function readCookie(name) {

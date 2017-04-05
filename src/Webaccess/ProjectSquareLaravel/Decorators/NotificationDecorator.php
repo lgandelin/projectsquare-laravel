@@ -26,7 +26,7 @@ class NotificationDecorator
                     $user = app()->make('UserManager')->getUser($message->userID);
                     $notification->link = $message ? route('conversations_view', ['id' => $message->conversationID]) : '';
                     $notification->author_name = $user ? $user->firstName.' '.$user->lastName : '';
-                } elseif ($notification->type == 'TICKET_CREATED') {
+                } elseif ($notification->type == 'TICKET_CREATED' || $notification->type == 'TICKET_UPDATED') {
                     $ticket = (new EloquentTicketRepository())->getTicket($notification->entityID);
                     $notification->ticket_title = $ticket->title;
                     $notification->link = route('tickets_edit', ['id' => $ticket->id]);

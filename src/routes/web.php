@@ -13,7 +13,6 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
     Route::post('/forgotten_password_handler', array('as' => 'forgotten_password_handler', 'uses' => 'LoginController@forgotten_password_handler'));
 
     //NOTIFICATIONS
-    Route::get('/get_notifications', array('as' => 'get_notifications', 'uses' => 'NotificationController@get_notifications'));
     Route::post('/read_notification', array('as' => 'read_notification', 'uses' => 'NotificationController@read'));
 
     //PROJECTS
