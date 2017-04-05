@@ -150,7 +150,7 @@ $(document).ready(function() {
             url: route_udpate_tasks,
             data: data,
             success: function(data) {
-                window.location.reload();
+                window.location.href = data.redirection_url;
             },
             error: function(data) {
                 window.location.reload();

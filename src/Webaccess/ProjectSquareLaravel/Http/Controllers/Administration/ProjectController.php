@@ -58,12 +58,6 @@ class ProjectController extends BaseController
                 'statusID' => Input::get('status_id'),
             ]));
 
-            app()->make('ProjectManager')->addUserToProject(
-                $response->project->id,
-                $this->getUser()->id,
-                Role::first()->id
-            );
-
             app()->make('AddUserToProjectInteractor')->execute(new AddUserToProjectRequest([
                 'projectID' => $response->project->id,
                 'userID' => $this->getUser()->id,
@@ -72,7 +66,7 @@ class ProjectController extends BaseController
 
             $request->session()->flash('confirmation', trans('projectsquare::projects.add_project_success'));
 
-            return redirect()->route('projects_edit', ['id' => $response->project->id]);
+            return redirect()->route('projects_edit_team', ['uuid' => $response->project->id]);
         } catch (\Exception $e) {
             $request->session()->flash('error', trans('projectsquare::projects.add_project_error'));
 
@@ -234,7 +228,7 @@ class ProjectController extends BaseController
             $request->session()->flash('error', trans('projectsquare::projects.edit_project_error'));
         }
 
-        return redirect()->route('projects_edit', ['id' => Input::get('project_id')]);
+        return redirect()->route('projects_edit_team', ['uuid' => Input::get('project_id')]);
     }
 
     public function update_tasks(Request $request)
@@ -316,7 +310,8 @@ class ProjectController extends BaseController
             $request->session()->flash('confirmation', trans('projectsquare::projects.edit_project_success'));
 
             return response()->json([
-                'message' => trans('projectsquare::projects.edit_project_success')
+                'message' => trans('projectsquare::projects.edit_project_success'),
+                'redirection_url' => route('projects_edit_attribution', ['uuid' => $request->project_id])
             ], 200);
         } catch (\Exception $e) {
             $request->session()->flash('error', trans('projectsquare::projects.edit_project_error'));
@@ -345,7 +340,7 @@ class ProjectController extends BaseController
             $request->session()->flash('error', trans('projectsquare::projects.import_phases_and_tasks_from_text_error'));
         }
 
-        return redirect()->route('projects_edit_tasks', ['uuid' => $projectID]);
+        return redirect()->route('projects_edit_attribution', ['uuid' => $projectID]);
     }
 
     public function allocate_and_schedule_task(Request $request)
@@ -426,7 +421,7 @@ class ProjectController extends BaseController
             $request->session()->flash('error', trans('projectsquare::projects.edit_project_error'));
         }
 
-        return redirect()->route('projects_edit_config', ['id' => Input::get('project_id')]);
+        return redirect()->route('projects_edit_config', ['uuid' => Input::get('project_id')]);
     }
 
     public function delete(Request $request)
@@ -465,7 +460,7 @@ class ProjectController extends BaseController
             $request->session()->flash('error', $e->getMessage());
         }
 
-        return redirect()->route('projects_edit_team', ['id' => Input::get('project_id')]);
+        return redirect()->route('projects_edit_tasks', ['uuid' => Input::get('project_id')]);
     }
 
     public function delete_user(Request $request)
@@ -485,6 +480,6 @@ class ProjectController extends BaseController
             $request->session()->flash('error', trans('projectsquare::projects.delete_user_from_project_error'));
         }
 
-        return redirect()->route('projects_edit_team', ['id' => $projectID]);
+        return redirect()->route('projects_edit_team', ['uuid' => $projectID]);
     }
 }
