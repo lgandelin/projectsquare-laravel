@@ -23,7 +23,7 @@
             @foreach ($steps as $step)
             {
                 id: "{{ $step->id }}",
-                title: "{{ $step->name }}",
+                title: "{!! $step->name !!}",
                 start: "{{ $step->startTime->format(DATE_ISO8601) }}",
                 end: "{{ $step->endTime->format(DATE_ISO8601) }}",
                 project_id: "{{ isset($step->project_id) ? $step->project_id : null }}",

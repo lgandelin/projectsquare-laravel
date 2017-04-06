@@ -100,7 +100,7 @@
             @foreach ($events as $event)
                 {
                     id: "{{ $event->id }}",
-                    title: "{{ $event->name }}",
+                    title: "{!! $event->name !!}",
                     start: "{{ $event->startTime->format(DATE_ISO8601) }}",
                     end: "{{ $event->endTime->format(DATE_ISO8601) }}",
                     color: "{{ isset($event->color) ? $event->color : null }}",
