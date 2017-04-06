@@ -115,6 +115,22 @@ $(document).ready(function() {
         $(this).closest('.menu').find('.sub-menu').show();
     });
 
+    var is_mouse_over = false;
+    var timeoutLeftBar;
+    $('body').on('mouseenter', '.left-bar-minified .sub-menu', function() {
+        is_mouse_over = true;
+        clearTimeout(timeoutLeftBar);
+    }).on('mouseleave', '.left-bar-minified .sub-menu', function() {
+        is_mouse_over = false;
+        var submenu=$(this);
+
+        timeoutLeftBar = setTimeout(function() {
+            if (!is_mouse_over) {
+                submenu.fadeOut();
+            }
+        }, 1000);
+    });
+
     $('body').on('click', '.left-bar .toggle-left-bar', function() {
         $(this).toggleClass('glyphicon-triangle-right').toggleClass('glyphicon-triangle-left');
         $('.left-bar').toggleClass('left-bar-minified');
