@@ -66,6 +66,8 @@ $(document).ready(function() {
                     $('#event-infos .wrapper').find('.start_time_hour').val(moment(data.event.start_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
                     $('#event-infos .wrapper').find('.end_time').val(moment(data.event.end_time).format('DD/MM/YYYY'));
                     $('#event-infos .wrapper').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
+                    $('#event-infos .wrapper').find('.start_time').datepicker('update');
+                    $('#event-infos .wrapper').find('.end_time').datepicker('update');
                 },
                 error: function(data) {
                     status = data.status
@@ -100,6 +102,9 @@ $(document).ready(function() {
                     $('#event-infos .wrapper').find('.start_time_hour').val(moment(data.event.start_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
                     $('#event-infos .wrapper').find('.end_time').val(moment(data.event.end_time).format('DD/MM/YYYY'));
                     $('#event-infos .wrapper').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
+                    $('#event-infos .wrapper').show();
+                    $('#event-infos .wrapper').find('.start_time').datepicker('update');
+                    $('#event-infos .wrapper').find('.end_time').datepicker('update');
                     $('#event-infos .loading').hide();
                 }
             });
@@ -124,6 +129,8 @@ $(document).ready(function() {
                     $('#event-infos .wrapper').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
                     $('#event-infos .wrapper').find('.project_id').val(data.event.project_id);
                     $('#event-infos .wrapper').show();
+                    $('#event-infos .wrapper').find('.start_time').datepicker('update');
+                    $('#event-infos .wrapper').find('.end_time').datepicker('update');
                     $('#event-infos .loading').hide();
                 }
             });
@@ -171,7 +178,8 @@ $(document).ready(function() {
                     $('#event-infos .wrapper').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
                     $('#event-infos .wrapper').find('.project_id').val(data.event.project_id);
                     $('#event-infos .wrapper').show();
-
+                    $('#event-infos .wrapper').find('.start_time').datepicker('update');
+                    $('#event-infos .wrapper').find('.end_time').datepicker('update');
                     $('#event-infos .wrapper').find('.name').focus();
                     $('#event-infos .loading').hide();
                 }
@@ -215,8 +223,9 @@ $(document).ready(function() {
                     $('#event-infos .wrapper').find('.end_time').val(moment(data.event.end_time).format('DD/MM/YYYY'));
                     $('#event-infos .wrapper').find('.end_time_hour').val(moment(data.event.end_time, 'YYYY-MM-DD HH:mm').format('HH:mm'));
                     $('#event-infos .wrapper').find('.project_id').val(data.event.project_id);
-
                     $('#event-infos .loading').hide();
+                    $('#event-infos .wrapper').find('.start_time').datepicker('update');
+                    $('#event-infos .wrapper').find('.end_time').datepicker('update');
                 }
             });
         },

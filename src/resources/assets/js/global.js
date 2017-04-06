@@ -1,7 +1,9 @@
 $('input.datepicker').datepicker({
     language: "fr",
     autoclose: true,
-    forceParse: false
+    forceParse: false,
+    format: 'dd/mm/yyyy',
+    todayHighlight: true
 });
 
 function loadTemplate(templateID, params) {
