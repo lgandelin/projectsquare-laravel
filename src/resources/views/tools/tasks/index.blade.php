@@ -104,7 +104,7 @@
                                 <span class="task-dragndrop" id="ticket-{{ $task->id }}"
                                     data-id="{{ $task->id }}"
                                     data-title="{{ $task->title }}"
-                                    data-duration="08:00"
+                                    data-duration="{{ \Webaccess\ProjectSquareLaravel\Tools\DurationConverter::convertToCalendarDuration($task->estimated_time_days) }}"
                                     data-project="{{ $task->project_id }}"
                                 >
                                     <a href="#" class="glyphicon glyphicon-move move-widget" title="Planifier la tâche"></a>
