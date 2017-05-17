@@ -23,8 +23,7 @@
                         <li class="@if (isset($current_project_id) && $current_project_id == $project->id) encours @endif" style="border-left: 3px solid {{ $project->color }}">
                             <?php $route = preg_match('/project_/', $current_route) ? $current_route : 'project_index'; ?>
                             <a href="{{ route($route, ['id' => $project->id]) }}" @if (preg_match('/project_/', $current_route) && isset($current_project_id) && $current_project_id == $project->id) style="color: #c8dc1e" @endif">
-                                <!--{{ $project->name }}-->
-                                <span title="{{ $project->name }}">{{$project->name}}</span>
+                                <span title="@if (isset($project->client))[{{ $project->client->name }}] @endif{{ $project->name }}">{{$project->name}}</span>
                             </a>
                         </li>
                     @endforeach
@@ -37,8 +36,7 @@
                         <li class="archived-project @if (isset($current_project_id) && $current_project_id == $project->id) encours @endif">
                             <?php $route = preg_match('/project_/', $current_route) ? $current_route : 'project_index'; ?>
                             <a href="{{ route($route, ['id' => $project->id]) }}" @if (preg_match('/project_/', $current_route) && isset($current_project_id) && $current_project_id == $project->id) style="color: #c8dc1e" @endif">
-                            <!--{{ $project->name }}-->
-                            <span title="{{ $project->name }}">{{$project->name}}</span>
+                                <span title="@if (isset($project->client))[{{ $project->client->name }}] @endif{{ $project->name }}">{{$project->name}}</span>
                             </a>
                         </li>
                     @endforeach
