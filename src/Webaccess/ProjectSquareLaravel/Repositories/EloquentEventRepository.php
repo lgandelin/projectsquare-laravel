@@ -46,6 +46,16 @@ class EloquentEventRepository implements EventRepository
                 $event->projectName = $eventModel->project->name;
                 $event->projectClient = $eventModel->project->client->name;
             }
+
+            //Event duration
+            $durationInMinutes = 8 * 60;
+            if ($event->endTime->format('Y-m-d') == $event->startTime->format('Y-m-d')) {
+                $startTimeOfDay = clone $event->endTime;
+                $startTimeOfDay->setTime(9, 0, 0);
+                $interval = $event->endTime->diff($event->startTime);
+                $durationInMinutes = ($interval->h * 60 + $interval->i);
+            }
+            $event->durationInHours = $durationInMinutes/60;
             $events[] = $event;
         }
 
