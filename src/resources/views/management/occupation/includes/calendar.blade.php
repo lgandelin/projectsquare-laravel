@@ -48,6 +48,7 @@
                                                 <div class="events-detail">
                                                     @foreach ($day->getEvents() as $event)
                                                         <div class="event" style="background: {{ isset($event->color) ? $event->color : '#3a87ad' }}">
+                                                            <span class="project">@if (isset($event->projectClient))[{{ $event->projectClient }}]@endif @if (isset($event->projectName)){{ $event->projectName }}@endif</span>
                                                             <span class="name">{{ $event->name }}</span>
                                                             @if ($event->endTime->diff($event->startTime)->d < 1 && $event->endTime->format('H:i') != '00:00')
                                                                 <span class="time">{{ $event->startTime->format('H:i') }} - {{ $event->endTime->format('H:i') }}</span>

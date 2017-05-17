@@ -14524,7 +14524,7 @@ body {
   background: white;
   border-top: 1px solid #ccc;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
-  width: 200px;
+  width: 250px;
   top: 55px;
   left: 55px;
   z-index: 999;
@@ -14546,45 +14546,49 @@ body {
   display: block;
   font-size: 13px;
 }
-/* line 101, ../sass/_occupation.scss */
+/* line 100, ../sass/_occupation.scss */
+.occupation-template .month table tr td .events-detail .event .project {
+  font-size: 13px;
+}
+/* line 105, ../sass/_occupation.scss */
 .occupation-template .month table tr td .events-detail .event:last-child {
   border: none;
 }
-/* line 108, ../sass/_occupation.scss */
+/* line 112, ../sass/_occupation.scss */
 .occupation-template .month table tr td:hover .work-hours {
   opacity: 0.8;
 }
-/* line 112, ../sass/_occupation.scss */
+/* line 116, ../sass/_occupation.scss */
 .occupation-template .month table tr td:hover .events-detail {
   display: block;
 }
-/* line 117, ../sass/_occupation.scss */
+/* line 121, ../sass/_occupation.scss */
 .occupation-template .month table tr .user {
   vertical-align: middle;
   min-width: 53px;
 }
-/* line 122, ../sass/_occupation.scss */
+/* line 126, ../sass/_occupation.scss */
 .occupation-template .month table tr .today {
   color: white;
   background: #096a85;
 }
-/* line 127, ../sass/_occupation.scss */
+/* line 131, ../sass/_occupation.scss */
 .occupation-template .month table tr .work-hours {
   display: block;
   background: #c8dc1e;
 }
-/* line 132, ../sass/_occupation.scss */
+/* line 136, ../sass/_occupation.scss */
 .occupation-template .month table tr .week {
   font-weight: bold;
   color: #096a85;
   border-right: 2px solid #999;
   padding: 3px 0;
 }
-/* line 139, ../sass/_occupation.scss */
+/* line 143, ../sass/_occupation.scss */
 .occupation-template .month table tr .day {
   padding: 3px 0;
 }
-/* line 143, ../sass/_occupation.scss */
+/* line 147, ../sass/_occupation.scss */
 .occupation-template .month table tr .disabled {
   background: #f1f1f1;
   color: #bbb;
