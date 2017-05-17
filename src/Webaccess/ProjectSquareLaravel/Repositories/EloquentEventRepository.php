@@ -56,6 +56,9 @@ class EloquentEventRepository implements EventRepository
                 $durationInMinutes = ($interval->h * 60 + $interval->i);
             }
             $event->durationInHours = $durationInMinutes/60;
+            if ($event->durationInHours > 8) {
+                $event->durationInHours = 8;
+            }
             $events[] = $event;
         }
 
