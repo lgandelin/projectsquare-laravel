@@ -94,7 +94,7 @@ class UserController extends BaseController
     public function update(Request $request)
     {
         parent::__construct($request);
-        
+
         try {
             app()->make('UserManager')->updateUser(
                 Input::get('user_id'),
