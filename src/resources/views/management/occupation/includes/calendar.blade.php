@@ -42,7 +42,9 @@
                                     @if ($day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SATURDAY && $day->getDayOfWeek() != Webaccess\ProjectSquareLaravel\Tools\Calendar\Day::SUNDAY)
                                         <?php $index++; ?>
                                         <td class="user-day @if($day->isDisabled()) disabled @endif" data-user="{{ $calendar->user->id }}" data-day="{{ $day->getDateTime()->format('Y-m-d') }}" @if ($day->isDisabled())class="disabled"@endif @if($index%5 == 0)style="border-right-width: 2px"@endif>
-                                            <span class="work-hours" style="height:{{ $day->hours_scheduled*7-2 }}px;"></span>
+                                            @foreach ($day->getEvents() as $event)
+                                                <span class="work-hours" style="height: {{ $event->durationInHours*7-2 }}px; background: {{ isset($event->color) ? $event->color : '#3a87ad' }}"></span>
+                                            @endforeach
 
                                             @if ($day->getEvents())
                                                 <div class="events-detail">
