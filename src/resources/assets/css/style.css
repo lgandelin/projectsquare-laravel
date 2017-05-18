@@ -14400,11 +14400,16 @@ body {
 }
 
 /* line 6, ../sass/_planning.scss */
+.project-name {
+  display: block;
+}
+
+/* line 10, ../sass/_planning.scss */
 #event-infos {
   height: 350px;
   margin-bottom: 4rem;
 }
-/* line 10, ../sass/_planning.scss */
+/* line 14, ../sass/_planning.scss */
 #event-infos .loading {
   background: rgba(255, 255, 255, 0.75) url("../img/loading.gif") center center no-repeat;
   position: absolute;
@@ -14413,17 +14418,17 @@ body {
   height: 340px;
 }
 
-/* line 19, ../sass/_planning.scss */
+/* line 23, ../sass/_planning.scss */
 .tickets-list {
   margin-top: 5rem;
 }
 
-/* line 24, ../sass/_planning.scss */
+/* line 28, ../sass/_planning.scss */
 #planning a[href]:hover {
   text-decoration: underline;
 }
 
-/* line 30, ../sass/_planning.scss */
+/* line 34, ../sass/_planning.scss */
 .planning-template h2 {
   margin-left: 1.5rem;
 }

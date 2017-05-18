@@ -17,7 +17,9 @@ return [
     'previous' => 'Précédent',
     'platform_title' => 'Projectsquare',
     'days' => 'jour(s)',
+    'days_abbr' => 'j',
     'hours' => 'heure(s)',
+    'hours_abbr' => 'h',
 
     'priority-1' => 'Haute',
     'priority-2' => 'Normale',

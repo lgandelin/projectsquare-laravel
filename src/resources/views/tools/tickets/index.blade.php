@@ -110,8 +110,8 @@
                                     @endif
                                 </td>
                                 <td>@if (isset($ticket->last_state) && $ticket->last_state->status)<span class="status status-{{ $ticket->last_state->status->id }}">{{ $ticket->last_state->status->name}}</span>@endif</td>
-                                <td>@if (isset($ticket->last_state) && $ticket->last_state->estimated_time_days > 0){{ $ticket->last_state->estimated_time_days }} {{ trans('projectsquare::generic.days') }}@endif @if (isset($ticket->last_state) && $ticket->last_state->estimated_time_hours > 0){{ $ticket->last_state->estimated_time_hours }} {{ trans('projectsquare::generic.hours') }}@endif</td>
-                                <td>@if (isset($ticket->last_state) && $ticket->last_state->spent_time_days > 0){{ $ticket->last_state->spent_time_days }} {{ trans('projectsquare::generic.days') }}@endif @if (isset($ticket->last_state) && $ticket->last_state->spent_time_hours > 0){{ $ticket->last_state->spent_time_hours }} {{ trans('projectsquare::generic.hours') }}@endif</td>
+                                <td>@if (isset($ticket->last_state) && $ticket->last_state->estimated_time_days > 0){{ $ticket->last_state->estimated_time_days }}{{ trans('projectsquare::generic.days_abbr') }}@endif @if (isset($ticket->last_state) && $ticket->last_state->estimated_time_hours > 0){{ $ticket->last_state->estimated_time_hours }} {{ trans('projectsquare::generic.hours_abbr') }}@endif</td>
+                                <td>@if (isset($ticket->last_state) && $ticket->last_state->spent_time_days > 0){{ $ticket->last_state->spent_time_days }} {{ trans('projectsquare::generic.days_abbr') }}@endif @if (isset($ticket->last_state) && $ticket->last_state->spent_time_hours > 0){{ $ticket->last_state->spent_time_hours }} {{ trans('projectsquare::generic.hours_abbr') }}@endif</td>
                                 <td align="right">
                                     <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}" class="btn see-more"></a>
                                     <span class="ticket-dragndrop" id="ticket-{{ $ticket->id }}"
@@ -233,7 +233,7 @@
                 @foreach ($events as $event)
                     {
                 id: "{{ $event->id }}",
-                title: "@if (isset($event->projectClient))[{!! $event->projectClient !!}]@endif @if (isset($event->projectName)){!! $event->projectName !!}\n @endif {!! $event->name !!}",
+                title: '<span class="project-name">@if (isset($event->projectClient))[{!! $event->projectClient !!}]@endif @if (isset($event->projectName)){!! $event->projectName !!}</span>@endif <span class="event-name">{!! $event->name !!}</span>',
                 start: "{{ $event->startTime->format(DATE_ISO8601) }}",
                 end: "{{ $event->endTime->format(DATE_ISO8601) }}",
                 color: "{{ isset($event->color) ? $event->color : null }}",
