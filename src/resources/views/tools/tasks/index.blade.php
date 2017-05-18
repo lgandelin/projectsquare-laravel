@@ -97,8 +97,8 @@
                                 @elseif ($task->status_id == 3)Terminé
                                 @endif
                             </td>
-                            <td>@if ($task->estimated_time_days > 0){{ $task->estimated_time_days }} {{ trans('projectsquare::generic.days') }}@endif @if ($task->estimated_time_hours > 0){{ $task->estimated_time_hours }} {{ trans('projectsquare::generic.hours') }}@endif</td>
-                            <td>@if ($task->spent_time_days > 0){{ $task->spent_time_days }} {{ trans('projectsquare::generic.days') }}@endif @if ($task->spent_time_hours > 0){{ $task->spent_time_hours }} {{ trans('projectsquare::generic.hours') }}@endif</td>
+                            <td>@if ($task->estimated_time_days > 0){{ $task->estimated_time_days }} {{ trans('projectsquare::generic.days_abbr') }}@endif @if ($task->estimated_time_hours > 0){{ $task->estimated_time_hours }} {{ trans('projectsquare::generic.hours_abbr') }}@endif</td>
+                            <td>@if ($task->spent_time_days > 0){{ $task->spent_time_days }} {{ trans('projectsquare::generic.days_abbr') }}@endif @if ($task->spent_time_hours > 0){{ $task->spent_time_hours }} {{ trans('projectsquare::generic.hours_abbr') }}@endif</td>
                             <td align="right">
                                 <a href="{{ route('tasks_edit', ['id' => $task->id]) }}" class="btn see-more"></a>
                                 <span class="task-dragndrop" id="ticket-{{ $task->id }}"
@@ -220,7 +220,7 @@
                 @foreach ($events as $event)
                     {
                 id: "{{ $event->id }}",
-                title: "@if (isset($event->projectClient))[{!! $event->projectClient !!}]@endif @if (isset($event->projectName)){!! $event->projectName !!}\n @endif {!! $event->name !!}",
+                title: '<span class="project-name">@if (isset($event->projectClient))[{!! $event->projectClient !!}]@endif @if (isset($event->projectName)){!! $event->projectName !!}</span>@endif <span class="event-name">{!! $event->name !!}</span>',
                 start: "{{ $event->startTime->format(DATE_ISO8601) }}",
                 end: "{{ $event->endTime->format(DATE_ISO8601) }}",
                 color: "{{ isset($event->color) ? $event->color : null }}",

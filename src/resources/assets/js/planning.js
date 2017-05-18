@@ -25,6 +25,7 @@ $(document).ready(function() {
         contentHeight: 'auto',
 
         eventRender: function(event, element) {
+            element.find('.fc-title').html(element.find('.fc-title').text());
             element.append('<span class="delete-event glyphicon glyphicon-remove btn-delete"></span>');
             element.find(".delete-event").click(function() {
 
@@ -250,12 +251,25 @@ $(document).ready(function() {
             url: route_event_update,
             data: data,
             success: function(data) {
-
                 var events = $('#planning').fullCalendar( 'clientEvents', data.event.id);
                 var event = events[0];
-                event.title = data.event.name;
+
+                var title = '';
+                if (data.event.project_name) {
+                    title += '<span class="project-name">';
+                    if (data.event.project_client) {
+                        title += '[' + data.event.project_client + '] ';
+                    }
+                    title += data.event.project_name + '</span> ';
+                }
+
+                title += data.event.name;
+
+                event.title = title;
                 event.start = data.event.start_time;
                 event.end = data.event.end_time;
+                event.project_client = data.event.project_client;
+                event.project_name = data.event.project_name;
                 event.color = data.event.color;
 
                 $('#planning').fullCalendar('updateEvent', event);

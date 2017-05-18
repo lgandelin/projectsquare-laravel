@@ -12,7 +12,7 @@ class EloquentProjectRepository implements ProjectRepository
 {
     public function getProjectModel($projectID)
     {
-        return Project::find($projectID);
+        return Project::with('client')->find($projectID);
     }
 
     public function getProject($projectID)
@@ -28,6 +28,7 @@ class EloquentProjectRepository implements ProjectRepository
             $project->websiteBackURL = $projectModel->website_back_url;
             $project->createdAt = $projectModel->created_at;
             $project->udpatedAt = $projectModel->updated_at;
+            $project->clientName = isset($projectModel->client) && isset($projectModel->client->name) ? $projectModel->client->name : "";
 
             return $project;
         }
