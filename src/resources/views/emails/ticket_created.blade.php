@@ -1,6 +1,6 @@
-Un nouveau ticket vous a été assigné @if (isset($ticket->last_state->author_user))par {{ $ticket->last_state->author_user->complete_name }}@endif :<br/><br/>
+Un nouveau ticket vous a été assigné :<br/><br/><br/>
 
-<strong>{{ $ticket->title }}</strong><br/><br/>
+<strong>Titre :</strong> {{ $ticket->title }}<br/><br/>
 
 @if (isset($ticket->project) && isset($ticket->project->client))<strong>Projet :</strong> [{{ $ticket->project->client->name }}] {{ $ticket->project->name }}@endif<br/><br/>
 @if (isset($ticket->type))<strong>Type:</strong> {{ $ticket->type->name }}<br/><br/>@endif
