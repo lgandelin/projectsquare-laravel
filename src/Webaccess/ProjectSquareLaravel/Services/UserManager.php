@@ -69,8 +69,28 @@ class UserManager
                 throw new \Exception(trans('projectsquare::users.users_limit_reached'));
             }
 
-            $this->repository->createUser($firstName, $lastName, $email, Hash::make($password), $mobile, $phone, $clientID, $clientRole, $isAdministrator);
+            $userID = $this->repository->createUser($firstName, $lastName, $email, Hash::make($password), $mobile, $phone, $clientID, $clientRole, $isAdministrator);
 
+            //Insert notification settings
+            $keys = [
+                'EMAIL_NOTIFICATION_TASK_CREATED',
+                'EMAIL_NOTIFICATION_TASK_UPDATED',
+                'EMAIL_NOTIFICATION_TASK_DELETED',
+                'EMAIL_NOTIFICATION_TICKET_CREATED',
+                'EMAIL_NOTIFICATION_TICKET_UPDATED',
+                'EMAIL_NOTIFICATION_TICKET_DELETED',
+                'EMAIL_NOTIFICATION_MESSAGE_CREATED',
+            ];
+
+            foreach ($keys as $key) {
+                app()->make('SettingManager')->createOrUpdateUserSetting(
+                    $userID,
+                    $key,
+                    true
+                );
+            }
+
+            //Send email
             Mail::send('projectsquare::emails.user_account_created', array('email' => $email, 'first_name' => $firstName, 'last_name' => $lastName, 'password' => $password, 'url' => isset($platform->url) ? $platform->url : $platform->url), function ($message) use ($email) {
                 $message->to($email)
                     ->from('no-reply@projectsquare.io')

@@ -86,6 +86,8 @@ class EloquentUserRepository implements UserRepository
         $user->id = $userID;
         $user->save();
         self::updateUser($userID, $firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $isAdministrator);
+
+        return $userID;
     }
 
     public function updateUser($userID, $firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $isAdministrator=false)
