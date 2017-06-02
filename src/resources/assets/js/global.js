@@ -128,7 +128,7 @@ $(document).ready(function() {
             if (!is_mouse_over) {
                 submenu.fadeOut();
             }
-        }, 1000);
+        }, 500);
     });
 
     $('body').on('click', '.left-bar .toggle-left-bar', function() {
