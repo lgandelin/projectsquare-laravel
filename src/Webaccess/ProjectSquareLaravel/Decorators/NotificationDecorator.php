@@ -13,31 +13,47 @@ class NotificationDecorator
     public function decorate($notifications)
     {
         if (is_array($notifications) && sizeof($notifications) > 0) {
-            foreach ($notifications as $notification) {
+            foreach ($notifications as $i => $notification) {
                 $notification->time = $notification->time->format('d/m/Y H:i');
                 if ($notification->type == 'EVENT_CREATED') {
-                    $event = app()->make('GetEventInteractor')->execute(new GetEventRequest([
+                    if ($event = app()->make('GetEventInteractor')->execute(new GetEventRequest([
                         'eventID' => $notification->entityID,
-                    ]));
-                    $notification->event_name = $event ? $event->name : '';
-                    $notification->link = $event ? route('planning') : '';
+                    ]))) {
+                        $notification->event_name = $event ? $event->name : '';
+                        $notification->link = $event ? route('planning') : '';
+                    } else {
+                        unset($notifications[$i]);
+                    }
                 } elseif ($notification->type == 'MESSAGE_CREATED') {
-                    $message = (new EloquentMessageRepository())->getMessage($notification->entityID);
-                    $user = app()->make('UserManager')->getUser($message->userID);
-                    $notification->link = $message ? route('conversations_view', ['id' => $message->conversationID]) : '';
-                    $notification->author_name = $user ? $user->firstName.' '.$user->lastName : '';
+                    if ($message = (new EloquentMessageRepository())->getMessage($notification->entityID)) {
+                        $user = app()->make('UserManager')->getUser($message->userID);
+                        $notification->link = $message ? route('conversations_view', ['id' => $message->conversationID]) : '';
+                        $notification->author_name = $user ? $user->firstName.' '.$user->lastName : '';
+                    } else {
+                        unset($notifications[$i]);
+                    }
                 } elseif ($notification->type == 'TICKET_CREATED' || $notification->type == 'TICKET_UPDATED') {
-                    $ticket = (new EloquentTicketRepository())->getTicket($notification->entityID);
-                    $notification->ticket_title = $ticket->title;
-                    $notification->link = route('tickets_edit', ['id' => $ticket->id]);
+                    try {
+                        $ticket = (new EloquentTicketRepository())->getTicket($notification->entityID);
+                        $notification->ticket_title = $ticket->title;
+                        $notification->link = route('tickets_edit', ['id' => $ticket->id]);
+                    } catch (\Exception $e) {
+                        unset($notifications[$i]);
+                    }
                 } elseif ($notification->type == 'TASK_CREATED' || $notification->type == 'TASK_UPDATED') {
-                    $task = (new EloquentTasksRepository())->getTask($notification->entityID);
-                    $notification->task_title = $task ? $task->title : '';
-                    $notification->link = $task ? route('tasks_edit', ['id' => $task->id]) : '';
+                    if ($task = (new EloquentTasksRepository())->getTask($notification->entityID)) {
+                        $notification->task_title = $task ? $task->title : '';
+                        $notification->link = $task ? route('tasks_edit', ['id' => $task->id]) : '';
+                    } else {
+                        unset($notifications[$i]);
+                    }
                 } elseif ($notification->type == 'FILE_UPLOADED') {
-                    $file = (new EloquentFileRepository())->getFile($notification->entityID);
-                    $notification->file_name = $file ? $file->name : '';
-                    $notification->link = $file ? route('project_files', ['id' => $file->project_id]) : '';
+                    if ($file = (new EloquentFileRepository())->getFile($notification->entityID)) {
+                        $notification->file_name = $file ? $file->name : '';
+                        $notification->link = $file ? route('project_files', ['id' => $file->project_id]) : '';
+                    } else {
+                        unset($notifications[$i]);
+                    }
                 }
             }
         }
