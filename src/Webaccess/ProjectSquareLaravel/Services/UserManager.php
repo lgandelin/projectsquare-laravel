@@ -99,7 +99,7 @@ class UserManager
         }
     }
 
-    public function updateUser($userID, $firstName, $lastName, $email, $password=null, $mobile=null, $phone=null, $clientID=null, $clientRole=null, $isAdministrator=null)
+    public function updateUser($userID, $firstName, $lastName, $email, $password=null, $mobile=null, $phone=null, $clientID=null, $clientRole=null, $isAdministrator=false)
     {
         $user = $this->repository->getUserByEmail($email);
         if ($user && $user->id != $userID) {
