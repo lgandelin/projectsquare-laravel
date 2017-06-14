@@ -4,6 +4,7 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Tools;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 use Webaccess\ProjectSquare\Requests\Notifications\ReadNotificationRequest;
 use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\CreateTicketRequest;
@@ -22,26 +23,31 @@ class TicketController extends BaseController
 
         $request->session()->put('tickets_interface', 'tickets');
 
+        if (Input::get('filter_project') !== null) Session::put('tickets_filter_project', Input::get('filter_project'));
+        if (Input::get('filter_status') !== null) Session::put('tickets_filter_status', Input::get('filter_status'));
+        if (Input::get('filter_allocated_user') !== null) Session::put('tickets_filter_allocated_user', Input::get('filter_allocated_user'));
+        if (Input::get('filter_type') !== null) Session::put('tickets_filter_type', Input::get('filter_type'));
+
         return view('projectsquare::tools.tickets.index', [
 
             //tickets variables
             'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
                 $this->getUser()->id,
                 env('TICKETS_PER_PAGE', 10),
-                Input::get('filter_project'),
-                Input::get('filter_allocated_user'),
-                Input::get('filter_status'),
-                Input::get('filter_type')
+                Session::get('tickets_filter_project') === "na" ? null : Session::get('tickets_filter_project'),
+                Session::get('tickets_filter_allocated_user') === "na" ? null : Session::get('tickets_filter_allocated_user'),
+                Session::get('tickets_filter_status') === "na" ? null : Session::get('tickets_filter_status'),
+                Session::get('tickets_filter_type') === "na" ? null : Session::get('tickets_filter_type')
             ),
             'projects' => app()->make('GetProjectsInteractor')->getCurrentProjects($this->getUser()->id),
             'users' => app()->make('UserManager')->getAgencyUsers(),
             'ticket_statuses' => app()->make('TicketStatusManager')->getTicketStatuses(),
             'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
             'filters' => [
-                'project' => Input::get('filter_project'),
-                'allocated_user' => Input::get('filter_allocated_user'),
-                'status' => Input::get('filter_status'),
-                'type' => Input::get('filter_type'),
+                'project' => Session::get('tickets_filter_project'),
+                'allocated_user' => Session::get('tickets_filter_allocated_user'),
+                'status' => Session::get('tickets_filter_status'),
+                'type' => Session::get('tickets_filter_type'),
             ],
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,

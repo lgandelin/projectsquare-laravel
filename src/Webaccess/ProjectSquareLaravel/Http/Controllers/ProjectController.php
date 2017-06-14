@@ -5,6 +5,7 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\Tools\TaskController;
@@ -28,6 +29,10 @@ class ProjectController extends BaseController
 
         $request->session()->put('tasks_interface', 'project');
 
+        if (Input::get('filter_status') !== null) Session::put('project_tasks_filter_status', Input::get('filter_status'));
+        if (Input::get('filter_allocated_user') !== null) Session::put('project_tasks_filter_allocated_user', Input::get('filter_allocated_user'));
+        if (Input::get('filter_phase') !== null) Session::put('project_tasks_filter_phase', Input::get('filter_phase'));
+
         return view('projectsquare::project.tasks', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'phases' => app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
@@ -36,16 +41,15 @@ class ProjectController extends BaseController
             'users' => app()->make('UserManager')->getUsersByProject($projectID),
             'task_statuses' => TaskController::getTasksStatuses(),
             'filters' => [
-                'allocated_user' => Input::get('filter_allocated_user'),
-                'status' => Input::get('filter_status'),
-                'type' => Input::get('filter_type'),
-                'phase' => Input::get('filter_phase'),
+                'allocated_user' => Session::get('project_tasks_filter_allocated_user'),
+                'status' => Session::get('project_tasks_filter_status'),
+                'phase' => Session::get('project_tasks_filter_phase'),
             ],
             'tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest([
                 'projectID' => $projectID,
-                'statusID' => Input::get('filter_status'),
-                'phaseID' => Input::get('filter_phase'),
-                'allocatedUserID' => Input::get('filter_allocated_user'),
+                'statusID' => Session::get('project_tasks_filter_status') === "na" ? null : Session::get('project_tasks_filter_status'),
+                'phaseID' => Session::get('project_tasks_filter_phase') === "na" ? null : Session::get('project_tasks_filter_phase'),
+                'allocatedUserID' => Session::get('project_tasks_filter_allocated_user') === "na" ? null : Session::get('project_tasks_filter_allocated_user'),
             ])),
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -60,23 +64,28 @@ class ProjectController extends BaseController
 
         $request->session()->put('tickets_interface', 'project');
 
+        if (Input::get('filter_status') !== null) Session::put('project_tickets_filter_status', Input::get('filter_status'));
+        if (Input::get('filter_allocated_user') !== null) Session::put('project_tickets_filter_allocated_user', Input::get('filter_allocated_user'));
+        if (Input::get('filter_type') !== null) Session::put('project_tickets_filter_type', Input::get('filter_type'));
+
         return view('projectsquare::project.tickets', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
             'users' => app()->make('UserManager')->getUsersByProject($projectID),
             'ticket_statuses' => app()->make('TicketStatusManager')->getTicketStatuses(),
             'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
             'filters' => [
-                'allocated_user' => Input::get('filter_allocated_user'),
-                'status' => Input::get('filter_status'),
-                'type' => Input::get('filter_type'),
+                'allocated_user' => Session::get('project_tickets_filter_allocated_user'),
+                'status' => Session::get('project_tickets_filter_status'),
+                'type' => Session::get('project_tickets_filter_type'),
             ],
             'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
                 $this->getUser()->id,
                 env('TICKETS_PER_PAGE', 10),
                 $projectID,
-                Input::get('filter_allocated_user'),
-                Input::get('filter_status'),
-                Input::get('filter_type')
+                Session::get('project_tickets_filter_allocated_user') === "na" ? null : Session::get('project_tickets_filter_allocated_user'),
+                Session::get('project_tickets_filter_status') === "na" ? null : Session::get('project_tickets_filter_status'),
+                Session::get('project_tickets_filter_type') === "na" ? null : Session::get('project_tickets_filter_type')
+
             ),
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,

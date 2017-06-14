@@ -18,7 +18,7 @@
                     @if (!$is_client)
                         <div class="form-group col-md-2">
                             <select class="form-control" name="filter_allocated_user" id="filter_allocated_user">
-                                <option value="">{{ trans('projectsquare::tickets.filters.by_allocated_user') }}</option>
+                                <option value="na">{{ trans('projectsquare::tickets.filters.by_allocated_user') }}</option>
                                 @foreach ($users as $user)
                                     <option value="{{ $user->id }}" @if ($filters['allocated_user'] == $user->id)selected="selected" @endif>{{ $user->complete_name }}</option>
                                 @endforeach
@@ -28,7 +28,7 @@
 
                     <div class="form-group col-md-2">
                         <select class="form-control" name="filter_status" id="filter_status">
-                            <option value="">{{ trans('projectsquare::tickets.filters.by_status') }}</option>
+                            <option value="na">{{ trans('projectsquare::tickets.filters.by_status') }}</option>
                             @foreach ($ticket_statuses as $ticket_status)
                                 <option value="{{ $ticket_status->id }}" @if ($filters['status'] == $ticket_status->id)selected="selected" @endif>{{ $ticket_status->name }}</option>
                             @endforeach
@@ -37,7 +37,7 @@
 
                     <div class="form-group col-md-2">
                         <select class="form-control" name="filter_type" id="filter_type">
-                            <option value="">{{ trans('projectsquare::tickets.filters.by_type') }}</option>
+                            <option value="na">{{ trans('projectsquare::tickets.filters.by_type') }}</option>
                             @foreach ($ticket_types as $ticket_type)
                                 <option value="{{ $ticket_type->id }}" @if ($filters['type'] == $ticket_type->id)selected="selected" @endif>{{ $ticket_type->name }}</option>
                             @endforeach

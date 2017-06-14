@@ -5,6 +5,7 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Tools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 use Webaccess\ProjectSquare\Requests\Notifications\ReadNotificationRequest;
 use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
@@ -25,10 +26,14 @@ class TaskController extends BaseController
 
         $request->session()->put('tasks_interface', 'tasks');
 
+        if (Input::get('filter_project') !== null) Session::put('tasks_filter_project', Input::get('filter_project'));
+        if (Input::get('filter_status') !== null) Session::put('tasks_filter_status', Input::get('filter_status'));
+        if (Input::get('filter_allocated_user') !== null) Session::put('tasks_filter_allocated_user', Input::get('filter_allocated_user'));
+
         $tasks = app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest([
-            'projectID' => Input::get('filter_project'),
-            'statusID' => Input::get('filter_status'),
-            'allocatedUserID' => Input::get('filter_allocated_user'),
+            'projectID' => Session::get('tasks_filter_project') === "na" ? null : Session::get('tasks_filter_project'),
+            'statusID' => Session::get('tasks_filter_status') === "na" ? null : Session::get('tasks_filter_status'),
+            'allocatedUserID' => Session::get('tasks_filter_allocated_user') === "na" ? null : Session::get('tasks_filter_allocated_user'),
         ]));
 
         return view('projectsquare::tools.tasks.index', [
@@ -37,9 +42,9 @@ class TaskController extends BaseController
             'users' => app()->make('UserManager')->getAgencyUsers(),
             'task_statuses' => self::getTasksStatuses(),
             'filters' => [
-                'project' => Input::get('filter_project'),
-                'allocated_user' => Input::get('filter_allocated_user'),
-                'status' => Input::get('filter_status'),
+                'project' => Session::get('tasks_filter_project'),
+                'allocated_user' => Session::get('tasks_filter_allocated_user'),
+                'status' => Session::get('tasks_filter_status'),
             ],
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,

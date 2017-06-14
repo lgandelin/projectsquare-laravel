@@ -18,7 +18,7 @@
 
                     <div class="form-group col-md-2">
                         <select class="form-control" name="filter_project" id="filter_project">
-                            <option value="">{{ trans('projectsquare::tasks.filters.by_project') }}</option>
+                            <option value="na">{{ trans('projectsquare::tasks.filters.by_project') }}</option>
                             @foreach ($projects as $project)
                                 <option value="{{ $project->id }}" @if ($filters['project'] == $project->id)selected="selected" @endif>@if (isset($project->client)){{ $project->client->name }} -@endif {{ $project->name }}</option>
                             @endforeach
@@ -27,7 +27,7 @@
 
                     <div class="form-group col-md-2">
                         <select class="form-control" name="filter_allocated_user" id="filter_allocated_user">
-                            <option value="">{{ trans('projectsquare::tasks.filters.by_allocated_user') }}</option>
+                            <option value="na">{{ trans('projectsquare::tasks.filters.by_allocated_user') }}</option>
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}" @if ($filters['allocated_user'] == $user->id)selected="selected" @endif>{{ $user->complete_name }}</option>
                             @endforeach
@@ -36,7 +36,7 @@
 
                     <div class="form-group col-md-2">
                         <select class="form-control" name="filter_status" id="filter_status">
-                            <option value="">{{ trans('projectsquare::tasks.filters.by_status') }}</option>
+                            <option value="na">{{ trans('projectsquare::tasks.filters.by_status') }}</option>
                             @foreach ($task_statuses as $task_status)
                                 <option value="{{ $task_status->id }}" @if ($filters['status'] == $task_status->id)selected="selected" @endif>{{ $task_status->name }}</option>
                             @endforeach
