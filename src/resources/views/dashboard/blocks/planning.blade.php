@@ -1,5 +1,5 @@
 <div class="block planning">
-    <h3>{{ trans('projectsquare::planning.planning') }}
+    <h3>{{ trans('projectsquare::dashboard.planning') }}
         @include('projectsquare::includes.tooltip', [
             'text' => trans('projectsquare::tooltips.planning')
         ])

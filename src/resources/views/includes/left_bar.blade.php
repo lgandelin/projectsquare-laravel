@@ -25,6 +25,7 @@
                             <a href="{{ route($route, ['id' => $project->id]) }}" @if (preg_match('/project_/', $current_route) && isset($current_project_id) && $current_project_id == $project->id) style="color: #c8dc1e" @endif">
                                 <span title="@if (isset($project->client))[{{ $project->client->name }}] @endif{{ $project->name }}">{{$project->name}}</span>
                             </a>
+                            @if (isset($project->client))<span style="display:none">{{ $project->client->name }}</span>@endif
                         </li>
                     @endforeach
 
@@ -38,6 +39,7 @@
                             <a href="{{ route($route, ['id' => $project->id]) }}" @if (preg_match('/project_/', $current_route) && isset($current_project_id) && $current_project_id == $project->id) style="color: #c8dc1e" @endif">
                                 <span title="@if (isset($project->client))[{{ $project->client->name }}] @endif{{ $project->name }}">{{$project->name}}</span>
                             </a>
+                                @if (isset($project->client))<span style="display:none">{{ $project->client->name }}</span>@endif
                         </li>
                     @endforeach
                 </ul>

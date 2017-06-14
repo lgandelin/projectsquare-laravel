@@ -2,10 +2,11 @@
 
 return [
     'panel_title' => 'Tableau de bord',
-    'last_tickets' => 'Tickets',
-    'last_tasks' => 'Tâches',
+    'last_tickets' => 'Mes tickets',
+    'last_tasks' => 'Mes tâches',
     'messages' => 'Messages',
     'message' => 'Message',
+    'planning' => 'Mon planning',
     'conversation_participants' => 'Participants',
     'your_message' => 'Votre message',
     'monitoring_alerts' => 'Alertes monitoring',
