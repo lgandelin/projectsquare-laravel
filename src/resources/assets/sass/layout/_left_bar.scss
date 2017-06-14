@@ -233,25 +233,32 @@
                 color: $green;
             }
         }
-
-        .toggle-left-bar {
-            height: 68px;
-            text-align: right;
-            margin-right: 1rem;
-            display: block;
-            color: white;
-            font-size: 2.2rem;
-            padding-top: 2rem;
-            cursor: pointer;
-        }
-
-        .toggle-left-bar:hover {
-            color: $green;
-        }
     }
 
     a:hover {
         text-decoration: none;
+    }
+
+    .toggle-left-bar {
+        position: absolute;
+        top: 50%;
+        right: 2px;
+        height: 68px;
+        text-align: right;
+        display: none;
+        color: white;
+        font-size: 2.2rem;
+        cursor: pointer;
+    }
+
+    .toggle-left-bar:hover {
+        color: $green;
+    }
+
+    &:hover {
+        .toggle-left-bar {
+            display: block;
+        }
     }
 }
 
@@ -307,5 +314,12 @@
                 margin-bottom: 0;
             }
         }
+    }
+
+    .toggle-left-bar {
+        display: block;
+        position: static;
+        padding-top: 2rem;
+        margin-right: 2.5rem;
     }
 }
