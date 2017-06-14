@@ -131,7 +131,12 @@
             </div>
 
             <div class="text-center">
-                {!! $tickets->render() !!}
+                {!! $tickets->appends([
+                    'filter_project' => $filters['project'],
+                    'filter_allocated_user' => $filters['allocated_user'],
+                    'filter_status' => $filters['status'],
+                    'filter_type' => $filters['type'],
+                ])->links() !!}
             </div>
         </div>
 

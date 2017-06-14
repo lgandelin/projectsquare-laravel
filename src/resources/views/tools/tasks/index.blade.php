@@ -118,7 +118,11 @@
             </div>
 
             <div class="text-center">
-                {!! $tasks->render() !!}
+                {!! $tasks->appends([
+                    'filter_project' => $filters['project'],
+                    'filter_allocated_user' => $filters['allocated_user'],
+                    'filter_status' => $filters['status'],
+                ])->links() !!}
             </div>
         </div>
 
