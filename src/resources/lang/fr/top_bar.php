@@ -1,10 +1,11 @@
 <?php
 
 return [
-    'lists_of_tasks' => 'Listes de tâches',
-    'no_current_task' => 'Aucune tâche en cours !', 
+    'lists_of_tasks' => 'Ma todo list',
+    'no_current_task' => 'Aucune todo en cours !',
     'news_notifications' => 'Nouvelles notifications',
     'no_new_notification' => 'Aucune nouvelle notification !',
+    'new_todo' => 'Nouvelle todo',
     'new_message' => 'Nouveau message',
     'new_event' => 'Nouvel évènement', 
     'new_ticket' => 'Nouveau ticket',

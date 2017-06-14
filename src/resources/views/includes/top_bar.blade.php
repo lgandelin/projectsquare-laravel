@@ -14,20 +14,20 @@
                     <div class="todos" style="display: none;">
 
                         <span class="title">
-                                {{ trans('projectsquare::top_bar.lists_of_tasks') }}
+                            {{ trans('projectsquare::top_bar.lists_of_tasks') }}
                         </span>
 
                         <span class="no-todos" @if (sizeof($todos) == 0)style="display: block"@else style="display:none"@endif>{{ trans('projectsquare::top_bar.no_current_task') }}</span>
 
                         <ul>
                             @foreach ($todos as $todo)
-                                    <li class="todo @if($todo->status == true)todo-status-completed @endif" data-id="{{ $todo->id }}" data-status="{{ $todo->status }}"><span class="name">{{ $todo->name }}</span><input type="hidden" name="id" value="{{ $todo->id }}" /><span class="glyphicon glyphicon-remove btn-delete-todo"></span></li>
+                                <li class="todo @if($todo->status == true)todo-status-completed @endif" data-id="{{ $todo->id }}" data-status="{{ $todo->status }}"><span class="name">{{ $todo->name }}</span><input type="hidden" name="id" value="{{ $todo->id }}" /><span class="glyphicon glyphicon-remove btn-delete-todo"></span></li>
                             @endforeach
                         </ul>
 
                         <div class="form-inline">
                             <div class="form-group">
-                                <input type="text" class="form-control new-todo" placeholder="nouvelle tâche" name="name" id="name" required autocomplete="off" />
+                                <input type="text" class="form-control new-todo" placeholder="{{ trans('projectsquare::top_bar.new_todo') }}" name="name" id="name" required autocomplete="off" />
                                 <button type="submit" class="btn add btn-valid-create-todo"></button>
                             </div>
                         </div>
