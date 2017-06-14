@@ -95,7 +95,11 @@
             </table>
 
             <div class="text-center">
-                {!! $tasks->render() !!}
+                {!! $tasks->appends([
+                    'filter_allocated_user' => $filters['allocated_user'],
+                    'filter_status' => $filters['status'],
+                    'filter_phase' => $filters['phase'],
+                ])->links() !!}
             </div>
         </div>
     </div>

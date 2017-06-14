@@ -58,8 +58,11 @@
                     @endforeach
                 </table>
             </div>
+
             <div class="text-center">
-                {!! $conversations->render() !!}
+                {!! $conversations->appends([
+                    'filter_project' => $filters['project'],
+                ])->links() !!}
             </div>
         </div>
     </div>
