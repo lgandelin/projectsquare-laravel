@@ -12,6 +12,7 @@
                             </a>
                         </td>
                         <td><a href="{{ asset('uploads/tickets' . $file->path) }}" title="{{ $file->name }}" target="_blank">{{ $file->name }}</a></td>
+                        <td>{{ date('d/m/Y H:i', strtotime($file->created_at)) }}</td>
                         <td width="150">{{ \Webaccess\ProjectSquareLaravel\Tools\FileTool::convertFileSize($file->size) }}</td>
                         <td align="right">
                             <a href="{{ asset('uploads/tickets' . $file->path) }}" class="btn button" download="{{ $file->name }}" style="margin-bottom:0.5rem"><i class="glyphicon glyphicon-download"></i> {{ trans('projectsquare::generic.download') }}</a>

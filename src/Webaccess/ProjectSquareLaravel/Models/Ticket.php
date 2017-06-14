@@ -37,6 +37,6 @@ class Ticket extends Model
 
     public function files()
     {
-        return $this->hasMany('Webaccess\ProjectSquareLaravel\Models\File');
+        return $this->hasMany('Webaccess\ProjectSquareLaravel\Models\File')->orderBy('created_at', 'DESC');
     }
 }

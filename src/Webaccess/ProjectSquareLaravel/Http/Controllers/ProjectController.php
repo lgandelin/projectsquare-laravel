@@ -85,7 +85,6 @@ class ProjectController extends BaseController
                 Session::get('project_tickets_filter_allocated_user') === "na" ? null : Session::get('project_tickets_filter_allocated_user'),
                 Session::get('project_tickets_filter_status') === "na" ? null : Session::get('project_tickets_filter_status'),
                 Session::get('project_tickets_filter_type') === "na" ? null : Session::get('project_tickets_filter_type')
-
             ),
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
