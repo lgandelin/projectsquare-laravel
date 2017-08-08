@@ -44,7 +44,7 @@ class EloquentEventRepository implements EventRepository
             if ($eventModel->project) {
                 $event->color = $eventModel->project->color;
                 $event->projectName = $eventModel->project->name;
-                $event->projectClient = $eventModel->project->client->name;
+                $event->projectClient = isset($eventModel->project->client) ? $eventModel->project->client->name : null;
             }
 
             //Event duration
