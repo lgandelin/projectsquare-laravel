@@ -8,10 +8,10 @@
         > tr {
             > td {
                 vertical-align: middle;
-                padding: 1.5rem 1rem;
+                padding: 0.8rem 1.5rem;
                 font-family: $typo2;
                 color: $touareg ;
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
 
             td:last-child {
@@ -29,10 +29,10 @@
     }
 }
 
-.table > tbody > tr > td {
+/*.table > tbody > tr > td {
     padding-top: 1rem;
     padding-bottom: 1rem;
-}
+}*/
 
 .table {
   

@@ -1,7 +1,7 @@
 .block {
     padding: 0rem;
     padding-top: 2.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 
     background: white;
     border-radius: 0px;
@@ -21,9 +21,9 @@
 }
 
 .dashboard-content {
-    padding-top: 3rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 
     .ui-state-highlight {
         border: none !important;
@@ -42,7 +42,7 @@
             margin-top: 0;
 
             font-family: $typo1;
-            font-size: 2.6rem;
+            font-size: 2.1rem;
             color: $touareg;
         }
 
