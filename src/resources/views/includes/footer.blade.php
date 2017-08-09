@@ -30,6 +30,7 @@
         var route_project_users = "{{ route('project_users') }}";
         var route_udpate_tasks = "{{ route('projects_update_tasks') }}";
         var route_allocate_and_schedule_task = "{{ route('projects_allocate_and_schedule_task') }}";
+        var route_client_create = "{{ route('clients_add_ajax') }}";
     </script>
 
     <input type="hidden" id="csrf_token" value="{!! csrf_token() !!}" />

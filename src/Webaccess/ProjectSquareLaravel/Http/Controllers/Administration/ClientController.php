@@ -52,6 +52,37 @@ class ClientController extends BaseController
         }
     }
 
+    public function store_ajax(Request $request)
+    {
+        parent::__construct($request);
+
+        $success = false;
+        $error = false;
+
+        try {
+            $response = app()->make('CreateClientInteractor')->execute(new CreateClientRequest([
+                'name' => Input::get('name'),
+                'address' => Input::get('address'),
+            ]));
+            $success = true;
+        } catch (\Exception $e) {
+            $success = false;
+            $error = trans('projectsquare::clients.add_client_error');
+        }
+
+        $parameters = [
+            'success' => $success,
+            'error' => $error
+        ];
+
+        if (isset($response->client) && $response->client) {
+            $parameters['client_id'] = $response->client->id;
+            $parameters['client_name'] = $response->client->name;
+        }
+
+        return response()->json($parameters);
+    }
+
     public function edit(Request $request)
     {
         parent::__construct($request);

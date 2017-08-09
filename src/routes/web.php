@@ -111,6 +111,7 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
 
     Route::get('/administration/clients/{uuid}/add_user', array('as' => 'clients_add_user', 'uses' => 'Administration\ClientController@add_user'));
     Route::post('/administration/clients/store_user', array('as' => 'clients_store_user', 'uses' => 'Administration\ClientController@store_user'));
+    Route::post('/administration/clients/add_ajax', array('as' => 'clients_add_ajax', 'uses' => 'Administration\ClientController@store_ajax'));
     Route::get('/administration/clients/{uuid}/edit_user/{user_id}', array('as' => 'clients_edit_user', 'uses' => 'Administration\ClientController@edit_user'));
     Route::post('/administration/clients/update_user', array('as' => 'clients_update_user', 'uses' => 'Administration\ClientController@update_user'));
     Route::get('/administration/clients/{uuid}/delete_user/{user_id}', array('as' => 'clients_delete_user', 'uses' => 'Administration\ClientController@delete_user'));
