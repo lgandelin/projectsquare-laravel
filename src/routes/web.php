@@ -31,6 +31,8 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
     Route::post('/projects/calendar/update', array('as' => 'steps_update', 'uses' => 'Project\CalendarController@update'));
     Route::post('/projects/calendar/delete', array('as' => 'steps_delete', 'uses' => 'Project\CalendarController@delete'));
     Route::get('/project/users', array('as' => 'project_users', 'uses' => 'ProjectController@get_users'));
+    Route::get('/projects/{uuid}/progress', array('as' => 'project_progress', 'uses' => 'ProjectController@progress', 'middleware' => 'change_current_project'));
+    Route::get('/projects/{uuid}/spent-time', array('as' => 'project_spent_time', 'uses' => 'ProjectController@spent_time', 'middleware' => 'change_current_project'));
 
     //TOOLS
     Route::get('/tools/tickets', array('as' => 'tickets_index', 'uses' => 'Tools\TicketController@index'));

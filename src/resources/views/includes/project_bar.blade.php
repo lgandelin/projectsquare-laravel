@@ -15,6 +15,8 @@
             <li @if ($active == 'tickets')class="current"@endif><a href="{{ route('project_tickets', ['id' => $project->id]) }}">{{ trans('projectsquare::project.tickets') }}</a></li>
             <li @if ($active == 'messages')class="current"@endif><a href="{{ route('project_messages', ['id' => $project->id]) }}">{{ trans('projectsquare::project.messages') }}</a></li>
             <li @if ($active == 'files')class="current"@endif><a href="{{ route('project_files', ['id' => $project->id]) }}">{{ trans('projectsquare::project.files') }}</a></li>
+            @if ($is_admin)<li @if ($active == 'progress')class="current"@endif><a href="{{ route('project_progress', ['id' => $project->id]) }}">{{ trans('projectsquare::project.progress') }}</a></li>@endif
+            @if ($is_admin)<li @if ($active == 'spent_time')class="current"@endif><a href="{{ route('project_spent_time', ['id' => $project->id]) }}">{{ trans('projectsquare::project.spent_time') }}</a></li>@endif
             <li class="border-bottom"></li>
         </ul>
     </nav>

@@ -13,6 +13,8 @@ return [
     'seo' => 'Référencement',
     'files' => 'Fichiers',
     'reporting' => 'Reporting',
+    'progress' => 'Etat d\'avancement',
+    'spent_time' => 'Temps passé',
 
     'urls' => 'URLs',
 
