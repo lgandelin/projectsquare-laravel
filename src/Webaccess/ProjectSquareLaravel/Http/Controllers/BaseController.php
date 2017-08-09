@@ -38,6 +38,10 @@ class BaseController extends Controller
             view()->share('todos', $this->getTodos());
             view()->share('todos_count', $this->getUncompleteTodosCount());
             view()->share('left_bar', isset($_COOKIE['left-bar']) ? $_COOKIE['left-bar'] : 'opened');
+            view()->share('left_bar_projects', isset($_COOKIE['left-bar-projects']) ? $_COOKIE['left-bar-projects'] : 'opened');
+            view()->share('left_bar_tools', isset($_COOKIE['left-bar-tools']) ? $_COOKIE['left-bar-tools'] : 'opened');
+            view()->share('left_bar_management', isset($_COOKIE['left-bar-management']) ? $_COOKIE['left-bar-management'] : 'opened');
+            view()->share('left_bar_administration', isset($_COOKIE['left-bar-administration']) ? $_COOKIE['left-bar-administration'] : 'opened');
         }
     }
 

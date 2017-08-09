@@ -175,6 +175,24 @@ $(document).ready(function() {
         $(this).closest('form').submit();
     });
 
+    //SUBMENUS
+    $('.left-bar .menu .line').click(function() {
+        var id = $(this).data('id');
+
+        var current = readCookie('left-bar-' + id);
+        if (current == null) {
+            current = 'opened';
+        }
+
+        if (current == 'opened') {
+            createCookie('left-bar-' + id, 'closed');
+        } else {
+            createCookie('left-bar-' + id, 'opened');
+        }
+
+        $(this).closest('.menu').find('.sub-menu').fadeToggle(250);
+    })
+
 });
 
 function filter_projects_list() {
