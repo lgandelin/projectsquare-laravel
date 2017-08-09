@@ -3,6 +3,8 @@ $(document).ready(function() {
     $('#create-client-btn').click(function() {
         $('.create-client-inline .step-1').hide();
         $('.create-client-inline .step-2').show();
+
+        $('#new-client-name').focus();
     });
 
     $('#cancel-new-client').click(function() {
