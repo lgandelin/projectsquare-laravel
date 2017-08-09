@@ -14099,6 +14099,38 @@ body {
   color: #243f75;
 }
 
+/* line 82, ../sass/_project.scss */
+.agency-projects-template .create-client-inline {
+  margin-top: 1rem;
+  min-height: 3.5rem;
+}
+/* line 86, ../sass/_project.scss */
+.agency-projects-template .create-client-inline .step-1 {
+  margin-top: 0.5rem;
+  color: #888;
+  font-size: 1.4rem;
+}
+/* line 92, ../sass/_project.scss */
+.agency-projects-template .create-client-inline .step-2 {
+  display: none;
+}
+/* line 95, ../sass/_project.scss */
+.agency-projects-template .create-client-inline .step-2 #new-client-name {
+  width: 25rem;
+  display: inline-block;
+}
+/* line 100, ../sass/_project.scss */
+.agency-projects-template .create-client-inline .step-2 #cancel-new-client {
+  margin-left: 1rem;
+}
+/* line 104, ../sass/_project.scss */
+.agency-projects-template .create-client-inline .step-2 .info {
+  display: inline;
+  margin-left: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 /* line 1, ../sass/_tickets.scss */
 .status {
   display: inline-block;

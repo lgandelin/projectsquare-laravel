@@ -77,3 +77,36 @@
         color: rgb(36, 63, 117);
     }
 }
+
+.agency-projects-template {
+    .create-client-inline {
+        margin-top: 1rem;
+        min-height: 3.5rem;
+
+        .step-1 {
+            margin-top: 0.5rem;
+            color: #888;
+            font-size: 1.4rem;
+        }
+
+        .step-2 {
+            display: none;
+
+            #new-client-name {
+                width: 25rem;
+                display: inline-block;
+            }
+
+            #cancel-new-client {
+                margin-left:1rem;
+            }
+
+            .info {
+                display: inline;
+                margin-left: 1rem;
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+    }
+}

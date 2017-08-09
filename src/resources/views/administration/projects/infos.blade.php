@@ -7,21 +7,25 @@
 <form action="{{ $form_action }}" method="post">
     <div class="form-group">
         <label for="name">{{ trans('projectsquare::projects.label') }}</label>
-        <input class="form-control" type="text" placeholder="{{ trans('projectsquare::projects.name_placeholder') }}" name="name" @if (isset($project_name))value="{{ $project_name }}"@endif />
+        <input required class="form-control" type="text" placeholder="{{ trans('projectsquare::projects.name_placeholder') }}" name="name" @if (isset($project_name))value="{{ $project_name }}"@endif />
     </div>
 
     <div class="form-group">
         <label for="name">{{ trans('projectsquare::projects.client') }}</label>
-        @if (isset($clients))
-            <select class="form-control" name="client_id">
-                <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
-                @foreach ($clients as $client)
-                    <option value="{{ $client->id }}" @if (isset($project) && $project->client_id == $client->id)selected="selected"@endif>{{ $client->name }}</option>
-                @endforeach
-            </select>
-        @else
-            <div class="info bg-info">{{ trans('projectsquare::projects.no_client_yet') }}</div>
-        @endif
+        <select class="form-control" name="client_id">
+            <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+            @foreach ($clients as $client)
+                <option value="{{ $client->id }}" @if (isset($project) && $project->client_id == $client->id)selected="selected"@endif>{{ $client->name }}</option>
+            @endforeach
+        </select>
+        <div class="create-client-inline">
+            <div class="step-1">Votre client ne fait pas encore partie de la liste ? <a href="#" id="create-client-btn">Créer un client</a></div>
+            <div class="step-2">
+                <input type="text" class="form-control" placeholder="Nom de la société" id="new-client-name" />
+                <button class="btn valid" id="valid-new-client"><i class="glyphicon glyphicon-ok"></i> Valider</button>
+                <a href="#" id="cancel-new-client">Annuler</a>
+            </div>
+        </div>
     </div>
 
     <div class="form-group">
@@ -60,6 +64,7 @@
 </form>
 
 @section('scripts')
+    <script src="{{ asset('js/projects.js') }}"></script>
     <script>
         $('.colorpicker').minicolors({
             theme: 'bootstrap'
