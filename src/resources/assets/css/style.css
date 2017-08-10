@@ -17391,6 +17391,16 @@ input:focus, textarea:focus, select:focus {
   left: 0;
 }
 
+/* line 2, ../sass/includes/_tutorial.scss */
+.single-step h3 {
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+}
+/* line 7, ../sass/includes/_tutorial.scss */
+.single-step .nav {
+  margin-top: 1.5rem;
+}
+
 /* line 1, ../sass/layout/_layout.scss */
 html {
   height: 100%;
@@ -17824,7 +17834,7 @@ body {
 /* line 85, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications {
   position: absolute;
-  z-index: 999;
+  z-index: 9999;
   top: 9.1rem;
   right: 0;
   bottom: 0;
@@ -17837,12 +17847,12 @@ body {
   box-shadow: -2px 0px 6px 0px rgba(113, 115, 119, 0.57);
   background: white;
 }
-/* line 103, ../sass/layout/_top_bar.scss */
+/* line 102, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .tabs {
   overflow: hidden;
   border-bottom: none;
 }
-/* line 107, ../sass/layout/_top_bar.scss */
+/* line 106, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .tabs li {
   margin-right: 0;
   width: 50%;
@@ -17850,24 +17860,24 @@ body {
   line-height: 5rem;
   float: left;
 }
-/* line 114, ../sass/layout/_top_bar.scss */
+/* line 113, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .tabs li:hover {
   cursor: pointer;
 }
-/* line 118, ../sass/layout/_top_bar.scss */
+/* line 117, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .tabs li:after {
   content: "";
   display: block;
   height: 1px;
   background: #cbcccc;
 }
-/* line 125, ../sass/layout/_top_bar.scss */
+/* line 124, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .tabs li i {
   margin: auto;
   display: block;
   margin-top: 1.2rem;
 }
-/* line 130, ../sass/layout/_top_bar.scss */
+/* line 129, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .tabs li i.notification-icon {
   background: url("../img/top-bar/notification-icon.png") no-repeat center center;
   width: 28px;
@@ -17875,7 +17885,7 @@ body {
   display: block;
   margin-bottom: 13px;
 }
-/* line 138, ../sass/layout/_top_bar.scss */
+/* line 137, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .tabs li i.message-icon {
   background: url("../img/top-bar/message-icon.png") no-repeat center center;
   width: 29px;
@@ -17885,34 +17895,34 @@ body {
   position: relative;
   top: -2px;
 }
-/* line 151, ../sass/layout/_top_bar.scss */
+/* line 150, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .content-tab {
   padding: 2rem;
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
 }
-/* line 157, ../sass/layout/_top_bar.scss */
+/* line 156, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .content-tab::-webkit-scrollbar {
   width: 5px;
 }
-/* line 161, ../sass/layout/_top_bar.scss */
+/* line 160, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .content-tab::-webkit-scrollbar-thumb {
   background-color: slategrey;
   outline: 1px solid slategrey;
 }
-/* line 166, ../sass/layout/_top_bar.scss */
+/* line 165, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .content-tab .notification {
   margin-bottom: 3rem;
   padding-bottom: 1rem;
   overflow: hidden;
   font-family: "AvantGarde-Book";
 }
-/* line 173, ../sass/layout/_top_bar.scss */
+/* line 172, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .content-tab .notification:hover {
   background: #f4f8f9;
 }
-/* line 177, ../sass/layout/_top_bar.scss */
+/* line 176, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .content-tab .notification a {
   display: block;
   width: 100%;
@@ -17921,14 +17931,14 @@ body {
   padding-left: 1.3rem;
   overflow: hidden;
 }
-/* line 186, ../sass/layout/_top_bar.scss */
+/* line 185, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .content-tab .notification .project {
   display: block;
   padding: 1.3rem 1.7rem 1.1rem 2.2rem;
   margin-bottom: 1.5rem;
   color: white;
 }
-/* line 194, ../sass/layout/_top_bar.scss */
+/* line 193, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .content-tab .notification .title {
   display: block;
   overflow: hidden;
@@ -17936,84 +17946,84 @@ body {
   padding-left: 0.1rem;
   color: #2b2b2b;
 }
-/* line 203, ../sass/layout/_top_bar.scss */
+/* line 202, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .content-tab .notification .status {
   display: block;
   padding-left: 0.1rem;
   font-size: 1.2rem;
   color: #9e9e9e;
 }
-/* line 211, ../sass/layout/_top_bar.scss */
+/* line 210, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .content-tab .notification .avatar {
   float: left;
   margin-right: 1.5rem;
 }
-/* line 216, ../sass/layout/_top_bar.scss */
+/* line 215, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .content-tab .notification .relative-date {
   margin-top: 1.2rem;
   float: right;
   font-size: 1.0rem;
   color: #9e9e9e;
 }
-/* line 224, ../sass/layout/_top_bar.scss */
+/* line 223, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .content-tab .notification .message {
   display: block;
   overflow: hidden;
   font-size: 1.2rem;
   color: #9e9e9e;
 }
-/* line 233, ../sass/layout/_top_bar.scss */
+/* line 232, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .content-tab .notification .link:hover {
   text-decoration: none;
 }
-/* line 238, ../sass/layout/_top_bar.scss */
+/* line 237, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .content-tab .notification .notification-status {
   cursor: pointer;
   color: white;
 }
-/* line 242, ../sass/layout/_top_bar.scss */
+/* line 241, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .content-tab .notification .notification-status:hover {
   color: #c8dc1e;
 }
-/* line 250, ../sass/layout/_top_bar.scss */
+/* line 249, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos-link {
   background: url(../img/top-bar/todo.png) no-repeat;
   width: 38px;
   height: 33px;
   display: block;
 }
-/* line 256, ../sass/layout/_top_bar.scss */
+/* line 255, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos-link:hover {
   background: url(../img/top-bar/todo-hover.png) no-repeat;
 }
-/* line 260, ../sass/layout/_top_bar.scss */
+/* line 259, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos-link .badge {
   margin-top: -3.5rem;
 }
-/* line 265, ../sass/layout/_top_bar.scss */
+/* line 264, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos {
   width: 268px;
   position: absolute;
   top: 56px;
   left: -100px;
-  z-index: 999;
+  z-index: 9999;
   background: white;
   border: 1px solid #a0a6a9;
   padding: 1.5rem;
 }
-/* line 276, ../sass/layout/_top_bar.scss */
+/* line 275, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .title {
   font-size: 1.75rem;
   font-weight: bold;
   display: block;
   margin-bottom: 1rem;
 }
-/* line 284, ../sass/layout/_top_bar.scss */
+/* line 283, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos ul {
   padding: 0px;
   margin-bottom: 2rem;
 }
-/* line 289, ../sass/layout/_top_bar.scss */
+/* line 288, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .todo {
   margin-bottom: 0.5rem;
   overflow: hidden;
@@ -18023,16 +18033,16 @@ body {
   cursor: pointer;
   background: url(../img/top-bar/todo-uncheck.png) no-repeat left 5px;
 }
-/* line 299, ../sass/layout/_top_bar.scss */
+/* line 298, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .todo .name {
   width: 180px;
   display: inline-block;
 }
-/* line 305, ../sass/layout/_top_bar.scss */
+/* line 304, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .todo .name:hover {
   opacity: 0.8;
 }
-/* line 309, ../sass/layout/_top_bar.scss */
+/* line 308, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .todo .btn-delete-todo {
   color: #096a85;
   cursor: pointer;
@@ -18040,68 +18050,68 @@ body {
   vertical-align: middle;
   white-space: normal;
 }
-/* line 317, ../sass/layout/_top_bar.scss */
+/* line 316, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .todo .btn-delete-todo:hover {
   color: #c8dc1e;
 }
-/* line 322, ../sass/layout/_top_bar.scss */
+/* line 321, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .todo:hover, .top-bar-container .top-bar .top-right-menu li .todos .todo-status-completed {
   margin-right: 0;
 }
-/* line 327, ../sass/layout/_top_bar.scss */
+/* line 326, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .no-todos {
   color: #a0a6a9;
 }
-/* line 331, ../sass/layout/_top_bar.scss */
+/* line 330, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .todo-status-completed {
   background: url(../img/top-bar/todo-check2.png) no-repeat left 2px;
 }
-/* line 333, ../sass/layout/_top_bar.scss */
+/* line 332, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .todo-status-completed .name {
   text-decoration: line-through;
 }
-/* line 340, ../sass/layout/_top_bar.scss */
+/* line 339, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .form-inline .new-todo {
   width: 178px;
   height: 28px;
   margin-right: 1.5rem;
 }
-/* line 346, ../sass/layout/_top_bar.scss */
+/* line 345, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .form-inline .add {
   margin-right: 0;
   margin-bottom: 0;
 }
-/* line 351, ../sass/layout/_top_bar.scss */
+/* line 350, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .form-inline .valid {
   padding: 0.5rem;
   height: 30px;
 }
-/* line 359, ../sass/layout/_top_bar.scss */
+/* line 358, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu .todo {
   position: relative;
 }
-/* line 363, ../sass/layout/_top_bar.scss */
+/* line 362, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu .avatar {
   border-radius: 50%;
   width: 50px;
   height: auto;
 }
-/* line 369, ../sass/layout/_top_bar.scss */
+/* line 368, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu .avatar:hover {
   opacity: 0.9;
 }
-/* line 373, ../sass/layout/_top_bar.scss */
+/* line 372, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu .out {
   vertical-align: middle;
 }
-/* line 377, ../sass/layout/_top_bar.scss */
+/* line 376, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu .out .log-out {
   display: block;
   width: 33px;
   height: 32px;
   background: url(../img/top-bar/log-out.png) no-repeat center center;
 }
-/* line 384, ../sass/layout/_top_bar.scss */
+/* line 383, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu .out .log-out:hover {
   background: url(../img/top-bar/log-out-hover.png) no-repeat center center;
 }
