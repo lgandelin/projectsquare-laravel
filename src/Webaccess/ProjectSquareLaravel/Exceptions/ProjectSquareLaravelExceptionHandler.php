@@ -5,6 +5,7 @@ namespace Webaccess\ProjectSquareLaravel\Exceptions;
 use ErrorException;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Session\TokenMismatchException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\Debug\Exception\FatalErrorException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -47,7 +48,9 @@ class ProjectSquareLaravelExceptionHandler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if ($exception instanceof NotFoundHttpException) {
+        if ($exception instanceof TokenMismatchException){
+            return redirect()->route('login');
+        } elseif ($exception instanceof NotFoundHttpException) {
             return response()->view('projectsquare::errors.404', [], 404);
         } elseif ($exception instanceof ErrorException && app()->environment() == 'production') {
             return response()->view('projectsquare::errors.500', [], 500);
