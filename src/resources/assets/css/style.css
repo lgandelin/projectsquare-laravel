@@ -12977,8 +12977,10 @@ a:focus {
 .templates .page-header {
   font-size: 2.5rem;
   margin-top: 0;
+  color: #096a85;
+  font-family: "AvantGarde-Book";
 }
-/* line 77, ../sass/includes/_typography.scss */
+/* line 79, ../sass/includes/_typography.scss */
 .templates .page-header h1 {
   font-size: 2.2rem;
   color: #096a85;
