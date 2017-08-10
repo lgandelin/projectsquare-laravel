@@ -14687,7 +14687,7 @@ body {
 /* line 67, ../sass/_project-tasks.scss */
 .project-tasks-template .project-tasks .phases .phase .phase-duration {
   width: 100px;
-  margin-top: 6px;
+  margin-top: 0;
   float: right;
   margin-right: 10.5rem;
   font-size: 1.4rem;
