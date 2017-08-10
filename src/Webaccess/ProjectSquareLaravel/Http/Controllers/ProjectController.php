@@ -5,6 +5,7 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
 use Webaccess\ProjectSquare\Requests\Projects\GetProjectProgressRequest;
@@ -200,5 +201,22 @@ class ProjectController extends BaseController
         }
 
         return redirect()->route('dashboard');
+    }
+
+    public function client_switch(Request $request)
+    {
+        parent::__construct($request);
+
+        $projectID = $request->get('project_id');
+
+        try {
+            if ($project = app()->make('ProjectManager')->getProject($projectID)) {
+                $this->request->session()->put('current_project', $project);
+            }
+        } catch(\Exception $e) {
+
+        }
+
+        return redirect()->route($request->get('route') ? $request->get('route') : 'dashboard', ['uuid' => $projectID]);
     }
 }

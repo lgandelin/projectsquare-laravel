@@ -16,4 +16,5 @@ return [
     'alert_variables' => 'Variables',
     'see_project' => 'voir le projet',
     'tasks' => 'Tâches',
+    'project' => 'Projet',
 ];

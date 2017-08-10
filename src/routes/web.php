@@ -48,6 +48,8 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
     Route::get('/projects/{uuid}/progress', array('as' => 'project_progress', 'uses' => 'ProjectController@progress', 'middleware' => 'change_current_project'));
     Route::get('/projects/{uuid}/spent-time', array('as' => 'project_spent_time', 'uses' => 'ProjectController@spent_time', 'middleware' => 'change_current_project'));
 
+    Route::post('/projects/switch', array('as' => 'projects_client_switch', 'uses' => 'ProjectController@client_switch'));
+
     //TOOLS
     Route::get('/tools/tickets', array('as' => 'tickets_index', 'uses' => 'Tools\TicketController@index'));
     Route::get('/tools/tickets/add', array('as' => 'tickets_add', 'uses' => 'Tools\TicketController@add'));
