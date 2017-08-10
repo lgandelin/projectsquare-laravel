@@ -1,6 +1,6 @@
 <?php
 
-namespace Webaccess\ProjectSquareLaravel\Http\Middleware;
+namespace Webaccess\ProjectSquareLaravel\Http\Middlewares;
 
 use Closure;
 
