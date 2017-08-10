@@ -7,13 +7,13 @@
             ])
 
             @if ($is_client)
-                <a href="{{ route('project_tasks', ['id' => $current_project->id]) }}" class="all pull-right"></a>
+                <a href="{{ route('project_tasks', ['id' => $current_project->id]) }}" class="all pull-right" title="{{ trans('projectsquare::dashboard.tasks_list') }}"></a>
             @else
-                <a href="{{ route('tasks_index') }}" class="all pull-right"></a>
+                <a href="{{ route('tasks_index') }}" class="all pull-right" title="{{ trans('projectsquare::dashboard.tasks_list') }}"></a>
             @endif
-            <a href="{{ route('tasks_add') }}" class="add pull-right"></a>
+            <a href="{{ route('tasks_add') }}" class="add pull-right" title="{{ trans('projectsquare::dashboard.add_task') }}"></a>
 
-            <a href="#" class="glyphicon glyphicon-move move-widget pull-right"></a> 
+            <a href="#" class="glyphicon glyphicon-move move-widget pull-right" title="{{ trans('projectsquare::dashboard.move_widget') }}"></a>
         </h3>
 
         <table class="table table-striped">
@@ -47,7 +47,7 @@
                         @endif
                     </td>
                     <td align="right" class="action">
-                        <a href="{{ route('tasks_edit', ['id' => $task->id]) }}" class="btn btn-sm btn-primary see-more"></a>
+                        <a href="{{ route('tasks_edit', ['id' => $task->id]) }}" class="btn btn-sm btn-primary see-more" title="{{ trans('projectsquare::dashboard.see_task') }}"></a>
                     </td>
                 </tr>
             @endforeach

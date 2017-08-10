@@ -5,13 +5,13 @@
                 'text' => trans('projectsquare::tooltips.messages')
             ])
             @if ($is_client)
-                <a href="{{ route('project_messages', ['id' => $current_project->id]) }}" class="all pull-right"></a>
-                <button class="btn add create-conversation pull-right"></button>
+                <a href="{{ route('project_messages', ['id' => $current_project->id]) }}" class="all pull-right" title="{{ trans('projectsquare::dashboard.conversations_list') }}"></a>
+                <button class="btn add create-conversation pull-right" title="{{ trans('projectsquare::dashboard.add_conversation') }}"></button>
             @else
-                <a href="{{ route('conversations_index') }}" class="all pull-right"></a>
+                <a href="{{ route('conversations_index') }}" class="all pull-right" title="{{ trans('projectsquare::dashboard.conversations_list') }}"></a>
             @endif
 
-            <a href="#" class="glyphicon glyphicon-move move-widget pull-right"></a>
+            <a href="#" class="glyphicon glyphicon-move move-widget pull-right" title="{{ trans('projectsquare::dashboard.move_widget') }}"></a>
         </h3>
 
         <table class="table table-striped">
@@ -48,7 +48,7 @@
 
                     <td align="center">
                         <!--<a href="{{ route('conversations_view', ['id' => $conversation->id]) }}" class="btn btn-sm btn-primary see-more" style="margin-right: 1rem"></a>-->
-                        <button class="button-message pull-right reply-message" data-id="{{ $conversation->id }}"><span class="glyphicon-comment"></span></button>
+                        <button class="button-message pull-right reply-message" data-id="{{ $conversation->id }}" title="{{ trans('projectsquare::dashboard.see_conversation') }}"><span class="glyphicon-comment"></span></button>
                     </td>
                 </tr>
 
