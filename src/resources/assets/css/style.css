@@ -13460,22 +13460,42 @@ body {
   text-decoration: none;
 }
 /* line 22, ../sass/layout/_top_bar.scss */
+.top-bar-container .top-bar .project-switcher {
+  float: left;
+  margin-left: 10rem;
+  margin-top: 1rem;
+}
+/* line 25, ../sass/layout/_top_bar.scss */
+.top-bar-container .top-bar .project-switcher label {
+  font-weight: bold;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
+}
+/* line 29, ../sass/layout/_top_bar.scss */
+.top-bar-container .top-bar .project-switcher select {
+  width: 20rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+/* line 34, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu {
   position: relative;
 }
-/* line 25, ../sass/layout/_top_bar.scss */
+/* line 37, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li {
   display: inline-block;
   margin-right: 2rem;
 }
-/* line 29, ../sass/layout/_top_bar.scss */
+/* line 41, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications-link, .top-bar-container .top-bar .top-right-menu li .todos-link {
   display: block;
   width: 57px;
   height: 39px;
   background: url(../img/top-bar/notification.png) no-repeat;
 }
-/* line 35, ../sass/layout/_top_bar.scss */
+/* line 47, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications-link .badge, .top-bar-container .top-bar .top-right-menu li .todos-link .badge {
   margin-left: 2.5rem;
   margin-top: -2.9rem;
@@ -13485,20 +13505,20 @@ body {
   background: #c8dc1e;
   color: #096a85;
 }
-/* line 46, ../sass/layout/_top_bar.scss */
+/* line 58, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications-link:hover, .top-bar-container .top-bar .top-right-menu li .todos-link:hover {
   background: url(../img/top-bar/notification-hover.png) no-repeat;
 }
-/* line 49, ../sass/layout/_top_bar.scss */
+/* line 61, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications-link:hover .badge, .top-bar-container .top-bar .top-right-menu li .todos-link:hover .badge {
   background: #096a85;
   color: #c8dc1e;
 }
-/* line 55, ../sass/layout/_top_bar.scss */
+/* line 67, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .new-notifications {
   background: #DF5A49;
 }
-/* line 59, ../sass/layout/_top_bar.scss */
+/* line 71, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications {
   position: absolute;
   background: white;
@@ -13511,76 +13531,76 @@ body {
   overflow-y: auto;
   max-height: 467px;
 }
-/* line 71, ../sass/layout/_top_bar.scss */
+/* line 83, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .title {
   font-size: 1.75rem;
   font-weight: bold;
   display: block;
 }
-/* line 77, ../sass/layout/_top_bar.scss */
+/* line 89, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .notification {
   margin-bottom: 1rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid #ccc;
   overflow: hidden;
 }
-/* line 83, ../sass/layout/_top_bar.scss */
+/* line 95, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .notification .date {
   font-weight: bold;
   display: block;
   float: left;
 }
-/* line 89, ../sass/layout/_top_bar.scss */
+/* line 101, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .notification .type {
   float: right;
   margin-bottom: 0.75rem;
 }
-/* line 94, ../sass/layout/_top_bar.scss */
+/* line 106, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .notification .description {
   clear: both;
   display: block;
 }
-/* line 98, ../sass/layout/_top_bar.scss */
+/* line 110, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .notification .description .btn {
   margin-top: 1rem;
 }
-/* line 103, ../sass/layout/_top_bar.scss */
+/* line 115, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .notification .not-read {
   color: #dadada;
 }
-/* line 107, ../sass/layout/_top_bar.scss */
+/* line 119, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .notification .read {
   color: #313131;
 }
-/* line 111, ../sass/layout/_top_bar.scss */
+/* line 123, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .notification .status {
   cursor: pointer;
 }
-/* line 116, ../sass/layout/_top_bar.scss */
+/* line 128, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .notification:first-child {
   margin-top: 2rem;
 }
-/* line 120, ../sass/layout/_top_bar.scss */
+/* line 132, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .notifications .notification:last-child {
   border: none;
   padding-bottom: 0;
 }
-/* line 126, ../sass/layout/_top_bar.scss */
+/* line 138, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos-link {
   background: url(../img/top-bar/todo.png) no-repeat;
   width: 38px;
   height: 33px;
   display: block;
 }
-/* line 132, ../sass/layout/_top_bar.scss */
+/* line 144, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos-link .badge {
   margin-left: -1.5rem;
 }
-/* line 136, ../sass/layout/_top_bar.scss */
+/* line 148, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos-link:hover {
   background: url(../img/top-bar/todo-hover.png) no-repeat;
 }
-/* line 140, ../sass/layout/_top_bar.scss */
+/* line 152, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos {
   width: 268px;
   position: absolute;
@@ -13591,19 +13611,19 @@ body {
   border: 1px solid #a0a6a9;
   padding: 1.5rem;
 }
-/* line 151, ../sass/layout/_top_bar.scss */
+/* line 163, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .title {
   font-size: 1.75rem;
   font-weight: bold;
   display: block;
   margin-bottom: 1rem;
 }
-/* line 159, ../sass/layout/_top_bar.scss */
+/* line 171, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos ul {
   padding: 0px;
   margin-bottom: 2rem;
 }
-/* line 164, ../sass/layout/_top_bar.scss */
+/* line 176, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .todo {
   margin-bottom: 0.5rem;
   overflow: hidden;
@@ -13613,16 +13633,16 @@ body {
   cursor: pointer;
   background: url(../img/top-bar/todo-uncheck.png) no-repeat left 5px;
 }
-/* line 174, ../sass/layout/_top_bar.scss */
+/* line 186, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .todo .name {
   width: 180px;
   display: inline-block;
 }
-/* line 180, ../sass/layout/_top_bar.scss */
+/* line 192, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .todo .name:hover {
   opacity: 0.8;
 }
-/* line 184, ../sass/layout/_top_bar.scss */
+/* line 196, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .todo .btn-delete-todo {
   color: #096a85;
   cursor: pointer;
@@ -13630,69 +13650,69 @@ body {
   vertical-align: middle;
   white-space: normal;
 }
-/* line 192, ../sass/layout/_top_bar.scss */
+/* line 204, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .todo .btn-delete-todo:hover {
   color: #c8dc1e;
 }
-/* line 197, ../sass/layout/_top_bar.scss */
+/* line 209, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .todo:hover, .top-bar-container .top-bar .top-right-menu li .todos .todo-status-completed {
   margin-right: 0;
 }
-/* line 202, ../sass/layout/_top_bar.scss */
+/* line 214, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .no-todos {
   color: #a0a6a9;
 }
-/* line 206, ../sass/layout/_top_bar.scss */
+/* line 218, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .todo-status-completed {
   background: url(../img/top-bar/todo-check2.png) no-repeat left 2px;
 }
-/* line 208, ../sass/layout/_top_bar.scss */
+/* line 220, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .todo-status-completed .name {
   text-decoration: line-through;
 }
-/* line 215, ../sass/layout/_top_bar.scss */
+/* line 227, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .form-inline .new-todo {
   width: 178px;
   height: 28px;
   margin-right: 1.5rem;
 }
-/* line 221, ../sass/layout/_top_bar.scss */
+/* line 233, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .form-inline .add {
   margin-right: 0;
   margin-bottom: 0;
 }
-/* line 226, ../sass/layout/_top_bar.scss */
+/* line 238, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu li .todos .form-inline .valid {
   padding: 0.5rem;
   height: 30px;
 }
-/* line 234, ../sass/layout/_top_bar.scss */
+/* line 246, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu .todo {
   position: relative;
 }
-/* line 238, ../sass/layout/_top_bar.scss */
+/* line 250, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu .avatar {
   border-radius: 50%;
   border: 1px solid #c8dc1e;
   width: 50px;
   height: auto;
 }
-/* line 245, ../sass/layout/_top_bar.scss */
+/* line 257, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu .avatar:hover {
   opacity: 0.9;
 }
-/* line 249, ../sass/layout/_top_bar.scss */
+/* line 261, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu .out {
   vertical-align: middle;
 }
-/* line 253, ../sass/layout/_top_bar.scss */
+/* line 265, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu .out .log-out {
   display: block;
   width: 33px;
   height: 32px;
   background: url(../img/top-bar/log-out.png) no-repeat center center;
 }
-/* line 260, ../sass/layout/_top_bar.scss */
+/* line 272, ../sass/layout/_top_bar.scss */
 .top-bar-container .top-bar .top-right-menu .out .log-out:hover {
   background: url(../img/top-bar/log-out-hover.png) no-repeat center center;
 }

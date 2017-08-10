@@ -19,16 +19,5 @@
             @if ($is_admin)<li @if ($active == 'spent_time')class="current"@endif><a href="{{ route('project_spent_time', ['id' => $project->id]) }}">{{ trans('projectsquare::project.spent_time') }}</a></li>@endif
             <li class="border-bottom"></li>
         </ul>
-
-        @if ($is_client)
-            <form action="{{ route('projects_switch') }}" method="get" id="project-switcher-form">
-                <select name="project_switcher" onchange="$('#project-switcher-form').submit()">
-                    <option value="">Choisissez un projet</option>
-                    @foreach ($in_progress_projects as $project)
-                        <option value="{{ $project->id }}">{{ $project->name }}</option>
-                    @endforeach
-                </select>
-            </form>
-        @endif
     </nav>
 </div>

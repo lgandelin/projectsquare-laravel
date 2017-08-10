@@ -69,7 +69,7 @@ class BaseController extends Controller
     protected function getCurrentProject()
     {
         if ($this->isUserAClient()) {
-            if ($client = Client::find($this->getUser()->client_id)) {
+            if ($client = Client::find($this->getUser()->client_id) && !$this->request->session()->has('current_project')) {
                 $project = Project::where('client_id', '=', $client->id)->where('status_id', '=', ProjectEntity::IN_PROGRESS)->orderBy('created_at', 'DESC')->first();
                 $this->request->session()->put('current_project', $project);
             }

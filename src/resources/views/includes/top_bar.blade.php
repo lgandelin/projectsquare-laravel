@@ -3,6 +3,19 @@
         <h1 class="logo"><a href="{{ route('dashboard') }}"><img src="{{asset('img/top-bar/logo.png')}}"></a></h1>
     </div>
 
+    @if ($is_client && sizeof($in_progress_projects) > 0)
+        <form action="{{ route('projects_client_switch') }}" method="post" id="project-switcher-form" class="project-switcher">
+            <label for="project_id">{{ trans('projectsquare::dashboard.project') }} :</label>
+            <select class="form-control" name="project_id" onchange="$('#project-switcher-form').submit()">
+                @foreach ($in_progress_projects as $project)
+                    <option value="{{ $project->id }}" @if ($current_project && $current_project->id == $project->id)selected="selected"@endif>{{ $project->name }}</option>
+                @endforeach
+            </select>
+            <input type="hidden" name="route" value="{{ $current_route }}" />
+            {{ csrf_field() }}
+        </form>
+    @endif
+
     <nav class="pull-right">
         <ul class="top-right-menu">
             @if (isset($todos))
