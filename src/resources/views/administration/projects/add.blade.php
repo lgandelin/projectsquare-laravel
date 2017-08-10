@@ -9,7 +9,7 @@
                 <li><a>Equipe</a></li>
                 <li><a>Tâches</a></li>
                 <li><a>Attribution</a></li>
-                <li><a>Configuration</a></li>
+                {{--<li><a>Configuration</a></li>--}}
                 <li class="border-bottom"></li>
             </ul>
 

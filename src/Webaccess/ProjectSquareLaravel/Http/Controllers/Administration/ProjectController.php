@@ -4,6 +4,7 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Administration;
 
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Entities\Task;
 use Webaccess\ProjectSquare\Requests\Phases\CreatePhaseRequest;
@@ -66,7 +67,7 @@ class ProjectController extends BaseController
 
             $request->session()->flash('confirmation', trans('projectsquare::projects.add_project_success'));
 
-            return redirect()->route('projects_edit_team', ['uuid' => $response->project->id]);
+            return redirect()->route('projects_edit_team', ['uuid' => $response->project->id])->withCookie(cookie('creating_project_' . $response->project->id, true, 10));
         } catch (\Exception $e) {
             $request->session()->flash('error', trans('projectsquare::projects.add_project_error'));
 
@@ -92,6 +93,8 @@ class ProjectController extends BaseController
             'tab' => 'infos',
             'project' => $project,
             'clients' => app()->make('GetClientsInteractor')->execute(new GetClientsRequest()),
+            'creating_project' => $request->cookie('creating_project_' . $project->id),
+
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
@@ -116,6 +119,8 @@ class ProjectController extends BaseController
             'users' => app()->make('UserManager')->getAgencyUsers(),
             'roles' => app()->make('RoleManager')->getRoles(),
             'project' => $project,
+            'creating_project' => $request->cookie('creating_project_' . $project->id),
+
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
@@ -142,6 +147,8 @@ class ProjectController extends BaseController
             'tab' => 'tasks',
             'project' => $project,
             'phases' => $phases,
+            'creating_project' => $request->cookie('creating_project_' . $project->id),
+
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
@@ -174,6 +181,8 @@ class ProjectController extends BaseController
             'filters' => [
                 'role' => Input::get('filter_role'),
             ],
+            'creating_project' => $request->cookie('creating_project_' . $project->id),
+
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
@@ -346,6 +355,8 @@ class ProjectController extends BaseController
     public function allocate_and_schedule_task(Request $request)
     {
         parent::__construct($request);
+
+        Cookie::queue(Cookie::forget('creating_project_' . Input::get('project_id')));
 
         try {
             $userID = Input::get('allocated_user_id') ? Input::get('allocated_user_id') : $this->getUser()->id;
