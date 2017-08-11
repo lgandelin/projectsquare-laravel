@@ -46,20 +46,6 @@
                     </select>
                 @endif
             </div>
-
-            <div class="col-md-3">
-                <label for="role_id">{{ trans('projectsquare::roles.role') }}</label>
-                @if (isset($roles))
-                    <select class="form-control" name="role_id">
-                        <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
-                        @foreach ($roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
-                        @endforeach
-                    </select>
-                @else
-                    <div class="info bg-info">{{ trans('projectsquare::no_role_yet') }}</div>
-                @endif
-            </div>
         </div>
 
         <button type="submit" class="btn valid" style="margin-top: 2.5rem">

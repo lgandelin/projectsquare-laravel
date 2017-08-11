@@ -35,6 +35,7 @@ class UserController extends BaseController
         parent::__construct($request);
         
         return view('projectsquare::administration.users.add', [
+            'roles' => app()->make('RoleManager')->getRoles(),
             'clients' => app()->make('GetClientsInteractor')->execute(new GetClientsRequest()),
         ]);
     }
@@ -56,6 +57,7 @@ class UserController extends BaseController
                     null,
                     null,
                     null,
+                    Input::get('role_id'),
                     (Input::get('is_administrator') == 'y') ? true : false
                 );
                 $request->session()->flash('confirmation', trans('projectsquare::users.add_user_success'));
@@ -85,6 +87,7 @@ class UserController extends BaseController
 
         return view('projectsquare::administration.users.edit', [
             'user' => $user,
+            'roles' => app()->make('RoleManager')->getRoles(),
             'clients' => app()->make('GetClientsInteractor')->execute(new GetClientsRequest()),
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -106,6 +109,7 @@ class UserController extends BaseController
                 null,
                 null,
                 null,
+                Input::get('role_id'),
                 (Input::get('is_administrator') == 'y') ? true : false
             );
             $request->session()->flash('confirmation', trans('projectsquare::users.edit_user_success'));

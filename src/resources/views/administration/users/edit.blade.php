@@ -26,6 +26,7 @@
                 'user_first_name' => $user->firstName,
                 'user_last_name' => $user->lastName,
                 'user_email' => $user->email,
+                'user_role_id' => $user->roleID,
                 'is_administrator' => $user->isAdministrator,
                 'password_field' => false,
             ])

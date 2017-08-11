@@ -57,7 +57,7 @@ class UserManager
         return $user;
     }
 
-    public function createUser($firstName, $lastName, $email, $password, $mobile=null, $phone=null, $clientID=null, $clientRole=null, $isAdministrator=null)
+    public function createUser($firstName, $lastName, $email, $password, $mobile=null, $phone=null, $clientID=null, $clientRole=null, $roleID = null, $isAdministrator=null)
     {
         if ($user = $this->repository->getUserByEmail($email)) {
             throw new \Exception(trans('projectsquare::users.email_already_existing_error'));
@@ -69,7 +69,7 @@ class UserManager
                 throw new \Exception(trans('projectsquare::users.users_limit_reached'));
             }
 
-            $userID = $this->repository->createUser($firstName, $lastName, $email, Hash::make($password), $mobile, $phone, $clientID, $clientRole, $isAdministrator);
+            $userID = $this->repository->createUser($firstName, $lastName, $email, Hash::make($password), $mobile, $phone, $clientID, $clientRole, $roleID, $isAdministrator);
 
             //Insert notification settings
             $keys = [

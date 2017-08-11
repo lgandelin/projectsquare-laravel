@@ -19,6 +19,7 @@ class User extends Authenticatable
         'password',
         'first_name',
         'last_name',
+        'role_id',
         'client_id',
         'remember_token',
     ];
@@ -30,6 +31,11 @@ class User extends Authenticatable
     public function projects()
     {
         return $this->belongsToMany('Webaccess\ProjectSquareLaravel\Models\Project', 'user_projects');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo('Webaccess\ProjectSquareLaravel\Models\Role');
     }
 
     public function client()
