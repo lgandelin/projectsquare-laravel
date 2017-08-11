@@ -35,6 +35,7 @@ class ConfigController extends Controller
             null,
             null,
             null,
+            1,
             true
         );
 
