@@ -132,7 +132,7 @@ $(document).ready(function() {
     });
 
     $('body').on('click', '.left-bar .toggle-left-bar', function() {
-        $(this).toggleClass('glyphicon-triangle-right').toggleClass('glyphicon-triangle-left');
+        $(this).closest('.left-bar').find('.icon').toggleClass('glyphicon-triangle-right').toggleClass('glyphicon-triangle-left');
         $('.left-bar').toggleClass('left-bar-minified');
         $('.content').toggleClass('content-expanded');
         $('.left-bar .menu .sub-menu').show();

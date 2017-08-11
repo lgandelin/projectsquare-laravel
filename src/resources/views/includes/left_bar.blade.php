@@ -114,8 +114,15 @@
                     </ul>
                 </li>
             @endif
+
+            <li class="menu">
+                <span class="line toggle-left-bar" title="{{ trans('projectsquare::left_bar.fold_left_bar') }}">
+                    <span class="border">
+                        <span class="icon glyphicon glyphicon-triangle-@if ($left_bar == 'closed'){{'right'}}@else{{'left'}}@endif"></span>
+                    </span>
+                    <h3 class="title">{{ trans('projectsquare::left_bar.fold_left_bar') }}</h3>
+                </span>
+            </li>
         @endif
     </ul>
-
-    <span title="{{ trans('projectsquare::left_bar.fold_left_bar') }}" class="line toggle-left-bar glyphicon glyphicon-triangle-@if ($left_bar == 'closed'){{'right'}}@else{{'left'}}@endif"></span>
 </nav>

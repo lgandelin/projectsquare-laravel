@@ -20,5 +20,5 @@ return [
     'tickets_types' => 'Types de tickets', 
     'tickets_statuses' => 'Statuts de tickets',
     'settings' => 'Réglages',
-    'fold_left_bar' => 'Replier la barre latérale',
+    'fold_left_bar' => 'Réduire le menu',
 ];
