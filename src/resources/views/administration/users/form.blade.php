@@ -39,6 +39,16 @@
     @endif
 
     <div class="form-group">
+        <label for="role">{{ trans('projectsquare::users.profile') }}</label><br/>
+        <select class="form-control" name="role_id" id="role_id" required>
+            <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+            @foreach ($roles as $role)
+                <option value="{{ $role->id }}" @if (isset($user_role_id) && $user_role_id == $role->id)selected="selected" @endif>{{ $role->name }}</option>
+            @endforeach
+        </select>
+    </div>
+
+    <div class="form-group">
         <label for="is_administrator">{{ trans('projectsquare::users.is_administrator') }}</label><br/>
         Oui <input type="radio" placeholder="{{ trans('projectsquare::users.is_administrator') }}" name="is_administrator" value="y" @if (isset($is_administrator) && $is_administrator) checked @endif autocomplete="off" />
         Non <input type="radio" placeholder="{{ trans('projectsquare::users.is_administrator') }}" name="is_administrator" value="n" @if (isset($is_administrator) && !$is_administrator) checked @endif @if (!isset($is_administrator)) checked @endif autocomplete="off" />

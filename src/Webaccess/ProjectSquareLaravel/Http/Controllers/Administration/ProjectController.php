@@ -117,7 +117,6 @@ class ProjectController extends BaseController
         return view('projectsquare::administration.projects.edit', [
             'tab' => 'team',
             'users' => app()->make('UserManager')->getAgencyUsers(),
-            'roles' => app()->make('RoleManager')->getRoles(),
             'project' => $project,
             'creating_project' => $request->cookie('creating_project_' . $project->id),
 
@@ -458,12 +457,11 @@ class ProjectController extends BaseController
         try {
             $project = app()->make('ProjectManager')->getProject(Input::get('project_id'));
             $user = app()->make('UserManager')->getUser(Input::get('user_id'));
-            $role = Input::get('role_id') ? app()->make('RoleManager')->getRole(Input::get('role_id')) : null;
 
             app()->make('AddUserToProjectInteractor')->execute(new AddUserToProjectRequest([
                 'projectID' => Input::get('project_id'),
                 'userID' => Input::get('user_id'),
-                'roleID' => Input::get('role_id')
+                'roleID' => $user->roleID
             ]));
 
             $request->session()->flash('confirmation', trans('projectsquare::projects.add_user_to_project_success'));

@@ -184,6 +184,7 @@ class ClientController extends BaseController
                     Input::get('phone'),
                     Input::get('client_id'),
                     Input::get('client_role'),
+                    null,
                     false
                 );
                 $request->session()->flash('confirmation', trans('projectsquare::users.add_user_success'));
@@ -244,6 +245,7 @@ class ClientController extends BaseController
                 Input::get('phone'),
                 Input::get('client_id'),
                 Input::get('client_role'),
+                null,
                 false
             );
             $request->session()->flash('confirmation', trans('projectsquare::users.edit_user_success'));

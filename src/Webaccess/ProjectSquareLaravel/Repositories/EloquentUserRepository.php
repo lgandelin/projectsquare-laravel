@@ -79,18 +79,18 @@ class EloquentUserRepository implements UserRepository
         return $users;
     }
 
-    public function createUser($firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $isAdministrator=false)
+    public function createUser($firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $roleID, $isAdministrator=false)
     {
         $user = new User();
         $userID = Uuid::uuid4()->toString();
         $user->id = $userID;
         $user->save();
-        self::updateUser($userID, $firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $isAdministrator);
+        self::updateUser($userID, $firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $roleID, $isAdministrator);
 
         return $userID;
     }
 
-    public function updateUser($userID, $firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $isAdministrator=false)
+    public function updateUser($userID, $firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $roleID, $isAdministrator=false)
     {
         if ($user = self::getUserModel($userID)) {
             if ($firstName != null) {
@@ -116,6 +116,9 @@ class EloquentUserRepository implements UserRepository
             }
             if ($clientRole != null) {
                 $user->client_role = $clientRole;
+            }
+            if ($roleID != null) {
+                $user->role_id = $roleID;
             }
             if ($isAdministrator !== false) {
                 $user->is_administrator = $isAdministrator;
@@ -164,6 +167,7 @@ class EloquentUserRepository implements UserRepository
         $user->phone = $userModel->phone;
         $user->clientID = $userModel->client_id;
         $user->clientRole = $userModel->client_role;
+        $user->roleID = $userModel->role_id;
         $user->isAdministrator = $userModel->is_administrator;
 
         return $user;

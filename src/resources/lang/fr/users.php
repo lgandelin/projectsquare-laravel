@@ -24,6 +24,7 @@ return [
     'client' => 'Client',
     'is_administrator' => 'Administrateur',
     'role' => 'Rôle',
+    'profile' => 'Profil',
     'mobile' => 'Téléphone mobile',
     'phone' => 'Téléphone fixe',
 
