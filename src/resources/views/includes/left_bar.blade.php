@@ -11,14 +11,21 @@
 
         @if (!$is_client)
             <li class="menu @if (preg_match('/project_/', $current_route)) {{ 'encours' }} @endif">
-                <span class="line projects" title="{{ trans('projectsquare::left_bar.projects') }}" data-id="projects">
+                <span class="line projects" title="{{ trans('projectsquare::left_bar.my_projects') }}" data-id="projects">
                     <span class="border"><span class="icon"></span></span>
-                    <h3 class="title">{{ trans('projectsquare::left_bar.projects') }}</h3>
+                    <h3 class="title">{{ trans('projectsquare::left_bar.my_projects') }}</h3>
                 </span>
                 <ul class="sub-menu sub-menu-projects" @if ($left_bar_projects == 'closed')style="display:none"@endif>
                     <li class="filter-project filter-disabled">
                         <input type="text" class="form-control" placeholder="Filtrer..." />
                     </li>
+
+                    @if ($is_admin)
+                        <li class="add-project">
+                            <a href="{{ route('projects_add') }}"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ trans('projectsquare::left_bar.add_project') }}</a>
+                        </li>
+                    @endif
+
                     @foreach ($in_progress_projects as $project)
                         <li class="@if (isset($current_project_id) && $current_project_id == $project->id) encours @endif" style="border-left: 3px solid {{ $project->color }}">
                             <?php $route = preg_match('/project_/', $current_route) ? $current_route : 'project_index'; ?>

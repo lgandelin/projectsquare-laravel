@@ -2,7 +2,8 @@
 
 return [
     'dashboard' => 'Tableau de bord',
-    'projects' => 'Projets', 
+    'my_projects' => 'Mes projets',
+    'projects' => 'Liste des projets',
     'tools' => 'Outils',
     'tasks' => 'Toutes les tâches',
     'tickets' => 'Tous les tickets',
@@ -21,4 +22,5 @@ return [
     'tickets_statuses' => 'Statuts de tickets',
     'settings' => 'Réglages',
     'fold_left_bar' => 'Réduire le menu',
+    'add_project' => 'Ajouter un projet',
 ];

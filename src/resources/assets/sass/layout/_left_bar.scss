@@ -60,7 +60,7 @@
                     margin-left: 4.9rem;
 
                     a {
-                        padding-top: 1rem;
+                        padding-top: 1.3rem;
                         padding-bottom: 1rem;
                         font-family: $typo2;
                         font-size: 1.5rem;
@@ -106,14 +106,31 @@
                 cursor: default;
                 border: none;
 
-                padding-top: 18px !important;
-                padding-bottom: 18px;
+                padding-top: 1.8rem !important;
+                padding-bottom: 0.5rem;
 
                 input[type="text"] {
                     font-family: $typo2;
                     width: 84%;
                     margin-left: 2rem;
                     margin-right: 2rem;
+                }
+            }
+
+            .add-project {
+                color: white;
+                border-bottom: 1px solid #9dc3cf;
+
+                a {
+                    font-size: 1.3rem !important;
+                    font-family: $typo1 !important;
+                    
+                    i {
+                        margin-right: 1rem;
+                        vertical-align: middle;
+
+                        font-size: 2rem;
+                    }
                 }
             }
 
