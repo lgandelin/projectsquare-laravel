@@ -46,17 +46,17 @@
                             <a href="{{ route($route, ['id' => $project->id]) }}" @if (preg_match('/project_/', $current_route) && isset($current_project_id) && $current_project_id == $project->id) style="color: #c8dc1e" @endif">
                                 <span title="@if (isset($project->client))[{{ $project->client->name }}] @endif{{ $project->name }}">{{$project->name}}</span>
                             </a>
-                                @if (isset($project->client))<span style="display:none">{{ $project->client->name }}</span>@endif
+                            @if (isset($project->client))<span style="display:none">{{ $project->client->name }}</span>@endif
                         </li>
                     @endforeach
                 </ul>
             </li>
 
-            <li class="menu @if (preg_match('/tasks_/', $current_route) ||
-            preg_match('/tickets_/', $current_route) ||
-            preg_match('/conversations_/', $current_route) ||
-            preg_match('/planning/', $current_route) ||
-            preg_match('/monitoring_/', $current_route)) {{ 'encours' }} @endif">
+            <li class="menu @if (preg_match('/^tasks_/', $current_route) ||
+            preg_match('/^tickets_/', $current_route) ||
+            preg_match('/^conversations_/', $current_route) ||
+            preg_match('/^planning/', $current_route) ||
+            preg_match('/^monitoring_/', $current_route)) {{ 'encours' }} @endif">
                 <span class="line tools" title="{{ trans('projectsquare::left_bar.tools') }}" data-id="tools">
                     <span class="border"><span class="icon"></span></span>
                     <h3 class="title">{{ trans('projectsquare::left_bar.tools') }}</h3>

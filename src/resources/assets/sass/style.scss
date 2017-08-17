@@ -34,7 +34,9 @@
 @import "_monitoring";
 @import "_occupation";
 @import "_project-tasks";
-@import "_project-attribution";
+
+@import "administration/_project-tasks";
+@import "administration/_project-attribution";
 @import "_progress";
 @import "_error-pages";
 

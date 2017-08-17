@@ -83,5 +83,5 @@
 @section('scripts')
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="{{ asset('js/occupation.js') }}"></script>
-    <script src="{{ asset('js/project-attribution.js') }}"></script>
+    <script src="{{ asset('administration/js/project-attribution.js') }}"></script>
 @endsection

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
 use Webaccess\ProjectSquare\Requests\Projects\GetProjectProgressRequest;
+use Webaccess\ProjectSquare\Requests\Tasks\GetTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\Tools\TaskController;
 
@@ -56,6 +57,44 @@ class ProjectController extends BaseController
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
+    }
+
+    public function tasks_edit(Request $request)
+    {
+        parent::__construct($request);
+
+        $taskID = $request->task_uuid;
+        $projectID = $request->uuid;
+
+        try {
+            $task = app()->make('GetTaskInteractor')->execute(new GetTaskRequest([
+                'taskID' => $taskID,
+                'requesterUserID' => $this->getUser()->id,
+            ]));
+        } catch (\Exception $e) {
+            $request->session()->flash('error', $e->getMessage());
+
+            return redirect()->route('tasks_index');
+        }
+
+        if (!$task) {
+            $request->session()->flash('error', trans('projectsquare::tasks.task_not_found'));
+
+            return redirect()->route('tasks_index');
+        }
+
+        return view('projectsquare::project.tasks.edit', [
+            'task' => $task,
+            'project' => app()->make('GetProjectInteractor')->getProject($projectID),
+            'phases' => app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
+                'projectID' => $projectID
+            ])),
+            'task_statuses' => TaskController::getTasksStatuses(),
+            'users' => app()->make('UserManager')->getUsersByProject($task->projectID),
+            'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
+            'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
+        ]);
+
     }
 
     public function tickets(Request $request)

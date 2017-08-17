@@ -180,6 +180,9 @@ class TaskController extends BaseController
             $request->session()->flash('error', $e->getMessage());
         }
 
+        if ($request->session()->get('tasks_interface') === 'project')
+            return redirect()->route('project_tasks_edit', ['uuid' => $this->getCurrentProject()->id, 'task_uuid' => Input::get('task_id')]);
+
         return redirect()->route('tasks_edit', ['id' => Input::get('task_id')]);
     }
 

@@ -5,15 +5,149 @@ html {
 body {
     min-height: 100%;
     position: relative;
-    background: #e6f0f3;
 }
 
 .content {
     padding-left: 0rem;
     padding-right: 0rem;
-    margin-left: 265px;
+    margin-left: 26.5rem;
+
+    background: #e6f0f3;
 }
 
 .content-expanded {
     margin-left: 4.9rem;
+}
+
+.middle-column {
+    position: absolute;
+    left: 26.5rem;
+    bottom: 0;
+    top: 19rem;
+    right: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    //float: left;
+    width: 40rem;
+
+    background: white;
+    border-right: 2px solid #eceeed;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+        //-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #eceeed;
+        outline: 1px solid slategrey;
+    }
+
+    .phases {
+        .phase {
+            .phase-wrapper {
+                padding: 2rem;
+
+                font-family: $typo1;
+                font-size: 1.8rem;
+                color: $touareg;
+
+                border-bottom: 1px solid #eceeed;
+
+                .toggle-tasks {
+                    margin-top: 4px;
+                    float: right;
+
+                    cursor: pointer;
+                    font-size: 1.3rem;
+
+                    &:hover {
+                        color: $green;
+                    }
+                }
+
+                .tasks-number {
+                    width: 2.4rem;
+                    height: 2.4rem;
+                    display: inline-block;
+                    margin-left: 1.5rem;
+                    padding-top: 0.4rem;
+
+                    text-align: center;
+                    font-size: 1.3rem;
+                    font-family: $typo1;
+
+                    background: #f4f8f9;
+                    border-radius: 50%;
+                }
+            }
+
+            .tasks {
+                .task {
+                    border-bottom: 1px solid $light-gray;
+
+                    &.completed {
+                        background: #f4f8f9;
+
+                        .task-check {
+                            display: inline-block;
+                            float: right;
+                            margin-top: 1.3rem;
+
+                            font-size: 2.5rem;
+                            color: #bdbec0;
+                        }
+                    }
+
+                    &.current {
+                        border-right: 3px solid $green;
+                    }
+
+                    &:hover {
+                        background: #fafafa;
+                    }
+
+                    a {
+                        width: 100%;
+                        height: 100%;
+                        display: block;
+
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+
+                    .task-wrapper {
+                        padding: 1rem 2rem;
+
+                        font-family: $typo1;
+                        font-size: 1.5rem;
+                        color: $touareg;
+
+                        .name {
+                            display: inline-block;
+                            max-width: 25rem;
+                        }
+
+                        .avatar {
+                            width: 5rem;
+                            height: 5rem;
+                            margin-right: 2rem;
+
+                            border: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.content-page {
+    overflow: hidden;
+    padding: 2rem;
 }

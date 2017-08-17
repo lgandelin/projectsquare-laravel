@@ -1,4 +1,5 @@
 <div class="project-bar">
+    <div class="project-name" style="background: {{ $project->color }}">{{ $project->name }}</div>
     <nav>
         <ul class="tabs">
             @if (!$is_client)
