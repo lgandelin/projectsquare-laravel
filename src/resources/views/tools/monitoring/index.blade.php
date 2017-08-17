@@ -32,7 +32,7 @@
                             <td>{{ $alert->id }}</td>
                             <td>{{ date('d/m/Y H:i', strtotime($alert->created_at)) }}</td>
                             <td><span class="badge monitoring_badge">{{ $alert->type }}</span></td>
-                            <td>@if (isset($alert->project->client))<a href="{{ route('project_index', ['id' => $alert->project->id]) }}"><span class="text">{{ $alert->project->client->name }}</span></a>@endif</td>
+                            <td>@if (isset($alert->project->client))<span class="text">{{ $alert->project->client->name }}</span>@endif</td>
                             <td>
                                 @if ($alert->type == 'WEBSITE_LOADING_TIME')
                                     {{ number_format($alert->variables->loading_time, 2) }}s

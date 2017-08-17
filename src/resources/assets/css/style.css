@@ -16934,36 +16934,36 @@ body {
   background: white;
   border-right: 2px solid #eceeed;
 }
-/* line 37, ../sass/layout/_layout.scss */
+/* line 36, ../sass/layout/_layout.scss */
 .middle-column::-webkit-scrollbar {
   width: 5px;
 }
-/* line 45, ../sass/layout/_layout.scss */
+/* line 40, ../sass/layout/_layout.scss */
 .middle-column::-webkit-scrollbar-thumb {
   background-color: #eceeed;
   outline: 1px solid slategrey;
 }
-/* line 52, ../sass/layout/_layout.scss */
-.middle-column .phases .phase .phase-wrapper {
+/* line 46, ../sass/layout/_layout.scss */
+.middle-column .parent .parent-wrapper {
   padding: 2rem;
   font-family: "AvantGarde-Book";
   font-size: 1.8rem;
   color: #096a85;
   border-bottom: 1px solid #eceeed;
 }
-/* line 61, ../sass/layout/_layout.scss */
-.middle-column .phases .phase .phase-wrapper .toggle-tasks {
+/* line 55, ../sass/layout/_layout.scss */
+.middle-column .parent .parent-wrapper .toggle-childs {
   margin-top: 4px;
   float: right;
   cursor: pointer;
   font-size: 1.3rem;
 }
-/* line 68, ../sass/layout/_layout.scss */
-.middle-column .phases .phase .phase-wrapper .toggle-tasks:hover {
+/* line 62, ../sass/layout/_layout.scss */
+.middle-column .parent .parent-wrapper .toggle-childs:hover {
   color: #c8dc1e;
 }
-/* line 73, ../sass/layout/_layout.scss */
-.middle-column .phases .phase .phase-wrapper .tasks-number {
+/* line 67, ../sass/layout/_layout.scss */
+.middle-column .parent .parent-wrapper .childs-number {
   width: 2.4rem;
   height: 2.4rem;
   display: inline-block;
@@ -16975,64 +16975,59 @@ body {
   background: #f4f8f9;
   border-radius: 50%;
 }
-/* line 90, ../sass/layout/_layout.scss */
-.middle-column .phases .phase .tasks .task {
-  border-bottom: 1px solid #f7f7f7;
+/* line 84, ../sass/layout/_layout.scss */
+.middle-column .parent .childs .child {
+  border-bottom: 1px solid #eeeeee;
+  border-right: 3px solid transparent;
 }
-/* line 93, ../sass/layout/_layout.scss */
-.middle-column .phases .phase .tasks .task.completed {
+/* line 88, ../sass/layout/_layout.scss */
+.middle-column .parent .childs .child.completed {
   background: #f4f8f9;
 }
-/* line 96, ../sass/layout/_layout.scss */
-.middle-column .phases .phase .tasks .task.completed .task-check {
+/* line 91, ../sass/layout/_layout.scss */
+.middle-column .parent .childs .child.completed .child-check {
   display: inline-block;
   float: right;
   margin-top: 1.3rem;
   font-size: 2.5rem;
   color: #bdbec0;
 }
-/* line 106, ../sass/layout/_layout.scss */
-.middle-column .phases .phase .tasks .task.current {
+/* line 101, ../sass/layout/_layout.scss */
+.middle-column .parent .childs .child.current {
   border-right: 3px solid #c8dc1e;
 }
-/* line 110, ../sass/layout/_layout.scss */
-.middle-column .phases .phase .tasks .task:hover {
+/* line 105, ../sass/layout/_layout.scss */
+.middle-column .parent .childs .child:hover {
   background: #fafafa;
 }
-/* line 114, ../sass/layout/_layout.scss */
-.middle-column .phases .phase .tasks .task a {
+/* line 109, ../sass/layout/_layout.scss */
+.middle-column .parent .childs .child a {
   width: 100%;
   height: 100%;
   display: block;
 }
-/* line 119, ../sass/layout/_layout.scss */
-.middle-column .phases .phase .tasks .task a:hover {
+/* line 114, ../sass/layout/_layout.scss */
+.middle-column .parent .childs .child a:hover {
   text-decoration: none;
 }
-/* line 124, ../sass/layout/_layout.scss */
-.middle-column .phases .phase .tasks .task .task-wrapper {
+/* line 119, ../sass/layout/_layout.scss */
+.middle-column .parent .childs .child .child-wrapper {
   padding: 1rem 2rem;
   font-family: "AvantGarde-Book";
   font-size: 1.5rem;
   color: #096a85;
 }
-/* line 131, ../sass/layout/_layout.scss */
-.middle-column .phases .phase .tasks .task .task-wrapper .name {
+/* line 126, ../sass/layout/_layout.scss */
+.middle-column .parent .childs .child .child-wrapper .name {
   display: inline-block;
   max-width: 25rem;
 }
-/* line 136, ../sass/layout/_layout.scss */
-.middle-column .phases .phase .tasks .task .task-wrapper .avatar {
+/* line 131, ../sass/layout/_layout.scss */
+.middle-column .parent .childs .child .child-wrapper .avatar {
   width: 5rem;
   height: 5rem;
   margin-right: 2rem;
   border: none;
-}
-
-/* line 150, ../sass/layout/_layout.scss */
-.content-page {
-  overflow: hidden;
-  padding: 2rem;
 }
 
 /* line 1, ../sass/layout/_left_bar.scss */
@@ -18382,11 +18377,15 @@ body {
   margin-top: 3rem;
 }
 
-/* line 1, ../sass/_monitoring.scss */
-.monitoring_badge {
+/* line 3, ../sass/_monitoring.scss */
+.monitoring-template .monitoring_badge {
   background: #dde4e8;
   font-size: 1.1rem;
   border-radius: 0px;
+}
+/* line 9, ../sass/_monitoring.scss */
+.monitoring-template .content {
+  background: none;
 }
 
 /* line 4, ../sass/_occupation.scss */
@@ -18537,6 +18536,7 @@ body {
 }
 /* line 8, ../sass/_project-tasks.scss */
 .project-tasks-template .content-page {
+  overflow: hidden;
   padding: 3rem;
   margin-left: 40.5rem;
 }

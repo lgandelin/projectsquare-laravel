@@ -30,7 +30,7 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
     Route::post('/beta_form', array('as' => 'beta_form', 'uses' => 'BaseController@betaForm'));
 
     //PROJECTS
-    Route::get('/projects/{uuid}', array('as' => 'project_index', 'uses' => 'ProjectController@index', 'middleware' => 'change_current_project'));
+    Route::get('/projects/{uuid}/cms', array('as' => 'project_cms', 'uses' => 'ProjectController@index', 'middleware' => 'change_current_project'));
     Route::get('/projects/{uuid}/tasks', array('as' => 'project_tasks', 'uses' => 'ProjectController@tasks', 'middleware' => 'change_current_project'));
     Route::get('/projects/{uuid}/tasks/{task_uuid?}', array('as' => 'project_tasks_edit', 'uses' => 'ProjectController@tasks_edit', 'middleware' => 'change_current_project'));
     Route::get('/projects/{uuid}/tickets', array('as' => 'project_tickets', 'uses' => 'ProjectController@tickets', 'middleware' => 'change_current_project'));

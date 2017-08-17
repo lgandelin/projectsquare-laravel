@@ -1,5 +1,12 @@
-.monitoring_badge {
-	background: #dde4e8;
-	font-size: 1.1rem;
-	border-radius: 0px;
+.monitoring-template {
+
+	.monitoring_badge {
+		background: #dde4e8;
+		font-size: 1.1rem;
+		border-radius: 0px;
+	}
+
+	.content {
+		background: none
+	}
 }

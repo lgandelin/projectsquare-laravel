@@ -28,7 +28,7 @@
 
                     @foreach ($in_progress_projects as $project)
                         <li class="@if (isset($current_project_id) && $current_project_id == $project->id) encours @endif" style="border-left: 3px solid {{ $project->color }}">
-                            <?php $route = preg_match('/project_/', $current_route) ? $current_route : 'project_index'; ?>
+                            <?php $route = preg_match('/project_/', $current_route) ? $current_route : 'project_tasks'; ?>
                             <a href="{{ route($route, ['id' => $project->id]) }}" @if (preg_match('/project_/', $current_route) && isset($current_project_id) && $current_project_id == $project->id) style="color: #c8dc1e" @endif">
                                 <span title="@if (isset($project->client))[{{ $project->client->name }}] @endif{{ $project->name }}">{{$project->name}}</span>
                             </a>
@@ -42,7 +42,7 @@
 
                     @foreach ($archived_projects as $project)
                         <li class="archived-project @if (isset($current_project_id) && $current_project_id == $project->id) encours @endif">
-                            <?php $route = preg_match('/project_/', $current_route) ? $current_route : 'project_index'; ?>
+                            <?php $route = preg_match('/project_/', $current_route) ? $current_route : 'project_tasks'; ?>
                             <a href="{{ route($route, ['id' => $project->id]) }}" @if (preg_match('/project_/', $current_route) && isset($current_project_id) && $current_project_id == $project->id) style="color: #c8dc1e" @endif">
                                 <span title="@if (isset($project->client))[{{ $project->client->name }}] @endif{{ $project->name }}">{{$project->name}}</span>
                             </a>
