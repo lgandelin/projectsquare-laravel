@@ -24,7 +24,7 @@ class MessageCreatedSlackNotification
                     $settingSlackChannel = app()->make('SettingManager')->getSettingByKeyAndProject('SLACK_CHANNEL', $message->conversation->project->id);
 
                     SlackTool::send(
-                        ((isset($message->conversation->project) && isset($message->conversation->project->client)) ? '<' . route('project_index', ['id' => $message->conversation->project->id]) . '|*[' . $message->conversation->project->client->name . '] ' . $message->conversation->project->name . '*>' : '') . ' *Un nouveau message a été envoyé*',
+                        ((isset($message->conversation->project) && isset($message->conversation->project->client)) ? '<' . route('project_messages', ['id' => $message->conversation->project->id]) . '|*[' . $message->conversation->project->client->name . '] ' . $message->conversation->project->name . '*>' : '') . ' *Un nouveau message a été envoyé*',
                         implode("\n", $lines),
                         $message->user->complete_name,
                         route('conversations_view', ['id' => $message->conversation->id]),

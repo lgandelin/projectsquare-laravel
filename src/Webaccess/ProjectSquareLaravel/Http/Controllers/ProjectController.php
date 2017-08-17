@@ -94,7 +94,6 @@ class ProjectController extends BaseController
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
-
     }
 
     public function tickets(Request $request)
@@ -102,36 +101,52 @@ class ProjectController extends BaseController
         parent::__construct($request);
 
         $projectID = $request->uuid;
-
         $request->session()->put('tickets_interface', 'project');
-
-        if (Input::get('filter_status') !== null) Session::put('project_tickets_filter_status', Input::get('filter_status'));
-        if (Input::get('filter_allocated_user') !== null) Session::put('project_tickets_filter_allocated_user', Input::get('filter_allocated_user'));
-        if (Input::get('filter_type') !== null) Session::put('project_tickets_filter_type', Input::get('filter_type'));
 
         return view('projectsquare::project.tickets', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
+            'tickets_grouped_by_states' => $this->getTicketGroupedByStates($projectID),
             'users' => app()->make('UserManager')->getUsersByProject($projectID),
-            'ticket_statuses' => app()->make('TicketStatusManager')->getTicketStatuses(),
-            'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
-            'filters' => [
-                'allocated_user' => Session::get('project_tickets_filter_allocated_user'),
-                'status' => Session::get('project_tickets_filter_status'),
-                'type' => Session::get('project_tickets_filter_type'),
-            ],
-            'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
-                $this->getUser()->id,
-                env('TICKETS_PER_PAGE', 10),
-                $projectID,
-                Session::get('project_tickets_filter_allocated_user') === "na" ? null : Session::get('project_tickets_filter_allocated_user'),
-                Session::get('project_tickets_filter_status') === "na" ? null : Session::get('project_tickets_filter_status'),
-                Session::get('project_tickets_filter_type') === "na" ? null : Session::get('project_tickets_filter_type')
-            ),
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
     }
 
+    public function tickets_edit(Request $request)
+    {
+        parent::__construct($request);
+
+        $ticketID = $request->ticket_uuid;
+        $projectID = $request->uuid;
+
+        try {
+            $ticket = app()->make('GetTicketInteractor')->getTicketWithStates($ticketID, $this->getUser()->id);
+        } catch (\Exception $e) {
+            $request->session()->flash('error', $e->getMessage());
+
+            return redirect()->route('tickets_index');
+        }
+
+        if (!$ticket) {
+            $request->session()->flash('error', trans('projectsquare::tickets.ticket_not_found'));
+
+            return redirect()->route('tickets_index');
+        }
+
+        return view('projectsquare::project.tickets.edit', [
+            'tickets_grouped_by_states' => $this->getTicketGroupedByStates($projectID),
+            'ticket' => $ticket,
+            'project' => app()->make('GetProjectInteractor')->getProject($projectID),
+            'ticket_states' => app()->make('GetTicketInteractor')->getTicketStatesPaginatedList($ticketID, env('TICKET_STATES_PER_PAGE', 10)),
+            'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
+            'ticket_status' => app()->make('TicketStatusManager')->getTicketStatuses(),
+            'users' => app()->make('UserManager')->getUsersByProject($ticket->projectID),
+            'files' => app()->make('FileManager')->getFilesByTicket($ticketID),
+            'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
+            'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
+        ]);
+    }
+    
     public function monitoring(Request $request)
     {
         parent::__construct($request);
@@ -257,5 +272,25 @@ class ProjectController extends BaseController
         }
 
         return redirect()->route($request->get('route') ? $request->get('route') : 'dashboard', ['uuid' => $projectID]);
+    }
+
+    /**
+     * @param $projectID
+     * @return mixed
+     */
+    private function getTicketGroupedByStates($projectID)
+    {
+        $states = app()->make('TicketStatusManager')->getTicketStatuses();
+        foreach ($states as $state) {
+            $state->tickets = app()->make('GetTicketInteractor')->getTicketsPaginatedList(
+                $this->getUser()->id,
+                env('TICKETS_PER_PAGE', 10),
+                $projectID,
+                null,
+                $state->id,
+                null
+            );
+        }
+        return $states;
     }
 }

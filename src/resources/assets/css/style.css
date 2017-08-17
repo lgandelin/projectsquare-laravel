@@ -16921,115 +16921,6 @@ body {
   margin-left: 4.9rem;
 }
 
-/* line 22, ../sass/layout/_layout.scss */
-.middle-column {
-  position: absolute;
-  left: 26.5rem;
-  bottom: 0;
-  top: 19rem;
-  right: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  width: 40rem;
-  background: white;
-  border-right: 2px solid #eceeed;
-}
-/* line 36, ../sass/layout/_layout.scss */
-.middle-column::-webkit-scrollbar {
-  width: 5px;
-}
-/* line 40, ../sass/layout/_layout.scss */
-.middle-column::-webkit-scrollbar-thumb {
-  background-color: #eceeed;
-  outline: 1px solid slategrey;
-}
-/* line 46, ../sass/layout/_layout.scss */
-.middle-column .parent .parent-wrapper {
-  padding: 2rem;
-  font-family: "AvantGarde-Book";
-  font-size: 1.8rem;
-  color: #096a85;
-  border-bottom: 1px solid #eceeed;
-}
-/* line 55, ../sass/layout/_layout.scss */
-.middle-column .parent .parent-wrapper .toggle-childs {
-  margin-top: 4px;
-  float: right;
-  cursor: pointer;
-  font-size: 1.3rem;
-}
-/* line 62, ../sass/layout/_layout.scss */
-.middle-column .parent .parent-wrapper .toggle-childs:hover {
-  color: #c8dc1e;
-}
-/* line 67, ../sass/layout/_layout.scss */
-.middle-column .parent .parent-wrapper .childs-number {
-  width: 2.4rem;
-  height: 2.4rem;
-  display: inline-block;
-  margin-left: 1.5rem;
-  padding-top: 0.4rem;
-  text-align: center;
-  font-size: 1.3rem;
-  font-family: "AvantGarde-Book";
-  background: #f4f8f9;
-  border-radius: 50%;
-}
-/* line 84, ../sass/layout/_layout.scss */
-.middle-column .parent .childs .child {
-  border-bottom: 1px solid #eeeeee;
-  border-right: 3px solid transparent;
-}
-/* line 88, ../sass/layout/_layout.scss */
-.middle-column .parent .childs .child.completed {
-  background: #f4f8f9;
-}
-/* line 91, ../sass/layout/_layout.scss */
-.middle-column .parent .childs .child.completed .child-check {
-  display: inline-block;
-  float: right;
-  margin-top: 1.3rem;
-  font-size: 2.5rem;
-  color: #bdbec0;
-}
-/* line 101, ../sass/layout/_layout.scss */
-.middle-column .parent .childs .child.current {
-  border-right: 3px solid #c8dc1e;
-}
-/* line 105, ../sass/layout/_layout.scss */
-.middle-column .parent .childs .child:hover {
-  background: #fafafa;
-}
-/* line 109, ../sass/layout/_layout.scss */
-.middle-column .parent .childs .child a {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-/* line 114, ../sass/layout/_layout.scss */
-.middle-column .parent .childs .child a:hover {
-  text-decoration: none;
-}
-/* line 119, ../sass/layout/_layout.scss */
-.middle-column .parent .childs .child .child-wrapper {
-  padding: 1rem 2rem;
-  font-family: "AvantGarde-Book";
-  font-size: 1.5rem;
-  color: #096a85;
-}
-/* line 126, ../sass/layout/_layout.scss */
-.middle-column .parent .childs .child .child-wrapper .name {
-  display: inline-block;
-  max-width: 25rem;
-}
-/* line 131, ../sass/layout/_layout.scss */
-.middle-column .parent .childs .child .child-wrapper .avatar {
-  width: 5rem;
-  height: 5rem;
-  margin-right: 2rem;
-  border: none;
-}
-
 /* line 1, ../sass/layout/_left_bar.scss */
 .left-bar {
   padding: 0rem 0 0rem 0;
@@ -18011,6 +17902,113 @@ body {
   padding-right: 2rem;
 }
 
+/* line 115, ../sass/_project.scss */
+.middle-column {
+  position: absolute;
+  left: 26.5rem;
+  bottom: 0;
+  top: 19rem;
+  right: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 40rem;
+  background: white;
+  border-right: 2px solid #eceeed;
+}
+/* line 129, ../sass/_project.scss */
+.middle-column::-webkit-scrollbar {
+  width: 5px;
+}
+/* line 133, ../sass/_project.scss */
+.middle-column::-webkit-scrollbar-thumb {
+  background-color: #eceeed;
+  outline: 1px solid slategrey;
+}
+/* line 139, ../sass/_project.scss */
+.middle-column .parent .parent-wrapper {
+  padding: 2rem;
+  font-family: "AvantGarde-Book";
+  font-size: 1.8rem;
+  color: #096a85;
+  border-bottom: 1px solid #eceeed;
+}
+/* line 148, ../sass/_project.scss */
+.middle-column .parent .parent-wrapper .toggle-childs {
+  margin-top: 4px;
+  float: right;
+  cursor: pointer;
+  font-size: 1.3rem;
+}
+/* line 155, ../sass/_project.scss */
+.middle-column .parent .parent-wrapper .toggle-childs:hover {
+  color: #c8dc1e;
+}
+/* line 160, ../sass/_project.scss */
+.middle-column .parent .parent-wrapper .childs-number {
+  width: 2.4rem;
+  height: 2.4rem;
+  display: inline-block;
+  margin-left: 1.5rem;
+  padding-top: 0.4rem;
+  text-align: center;
+  font-size: 1.3rem;
+  font-family: "AvantGarde-Book";
+  background: #f4f8f9;
+  border-radius: 50%;
+}
+/* line 177, ../sass/_project.scss */
+.middle-column .parent .childs .child {
+  border-bottom: 1px solid #eeeeee;
+  border-right: 3px solid transparent;
+}
+/* line 181, ../sass/_project.scss */
+.middle-column .parent .childs .child.completed {
+  background: #f4f8f9;
+}
+/* line 185, ../sass/_project.scss */
+.middle-column .parent .childs .child.current {
+  border-right: 3px solid #c8dc1e;
+}
+/* line 189, ../sass/_project.scss */
+.middle-column .parent .childs .child:hover {
+  background: #fafafa;
+}
+/* line 193, ../sass/_project.scss */
+.middle-column .parent .childs .child a {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+/* line 198, ../sass/_project.scss */
+.middle-column .parent .childs .child a:hover {
+  text-decoration: none;
+}
+/* line 203, ../sass/_project.scss */
+.middle-column .parent .childs .child .child-wrapper {
+  padding: 1rem 2rem;
+  font-family: "AvantGarde-Book";
+  font-size: 1.5rem;
+  color: #096a85;
+}
+/* line 210, ../sass/_project.scss */
+.middle-column .parent .childs .child .child-wrapper .name {
+  display: inline-block;
+  max-width: 25rem;
+}
+/* line 215, ../sass/_project.scss */
+.middle-column .parent .childs .child .child-wrapper .avatar {
+  width: 5rem;
+  height: 5rem;
+  margin-right: 2rem;
+  border: none;
+}
+/* line 223, ../sass/_project.scss */
+.middle-column .parent .childs .child .child-wrapper .priority {
+  display: inline-block;
+  margin-top: 1rem;
+  float: right;
+}
+
 /* line 1, ../sass/_tickets.scss */
 .status {
   display: inline-block;
@@ -18534,8 +18532,27 @@ body {
 .project-tasks-template {
   padding: 0;
 }
-/* line 8, ../sass/_project-tasks.scss */
+/* line 5, ../sass/_project-tasks.scss */
+.project-tasks-template .middle-column .task-check {
+  display: inline-block;
+  float: right;
+  margin-top: 1.3rem;
+  font-size: 2.5rem;
+  color: #bdbec0;
+}
+/* line 15, ../sass/_project-tasks.scss */
 .project-tasks-template .content-page {
+  overflow: hidden;
+  padding: 3rem;
+  margin-left: 40.5rem;
+}
+
+/* line 22, ../sass/_project-tasks.scss */
+.project-tickets-template {
+  padding: 0;
+}
+/* line 25, ../sass/_project-tasks.scss */
+.project-tickets-template .content-page {
   overflow: hidden;
   padding: 3rem;
   margin-left: 40.5rem;

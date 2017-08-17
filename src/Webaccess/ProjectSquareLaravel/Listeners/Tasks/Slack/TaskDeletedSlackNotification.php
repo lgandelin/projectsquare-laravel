@@ -21,7 +21,7 @@ class TaskDeletedSlackNotification
                 $settingSlackChannel = app()->make('SettingManager')->getSettingByKeyAndProject('SLACK_CHANNEL', $task->project->id);
 
                 SlackTool::send(
-                    ((isset($task->project) && isset($task->project->client)) ? '<' . route('project_index', ['id' => $task->project->id]) . '|*['.$task->project->client->name.'] '.$task->project->name . '*>' : '') . ' *Une tâche a été supprimée*',
+                    ((isset($task->project) && isset($task->project->client)) ? '<' . route('project_tasks', ['id' => $task->project->id]) . '|*['.$task->project->client->name.'] '.$task->project->name . '*>' : '') . ' *Une tâche a été supprimée*',
                     implode("\n", $lines),
                     '',
                     route('project_tasks', ['uuid' => $task->project->id]),

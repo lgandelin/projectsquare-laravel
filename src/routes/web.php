@@ -34,6 +34,7 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
     Route::get('/projects/{uuid}/tasks', array('as' => 'project_tasks', 'uses' => 'ProjectController@tasks', 'middleware' => 'change_current_project'));
     Route::get('/projects/{uuid}/tasks/{task_uuid?}', array('as' => 'project_tasks_edit', 'uses' => 'ProjectController@tasks_edit', 'middleware' => 'change_current_project'));
     Route::get('/projects/{uuid}/tickets', array('as' => 'project_tickets', 'uses' => 'ProjectController@tickets', 'middleware' => 'change_current_project'));
+    Route::get('/projects/{uuid}/tickets/{ticket_uuid?}', array('as' => 'project_tickets_edit', 'uses' => 'ProjectController@tickets_edit', 'middleware' => 'change_current_project'));
     Route::get('/projects/{uuid}/monitoring', array('as' => 'project_monitoring', 'uses' => 'ProjectController@monitoring', 'middleware' => 'change_current_project'));
     Route::get('/projects/{uuid}/project_seo', array('as' => 'project_seo', 'uses' => 'ProjectController@seo', 'middleware' => 'change_current_project'));
     Route::get('/projects/{uuid}/messages', array('as' => 'project_messages', 'uses' => 'ProjectController@messages', 'middleware' => 'change_current_project'));
