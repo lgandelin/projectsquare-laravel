@@ -191,7 +191,13 @@ $(document).ready(function() {
         }
 
         $(this).closest('.menu').find('.sub-menu').fadeToggle(250);
-    })
+    });
+
+    //MIDDLE COLUMN : Toggle parent list
+    $('.middle-column').on('click', '.parent-wrapper', function() {
+        $(this).closest('.parent').find('.toggle-childs').toggleClass('glyphicon-triangle-bottom').toggleClass('glyphicon-triangle-top');
+        $(this).closest('.parent').find('.childs').slideToggle();
+    });
 
 });
 

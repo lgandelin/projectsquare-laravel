@@ -50,7 +50,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn valid">
-                                    <i class="fa fa-btn fa-sign-in"></i>{{ trans('projectsquare::login.login') }} <span class="glyphicon glyphicon-log-in" style="margin-left: 1rem"></span>
+                                    {{ trans('projectsquare::login.login') }} <i class="fa fa-btn fa-sign-in" style="margin-left: 1rem;"></i></span>
                                 </button>
 
                                 <a class="btn btn-link" href="{{ route('forgotten_password') }}">{{ trans('projectsquare::login.forgotten_password') }}</a>

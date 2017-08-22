@@ -8,7 +8,3 @@
     </div>
 
 @endsection
-
-@section('scripts')
-    <script src="{{ asset('js/project.js') }}"></script>
-@endsection
