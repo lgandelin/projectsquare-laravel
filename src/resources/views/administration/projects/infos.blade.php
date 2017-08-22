@@ -64,7 +64,6 @@
 </form>
 
 @section('scripts')
-    <script src="{{ asset('js/projects.js') }}"></script>
     <script>
         $('.colorpicker').minicolors({
             theme: 'bootstrap'

@@ -180,6 +180,9 @@ class TicketController extends BaseController
             $request->session()->flash('error', trans('projectsquare::tickets.edit_ticket_error'));
         }
 
+        if ($request->session()->get('tickets_interface') === 'project')
+            return redirect()->route('project_tickets_edit', ['uuid' => $this->getCurrentProject()->id, 'ticket_uuid' => Input::get('ticket_id')]);
+
         return redirect()->route('tickets_edit', ['id' => Input::get('ticket_id')]);
     }
 
@@ -207,6 +210,9 @@ class TicketController extends BaseController
         } catch (\Exception $e) {
             $request->session()->flash('error', $e->getMessage());
         }
+
+        if ($request->session()->get('tickets_interface') === 'project')
+            return redirect()->route('project_tickets_edit', ['uuid' => $this->getCurrentProject()->id, 'ticket_uuid' => Input::get('ticket_id')]);
 
         return redirect()->route('tickets_edit', ['id' => Input::get('ticket_id')]);
     }

@@ -16689,15 +16689,15 @@ h2, h3 {
 }
 
 /* line 27, ../sass/includes/_typography.scss */
-h3 {
-  margin-top: 3rem;
-}
-
-/* line 31, ../sass/includes/_typography.scss */
 h4 {
   color: #096a85;
   font-family: "AvantGarde-Book";
   font-size: 1.5rem;
+}
+
+/* line 33, ../sass/includes/_typography.scss */
+hr {
+  margin-bottom: 3rem;
 }
 
 /* line 37, ../sass/includes/_typography.scss */
@@ -16904,12 +16904,11 @@ html {
 
 /* line 5, ../sass/layout/_layout.scss */
 body {
-  height: 100%;
   min-height: 100%;
   position: relative;
 }
 
-/* line 11, ../sass/layout/_layout.scss */
+/* line 10, ../sass/layout/_layout.scss */
 .content {
   padding-left: 0rem;
   padding-right: 0rem;
@@ -16917,7 +16916,7 @@ body {
   background: #e6f0f3;
 }
 
-/* line 19, ../sass/layout/_layout.scss */
+/* line 18, ../sass/layout/_layout.scss */
 .content-expanded {
   margin-left: 4.9rem;
 }
@@ -18009,6 +18008,11 @@ body {
   display: inline-block;
   margin-top: 1rem;
   float: right;
+}
+
+/* line 237, ../sass/_project.scss */
+.content-expanded .middle-column {
+  left: 4.9rem;
 }
 
 /* line 1, ../sass/_tickets.scss */

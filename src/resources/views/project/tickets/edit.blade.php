@@ -19,13 +19,12 @@
                 </div>
             @endif
 
-            <h3>{{ trans('projectsquare::tickets.ticket_data') }}</h3>
-            @include('projectsquare::tools.tickets.ticket_infos')
+            @include('projectsquare::project.tickets.infos')
 
             <hr/>
 
             <h3>{{ trans('projectsquare::tickets.ticket_state') }}</h3>
-            @include('projectsquare::tools.tickets.ticket_state')
+            @include('projectsquare::project.tickets.state')
 
             <hr/>
 
