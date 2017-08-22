@@ -18931,6 +18931,47 @@ body {
   display: none;
 }
 
+/* line 1, ../sass/administration/_project-team.scss */
+.team-project-template {
+  padding: 0;
+}
+/* line 5, ../sass/administration/_project-team.scss */
+.team-project-template .templates {
+  padding: 0;
+}
+/* line 9, ../sass/administration/_project-team.scss */
+.team-project-template .middle-column {
+  top: 14.2rem;
+}
+/* line 12, ../sass/administration/_project-team.scss */
+.team-project-template .middle-column .parent-wrapper {
+  background: #f4f8f9;
+}
+/* line 16, ../sass/administration/_project-team.scss */
+.team-project-template .middle-column .add-user {
+  display: inline-block;
+  vertical-align: middle;
+  float: right;
+  margin-top: 1.1rem;
+  font-size: 2.7rem;
+  color: #b5d4d6;
+  cursor: pointer;
+}
+/* line 26, ../sass/administration/_project-team.scss */
+.team-project-template .middle-column .add-user:hover {
+  color: #096a85;
+}
+/* line 32, ../sass/administration/_project-team.scss */
+.team-project-template .project-team-content {
+  overflow: hidden;
+  padding: 3rem;
+  margin-left: 40.5rem;
+}
+/* line 37, ../sass/administration/_project-team.scss */
+.team-project-template .project-team-content table {
+  margin-bottom: 2rem;
+}
+
 /* line 4, ../sass/_progress.scss */
 .progress-template .project,
 .spent-time-template .project {

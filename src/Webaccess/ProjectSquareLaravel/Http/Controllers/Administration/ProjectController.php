@@ -108,6 +108,7 @@ class ProjectController extends BaseController
 
         try {
             $project = app()->make('ProjectManager')->getProjectWithUsers($projectID);
+            $roles = app()->make('RoleManager')->getRoles();
         } catch (\Exception $e) {
             $request->session()->flash('error', $e->getMessage());
 
@@ -116,7 +117,7 @@ class ProjectController extends BaseController
 
         return view('projectsquare::administration.projects.edit', [
             'tab' => 'team',
-            'users' => app()->make('UserManager')->getAgencyUsers(),
+            'users' => app()->make('UserManager')->getAgencyUsersGroupedByRoles($roles),
             'project' => $project,
             'creating_project' => $request->cookie('creating_project_' . $project->id),
 
@@ -450,7 +451,7 @@ class ProjectController extends BaseController
         return redirect()->route('projects_index');
     }
 
-    public function add_user(Request $request)
+    /*public function add_user(Request $request)
     {
         parent::__construct($request);
 
@@ -490,5 +491,5 @@ class ProjectController extends BaseController
         }
 
         return redirect()->route('projects_edit_team', ['uuid' => $projectID]);
-    }
+    }*/
 }

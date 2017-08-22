@@ -1,4 +1,17 @@
 <div class="project-tasks-template">
+
+    @if (isset($error))
+        <div class="info bg-danger">
+            {{ $error }}
+        </div>
+    @endif
+
+    @if (isset($confirmation))
+        <div class="info bg-success">
+            {{ $confirmation }}
+        </div>
+    @endif
+
     <div class="page-header">
         <h1>{{ trans('projectsquare::projects.tasks') }}</h1>
         <a href="{{ route('projects_index') }}" class="btn back"></a>

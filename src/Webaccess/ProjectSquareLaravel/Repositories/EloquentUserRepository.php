@@ -63,20 +63,7 @@ class EloquentUserRepository implements UserRepository
 
     public function getUsersByRole($roleID)
     {
-        $users = [];
-        foreach (Project::all() as $project) {
-            foreach($project->users()->get() as $user) {
-                if ($user->pivot->role_id == $roleID || $roleID == null) {
-                    $users[$user->id] = $user;
-                }
-            }
-        }
-
-        usort($users, function($a, $b) {
-            return $a->last_name > $b->last_name;
-        });
-
-        return $users;
+        return User::where('role_id', '=', $roleID)->get();
     }
 
     public function createUser($firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $roleID, $isAdministrator=false)

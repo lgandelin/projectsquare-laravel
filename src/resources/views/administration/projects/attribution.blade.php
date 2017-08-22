@@ -5,6 +5,18 @@
 
 <div class="attribution-template">
 
+    @if (isset($error))
+        <div class="info bg-danger">
+            {{ $error }}
+        </div>
+    @endif
+
+    @if (isset($confirmation))
+        <div class="info bg-success">
+            {{ $confirmation }}
+        </div>
+    @endif
+
     <div class="row">
         <div class="col-lg-4 col-md-12 col-sm-12 pull-right">
             <div class="notice">

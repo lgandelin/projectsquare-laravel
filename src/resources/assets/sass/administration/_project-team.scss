@@ -1,0 +1,41 @@
+.team-project-template {
+
+    padding: 0;
+
+    .templates {
+        padding: 0;
+    }
+
+    .middle-column {
+        top: 14.2rem;
+
+        .parent-wrapper {
+            background: #f4f8f9;
+        }
+
+        .add-user {
+            display: inline-block;
+            vertical-align: middle;
+            float: right;
+            margin-top: 1.1rem;
+
+            font-size: 2.7rem;
+            color: #b5d4d6;
+            cursor: pointer;
+
+            &:hover {
+                color: $touareg;
+            }
+        }
+    }
+
+    .project-team-content {
+        overflow: hidden;
+        padding: 3rem;
+        margin-left: 40.5rem;
+        
+        table {
+            margin-bottom: 2rem;
+        }
+    }
+}
