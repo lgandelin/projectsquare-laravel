@@ -3,12 +3,13 @@
         <div class="parent">
             <div class="parent-wrapper">
                 <span class="name">{{ $role->name }}</span>
+                <span class="childs-number">{{ sizeof($role->users) }}</span>
                 <span class="glyphicon glyphicon-triangle-top toggle-childs"></span>
             </div>
             <div class="childs">
                 @if ($role->users)
                     @foreach ($role->users as $user)
-                        <div class="child">
+                        <div class="child" data-id="{{ $user->id }}" data-role="@if ($user->role){{ $user->role->name }}@endif" data-name="{{ $user->complete_name }}">
                             <div class="child-wrapper">
                                 @include('projectsquare::includes.avatar', [
                                     'id' => $user->id,
@@ -16,7 +17,7 @@
                                 ])
 
                                 <span class="name">{{ $user->complete_name }}</span>
-                                <span class="fa fa-plus-circle add-user"></span>
+                                <span @if (in_array($user->id, $userIDs))style="display:none" @endif class="fa fa-plus-circle add-user"></span>
                             </div>
                         </div>
                     @endforeach
@@ -61,41 +62,39 @@
             </thead>
             <tbody>
             @foreach ($project->users as $user)
-                <tr>
+                <tr data-id="{{ $user->id }}">
                     <td>{{ $user->complete_name }}</td>
                     <td>@if ($user->role){{ $user->role->name }}@endif</td>
                     <td align="right">
-                        <a href="{{ route('projects_delete_user', ['project_id' => $project_id, 'user_id' => $user->id]) }}" class="btn cancel btn-delete">
-                        </a>
+                        <span class="btn cancel btn-delete"></span>
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
 
-        <!--<h3>{{ trans('projectsquare::projects.add_resource') }}</h3>
-        <form action="{{ route('projects_add_user') }}" method="post">
-            <div class="row">
-                <div class="col-md-3">
-                    <label for="user_id">{{ trans('projectsquare::users.user') }}</label>
-                    @if (isset($users))
-                        <select class="form-control" name="user_id">
-                            <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
-                            @foreach ($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->complete_name }}</option>
-                            @endforeach
-                        </select>
-                    @endif
-                </div>
-            </div>
-
-            <button type="submit" class="btn valid" style="margin-top: 2.5rem">
+        <form action="{{ route('projects_update_team') }}" method="post">
+            <button type="submit" class="btn valid-team">
                 <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
             </button>
-
-            <input type="hidden" name="project_id" value="{{ $project_id }}" />
-
-            {!! csrf_field() !!}
-        </form>-->
+            <input type="hidden" id="user_ids" name="user_ids" value="{{ json_encode($userIDs) }}" />
+            <input type="hidden" name="project_id" value="{{ $project->id }}" />
+            {{ csrf_field() }}
+        </form>
     </div>
 </div>
+
+<script id="user-template" type="text/x-handlebars-template">
+    <tr data-id="@{{ id }}">
+        <td>@{{ name  }}</td>
+        <td>@{{ role }}</td>
+        <td align="right">
+            <span class="btn cancel btn-delete"></span>
+        </td>
+    </tr>
+</script>
+
+@section('scripts')
+    @parent
+    <script src="{{ asset('js/administration/project-team.js') }}"></script>
+@endsection

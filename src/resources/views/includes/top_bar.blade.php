@@ -3,7 +3,7 @@
         <h1 class="logo"><a href="{{ route('dashboard') }}"><img src="{{asset('img/top-bar/logo.png')}}"></a></h1>
     </div>
 
-    @if ($is_client && sizeof($in_progress_projects) > 1)
+    @if (isset($is_client) && $is_client && sizeof($in_progress_projects) > 1)
         <form action="{{ route('projects_client_switch') }}" method="post" id="project-switcher-form" class="project-switcher">
             <label for="project_id">{{ trans('projectsquare::dashboard.project') }} :</label>
             <select class="form-control" name="project_id" onchange="$('#project-switcher-form').submit()">

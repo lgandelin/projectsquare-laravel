@@ -18943,11 +18943,16 @@ body {
 .team-project-template .middle-column {
   top: 14.2rem;
 }
-/* line 12, ../sass/administration/_project-team.scss */
-.team-project-template .middle-column .parent-wrapper {
+/* line 13, ../sass/administration/_project-team.scss */
+.team-project-template .middle-column .parent .parent-wrapper {
   background: #f4f8f9;
 }
 /* line 16, ../sass/administration/_project-team.scss */
+.team-project-template .middle-column .parent .parent-wrapper .childs-number {
+  background: #096a85;
+  color: white;
+}
+/* line 23, ../sass/administration/_project-team.scss */
 .team-project-template .middle-column .add-user {
   display: inline-block;
   vertical-align: middle;
@@ -18957,19 +18962,46 @@ body {
   color: #b5d4d6;
   cursor: pointer;
 }
-/* line 26, ../sass/administration/_project-team.scss */
+/* line 33, ../sass/administration/_project-team.scss */
 .team-project-template .middle-column .add-user:hover {
   color: #096a85;
 }
-/* line 32, ../sass/administration/_project-team.scss */
+/* line 39, ../sass/administration/_project-team.scss */
 .team-project-template .project-team-content {
   overflow: hidden;
   padding: 3rem;
   margin-left: 40.5rem;
 }
-/* line 37, ../sass/administration/_project-team.scss */
+/* line 44, ../sass/administration/_project-team.scss */
 .team-project-template .project-team-content table {
   margin-bottom: 2rem;
+}
+/* line 48, ../sass/administration/_project-team.scss */
+.team-project-template .project-team-content .valid-team {
+  clear: both;
+  display: block;
+  margin-top: 15rem;
+  float: right;
+  color: #096a85;
+  padding: 1rem 2.5rem 1rem 2.5rem;
+  font-size: 1.7rem;
+  border: none;
+  background: #c8dc1e;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+/* line 64, ../sass/administration/_project-team.scss */
+.team-project-template .project-team-content .valid-team i {
+  font-size: 19px;
+}
+/* line 68, ../sass/administration/_project-team.scss */
+.team-project-template .project-team-content .valid-team:focus {
+  outline: 0;
+}
+/* line 72, ../sass/administration/_project-team.scss */
+.team-project-template .project-team-content .valid-team:hover {
+  opacity: 0.8;
 }
 
 /* line 4, ../sass/_progress.scss */

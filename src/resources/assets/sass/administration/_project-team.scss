@@ -9,8 +9,15 @@
     .middle-column {
         top: 14.2rem;
 
-        .parent-wrapper {
-            background: #f4f8f9;
+        .parent {
+            .parent-wrapper {
+                background: #f4f8f9;
+
+                .childs-number {
+                    background: $touareg;
+                    color: white;
+                }
+            }
         }
 
         .add-user {
@@ -36,6 +43,35 @@
         
         table {
             margin-bottom: 2rem;
+        }
+
+        .valid-team {
+            clear: both;
+            display: block;
+            margin-top: 15rem;
+            float: right;
+            color: $touareg;
+            padding: 1rem 2.5rem 1rem 2.5rem;
+
+            font-size: 1.7rem;
+
+            border: none;
+            background: $green;
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0;
+
+            i {
+                font-size: 19px;
+            }
+
+            &:focus {
+                outline: 0;
+            }
+
+            &:hover {
+                opacity: 0.8;
+            }
         }
     }
 }

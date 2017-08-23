@@ -109,6 +109,11 @@ class ProjectController extends BaseController
         try {
             $project = app()->make('ProjectManager')->getProjectWithUsers($projectID);
             $roles = app()->make('RoleManager')->getRoles();
+
+            $userIDs = [];
+            foreach ($project->users as $user) {
+                $userIDs[]= $user->id;
+            }
         } catch (\Exception $e) {
             $request->session()->flash('error', $e->getMessage());
 
@@ -120,6 +125,7 @@ class ProjectController extends BaseController
             'users' => app()->make('UserManager')->getAgencyUsersGroupedByRoles($roles),
             'project' => $project,
             'creating_project' => $request->cookie('creating_project_' . $project->id),
+            'userIDs' => $userIDs,
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -451,45 +457,43 @@ class ProjectController extends BaseController
         return redirect()->route('projects_index');
     }
 
-    /*public function add_user(Request $request)
+    public function update_team(Request $request)
     {
         parent::__construct($request);
 
+        $projectID = $request->project_id;
+        $userIDs = json_decode($request->user_ids);
+
         try {
-            $project = app()->make('ProjectManager')->getProject(Input::get('project_id'));
-            $user = app()->make('UserManager')->getUser(Input::get('user_id'));
+            $project = app()->make('ProjectManager')->getProjectWithUsers($projectID);
 
-            app()->make('AddUserToProjectInteractor')->execute(new AddUserToProjectRequest([
-                'projectID' => Input::get('project_id'),
-                'userID' => Input::get('user_id'),
-                'roleID' => $user->roleID
-            ]));
+            //Remove all users
+            foreach ($project->users as $user) {
+                app()->make('ProjectManager')->removeUserFromProject($projectID, $user->id, $this->getUser()->id);
+            }
 
-            $request->session()->flash('confirmation', trans('projectsquare::projects.add_user_to_project_success'));
+            //Add users
+            foreach ($userIDs as $userID) {
+                $user = app()->make('UserManager')->getUser($userID);
+
+                app()->make('AddUserToProjectInteractor')->execute(new AddUserToProjectRequest([
+                    'projectID' => $projectID,
+                    'userID' => $userID,
+                    'roleID' => $user->roleID
+                ]));
+            }
+
+            $request->session()->flash('confirmation', trans('projectsquare::projects.edit_team_success'));
+
         } catch (\Exception $e) {
-            $request->session()->flash('error', $e->getMessage());
+            $request->session()->flash('error', trans('projectsquare::projects.edit_team_error'));
+            return redirect()->route('projects_edit_team', ['uuid' => $projectID]);
         }
 
-        return redirect()->route('projects_edit_tasks', ['uuid' => Input::get('project_id')]);
-    }
-
-    public function delete_user(Request $request)
-    {
-        parent::__construct($request);
-
-        $projectID = $request->uuid;
-        $userID = $request->user_id;
-
-        try {
-            $project = app()->make('ProjectManager')->getProject($projectID);
-            $user = app()->make('UserManager')->getUser($userID);
-
-            app()->make('ProjectManager')->removeUserFromProject($projectID, $userID, $this->getUser()->id);
-            $request->session()->flash('confirmation', trans('projectsquare::projects.delete_user_from_project_success'));
-        } catch (\Exception $e) {
-            $request->session()->flash('error', trans('projectsquare::projects.delete_user_from_project_error'));
+        if ($request->cookie('creating_project_' . $project->id)) {
+            return redirect()->route('projects_edit_tasks', ['uuid' => $projectID]);
         }
 
         return redirect()->route('projects_edit_team', ['uuid' => $projectID]);
-    }*/
+    }
 }

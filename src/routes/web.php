@@ -115,8 +115,7 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
         Route::post('/administration/projects', array('as' => 'projects_update', 'uses' => 'Administration\ProjectController@update'));
         Route::post('/administration/projects/config', array('as' => 'projects_update_config', 'uses' => 'Administration\ProjectController@update_config'));
         Route::get('/administration/projects/delete/{uuid}', array('as' => 'projects_delete', 'uses' => 'Administration\ProjectController@delete'));
-        Route::post('/administration/projects/add_user', array('as' => 'projects_add_user', 'uses' => 'Administration\ProjectController@add_user'));
-        Route::get('/administration/projects/delete_user/{uuid}/{user_id}', array('as' => 'projects_delete_user', 'uses' => 'Administration\ProjectController@delete_user'));
+        Route::post('/administration/projects/team', array('as' => 'projects_update_team', 'uses' => 'Administration\ProjectController@update_team'));
         Route::post('/administration/projects/tasks', array('as' => 'projects_update_tasks', 'uses' => 'Administration\ProjectController@update_tasks'));
         Route::post('/administration/projects/allocate_and_schedule_task', array('as' => 'projects_allocate_and_schedule_task', 'uses' => 'Administration\ProjectController@allocate_and_schedule_task'));
         Route::post('/administration/projects/import_phases_and_tasks_from_text', array('as' => 'projects_import_phases_and_tasks_from_text', 'uses' => 'Administration\ProjectController@import_phases_and_tasks_from_text'));

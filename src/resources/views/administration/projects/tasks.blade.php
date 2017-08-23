@@ -109,5 +109,5 @@ Tests et livraison; 0.5" rows="10"></textarea>
 
 @section('scripts')
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script src="{{ asset('administration/js/project-tasks.js') }}"></script>
+    <script src="{{ asset('js/administration/project-tasks.js') }}"></script>
 @endsection
