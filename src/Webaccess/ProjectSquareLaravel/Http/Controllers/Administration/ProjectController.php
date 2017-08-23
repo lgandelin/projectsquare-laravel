@@ -322,14 +322,14 @@ class ProjectController extends BaseController
                 }
             }
 
-            $request->session()->flash('confirmation', trans('projectsquare::projects.edit_project_success'));
+            $request->session()->flash('confirmation', trans('projectsquare::projects.edit_tasks_success'));
 
             return response()->json([
                 'message' => trans('projectsquare::projects.edit_project_success'),
                 'redirection_url' => route('projects_edit_attribution', ['uuid' => $request->project_id])
             ], 200);
         } catch (\Exception $e) {
-            $request->session()->flash('error', trans('projectsquare::projects.edit_project_error'));
+            $request->session()->flash('error', trans('projectsquare::projects.edit_tasks_error'));
 
             return response()->json([
                 'error' => $e->getMessage(),

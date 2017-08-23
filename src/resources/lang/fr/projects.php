@@ -48,6 +48,9 @@ return [
     'import_phases_and_tasks_from_text_success' => 'Importation des phases et tâches effectuée avec succès',
     'import_phases_and_tasks_from_text_error' => 'Une erreur est survenue lors de l\'importation des phases et tâches',
 
+    'edit_tasks_success' => 'Phases et tâches du projet modifiées avec succès',
+    'edit_tasks_error' => 'Une erreur est survenue lors de la modification des phases et tâches du projet',
+
     'edit_team_success' => 'Equipe projet modifiée avec succès',
     'edit_team_error' => 'Une erreur est survenue lors de la modification de l\'équipe projet',
 ];

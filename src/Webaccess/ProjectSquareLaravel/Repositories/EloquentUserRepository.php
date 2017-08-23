@@ -63,7 +63,7 @@ class EloquentUserRepository implements UserRepository
 
     public function getUsersByRole($roleID)
     {
-        return User::where('role_id', '=', $roleID)->get();
+        return ($roleID) ? User::where('role_id', '=', $roleID)->get() : $this->getAgencyUsers();
     }
 
     public function createUser($firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $roleID, $isAdministrator=false)
