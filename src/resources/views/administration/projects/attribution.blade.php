@@ -1,3 +1,5 @@
+<a href="{{ route('projects_index') }}" class="btn back"></a>
+
 <div class="attribution-template">
 
     <div class="middle-column">
@@ -72,7 +74,8 @@
                 <ul>
                     <li>pour attribuer une tâche à un collaborateur, faites un "glisser-déposer" de la tâche directement dans le calendrier ci-dessous</li>
                     <li>les tâches planifiées de cette manière sont automatiquement ajoutées aux plannings des collaborateurs</li>
-                    <li>une fois la tâche attribuée, il est possible de la désattribuer en cliquant sur l'icône <i class="fa fa-refresh" style="margin-left: 0.75rem;"></i></li>
+                    <li>une fois la tâche attribuée, il est possible de la désattribuer en cliquant sur l'icône <i class="fa fa-refresh" style="margin-left: 0.75rem;
+                    "></i></li>
                     <li>si vous souhaitez replanifier une tâche (par exemple après une erreur ou une modification de durée), vous devrez la désattribuer puis la refaire glisser dans le planning du collaborateur</li>
                 </ul>
             </div>
