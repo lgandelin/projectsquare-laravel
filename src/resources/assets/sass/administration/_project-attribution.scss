@@ -1,20 +1,13 @@
-.attribution-template {
+.attribution-project-template {
 
-    .notice {
-        float: right;
-        margin-bottom: 3rem;
+    .templates {
+        padding: 0;
     }
 
-    .phases {
-        margin-bottom: 5rem;
-        padding-top: 2.5rem;
-        padding-right: 2.5rem;
-        max-height: 500px;
-        overflow-y: scroll;
+    .middle-column {
+        top: 14.2rem;
 
         .phase {
-            margin-bottom: 5rem;
-
             .phase-wrapper {
                 padding: 1.25rem 2rem;
                 margin-bottom: 1.5rem;
@@ -28,94 +21,112 @@
                 }
             }
 
-            .task-wrapper {
-                padding: 1.2rem 2rem 1.2rem 4rem;
-                margin-bottom: 0.5rem;
-                position: relative;
+            .task {
+                border-right: 0;
 
-                background: $touareg;
-
-                .name {
-                    font-family: $typo1;
-                    font-size: 1.6rem;
-                    color: white;
+                &.dragged {
+                    opacity: 0.8;
                 }
 
-                .avatar {
-                    position: absolute;
-                    left: -20px;
-                    top: 3px;
+                .task-wrapper {
+                    padding-right: 1.5rem;
+
+                    &:not(.allocated) {
+                        cursor: move;
+                    }
+
+                    &:not(.allocated):hover {
+                        opacity: 0.9;
+                    }
+
+                    &.allocated {
+                        background: #f4f8f9;
+                    }
+
+                    .default-avatar {
+                        width: 5rem;
+                        height: 5rem;
+                        margin-right: 1.75rem;
+                    }
+
+                    .duration {
+                        float: right;
+
+                        margin-top: 1rem;
+                        min-width: 2.6rem;
+                        height: 2.6rem;
+                        display: inline-block;
+                        margin-right: 1.0rem;
+                        padding-left: 0.5rem;
+                        padding-right: 0.5rem;
+                        padding-top: 0.7rem;
+                        text-align: center;
+                        font-size: 1.1rem;
+                        font-family: $typo1;
+
+                        background: #f4f8f9;
+                        border-radius: 50%;
+                    }
+
+                    .drag-task {
+                        float: right;
+                        top: 1.3rem;
+
+                        color: #a4c5d4;
+                        font-size: 1.9rem;
+
+                        cursor: pointer;
+                    }
+
+                    .drag-task:hover {
+                        color: $green;
+                    }
+
+                    .unallocate-task {
+                        float: right;
+                        margin-top: 1.3rem;
+
+                        color: #a4c5d4;
+                        font-size: 1.8rem;
+
+                        display: none;
+                        cursor: pointer;
+                    }
                 }
 
-                .duration {
-                    float: right;
-                    margin-right: 6rem;
-                    margin-top: 3px;
+                .allocated {
+                    .drag-task {
+                        display: none;
+                        cursor: default;
+                    }
 
-                    color: white;
-                    font-family: $typo2;
-                    font-size: 14px;
+                    .drag-task:hover {
+                        color: white;
+                    }
+
+                    .unallocate-task {
+                        display: inline-block;
+                    }
+
+                    .unallocate-task:hover {
+                        color: $green;
+                    }
+                    
+                    .duration {
+                        background: #fafafa;
+                    }
                 }
-
-                .drag-task {
-                    float: right;
-
-                    color: white;
-                    font-size: 21px;
-
-                    cursor: pointer;
-                }
-
-                .drag-task:hover {
-                    color: $green;
-                }
-
-                .unallocate-task {
-                    color: white;
-                    float: right;
-                    font-size: 20px;
-
-                    display: none;
-                    cursor: default;
-                }
-            }
-
-            .task-wrapper:not(.allocated) {
-                cursor: move;
-            }
-
-            .task-wrapper:not(.allocated):hover {
-                opacity: 0.9;
-            }
-
-            .task.dragged {
-                opacity: 0.8;
             }
         }
+    }
 
-        .tasks {
-            margin-left: 6rem;
+    .project-attribution-content {
+        overflow: hidden;
+        padding: 3rem;
+        margin-left: 40.5rem;
 
-            .allocated {
-                .drag-task {
-                    display: none;
-                    cursor: default;
-                }
-
-                .drag-task:hover {
-                    color: white;
-                }
-
-                .unallocate-task {
-                    display: block;
-                    color: white;
-                    cursor: pointer;
-                }
-
-                .unallocate-task:hover {
-                    color: $green;
-                }
-            }
+        .notice {
+            margin-top: 15rem;
         }
     }
 }
@@ -139,10 +150,8 @@
         color: white;
     }
 
-    .avatar {
-        position: absolute;
-        left: -20px;
-        top: 3px;
+    .avatar, .default-avatar {
+        display: none;
     }
 
     .duration {
