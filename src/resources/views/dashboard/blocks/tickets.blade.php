@@ -5,7 +5,13 @@
             @include('projectsquare::includes.tooltip', [
                 'text' => trans('projectsquare::tooltips.tickets')
             ])
-            <a href="{{ route('project_tickets', ['id' => $current_project->id]) }}" class="all pull-right" title="{{ trans('projectsquare::dashboard.tickets_list') }}"></a>
+
+            @if ($is_client)
+                <a href="{{ route('project_tickets', ['id' => $current_project->id]) }}" class="all pull-right" title="{{ trans('projectsquare::dashboard.tickets_list') }}"></a>
+            @else
+                <a href="{{ route('tickets_index') }}" class="all pull-right" title="{{ trans('projectsquare::dashboard.tickets_list') }}"></a>
+            @endif
+
             <a href="{{ route('tickets_add') }}" class="add pull-right" title="{{ trans('projectsquare::dashboard.add_ticket') }}"></a>
             <a href="#" class="glyphicon glyphicon-move move-widget pull-right" title="{{ trans('projectsquare::dashboard.move_widget') }}"></a>
         </h3>
