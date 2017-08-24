@@ -1,12 +1,12 @@
+<?php $login_template = true; ?>
 @extends('projectsquare::app')
 
 @section('main-content')
-<div class="container">
+<div class="container login-template">
 
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default" style="margin-top: 5rem">
-                <div class="panel-heading">{{ trans('projectsquare::login.panel_title') }}</div>
+            <div class="panel panel-default">
                 <div class="panel-body">
 
                     @if (isset($error))

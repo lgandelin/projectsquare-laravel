@@ -17741,6 +17741,18 @@ body {
   margin-bottom: 1rem;
 }
 
+/* line 3, ../sass/_login.scss */
+.login-template .panel {
+  padding: 2rem 2rem 1rem 2rem;
+  margin-top: 5rem;
+  box-shadow: none;
+  border-radius: 0;
+}
+/* line 9, ../sass/_login.scss */
+.login-template .panel .checkbox {
+  padding-top: 0;
+}
+
 /* line 1, ../sass/_dashboard.scss */
 .block {
   padding: 0rem;
