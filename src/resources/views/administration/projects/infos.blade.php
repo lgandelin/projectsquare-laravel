@@ -76,6 +76,7 @@
 </form>
 
 @section('scripts')
+    <script src="{{ asset('js/administration/project-infos.js') }}"></script>
     <script>
         $('.colorpicker').minicolors({
             theme: 'bootstrap'
