@@ -33,8 +33,6 @@
     }
 
     .block {
-
-
         h3 {
             display: block;
             margin-bottom: 2rem;
@@ -51,11 +49,11 @@
             height: 22px;
             margin-right: 2.4rem;
 
-            background: url(../img/dashboard/all.png)no-repeat;
-        }
+            background: url(../img/dashboard/all.png) no-repeat;
 
-        .all:hover {
-            background: url(../img/dashboard/all-hover.png)no-repeat;
+            &:hover {
+                background: url(../img/dashboard/all-hover.png) no-repeat;
+            }
         }
 
         .move-widget {

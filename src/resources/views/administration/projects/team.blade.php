@@ -1,9 +1,13 @@
 <div class="middle-column">
+    <div class="filter-user">
+        <input autocomplete="off" class="search-input" type="text" placeholder="Recherchez..." />
+        <i class="glyphicon glyphicon-search search-icon"></i>
+    </div>
+
     @foreach ($users as $role)
         <div class="parent">
             <div class="parent-wrapper">
                 <span class="name">{{ $role->name }}</span>
-                <span class="childs-number">{{ sizeof($role->users) }}</span>
                 <span class="glyphicon glyphicon-triangle-top toggle-childs"></span>
             </div>
             <div class="childs">
@@ -17,7 +21,7 @@
                                 ])
 
                                 <span class="name">{{ $user->complete_name }}</span>
-                                <span @if (in_array($user->id, $userIDs))style="display:none" @endif class="fa fa-plus-circle add-user"></span>
+                                <span @if (in_array($user->id, $userIDs))style="display:none" @endif class="fa fa-plus-circle btn-add-user"></span>
                             </div>
                         </div>
                     @endforeach
@@ -66,7 +70,7 @@
                     <td>{{ $user->complete_name }}</td>
                     <td>@if ($user->role){{ $user->role->name }}@endif</td>
                     <td align="right">
-                        <span class="btn cancel btn-delete"></span>
+                        <span class="btn cancel btn-delete-user"></span>
                     </td>
                 </tr>
             @endforeach
@@ -89,7 +93,7 @@
         <td>@{{ name  }}</td>
         <td>@{{ role }}</td>
         <td align="right">
-            <span class="btn cancel btn-delete"></span>
+            <span class="btn cancel btn-delete-user"></span>
         </td>
     </tr>
 </script>

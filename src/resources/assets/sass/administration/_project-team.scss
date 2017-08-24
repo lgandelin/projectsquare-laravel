@@ -9,6 +9,43 @@
     .middle-column {
         top: 14.2rem;
 
+        .filter-user {
+            border-bottom: 1px solid #eeeeee;
+
+            .search-input {
+                margin-left: 3rem;
+                padding: 4rem 2rem;
+
+                width: 30rem;
+                height: 4rem;
+                line-height: 4rem;
+
+                font-size: 1.8rem;
+                font-family: $typo1;
+                cursor: pointer;
+
+                border: none !important;
+
+                &::-webkit-input-placeholder {
+                    //color: $touareg !important;
+                }
+
+                &:-moz-placeholder {
+                    //color: $touareg !important;
+                }
+
+                &:focus {
+                    outline: 0;
+                }
+            }
+
+            .search-icon {
+                font-size: 2rem;
+                color: $touareg;
+                cursor: pointer;
+            }
+        }
+
         .parent {
             .parent-wrapper {
                 background: #f4f8f9;
@@ -20,7 +57,7 @@
             }
         }
 
-        .add-user {
+        .btn-add-user {
             display: inline-block;
             vertical-align: middle;
             float: right;
@@ -42,6 +79,7 @@
         margin-left: 40.5rem;
         
         table {
+            margin-top: 3rem;
             margin-bottom: 2rem;
         }
 
