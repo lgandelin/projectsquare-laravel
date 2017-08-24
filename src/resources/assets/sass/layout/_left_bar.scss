@@ -105,15 +105,28 @@
             .filter-project {
                 cursor: default;
                 border: none;
+                position: relative;
 
                 padding-top: 1.8rem !important;
                 padding-bottom: 0.5rem;
+
+                &:before {
+                    position: absolute;
+                    display: block;
+                    color: #bbc9c9;
+                    top: 2.6rem;
+                    left: 3rem;
+
+                    @extend .fa;
+                    @extend .fa-filter;
+                }
 
                 input[type="text"] {
                     font-family: $typo2;
                     width: 84%;
                     margin-left: 2rem;
                     margin-right: 2rem;
+                    padding-left: 2.7rem;
                 }
             }
 
