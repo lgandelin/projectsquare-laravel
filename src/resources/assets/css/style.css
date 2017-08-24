@@ -16755,7 +16755,7 @@ a:focus {
 .table {
   margin-bottom: 0px;
 }
-/* line 9, ../sass/includes/_table.scss */
+/* line 10, ../sass/includes/_table.scss */
 .table > tbody > tr > td {
   vertical-align: middle;
   padding: 0.8rem 1.5rem;
@@ -16763,23 +16763,23 @@ a:focus {
   color: #096a85;
   font-size: 1.6rem;
 }
-/* line 17, ../sass/includes/_table.scss */
+/* line 18, ../sass/includes/_table.scss */
 .table > tbody > tr td:last-child {
   min-width: 125px;
 }
-/* line 21, ../sass/includes/_table.scss */
+/* line 22, ../sass/includes/_table.scss */
 .table > tbody > tr .entity_title {
   text-decoration: underline;
 }
-/* line 24, ../sass/includes/_table.scss */
+/* line 25, ../sass/includes/_table.scss */
 .table > tbody > tr .entity_title a:hover {
   color: #84b4c2;
 }
+/* line 30, ../sass/includes/_table.scss */
+.table > tbody > tr .project-border {
+  width: 0.5rem;
+}
 
-/*.table > tbody > tr > td {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-}*/
 /* line 39, ../sass/includes/_table.scss */
 .table thead {
   font-family: "MyriadPro-Regular";

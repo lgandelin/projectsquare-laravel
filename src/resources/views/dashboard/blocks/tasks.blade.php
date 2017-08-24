@@ -25,7 +25,7 @@
             <tbody>
             @foreach ($tasks as $task)
                 <tr>
-                    <td style="border-left: 10px solid @if (isset($task->project)) {{ $task->project->color }} @endif"></td>
+                    <td class="project-border" style="border-left: 10px solid @if (isset($task->project)) {{ $task->project->color }} @endif"></td>
                     <td class="entity_title"><a href="{{ route('project_tasks_edit', ['uuid' => $task->project_id, 'task_uuid' => $task->id]) }}">{{ $task->title }}</a></td>
                     <td>
                         @if (isset($task->allocated_user))

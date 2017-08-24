@@ -4,6 +4,7 @@
 }
 .table {  
     margin-bottom: 0px;
+
     > tbody {
         > tr {
             > td {
@@ -25,14 +26,13 @@
                     color: $light_blue;
                 }
             }
+
+            .project-border {
+                width: 0.5rem;
+            }
         }
     }
 }
-
-/*.table > tbody > tr > td {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-}*/
 
 .table {
   

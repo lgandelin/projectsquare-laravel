@@ -17,8 +17,7 @@
         <table class="table table-striped">
              <thead>
                 <tr>
-                    <!--<th>#</th>-->
-                     <!--<th>{{ trans('projectsquare::tickets.client') }} </th>-->
+                    <th></th>
                     <th>{{ trans('projectsquare::messages.message') }} </th>
                     <th style="text-align:center">{{ trans('projectsquare::messages.author') }} </th>
                     <th>{{ trans('projectsquare::messages.date') }} </th>
@@ -31,7 +30,8 @@
             @foreach ($conversations as $conversation)
                 <tr class="conversation" id="conversation-{{ $conversation->id }}" data-id="{{ $conversation->id }}">
 
-                    <td class="text-conversation" style="border-left: 10px solid {{ $conversation->project->color }}" width="50%">
+                    <td class="project-border" style="border-left: 10px solid {{ $conversation->project->color }}" ></td>
+                    <td class="text-conversation" width="50%">
                        {{ str_limit($conversation->messages[sizeof($conversation->messages) - 1]->content, 100) }}
                     </td>
 

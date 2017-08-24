@@ -37,7 +37,7 @@
                 <tbody>
                     @foreach ($projects as $project)
                         <tr>
-                            <td style="border-left: 5px solid {{ $project->color }}"></td>
+                            <td class="project-border" style="border-left: 5px solid {{ $project->color }}"></td>
                             <td class="entity_title"><a href="{{ route('projects_edit', ['id' => $project->id]) }}">{{ $project->name }}</a></td>
                             <td>@if (isset($project->client)){{ $project->client->name }}@endif</td>
                             <td>
