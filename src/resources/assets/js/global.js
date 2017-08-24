@@ -190,7 +190,7 @@ $(document).ready(function() {
             createCookie('left-bar-' + id, 'opened');
         }
 
-        $(this).closest('.menu').find('.sub-menu').fadeToggle(250);
+        $(this).closest('.menu').toggleClass('submenu-closed');
     });
 
     //MIDDLE COLUMN : Toggle parent list

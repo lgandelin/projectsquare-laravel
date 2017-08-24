@@ -41,6 +41,19 @@
                 text-decoration: none;
             }
 
+            .toggle-childs {
+                margin-top: 1.7rem;
+                margin-right: 1.5rem;
+
+                color: white;
+                float: right;
+                cursor: pointer;
+                font-size: 1.3rem;
+
+                @extend .glyphicon;
+                @extend .glyphicon-triangle-top;
+            }
+
             .border {
                 width: 50px;
                 height: 50px;
@@ -207,6 +220,22 @@
                     @extend .glyphicon-cog;
                 }
             }
+
+            &:hover {
+                .toggle-childs {
+                    color: $green;
+                }
+            }
+            
+            &.submenu-closed {
+                .toggle-childs {
+                    @extend .glyphicon-triangle-bottom;
+                }
+
+                ul {
+                    display: none;
+                }
+            }
         }
 
         .menu:nth-child(2) .sub-menu {
@@ -235,6 +264,10 @@
 
         .menu.encours {
             .icon {
+                color: $green;
+            }
+
+            .toggle-childs {
                 color: $green;
             }
 
@@ -293,6 +326,10 @@
     > ul .menu {
         position: relative;
 
+        .toggle-childs {
+            display: none;
+        }
+        
         .title {
             display: none;
         }

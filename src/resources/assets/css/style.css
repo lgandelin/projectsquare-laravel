@@ -4135,7 +4135,7 @@ th {
   src: url("../fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/bootstrap/glyphicons-halflings-regular.woff2") format("woff2"), url("../fonts/bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("../fonts/bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("../fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
 }
 /* line 269, ../sass/vendor/_bootstrap.scss */
-.glyphicon, .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .management .icon, .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .administration .icon {
+.glyphicon, .left-bar > ul .menu .toggle-childs, .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .management .icon, .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .administration .icon {
   position: relative;
   top: 1px;
   display: inline-block;
@@ -5414,12 +5414,12 @@ th {
 }
 
 /* line 1041, ../sass/vendor/_bootstrap.scss */
-.glyphicon-triangle-bottom:before {
+.glyphicon-triangle-bottom:before, .left-bar > ul .menu.submenu-closed .toggle-childs:before {
   content: "\e252";
 }
 
 /* line 1044, ../sass/vendor/_bootstrap.scss */
-.glyphicon-triangle-top:before {
+.glyphicon-triangle-top:before, .left-bar > ul .menu .toggle-childs:before {
   content: "\e253";
 }
 
@@ -16605,7 +16605,7 @@ a.fc-more:hover {
 }
 
 /* line 70, ../sass/includes/_buttons.scss */
-.btn .glyphicon, .btn .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .btn .icon, .btn .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .btn .icon, .btn .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .btn .icon, .btn .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .btn .icon, .btn .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .btn .icon {
+.btn .glyphicon, .btn .left-bar > ul .menu .toggle-childs, .left-bar > ul .menu .btn .toggle-childs, .btn .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .btn .icon, .btn .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .btn .icon, .btn .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .btn .icon, .btn .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .btn .icon, .btn .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .btn .icon {
   margin-right: 0.5rem;
 }
 
@@ -17078,6 +17078,15 @@ body {
   text-decoration: none;
 }
 /* line 44, ../sass/layout/_left_bar.scss */
+.left-bar > ul .menu .toggle-childs {
+  margin-top: 1.7rem;
+  margin-right: 1.5rem;
+  color: white;
+  float: right;
+  cursor: pointer;
+  font-size: 1.3rem;
+}
+/* line 57, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu .border {
   width: 50px;
   height: 50px;
@@ -17085,34 +17094,34 @@ body {
   margin-right: 1.9rem;
   border-right: 1px solid #9dc3cf;
 }
-/* line 52, ../sass/layout/_left_bar.scss */
+/* line 65, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu .sub-menu {
   margin-left: 0;
   padding-left: 0;
   background: #0c7594;
   list-style: none;
 }
-/* line 58, ../sass/layout/_left_bar.scss */
+/* line 71, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu .sub-menu li {
   border-left: 1px solid #9dc3cf;
   margin-left: 4.9rem;
 }
-/* line 62, ../sass/layout/_left_bar.scss */
+/* line 75, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu .sub-menu li a {
   padding-top: 1.3rem;
   padding-bottom: 1rem;
   font-family: "MyriadPro-Regular";
   font-size: 1.5rem;
 }
-/* line 70, ../sass/layout/_left_bar.scss */
+/* line 83, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu .sub-menu li:first-child {
   padding-top: 1rem;
 }
-/* line 76, ../sass/layout/_left_bar.scss */
+/* line 89, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu .sub-menu:not(.sub-menu-projects) li:last-child {
   padding-bottom: 1rem;
 }
-/* line 81, ../sass/layout/_left_bar.scss */
+/* line 94, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu li.archived-project-title {
   color: #76aac2;
   border-top: 1px solid #76aac2;
@@ -17120,21 +17129,21 @@ body {
   padding-top: 2rem !important;
   display: block;
 }
-/* line 88, ../sass/layout/_left_bar.scss */
+/* line 101, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu li.archived-project-title i {
   margin-right: 1rem;
   display: inline-block;
   color: #76aac2;
 }
-/* line 96, ../sass/layout/_left_bar.scss */
+/* line 109, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu li.archived-project a {
   color: #76aac2;
 }
-/* line 100, ../sass/layout/_left_bar.scss */
+/* line 113, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu li.archived-project a:hover {
   color: #c8dc1e;
 }
-/* line 105, ../sass/layout/_left_bar.scss */
+/* line 118, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu .filter-project {
   cursor: default;
   border: none;
@@ -17142,7 +17151,7 @@ body {
   padding-top: 1.8rem !important;
   padding-bottom: 0.5rem;
 }
-/* line 113, ../sass/layout/_left_bar.scss */
+/* line 126, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu .filter-project:before {
   position: absolute;
   display: block;
@@ -17150,7 +17159,7 @@ body {
   top: 2.6rem;
   left: 3rem;
 }
-/* line 124, ../sass/layout/_left_bar.scss */
+/* line 137, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu .filter-project input[type="text"] {
   font-family: "MyriadPro-Regular";
   width: 84%;
@@ -17158,129 +17167,145 @@ body {
   margin-right: 2rem;
   padding-left: 2.7rem;
 }
-/* line 133, ../sass/layout/_left_bar.scss */
+/* line 146, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu .add-project {
   color: white;
   border-bottom: 1px solid #9dc3cf;
 }
-/* line 137, ../sass/layout/_left_bar.scss */
+/* line 150, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu .add-project a {
   font-size: 1.3rem !important;
   font-family: "AvantGarde-Book" !important;
 }
-/* line 141, ../sass/layout/_left_bar.scss */
+/* line 154, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu .add-project a i {
   margin-right: 1rem;
   vertical-align: middle;
   font-size: 2rem;
 }
-/* line 150, ../sass/layout/_left_bar.scss */
+/* line 163, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu .title {
   float: left;
   font-size: 1.7rem;
   color: white;
   padding-top: 1.8rem;
 }
-/* line 158, ../sass/layout/_left_bar.scss */
+/* line 171, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu .title:hover {
   color: #c8dc1e;
 }
-/* line 162, ../sass/layout/_left_bar.scss */
+/* line 175, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu .line {
   display: block;
   overflow: hidden;
   cursor: pointer;
 }
-/* line 169, ../sass/layout/_left_bar.scss */
+/* line 182, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu .icon {
   color: white;
   font-size: 1.8rem;
   margin: 15px 0 0 15px;
   display: block;
 }
-/* line 212, ../sass/layout/_left_bar.scss */
+/* line 225, ../sass/layout/_left_bar.scss */
+.left-bar > ul .menu:hover .toggle-childs {
+  color: #c8dc1e;
+}
+/* line 235, ../sass/layout/_left_bar.scss */
+.left-bar > ul .menu.submenu-closed ul {
+  display: none;
+}
+/* line 241, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu:nth-child(2) .sub-menu {
   max-height: 316px;
   overflow-y: auto;
   overflow-x: hidden;
 }
-/* line 218, ../sass/layout/_left_bar.scss */
+/* line 247, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu:nth-child(2) .sub-menu li:first-child {
   padding-top: 0;
 }
-/* line 223, ../sass/layout/_left_bar.scss */
+/* line 252, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu:nth-child(2) .sub-menu::-webkit-scrollbar {
   width: 5px;
 }
-/* line 227, ../sass/layout/_left_bar.scss */
+/* line 256, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu:nth-child(2) .sub-menu::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
-/* line 231, ../sass/layout/_left_bar.scss */
+/* line 260, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu:nth-child(2) .sub-menu::-webkit-scrollbar-thumb {
   background-color: #b4d2dc;
   outline: 1px solid slategrey;
 }
-/* line 237, ../sass/layout/_left_bar.scss */
+/* line 266, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu.encours .icon {
   color: #c8dc1e;
 }
-/* line 241, ../sass/layout/_left_bar.scss */
+/* line 270, ../sass/layout/_left_bar.scss */
+.left-bar > ul .menu.encours .toggle-childs {
+  color: #c8dc1e;
+}
+/* line 274, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu.encours .title {
   color: #c8dc1e;
 }
-/* line 245, ../sass/layout/_left_bar.scss */
+/* line 278, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu.encours .encours {
   background: #0c7594;
 }
-/* line 247, ../sass/layout/_left_bar.scss */
+/* line 280, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu.encours .encours a {
   color: #c8dc1e;
 }
-/* line 255, ../sass/layout/_left_bar.scss */
+/* line 288, ../sass/layout/_left_bar.scss */
 .left-bar > ul > .menu:first-child a {
   padding-left: 0rem;
 }
-/* line 259, ../sass/layout/_left_bar.scss */
+/* line 292, ../sass/layout/_left_bar.scss */
 .left-bar > ul > .menu:first-child h3 {
   margin-top: 0;
 }
-/* line 265, ../sass/layout/_left_bar.scss */
+/* line 298, ../sass/layout/_left_bar.scss */
 .left-bar > ul .menu:hover .title, .left-bar > ul .menu:hover .icon {
   color: #c8dc1e;
 }
-/* line 271, ../sass/layout/_left_bar.scss */
+/* line 304, ../sass/layout/_left_bar.scss */
 .left-bar a:hover {
   text-decoration: none;
 }
-/* line 275, ../sass/layout/_left_bar.scss */
+/* line 308, ../sass/layout/_left_bar.scss */
 .left-bar .toggle-left-bar {
   color: white;
   font-family: "MyriadPro-Regular";
 }
-/* line 279, ../sass/layout/_left_bar.scss */
+/* line 312, ../sass/layout/_left_bar.scss */
 .left-bar .toggle-left-bar .icon {
   color: #c8dc1e;
 }
-/* line 284, ../sass/layout/_left_bar.scss */
+/* line 317, ../sass/layout/_left_bar.scss */
 .left-bar .toggle-left-bar:hover {
   color: #c8dc1e;
 }
 
-/* line 289, ../sass/layout/_left_bar.scss */
+/* line 322, ../sass/layout/_left_bar.scss */
 .left-bar-minified {
   width: 4.9rem;
   bottom: 0;
 }
-/* line 293, ../sass/layout/_left_bar.scss */
+/* line 326, ../sass/layout/_left_bar.scss */
 .left-bar-minified > ul .menu {
   position: relative;
 }
-/* line 296, ../sass/layout/_left_bar.scss */
+/* line 329, ../sass/layout/_left_bar.scss */
+.left-bar-minified > ul .menu .toggle-childs {
+  display: none;
+}
+/* line 333, ../sass/layout/_left_bar.scss */
 .left-bar-minified > ul .menu .title {
   display: none;
 }
-/* line 300, ../sass/layout/_left_bar.scss */
+/* line 337, ../sass/layout/_left_bar.scss */
 .left-bar-minified > ul .menu .sub-menu {
   display: none;
   background: #222 !important;
@@ -17289,28 +17314,28 @@ body {
   top: 0;
   width: 185px;
 }
-/* line 308, ../sass/layout/_left_bar.scss */
+/* line 345, ../sass/layout/_left_bar.scss */
 .left-bar-minified > ul .menu .sub-menu li {
   margin-left: 0 !important;
 }
-/* line 313, ../sass/layout/_left_bar.scss */
+/* line 350, ../sass/layout/_left_bar.scss */
 .left-bar-minified > ul .menu li.archived-project-title, .left-bar-minified > ul .menu li.archived-project {
   color: #ccc !important;
 }
-/* line 316, ../sass/layout/_left_bar.scss */
+/* line 353, ../sass/layout/_left_bar.scss */
 .left-bar-minified > ul .menu li.archived-project-title a, .left-bar-minified > ul .menu li.archived-project-title i, .left-bar-minified > ul .menu li.archived-project a, .left-bar-minified > ul .menu li.archived-project i {
   color: #ccc !important;
 }
-/* line 320, ../sass/layout/_left_bar.scss */
+/* line 357, ../sass/layout/_left_bar.scss */
 .left-bar-minified > ul .menu li.archived-project-title a:hover, .left-bar-minified > ul .menu li.archived-project a:hover {
   color: #c8dc1e !important;
 }
-/* line 325, ../sass/layout/_left_bar.scss */
+/* line 362, ../sass/layout/_left_bar.scss */
 .left-bar-minified > ul .menu .filter-project {
   padding-top: 1rem !important;
   padding-bottom: 1rem !important;
 }
-/* line 329, ../sass/layout/_left_bar.scss */
+/* line 366, ../sass/layout/_left_bar.scss */
 .left-bar-minified > ul .menu .filter-project input[type="text"] {
   width: 88%;
   margin-left: 1rem;
@@ -17661,7 +17686,7 @@ body {
 }
 
 /* line 18, ../sass/layout/_beta_form.scss */
-.beta-form:hover .glyphicon, .beta-form:hover .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .beta-form:hover .icon, .beta-form:hover .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .beta-form:hover .icon, .beta-form:hover .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .beta-form:hover .icon, .beta-form:hover .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .beta-form:hover .icon, .beta-form:hover .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .beta-form:hover .icon {
+.beta-form:hover .glyphicon, .beta-form:hover .left-bar > ul .menu .toggle-childs, .left-bar > ul .menu .beta-form:hover .toggle-childs, .beta-form:hover .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .beta-form:hover .icon, .beta-form:hover .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .beta-form:hover .icon, .beta-form:hover .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .beta-form:hover .icon, .beta-form:hover .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .beta-form:hover .icon, .beta-form:hover .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .beta-form:hover .icon {
   color: #c8dc1e;
 }
 
@@ -19244,7 +19269,7 @@ body {
     padding: 5px 10px;
   }
   /* line 94, ../sass/includes/_responsive.scss */
-  .table tr td .btn .glyphicon-remove, .table tr td .btn .glyphicon, .table tr td .btn .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .table tr td .btn .icon, .table .template-upload td .btn .glyphicon-remove, .table .template-upload td .btn .glyphicon, .table .template-upload td .btn .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .table .template-upload td .btn .icon {
+  .table tr td .btn .glyphicon-remove, .table tr td .btn .glyphicon, .table tr td .btn .left-bar > ul .menu .toggle-childs, .left-bar > ul .menu .table tr td .btn .toggle-childs, .table tr td .btn .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .table tr td .btn .icon, .table .template-upload td .btn .glyphicon-remove, .table .template-upload td .btn .glyphicon, .table .template-upload td .btn .left-bar > ul .menu .toggle-childs, .left-bar > ul .menu .table .template-upload td .btn .toggle-childs, .table .template-upload td .btn .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .table .template-upload td .btn .icon {
     margin-right: 0rem;
   }
   /* line 97, ../sass/includes/_responsive.scss */
