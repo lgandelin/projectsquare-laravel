@@ -6,13 +6,8 @@
                 'text' => trans('projectsquare::tooltips.tasks')
             ])
 
-            @if ($is_client)
-                <a href="{{ route('project_tasks', ['id' => $current_project->id]) }}" class="all pull-right" title="{{ trans('projectsquare::dashboard.tasks_list') }}"></a>
-            @else
-                <a href="{{ route('tasks_index') }}" class="all pull-right" title="{{ trans('projectsquare::dashboard.tasks_list') }}"></a>
-            @endif
+            <a href="{{ route('project_tasks', ['id' => $current_project->id]) }}" class="all pull-right" title="{{ trans('projectsquare::dashboard.tasks_list') }}"></a>
             <a href="{{ route('tasks_add') }}" class="add pull-right" title="{{ trans('projectsquare::dashboard.add_task') }}"></a>
-
             <a href="#" class="glyphicon glyphicon-move move-widget pull-right" title="{{ trans('projectsquare::dashboard.move_widget') }}"></a>
         </h3>
 
@@ -31,7 +26,7 @@
             @foreach ($tasks as $task)
                 <tr>
                     <td style="border-left: 10px solid @if (isset($task->project)) {{ $task->project->color }} @endif"></td>
-                    <td class="entity_title"><a href="{{ route('tasks_edit', ['id' => $task->id]) }}">{{ $task->title }}</a></td>
+                    <td class="entity_title"><a href="{{ route('project_tasks_edit', ['uuid' => $task->project_id, 'task_uuid' => $task->id]) }}">{{ $task->title }}</a></td>
                     <td>
                         @if (isset($task->allocated_user))
                             @include('projectsquare::includes.avatar', [
@@ -47,7 +42,7 @@
                         @endif
                     </td>
                     <td align="right" class="action">
-                        <a href="{{ route('tasks_edit', ['id' => $task->id]) }}" class="btn btn-sm btn-primary see-more" title="{{ trans('projectsquare::dashboard.see_task') }}"></a>
+                        <a href="{{ route('project_tasks_edit', ['uuid' => $task->project_id, 'task_uuid' => $task->id]) }}" class="btn btn-sm btn-primary see-more" title="{{ trans('projectsquare::dashboard.see_task') }}"></a>
                     </td>
                 </tr>
             @endforeach

@@ -5,13 +5,8 @@
             @include('projectsquare::includes.tooltip', [
                 'text' => trans('projectsquare::tooltips.tickets')
             ])
-            @if ($is_client)
-                <a href="{{ route('project_tickets', ['id' => $current_project->id]) }}" class="all pull-right" title="{{ trans('projectsquare::dashboard.tickets_list') }}"></a>
-            @else
-                <a href="{{ route('tickets_index') }}" class="all pull-right" title="{{ trans('projectsquare::dashboard.tickets_list') }}"></a>
-            @endif
+            <a href="{{ route('project_tickets', ['id' => $current_project->id]) }}" class="all pull-right" title="{{ trans('projectsquare::dashboard.tickets_list') }}"></a>
             <a href="{{ route('tickets_add') }}" class="add pull-right" title="{{ trans('projectsquare::dashboard.add_ticket') }}"></a>
-
             <a href="#" class="glyphicon glyphicon-move move-widget pull-right" title="{{ trans('projectsquare::dashboard.move_widget') }}"></a>
         </h3>
      
@@ -33,7 +28,7 @@
             @foreach ($tickets as $ticket)
                 <tr>
                     <td style="border-left: 10px solid {{ $ticket->project->color }}"></td>
-                    <td class="entity_title"><a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}">{{ $ticket->title }}</a></td>
+                    <td class="entity_title"><a href="{{ route('project_tickets_edit', ['uuid' => $ticket->project_id, 'ticket_uuid' => $ticket->id]) }}">{{ $ticket->title }}</a></td>
                     <td align="center">@if (isset($ticket->last_state))<span class="priority priority-{{ $ticket->last_state->priority }}" title="{{ trans('projectsquare::generic.priority-' . $ticket->last_state->priority) }}"></span>@endif</td>
                     <td>@if (isset($ticket->type)){{ $ticket->type->name }}@endif</td>
                     <td width="10%">@if (isset($ticket->last_state) && isset($ticket->last_state->status))<span class=" text status">{{ $ticket->last_state->status->name }}</span>@endif</td>
@@ -46,7 +41,7 @@
                         @endif
                     </td>
                     <td class="action">
-                        <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}" class="btn btn-sm btn-primary see-more" title="{{ trans('projectsquare::dashboard.see_ticket') }}"></a>
+                        <a href="{{ route('project_tickets_edit', ['uuid' => $ticket->project_id, 'ticket_uuid' => $ticket->id]) }}" class="btn btn-sm btn-primary see-more" title="{{ trans('projectsquare::dashboard.see_ticket') }}"></a>
                     </td>
                 </tr>
             @endforeach
