@@ -363,6 +363,11 @@
             padding-top: 1rem !important;
             padding-bottom: 1rem !important;
 
+            &:before {
+                top: 1.8rem;
+                left: 2rem;
+            }
+
             input[type="text"] {
                 width: 88%;
                 margin-left: 1rem;

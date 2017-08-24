@@ -17336,6 +17336,11 @@ body {
   padding-bottom: 1rem !important;
 }
 /* line 366, ../sass/layout/_left_bar.scss */
+.left-bar-minified > ul .menu .filter-project:before {
+  top: 1.8rem;
+  left: 2rem;
+}
+/* line 371, ../sass/layout/_left_bar.scss */
 .left-bar-minified > ul .menu .filter-project input[type="text"] {
   width: 88%;
   margin-left: 1rem;
