@@ -16757,47 +16757,54 @@ a:focus {
 }
 /* line 10, ../sass/includes/_table.scss */
 .table > tbody > tr > td {
+  padding: 0;
   vertical-align: middle;
-  padding: 0.8rem 1.5rem;
   font-family: "MyriadPro-Regular";
   color: #096a85;
   font-size: 1.6rem;
 }
-/* line 18, ../sass/includes/_table.scss */
+/* line 19, ../sass/includes/_table.scss */
 .table > tbody > tr td:last-child {
   min-width: 125px;
 }
-/* line 22, ../sass/includes/_table.scss */
-.table > tbody > tr .entity_title {
-  text-decoration: underline;
-}
 /* line 25, ../sass/includes/_table.scss */
-.table > tbody > tr .entity_title a:hover {
-  color: #84b4c2;
+.table > tbody tr:hover td {
+  background: #f5f5f5;
 }
-/* line 30, ../sass/includes/_table.scss */
-.table > tbody > tr .project-border {
-  width: 0.5rem;
+/* line 28, ../sass/includes/_table.scss */
+.table > tbody tr:hover td .see-more {
+  background: url(../img/dashboard/see-more-hover-1.png) no-repeat;
 }
 
-/* line 39, ../sass/includes/_table.scss */
+/* line 37, ../sass/includes/_table.scss */
 .table thead {
   font-family: "MyriadPro-Regular";
   color: #8fafbc;
   font-size: 1.8rem;
 }
-/* line 44, ../sass/includes/_table.scss */
+/* line 42, ../sass/includes/_table.scss */
+.table thead th {
+  font-weight: 400;
+}
+/* line 45, ../sass/includes/_table.scss */
+.table thead th:first-child {
+  padding-left: 1rem;
+}
+/* line 49, ../sass/includes/_table.scss */
 .table thead th:last-child {
   text-align: right;
   padding-right: 3.5rem;
 }
-/* line 49, ../sass/includes/_table.scss */
-.table thead th {
-  font-weight: 400;
+/* line 56, ../sass/includes/_table.scss */
+.table a {
+  width: 100%;
+  height: 100%;
+  display: block;
+  padding: 0.7rem 1.5rem;
 }
-/* line 53, ../sass/includes/_table.scss */
-.table thead th:first-child {
-  padding-left: 1rem;
+/* line 62, ../sass/includes/_table.scss */
+.table a:hover {
+  text-decoration: none;
 }
 
 /* line 1, ../sass/includes/_form.scss */

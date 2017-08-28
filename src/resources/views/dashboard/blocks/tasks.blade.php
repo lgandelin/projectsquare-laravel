@@ -31,23 +31,33 @@
             @foreach ($tasks as $task)
                 <tr>
                     <td class="project-border" style="border-left: 10px solid @if (isset($task->project)) {{ $task->project->color }} @endif"></td>
-                    <td class="entity_title"><a href="{{ route('project_tasks_edit', ['uuid' => $task->project_id, 'task_uuid' => $task->id]) }}">{{ $task->title }}</a></td>
-                    <td>
-                        @if (isset($task->allocated_user))
-                            @include('projectsquare::includes.avatar', [
-                                'id' => $task->allocated_user->id,
-                                'name' => $task->allocated_user->complete_name
-                            ])
-                        @endif
+                    <td class="entity_title">
+                        <a href="{{ route('project_tasks_edit', ['uuid' => $task->project_id, 'task_uuid' => $task->id]) }}">
+                            {{ $task->title }}
+                        </a>
                     </td>
                     <td>
-                        @if ($task->status_id == 1){{ trans('projectsquare::tasks.to_do') }}
-                        @elseif ($task->status_id == 2){{ trans('projectsquare::tasks.in_progress') }}
-                        @elseif ($task->status_id == 3){{ trans('projectsquare::tasks.done') }}
-                        @endif
+                        <a href="{{ route('project_tasks_edit', ['uuid' => $task->project_id, 'task_uuid' => $task->id]) }}">
+                            @if (isset($task->allocated_user))
+                                @include('projectsquare::includes.avatar', [
+                                    'id' => $task->allocated_user->id,
+                                    'name' => $task->allocated_user->complete_name
+                                ])
+                            @endif
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ route('project_tasks_edit', ['uuid' => $task->project_id, 'task_uuid' => $task->id]) }}">
+                            @if ($task->status_id == 1){{ trans('projectsquare::tasks.to_do') }}
+                            @elseif ($task->status_id == 2){{ trans('projectsquare::tasks.in_progress') }}
+                            @elseif ($task->status_id == 3){{ trans('projectsquare::tasks.done') }}
+                            @endif
+                        </a>
                     </td>
                     <td align="right" class="action">
-                        <a href="{{ route('project_tasks_edit', ['uuid' => $task->project_id, 'task_uuid' => $task->id]) }}" class="btn btn-sm btn-primary see-more" title="{{ trans('projectsquare::dashboard.see_task') }}"></a>
+                        <a href="{{ route('project_tasks_edit', ['uuid' => $task->project_id, 'task_uuid' => $task->id]) }}" title="{{ trans('projectsquare::dashboard.see_task') }}">
+                            <i class="btn btn-sm btn-primary see-more"></i>
+                        </a>
                     </td>
                 </tr>
             @endforeach
