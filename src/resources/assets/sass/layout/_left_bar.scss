@@ -374,5 +374,11 @@
                 margin-bottom: 0;
             }
         }
+
+        &.current-menu {
+            .sub-menu {
+                display: block;
+            }
+        }
     }
 }

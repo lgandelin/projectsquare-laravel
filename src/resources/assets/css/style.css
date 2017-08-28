@@ -17346,6 +17346,10 @@ body {
   margin-left: 1rem;
   margin-bottom: 0;
 }
+/* line 379, ../sass/layout/_left_bar.scss */
+.left-bar-minified > ul .menu.current-menu .sub-menu {
+  display: block;
+}
 
 /* line 1, ../sass/layout/_top_bar.scss */
 .top-bar-container {
