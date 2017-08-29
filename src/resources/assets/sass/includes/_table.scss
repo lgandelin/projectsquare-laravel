@@ -1,7 +1,7 @@
 .table-striped > tbody > tr:nth-of-type(odd) {
     border: none;
 }
-.table {  
+.table {
     margin-bottom: 0px;
 
     > tbody {
@@ -14,22 +14,39 @@
                 color: $touareg ;
                 font-size: 1.6rem;
             }
-
-            td:last-child {
-                min-width: 125px;
-            }
         }
-        
-        tr:hover {
-            td {
-                background: #f5f5f5;
+    }
+}
 
+.table-striped {
+
+    td:last-child {
+        min-width: 125px;
+    }
+
+    .project-border {
+        width: 0.5rem;
+    }
+
+    tr:hover {
+        td {
+            background: #f5f5f5;
+
+            .see-more {
+                background: url(../img/dashboard/see-more-hover-1.png) no-repeat;
+            }
+
+            .button-message {
+                background: url(../img/messages/repondre-hover.png) no-repeat;
+            }
+
+            &.action:hover {
                 .see-more {
-                    background: url(../img/dashboard/see-more-hover-1.png) no-repeat;
-                }
+                    background: url(../img/dashboard/see-more-1.png) no-repeat;
 
-                .button-message {
-                    background: url(../img/messages/repondre-hover.png) no-repeat;
+                    &:hover {
+                        background: url(../img/dashboard/see-more-hover-1.png) no-repeat;
+                    }
                 }
             }
         }
@@ -64,6 +81,15 @@
 
         &:hover {
             text-decoration: none;
+        }
+    }
+
+    .action {
+        a {
+            display: inline-block;
+            padding: 0;
+            width: auto;
+            height: auto;
         }
     }
 }

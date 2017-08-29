@@ -89,40 +89,76 @@
                         @foreach ($tickets as $ticket)
                             <tr>
                                 <td class="project-border" style="border-left: 10px solid {{ $ticket->project->color }}"></td>
-                                <td class="entity_title"><a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}">{{ $ticket->title }}</a></td>
-                                <td align="center">@if (isset($ticket->last_state))<span class="priority priority-{{ $ticket->last_state->priority }}" title="{{ trans('projectsquare::generic.priority-' . $ticket->last_state->priority) }}"></span>@endif</td>
-                                <td>@if (isset($ticket->project) && isset($ticket->project->client)){{ $ticket->project->client->name }}@endif</td>
-                                <td>@if (isset($ticket->type)){{ $ticket->type->name }}@endif</td>
                                 <td>
-                                    @if (isset($ticket->states[count($ticket->states) - 1]))
-                                        @include('projectsquare::includes.avatar', [
-                                            'id' => $ticket->states[count($ticket->states) - 1]->author_user->id,
-                                            'name' => $ticket->states[count($ticket->states) - 1]->author_user->complete_name
-                                        ])
-                                    @endif
+                                    <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}">
+                                        {{ $ticket->title }}
+                                    </a>
+                                </td>
+                                <td align="center">
+                                    <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}">
+                                        @if (isset($ticket->last_state))<span class="priority priority-{{ $ticket->last_state->priority }}" title="{{ trans('projectsquare::generic.priority-' . $ticket->last_state->priority) }}"></span>@endif
+                                    </a>
                                 </td>
                                 <td>
-                                    @if (isset($ticket->last_state) && $ticket->last_state->allocated_user)
-                                        @include('projectsquare::includes.avatar', [
-                                            'id' => $ticket->last_state->allocated_user->id,
-                                            'name' => $ticket->last_state->allocated_user->complete_name
-                                        ])
-                                    @endif
+                                    <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}">
+                                        @if (isset($ticket->project) && isset($ticket->project->client)){{ $ticket->project->client->name }}@endif
+                                    </a>
                                 </td>
-                                <td>@if (isset($ticket->last_state) && $ticket->last_state->status)<span class="status status-{{ $ticket->last_state->status->id }}">{{ $ticket->last_state->status->name}}</span>@endif</td>
-                                <td>@if (isset($ticket->last_state) && $ticket->last_state->estimated_time_days > 0){{ $ticket->last_state->estimated_time_days }}{{ trans('projectsquare::generic.days_abbr') }}@endif @if (isset($ticket->last_state) && $ticket->last_state->estimated_time_hours > 0){{ $ticket->last_state->estimated_time_hours }} {{ trans('projectsquare::generic.hours_abbr') }}@endif</td>
-                                <td>@if (isset($ticket->last_state) && $ticket->last_state->spent_time_days > 0){{ $ticket->last_state->spent_time_days }} {{ trans('projectsquare::generic.days_abbr') }}@endif @if (isset($ticket->last_state) && $ticket->last_state->spent_time_hours > 0){{ $ticket->last_state->spent_time_hours }} {{ trans('projectsquare::generic.hours_abbr') }}@endif</td>
-                                <td align="right">
-                                    <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}" class="btn see-more"></a>
-                                    <span class="ticket-dragndrop" id="ticket-{{ $ticket->id }}"
-                                          data-id="{{ $ticket->id }}"
-                                          data-title="{{ $ticket->title }}"
-                                          data-duration="@if ($ticket->last_state->estimated_time_hours){{ $ticket->last_state->estimated_time_hours . ':00' }}@else {{ '02:00' }}@endif"
-                                          data-project="{{ $ticket->project->id }}"
-                                    >
-                                        <a href="#" class="glyphicon glyphicon-move move-widget" title="Planifier le ticket"></a>
-                                    </span>
-                                    <a href="{{ route('tickets_delete', ['id' => $ticket->id]) }}" class="btn cancel btn-delete"></a>
+                                <td>
+                                    <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}">
+                                        @if (isset($ticket->type)){{ $ticket->type->name }}@endif
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}">
+                                        @if (isset($ticket->states[count($ticket->states) - 1]))
+                                            @include('projectsquare::includes.avatar', [
+                                                'id' => $ticket->states[count($ticket->states) - 1]->author_user->id,
+                                                'name' => $ticket->states[count($ticket->states) - 1]->author_user->complete_name
+                                            ])
+                                        @endif
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}">
+                                        @if (isset($ticket->last_state) && $ticket->last_state->allocated_user)
+                                            @include('projectsquare::includes.avatar', [
+                                                'id' => $ticket->last_state->allocated_user->id,
+                                                'name' => $ticket->last_state->allocated_user->complete_name
+                                            ])
+                                        @endif
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}">
+                                        @if (isset($ticket->last_state) && $ticket->last_state->status)<span class="status status-{{ $ticket->last_state->status->id }}">{{ $ticket->last_state->status->name}}</span>@endif
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}">
+                                        @if (isset($ticket->last_state) && $ticket->last_state->estimated_time_days > 0){{ $ticket->last_state->estimated_time_days }}{{ trans('projectsquare::generic.days_abbr') }}@endif @if (isset($ticket->last_state) && $ticket->last_state->estimated_time_hours > 0){{ $ticket->last_state->estimated_time_hours }} {{ trans('projectsquare::generic.hours_abbr') }}@endif
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}">
+                                        @if (isset($ticket->last_state) && $ticket->last_state->spent_time_days > 0){{ $ticket->last_state->spent_time_days }} {{ trans('projectsquare::generic.days_abbr') }}@endif @if (isset($ticket->last_state) && $ticket->last_state->spent_time_hours > 0){{ $ticket->last_state->spent_time_hours }} {{ trans('projectsquare::generic.hours_abbr') }}@endif
+                                    </a>
+                                </td>
+                                <td class="action" align="right">
+                                    <a href="{{ route('tickets_edit', ['id' => $ticket->id]) }}">
+                                        <i class="btn see-more"></i>
+                                    </a>
+                                    <a href="#" title="Planifier le ticket">
+                                        <span class="ticket-dragndrop" id="ticket-{{ $ticket->id }}"
+                                              data-id="{{ $ticket->id }}"
+                                              data-title="{{ $ticket->title }}"
+                                              data-duration="@if ($ticket->last_state->estimated_time_hours){{ $ticket->last_state->estimated_time_hours . ':00' }}@else {{ '02:00' }}@endif"
+                                              data-project="{{ $ticket->project->id }}"
+                                        >
+                                            <i class="glyphicon glyphicon-move move-widget"></i>
+                                        </span>
+                                    </a>
+                                    <a href="{{ route('tickets_delete', ['id' => $ticket->id]) }}"><i class="btn cancel btn-delete"></i></a>
                                 </td>
                             </tr>
                         @endforeach

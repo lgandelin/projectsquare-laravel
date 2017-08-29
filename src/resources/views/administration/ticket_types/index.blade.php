@@ -36,10 +36,18 @@
                 <tbody>
                     @foreach ($ticket_types as $ticket_type)
                         <tr>
-                            <td class="entity_title"><a href="{{ route('ticket_types_edit', ['id' => $ticket_type->id]) }}">{{ $ticket_type->name }}</a></td>
-                            <td align="right">
-                                <a href="{{ route('ticket_types_edit', ['id' => $ticket_type->id]) }}" class="btn see-more"></a>
-                                <a href="{{ route('ticket_types_delete', ['id' => $ticket_type->id]) }}" class="btn cancel btn-delete"></a>
+                            <td>
+                                <a href="{{ route('ticket_types_edit', ['id' => $ticket_type->id]) }}">
+                                    {{ $ticket_type->name }}
+                                </a>
+                            </td>
+                            <td width="5%" class="action" align="right">
+                                <a href="{{ route('ticket_types_edit', ['id' => $ticket_type->id]) }}">
+                                    <i class="btn see-more"></i>
+                                </a>
+                                <a href="{{ route('ticket_types_delete', ['id' => $ticket_type->id]) }}">
+                                    <i class="btn cancel btn-delete"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach

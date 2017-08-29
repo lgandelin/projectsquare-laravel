@@ -15,7 +15,7 @@
             @foreach ($ticket_states as $i => $ticket_state)
             <tr>
                 <td>{{ date('d/m/Y H:i', strtotime($ticket_state->created_at)) }}</td>
-                <td>
+                <td align="center">
                     @if ($ticket_state->author_user)
                         @if (isset($ticket_state) && $ticket_state->author_user)
                             @include('projectsquare::includes.avatar', [
@@ -25,7 +25,7 @@
                         @endif
                     @endif
                 </td>
-                <td>
+                <td align="center">
                     @if ($ticket_state->allocated_user)
                         @if (isset($ticket_state) && $ticket_state->allocated_user)
                             @include('projectsquare::includes.avatar', [

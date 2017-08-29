@@ -38,16 +38,30 @@
                     @foreach ($projects as $project)
                         <tr>
                             <td class="project-border" style="border-left: 5px solid {{ $project->color }}"></td>
-                            <td class="entity_title"><a href="{{ route('projects_edit', ['id' => $project->id]) }}">{{ $project->name }}</a></td>
-                            <td>@if (isset($project->client)){{ $project->client->name }}@endif</td>
                             <td>
-                                @if ($project->status_id == Webaccess\ProjectSquare\Entities\Project::IN_PROGRESS)En cours
-                                @elseif ($project->status_id == Webaccess\ProjectSquare\Entities\Project::ARCHIVED)Archivé
-                                @endif
+                                <a href="{{ route('projects_edit', ['id' => $project->id]) }}">
+                                    {{ $project->name }}
+                                </a>
                             </td>
-                            <td align="right">
-                                <a href="{{ route('projects_edit', ['id' => $project->id]) }}" class="btn see-more"></a>
-                                <a href="{{ route('projects_delete', ['id' => $project->id]) }}" class="btn cancel btn-delete"></a>
+                            <td>
+                                <a href="{{ route('projects_edit', ['id' => $project->id]) }}">
+                                    @if (isset($project->client)){{ $project->client->name }}@endif
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('projects_edit', ['id' => $project->id]) }}">
+                                    @if ($project->status_id == Webaccess\ProjectSquare\Entities\Project::IN_PROGRESS)En cours
+                                    @elseif ($project->status_id == Webaccess\ProjectSquare\Entities\Project::ARCHIVED)Archivé
+                                    @endif
+                                </a>
+                            </td>
+                            <td width="5%" class="action" align="right">
+                                <a href="{{ route('projects_edit', ['id' => $project->id]) }}">
+                                    <i class="btn see-more"></i>
+                                </a>
+                                <a href="{{ route('projects_delete', ['id' => $project->id]) }}">
+                                    <i class="btn cancel btn-delete"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach

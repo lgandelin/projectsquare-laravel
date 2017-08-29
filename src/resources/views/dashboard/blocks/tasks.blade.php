@@ -54,7 +54,7 @@
                             @endif
                         </a>
                     </td>
-                    <td align="right" class="action">
+                    <td align="right">
                         <a href="{{ route('project_tasks_edit', ['uuid' => $task->project_id, 'task_uuid' => $task->id]) }}" title="{{ trans('projectsquare::dashboard.see_task') }}">
                             <i class="btn btn-sm btn-primary see-more"></i>
                         </a>

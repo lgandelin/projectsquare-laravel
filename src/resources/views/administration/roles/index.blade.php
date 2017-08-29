@@ -35,10 +35,18 @@
                 <tbody>
                     @foreach ($roles as $role)
                         <tr>
-                            <td class="entity_title"><a href="{{ route('roles_edit', ['id' => $role->id]) }}">{{ $role->name }}</a></td>
-                            <td align="right">
-                                <a href="{{ route('roles_edit', ['id' => $role->id]) }}" class="btn see-more"></a>
-                                <a href="{{ route('roles_delete', ['id' => $role->id]) }}" class="btn cancel btn-delete"></a>
+                            <td>
+                                <a href="{{ route('roles_edit', ['id' => $role->id]) }}">
+                                    {{ $role->name }}
+                                </a>
+                            </td>
+                            <td width="5%" class="action" align="right">
+                                <a href="{{ route('roles_edit', ['id' => $role->id]) }}">
+                                    <i class="btn see-more"></i>
+                                </a>
+                                <a href="{{ route('roles_delete', ['id' => $role->id]) }}">
+                                    <i class="btn cancel btn-delete"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach

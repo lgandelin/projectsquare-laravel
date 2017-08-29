@@ -29,19 +29,39 @@
                         <?php $alert->variables = json_decode($alert->variables); ?>
                         <tr>
                             <td class="priorities" style="border-left: 5px solid {{ $alert->project->color }}"></td>
-                            <td>{{ $alert->id }}</td>
-                            <td>{{ date('d/m/Y H:i', strtotime($alert->created_at)) }}</td>
-                            <td><span class="badge monitoring_badge">{{ $alert->type }}</span></td>
-                            <td>@if (isset($alert->project->client))<span class="text">{{ $alert->project->client->name }}</span>@endif</td>
                             <td>
-                                @if ($alert->type == 'WEBSITE_LOADING_TIME')
-                                    {{ number_format($alert->variables->loading_time, 2) }}s
-                                @elseif ($alert->type == 'WEBSITE_STATUS_CODE')
-                                    {{ $alert->variables->status_code }}
-                                @endif
+                                <a href="{{ route('project_monitoring', ['id' => $alert->project->id]) }}">
+                                    {{ $alert->id }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('project_monitoring', ['id' => $alert->project->id]) }}">
+                                    {{ date('d/m/Y H:i', strtotime($alert->created_at)) }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('project_monitoring', ['id' => $alert->project->id]) }}">
+                                    <span class="badge monitoring_badge">{{ $alert->type }}</span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('project_monitoring', ['id' => $alert->project->id]) }}">
+                                    @if (isset($alert->project->client))<span class="text">{{ $alert->project->client->name }}</span>@endif
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('project_monitoring', ['id' => $alert->project->id]) }}">
+                                    @if ($alert->type == 'WEBSITE_LOADING_TIME')
+                                        {{ number_format($alert->variables->loading_time, 2) }}s
+                                    @elseif ($alert->type == 'WEBSITE_STATUS_CODE')
+                                        {{ $alert->variables->status_code }}
+                                    @endif
+                                </a>
                             </td>
                             <td align="right">
-                                <a href="{{ route('project_monitoring', ['id' => $alert->project->id]) }}" class="btn see-more"></a>
+                                <a href="{{ route('project_monitoring', ['id' => $alert->project->id]) }}">
+                                    <i class="btn see-more"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
