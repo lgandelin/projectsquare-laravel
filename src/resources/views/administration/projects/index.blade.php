@@ -27,9 +27,10 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th>{{ trans('projectsquare::projects.project') }}</th>
-                    <th>{{ trans('projectsquare::projects.client') }}</th>
-                    <th>{{ trans('projectsquare::projects.status') }}</th>
+                    <th>{{ trans('projectsquare::projects.project') }}<a href="{{ route('projects_index', ['sc' => 'name', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-alpha-@if ($sort_order == 'asc'){{ 'desc' }}@else{{ 'asc' }}@endif"></i></a></th>
+                    <th>{{ trans('projectsquare::projects.client') }}<a href="{{ route('projects_index', ['sc' => 'client_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
+                    <th>{{ trans('projectsquare::projects.status') }}<a href="{{ route('projects_index', ['sc' => 'status_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
+                    <th>{{ trans('projectsquare::projects.creation_date') }}<a href="{{ route('projects_index', ['sc' => 'created_at', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-{{ $sort_order }}"></i></a></th>
                     <th>{{ trans('projectsquare::generic.action') }}</th>
                 </tr>
                 </thead>
@@ -55,6 +56,13 @@
                                     @endif
                                 </a>
                             </td>
+                            <td>
+                                <a href="{{ route('projects_edit', ['id' => $project->id]) }}">
+                                    @if ($project->created_at)
+                                        {{ DateTime::createFromFormat('Y-m-d H:i:s', $project->created_at)->format('d/m/Y') }}
+                                    @endif
+                                </a>
+                           </td>
                             <td width="5%" class="action" align="right">
                                 <a href="{{ route('projects_edit', ['id' => $project->id]) }}">
                                     <i class="btn see-more"></i>
@@ -69,7 +77,8 @@
             </table>
 
             <div class="text-center">
-                {!! $projects->render() !!}
+                @include('projectsquare::administration.includes.items_per_page')
+                {{ $projects->appends(['it' => $items_per_page, 'sc' => $sort_column, 'so' => $sort_order])->links() }}
             </div>
         </div>
     </div>

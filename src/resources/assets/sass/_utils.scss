@@ -67,3 +67,21 @@
         }
     }
 }
+
+select.items_per_page {
+    margin-top: 20px;
+    width: 6rem;
+    padding: 0.7rem;
+}
+
+.sort-icon {
+    display: inline-block !important;
+    width: auto !important;
+    font-size: 1.3rem !important;
+    color: #8fafbc;
+    vertical-align: middle;
+    
+    * {
+        vertical-align: middle;
+    }
+}

@@ -19,8 +19,10 @@ class ClientController extends BaseController
     {
         parent::__construct($request);
 
+        $itemsPerPage = $request->get('it') ? $request->get('it') : env('CLIENTS_PER_PAGE', 10);
+
         return view('projectsquare::administration.clients.index', [
-            'clients' => app()->make('GetClientsInteractor')->getClientsPaginatedList(10, new GetClientsRequest()),
+            'clients' => app()->make('GetClientsInteractor')->getClientsPaginatedList($itemsPerPage, new GetClientsRequest()),
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);

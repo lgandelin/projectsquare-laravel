@@ -17805,6 +17805,26 @@ body {
   margin-bottom: 1rem;
 }
 
+/* line 71, ../sass/_utils.scss */
+select.items_per_page {
+  margin-top: 20px;
+  width: 6rem;
+  padding: 0.7rem;
+}
+
+/* line 77, ../sass/_utils.scss */
+.sort-icon {
+  display: inline-block !important;
+  width: auto !important;
+  font-size: 1.3rem !important;
+  color: #8fafbc;
+  vertical-align: middle;
+}
+/* line 84, ../sass/_utils.scss */
+.sort-icon * {
+  vertical-align: middle;
+}
+
 /* line 3, ../sass/_login.scss */
 .login-template .panel {
   padding: 2rem 2rem 1rem 2rem;

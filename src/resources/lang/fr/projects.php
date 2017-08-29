@@ -25,6 +25,7 @@ return [
     'website_front_url' => 'URL du site',
     'website_back_url' => 'URL de l\'interface d\'administration du site',
     'status' => 'Statut',
+    'creation_date' => 'Date de création',
     'color' => 'Couleur associée',
     'tasks_scheduled_time' => 'Temps prévu pour la réalisation du projet (tâches) en jours',
     'scheduled_time_placeholder' => 'ex: 12.5',
