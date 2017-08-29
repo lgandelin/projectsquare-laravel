@@ -16747,15 +16747,14 @@ a:focus {
 
 /* line 1, ../sass/includes/_table.scss */
 .table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: #f9fbe6;
   border: none;
 }
 
-/* line 5, ../sass/includes/_table.scss */
+/* line 4, ../sass/includes/_table.scss */
 .table {
   margin-bottom: 0px;
 }
-/* line 10, ../sass/includes/_table.scss */
+/* line 9, ../sass/includes/_table.scss */
 .table > tbody > tr > td {
   padding: 0;
   vertical-align: middle;
@@ -16763,46 +16762,50 @@ a:focus {
   color: #096a85;
   font-size: 1.6rem;
 }
-/* line 19, ../sass/includes/_table.scss */
+/* line 18, ../sass/includes/_table.scss */
 .table > tbody > tr td:last-child {
   min-width: 125px;
 }
-/* line 25, ../sass/includes/_table.scss */
+/* line 24, ../sass/includes/_table.scss */
 .table > tbody tr:hover td {
   background: #f5f5f5;
 }
-/* line 28, ../sass/includes/_table.scss */
+/* line 27, ../sass/includes/_table.scss */
 .table > tbody tr:hover td .see-more {
   background: url(../img/dashboard/see-more-hover-1.png) no-repeat;
 }
+/* line 31, ../sass/includes/_table.scss */
+.table > tbody tr:hover td .button-message {
+  background: url(../img/messages/repondre-hover.png) no-repeat;
+}
 
-/* line 37, ../sass/includes/_table.scss */
+/* line 40, ../sass/includes/_table.scss */
 .table thead {
   font-family: "MyriadPro-Regular";
   color: #8fafbc;
   font-size: 1.8rem;
 }
-/* line 42, ../sass/includes/_table.scss */
+/* line 45, ../sass/includes/_table.scss */
 .table thead th {
   font-weight: 400;
 }
-/* line 45, ../sass/includes/_table.scss */
+/* line 48, ../sass/includes/_table.scss */
 .table thead th:first-child {
   padding-left: 1rem;
 }
-/* line 49, ../sass/includes/_table.scss */
+/* line 52, ../sass/includes/_table.scss */
 .table thead th:last-child {
   text-align: right;
   padding-right: 3.5rem;
 }
-/* line 56, ../sass/includes/_table.scss */
+/* line 59, ../sass/includes/_table.scss */
 .table a {
   width: 100%;
   height: 100%;
   display: block;
   padding: 0.7rem 1.5rem;
 }
-/* line 62, ../sass/includes/_table.scss */
+/* line 65, ../sass/includes/_table.scss */
 .table a:hover {
   text-decoration: none;
 }
@@ -18329,11 +18332,12 @@ body {
 }
 
 /* line 41, ../sass/_calendar.scss */
-.fc-unthemed .fc-today {
-  background: #f9fbe6;
+.fc-unthemed .fc-today,
+.fc-unthemed td.fc-today {
+  background: #f7f7f7;
 }
 
-/* line 45, ../sass/_calendar.scss */
+/* line 46, ../sass/_calendar.scss */
 .fc-state-active {
   box-shadow: none;
   background: #84b4c2 !important;
@@ -18341,50 +18345,50 @@ body {
   text-shadow: none;
 }
 
-/* line 52, ../sass/_calendar.scss */
+/* line 53, ../sass/_calendar.scss */
 .fc-event {
   border-radius: 0;
 }
-/* line 55, ../sass/_calendar.scss */
+/* line 56, ../sass/_calendar.scss */
 .fc-event .fc-content {
   padding: 5px;
 }
-/* line 59, ../sass/_calendar.scss */
+/* line 60, ../sass/_calendar.scss */
 .fc-event .fc-bg {
   opacity: 0;
 }
-/* line 63, ../sass/_calendar.scss */
+/* line 64, ../sass/_calendar.scss */
 .fc-event .delete-event {
   float: right;
   top: -25px;
   right: 5px;
   z-index: 999;
 }
-/* line 70, ../sass/_calendar.scss */
+/* line 71, ../sass/_calendar.scss */
 .fc-event .delete-event:hover {
   color: #c8dc1e;
   opacity: 1;
 }
 
-/* line 76, ../sass/_calendar.scss */
+/* line 77, ../sass/_calendar.scss */
 .fc-time-grid-event .fc-time {
   display: none;
 }
 
-/* line 80, ../sass/_calendar.scss */
+/* line 81, ../sass/_calendar.scss */
 .fc-day-grid-event {
   margin: 0;
 }
-/* line 83, ../sass/_calendar.scss */
+/* line 84, ../sass/_calendar.scss */
 .fc-day-grid-event .delete-event {
   top: -20px;
 }
-/* line 87, ../sass/_calendar.scss */
+/* line 88, ../sass/_calendar.scss */
 .fc-day-grid-event .fc-time {
   margin-right: 1rem;
 }
 
-/* line 92, ../sass/_calendar.scss */
+/* line 93, ../sass/_calendar.scss */
 .fc-ltr .fc-time-grid .fc-event-container {
   margin: 0;
 }

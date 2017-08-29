@@ -29,26 +29,30 @@
             <tbody>
             @foreach ($conversations as $conversation)
                 <tr class="conversation" id="conversation-{{ $conversation->id }}" data-id="{{ $conversation->id }}">
-
                     <td class="project-border" style="border-left: 10px solid {{ $conversation->project->color }}" ></td>
                     <td class="text-conversation" width="50%">
-                       {{ str_limit($conversation->messages[sizeof($conversation->messages) - 1]->content, 100) }}
+                        <a href="#" class="reply-message">
+                            {{ str_limit($conversation->messages[sizeof($conversation->messages) - 1]->content, 100) }}
+                        </a>
                     </td>
 
                     <td align="center">
-                        @include('projectsquare::includes.avatar', [
-                            'id' => $conversation->messages[sizeof($conversation->messages) - 1]->user->id,
-                            'name' => $conversation->messages[sizeof($conversation->messages) - 1]->user->complete_name
-                        ])
+                        <a href="#" class="reply-message">
+                            @include('projectsquare::includes.avatar', [
+                                'id' => $conversation->messages[sizeof($conversation->messages) - 1]->user->id,
+                                'name' => $conversation->messages[sizeof($conversation->messages) - 1]->user->complete_name
+                            ])
+                        </a>
                     </td>
-
                     <td>
-                       {{ date('d/m H:i', strtotime($conversation->messages[sizeof($conversation->messages) - 1]->created_at)) }}
+                        <a href="#" class="reply-message">
+                            {{ date('d/m H:i', strtotime($conversation->messages[sizeof($conversation->messages) - 1]->created_at)) }}
+                        </a>
                     </td>
-
                     <td align="center">
-                        <!--<a href="{{ route('conversations_view', ['id' => $conversation->id]) }}" class="btn btn-sm btn-primary see-more" style="margin-right: 1rem"></a>-->
-                        <button class="button-message pull-right reply-message" data-id="{{ $conversation->id }}" title="{{ trans('projectsquare::dashboard.see_conversation') }}"><span class="glyphicon-comment"></span></button>
+                        <a href="#">
+                            <button class="button-message pull-right reply-message" data-id="{{ $conversation->id }}" title="{{ trans('projectsquare::dashboard.see_conversation') }}"><span class="glyphicon-comment"></span></button>
+                        </a>
                     </td>
                 </tr>
 

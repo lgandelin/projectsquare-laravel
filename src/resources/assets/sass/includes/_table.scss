@@ -1,5 +1,4 @@
 .table-striped > tbody > tr:nth-of-type(odd) {
-    background-color: #f9fbe6;
     border: none;
 }
 .table {  
@@ -27,6 +26,10 @@
 
                 .see-more {
                     background: url(../img/dashboard/see-more-hover-1.png) no-repeat;
+                }
+
+                .button-message {
+                    background: url(../img/messages/repondre-hover.png) no-repeat;
                 }
             }
         }
