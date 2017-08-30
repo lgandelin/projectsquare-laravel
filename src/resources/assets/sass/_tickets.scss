@@ -32,6 +32,30 @@
     .thumbnail {
         margin-bottom: 0;
     }
+    
+    table {
+        a {
+            margin-right: 1rem;
+            display: inline-block;
+            width: auto;
+            height: auto;
+            padding: 0.5rem;
+
+            i {
+                font-size: 2rem;
+                vertical-align: middle;
+            }
+
+            &:hover * {
+                color: $green;
+            }
+
+            &.btn-delete {
+                position: relative;
+                top: -2px;
+            }
+        }
+    }
 }
 
 .label {

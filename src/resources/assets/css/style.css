@@ -18164,39 +18164,61 @@ select.items_per_page {
 #fileupload .thumbnail {
   margin-bottom: 0;
 }
-
 /* line 37, ../sass/_tickets.scss */
+#fileupload table a {
+  margin-right: 1rem;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  padding: 0.5rem;
+}
+/* line 44, ../sass/_tickets.scss */
+#fileupload table a i {
+  font-size: 2rem;
+  vertical-align: middle;
+}
+/* line 49, ../sass/_tickets.scss */
+#fileupload table a:hover * {
+  color: #c8dc1e;
+}
+/* line 53, ../sass/_tickets.scss */
+#fileupload table a.btn-delete {
+  position: relative;
+  top: -2px;
+}
+
+/* line 61, ../sass/_tickets.scss */
 .label {
   font-weight: 400;
 }
 
-/* line 42, ../sass/_tickets.scss */
+/* line 66, ../sass/_tickets.scss */
 .tickets-template h2 {
   margin-left: 1.5rem;
 }
-/* line 46, ../sass/_tickets.scss */
+/* line 70, ../sass/_tickets.scss */
 .tickets-template .table-responsive {
   max-height: 410px;
   clear: right;
 }
-/* line 51, ../sass/_tickets.scss */
+/* line 75, ../sass/_tickets.scss */
 .tickets-template .ticket-dragndrop {
   vertical-align: middle;
   display: inline-block;
   margin-top: 6px;
 }
-/* line 56, ../sass/_tickets.scss */
+/* line 80, ../sass/_tickets.scss */
 .tickets-template .ticket-dragndrop .move-widget:hover {
   text-decoration: none;
   color: #c8dc1e;
 }
 
-/* line 65, ../sass/_tickets.scss */
+/* line 89, ../sass/_tickets.scss */
 .ticket-infos .form-group textarea.form-control {
   height: 185px;
 }
 
-/* line 73, ../sass/_tickets.scss */
+/* line 97, ../sass/_tickets.scss */
 .ticket-history table td {
   padding: 1rem !important;
 }
