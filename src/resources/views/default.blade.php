@@ -3,9 +3,7 @@
 @section('main-content')
     <div class="container-fluid">
         <div class="row top-bar-container">
-            <div class="col-md-12">
-                @include('projectsquare::includes.top_bar')
-            </div>
+            @include('projectsquare::includes.top_bar')
         </div>
 
         <div class="row">

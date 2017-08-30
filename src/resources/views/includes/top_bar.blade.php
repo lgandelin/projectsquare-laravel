@@ -52,15 +52,22 @@
                 <li>
                     <a href="#" class="notifications-link"> <span class="badge @if (sizeof($notifications) > 0) new-notifications @endif">{{ sizeof($notifications) }}</span></a>
 
-                    <div class="notifications" style="display: none;">
-                        <span class="title">
-                            @if (sizeof($notifications) > 0)
-                               {{ trans('projectsquare::top_bar.news_notifications') }}
-                            @else
-                                {{ trans('projectsquare::top_bar.no_new_notification') }}
-                            @endif
-                        </span>
-                        @if (sizeof($notifications) > 0)
+                    <div class="notifications">
+                        <ul class="tabs">
+                            <li class="current" data-tab="1"><i class="notification-icon"></i></li>
+                            <li data-tab="2"><i class="message-icon"></i></li>
+                        </ul>
+
+                        <div class="content-notification content-tab" data-content="1">
+1
+                        </div>
+
+
+                        <div class="message-notification content-tab" data-content="2" style="display: none">
+2
+                        </div>
+
+                        {{--@if (sizeof($notifications) > 0)
                             @foreach ($notifications as $notification)
                                 <div class="notification" data-id="{{ $notification->id }}">
                                     <span class="date">{{ $notification->time }}</span>
@@ -106,6 +113,7 @@
                                 </div>
                             @endforeach
                         @endif
+                        --}}
                     </div>
                 </li>
             @endif

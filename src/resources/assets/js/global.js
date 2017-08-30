@@ -67,8 +67,15 @@ $(document).ready(function() {
 
     //NOTIFICATIONS BOX
     $('.notifications-link').click(function() {
-        $('.notifications').slideToggle(200);
+        $('.notifications').animate({width: 'toggle'});
         $('.todos').hide(200);
+    });
+
+    $('.top-right-menu .notifications .tabs li').click(function() {
+        $('.top-right-menu .notifications .content-tab').hide();
+
+        var tab = $(this).data('tab');
+        $('.top-right-menu .notifications .content-tab[data-content="' + tab + '"]').show();
     });
 
     $('.notifications').on('click', '.notification .status', function() {

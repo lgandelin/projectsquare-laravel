@@ -4,7 +4,7 @@
 
     .top-bar {
         padding-top: 2rem;
-        padding-left: 1.1rem;
+        padding-left: 2rem;
         height: 90px;
 
         .logo {
@@ -32,7 +32,6 @@
         }
 
         .top-right-menu {
-            position: relative;
 
             li {
                 display: inline-block;
@@ -69,69 +68,118 @@
                 }
 
                 .notifications {
+                    height: 100%;
                     position: absolute;
-                    background: white;
-                    border: 1px solid #a0a6a9;
-                    padding: 1.5rem;
                     z-index: 999;
-                    top: 7rem;
+                    top: 9.1rem;
                     right: 0;
-                    width: 35rem;
-                    overflow-y: auto;
-                    max-height: 467px;
+                    bottom: 0;
+                    //min-width: 35rem;
+                    width: 15%;
 
-                    .title {
-                        font-size: 1.75rem;
-                        font-weight: bold;
-                        display: block;
+                    -webkit-box-shadow: -2px 0px 6px 0px rgba(113, 115, 119, 0.57);
+                    -moz-box-shadow:    -2px 0px 6px 0px rgba(113, 115, 119, 0.57);
+                    box-shadow:         -2px 0px 6px 0px rgba(113, 115, 119, 0.57);
+
+                    background: white;
+                    //border: 1px solid #a0a6a9;
+
+                    .tabs {
+                        overflow: hidden;
+                        border-bottom: none;
+
+                        li {
+                            margin-right: 0;
+                            width: 50%;
+                            height: 5rem;
+                            line-height: 5rem;
+                            float: left;
+
+                            &:hover {
+                                cursor: pointer;
+                            }
+                            
+                            &:after {
+                                content: "";
+                                display: block;
+                                height: 1px;
+                                background: #cbcccc;
+                            }
+
+                            i {
+                                margin: auto;
+                                display: block;
+                                margin-top: 1.2rem;
+
+                                &.notification-icon {
+                                    background: url('../img/top-bar/notification-icon.png') no-repeat center center;
+                                    width: 28px;
+                                    height: 20px;
+                                    display: block;
+                                    margin-bottom: 13px;
+                                }
+
+                                &.message-icon {
+                                    background: url('../img/top-bar/message-icon.png') no-repeat center center;
+                                    width: 29px;
+                                    height: 26px;
+                                    display: block;
+                                    margin-bottom: 7px;
+                                }
+                            }
+                        }
                     }
 
-                    .notification {
-                        margin-bottom: 1rem;
-                        padding-bottom: 1rem;
-                        border-bottom: 1px solid #ccc;
-                        overflow: hidden;
+                    .content-tab {
+                        padding: 2rem;
 
-                        .date {
-                            font-weight: bold;
-                            display: block;
-                            float: left;
-                        }
+                        .notification {
+                            margin-bottom: 1rem;
+                            padding-bottom: 1rem;
+                            border-bottom: 1px solid #ccc;
+                            overflow: hidden;
 
-                        .type {
-                            float: right;
-                            margin-bottom: 0.75rem;
-                        }
+                            .date {
+                                font-weight: bold;
+                                display: block;
+                                float: left;
+                            }
 
-                        .description {
-                            clear: both;
-                            display: block;
+                            .type {
+                                float: right;
+                                margin-bottom: 0.75rem;
+                            }
 
-                            .btn {
-                                margin-top: 1rem;
+                            .description {
+                                clear: both;
+                                display: block;
+
+                                .btn {
+                                    margin-top: 1rem;
+                                }
+                            }
+
+                            .not-read { 
+                                color: #dadada;
+                            }
+
+                            .read {
+                                color: #313131;
+                            }
+
+                            .status {
+                                cursor: pointer;
                             }
                         }
 
-                        .not-read {
-                            color: #dadada;
+                        .notification:first-child {
+                            margin-top: 2rem;
                         }
 
-                        .read {
-                            color: #313131;
+                        .notification:last-child {
+                            border: none;
+                            padding-bottom: 0;
                         }
-
-                        .status {
-                            cursor: pointer;
-                        }
-                    }
-
-                    .notification:first-child {
-                        margin-top: 2rem;
-                    }
-
-                    .notification:last-child {
-                        border: none;
-                        padding-bottom: 0;
                     }
                 }
 
