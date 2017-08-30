@@ -59,12 +59,44 @@
                         </ul>
 
                         <div class="content-notification content-tab" data-content="1">
-1
+                            @foreach ($notifications as $notification)
+                                <div class="notification" data-id="{{ $notification->id }}">
+                                    @if ($notification->type == 'MESSAGE_CREATED')
+                                    @elseif ($notification->type == 'EVENT_CREATED')
+                                    @elseif ($notification->type == 'TICKET_CREATED')
+                                        @if ($notification->ticket)
+                                            @if ($notification->ticket->project)
+                                                <span class="project" style="background: {{ $notification->ticket->project->color }}">
+                                                    {{ $notification->ticket->project->name }}
+                                                    <span class="glyphicon glyphicon-remove pull-right notification-status not-read"></span>
+                                                </span>
+                                            @endif
+
+                                            @if (isset($notification->link))<a class="link" href="{{ $notification->link }}" title="{{ trans('projectsquare::top_bar.see') }}">@endif
+                                                <span class="title">{{ $notification->ticket->title }}</span>
+                                                <span class="status">Statut : {{ $notification->ticket->lastState->status->name }}</span>
+                                            @if (isset($notification->link))</a>@endif
+                                        @endif
+                                    @elseif ($notification->type == 'TASK_CREATED')
+                                    @elseif ($notification->type == 'TASK_UPDATED')
+                                    @elseif ($notification->type == 'TICKET_UPDATED')
+                                    @elseif ($notification->type == 'FILE_UPLOADED')
+                                    @endif
+
+                                    {{--
+                                    <br/>
+                                    @if (isset($notification->link))
+                                        <a class="btn btn-sm button" href="{{ $notification->link }}"><span class="glyphicon glyphicon-eye-open"></span>{{ trans('projectsquare::top_bar.see') }}</a>
+                                    @endif
+                                    <span class="glyphicon glyphicon-remove pull-right status not-read"></span>
+                                    --}}
+                                </div>
+                            @endforeach
                         </div>
 
 
                         <div class="message-notification content-tab" data-content="2" style="display: none">
-2
+
                         </div>
 
                         {{--@if (sizeof($notifications) > 0)

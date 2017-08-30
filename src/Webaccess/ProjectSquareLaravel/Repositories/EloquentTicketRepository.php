@@ -87,7 +87,7 @@ class EloquentTicketRepository implements TicketRepository
 
     public function getTicket($ticketID, $userID = null)
     {
-        if (!$ticketModel = Ticket::find($ticketID)) {
+        if (!$ticketModel = Ticket::with('last_state')->find($ticketID)) {
             throw new \Exception(trans('projectsquare::tickets.ticket_not_found'));
         }
 
@@ -99,9 +99,11 @@ class EloquentTicketRepository implements TicketRepository
         $ticket->id = $ticketModel->id;
         $ticket->title = $ticketModel->title;
         $ticket->description = $ticketModel->description;
+        $ticket->project = $ticketModel->project;
         $ticket->projectID = $ticketModel->project_id;
         $ticket->typeID = $ticketModel->type_id;
         $ticket->lastStateID = $ticketModel->last_state_id;
+        $ticket->lastState = $ticketModel->last_state;
         $ticket->createdAt = $ticketModel->updated_at;
         $ticket->updatedAt = $ticketModel->updated_at;
 

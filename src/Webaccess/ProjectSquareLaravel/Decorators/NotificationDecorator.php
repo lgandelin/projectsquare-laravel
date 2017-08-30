@@ -35,6 +35,7 @@ class NotificationDecorator
                 } elseif ($notification->type == 'TICKET_CREATED' || $notification->type == 'TICKET_UPDATED') {
                     try {
                         $ticket = (new EloquentTicketRepository())->getTicket($notification->entityID);
+                        $notification->ticket = $ticket;
                         $notification->ticket_title = $ticket->title;
                         $notification->link = route('tickets_edit', ['id' => $ticket->id]);
                     } catch (\Exception $e) {

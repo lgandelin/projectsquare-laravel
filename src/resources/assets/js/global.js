@@ -56,7 +56,6 @@ $(document).ready(function() {
                 window.location.reload();
             }
         });
-
     });
 
     //TASKS BOX 
@@ -78,7 +77,7 @@ $(document).ready(function() {
         $('.top-right-menu .notifications .content-tab[data-content="' + tab + '"]').show();
     });
 
-    $('.notifications').on('click', '.notification .status', function() {
+    $('.notifications').on('click', '.notification .notification-status', function() {
         $(this).toggleClass('read', 'not-read');
 
         var notification = $(this).closest('.notification');
