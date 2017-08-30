@@ -28,6 +28,7 @@
                 <thead>
                 <tr>
                     <th>{{ trans('projectsquare::clients.client') }}<a href="{{ route('clients_index', ['sc' => 'name', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-alpha-{{ $sort_order }}"></i></a></th>
+                    <th>{{ trans('projectsquare::clients.creation_date') }}<a href="{{ route('clients_index', ['sc' => 'created_at', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-{{ $sort_order }}"></i></a></th>
                     <th align="right">{{ trans('projectsquare::generic.action') }}</th>
                 </tr>
                 </thead>
@@ -38,6 +39,13 @@
                             <td>
                                 <a href="{{ route('clients_edit', ['id' => $client->id]) }}">
                                     {{ $client->name }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('clients_edit', ['id' => $client->id]) }}">
+                                    @if ($client->created_at)
+                                        {{ DateTime::createFromFormat('Y-m-d H:i:s', $client->created_at)->format('d/m/Y') }}
+                                    @endif
                                 </a>
                             </td>
                             <td width="5%" class="action" align="right">
