@@ -21,6 +21,8 @@ class DashboardController extends BaseController
             'tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList(
                 $this->getUser()->id,
                 env('TASKS_PER_PAGE', 10),
+                null,
+                null,
                 new GetTasksRequest([
                     'allocatedUserID' => $this->getUser()->id
                 ])

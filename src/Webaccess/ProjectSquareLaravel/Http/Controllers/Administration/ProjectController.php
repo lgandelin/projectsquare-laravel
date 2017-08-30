@@ -37,7 +37,6 @@ class ProjectController extends BaseController
             'items_per_page' => $request->get('it') ? $request->get('it') : $itemsPerPage,
             'sort_column' => $request->get('sc'),
             'sort_order' => ($request->get('so') == 'asc') ? 'desc' : 'asc',
-
             'projects' => app()->make('ProjectManager')->getProjectsPaginatedList($itemsPerPage, $request->get('sc'), $request->get('so')),
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,

@@ -7,4 +7,6 @@
         @include('projectsquare::project.tickets.middle-column')
     </div>
 
+    <a style="margin-top: 2rem;" href="{{ route('tickets_add') }}" class="btn pull-right add create-ticket"></a>
+
 @endsection

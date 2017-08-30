@@ -16,9 +16,9 @@ class EloquentUserRepository implements UserRepository
         return User::find($userID);
     }
 
-    public function getAgencyUsersPaginatedList($limit)
+    public function getAgencyUsersPaginatedList($limit, $sortColumn = null, $sortOrder = null)
     {
-        return User::whereNull('client_id')->paginate($limit);
+        return User::whereNull('client_id')->orderBy($sortColumn ? $sortColumn : 'updated_at', $sortOrder ? $sortOrder : 'DESC')->paginate($limit);
     }
 
     public function getAgencyUsers()

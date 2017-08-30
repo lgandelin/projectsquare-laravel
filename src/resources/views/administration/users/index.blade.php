@@ -26,10 +26,10 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>{{ trans('projectsquare::users.name') }}</th>
+                    <th>{{ trans('projectsquare::users.name') }}<a href="{{ route('users_index', ['sc' => 'first_name', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-alpha-{{ $sort_order }}"></i></a></th>
                     <th>{{ trans('projectsquare::users.avatar') }}</th>
                     <th>{{ trans('projectsquare::users.email') }}</th>
-                    <th>{{ trans('projectsquare::users.profile') }}</th>
+                    <th>{{ trans('projectsquare::users.profile') }}<a href="{{ route('users_index', ['sc' => 'role_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
                     <th>{{ trans('projectsquare::generic.action') }}</th>
                 </tr>
                 </thead>
@@ -74,7 +74,8 @@
             </table>
 
             <div class="text-center">
-                {!! $users->render() !!}
+                @include('projectsquare::administration.includes.items_per_page')
+                {{ $users->appends(['it' => $items_per_page, 'sc' => $sort_column, 'so' => $sort_order])->links() }}
             </div>
         </div>
     </div>

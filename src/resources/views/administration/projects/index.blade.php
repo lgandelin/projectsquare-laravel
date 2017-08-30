@@ -27,7 +27,7 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th>{{ trans('projectsquare::projects.project') }}<a href="{{ route('projects_index', ['sc' => 'name', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-alpha-@if ($sort_order == 'asc'){{ 'desc' }}@else{{ 'asc' }}@endif"></i></a></th>
+                    <th>{{ trans('projectsquare::projects.project') }}<a href="{{ route('projects_index', ['sc' => 'name', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-alpha-{{ $sort_order }}"></i></a></th>
                     <th>{{ trans('projectsquare::projects.client') }}<a href="{{ route('projects_index', ['sc' => 'client_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
                     <th>{{ trans('projectsquare::projects.status') }}<a href="{{ route('projects_index', ['sc' => 'status_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
                     <th>{{ trans('projectsquare::projects.creation_date') }}<a href="{{ route('projects_index', ['sc' => 'created_at', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-{{ $sort_order }}"></i></a></th>

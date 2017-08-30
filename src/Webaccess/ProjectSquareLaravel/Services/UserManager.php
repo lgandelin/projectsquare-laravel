@@ -14,9 +14,9 @@ class UserManager
         $this->repository = new EloquentUserRepository();
     }
 
-    public function getAgencyUsersPaginatedList()
+    public function getAgencyUsersPaginatedList($limit, $sortColumn = null, $sortOrder = null)
     {
-        return $this->repository->getAgencyUsersPaginatedList(env('USERS_PER_PAGE', 10));
+        return $this->repository->getAgencyUsersPaginatedList($limit, $sortColumn, $sortOrder);
     }
 
     public function getAgencyUsers()

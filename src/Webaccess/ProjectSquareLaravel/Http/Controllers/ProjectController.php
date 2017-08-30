@@ -48,10 +48,10 @@ class ProjectController extends BaseController
                 'status' => Session::get('project_tasks_filter_status'),
                 'phase' => Session::get('project_tasks_filter_phase'),
             ],
-            'tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest([
+            'other_tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), null, null, new GetTasksRequest([
                 'projectID' => $projectID,
                 'statusID' => Session::get('project_tasks_filter_status') === "na" ? null : Session::get('project_tasks_filter_status'),
-                'phaseID' => Session::get('project_tasks_filter_phase') === "na" ? null : Session::get('project_tasks_filter_phase'),
+                'phaseID' => null,
                 'allocatedUserID' => Session::get('project_tasks_filter_allocated_user') === "na" ? null : Session::get('project_tasks_filter_allocated_user'),
             ])),
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
@@ -85,6 +85,12 @@ class ProjectController extends BaseController
 
         return view('projectsquare::project.tasks.edit', [
             'task' => $task,
+            'other_tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), null, null, new GetTasksRequest([
+                'projectID' => $projectID,
+                'statusID' => Session::get('project_tasks_filter_status') === "na" ? null : Session::get('project_tasks_filter_status'),
+                'phaseID' => null,
+                'allocatedUserID' => Session::get('project_tasks_filter_allocated_user') === "na" ? null : Session::get('project_tasks_filter_allocated_user'),
+            ])),
             'project' => app()->make('GetProjectInteractor')->getProject($projectID),
             'phases' => app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
                 'projectID' => $projectID

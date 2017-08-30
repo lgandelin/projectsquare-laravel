@@ -21,9 +21,9 @@ class EloquentTicketRepository implements TicketRepository
         $this->projectRepository = new EloquentProjectRepository();
     }
 
-    public function getTicketsPaginatedList($userID, $limit, $projectID = null, $allocatedUserID = null, $statusID = null, $typeID = null)
+    public function getTicketsPaginatedList($userID, $limit, $projectID = null, $allocatedUserID = null, $statusID = null, $typeID = null, $sortColumn = null, $sortOrder = null)
     {
-        return $this->getTickets($userID, $projectID , $allocatedUserID, $statusID, $typeID)->paginate($limit);
+        return $this->getTickets($userID, $projectID , $allocatedUserID, $statusID, $typeID, $sortColumn, $sortOrder)->paginate($limit);
     }
 
     public function getTicketsList($userID, $projectID = null, $allocatedUserID = null, $statusID = null, $typeID = null)
@@ -31,7 +31,7 @@ class EloquentTicketRepository implements TicketRepository
         return $this->getTickets($userID, $projectID , $allocatedUserID, $statusID, $typeID)->get();
     }
 
-    private function getTickets($userID, $projectID = null, $allocatedUserID = null, $statusID = null, $typeID = null)
+    private function getTickets($userID, $projectID = null, $allocatedUserID = null, $statusID = null, $typeID = null, $sortColumn = null, $sortOrder = null)
     {
         //Ressource projects
         $projects = User::find($userID)->projects()->where('status_id', '=', ProjectEntity::IN_PROGRESS);
@@ -73,7 +73,14 @@ class EloquentTicketRepository implements TicketRepository
             $tickets->has('last_state.allocated_user', '=', 0);
         }
 
-        $tickets->orderBy('updated_at', 'DESC');
+        if ($sortColumn == 'client') {
+            $tickets->join('projects', 'projects.id', '=', 'tickets.project_id')
+                    ->join('clients', 'clients.id', '=', 'projects.client_id')->orderBy('clients.name', $sortOrder ? $sortOrder : 'DESC');
+        } elseif (in_array($sortColumn, ['priority', 'status_id', 'allocated_user_id'])) {
+            $tickets->join('ticket_states', 'ticket_states.id', '=', 'tickets.last_state_id')->orderBy('ticket_states.'.$sortColumn, $sortOrder ? $sortOrder : 'DESC');
+        } else {
+            $tickets->orderBy($sortColumn ? $sortColumn : 'updated_at', $sortOrder ? $sortOrder : 'DESC');
+        }
 
         return $tickets;
     }

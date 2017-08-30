@@ -26,9 +26,9 @@ class EloquentClientRepository implements ClientRepository
         return Client::all();
     }
 
-    public static function getClientsPaginatedList($limit = null)
+    public static function getClientsPaginatedList($limit, $sortColumn = null, $sortOrder = null)
     {
-        return Client::orderBy('updated_at', 'DESC')->paginate($limit);
+        return Client::orderBy($sortColumn ? $sortColumn : 'updated_at', $sortOrder ? $sortOrder : 'DESC')->paginate($limit);
     }
 
     public static function createClient($name, $address)

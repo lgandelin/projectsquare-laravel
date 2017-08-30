@@ -65,11 +65,11 @@
                     <thead>
                     <tr>
                         <th></th>
-                        <th>{{ trans('projectsquare::tasks.task') }}</th>
-                        <th>{{ trans('projectsquare::tasks.phase') }}</th>
-                        <th>{{ trans('projectsquare::tasks.client') }}</th>
-                        <th>{{ trans('projectsquare::tasks.allocated_user') }}</th>
-                        <th>{{ trans('projectsquare::tasks.status') }}</th>
+                        <th>{{ trans('projectsquare::tasks.task') }}<a href="{{ route('tasks_index', ['sc' => 'title', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-alpha-{{ $sort_order }}"></i></a></th>
+                        <th>{{ trans('projectsquare::tasks.phase') }}<a href="{{ route('tasks_index', ['sc' => 'phase_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
+                        <th>{{ trans('projectsquare::tasks.client') }}<a href="{{ route('tasks_index', ['sc' => 'client', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
+                        <th>{{ trans('projectsquare::tasks.allocated_user') }}<a href="{{ route('tasks_index', ['sc' => 'allocated_user_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
+                        <th>{{ trans('projectsquare::tasks.status') }}<a href="{{ route('tasks_index', ['sc' => 'status_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
                         <th>{{ trans('projectsquare::tasks.estimated_time') }}</th>
                         <th>{{ trans('projectsquare::tasks.spent_time') }}</th>
                         <th>{{ trans('projectsquare::generic.action') }}</th>
@@ -148,10 +148,14 @@
             </div>
 
             <div class="text-center">
+                @include('projectsquare::administration.includes.items_per_page')
                 {!! $tasks->appends([
                     'filter_project' => $filters['project'],
                     'filter_allocated_user' => $filters['allocated_user'],
                     'filter_status' => $filters['status'],
+                    'it' => $items_per_page,
+                    'sc' => $sort_column,
+                    'so' => $sort_order
                 ])->links() !!}
             </div>
         </div>

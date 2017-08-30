@@ -27,7 +27,7 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>{{ trans('projectsquare::clients.client') }}</th>
+                    <th>{{ trans('projectsquare::clients.client') }}<a href="{{ route('clients_index', ['sc' => 'name', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-alpha-{{ $sort_order }}"></i></a></th>
                     <th align="right">{{ trans('projectsquare::generic.action') }}</th>
                 </tr>
                 </thead>
@@ -54,7 +54,8 @@
             </table>
 
             <div class="text-center">
-                {!! $clients->render() !!}
+                @include('projectsquare::administration.includes.items_per_page')
+                {{ $clients->appends(['it' => $items_per_page, 'sc' => $sort_column, 'so' => $sort_order])->links() }}
             </div>
         </div>
     </div>

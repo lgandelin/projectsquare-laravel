@@ -7,4 +7,6 @@
         @include('projectsquare::project.tasks.middle-column')
     </div>
 
+    <a style="margin-top: 2rem;" href="{{ route('tasks_add') }}" class="btn pull-right add create-task"></a>
+
 @endsection

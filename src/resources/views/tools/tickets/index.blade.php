@@ -72,15 +72,15 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>{{ trans('projectsquare::tickets.ticket') }}</th>
-                            <th style="text-align: center;">{{ trans('projectsquare::tickets.priority') }}</th>
-                            <th>{{ trans('projectsquare::tickets.client') }}</th>
-                            <th>{{ trans('projectsquare::tickets.type') }}</th>
-                            <th>{{ trans('projectsquare::tickets.author_user') }}</th>
-                            <th>{{ trans('projectsquare::tickets.allocated_user') }}</th>
-                            <th>{{ trans('projectsquare::tickets.status') }}</th>
-                            <th>{{ trans('projectsquare::tickets.estimated_time') }}</th>
-                            <th>{{ trans('projectsquare::tickets.spent_time') }}</th>
+                            <th>{{ trans('projectsquare::tickets.ticket') }}<a href="{{ route('tickets_index', ['sc' => 'title', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-alpha-{{ $sort_order }}"></i></a></th>
+                            <th style="text-align: center;">{{ trans('projectsquare::tickets.priority') }}<a href="{{ route('tickets_index', ['sc' => 'priority', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-amount-@if ($sort_order == 'asc'){{ 'desc' }}@else{{ 'asc' }}@endif"></i></a></th>
+                            <th>{{ trans('projectsquare::tickets.client') }}<a href="{{ route('tickets_index', ['sc' => 'client', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-alpha-{{ $sort_order }}"></i></a></th>
+                            <th>{{ trans('projectsquare::tickets.type') }}<a href="{{ route('tickets_index', ['sc' => 'type_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
+                            <th>{{ trans('projectsquare::tickets.author_user') }}<a href="#" class="sort-icon"><i class="fa fa-sort" style="visibility: hidden"></i></a></th>
+                            <th>{{ trans('projectsquare::tickets.allocated_user') }}<a href="{{ route('tickets_index', ['sc' => 'allocated_user_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
+                            <th>{{ trans('projectsquare::tickets.status') }}<a href="{{ route('tickets_index', ['sc' => 'status_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
+                            <th>{{ trans('projectsquare::tickets.estimated_time') }}<a href="#" class="sort-icon"><i class="fa fa-sort" style="visibility: hidden"></i></a></th>
+                            <th>{{ trans('projectsquare::tickets.spent_time') }}<a href="#" class="sort-icon"><i class="fa fa-sort" style="visibility: hidden"></i></a></th>
                             <th>{{ trans('projectsquare::generic.action') }}</th>
                         </tr>
                     </thead>
@@ -167,11 +167,15 @@
             </div>
 
             <div class="text-center">
+                @include('projectsquare::administration.includes.items_per_page')
                 {!! $tickets->appends([
                     'filter_project' => $filters['project'],
                     'filter_allocated_user' => $filters['allocated_user'],
                     'filter_status' => $filters['status'],
                     'filter_type' => $filters['type'],
+                    'it' => $items_per_page,
+                    'sc' => $sort_column,
+                    'so' => $sort_order
                 ])->links() !!}
             </div>
         </div>
