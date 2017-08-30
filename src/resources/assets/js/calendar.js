@@ -40,7 +40,7 @@ $(document).ready(function() {
             allDaySlot: false,
             contentHeight: 'auto',
             eventRender: function (event, element) {
-                element.append('<span class="delete-event glyphicon glyphicon-remove btn-delete"></span>');
+                element.append('<span class="delete-event glyphicon glyphicon-remove"></span>');
                 element.find(".delete-event").click(function () {
                     $('#step-infos .wrapper').hide();
 

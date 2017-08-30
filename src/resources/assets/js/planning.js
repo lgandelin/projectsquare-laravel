@@ -26,7 +26,7 @@ $(document).ready(function() {
 
         eventRender: function(event, element) {
             element.find('.fc-title').html(element.find('.fc-title').text());
-            element.append('<span class="delete-event glyphicon glyphicon-remove btn-delete"></span>');
+            element.append('<span class="delete-event glyphicon glyphicon-remove"></span>');
             element.find(".delete-event").click(function() {
 
                 if (confirm('Etes-vous sûrs de vouloir supprimer cet élément ?')) {
