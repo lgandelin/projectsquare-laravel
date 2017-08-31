@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Repositories;
 
+use DateTime;
 use Webaccess\ProjectSquare\Entities\Notification as NotificationEntity;
 use Webaccess\ProjectSquare\Repositories\NotificationRepository;
 use Webaccess\ProjectSquareLaravel\Models\Notification;
@@ -77,7 +78,7 @@ class EloquentNotificationRepository implements NotificationRepository
         $notification->read = $notificationModel->read;
         $notification->userID = $notificationModel->user_id;
         $notification->entityID = $notificationModel->entity_id;
-        $notification->time = new \DateTime($notificationModel->created_at);
+        $notification->createdAt = new DateTime($notificationModel->created_at);
 
         return $notification;
     }

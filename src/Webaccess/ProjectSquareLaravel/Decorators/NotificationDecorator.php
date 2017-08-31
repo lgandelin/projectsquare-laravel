@@ -2,6 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Decorators;
 
+use DateTime;
 use Webaccess\ProjectSquare\Requests\Planning\GetEventRequest;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentFileRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentMessageRepository;
@@ -14,7 +15,6 @@ class NotificationDecorator
     {
         if (is_array($notifications) && sizeof($notifications) > 0) {
             foreach ($notifications as $i => $notification) {
-                $notification->time = $notification->time->format('d/m/Y H:i');
                 if ($notification->type == 'EVENT_CREATED') {
                     if ($event = app()->make('GetEventInteractor')->execute(new GetEventRequest([
                         'eventID' => $notification->entityID,
@@ -38,7 +38,9 @@ class NotificationDecorator
                         $notification->ticket = $ticket;
                         $notification->ticket_title = $ticket->title;
                         $notification->link = route('tickets_edit', ['id' => $ticket->id]);
+                        $notification->relative_date = self::getRelativeDate($notification->createdAt);
                     } catch (\Exception $e) {
+                        dd($e->getMessage());
                         unset($notifications[$i]);
                     }
                 } elseif ($notification->type == 'TASK_CREATED' || $notification->type == 'TASK_UPDATED') {
@@ -60,5 +62,31 @@ class NotificationDecorator
         }
 
         return $notifications;
+    }
+
+    public static function getRelativeDate($date) {
+        $timestamp = $date->getTimestamp();
+        $seconds = time() - $timestamp;
+        if ($seconds == 0) {
+            return 'à l\'instant';
+        } elseif ($seconds > 0) {
+            $day_diff = floor($seconds / 86400);
+            if($day_diff == 0) {
+                if($seconds < 60) return 'à l\'instant';
+                if($seconds < 120) return 'il y a une minute';
+                if($seconds < 3600) return 'il y a ' . floor($seconds / 60) . ' minutes';
+                if($seconds < 7200) return 'il y a une heure';
+                if($seconds < 86400) return 'il y a ' . floor($seconds / 3600) . ' heures';
+            }
+
+            if($day_diff == 1) { return 'hier'; }
+            if($day_diff < 7) { return 'il y a ' .$day_diff . ' jours'; }
+            if($day_diff < 31) { return 'il y a ' . ceil($day_diff / 7) . ' semaines'; }
+            if($day_diff < 60) { return 'le mois dernier'; }
+
+            return strftime('%B %Y', $timestamp);
+        }
+
+        return '';
     }
 }

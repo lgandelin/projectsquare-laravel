@@ -66,7 +66,7 @@ $(document).ready(function() {
 
     //NOTIFICATIONS BOX
     $('.notifications-link').click(function() {
-        $('.notifications').animate({width: 'toggle'});
+        $('.notifications').animate({width: 'toggle'}, 200);
         $('.todos').hide(200);
     });
 

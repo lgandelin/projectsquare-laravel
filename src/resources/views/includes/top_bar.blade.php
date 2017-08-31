@@ -72,9 +72,10 @@
                                                 </span>
                                             @endif
 
-                                            @if (isset($notification->link))<a class="link" href="{{ $notification->link }}" title="{{ trans('projectsquare::top_bar.see') }}">@endif
+                                            @if (isset($notification->link))<a class="link" href="{{ $notification->link }}">@endif
                                                 <span class="title">{{ $notification->ticket->title }}</span>
                                                 <span class="status">Statut : {{ $notification->ticket->lastState->status->name }}</span>
+                                                @if ($notification->relative_date)<span class="relative-date">{{ $notification->relative_date }}</span>@endif
                                             @if (isset($notification->link))</a>@endif
                                         @endif
                                     @elseif ($notification->type == 'TASK_CREATED')
@@ -90,6 +91,8 @@
                                     @endif
                                     <span class="glyphicon glyphicon-remove pull-right status not-read"></span>
                                     --}}
+
+
                                 </div>
                             @endforeach
                         </div>
