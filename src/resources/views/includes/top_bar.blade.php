@@ -52,7 +52,7 @@
                 <li>
                     <a href="#" class="notifications-link"> <span class="badge @if (sizeof($notifications) > 0) new-notifications @endif">{{ sizeof($notifications) }}</span></a>
 
-                    <div class="notifications" {{--style="display: none;"--}}>
+                    <div class="notifications" style="display: none;">
                         <ul class="tabs">
                             <li class="current" data-tab="1"><i class="notification-icon"></i></li>
                             <li data-tab="2"><i class="message-icon"></i></li>

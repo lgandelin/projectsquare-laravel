@@ -17064,7 +17064,7 @@ body {
   margin-left: 26.5rem;
 }
 /* line 17, ../sass/layout/_layout.scss */
-.content .templates {
+.content .templates:last-child {
   min-height: calc(100vh - 190px);
 }
 

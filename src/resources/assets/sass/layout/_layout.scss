@@ -14,7 +14,7 @@ body {
 
     //background: #e6f0f3;
 
-    .templates {
+    .templates:last-child {
         min-height: calc(100vh - 190px);
     }
 }
