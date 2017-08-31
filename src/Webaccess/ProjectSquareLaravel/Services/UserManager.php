@@ -109,14 +109,14 @@ class UserManager
         }
     }
 
-    public function updateUser($userID, $firstName, $lastName, $email, $password=null, $mobile=null, $phone=null, $clientID=null, $clientRole=null, $isAdministrator=false)
+    public function updateUser($userID, $firstName, $lastName, $email, $password=null, $mobile=null, $phone=null, $clientID=null, $clientRole=null, $roleID=null, $isAdministrator=false)
     {
         $user = $this->repository->getUserByEmail($email);
         if ($user && $user->id != $userID) {
             throw new \Exception(trans('projectsquare::users.email_already_existing_error'));
         }
 
-        $this->repository->updateUser($userID, $firstName, $lastName, $email, ($password) ? Hash::make($password) : null, $mobile, $phone, $clientID, $clientRole, $isAdministrator);
+        $this->repository->updateUser($userID, $firstName, $lastName, $email, ($password) ? Hash::make($password) : null, $mobile, $phone, $clientID, $clientRole, $roleID, $isAdministrator);
     }
 
     public function deleteUser($userID)
@@ -134,6 +134,7 @@ class UserManager
                 null,
                 null,
                 Hash::make($password),
+                null,
                 null,
                 null,
                 null,

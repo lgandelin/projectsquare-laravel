@@ -15,7 +15,7 @@
                 ])
                 <div class="content @if ($left_bar == 'closed') content-expanded @endif">
             @else
-                <div>
+                <div class="client-view">
             @endif
                 @yield('content')
             </div>

@@ -50,5 +50,4 @@
 
 @section('scripts')
     @include('projectsquare::includes/project_users_selection')
-    <script src="{{ asset('js/project.js') }}"></script>
 @endsection

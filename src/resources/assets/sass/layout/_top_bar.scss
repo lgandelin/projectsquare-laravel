@@ -35,7 +35,7 @@
 
             li {
                 display: inline-block;
-                margin-right: 2rem;
+                margin-right: 2.2rem;
 
                 .notifications-link {
                     display: block;
@@ -84,7 +84,8 @@
                     bottom: 0;
                     width: 15%;
                     overflow: hidden;
-                    max-height: 100vh;
+                    min-height: 100vh;
+                    min-width: 35rem;
 
                     -webkit-box-shadow: -2px 0px 6px 0px rgba(113, 115, 119, 0.57);
                     -moz-box-shadow:    -2px 0px 6px 0px rgba(113, 115, 119, 0.57);

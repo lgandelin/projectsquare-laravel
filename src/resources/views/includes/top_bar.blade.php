@@ -52,7 +52,7 @@
                 <li>
                     <a href="#" class="notifications-link"> <span class="badge @if (sizeof($notifications) > 0) new-notifications @endif">{{ sizeof($notifications) }}</span></a>
 
-                    <div class="notifications">
+                    <div class="notifications" style="display: none;">
                         <ul class="tabs">
                             <li class="current" data-tab="1"><i class="notification-icon"></i></li>
                             <li data-tab="2"><i class="message-icon"></i></li>
@@ -63,7 +63,7 @@
                                 <div class="notification" data-id="{{ $notification->id }}">
                                     @if ($notification->type == 'MESSAGE_CREATED')
                                     @elseif ($notification->type == 'EVENT_CREATED')
-                                    @elseif ($notification->type == 'TICKET_CREATED')
+                                    @elseif ($notification->type == 'TICKET_CREATED' || $notification->type == 'TICKET_UPDATED')
                                         @if ($notification->ticket)
                                             @if ($notification->ticket->project)
                                                 <span class="project" style="background: {{ $notification->ticket->project->color }}">
@@ -78,9 +78,26 @@
                                                 @if ($notification->relative_date)<span class="relative-date">{{ $notification->relative_date }}</span>@endif
                                             @if (isset($notification->link))</a>@endif
                                         @endif
-                                    @elseif ($notification->type == 'TASK_CREATED')
-                                    @elseif ($notification->type == 'TASK_UPDATED')
-                                    @elseif ($notification->type == 'TICKET_UPDATED')
+                                    @elseif ($notification->type == 'TASK_CREATED' || $notification->type == 'TASK_UPDATED')
+                                        @if ($notification->task)
+                                            @if ($notification->task->project)
+                                                <span class="project" style="background: {{ $notification->task->project->color }}">
+                                                    {{ $notification->task->project->name }}
+                                                    <span class="glyphicon glyphicon-remove pull-right notification-status not-read"></span>
+                                                </span>
+                                            @endif
+
+                                            @if (isset($notification->link))<a class="link" href="{{ $notification->link }}">@endif
+                                                <span class="title">{{ $notification->task->title }}</span>
+                                                <span class="status">Statut :
+                                                    @if ($notification->task->statusID == 1)A faire
+                                                    @elseif ($notification->task->statusID == 2)En cours
+                                                    @elseif ($notification->task->statusID == 3)Terminé
+                                                    @endif
+                                                </span>
+                                                @if ($notification->relative_date)<span class="relative-date">{{ $notification->relative_date }}</span>@endif
+                                                @if (isset($notification->link))</a>@endif
+                                        @endif
                                     @elseif ($notification->type == 'FILE_UPLOADED')
                                     @endif
 

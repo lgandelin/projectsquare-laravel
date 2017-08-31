@@ -37,18 +37,11 @@ class EloquentTicketRepository implements TicketRepository
         $projects = User::find($userID)->projects()->where('status_id', '=', ProjectEntity::IN_PROGRESS);
         $projectIDs = $projects->pluck('id')->toArray();
 
-        //Client project
-        $user = User::find($userID);
-        if (isset($user->client_id)) {
-            $project = Project::where('client_id', '=', $user->client_id)->where('status_id', '=', ProjectEntity::IN_PROGRESS)->orderBy('created_at', 'DESC')->first();
-            $projectIDs[]= $project->id;
+        if ($projectID) {
+            $projectIDs = [$projectID];
         }
 
         $tickets = Ticket::whereIn('project_id', $projectIDs)->with('type', 'last_state', 'states', 'states.author_user', 'states.status', 'last_state.author_user', 'last_state.allocated_user', 'last_state.status', 'project', 'project.client');
-
-        if ($projectID) {
-            $tickets->where('project_id', '=', $projectID);
-        }
 
         if ($typeID) {
             $tickets->where('type_id', '=', $typeID);
@@ -87,7 +80,7 @@ class EloquentTicketRepository implements TicketRepository
 
     public function getTicket($ticketID, $userID = null)
     {
-        if (!$ticketModel = Ticket::with('last_state')->find($ticketID)) {
+        if (!$ticketModel = Ticket::with('project')->with('last_state')->find($ticketID)) {
             throw new \Exception(trans('projectsquare::tickets.ticket_not_found'));
         }
 

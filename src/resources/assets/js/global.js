@@ -72,8 +72,10 @@ $(document).ready(function() {
 
     $('.top-right-menu .notifications .tabs li').click(function() {
         $('.top-right-menu .notifications .content-tab').hide();
+        $('.top-right-menu .notifications .tabs li').removeClass('current');
 
         var tab = $(this).data('tab');
+        $('.top-right-menu .notifications .tabs li[data-tab="' + tab + '"]').addClass('current');
         $('.top-right-menu .notifications .content-tab[data-content="' + tab + '"]').show();
     });
 
