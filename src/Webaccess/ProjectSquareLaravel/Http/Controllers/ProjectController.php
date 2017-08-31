@@ -290,7 +290,7 @@ class ProjectController extends BaseController
         foreach ($states as $state) {
             $state->tickets = app()->make('GetTicketInteractor')->getTicketsPaginatedList(
                 $this->getUser()->id,
-                env('TICKETS_PER_PAGE', 10),
+                999,
                 $projectID,
                 null,
                 $state->id,

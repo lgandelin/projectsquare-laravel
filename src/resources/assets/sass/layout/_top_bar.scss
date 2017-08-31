@@ -134,6 +134,8 @@
                                     height: 26px;
                                     display: block;
                                     margin-bottom: 7px;
+                                    position: relative;
+                                    top: -2px;
                                 }
                             }
                         }
@@ -141,86 +143,99 @@
 
                     .content-tab {
                         padding: 2rem;
+                        height: 100%;
+                        overflow-x: hidden;
+                        overflow-y: auto;
 
-                        &.content-notification {
-                            height: 100%;
-                            overflow-x: hidden;
-                            overflow-y: auto;
+                        &::-webkit-scrollbar {
+                            width: 5px;
+                        }
 
-                            &::-webkit-scrollbar {
-                                width: 5px;
-                            }
+                        &::-webkit-scrollbar-thumb {
+                            background-color: slategrey;
+                            outline: 1px solid slategrey;
+                        }
 
-                            &::-webkit-scrollbar-thumb {
-                                background-color: slategrey;
-                                outline: 1px solid slategrey;
-                            }
+                        .notification {
+                             margin-bottom: 3rem;
+                             padding-bottom: 1rem;
+                             overflow: hidden;
 
-                            .notification {
-                                 margin-bottom: 3rem;
-                                 padding-bottom: 1rem;
+                             font-family: $typo1;
+
+                             &:hover {
+                                 background: #f4f8f9;
+                             }
+
+                             a {
+                                 display: block;
+                                 width: 100%;
+                                 height: 100%;
+                                 padding-right: 1rem;
+                             }
+
+                             .project {
+                                 display: block;
+                                 padding: 1.3rem 1.7rem 1.1rem 2.2rem;
+                                 margin-bottom: 1.5rem;
+
+                                 color: white;
+                             }
+
+                             .title {
+                                 display: block;
                                  overflow: hidden;
+                                 margin-bottom: 0.5rem;
+                                 padding-left: 0.1rem;
 
-                                 font-family: $typo1;
+                                 color: #2b2b2b;
+                             }
+
+                             .status {
+                                 display: block;
+                                 padding-left: 0.1rem;
+
+                                 font-size: 1.2rem;
+                                 color: #9e9e9e;
+                             }
+
+                            .avatar {
+                                margin-left: 1.4rem;
+                                float: left;
+                                margin-right: 1.5rem;
+                            }
+
+                             .relative-date {
+                                 margin-top: 0.5rem;
+                                 float: right;
+
+                                 font-size: 1.0rem;
+                                 color: #9e9e9e;
+                             }
+
+                            .message {
+                                display: block;
+                                margin-bottom: 1rem;
+                                overflow: hidden;
+
+                                font-size: 1.2rem;
+                                color: #9e9e9e;
+                            }
+
+                             .link {
+                                 &:hover {
+                                     text-decoration: none;
+                                 }
+                             }
+
+                             .notification-status {
+                                 cursor: pointer;
+                                 color: white;
 
                                  &:hover {
-                                     background: #f4f8f9;
+                                     color: $green;
                                  }
-
-                                 a {
-                                     display: block;
-                                     width: 100%;
-                                     height: 100%;
-                                 }
-
-                                 .project {
-                                     display: block;
-                                     padding: 1.3rem 1.7rem 1.1rem 2.2rem;
-                                     margin-bottom: 1.5rem;
-
-                                     color: white;
-                                 }
-
-                                 .title {
-                                     display: block;
-                                     margin-bottom: 0.5rem;
-                                     padding-left: 1.4rem;
-
-                                     color: #2b2b2b;
-                                 }
-
-                                 .status {
-                                     display: inline-block;
-                                     padding-left: 1.4rem;
-
-                                     font-size: 1.2rem;
-                                     color: #9e9e9e;
-                                 }
-
-                                 .relative-date {
-                                     margin-right: 1rem;
-                                     margin-top: 0.5rem;
-                                     float: right;
-
-                                     font-size: 1.0rem;
-                                     color: #9e9e9e;
-                                 }
-
-                                 .link {
-                                     &:hover {
-                                         text-decoration: none;
-                                     }
-                                 }
-
-                                 .notification-status {
-                                     cursor: pointer;
-                                     color: white;
-
-                                     &:hover {
-                                         color: $green;
-                                     }
-                                 }
-                            }
+                             }
                         }
                     }
                 }

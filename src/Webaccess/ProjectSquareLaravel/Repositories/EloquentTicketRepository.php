@@ -92,6 +92,7 @@ class EloquentTicketRepository implements TicketRepository
         $ticket->id = $ticketModel->id;
         $ticket->title = $ticketModel->title;
         $ticket->description = $ticketModel->description;
+        $ticket->author_user = $ticketModel->author_user;
         $ticket->project = $ticketModel->project;
         $ticket->projectID = $ticketModel->project_id;
         $ticket->typeID = $ticketModel->type_id;

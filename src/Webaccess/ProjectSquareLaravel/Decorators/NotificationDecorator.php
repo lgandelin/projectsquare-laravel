@@ -16,7 +16,7 @@ class NotificationDecorator
         if (is_array($notifications) && sizeof($notifications) > 0) {
             foreach ($notifications as $i => $notification) {
                 $notification->relative_date = self::getRelativeDate($notification->createdAt);
-                if ($notification->type == 'EVENT_CREATED') {
+                /*if ($notification->type == 'EVENT_CREATED') {
                     try {
                         $event = app()->make('GetEventInteractor')->execute(new GetEventRequest([
                             'eventID' => $notification->entityID,
@@ -26,13 +26,14 @@ class NotificationDecorator
                     } catch (\Exception $e) {
                         unset($notifications[$i]);
                     }
-                } elseif ($notification->type == 'MESSAGE_CREATED') {
+                }*/
+                if ($notification->type == 'MESSAGE_CREATED') {
                     try {
                         $message = (new EloquentMessageRepository())->getMessage($notification->entityID);
                         $user = app()->make('UserManager')->getUser($message->userID);
                         $notification->message = $message;
                         $notification->link = $message ? route('conversations_view', ['id' => $message->conversationID]) : '';
-                        $notification->author_name = $user ? $user->firstName.' '.$user->lastName : '';
+                        $notification->message->user = $user;
                     } catch (\Exception $e) {
                         unset($notifications[$i]);
                     }

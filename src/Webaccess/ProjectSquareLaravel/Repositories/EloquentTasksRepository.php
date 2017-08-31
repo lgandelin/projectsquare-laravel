@@ -21,7 +21,7 @@ class EloquentTasksRepository implements TaskRepository
 
     public function getTaskModel($taskID)
     {
-        return Task::with('phase', 'project')->find($taskID);
+        return Task::with('phase', 'project', 'author_user')->find($taskID);
     }
 
     public function getTasks($userID, $projectID = null, $statusID = null, $allocatedUserID = null, $phaseID = null, $entities = false)
@@ -177,6 +177,7 @@ class EloquentTasksRepository implements TaskRepository
         $task->phaseID = $taskModel->phase_id;
         $task->statusID = $taskModel->status_id;
         $task->allocatedUserID = $taskModel->allocated_user_id;
+        $task->author_user = $taskModel->author_user;
         $task->order = $taskModel->order;
 
         if ($taskModel->phase) {
