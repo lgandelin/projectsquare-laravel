@@ -12,7 +12,11 @@ body {
     padding-right: 0rem;
     margin-left: 26.5rem;
 
-    background: #e6f0f3;
+    //background: #e6f0f3;
+
+    .templates {
+        min-height: calc(100vh - 190px);
+    }
 }
 
 .content-expanded {

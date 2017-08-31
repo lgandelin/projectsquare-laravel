@@ -56,7 +56,6 @@ $(document).ready(function() {
                 window.location.reload();
             }
         });
-
     });
 
     //TASKS BOX 
@@ -67,11 +66,20 @@ $(document).ready(function() {
 
     //NOTIFICATIONS BOX
     $('.notifications-link').click(function() {
-        $('.notifications').slideToggle(200);
+        $('.notifications').animate({width: 'toggle'}, 200);
         $('.todos').hide(200);
     });
 
-    $('.notifications').on('click', '.notification .status', function() {
+    $('.top-right-menu .notifications .tabs li').click(function() {
+        $('.top-right-menu .notifications .content-tab').hide();
+        $('.top-right-menu .notifications .tabs li').removeClass('current');
+
+        var tab = $(this).data('tab');
+        $('.top-right-menu .notifications .tabs li[data-tab="' + tab + '"]').addClass('current');
+        $('.top-right-menu .notifications .content-tab[data-content="' + tab + '"]').show();
+    });
+
+    $('.notifications').on('click', '.notification .notification-status', function() {
         $(this).toggleClass('read', 'not-read');
 
         var notification = $(this).closest('.notification');

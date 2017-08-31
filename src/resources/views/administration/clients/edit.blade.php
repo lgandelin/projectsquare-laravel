@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="content-page">
-        <div class="templates">
+        <div class="templates client-template-edit">
             <div class="page-header">
                 <h1>{{ trans('projectsquare::clients.edit_client') }}</h1>
                   <a href="{{ route('clients_index') }}" class="btn back"></a>
@@ -54,8 +54,12 @@
                             <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                             <td>{{ $user->client_role }}</td>
                             <td align="right">
-                                <a href="{{ route('clients_edit_user', ['client_id' => $client->id, 'user_id' => $user->id]) }}" class="btn button"><span class="glyphicon glyphicon-pencil edit"></span> <span class="value edit">{{ trans('projectsquare::generic.edit') }}</span></a>
-                                <a href="{{ route('clients_delete_user', ['client_id' => $client->id, 'user_id' => $user->id]) }}" class="btn btn-delete delete"><span class="glyphicon glyphicon-remove picto-delete"></span> <span class="value picto-delete">{{ trans('projectsquare::generic.delete') }}</span></a>
+                                <a href="{{ route('clients_edit_user', ['client_id' => $client->id, 'user_id' => $user->id]) }}" class="btn btn-edit" title="{{ trans('projectsquare::generic.edit') }}">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </a>
+                                <a href="{{ route('clients_delete_user', ['client_id' => $client->id, 'user_id' => $user->id]) }}" class="btn btn-delete" title="{{ trans('projectsquare::generic.delete') }}">
+                                    <i class="btn cancel"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
