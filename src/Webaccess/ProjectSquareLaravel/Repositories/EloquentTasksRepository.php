@@ -69,9 +69,7 @@ class EloquentTasksRepository implements TaskRepository
             $tasks->where('allocated_user_id', '=', '');
         }
 
-        if ($phaseID) {
-            $tasks->where('phase_id', '=', $phaseID);
-        }
+        $tasks->where('phase_id', '=', $phaseID);
 
         if ($sortColumn == 'client') {
             $tasks->join('projects', 'projects.id', '=', 'tasks.project_id')

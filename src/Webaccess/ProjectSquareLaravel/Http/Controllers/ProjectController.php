@@ -48,7 +48,7 @@ class ProjectController extends BaseController
                 'status' => Session::get('project_tasks_filter_status'),
                 'phase' => Session::get('project_tasks_filter_phase'),
             ],
-            'other_tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), null, null, new GetTasksRequest([
+            'other_tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, 999, null, null, new GetTasksRequest([
                 'projectID' => $projectID,
                 'statusID' => Session::get('project_tasks_filter_status') === "na" ? null : Session::get('project_tasks_filter_status'),
                 'phaseID' => null,
@@ -85,7 +85,7 @@ class ProjectController extends BaseController
 
         return view('projectsquare::project.tasks.edit', [
             'task' => $task,
-            'other_tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), null, null, new GetTasksRequest([
+            'other_tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, 999, null, null, new GetTasksRequest([
                 'projectID' => $projectID,
                 'statusID' => Session::get('project_tasks_filter_status') === "na" ? null : Session::get('project_tasks_filter_status'),
                 'phaseID' => null,
