@@ -33,11 +33,6 @@ class DashboardController extends BaseController
                 null,
                 $this->getUser()->id
             ),
-            'conversations' => app()->make('ConversationManager')->getConversationsPaginatedList(
-                $this->getUser()->id,
-                null,
-                env('CONVERSATIONS_PER_PAGE', 10)
-            ),
             'events' => app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
                 'userID' => $this->getUser()->id,
             ])),
@@ -52,11 +47,14 @@ class DashboardController extends BaseController
 
     private function initWidgetsIfNecessary()
     {
-        $widgets[]= ['name' => 'tickets', 'width' => 7];
-        $widgets[]= ['name' => 'messages', 'width' => 5];
+        if ($this->isUserAnAdmin()) {
+            $widgets[]= ['name' => 'reporting', 'width' => 12];
+        }
+
+        $widgets[]= ['name' => 'tickets', 'width' => 6];
 
         if (!$this->isUserAClient()) {
-            $widgets[]= ['name' => 'tasks', 'width' => 12];
+            $widgets[]= ['name' => 'tasks', 'width' => 6];
             $widgets[]= ['name' => 'planning', 'width' => 12];
         } else {
             $widgets[]= ['name' => 'calendar', 'width' => 6];
