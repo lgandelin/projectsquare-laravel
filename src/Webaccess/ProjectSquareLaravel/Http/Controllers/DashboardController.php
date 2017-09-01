@@ -3,7 +3,9 @@
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
 use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
+use Webaccess\ProjectSquare\Requests\Projects\GetProjectProgressRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 use Webaccess\ProjectSquare\Requests\Todos\GetTodosRequest;
 use Webaccess\ProjectSquare\Requests\Calendar\GetStepsRequest;
@@ -42,6 +44,7 @@ class DashboardController extends BaseController
             'steps' => ($this->getCurrentProject()) ? app()->make('GetStepsInteractor')->execute(new GetStepsRequest([
                 'projectID' => $this->getCurrentProject()->id,
             ])) : [],
+            'current_projects_reporting' => $this->getCurrentProjectReporting()
         ]);
     }
 
@@ -63,5 +66,25 @@ class DashboardController extends BaseController
         if (!isset($_COOKIE['dashboard-widgets-' . $this->getUser()->id])) {
             $_COOKIE['dashboard-widgets-' . $this->getUser()->id] = json_encode($widgets);
         }
+    }
+
+    private function getCurrentProjectReporting()
+    {
+        list($projects, $archived_projects) = $this->getProjects();
+        foreach ($projects as $project) {
+            $project->phases = app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
+                'projectID' => $project->id
+            ]));
+            $project->progress = app()->make('GetProjectProgressInteractor')->execute(new GetProjectProgressRequest([
+                'projectID' => $project->id,
+                'phases' => $project->phases
+            ]));
+            $project->differenceSpentEstimated = 0;
+            foreach ($project->phases as $phase) {
+                $project->differenceSpentEstimated += $phase->differenceSpentEstimated;
+            }
+        }
+
+        return $projects;
     }
 }
