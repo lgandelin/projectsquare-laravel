@@ -66,7 +66,12 @@ $(document).ready(function() {
 
     //NOTIFICATIONS BOX
     $('.notifications-link').click(function() {
-        $('.notifications').animate({width: 'toggle'}, 200);
+        $('.notifications').toggle(200);
+
+        if ($('.top-right-menu .notifications .content-tab[data-content="1"]').children('.notification').length == 0 && $('.top-right-menu .notifications .content-tab[data-content="2"]').children('.notification').length > 0) {
+            $('.top-right-menu .notifications .tabs li[data-tab="2"]').trigger('click');
+        }
+
         $('.todos').hide(200);
     });
 

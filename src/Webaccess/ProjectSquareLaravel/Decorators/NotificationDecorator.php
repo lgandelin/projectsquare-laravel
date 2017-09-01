@@ -6,6 +6,7 @@ use DateTime;
 use Webaccess\ProjectSquare\Requests\Planning\GetEventRequest;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentFileRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentMessageRepository;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTasksRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentTicketRepository;
 
@@ -61,6 +62,14 @@ class NotificationDecorator
                         $notification->file = $file;
                         $notification->file_name = $file ? $file->name : '';
                         $notification->link = $file ? route('project_files', ['id' => $file->project_id]) : '';
+                    } catch(\Exception $e) {
+                        unset($notifications[$i]);
+                    }
+                } elseif ($notification->type == 'ASSIGNED_TO_PROJECT') {
+                    try {
+                        $project = (new EloquentProjectRepository())->getProject($notification->entityID);
+                        $notification->project = $project;
+                        $notification->link = $project ? route('project_tasks', ['id' => $project->id]) : '';
                     } catch(\Exception $e) {
                         unset($notifications[$i]);
                     }

@@ -570,7 +570,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         App::bind('AddUserToProjectInteractor', function () {
             return new AddUserToProjectInteractor(
                 new EloquentUserRepository(),
-                new EloquentProjectRepository()
+                new EloquentProjectRepository(),
+                new EloquentNotificationRepository()
             );
         });
 

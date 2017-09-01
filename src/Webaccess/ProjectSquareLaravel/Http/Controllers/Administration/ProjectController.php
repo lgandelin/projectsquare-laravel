@@ -472,20 +472,27 @@ class ProjectController extends BaseController
         try {
             $project = app()->make('ProjectManager')->getProjectWithUsers($projectID);
 
-            //Remove all users
+            $projectUserIDs = [];
             foreach ($project->users as $user) {
-                app()->make('ProjectManager')->removeUserFromProject($projectID, $user->id, $this->getUser()->id);
+                $projectUserIDs[]= $user->id;
             }
 
-            //Add users
             foreach ($userIDs as $userID) {
-                $user = app()->make('UserManager')->getUser($userID);
+                if (!in_array($userID, $projectUserIDs)) {
+                    $user = app()->make('UserManager')->getUser($userID);
 
-                app()->make('AddUserToProjectInteractor')->execute(new AddUserToProjectRequest([
-                    'projectID' => $projectID,
-                    'userID' => $userID,
-                    'roleID' => $user->roleID
-                ]));
+                    app()->make('AddUserToProjectInteractor')->execute(new AddUserToProjectRequest([
+                        'projectID' => $projectID,
+                        'userID' => $userID,
+                        'roleID' => $user->roleID,
+                        'requesterUserID' => $this->getUser()->id
+                    ]));
+                }
+            }
+
+            $removedUserIDs = array_diff($projectUserIDs, $userIDs);
+            foreach ($removedUserIDs as $userID) {
+                app()->make('ProjectManager')->removeUserFromProject($projectID, $userID, $this->getUser()->id);
             }
 
             $request->session()->flash('confirmation', trans('projectsquare::projects.edit_team_success'));
