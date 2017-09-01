@@ -34,18 +34,18 @@
             @endif
 
             @if (!$is_client)
-                    <div style="display: inline-block">
-                        <label for="estimated_time">{{ trans('projectsquare::tasks.estimated_time') }}</label><br>
-                        <input class="form-control" type="text" name="estimated_time_hours" style="display: inline-block; width: 6rem; margin-left: 1rem; margin-right: 0.5rem;" value="@if (isset($ticket) && isset($ticket->states[0]) && isset($ticket->states[0]->estimatedTimeHours)){{ $ticket->states[0]->estimatedTimeHours }}@endif" /> {{ trans('projectsquare::generic.hours') }}
-                    </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="margin-bottom: 2rem;">
+                    <label for="estimated_time">{{ trans('projectsquare::tasks.estimated_time') }}</label><br>
+                    <input class="form-control" type="text" name="estimated_time_hours" style="display: inline-block; width: 6rem; margin-right: 0.5rem;" value="@if (isset($ticket) && isset($ticket->states[0]) && isset($ticket->states[0]->estimatedTimeHours)){{ $ticket->states[0]->estimatedTimeHours }}@endif" /> {{ trans('projectsquare::generic.hours') }}
+                </div>
 
-                    <div style="display: inline-block; margin-left: 5rem;">
-                        <label for="estimated_time">{{ trans('projectsquare::tasks.spent_time') }}</label><br>
-                        <input class="form-control" type="text" name="spent_time_hours" style="display: inline-block; width: 6rem; margin-left: 1rem; margin-right: 0.5rem;" value="@if (isset($ticket) && isset($ticket->states[0]) && isset($ticket->states[0]->spentTimeHours)){{ $ticket->states[0]->spentTimeHours }}@endif" /> {{ trans('projectsquare::generic.hours') }}
-                    </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="margin-bottom: 2rem;">
+                    <label for="estimated_time">{{ trans('projectsquare::tasks.spent_time') }}</label><br>
+                    <input class="form-control" type="text" name="spent_time_hours" style="display: inline-block; width: 6rem; margin-right: 0.5rem;" value="@if (isset($ticket) && isset($ticket->states[0]) && isset($ticket->states[0]->spentTimeHours)){{ $ticket->states[0]->spentTimeHours }}@endif" /> {{ trans('projectsquare::generic.hours') }}
+                </div>
             @endif
 
-            <button type="submit" class="btn valid" style="margin-left: 5rem;">
+            <button type="submit" class="btn valid">
                 <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
             </button>
         </div>

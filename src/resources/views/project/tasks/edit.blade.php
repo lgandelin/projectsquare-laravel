@@ -26,22 +26,6 @@
                             <h2>{{ trans('projectsquare::tasks.description') }}</h2>
                             <textarea class="form-control" rows="12" placeholder="{{ trans('projectsquare::tasks.description') }}" name="description">@if (isset($task->description)){{ $task->description }}@endif</textarea>
                         </div>
-
-                        <div class="form-group">
-                            <div style="display: inline-block;">
-                                <label for="estimated_time" style="display: inline-block; margin-right: 2rem;">{{ trans('projectsquare::tasks.estimated_time') }}</label>
-                                <input class="form-control" type="text" name="estimated_time_days" style="display: inline-block; width: 6rem; margin-right: 0.5rem;" value="@if (isset($task->estimatedTimeDays)){{ $task->estimatedTimeDays }}@endif" /> {{ trans('projectsquare::generic.days') }}
-                            </div>
-
-                            <div style="display: inline-block; margin-left: 5rem;">
-                                <label for="estimated_time" style="display: inline-block; margin-right: 2rem;">{{ trans('projectsquare::tasks.spent_time') }}</label>
-                                <input class="form-control" type="text" name="spent_time_days" style="display: inline-block; width: 6rem; margin-right: 0.5rem;" value="@if (isset($task->spentTimeDays)){{ $task->spentTimeDays }}@endif" /> {{ trans('projectsquare::generic.days') }}
-                            </div>
-
-                            <button type="submit" class="btn valid" style="margin-left: 4rem;">
-                                <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
-                            </button>
-                        </div>
                     </div>
 
                     <div class="col-md-6">
@@ -79,6 +63,24 @@
                                 <div class="info bg-info">{{ trans('projectsquare::tasks.no_task_status_yet') }}</div>
                             @endif
                         </div>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" style="margin-bottom: 2rem;">
+                        <label for="estimated_time" style="display: inline-block; margin-right: 2rem;">{{ trans('projectsquare::tasks.estimated_time') }}</label>
+                        <input class="form-control" type="text" name="estimated_time_days" style="display: inline-block; width: 6rem; margin-right: 0.5rem;" value="@if (isset($task->estimatedTimeDays)){{ $task->estimatedTimeDays }}@endif" /> {{ trans('projectsquare::generic.days') }}
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" style="margin-bottom: 2rem;">
+                        <label for="estimated_time" style="display: inline-block; margin-right: 2rem;">{{ trans('projectsquare::tasks.spent_time') }}</label>
+                        <input class="form-control" type="text" name="spent_time_days" style="display: inline-block; width: 6rem; margin-right: 0.5rem;" value="@if (isset($task->spentTimeDays)){{ $task->spentTimeDays }}@endif" /> {{ trans('projectsquare::generic.days') }}
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <button type="submit" class="btn valid">
+                            <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
+                        </button>
                     </div>
                 </div>
 
