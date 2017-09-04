@@ -149,7 +149,7 @@
                         <div class="content-tab" data-content="2" style="display: none">
                             @foreach ($notifications as $notification)
                                 @if (in_array($notification->type, ['MESSAGE_CREATED']))
-                                    <div class="notification" data-id="{{ $notification->id }}">
+                                    <div class="notification message-notification" data-id="{{ $notification->id }}">
                                         @if ($notification->type == 'MESSAGE_CREATED')
                                             @if ($notification->message)
                                                 @if ($notification->message->project)
@@ -170,7 +170,41 @@
                                                     <span class="title">{{ $notification->message->user->firstName . ' ' . $notification->message->user->lastName }}</span>
                                                     <span class="message">{{ $notification->message->content }}</span>
                                                     @if ($notification->relative_date)<span class="relative-date">{{ $notification->relative_date }}</span>@endif
-                                                    @if (isset($notification->link))</a>@endif
+                                                @if (isset($notification->link))</a>@endif
+
+                                                @if ($notification->message->conversation)
+                                                    <div class="conversation" id="conversation-{{ $notification->message->conversation->id }}" data-id="{{ $notification->message->conversation->id }}" style="display:none">
+                                                        <div class="text-conversation"width="50%">
+                                                            {{ str_limit($notification->message->conversation->messages[sizeof($notification->message->conversation->messages) - 1]->content, 100) }}
+                                                        </div>
+
+                                                        <div align="center">
+                                                            @include('projectsquare::includes.avatar', [
+                                                                'id' => $notification->message->conversation->messages[sizeof($notification->message->conversation->messages) - 1]->user->id,
+                                                                'name' => $notification->message->conversation->messages[sizeof($notification->message->conversation->messages) - 1]->user->complete_name
+                                                            ])
+                                                        </div>
+
+                                                        <div>
+                                                            {{ date('d/m H:i', strtotime($notification->message->conversation->messages[sizeof($notification->message->conversation->messages) - 1]->created_at)) }}
+                                                        </div>
+
+                                                        <div align="center">
+                                                            <!--<a href="{{ route('conversations_view', ['id' => $notification->message->conversation->id]) }}" class="btn btn-sm btn-primary see-more" style="margin-right: 1rem"></a>-->
+                                                            <button class="button-message pull-right reply-message" data-id="{{ $notification->message->conversation->id }}"><span class="glyphicon-comment"></span></button>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="conversation-reply" style="display:none" id="conversation-{{ $notification->message->conversation->id }}-reply" data-id="{{ $notification->message->conversation->id }}">
+                                                        <div class="message-inserted"></div>
+
+                                                        <div class="message new-message">
+                                                            <textarea class="form-control" placeholder="{{ trans('projectsquare::dashboard.your_message') }}" rows="4"></textarea>
+                                                            <button class="btn btn-sm back pull-right cancel-message" data-id="{{ $notification->message->conversation->id }}" style="margin-top:1.5rem"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.cancel') }}</button>
+                                                            <button class="btn btn-sm valid pull-right valid-message" data-id="{{ $notification->message->conversation->id }}" style="margin-top:1.5rem; margin-right: 1rem"><span class="glyphicon glyphicon-ok"></span> {{ trans('projectsquare::generic.valid') }}</button>
+                                                        </div>
+                                                    </div>
+                                                @endif
                                             @endif
                                         @endif
                                     </div>

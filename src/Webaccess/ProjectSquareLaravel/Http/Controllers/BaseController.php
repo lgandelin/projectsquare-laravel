@@ -42,6 +42,7 @@ class BaseController extends Controller
             view()->share('left_bar_tools', isset($_COOKIE['left-bar-tools']) ? $_COOKIE['left-bar-tools'] : 'opened');
             view()->share('left_bar_management', isset($_COOKIE['left-bar-management']) ? $_COOKIE['left-bar-management'] : 'opened');
             view()->share('left_bar_administration', isset($_COOKIE['left-bar-administration']) ? $_COOKIE['left-bar-administration'] : 'opened');
+            view()->share('conversations', app()->make('ConversationManager')->getConversations($this->getUser()->id));
         }
     }
 
