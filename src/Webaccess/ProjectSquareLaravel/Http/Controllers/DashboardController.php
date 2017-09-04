@@ -44,7 +44,7 @@ class DashboardController extends BaseController
             'steps' => ($this->getCurrentProject()) ? app()->make('GetStepsInteractor')->execute(new GetStepsRequest([
                 'projectID' => $this->getCurrentProject()->id,
             ])) : [],
-            'current_projects_reporting' => $this->getCurrentProjectReporting()
+            'current_projects_reporting' => $this->isUserAnAdmin() ? $this->getCurrentProjectReporting() : [],
         ]);
     }
 
@@ -80,6 +80,7 @@ class DashboardController extends BaseController
                 'phases' => $project->phases
             ]));
             $project->differenceSpentEstimated = 0;
+
             foreach ($project->phases as $phase) {
                 $project->differenceSpentEstimated += $phase->differenceSpentEstimated;
             }
