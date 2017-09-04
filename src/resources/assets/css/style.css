@@ -18107,6 +18107,51 @@ select.items_per_page {
   border-left: 0;
   border-right: 0;
 }
+/* line 199, ../sass/_dashboard.scss */
+.dashboard-content .reporting {
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+}
+/* line 205, ../sass/_dashboard.scss */
+.dashboard-content .reporting .project {
+  display: inline-block;
+  width: 18%;
+  margin-right: 2%;
+  padding-top: 2.8rem;
+  padding-bottom: 2.2rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  position: relative;
+  vertical-align: middle;
+  font-size: 1.5rem;
+  font-family: "AvantGarde-Book";
+  color: white;
+  border: 1px solid #bbc1bf;
+}
+/* line 222, ../sass/_dashboard.scss */
+.dashboard-content .reporting .project .time-values {
+  float: right;
+  font-size: 1.7rem;
+}
+/* line 227, ../sass/_dashboard.scss */
+.dashboard-content .reporting .project:last-child {
+  margin-right: 0;
+}
+/* line 231, ../sass/_dashboard.scss */
+.dashboard-content .reporting .project .project-team {
+  position: absolute;
+  bottom: -1.5rem;
+  left: 1.25rem;
+}
+/* line 236, ../sass/_dashboard.scss */
+.dashboard-content .reporting .project .project-team .avatar {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 0.5rem;
+  border: none;
+}
 
 /* line 1, ../sass/_project.scss */
 .project-template {
@@ -19437,9 +19482,14 @@ select.items_per_page {
   .last-messages .table .conversation .text-conversation {
     min-width: 250px;
   }
+
+  /* line 31, ../sass/includes/_responsive.scss */
+  .dashboard-content .reporting .project {
+    width: 33%;
+  }
 }
 @media only screen and (max-width: 1200px) and (min-width: 1000px) {
-  /* line 34, ../sass/includes/_responsive.scss */
+  /* line 42, ../sass/includes/_responsive.scss */
   .tabs li a {
     padding-left: 0.6rem;
     padding-right: 0.6rem;
@@ -19447,55 +19497,71 @@ select.items_per_page {
     padding-bottom: 1rem;
     font-size: 1.4rem;
   }
-  /* line 43, ../sass/includes/_responsive.scss */
+  /* line 51, ../sass/includes/_responsive.scss */
   .tabs .border-bottom {
     height: 41px;
   }
+
+  /* line 58, ../sass/includes/_responsive.scss */
+  .dashboard-content .reporting .project {
+    width: 50%;
+  }
 }
 @media only screen and (max-width: 1000px) {
-  /* line 56, ../sass/includes/_responsive.scss */
+  /* line 72, ../sass/includes/_responsive.scss */
   .planning .fc-toolbar .fc-left, .planning-template .fc-toolbar .fc-left, .settings-template .fc-toolbar .fc-left {
     margin-bottom: 2rem;
   }
-  /* line 60, ../sass/includes/_responsive.scss */
+  /* line 76, ../sass/includes/_responsive.scss */
   .planning .fc-toolbar .fc-right, .planning-template .fc-toolbar .fc-right, .settings-template .fc-toolbar .fc-right {
     float: left;
     margin-bottom: 2rem;
   }
 
-  /* line 70, ../sass/includes/_responsive.scss */
+  /* line 85, ../sass/includes/_responsive.scss */
+  .dashboard-content .reporting .project {
+    width: 50%;
+  }
+
+  /* line 94, ../sass/includes/_responsive.scss */
   .left-bar ul .menu .toggle-left-bar {
     display: none;
   }
 
-  /* line 79, ../sass/includes/_responsive.scss */
+  /* line 103, ../sass/includes/_responsive.scss */
   .tabs li {
     border-bottom: 5px solid white;
   }
-  /* line 83, ../sass/includes/_responsive.scss */
+  /* line 107, ../sass/includes/_responsive.scss */
   .tabs .border-bottom {
     display: none;
   }
 
-  /* line 91, ../sass/includes/_responsive.scss */
+  /* line 115, ../sass/includes/_responsive.scss */
   .table tr td .btn, .table .template-upload td .btn {
     margin-right: 1rem;
     padding: 5px 10px;
   }
-  /* line 94, ../sass/includes/_responsive.scss */
+  /* line 118, ../sass/includes/_responsive.scss */
   .table tr td .btn .glyphicon-remove, .table tr td .btn .glyphicon, .table tr td .btn .left-bar > ul .menu .toggle-childs, .left-bar > ul .menu .table tr td .btn .toggle-childs, .table tr td .btn .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .table tr td .btn .icon, .table .template-upload td .btn .glyphicon-remove, .table .template-upload td .btn .glyphicon, .table .template-upload td .btn .left-bar > ul .menu .toggle-childs, .left-bar > ul .menu .table .template-upload td .btn .toggle-childs, .table .template-upload td .btn .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .table .template-upload td .btn .icon {
     margin-right: 0rem;
   }
-  /* line 97, ../sass/includes/_responsive.scss */
+  /* line 121, ../sass/includes/_responsive.scss */
   .table tr td .btn .value, .table .template-upload td .btn .value {
     display: none;
   }
-  /* line 102, ../sass/includes/_responsive.scss */
+  /* line 126, ../sass/includes/_responsive.scss */
   .table tr td .delete, .table .template-upload td .delete {
     float: right;
   }
-  /* line 107, ../sass/includes/_responsive.scss */
+  /* line 131, ../sass/includes/_responsive.scss */
   .table tr .file_button, .table .template-upload .file_button {
     width: 115px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  /* line 142, ../sass/includes/_responsive.scss */
+  .dashboard-content .reporting .project {
+    width: 75%;
   }
 }

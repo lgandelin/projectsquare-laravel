@@ -25,6 +25,14 @@
 			}
 		}
 	}
+
+	.dashboard-content {
+		.reporting {
+			.project {
+				width: 33%;
+			}
+		}
+	}
 }
 
 @media only screen and (max-width:1200px) and (min-width: 1000px) {
@@ -44,6 +52,14 @@
 			height: 41px;
 		}
 	}
+
+	.dashboard-content {
+		.reporting {
+			.project {
+				width: 50%;
+			}
+		}
+	}
 }
 
 
@@ -60,6 +76,14 @@
 			.fc-right {
 				float: left;
 				margin-bottom: 2rem;
+			}
+		}
+	}
+
+	.dashboard-content {
+		.reporting {
+			.project {
+				width: 50%;
 			}
 		}
 	}
@@ -106,6 +130,17 @@
 
 			.file_button {
 				width: 115px;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width:768px) {
+
+	.dashboard-content {
+		.reporting {
+			.project {
+				width: 75%;
 			}
 		}
 	}
