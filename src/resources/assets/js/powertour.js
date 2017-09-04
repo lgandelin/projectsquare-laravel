@@ -54,18 +54,10 @@ $(document).ready(function() {
                         highlight       : true,
                     },
                     {
-                        hookTo          : '#messages-widget',
-                        content         : '#step-messages-widget',
-                        width           : 400,
-                        position        : 'lm',
-                        offsetX         : 15,
-                        highlight       : true,
-                    },
-                    {
                         hookTo          : '#tasks-widget',
                         content         : '#step-tasks-widget',
                         width           : 490,
-                        position        : 'bm',
+                        position        : 'lm',
                         scrollSpeed     : 400,
                         offsetX         : 15,
                         highlight       : true,
@@ -74,9 +66,10 @@ $(document).ready(function() {
                         hookTo          : '#planning-widget',
                         content         : '#step-planning-widget',
                         width           : 480,
-                        position        : 'bm',
+                        position        : 'tm',
                         scrollSpeed     : 400,
-                        offsetX         : 15,
+                        offsetX         : 0,
+                        offsetY         : 25,
                         highlight       : true,
                     }
                 ],
@@ -104,5 +97,4 @@ $(document).ready(function() {
             }
         ]
     });
-    $.powerTour('run',1);
 });

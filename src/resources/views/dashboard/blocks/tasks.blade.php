@@ -1,4 +1,4 @@
-<div class="block last-tasks">
+<div class="block last-tasks" id="tasks-widget">
     <div class="block-content table-responsive">
         <h3>{{ trans('projectsquare::dashboard.last_tasks') }}
 

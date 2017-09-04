@@ -3,6 +3,8 @@
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Cookie\CookieJar;
 use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
 use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Projects\GetProjectProgressRequest;
@@ -12,7 +14,7 @@ use Webaccess\ProjectSquare\Requests\Calendar\GetStepsRequest;
 
 class DashboardController extends BaseController
 {
-    public function index(Request $request)
+    public function index(CookieJar $cookieJar, Request $request)
     {
         parent::__construct($request);
 
@@ -21,6 +23,7 @@ class DashboardController extends BaseController
         if ($this->isUserAClient()) {
             return redirect()->route('project_tickets', $this->getCurrentProject()->id);
         }
+        $cookieJar->queue(cookie('already_connected', true));
 
         return view('projectsquare::dashboard.index', [
             'widgets' => json_decode($_COOKIE['dashboard-widgets-' . $this->getUser()->id]),
@@ -50,6 +53,7 @@ class DashboardController extends BaseController
                 'projectID' => $this->getCurrentProject()->id,
             ])) : [],
             'current_projects_reporting' => $this->isUserAnAdmin() ? $this->getCurrentProjectReporting() : [],
+            'first_connection' => !Cookie::has('already_connected')
         ]);
     }
 
