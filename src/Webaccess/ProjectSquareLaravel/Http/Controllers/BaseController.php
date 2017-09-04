@@ -145,7 +145,7 @@ class BaseController extends Controller
         $projects = [];
         $archived_projects = [];
 
-        foreach (Project::orderBy('created_at', 'desc')->get() as $project) {
+        foreach (Project::with('users')->orderBy('created_at', 'desc')->get() as $project) {
 
             if ($this->isUserAClient()) {
                 if ($project->client_id == $this->getUser()->client_id) {

@@ -49,7 +49,7 @@ class EloquentTasksRepository implements TaskRepository
             $projectIDs[]= $project->id;
         }
 
-        $tasks = Task::whereIn('project_id', $projectIDs)->with('project', 'project.client')->with('project.client')->with('phase');
+        $tasks = Task::whereIn('project_id', $projectIDs)->with('project', 'project.client', 'allocated_user')->with('project.client')->with('phase');
 
         if ($projectID) {
             $tasks->where('project_id', '=', $projectID);

@@ -107,9 +107,7 @@ class EloquentUserRepository implements UserRepository
             if ($roleID != null) {
                 $user->role_id = $roleID;
             }
-            if ($isAdministrator !== false) {
-                $user->is_administrator = $isAdministrator;
-            }
+            $user->is_administrator = $isAdministrator;
             $user->save();
         }
     }

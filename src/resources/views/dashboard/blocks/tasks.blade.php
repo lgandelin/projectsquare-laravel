@@ -1,7 +1,7 @@
 <div class="block last-tasks">
     <div class="block-content table-responsive">
         <h3>{{ trans('projectsquare::dashboard.last_tasks') }}
-        
+
             @include('projectsquare::includes.tooltip', [
                 'text' => trans('projectsquare::tooltips.tasks')
             ])
