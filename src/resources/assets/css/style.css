@@ -19381,11 +19381,17 @@ select.items_per_page {
 }
 
 /* line 4, ../sass/_progress.scss */
+.progress-template .no-entry,
+.spent-time-template .no-entry {
+  margin-top: 1rem;
+  margin-left: 1.5rem;
+}
+/* line 9, ../sass/_progress.scss */
 .progress-template .project,
 .spent-time-template .project {
   margin-bottom: 3rem;
 }
-/* line 7, ../sass/_progress.scss */
+/* line 12, ../sass/_progress.scss */
 .progress-template .project .header,
 .spent-time-template .project .header {
   color: white;
@@ -19393,18 +19399,18 @@ select.items_per_page {
   font-size: 2.0rem;
   padding: 1.5rem 3rem;
 }
-/* line 14, ../sass/_progress.scss */
+/* line 19, ../sass/_progress.scss */
 .progress-template .project td,
 .spent-time-template .project td {
   padding: 1.5rem;
 }
-/* line 18, ../sass/_progress.scss */
+/* line 23, ../sass/_progress.scss */
 .progress-template .project .phase-value,
 .spent-time-template .project .phase-value {
   font-size: 2.7rem;
   text-align: center;
 }
-/* line 23, ../sass/_progress.scss */
+/* line 28, ../sass/_progress.scss */
 .progress-template .project .total,
 .spent-time-template .project .total {
   padding: 1.5rem;
@@ -19412,20 +19418,20 @@ select.items_per_page {
   text-align: center;
   color: white;
 }
-/* line 31, ../sass/_progress.scss */
+/* line 36, ../sass/_progress.scss */
 .progress-template .project .phase .name,
 .spent-time-template .project .phase .name {
   display: block;
   margin-bottom: 1rem;
 }
-/* line 35, ../sass/_progress.scss */
+/* line 40, ../sass/_progress.scss */
 .progress-template .project .phase .name .duration,
 .spent-time-template .project .phase .name .duration {
   margin-top: 0.75rem;
   float: right;
   font-size: 1.3rem;
 }
-/* line 44, ../sass/_progress.scss */
+/* line 49, ../sass/_progress.scss */
 .progress-template .project .phase .tasks .task,
 .spent-time-template .project .phase .tasks .task {
   float: left;
@@ -19436,7 +19442,7 @@ select.items_per_page {
   margin-bottom: 1px;
   position: relative;
 }
-/* line 53, ../sass/_progress.scss */
+/* line 58, ../sass/_progress.scss */
 .progress-template .project .phase .tasks .task .description,
 .spent-time-template .project .phase .tasks .task .description {
   position: absolute;
@@ -19451,7 +19457,7 @@ select.items_per_page {
   text-align: left;
   padding: 0.75rem 1.25rem;
 }
-/* line 66, ../sass/_progress.scss */
+/* line 71, ../sass/_progress.scss */
 .progress-template .project .phase .tasks .task .description .name,
 .spent-time-template .project .phase .tasks .task .description .name {
   display: block;
@@ -19459,26 +19465,26 @@ select.items_per_page {
   font-size: 1.6rem;
   margin-bottom: 5px;
 }
-/* line 73, ../sass/_progress.scss */
+/* line 78, ../sass/_progress.scss */
 .progress-template .project .phase .tasks .task .description .duration,
 .spent-time-template .project .phase .tasks .task .description .duration {
   color: #333;
 }
-/* line 77, ../sass/_progress.scss */
+/* line 82, ../sass/_progress.scss */
 .progress-template .project .phase .tasks .task .description .avatar,
 .spent-time-template .project .phase .tasks .task .description .avatar {
   float: right;
   width: 30px;
   height: 30px;
 }
-/* line 86, ../sass/_progress.scss */
+/* line 91, ../sass/_progress.scss */
 .progress-template .project .phase .tasks .task:hover .description,
 .spent-time-template .project .phase .tasks .task:hover .description {
   font-size: 13px;
   display: block;
 }
 
-/* line 96, ../sass/_progress.scss */
+/* line 101, ../sass/_progress.scss */
 .progress-template .total {
   background: #5497aa;
 }

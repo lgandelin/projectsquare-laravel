@@ -11,7 +11,7 @@
             </h1>
 
             <div class="row">
-                @include('projectsquare::management.spent_time.includes.project_spent_time', ['project' => $project, 'disable_header' => true])
+                @include('projectsquare::management.spent_time.includes.project_spent_time', ['project' => $project, 'project_interface' => true])
             </div>
         </div>
     </div>

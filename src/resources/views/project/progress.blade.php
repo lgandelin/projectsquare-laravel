@@ -11,7 +11,7 @@
             </h1>
 
             <div class="row">
-                @include('projectsquare::management.progress.includes.project_progress', ['project' => $project, 'disable_header' => true])
+                @include('projectsquare::management.progress.includes.project_progress', ['project' => $project, 'project_interface' => true])
             </div>
 
         </div>
