@@ -16957,19 +16957,20 @@ input:focus, textarea:focus, select:focus {
   color: #096a85;
   cursor: pointer;
   border-bottom: 1px solid #eceeed;
+  background: #f4f8f9;
 }
-/* line 36, ../sass/layout/_middle-column.scss */
+/* line 38, ../sass/layout/_middle-column.scss */
 .middle-column .parent .parent-wrapper .toggle-childs {
   margin-top: 4px;
   float: right;
   cursor: pointer;
   font-size: 1.3rem;
 }
-/* line 43, ../sass/layout/_middle-column.scss */
+/* line 45, ../sass/layout/_middle-column.scss */
 .middle-column .parent .parent-wrapper .toggle-childs:hover {
   color: #c8dc1e;
 }
-/* line 48, ../sass/layout/_middle-column.scss */
+/* line 50, ../sass/layout/_middle-column.scss */
 .middle-column .parent .parent-wrapper .childs-number {
   width: 2.4rem;
   height: 2.4rem;
@@ -16979,69 +16980,65 @@ input:focus, textarea:focus, select:focus {
   text-align: center;
   font-size: 1.3rem;
   font-family: "AvantGarde-Book";
-  background: #f4f8f9;
+  background: white;
   border-radius: 50%;
 }
-/* line 65, ../sass/layout/_middle-column.scss */
+/* line 67, ../sass/layout/_middle-column.scss */
 .middle-column .parent .childs .child {
   border-bottom: 1px solid #eeeeee;
   border-right: 3px solid transparent;
 }
-/* line 69, ../sass/layout/_middle-column.scss */
-.middle-column .parent .childs .child.completed {
-  background: #f4f8f9;
-}
-/* line 73, ../sass/layout/_middle-column.scss */
+/* line 71, ../sass/layout/_middle-column.scss */
 .middle-column .parent .childs .child.current {
   border-right: 3px solid #c8dc1e;
 }
-/* line 77, ../sass/layout/_middle-column.scss */
+/* line 75, ../sass/layout/_middle-column.scss */
 .middle-column .parent .childs .child:hover {
   background: #fafafa;
 }
-/* line 81, ../sass/layout/_middle-column.scss */
+/* line 79, ../sass/layout/_middle-column.scss */
 .middle-column .parent .childs .child a {
   width: 100%;
   height: 100%;
   display: block;
 }
-/* line 86, ../sass/layout/_middle-column.scss */
+/* line 84, ../sass/layout/_middle-column.scss */
 .middle-column .parent .childs .child a:hover {
   text-decoration: none;
 }
-/* line 91, ../sass/layout/_middle-column.scss */
+/* line 89, ../sass/layout/_middle-column.scss */
 .middle-column .parent .childs .child .child-wrapper {
   padding: 1rem 1.5rem;
   font-family: "AvantGarde-Book";
   font-size: 1.4rem;
   color: #096a85;
 }
-/* line 98, ../sass/layout/_middle-column.scss */
+/* line 96, ../sass/layout/_middle-column.scss */
 .middle-column .parent .childs .child .child-wrapper .name {
   display: inline-block;
   max-width: 23rem;
   vertical-align: middle;
 }
-/* line 104, ../sass/layout/_middle-column.scss */
+/* line 102, ../sass/layout/_middle-column.scss */
 .middle-column .parent .childs .child .child-wrapper .avatar {
   width: 5rem;
   height: 5rem;
   margin-right: 1.75rem;
   border: none;
 }
-/* line 112, ../sass/layout/_middle-column.scss */
+/* line 110, ../sass/layout/_middle-column.scss */
 .middle-column .parent .childs .child .child-wrapper .priority {
   display: inline-block;
   margin-top: 1rem;
   float: right;
 }
 
-/* line 124, ../sass/layout/_middle-column.scss */
+/* line 122, ../sass/layout/_middle-column.scss */
 .content-expanded .middle-column {
   left: 4.9rem;
 }
 
-/* line 130, ../sass/layout/_middle-column.scss */
+/* line 128, ../sass/layout/_middle-column.scss */
 .client-view .middle-column {
   left: 0;
 }
@@ -18832,7 +18829,7 @@ select.items_per_page {
   float: right;
   margin-top: 1.3rem;
   font-size: 2.5rem;
-  color: #bdbec0;
+  color: #c8dc1e;
 }
 /* line 15, ../sass/_project-tasks.scss */
 .project-tasks-template .content-page {
@@ -19064,45 +19061,44 @@ select.items_per_page {
 .attribution-project-template .middle-column .phase .phase-wrapper {
   padding: 1.25rem 2rem;
   margin-bottom: 1.5rem;
-  background: #f4f8f9;
 }
-/* line 22, ../sass/administration/_project-attribution.scss */
+/* line 20, ../sass/administration/_project-attribution.scss */
 .attribution-project-template .middle-column .phase .phase-wrapper .name {
   font-family: "AvantGarde-Book";
   font-size: 1.6rem;
   color: #2f677e;
 }
-/* line 29, ../sass/administration/_project-attribution.scss */
+/* line 27, ../sass/administration/_project-attribution.scss */
 .attribution-project-template .middle-column .phase .task {
   border-right: 0;
 }
-/* line 32, ../sass/administration/_project-attribution.scss */
+/* line 30, ../sass/administration/_project-attribution.scss */
 .attribution-project-template .middle-column .phase .task.dragged {
   opacity: 0.8;
 }
-/* line 36, ../sass/administration/_project-attribution.scss */
+/* line 34, ../sass/administration/_project-attribution.scss */
 .attribution-project-template .middle-column .phase .task .task-wrapper {
   padding-right: 1.5rem;
 }
-/* line 39, ../sass/administration/_project-attribution.scss */
+/* line 37, ../sass/administration/_project-attribution.scss */
 .attribution-project-template .middle-column .phase .task .task-wrapper:not(.allocated) {
   cursor: move;
 }
-/* line 43, ../sass/administration/_project-attribution.scss */
+/* line 41, ../sass/administration/_project-attribution.scss */
 .attribution-project-template .middle-column .phase .task .task-wrapper:not(.allocated):hover {
   opacity: 0.9;
 }
-/* line 47, ../sass/administration/_project-attribution.scss */
+/* line 45, ../sass/administration/_project-attribution.scss */
 .attribution-project-template .middle-column .phase .task .task-wrapper.allocated {
   background: #f4f8f9;
 }
-/* line 51, ../sass/administration/_project-attribution.scss */
+/* line 49, ../sass/administration/_project-attribution.scss */
 .attribution-project-template .middle-column .phase .task .task-wrapper .default-avatar {
   width: 5rem;
   height: 5rem;
   margin-right: 1.75rem;
 }
-/* line 57, ../sass/administration/_project-attribution.scss */
+/* line 55, ../sass/administration/_project-attribution.scss */
 .attribution-project-template .middle-column .phase .task .task-wrapper .duration {
   float: right;
   margin-top: 1rem;
@@ -19119,7 +19115,7 @@ select.items_per_page {
   background: #f4f8f9;
   border-radius: 50%;
 }
-/* line 76, ../sass/administration/_project-attribution.scss */
+/* line 74, ../sass/administration/_project-attribution.scss */
 .attribution-project-template .middle-column .phase .task .task-wrapper .drag-task {
   float: right;
   top: 1.3rem;
@@ -19127,11 +19123,11 @@ select.items_per_page {
   font-size: 1.9rem;
   cursor: pointer;
 }
-/* line 86, ../sass/administration/_project-attribution.scss */
+/* line 84, ../sass/administration/_project-attribution.scss */
 .attribution-project-template .middle-column .phase .task .task-wrapper .drag-task:hover {
   color: #c8dc1e;
 }
-/* line 90, ../sass/administration/_project-attribution.scss */
+/* line 88, ../sass/administration/_project-attribution.scss */
 .attribution-project-template .middle-column .phase .task .task-wrapper .unallocate-task {
   float: right;
   margin-top: 1.3rem;
@@ -19140,61 +19136,61 @@ select.items_per_page {
   display: none;
   cursor: pointer;
 }
-/* line 103, ../sass/administration/_project-attribution.scss */
+/* line 101, ../sass/administration/_project-attribution.scss */
 .attribution-project-template .middle-column .phase .task .allocated .drag-task {
   display: none;
   cursor: default;
 }
-/* line 108, ../sass/administration/_project-attribution.scss */
+/* line 106, ../sass/administration/_project-attribution.scss */
 .attribution-project-template .middle-column .phase .task .allocated .drag-task:hover {
   color: white;
 }
-/* line 112, ../sass/administration/_project-attribution.scss */
+/* line 110, ../sass/administration/_project-attribution.scss */
 .attribution-project-template .middle-column .phase .task .allocated .unallocate-task {
   display: inline-block;
 }
-/* line 116, ../sass/administration/_project-attribution.scss */
+/* line 114, ../sass/administration/_project-attribution.scss */
 .attribution-project-template .middle-column .phase .task .allocated .unallocate-task:hover {
   color: #c8dc1e;
 }
-/* line 120, ../sass/administration/_project-attribution.scss */
+/* line 118, ../sass/administration/_project-attribution.scss */
 .attribution-project-template .middle-column .phase .task .allocated .duration {
   background: #fafafa;
 }
-/* line 128, ../sass/administration/_project-attribution.scss */
+/* line 126, ../sass/administration/_project-attribution.scss */
 .attribution-project-template .project-attribution-content {
   overflow: hidden;
   padding: 3rem;
   margin-left: 40.5rem;
 }
-/* line 133, ../sass/administration/_project-attribution.scss */
+/* line 131, ../sass/administration/_project-attribution.scss */
 .attribution-project-template .project-attribution-content .notice {
   margin-top: 15rem;
 }
 
-/* line 140, ../sass/administration/_project-attribution.scss */
+/* line 138, ../sass/administration/_project-attribution.scss */
 .occupation-template .preview {
   background: orange;
 }
 
-/* line 145, ../sass/administration/_project-attribution.scss */
+/* line 143, ../sass/administration/_project-attribution.scss */
 .task-wrapper.ui-draggable-dragging {
   padding: 1.2rem 2rem 1.2rem 4rem;
   margin-bottom: 0.5rem;
   position: relative;
   background: #096a85;
 }
-/* line 152, ../sass/administration/_project-attribution.scss */
+/* line 150, ../sass/administration/_project-attribution.scss */
 .task-wrapper.ui-draggable-dragging .name {
   font-family: "AvantGarde-Book";
   font-size: 1.6rem;
   color: white;
 }
-/* line 158, ../sass/administration/_project-attribution.scss */
+/* line 156, ../sass/administration/_project-attribution.scss */
 .task-wrapper.ui-draggable-dragging .avatar, .task-wrapper.ui-draggable-dragging .default-avatar {
   display: none;
 }
-/* line 162, ../sass/administration/_project-attribution.scss */
+/* line 160, ../sass/administration/_project-attribution.scss */
 .task-wrapper.ui-draggable-dragging .duration {
   float: right;
   margin-right: 6rem;
@@ -19203,23 +19199,23 @@ select.items_per_page {
   font-family: "MyriadPro-Regular";
   font-size: 14px;
 }
-/* line 172, ../sass/administration/_project-attribution.scss */
+/* line 170, ../sass/administration/_project-attribution.scss */
 .task-wrapper.ui-draggable-dragging .drag-task {
   float: right;
   color: white;
   font-size: 21px;
   cursor: pointer;
 }
-/* line 181, ../sass/administration/_project-attribution.scss */
+/* line 179, ../sass/administration/_project-attribution.scss */
 .task-wrapper.ui-draggable-dragging .unallocate-task {
   display: none;
 }
 
-/* line 186, ../sass/administration/_project-attribution.scss */
+/* line 184, ../sass/administration/_project-attribution.scss */
 #calendars {
   position: relative;
 }
-/* line 189, ../sass/administration/_project-attribution.scss */
+/* line 187, ../sass/administration/_project-attribution.scss */
 #calendars .loading {
   background: rgba(255, 255, 255, 0.75) url("../img/loading.gif") center center no-repeat;
   position: absolute;
