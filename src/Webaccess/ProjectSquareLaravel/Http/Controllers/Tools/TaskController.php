@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Webaccess\ProjectSquare\Requests\Notifications\ReadNotificationRequest;
+use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
 use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTaskRequest;
@@ -24,13 +25,15 @@ class TaskController extends BaseController
     {
         parent::__construct($request);
 
+        $itemsPerPage = $request->get('it') ? $request->get('it') : env('TASKS_PER_PAGE', 10);
+
         $request->session()->put('tasks_interface', 'tasks');
 
         if (Input::get('filter_project') !== null) Session::put('tasks_filter_project', Input::get('filter_project'));
         if (Input::get('filter_status') !== null) Session::put('tasks_filter_status', Input::get('filter_status'));
         if (Input::get('filter_allocated_user') !== null) Session::put('tasks_filter_allocated_user', Input::get('filter_allocated_user'));
 
-        $tasks = app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest([
+        $tasks = app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, $itemsPerPage, $request->get('sc'), $request->get('so'), new GetTasksRequest([
             'projectID' => Session::get('tasks_filter_project') === "na" ? null : Session::get('tasks_filter_project'),
             'statusID' => Session::get('tasks_filter_status') === "na" ? null : Session::get('tasks_filter_status'),
             'allocatedUserID' => Session::get('tasks_filter_allocated_user') === "na" ? null : Session::get('tasks_filter_allocated_user'),
@@ -46,6 +49,9 @@ class TaskController extends BaseController
                 'allocated_user' => Session::get('tasks_filter_allocated_user'),
                 'status' => Session::get('tasks_filter_status'),
             ],
+            'items_per_page' => $request->get('it') ? $request->get('it') : $itemsPerPage,
+            'sort_column' => $request->get('sc'),
+            'sort_order' => ($request->get('so') == 'asc') ? 'desc' : 'asc',
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
 
@@ -69,6 +75,9 @@ class TaskController extends BaseController
 
         return view('projectsquare::tools.tasks.add', [
             'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
+            'phases' => app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
+                'projectID' => $this->getCurrentProject()->id,
+            ])),
             'users' => ($this->getCurrentProject()) ? app()->make('UserManager')->getUsersByProject($this->getCurrentProject()->id) : app()->make('UserManager')->getAgencyUsers(),
             'current_project_id' => ($this->getCurrentProject()) ? $this->getCurrentProject()->id : null,
             'task_statuses' => self::getTasksStatuses(),
@@ -86,6 +95,7 @@ class TaskController extends BaseController
             $data = [
                 'title' => Input::get('title'),
                 'description' => Input::get('description'),
+                'phaseID' => Input::get('phase_id'),
                 'projectID' => Input::get('project_id'),
                 'statusID' => Input::get('status_id'),
                 'estimatedTimeDays' => StringTool::formatNumber(Input::get('estimated_time_days')),
@@ -100,7 +110,7 @@ class TaskController extends BaseController
 
             $request->session()->flash('confirmation', trans('projectsquare::tasks.add_task_success'));
 
-            return redirect()->route('tasks_index');
+            return ($request->session()->get('tasks_interface') === 'project') ? redirect()->route('project_tasks', ['uuid' => $this->getCurrentProject()->id]) : redirect()->route('tasks_index');
         } catch (\Exception $e) {
             $request->session()->flash('error', $e->getMessage());
         }
@@ -179,6 +189,9 @@ class TaskController extends BaseController
         } catch (\Exception $e) {
             $request->session()->flash('error', $e->getMessage());
         }
+
+        if ($request->session()->get('tasks_interface') === 'project')
+            return redirect()->route('project_tasks_edit', ['uuid' => $this->getCurrentProject()->id, 'task_uuid' => Input::get('task_id')]);
 
         return redirect()->route('tasks_edit', ['id' => Input::get('task_id')]);
     }

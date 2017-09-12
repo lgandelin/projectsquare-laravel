@@ -57,9 +57,9 @@ class EloquentProjectRepository implements ProjectRepository
         return Project::where('client_id', '=', $clientID)->get();
     }
 
-    public function getProjectsPaginatedList($limit)
+    public function getProjectsPaginatedList($limit, $sortColumn = null, $sortOrder = null)
     {
-        return Project::with('client')->orderBy('updated_at', 'DESC')->paginate($limit);
+        return Project::with('client')->orderBy($sortColumn ? $sortColumn : 'updated_at', $sortOrder ? $sortOrder : 'DESC')->paginate($limit);
     }
 
     public function getCurrentProjects($userID)

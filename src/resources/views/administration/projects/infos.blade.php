@@ -4,6 +4,18 @@
     <a href="{{ route('projects_index') }}" class="btn back"></a>
 </div>
 
+@if (isset($error))
+    <div class="info bg-danger">
+        {{ $error }}
+    </div>
+@endif
+
+@if (isset($confirmation))
+    <div class="info bg-success">
+        {{ $confirmation }}
+    </div>
+@endif
+
 <form action="{{ $form_action }}" method="post">
     <div class="form-group">
         <label for="name">{{ trans('projectsquare::projects.label') }}</label>
@@ -64,7 +76,7 @@
 </form>
 
 @section('scripts')
-    <script src="{{ asset('js/projects.js') }}"></script>
+    <script src="{{ asset('js/administration/project-infos.js') }}"></script>
     <script>
         $('.colorpicker').minicolors({
             theme: 'bootstrap'

@@ -42,6 +42,7 @@ class BaseController extends Controller
             view()->share('left_bar_tools', isset($_COOKIE['left-bar-tools']) ? $_COOKIE['left-bar-tools'] : 'opened');
             view()->share('left_bar_management', isset($_COOKIE['left-bar-management']) ? $_COOKIE['left-bar-management'] : 'opened');
             view()->share('left_bar_administration', isset($_COOKIE['left-bar-administration']) ? $_COOKIE['left-bar-administration'] : 'opened');
+            view()->share('conversations', app()->make('ConversationManager')->getConversations($this->getUser()->id));
         }
     }
 
@@ -69,7 +70,8 @@ class BaseController extends Controller
     protected function getCurrentProject()
     {
         if ($this->isUserAClient()) {
-            if ($client = Client::find($this->getUser()->client_id) && !$this->request->session()->has('current_project')) {
+            $client = Client::find($this->getUser()->client_id);
+            if ($client && !$this->request->session()->has('current_project')) {
                 $project = Project::where('client_id', '=', $client->id)->where('status_id', '=', ProjectEntity::IN_PROGRESS)->orderBy('created_at', 'DESC')->first();
                 $this->request->session()->put('current_project', $project);
             }
@@ -144,7 +146,7 @@ class BaseController extends Controller
         $projects = [];
         $archived_projects = [];
 
-        foreach (Project::orderBy('created_at', 'desc')->get() as $project) {
+        foreach (Project::with('users')->orderBy('created_at', 'desc')->get() as $project) {
 
             if ($this->isUserAClient()) {
                 if ($project->client_id == $this->getUser()->client_id) {

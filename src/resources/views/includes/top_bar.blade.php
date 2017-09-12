@@ -3,7 +3,7 @@
         <h1 class="logo"><a href="{{ route('dashboard') }}"><img src="{{asset('img/top-bar/logo.png')}}"></a></h1>
     </div>
 
-    @if ($is_client && sizeof($in_progress_projects) > 1)
+    @if (isset($is_client) && $is_client && sizeof($in_progress_projects) > 1)
         <form action="{{ route('projects_client_switch') }}" method="post" id="project-switcher-form" class="project-switcher">
             <label for="project_id">{{ trans('projectsquare::dashboard.project') }} :</label>
             <select class="form-control" name="project_id" onchange="$('#project-switcher-form').submit()">
@@ -53,59 +53,164 @@
                     <a href="#" class="notifications-link"> <span class="badge @if (sizeof($notifications) > 0) new-notifications @endif">{{ sizeof($notifications) }}</span></a>
 
                     <div class="notifications" style="display: none;">
-                        <span class="title">
-                            @if (sizeof($notifications) > 0)
-                               {{ trans('projectsquare::top_bar.news_notifications') }}
-                            @else
-                                {{ trans('projectsquare::top_bar.no_new_notification') }}
-                            @endif
-                        </span>
-                        @if (sizeof($notifications) > 0)
+                        <ul class="tabs">
+                            <li class="current" data-tab="1"><i class="notification-icon"></i></li>
+                            <li data-tab="2"><i class="message-icon"></i></li>
+                        </ul>
+
+                        <div class="content-tab" data-content="1">
                             @foreach ($notifications as $notification)
-                                <div class="notification" data-id="{{ $notification->id }}">
-                                    <span class="date">{{ $notification->time }}</span>
-                                    <span class="badge badge-primary type">
-                                        @if ($notification->type == 'MESSAGE_CREATED')
-                                            {{ trans('projectsquare::top_bar.new_message') }}
-                                        @elseif ($notification->type == 'EVENT_CREATED')
-                                            {{ trans('projectsquare::top_bar.new_event') }}
-                                        @elseif ($notification->type == 'TICKET_CREATED')
-                                            {{ trans('projectsquare::top_bar.new_ticket') }}
-                                        @elseif ($notification->type == 'TASK_CREATED')
-                                            {{ trans('projectsquare::top_bar.new_task') }}
+                                @if (in_array($notification->type, ['TICKET_CREATED', 'TICKET_UPDATED', 'TASK_CREATED', 'TASK_UPDATED', 'ASSIGNED_TO_PROJECT', 'FILE_UPLOADED']))
+                                    <div class="notification" data-id="{{ $notification->id }}">
+                                        @if ($notification->type == 'ASSIGNED_TO_PROJECT')
+                                            @if ($notification->project)
+                                                <span class="project" style="background: {{ $notification->project->color }}">
+                                                    {{ $notification->project->name }}
+                                                    <span class="glyphicon glyphicon-remove pull-right notification-status not-read"></span>
+                                                </span>
+                                            @endif
+
+                                            @if (isset($notification->link))<a class="link" href="{{ $notification->link }}">@endif
+                                                <span class="title">Nouvelle affectation projet</span>
+                                                <span class="status">Vous avez été affecté au projet <strong>{{ $notification->project->name}}</strong>.</span>
+                                                @if ($notification->relative_date)<span class="relative-date">{{ $notification->relative_date }}</span>@endif
+                                            @if (isset($notification->link))</a>@endif
+                                        @elseif ($notification->type == 'TICKET_CREATED' || $notification->type == 'TICKET_UPDATED')
+                                            @if ($notification->ticket)
+                                                @if ($notification->ticket->project)
+                                                    <span class="project" style="background: {{ $notification->ticket->project->color }}">
+                                                        {{ $notification->ticket->project->name }}
+                                                        <span class="glyphicon glyphicon-remove pull-right notification-status not-read"></span>
+                                                    </span>
+                                                @endif
+
+                                                @if (isset($notification->link))<a class="link" href="{{ $notification->link }}">@endif
+                                                    @if ($notification->ticket->author_user)
+                                                        @include('projectsquare::includes.avatar', [
+                                                            'id' => $notification->ticket->author_user->id,
+                                                            'name' => $notification->ticket->author_user->complete_name
+                                                        ])
+                                                    @endif
+
+                                                    <span class="title">{{ $notification->ticket->title }}</span>
+                                                    <span class="status">Statut : {{ $notification->ticket->lastState->status->name }}</span>
+                                                    @if ($notification->relative_date)<span class="relative-date">{{ $notification->relative_date }}</span>@endif
+                                                @if (isset($notification->link))</a>@endif
+                                            @endif
+                                        @elseif ($notification->type == 'TASK_CREATED' || $notification->type == 'TASK_UPDATED')
+                                            @if ($notification->task)
+                                                @if ($notification->task->project)
+                                                    <span class="project" style="background: {{ $notification->task->project->color }}">
+                                                        {{ $notification->task->project->name }}
+                                                        <span class="glyphicon glyphicon-remove pull-right notification-status not-read"></span>
+                                                    </span>
+                                                @endif
+
+                                                @if (isset($notification->link))<a class="link" href="{{ $notification->link }}">@endif
+                                                    @if ($notification->task->author_user)
+                                                        @include('projectsquare::includes.avatar', [
+                                                            'id' => $notification->task->author_user->id,
+                                                            'name' => $notification->task->author_user->complete_name
+                                                        ])
+                                                    @endif
+
+                                                    <span class="title">{{ $notification->task->title }}</span>
+                                                    <span class="status">Statut :
+                                                        @if ($notification->task->statusID == 1)A faire
+                                                        @elseif ($notification->task->statusID == 2)En cours
+                                                        @elseif ($notification->task->statusID == 3)Terminé
+                                                        @endif
+                                                    </span>
+                                                    @if ($notification->relative_date)<span class="relative-date">{{ $notification->relative_date }}</span>@endif
+                                                    @if (isset($notification->link))</a>@endif
+                                            @endif
                                         @elseif ($notification->type == 'FILE_UPLOADED')
-                                            {{ trans('projectsquare::top_bar.new_file') }}
-                                        @elseif ($notification->type == 'TASK_UPDATED')
-                                            {{ trans('projectsquare::top_bar.task_updated') }}
-                                        @elseif ($notification->type == 'TICKET_UPDATED')
-                                            {{ trans('projectsquare::top_bar.ticket_updated') }}
+                                            @if ($notification->file)
+                                                @if ($notification->file->project)
+                                                    <span class="project" style="background: {{ $notification->file->project->color }}">
+                                                        {{ $notification->file->project->name }}
+                                                        <span class="glyphicon glyphicon-remove pull-right notification-status not-read"></span>
+                                                    </span>
+                                                @endif
+
+                                                @if (isset($notification->link))<a class="link" href="{{ $notification->link }}">@endif
+                                                    <span class="title">Nouveau fichier uploadé</span>
+                                                        <span class="status">{{ $notification->file_name }}</span>
+                                                    @if ($notification->relative_date)<span class="relative-date">{{ $notification->relative_date }}</span>@endif
+                                                    @if (isset($notification->link))</a>@endif
+                                            @endif
                                         @endif
-                                    </span>
-                                    <span class="description">
-                                        @if ($notification->type == 'MESSAGE_CREATED')
-                                            {{ trans('projectsquare::top_bar.new_message_created') }} <strong>{{ $notification->author_name }}</strong>
-                                        @elseif ($notification->type == 'EVENT_CREATED')
-                                            {{ trans('projectsquare::top_bar.new_event_created') }} <strong>{{ $notification->event_name }}</strong>
-                                        @elseif ($notification->type == 'TICKET_CREATED')
-                                            {{ trans('projectsquare::top_bar.new_ticket_created') }} <strong>{{ $notification->ticket_title }}</strong>
-                                        @elseif ($notification->type == 'TASK_CREATED')
-                                            {{ trans('projectsquare::top_bar.new_task_created') }} <strong>{{ $notification->task_title }}</strong>
-                                        @elseif ($notification->type == 'TASK_UPDATED')
-                                            {{ trans('projectsquare::top_bar.task_updated_description') }} <strong>{{ $notification->task_title }}</strong>
-                                        @elseif ($notification->type == 'TICKET_UPDATED')
-                                            {{ trans('projectsquare::top_bar.ticket_updated_description') }} <strong>{{ $notification->ticket_title }}</strong>
-                                        @elseif ($notification->type == 'FILE_UPLOADED')
-                                            {{ trans('projectsquare::top_bar.new_file_created') }} <strong>{{ $notification->file_name }}</strong>
-                                        @endif
-                                        <br/>
-                                        @if (isset($notification->link))
-                                            <a class="btn btn-sm button" href="{{ $notification->link }}"><span class="glyphicon glyphicon-eye-open"></span>{{ trans('projectsquare::top_bar.see') }}</a>
-                                        @endif
-                                        <span class="glyphicon glyphicon-remove pull-right status not-read"></span>
-                                    </span>
-                                </div>
+                                    </div>
+                                @endif
                             @endforeach
-                        @endif
+                        </div>
+
+
+                        <div class="content-tab" data-content="2" style="display: none">
+                            @foreach ($notifications as $notification)
+                                @if (in_array($notification->type, ['MESSAGE_CREATED']))
+                                    <div class="notification message-notification" data-id="{{ $notification->id }}">
+                                        @if ($notification->type == 'MESSAGE_CREATED')
+                                            @if ($notification->message)
+                                                @if ($notification->message->project)
+                                                    <span class="project" style="background: {{ $notification->message->project->color }}">
+                                                        {{ $notification->message->project->name }}
+                                                        <span class="glyphicon glyphicon-remove pull-right notification-status not-read"></span>
+                                                    </span>
+                                                @endif
+
+                                                @if (isset($notification->link))<a class="link" href="{{ $notification->link }}">@endif
+                                                    @if ($notification->message->user)
+                                                        @include('projectsquare::includes.avatar', [
+                                                            'id' => $notification->message->user->id,
+                                                            'name' => $notification->message->user->firstName . ' ' . $notification->message->user->lastName
+                                                        ])
+                                                    @endif
+
+                                                    <span class="title">{{ $notification->message->user->firstName . ' ' . $notification->message->user->lastName }}</span>
+                                                    <span class="message">{{ $notification->message->content }}</span>
+                                                    @if ($notification->relative_date)<span class="relative-date">{{ $notification->relative_date }}</span>@endif
+                                                @if (isset($notification->link))</a>@endif
+
+                                                @if ($notification->message->conversation)
+                                                    <div class="conversation" id="conversation-{{ $notification->message->conversation->id }}" data-id="{{ $notification->message->conversation->id }}" style="display:none">
+                                                        <div class="text-conversation"width="50%">
+                                                            {{ str_limit($notification->message->conversation->messages[sizeof($notification->message->conversation->messages) - 1]->content, 100) }}
+                                                        </div>
+
+                                                        <div align="center">
+                                                            @include('projectsquare::includes.avatar', [
+                                                                'id' => $notification->message->conversation->messages[sizeof($notification->message->conversation->messages) - 1]->user->id,
+                                                                'name' => $notification->message->conversation->messages[sizeof($notification->message->conversation->messages) - 1]->user->complete_name
+                                                            ])
+                                                        </div>
+
+                                                        <div>
+                                                            {{ date('d/m H:i', strtotime($notification->message->conversation->messages[sizeof($notification->message->conversation->messages) - 1]->created_at)) }}
+                                                        </div>
+
+                                                        <div align="center">
+                                                            <!--<a href="{{ route('conversations_view', ['id' => $notification->message->conversation->id]) }}" class="btn btn-sm btn-primary see-more" style="margin-right: 1rem"></a>-->
+                                                            <button class="button-message pull-right reply-message" data-id="{{ $notification->message->conversation->id }}"><span class="glyphicon-comment"></span></button>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="conversation-reply" style="display:none" id="conversation-{{ $notification->message->conversation->id }}-reply" data-id="{{ $notification->message->conversation->id }}">
+                                                        <div class="message-inserted"></div>
+
+                                                        <div class="message new-message">
+                                                            <textarea class="form-control" placeholder="{{ trans('projectsquare::dashboard.your_message') }}" rows="4"></textarea>
+                                                            <button class="btn btn-sm back pull-right cancel-message" data-id="{{ $notification->message->conversation->id }}" style="margin-top:1.5rem"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.cancel') }}</button>
+                                                            <button class="btn btn-sm valid pull-right valid-message" data-id="{{ $notification->message->conversation->id }}" style="margin-top:1.5rem; margin-right: 1rem"><span class="glyphicon glyphicon-ok"></span> {{ trans('projectsquare::generic.valid') }}</button>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endif
+                                        @endif
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
                     </div>
                 </li>
             @endif

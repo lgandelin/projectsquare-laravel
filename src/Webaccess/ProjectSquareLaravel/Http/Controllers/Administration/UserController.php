@@ -22,9 +22,14 @@ class UserController extends BaseController
     public function index(Request $request)
     {
         parent::__construct($request);
-        
+
+        $itemsPerPage = $request->get('it') ? $request->get('it') : env('USERS_PER_PAGE', 10);
+
         return view('projectsquare::administration.users.index', [
-            'users' => app()->make('UserManager')->getAgencyUsersPaginatedList(),
+            'users' => app()->make('UserManager')->getAgencyUsersPaginatedList($itemsPerPage, $request->get('sc'), $request->get('so')),
+            'items_per_page' => $request->get('it') ? $request->get('it') : $itemsPerPage,
+            'sort_column' => $request->get('sc'),
+            'sort_order' => ($request->get('so') == 'asc') ? 'desc' : 'asc',
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);

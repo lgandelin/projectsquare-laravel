@@ -13,6 +13,7 @@ return [
     'project' => 'Projet',
     'estimated_time' => 'Temps estimé',
     'spent_time' => 'Temps passé',
+    'general_infos' => 'Informations générales',
 
     'filters' => [
         'by_project' => 'par projet',

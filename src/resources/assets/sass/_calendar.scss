@@ -38,8 +38,9 @@
     }
 }
 
-.fc-unthemed .fc-today {
-    background: #f9fbe6;
+.fc-unthemed .fc-today,
+.fc-unthemed td.fc-today {
+    background: #f7f7f7;
 }
 
 .fc-state-active {

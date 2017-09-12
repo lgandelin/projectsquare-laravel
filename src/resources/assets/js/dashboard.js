@@ -24,10 +24,15 @@
 
     $('.block-content').removeClass('loading');
 
-    //DASHBOARD - REPLY MESSAGE
+    /*//DASHBOARD - REPLY MESSAGE
     $('.conversation').on('click', '.reply-message', function() {
         var conversation_id = $(this).closest('.conversation').attr('data-id');
         $('#conversation-' + conversation_id + '-modal').modal('show');
+    });*/
+
+    //MESSAGE NOTIFICATIONS
+    $('.top-bar .notifications .notification.message-notification').on('click', '', function() {
+        
     });
 
     //DASHBOARD - CANCEL MESSAGE

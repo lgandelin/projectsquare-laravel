@@ -21,6 +21,8 @@ class TicketController extends BaseController
     {
         parent::__construct($request);
 
+        $itemsPerPage = $request->get('it') ? $request->get('it') : env('TICKETS_PER_PAGE', 10);
+
         $request->session()->put('tickets_interface', 'tickets');
 
         if (Input::get('filter_project') !== null) Session::put('tickets_filter_project', Input::get('filter_project'));
@@ -33,11 +35,13 @@ class TicketController extends BaseController
             //tickets variables
             'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
                 $this->getUser()->id,
-                env('TICKETS_PER_PAGE', 10),
+                $itemsPerPage,
                 Session::get('tickets_filter_project') === "na" ? null : Session::get('tickets_filter_project'),
                 Session::get('tickets_filter_allocated_user') === "na" ? null : Session::get('tickets_filter_allocated_user'),
                 Session::get('tickets_filter_status') === "na" ? null : Session::get('tickets_filter_status'),
-                Session::get('tickets_filter_type') === "na" ? null : Session::get('tickets_filter_type')
+                Session::get('tickets_filter_type') === "na" ? null : Session::get('tickets_filter_type'),
+                $request->get('sc'),
+                $request->get('so')
             ),
             'projects' => app()->make('GetProjectsInteractor')->getCurrentProjects($this->getUser()->id),
             'users' => app()->make('UserManager')->getAgencyUsers(),
@@ -49,6 +53,9 @@ class TicketController extends BaseController
                 'status' => Session::get('tickets_filter_status'),
                 'type' => Session::get('tickets_filter_type'),
             ],
+            'items_per_page' => $request->get('it') ? $request->get('it') : $itemsPerPage,
+            'sort_column' => $request->get('sc'),
+            'sort_order' => ($request->get('so') == 'asc') ? 'desc' : 'asc',
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
 
@@ -112,7 +119,7 @@ class TicketController extends BaseController
             if ($this->isUserAClient())
                 return redirect()->route('project_tickets', ['uuid' => $this->getCurrentProject()->id]);
 
-            return redirect()->route('tickets_index');
+            return ($request->session()->get('tickets_interface') === 'project') ? redirect()->route('project_tickets', ['uuid' => $this->getCurrentProject()->id]) : redirect()->route('tickets_index');
         } catch (\Exception $e) {
             $request->session()->flash('error', $e->getMessage());
         }
@@ -180,6 +187,9 @@ class TicketController extends BaseController
             $request->session()->flash('error', trans('projectsquare::tickets.edit_ticket_error'));
         }
 
+        if ($request->session()->get('tickets_interface') === 'project')
+            return redirect()->route('project_tickets_edit', ['uuid' => $this->getCurrentProject()->id, 'ticket_uuid' => Input::get('ticket_id')]);
+
         return redirect()->route('tickets_edit', ['id' => Input::get('ticket_id')]);
     }
 
@@ -207,6 +217,9 @@ class TicketController extends BaseController
         } catch (\Exception $e) {
             $request->session()->flash('error', $e->getMessage());
         }
+
+        if ($request->session()->get('tickets_interface') === 'project')
+            return redirect()->route('project_tickets_edit', ['uuid' => $this->getCurrentProject()->id, 'ticket_uuid' => Input::get('ticket_id')]);
 
         return redirect()->route('tickets_edit', ['id' => Input::get('ticket_id')]);
     }

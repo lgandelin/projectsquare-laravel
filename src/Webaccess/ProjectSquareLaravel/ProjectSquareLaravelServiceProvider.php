@@ -115,6 +115,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
 
     public function boot(Router $router)
     {
+        setlocale(LC_TIME, 'fr_FR.utf8');
+
         Context::set('translator', new LaravelTranslator());
         Context::set('event_manager', new LaravelEventManager());
         Context::set('event_dispatcher', new EventDispatcher());
@@ -568,7 +570,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         App::bind('AddUserToProjectInteractor', function () {
             return new AddUserToProjectInteractor(
                 new EloquentUserRepository(),
-                new EloquentProjectRepository()
+                new EloquentProjectRepository(),
+                new EloquentNotificationRepository()
             );
         });
 

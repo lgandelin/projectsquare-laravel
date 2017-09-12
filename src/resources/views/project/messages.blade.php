@@ -36,23 +36,36 @@
                     <tbody>
                     @foreach ($conversations as $conversation)
                         <tr>
-                            <td style="border-left: 10px solid {{ $conversation->project->color }}"></td>
-                            <td>{{ date('d/m/Y H:i', strtotime($conversation->created_at)) }}</td>
+                            <td class="project-border" style="border-left: 10px solid {{ $conversation->project->color }}"></td>
                             <td>
-                                @if (count($conversation->messages) > 0)
-                                    @include('projectsquare::includes.avatar', [
-                                        'id' => $conversation->messages[sizeof($conversation->messages) - 1]->user->id,
-                                        'name' => $conversation->messages[sizeof($conversation->messages) - 1]->user->complete_name
-                                    ])
-                                @endif
+                                <a href="{{ route('conversations_view', ['id' => $conversation->id]) }}">
+                                    {{ date('d/m/Y H:i', strtotime($conversation->created_at)) }}
+                                </a>
                             </td>
-
-                            <td class="entity_title">
-                                <a href="{{ route('conversations_view', ['id' => $conversation->id]) }}">{{ $conversation->title }}</a>
+                            <td>
+                                <a href="{{ route('conversations_view', ['id' => $conversation->id]) }}">
+                                    @if (count($conversation->messages) > 0)
+                                        @include('projectsquare::includes.avatar', [
+                                            'id' => $conversation->messages[sizeof($conversation->messages) - 1]->user->id,
+                                            'name' => $conversation->messages[sizeof($conversation->messages) - 1]->user->complete_name
+                                        ])
+                                    @endif
+                                </a>
                             </td>
-                            <td width="50%">@if (isset($conversation->messages[count($conversation->messages) - 1])){{ str_limit($conversation->messages[count($conversation->messages) - 1]->content, 200) }}@endif</td>
-                            <td align="right">
-                                <a href="{{ route('conversations_view', ['id' => $conversation->id]) }}" class="btn see-more"></a>
+                            <td>
+                                <a href="{{ route('conversations_view', ['id' => $conversation->id]) }}">
+                                    {{ $conversation->title }}
+                                </a>
+                            </td>
+                            <td width="50%">
+                                <a href="{{ route('conversations_view', ['id' => $conversation->id]) }}">
+                                    @if (isset($conversation->messages[count($conversation->messages) - 1])){{ str_limit($conversation->messages[count($conversation->messages) - 1]->content, 200) }}@endif
+                                </a>
+                            </td>
+                            <td width="5%" class="action" align="right">
+                                <a href="{{ route('conversations_view', ['id' => $conversation->id]) }}">
+                                    <i class="btn see-more"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach

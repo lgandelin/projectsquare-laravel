@@ -3,9 +3,7 @@
 @section('main-content')
     <div class="container-fluid">
         <div class="row top-bar-container">
-            <div class="col-md-12">
-                @include('projectsquare::includes.top_bar')
-            </div>
+            @include('projectsquare::includes.top_bar')
         </div>
 
         <div class="row">
@@ -17,7 +15,7 @@
                 ])
                 <div class="content @if ($left_bar == 'closed') content-expanded @endif">
             @else
-                <div>
+                <div class="client-view">
             @endif
                 @yield('content')
             </div>

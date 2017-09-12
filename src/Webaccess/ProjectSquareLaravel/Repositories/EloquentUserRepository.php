@@ -16,9 +16,9 @@ class EloquentUserRepository implements UserRepository
         return User::find($userID);
     }
 
-    public function getAgencyUsersPaginatedList($limit)
+    public function getAgencyUsersPaginatedList($limit, $sortColumn = null, $sortOrder = null)
     {
-        return User::whereNull('client_id')->paginate($limit);
+        return User::whereNull('client_id')->orderBy($sortColumn ? $sortColumn : 'updated_at', $sortOrder ? $sortOrder : 'DESC')->paginate($limit);
     }
 
     public function getAgencyUsers()
@@ -63,20 +63,7 @@ class EloquentUserRepository implements UserRepository
 
     public function getUsersByRole($roleID)
     {
-        $users = [];
-        foreach (Project::all() as $project) {
-            foreach($project->users()->get() as $user) {
-                if ($user->pivot->role_id == $roleID || $roleID == null) {
-                    $users[$user->id] = $user;
-                }
-            }
-        }
-
-        usort($users, function($a, $b) {
-            return $a->last_name > $b->last_name;
-        });
-
-        return $users;
+        return ($roleID) ? User::where('role_id', '=', $roleID)->get() : $this->getAgencyUsers();
     }
 
     public function createUser($firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $roleID, $isAdministrator=false)
@@ -120,9 +107,7 @@ class EloquentUserRepository implements UserRepository
             if ($roleID != null) {
                 $user->role_id = $roleID;
             }
-            if ($isAdministrator !== false) {
-                $user->is_administrator = $isAdministrator;
-            }
+            $user->is_administrator = $isAdministrator;
             $user->save();
         }
     }

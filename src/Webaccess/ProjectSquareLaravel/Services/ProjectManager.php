@@ -51,9 +51,9 @@ class ProjectManager
         return $project;
     }
 
-    public function getProjectsPaginatedList()
+    public function getProjectsPaginatedList($itemsPerPage, $sortColumn, $sortOrder)
     {
-        return $this->repository->getProjectsPaginatedList(env('PROJECTS_PER_PAGE', 10));
+        return $this->repository->getProjectsPaginatedList($itemsPerPage, $sortColumn, $sortOrder);
     }
 
     public function deleteProject($projectID)

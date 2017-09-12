@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="content-page">
-        <div class="agency-projects-template">
+        <div class="agency-projects-template {{ $tab }}-project-template">
 
             <ul class="tabs">
                 <li @if ($tab == 'infos')class="current"@endif><a href="{{ route('projects_edit', ['uuid' => $project->id]) }}">Infos</a></li>
@@ -14,18 +14,6 @@
             </ul>
 
             <div class="templates">
-
-                @if (isset($error))
-                    <div class="info bg-danger">
-                        {{ $error }}
-                    </div>
-                @endif
-
-                @if (isset($confirmation))
-                    <div class="info bg-success">
-                        {{ $confirmation }}
-                    </div>
-                @endif
 
                 @include('projectsquare::administration.projects.' . $tab, [
                     'form_action' => route('projects_update'),

@@ -15,10 +15,9 @@
                         <td>{{ date('d/m/Y H:i', strtotime($file->created_at)) }}</td>
                         <td width="150">{{ \Webaccess\ProjectSquareLaravel\Tools\FileTool::convertFileSize($file->size) }}</td>
                         <td align="right">
-                            <a href="{{ asset('uploads/tickets' . $file->path) }}" class="btn button" download="{{ $file->name }}" style="margin-bottom:0.5rem"><i class="glyphicon glyphicon-download"></i> {{ trans('projectsquare::generic.download') }}</a>
-                            <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn delete btn-delete" style="margin-bottom:0.5rem">
-                                <i class="glyphicon glyphicon-remove picto-delete"></i>
-                                <span>{{ trans('projectsquare::generic.delete') }}</span>
+                            <a href="{{ asset('uploads/tickets' . $file->path) }}" download="{{ $file->name }}" title="{{ trans('projectsquare::generic.download') }}"><i class="fa fa-download"></i></a>
+                            <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn-delete" title="{{ trans('projectsquare::generic.delete') }}">
+                                <i class="btn cancel"></i>
                             </a>
                         </td>
                     </tr>

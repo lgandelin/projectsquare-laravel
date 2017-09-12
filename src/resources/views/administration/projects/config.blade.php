@@ -3,6 +3,18 @@
     <a href="{{ route('projects_index') }}" class="btn back"></a>
 </div>
 
+@if (isset($error))
+    <div class="info bg-danger">
+        {{ $error }}
+    </div>
+@endif
+
+@if (isset($confirmation))
+    <div class="info bg-success">
+        {{ $confirmation }}
+    </div>
+@endif
+
 <form action="{{ route('projects_update_config') }}" method="post">
     <h3>{{ trans('projectsquare::project.urls') }}</h3>
 

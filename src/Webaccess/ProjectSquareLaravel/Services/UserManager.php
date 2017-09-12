@@ -14,9 +14,9 @@ class UserManager
         $this->repository = new EloquentUserRepository();
     }
 
-    public function getAgencyUsersPaginatedList()
+    public function getAgencyUsersPaginatedList($limit, $sortColumn = null, $sortOrder = null)
     {
-        return $this->repository->getAgencyUsersPaginatedList(env('USERS_PER_PAGE', 10));
+        return $this->repository->getAgencyUsersPaginatedList($limit, $sortColumn, $sortOrder);
     }
 
     public function getAgencyUsers()
@@ -28,6 +28,16 @@ class UserManager
     {
         return $this->repository->getUsersByRole($roleID);
     }
+
+    public function getAgencyUsersGroupedByRoles($roles)
+    {
+        foreach ($roles as $role) {
+            $role->users = $this->getUsersByRole($role->id);
+        }
+
+        return $roles;
+    }
+
 
     public function getUsersByClient($clientID)
     {
@@ -99,14 +109,14 @@ class UserManager
         }
     }
 
-    public function updateUser($userID, $firstName, $lastName, $email, $password=null, $mobile=null, $phone=null, $clientID=null, $clientRole=null, $isAdministrator=false)
+    public function updateUser($userID, $firstName, $lastName, $email, $password=null, $mobile=null, $phone=null, $clientID=null, $clientRole=null, $roleID=null, $isAdministrator=false)
     {
         $user = $this->repository->getUserByEmail($email);
         if ($user && $user->id != $userID) {
             throw new \Exception(trans('projectsquare::users.email_already_existing_error'));
         }
 
-        $this->repository->updateUser($userID, $firstName, $lastName, $email, ($password) ? Hash::make($password) : null, $mobile, $phone, $clientID, $clientRole, $isAdministrator);
+        $this->repository->updateUser($userID, $firstName, $lastName, $email, ($password) ? Hash::make($password) : null, $mobile, $phone, $clientID, $clientRole, $roleID, $isAdministrator);
     }
 
     public function deleteUser($userID)
@@ -124,6 +134,7 @@ class UserManager
                 null,
                 null,
                 Hash::make($password),
+                null,
                 null,
                 null,
                 null,

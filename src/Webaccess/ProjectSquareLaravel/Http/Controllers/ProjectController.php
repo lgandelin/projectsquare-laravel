@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
 use Webaccess\ProjectSquare\Requests\Projects\GetProjectProgressRequest;
+use Webaccess\ProjectSquare\Requests\Tasks\GetTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\Tools\TaskController;
 
@@ -47,12 +48,55 @@ class ProjectController extends BaseController
                 'status' => Session::get('project_tasks_filter_status'),
                 'phase' => Session::get('project_tasks_filter_phase'),
             ],
-            'tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, env('TASKS_PER_PAGE', 10), new GetTasksRequest([
+            'other_tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, 999, null, null, new GetTasksRequest([
                 'projectID' => $projectID,
                 'statusID' => Session::get('project_tasks_filter_status') === "na" ? null : Session::get('project_tasks_filter_status'),
-                'phaseID' => Session::get('project_tasks_filter_phase') === "na" ? null : Session::get('project_tasks_filter_phase'),
+                'phaseID' => null,
                 'allocatedUserID' => Session::get('project_tasks_filter_allocated_user') === "na" ? null : Session::get('project_tasks_filter_allocated_user'),
             ])),
+            'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
+            'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
+        ]);
+    }
+
+    public function tasks_edit(Request $request)
+    {
+        parent::__construct($request);
+
+        $taskID = $request->task_uuid;
+        $projectID = $request->uuid;
+
+        try {
+            $task = app()->make('GetTaskInteractor')->execute(new GetTaskRequest([
+                'taskID' => $taskID,
+                'requesterUserID' => $this->getUser()->id,
+            ]));
+        } catch (\Exception $e) {
+            $request->session()->flash('error', $e->getMessage());
+
+            return redirect()->route('tasks_index');
+        }
+
+        if (!$task) {
+            $request->session()->flash('error', trans('projectsquare::tasks.task_not_found'));
+
+            return redirect()->route('tasks_index');
+        }
+
+        return view('projectsquare::project.tasks.edit', [
+            'task' => $task,
+            'other_tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, 999, null, null, new GetTasksRequest([
+                'projectID' => $projectID,
+                'statusID' => Session::get('project_tasks_filter_status') === "na" ? null : Session::get('project_tasks_filter_status'),
+                'phaseID' => null,
+                'allocatedUserID' => Session::get('project_tasks_filter_allocated_user') === "na" ? null : Session::get('project_tasks_filter_allocated_user'),
+            ])),
+            'project' => app()->make('GetProjectInteractor')->getProject($projectID),
+            'phases' => app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
+                'projectID' => $projectID
+            ])),
+            'task_statuses' => TaskController::getTasksStatuses(),
+            'users' => app()->make('UserManager')->getUsersByProject($task->projectID),
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
@@ -63,36 +107,52 @@ class ProjectController extends BaseController
         parent::__construct($request);
 
         $projectID = $request->uuid;
-
         $request->session()->put('tickets_interface', 'project');
-
-        if (Input::get('filter_status') !== null) Session::put('project_tickets_filter_status', Input::get('filter_status'));
-        if (Input::get('filter_allocated_user') !== null) Session::put('project_tickets_filter_allocated_user', Input::get('filter_allocated_user'));
-        if (Input::get('filter_type') !== null) Session::put('project_tickets_filter_type', Input::get('filter_type'));
 
         return view('projectsquare::project.tickets', [
             'project' => app()->make('ProjectManager')->getProject($projectID),
+            'tickets_grouped_by_states' => $this->getTicketGroupedByStates($projectID),
             'users' => app()->make('UserManager')->getUsersByProject($projectID),
-            'ticket_statuses' => app()->make('TicketStatusManager')->getTicketStatuses(),
-            'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
-            'filters' => [
-                'allocated_user' => Session::get('project_tickets_filter_allocated_user'),
-                'status' => Session::get('project_tickets_filter_status'),
-                'type' => Session::get('project_tickets_filter_type'),
-            ],
-            'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
-                $this->getUser()->id,
-                env('TICKETS_PER_PAGE', 10),
-                $projectID,
-                Session::get('project_tickets_filter_allocated_user') === "na" ? null : Session::get('project_tickets_filter_allocated_user'),
-                Session::get('project_tickets_filter_status') === "na" ? null : Session::get('project_tickets_filter_status'),
-                Session::get('project_tickets_filter_type') === "na" ? null : Session::get('project_tickets_filter_type')
-            ),
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
     }
 
+    public function tickets_edit(Request $request)
+    {
+        parent::__construct($request);
+
+        $ticketID = $request->ticket_uuid;
+        $projectID = $request->uuid;
+
+        try {
+            $ticket = app()->make('GetTicketInteractor')->getTicketWithStates($ticketID, $this->getUser()->id);
+        } catch (\Exception $e) {
+            $request->session()->flash('error', $e->getMessage());
+
+            return redirect()->route('tickets_index');
+        }
+
+        if (!$ticket) {
+            $request->session()->flash('error', trans('projectsquare::tickets.ticket_not_found'));
+
+            return redirect()->route('tickets_index');
+        }
+
+        return view('projectsquare::project.tickets.edit', [
+            'tickets_grouped_by_states' => $this->getTicketGroupedByStates($projectID),
+            'ticket' => $ticket,
+            'project' => app()->make('GetProjectInteractor')->getProject($projectID),
+            'ticket_states' => app()->make('GetTicketInteractor')->getTicketStatesPaginatedList($ticketID, env('TICKET_STATES_PER_PAGE', 10)),
+            'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
+            'ticket_status' => app()->make('TicketStatusManager')->getTicketStatuses(),
+            'users' => app()->make('UserManager')->getUsersByProject($ticket->projectID),
+            'files' => app()->make('FileManager')->getFilesByTicket($ticketID),
+            'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
+            'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
+        ]);
+    }
+    
     public function monitoring(Request $request)
     {
         parent::__construct($request);
@@ -218,5 +278,25 @@ class ProjectController extends BaseController
         }
 
         return redirect()->route($request->get('route') ? $request->get('route') : 'dashboard', ['uuid' => $projectID]);
+    }
+
+    /**
+     * @param $projectID
+     * @return mixed
+     */
+    private function getTicketGroupedByStates($projectID)
+    {
+        $states = app()->make('TicketStatusManager')->getTicketStatuses();
+        foreach ($states as $state) {
+            $state->tickets = app()->make('GetTicketInteractor')->getTicketsPaginatedList(
+                $this->getUser()->id,
+                999,
+                $projectID,
+                null,
+                $state->id,
+                null
+            );
+        }
+        return $states;
     }
 }

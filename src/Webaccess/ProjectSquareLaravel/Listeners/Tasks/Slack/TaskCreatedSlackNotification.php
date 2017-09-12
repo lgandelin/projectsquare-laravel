@@ -22,7 +22,7 @@ class TaskCreatedSlackNotification
                 $settingSlackChannel = app()->make('SettingManager')->getSettingByKeyAndProject('SLACK_CHANNEL', $task->project->id);
 
                 SlackTool::send(
-                    ((isset($task->project) && isset($task->project->client)) ? '<' . route('project_index', ['id' => $task->project->id]) . '|*['.$task->project->client->name.'] '.$task->project->name . '*>' : '') . ' *Une nouvelle tâche a été créée*',
+                    ((isset($task->project) && isset($task->project->client)) ? '<' . route('project_tasks', ['id' => $task->project->id]) . '|*['.$task->project->client->name.'] '.$task->project->name . '*>' : '') . ' *Une nouvelle tâche a été créée*',
                     implode("\n", $lines),
                     '',
                     route('tasks_edit', ['uuid' => $task->id]),

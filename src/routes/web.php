@@ -30,9 +30,11 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
     Route::post('/beta_form', array('as' => 'beta_form', 'uses' => 'BaseController@betaForm'));
 
     //PROJECTS
-    Route::get('/projects/{uuid}', array('as' => 'project_index', 'uses' => 'ProjectController@index', 'middleware' => 'change_current_project'));
+    Route::get('/projects/{uuid}/cms', array('as' => 'project_cms', 'uses' => 'ProjectController@index', 'middleware' => 'change_current_project'));
     Route::get('/projects/{uuid}/tasks', array('as' => 'project_tasks', 'uses' => 'ProjectController@tasks', 'middleware' => 'change_current_project'));
+    Route::get('/projects/{uuid}/tasks/{task_uuid?}', array('as' => 'project_tasks_edit', 'uses' => 'ProjectController@tasks_edit', 'middleware' => 'change_current_project'));
     Route::get('/projects/{uuid}/tickets', array('as' => 'project_tickets', 'uses' => 'ProjectController@tickets', 'middleware' => 'change_current_project'));
+    Route::get('/projects/{uuid}/tickets/{ticket_uuid?}', array('as' => 'project_tickets_edit', 'uses' => 'ProjectController@tickets_edit', 'middleware' => 'change_current_project'));
     Route::get('/projects/{uuid}/monitoring', array('as' => 'project_monitoring', 'uses' => 'ProjectController@monitoring', 'middleware' => 'change_current_project'));
     Route::get('/projects/{uuid}/project_seo', array('as' => 'project_seo', 'uses' => 'ProjectController@seo', 'middleware' => 'change_current_project'));
     Route::get('/projects/{uuid}/messages', array('as' => 'project_messages', 'uses' => 'ProjectController@messages', 'middleware' => 'change_current_project'));
@@ -62,6 +64,8 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
     Route::post('/tools/tickets_unallocate', array('as' => 'tickets_unallocate', 'uses' => 'Tools\TicketController@unallocate'));
     Route::get('/tools/delete_ticket/{uuid}', array('as' => 'tickets_delete', 'uses' => 'Tools\TicketController@delete'));
 
+    Route::post('/tools/conversations', array('as' => 'add_conversation', 'uses' => 'Tools\MessageController@addConversation'));
+
     Route::group(['middleware' => 'user'], function () {
         Route::get('/tools/tasks', array('as' => 'tasks_index', 'uses' => 'Tools\TaskController@index'));
         Route::get('/tools/tasks/add', array('as' => 'tasks_add', 'uses' => 'Tools\TaskController@add'));
@@ -82,7 +86,6 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
         Route::get('/tools/conversations', array('as' => 'conversations_index', 'uses' => 'Tools\MessageController@index'));
         Route::post('/tools/conversations/reply', array('as' => 'conversations_reply', 'uses' => 'Tools\MessageController@reply'));
         Route::get('/tools/conversations/{id}', array('as' => 'conversations_view', 'uses' => 'Tools\MessageController@view'));
-        Route::post('/toolsconversations', array('as' => 'add_conversation', 'uses' => 'Tools\MessageController@addConversation'));
 
         Route::post('/tools/todos/create', array('as' => 'todos_create', 'uses' => 'Tools\TodoController@create'));
         Route::post('/tools/todos/update', array('as' => 'todos_update', 'uses' => 'Tools\TodoController@update'));
@@ -113,8 +116,7 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
         Route::post('/administration/projects', array('as' => 'projects_update', 'uses' => 'Administration\ProjectController@update'));
         Route::post('/administration/projects/config', array('as' => 'projects_update_config', 'uses' => 'Administration\ProjectController@update_config'));
         Route::get('/administration/projects/delete/{uuid}', array('as' => 'projects_delete', 'uses' => 'Administration\ProjectController@delete'));
-        Route::post('/administration/projects/add_user', array('as' => 'projects_add_user', 'uses' => 'Administration\ProjectController@add_user'));
-        Route::get('/administration/projects/delete_user/{uuid}/{user_id}', array('as' => 'projects_delete_user', 'uses' => 'Administration\ProjectController@delete_user'));
+        Route::post('/administration/projects/team', array('as' => 'projects_update_team', 'uses' => 'Administration\ProjectController@update_team'));
         Route::post('/administration/projects/tasks', array('as' => 'projects_update_tasks', 'uses' => 'Administration\ProjectController@update_tasks'));
         Route::post('/administration/projects/allocate_and_schedule_task', array('as' => 'projects_allocate_and_schedule_task', 'uses' => 'Administration\ProjectController@allocate_and_schedule_task'));
         Route::post('/administration/projects/import_phases_and_tasks_from_text', array('as' => 'projects_import_phases_and_tasks_from_text', 'uses' => 'Administration\ProjectController@import_phases_and_tasks_from_text'));

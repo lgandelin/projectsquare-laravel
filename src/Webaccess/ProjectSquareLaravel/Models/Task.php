@@ -28,6 +28,11 @@ class Task extends Model
         return $this->belongsTo('Webaccess\ProjectSquareLaravel\Models\Phase');
     }
 
+    public function author_user()
+    {
+        return $this->belongsTo('Webaccess\ProjectSquareLaravel\Models\User');
+    }
+
     public function allocated_user()
     {
         return $this->belongsTo('Webaccess\ProjectSquareLaravel\Models\User');

@@ -51,7 +51,7 @@ class TicketUpdatedSlackNotification
 
                 if ($modificationMade) {
                     SlackTool::send(
-                        ((isset($ticket->project) && isset($ticket->project->client)) ? '<' . route('project_index', ['id' => $ticket->project->id]) . '|*[' . $ticket->project->client->name . '] ' . $ticket->project->name . '*>' : '') . ' *Un ticket a été modifié*',
+                        ((isset($ticket->project) && isset($ticket->project->client)) ? '<' . route('project_tickets', ['id' => $ticket->project->id]) . '|*[' . $ticket->project->client->name . '] ' . $ticket->project->name . '*>' : '') . ' *Un ticket a été modifié*',
                         implode("\n", $lines),
                         (isset($ticket->states[0]) && isset($ticket->states[0]->author_user)) ? $ticket->states[0]->author_user->complete_name : '',
                         null,

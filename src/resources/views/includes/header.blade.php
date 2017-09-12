@@ -20,4 +20,4 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body @if (isset($login_template))style="background:#e6f0f3"@endif>

@@ -5,13 +5,18 @@ html {
 body {
     min-height: 100%;
     position: relative;
-    background: #e6f0f3;
 }
 
 .content {
     padding-left: 0rem;
     padding-right: 0rem;
-    margin-left: 265px;
+    margin-left: 26.5rem;
+
+    //background: #e6f0f3;
+
+    .templates:last-child {
+        min-height: calc(100vh - 190px);
+    }
 }
 
 .content-expanded {

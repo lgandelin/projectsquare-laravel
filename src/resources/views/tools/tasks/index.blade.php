@@ -65,11 +65,11 @@
                     <thead>
                     <tr>
                         <th></th>
-                        <th>{{ trans('projectsquare::tasks.task') }}</th>
-                        <th>{{ trans('projectsquare::tasks.phase') }}</th>
-                        <th>{{ trans('projectsquare::tasks.client') }}</th>
-                        <th>{{ trans('projectsquare::tasks.allocated_user') }}</th>
-                        <th>{{ trans('projectsquare::tasks.status') }}</th>
+                        <th>{{ trans('projectsquare::tasks.task') }}<a href="{{ route('tasks_index', ['sc' => 'title', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-alpha-{{ $sort_order }}"></i></a></th>
+                        <th>{{ trans('projectsquare::tasks.phase') }}<a href="{{ route('tasks_index', ['sc' => 'phase_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
+                        <th>{{ trans('projectsquare::tasks.client') }}<a href="{{ route('tasks_index', ['sc' => 'client', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
+                        <th>{{ trans('projectsquare::tasks.allocated_user') }}<a href="{{ route('tasks_index', ['sc' => 'allocated_user_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
+                        <th>{{ trans('projectsquare::tasks.status') }}<a href="{{ route('tasks_index', ['sc' => 'status_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
                         <th>{{ trans('projectsquare::tasks.estimated_time') }}</th>
                         <th>{{ trans('projectsquare::tasks.spent_time') }}</th>
                         <th>{{ trans('projectsquare::generic.action') }}</th>
@@ -79,37 +79,67 @@
                     <tbody>
                     @foreach ($tasks as $task)
                         <tr>
-                            <td @if (isset($task->project))style="border-left: 10px solid {{ $task->project->color }}"@endif></td>
-                            <td class="entity_title"><a href="{{ route('tasks_edit', ['id' => $task->id]) }}">{{ $task->title }}</a></td>
-                            <td>@if ($task->phase){{ $task->phase->name }}@endif</td>
-                            <td>@if (isset($task->project) && isset($task->project->client)){{ $task->project->client->name }}@endif</td>
+                            <td class="project-border" @if (isset($task->project))style="border-left: 10px solid {{ $task->project->color }}"@endif></td>
                             <td>
-                                @if (isset($task->allocated_user))
-                                    @include('projectsquare::includes.avatar', [
-                                        'id' => $task->allocated_user->id,
-                                        'name' => $task->allocated_user->complete_name
-                                    ])
-                                @endif
+                                <a href="{{ route('tasks_edit', ['id' => $task->id]) }}">
+                                    {{ $task->title }}
+                                </a>
                             </td>
                             <td>
-                                @if ($task->status_id == 1)A faire
-                                @elseif ($task->status_id == 2)En cours
-                                @elseif ($task->status_id == 3)Terminé
-                                @endif
+                                <a href="{{ route('tasks_edit', ['id' => $task->id]) }}">
+                                    @if ($task->phase){{ $task->phase->name }}@endif
+                                </a>
                             </td>
-                            <td>@if ($task->estimated_time_days > 0){{ $task->estimated_time_days }} {{ trans('projectsquare::generic.days_abbr') }}@endif @if ($task->estimated_time_hours > 0){{ $task->estimated_time_hours }} {{ trans('projectsquare::generic.hours_abbr') }}@endif</td>
-                            <td>@if ($task->spent_time_days > 0){{ $task->spent_time_days }} {{ trans('projectsquare::generic.days_abbr') }}@endif @if ($task->spent_time_hours > 0){{ $task->spent_time_hours }} {{ trans('projectsquare::generic.hours_abbr') }}@endif</td>
-                            <td align="right">
-                                <a href="{{ route('tasks_edit', ['id' => $task->id]) }}" class="btn see-more"></a>
-                                <span class="task-dragndrop" id="ticket-{{ $task->id }}"
-                                    data-id="{{ $task->id }}"
-                                    data-title="{{ $task->title }}"
-                                    data-duration="{{ \Webaccess\ProjectSquareLaravel\Tools\DurationConverter::convertToCalendarDuration($task->estimated_time_days) }}"
-                                    data-project="{{ $task->project_id }}"
-                                >
-                                    <a href="#" class="glyphicon glyphicon-move move-widget" title="Planifier la tâche"></a>
-                                </span>
-                                <a href="{{ route('tasks_delete', ['id' => $task->id]) }}" class="btn cancel btn-delete"></a>
+                            <td>
+                                <a href="{{ route('tasks_edit', ['id' => $task->id]) }}">
+                                    @if (isset($task->project) && isset($task->project->client)){{ $task->project->client->name }}@endif
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('tasks_edit', ['id' => $task->id]) }}">
+                                    @if (isset($task->allocated_user))
+                                        @include('projectsquare::includes.avatar', [
+                                            'id' => $task->allocated_user->id,
+                                            'name' => $task->allocated_user->complete_name
+                                        ])
+                                    @endif
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('tasks_edit', ['id' => $task->id]) }}">
+                                    @if ($task->status_id == 1)A faire
+                                    @elseif ($task->status_id == 2)En cours
+                                    @elseif ($task->status_id == 3)Terminé
+                                    @endif
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('tasks_edit', ['id' => $task->id]) }}">
+                                    @if ($task->estimated_time_days > 0){{ $task->estimated_time_days }} {{ trans('projectsquare::generic.days_abbr') }}@endif @if ($task->estimated_time_hours > 0){{ $task->estimated_time_hours }} {{ trans('projectsquare::generic.hours_abbr') }}@endif
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('tasks_edit', ['id' => $task->id]) }}">
+                                    @if ($task->spent_time_days > 0){{ $task->spent_time_days }} {{ trans('projectsquare::generic.days_abbr') }}@endif @if ($task->spent_time_hours > 0){{ $task->spent_time_hours }} {{ trans('projectsquare::generic.hours_abbr') }}@endif
+                                </a>
+                            </td>
+                            <td width="10%" class="action" align="right">
+                                <a href="{{ route('tasks_edit', ['id' => $task->id]) }}">
+                                    <i class="btn see-more"></i>
+                                </a>
+                                <a href="#" title="Planifier la tâche">
+                                    <span class="task-dragndrop" id="ticket-{{ $task->id }}"
+                                        data-id="{{ $task->id }}"
+                                        data-title="{{ $task->title }}"
+                                        data-duration="{{ \Webaccess\ProjectSquareLaravel\Tools\DurationConverter::convertToCalendarDuration($task->estimated_time_days) }}"
+                                        data-project="{{ $task->project_id }}"
+                                    >
+                                        <i class="glyphicon glyphicon-move move-widget"></i>
+                                    </span>
+                                </a>
+                                <a href="{{ route('tasks_delete', ['id' => $task->id]) }}">
+                                    <i class="btn cancel btn-delete"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
@@ -118,10 +148,14 @@
             </div>
 
             <div class="text-center">
+                @include('projectsquare::administration.includes.items_per_page')
                 {!! $tasks->appends([
                     'filter_project' => $filters['project'],
                     'filter_allocated_user' => $filters['allocated_user'],
                     'filter_status' => $filters['status'],
+                    'it' => $items_per_page,
+                    'sc' => $sort_column,
+                    'so' => $sort_order
                 ])->links() !!}
             </div>
         </div>

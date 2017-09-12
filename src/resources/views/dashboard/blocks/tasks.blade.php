@@ -1,7 +1,7 @@
 <div class="block last-tasks">
     <div class="block-content table-responsive">
         <h3>{{ trans('projectsquare::dashboard.last_tasks') }}
-        
+
             @include('projectsquare::includes.tooltip', [
                 'text' => trans('projectsquare::tooltips.tasks')
             ])
@@ -11,8 +11,8 @@
             @else
                 <a href="{{ route('tasks_index') }}" class="all pull-right" title="{{ trans('projectsquare::dashboard.tasks_list') }}"></a>
             @endif
-            <a href="{{ route('tasks_add') }}" class="add pull-right" title="{{ trans('projectsquare::dashboard.add_task') }}"></a>
 
+            <a href="{{ route('tasks_add') }}" class="add pull-right" title="{{ trans('projectsquare::dashboard.add_task') }}"></a>
             <a href="#" class="glyphicon glyphicon-move move-widget pull-right" title="{{ trans('projectsquare::dashboard.move_widget') }}"></a>
         </h3>
 
@@ -30,24 +30,34 @@
             <tbody>
             @foreach ($tasks as $task)
                 <tr>
-                    <td style="border-left: 10px solid @if (isset($task->project)) {{ $task->project->color }} @endif"></td>
-                    <td class="entity_title"><a href="{{ route('tasks_edit', ['id' => $task->id]) }}">{{ $task->title }}</a></td>
+                    <td class="project-border" style="border-left: 10px solid @if (isset($task->project)) {{ $task->project->color }} @endif"></td>
                     <td>
-                        @if (isset($task->allocated_user))
-                            @include('projectsquare::includes.avatar', [
-                                'id' => $task->allocated_user->id,
-                                'name' => $task->allocated_user->complete_name
-                            ])
-                        @endif
+                        <a href="{{ route('project_tasks_edit', ['uuid' => $task->project_id, 'task_uuid' => $task->id]) }}">
+                            {{ $task->title }}
+                        </a>
                     </td>
                     <td>
-                        @if ($task->status_id == 1){{ trans('projectsquare::tasks.to_do') }}
-                        @elseif ($task->status_id == 2){{ trans('projectsquare::tasks.in_progress') }}
-                        @elseif ($task->status_id == 3){{ trans('projectsquare::tasks.done') }}
-                        @endif
+                        <a href="{{ route('project_tasks_edit', ['uuid' => $task->project_id, 'task_uuid' => $task->id]) }}">
+                            @if (isset($task->allocated_user))
+                                @include('projectsquare::includes.avatar', [
+                                    'id' => $task->allocated_user->id,
+                                    'name' => $task->allocated_user->complete_name
+                                ])
+                            @endif
+                        </a>
                     </td>
-                    <td align="right" class="action">
-                        <a href="{{ route('tasks_edit', ['id' => $task->id]) }}" class="btn btn-sm btn-primary see-more" title="{{ trans('projectsquare::dashboard.see_task') }}"></a>
+                    <td>
+                        <a href="{{ route('project_tasks_edit', ['uuid' => $task->project_id, 'task_uuid' => $task->id]) }}">
+                            @if ($task->status_id == 1){{ trans('projectsquare::tasks.to_do') }}
+                            @elseif ($task->status_id == 2){{ trans('projectsquare::tasks.in_progress') }}
+                            @elseif ($task->status_id == 3){{ trans('projectsquare::tasks.done') }}
+                            @endif
+                        </a>
+                    </td>
+                    <td align="right">
+                        <a href="{{ route('project_tasks_edit', ['uuid' => $task->project_id, 'task_uuid' => $task->id]) }}" title="{{ trans('projectsquare::dashboard.see_task') }}">
+                            <i class="btn btn-sm btn-primary see-more"></i>
+                        </a>
                     </td>
                 </tr>
             @endforeach

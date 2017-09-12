@@ -49,6 +49,19 @@
                     </div>
 
                     <div class="col-md-6">
+
+                        @if (isset($phases) && sizeof($phases) > 0)
+                            <div class="form-group">
+                                <label for="phase_id">{{ trans('projectsquare::tasks.phase') }}</label>
+                                    <select class="form-control" name="phase_id" @if (isset($task) && $task->id) disabled @endif>
+                                        <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+                                        @foreach ($phases as $phase)
+                                            <option value="{{ $phase->id }}" @if (isset($data['phaseID']) && $data['phaseID'] == $phase->id)selected="selected"@endif>{{ $phase->name }}</option>
+                                        @endforeach
+                                    </select>
+                            </div>
+                        @endif
+
                         <div class="form-group">
                             <label for="status_id">{{ trans('projectsquare::tasks.status') }}</label>
                             @if (isset($task_statuses))
