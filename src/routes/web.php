@@ -65,6 +65,9 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
     Route::get('/tools/delete_ticket/{uuid}', array('as' => 'tickets_delete', 'uses' => 'Tools\TicketController@delete'));
 
     Route::post('/tools/conversations', array('as' => 'add_conversation', 'uses' => 'Tools\MessageController@addConversation'));
+    Route::get('/tools/conversations', array('as' => 'conversations_index', 'uses' => 'Tools\MessageController@index'));
+    Route::get('/tools/conversations/{id}', array('as' => 'conversations_view', 'uses' => 'Tools\MessageController@view'));
+    Route::post('/tools/conversations/reply', array('as' => 'conversations_reply', 'uses' => 'Tools\MessageController@reply'));
 
     Route::group(['middleware' => 'user'], function () {
         Route::get('/tools/tasks', array('as' => 'tasks_index', 'uses' => 'Tools\TaskController@index'));
@@ -82,10 +85,6 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
         Route::post('/tools/planning/create', array('as' => 'events_create', 'uses' => 'Tools\PlanningController@create'));
         Route::post('/tools/planning/update', array('as' => 'events_update', 'uses' => 'Tools\PlanningController@update'));
         Route::post('/tools/planning/delete', array('as' => 'events_delete', 'uses' => 'Tools\PlanningController@delete'));
-
-        Route::get('/tools/conversations', array('as' => 'conversations_index', 'uses' => 'Tools\MessageController@index'));
-        Route::post('/tools/conversations/reply', array('as' => 'conversations_reply', 'uses' => 'Tools\MessageController@reply'));
-        Route::get('/tools/conversations/{id}', array('as' => 'conversations_view', 'uses' => 'Tools\MessageController@view'));
 
         Route::post('/tools/todos/create', array('as' => 'todos_create', 'uses' => 'Tools\TodoController@create'));
         Route::post('/tools/todos/update', array('as' => 'todos_update', 'uses' => 'Tools\TodoController@update'));

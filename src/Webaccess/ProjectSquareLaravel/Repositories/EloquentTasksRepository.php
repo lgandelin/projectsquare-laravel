@@ -44,9 +44,10 @@ class EloquentTasksRepository implements TaskRepository
 
         //Client project
         if (isset($user->client_id)) {
-            $project = Project::where('client_id', '=', $user->client_id)->where('status_id', '=', ProjectEntity::IN_PROGRESS)->orderBy('created_at', 'DESC')->first();
-
-            $projectIDs[]= $project->id;
+            $projects = Project::where('client_id', '=', $user->client_id)->orderBy('created_at', 'DESC')->get();
+            foreach ($projects as $project) {
+                $projectIDs[]= $project->id;
+            }
         }
 
         $tasks = Task::whereIn('project_id', $projectIDs)->with('project', 'project.client', 'allocated_user')->with('project.client')->with('phase');
