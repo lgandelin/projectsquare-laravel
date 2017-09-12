@@ -16960,17 +16960,39 @@ input:focus, textarea:focus, select:focus {
   background: #f4f8f9;
 }
 /* line 38, ../sass/layout/_middle-column.scss */
+.middle-column .parent .parent-wrapper.create {
+  padding: 0;
+}
+/* line 41, ../sass/layout/_middle-column.scss */
+.middle-column .parent .parent-wrapper.create a {
+  width: 100%;
+  display: block;
+  padding: 2rem;
+  background: #096a85;
+  color: white;
+}
+/* line 49, ../sass/layout/_middle-column.scss */
+.middle-column .parent .parent-wrapper.create a:hover {
+  text-decoration: none;
+  opacity: 0.9;
+}
+/* line 54, ../sass/layout/_middle-column.scss */
+.middle-column .parent .parent-wrapper.create a i {
+  margin-right: 1rem;
+  color: white;
+}
+/* line 61, ../sass/layout/_middle-column.scss */
 .middle-column .parent .parent-wrapper .toggle-childs {
   margin-top: 4px;
   float: right;
   cursor: pointer;
   font-size: 1.3rem;
 }
-/* line 45, ../sass/layout/_middle-column.scss */
+/* line 68, ../sass/layout/_middle-column.scss */
 .middle-column .parent .parent-wrapper .toggle-childs:hover {
   color: #c8dc1e;
 }
-/* line 50, ../sass/layout/_middle-column.scss */
+/* line 73, ../sass/layout/_middle-column.scss */
 .middle-column .parent .parent-wrapper .childs-number {
   width: 2.4rem;
   height: 2.4rem;
@@ -16983,62 +17005,62 @@ input:focus, textarea:focus, select:focus {
   background: white;
   border-radius: 50%;
 }
-/* line 67, ../sass/layout/_middle-column.scss */
+/* line 90, ../sass/layout/_middle-column.scss */
 .middle-column .parent .childs .child {
   border-bottom: 1px solid #eeeeee;
   border-right: 3px solid transparent;
 }
-/* line 71, ../sass/layout/_middle-column.scss */
+/* line 94, ../sass/layout/_middle-column.scss */
 .middle-column .parent .childs .child.current {
   border-right: 3px solid #c8dc1e;
 }
-/* line 75, ../sass/layout/_middle-column.scss */
+/* line 98, ../sass/layout/_middle-column.scss */
 .middle-column .parent .childs .child:hover {
   background: #fafafa;
 }
-/* line 79, ../sass/layout/_middle-column.scss */
+/* line 102, ../sass/layout/_middle-column.scss */
 .middle-column .parent .childs .child a {
   width: 100%;
   height: 100%;
   display: block;
 }
-/* line 84, ../sass/layout/_middle-column.scss */
+/* line 107, ../sass/layout/_middle-column.scss */
 .middle-column .parent .childs .child a:hover {
   text-decoration: none;
 }
-/* line 89, ../sass/layout/_middle-column.scss */
+/* line 112, ../sass/layout/_middle-column.scss */
 .middle-column .parent .childs .child .child-wrapper {
   padding: 1rem 1.5rem;
   font-family: "AvantGarde-Book";
   font-size: 1.4rem;
   color: #096a85;
 }
-/* line 96, ../sass/layout/_middle-column.scss */
+/* line 119, ../sass/layout/_middle-column.scss */
 .middle-column .parent .childs .child .child-wrapper .name {
   display: inline-block;
   max-width: 23rem;
   vertical-align: middle;
 }
-/* line 102, ../sass/layout/_middle-column.scss */
+/* line 125, ../sass/layout/_middle-column.scss */
 .middle-column .parent .childs .child .child-wrapper .avatar {
   width: 5rem;
   height: 5rem;
   margin-right: 1.75rem;
   border: none;
 }
-/* line 110, ../sass/layout/_middle-column.scss */
+/* line 133, ../sass/layout/_middle-column.scss */
 .middle-column .parent .childs .child .child-wrapper .priority {
   display: inline-block;
   margin-top: 1rem;
   float: right;
 }
 
-/* line 122, ../sass/layout/_middle-column.scss */
+/* line 145, ../sass/layout/_middle-column.scss */
 .content-expanded .middle-column {
   left: 4.9rem;
 }
 
-/* line 128, ../sass/layout/_middle-column.scss */
+/* line 151, ../sass/layout/_middle-column.scss */
 .client-view .middle-column {
   left: 0;
 }

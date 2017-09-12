@@ -1,4 +1,11 @@
 <div class="middle-column">
+
+    <div class="parent">
+        <div class="parent-wrapper create">
+            <a href="{{ route('tickets_add') }}"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ trans('projectsquare::tickets.add_ticket') }}</a>
+        </div>
+    </div>
+
     @if (sizeof($tickets_grouped_by_states) > 0)
         @foreach ($tickets_grouped_by_states as $state)
             <div class="parent">
