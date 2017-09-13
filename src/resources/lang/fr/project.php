@@ -10,7 +10,7 @@ return [
     'settings' => 'Réglages',
     'messages' => 'Messages',
     'calendar' => 'Calendrier',
-    'seo' => 'Référencement',
+    'seo' => 'Analytics',
     'files' => 'Fichiers',
     'reporting' => 'Reporting',
     'progress' => 'Etat d\'avancement',

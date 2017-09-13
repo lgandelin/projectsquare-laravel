@@ -1,4 +1,11 @@
 <div class="middle-column">
+
+    <div class="parent">
+        <div class="parent-wrapper create">
+            <a href="{{ route('tasks_add') }}"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ trans('projectsquare::tasks.add_task') }}</a>
+        </div>
+    </div>
+
     @if (sizeof($phases) > 0)
         @foreach ($phases as $phase)
             <div class="parent">

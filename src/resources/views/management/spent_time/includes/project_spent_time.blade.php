@@ -1,7 +1,7 @@
 @if (sizeof($project->phases) > 0)
     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
         <div class="project">
-            @if (!isset($disable_header))<div class="header" style="background:{{ $project->color }}">{{ $project->name }}</div>@endif
+            @if (!isset($project_interface))<div class="header" style="background:{{ $project->color }}">{{ $project->name }}</div>@endif
             <table class="table table-bordered">
                 <tr>
                     <td>{{ trans('projectsquare::spent_time.phases_tasks') }}</td>
@@ -56,4 +56,6 @@
             </table>
         </div>
     </div>
+@elseif (isset($project_interface))
+    <div class="no-entry">Aucune phase associée au projet.</div>
 @endif
