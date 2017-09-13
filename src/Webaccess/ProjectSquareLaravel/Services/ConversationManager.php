@@ -41,21 +41,6 @@ class ConversationManager
         return $this->repository->getConversationsByProject([$projectID], $limit);
     }
 
-    public function getConversations($userID, $limit=null)
-    {
-        //Ressource projects
-        $projectIDs = User::find($userID)->projects->pluck('id')->toArray();
-
-        //Client project
-        $user = User::find($userID);
-        if (isset($user->client_id)) {
-            $project = Project::where('client_id', '=', $user->client_id)->first();
-            $projectIDs[]= $project->id;
-        }
-
-        return $this->repository->getConversationsByProject($projectIDs, $limit);
-    }
-
     public function deleteConversationByProjectID($projectID)
     {
         return $this->repository->deleteConversationByProjectID($projectID);
