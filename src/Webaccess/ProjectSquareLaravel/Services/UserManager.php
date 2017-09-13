@@ -103,7 +103,6 @@ class UserManager
             //Send email
             Mail::send('projectsquare::emails.user_account_created', array('email' => $email, 'first_name' => $firstName, 'last_name' => $lastName, 'password' => $password, 'url' => isset($platform->url) ? $platform->url : $platform->url), function ($message) use ($email) {
                 $message->to($email)
-                    ->from('no-reply@projectsquare.io')
                     ->subject('[projectsquare] Votre compte a été créé avec succès');
             });
         }
@@ -161,7 +160,6 @@ class UserManager
     {
         Mail::send('projectsquare::emails.password', array('password' => $newPassword), function ($message) use ($userEmail) {
             $message->to($userEmail)
-                ->from('no-reply@projectsquare.io')
                 ->subject('[projectsquare] Votre nouveau mot de passe');
         });
     }

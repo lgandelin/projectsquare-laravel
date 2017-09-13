@@ -105,7 +105,6 @@ class BaseController extends Controller
 
         Mail::send('projectsquare::emails.beta_form', array('title' => $title, 'content' => $content, 'user_id' => $userID), function ($message) {
             $message->to('lgandelin@web-access.fr')
-                ->from('no-reply@projectsquare.io')
                 ->subject('[projectsquare] Formulaire de contact');
         });
 

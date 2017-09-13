@@ -24,7 +24,6 @@ class MessageCreatedEmailNotification
 
                     Mail::send('projectsquare::emails.message_created', array('m' => $m, 'user' => $user), function ($message) use ($email) {
                         $message->to($email)
-                            ->from('no-reply@projectsquare.io')
                             ->subject('[projectsquare] Un nouveau message vient d\'être envoyé sur la plateforme');
                     });
                 }
@@ -38,7 +37,6 @@ class MessageCreatedEmailNotification
 
                     Mail::send('projectsquare::emails.message_created', array('m' => $m, 'user' => $user), function ($message) use ($email) {
                         $message->to($email)
-                            ->from('no-reply@projectsquare.io')
                             ->subject('[projectsquare] Un nouveau message vient d\'être envoyé sur la plateforme');
                     });
                 }

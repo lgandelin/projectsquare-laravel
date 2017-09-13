@@ -21,7 +21,6 @@ class TicketDeletedEmailNotification
 
                         Mail::send('projectsquare::emails.ticket_deleted', array('ticket' => $ticket), function ($message) use ($email, $ticket) {
                             $message->to($email)
-                                ->from('no-reply@projectsquare.io')
                                 ->subject('[projectsquare] Suppression du ticket : ' . $ticket->title);
                         });
                     }

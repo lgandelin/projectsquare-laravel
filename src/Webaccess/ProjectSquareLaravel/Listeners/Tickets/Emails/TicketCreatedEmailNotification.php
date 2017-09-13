@@ -21,7 +21,6 @@ class TicketCreatedEmailNotification
 
                         Mail::send('projectsquare::emails.ticket_created', array('ticket' => $ticket), function ($message) use ($email, $ticket) {
                             $message->to($email)
-                                ->from('no-reply@projectsquare.io')
                                 ->subject('[projectsquare] Un nouveau ticket vous a été assigné');
                         });
                     }

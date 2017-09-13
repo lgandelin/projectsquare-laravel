@@ -21,7 +21,6 @@ class TaskCreatedEmailNotification
 
                         Mail::send('projectsquare::emails.task_created', array('task' => $task), function ($message) use ($email, $task) {
                             $message->to($email)
-                                ->from('no-reply@projectsquare.io')
                                 ->subject('[projectsquare] Une nouvelle tâche vous a été assignée');
                         });
                     }
