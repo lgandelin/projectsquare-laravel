@@ -60,7 +60,7 @@ class DashboardController extends BaseController
             $widgets[]= ['name' => 'tasks', 'width' => 6];
             $widgets[]= ['name' => 'planning', 'width' => 12];
         } else {
-            $widgets[]= ['name' => 'calendar', 'width' => 6];
+            //$widgets[]= ['name' => 'calendar', 'width' => 6];
         }
 
         if (!isset($_COOKIE['dashboard-widgets-' . $this->getUser()->id])) {
