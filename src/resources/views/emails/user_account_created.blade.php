@@ -3,7 +3,7 @@
 {{ trans('projectsquare::email.account_created') }}<br/><br/>
 {{ trans('projectsquare::email.account_created_2') }}<br/><br>
 
-<strong>URL :</strong> <a href="http://{{ $url }}">{{ $url }}</a><br/>
+<strong>URL :</strong> <a href="http://{{ $url }}">http://{{ $url }}</a><br/>
 <strong>{{ trans('projectsquare::email.email') }}</strong> {{ $email }}<br/>
 <strong>{{ trans('projectsquare::email.password') }}</strong> {{ $password }}<br/><br>
 
