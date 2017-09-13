@@ -67,9 +67,12 @@ class NotificationDecorator
                     }
                 } elseif ($notification->type == 'ASSIGNED_TO_PROJECT') {
                     try {
-                        $project = (new EloquentProjectRepository())->getProject($notification->entityID);
-                        $notification->project = $project;
-                        $notification->link = $project ? route('project_tasks', ['id' => $project->id]) : '';
+                        if ($project = (new EloquentProjectRepository())->getProject($notification->entityID)) {
+                            $notification->project = $project;
+                            $notification->link = $project ? route('project_tasks', ['id' => $project->id]) : '';
+                        } else {
+                            unset($notifications[$i]);
+                        }
                     } catch(\Exception $e) {
                         unset($notifications[$i]);
                     }
@@ -90,13 +93,13 @@ class NotificationDecorator
             if($day_diff == 0) {
                 if($seconds < 60) return 'à l\'instant';
                 if($seconds < 120) return 'il y a une minute';
-                if($seconds < 3600) return 'il y a ' . floor($seconds / 60) . ' minutes';
+                if($seconds <= 3600) return 'il y a ' . floor($seconds / 60) . ' minutes';
                 if($seconds < 7200) return 'il y a une heure';
-                if($seconds < 86400) return 'il y a ' . floor($seconds / 3600) . ' heures';
+                if($seconds <= 86400) return 'il y a ' . floor($seconds / 3600) . ' heures';
             }
 
             if($day_diff == 1) { return 'hier'; }
-            if($day_diff < 7) { return 'il y a ' .$day_diff . ' jours'; }
+            if($day_diff <= 7) { return 'il y a ' .$day_diff . ' jours'; }
             if($day_diff < 31) { return 'il y a ' . ceil($day_diff / 7) . ' semaines'; }
             if($day_diff < 60) { return 'le mois dernier'; }
 

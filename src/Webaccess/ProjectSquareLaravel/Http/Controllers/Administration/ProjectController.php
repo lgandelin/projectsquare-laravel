@@ -67,7 +67,8 @@ class ProjectController extends BaseController
             app()->make('AddUserToProjectInteractor')->execute(new AddUserToProjectRequest([
                 'projectID' => $response->project->id,
                 'userID' => $this->getUser()->id,
-                'roleID' => Role::first()->id
+                'roleID' => Role::first()->id,
+                'requesterUserID' => $this->getUser()->id
             ]));
 
             $request->session()->flash('confirmation', trans('projectsquare::projects.add_project_success'));
