@@ -1,4 +1,4 @@
-    $(document).ready(function() {
+$(document).ready(function() {
 
     //PLANNING
     $('#planning').fullCalendar({
@@ -27,17 +27,6 @@
     });
 
     $('.block-content').removeClass('loading');
-
-    /*//DASHBOARD - REPLY MESSAGE
-    $('.conversation').on('click', '.reply-message', function() {
-        var conversation_id = $(this).closest('.conversation').attr('data-id');
-        $('#conversation-' + conversation_id + '-modal').modal('show');
-    });*/
-
-    //MESSAGE NOTIFICATIONS
-    $('.top-bar .notifications .notification.message-notification').on('click', '', function() {
-        
-    });
 
     //DASHBOARD - CANCEL MESSAGE
     $('.conversation').on('click', '.cancel-message', function() {
@@ -149,4 +138,12 @@
             createCookie('dashboard-widgets-' + $('#current-user-id').val(), JSON.stringify(widgets));
         }
     }
+
+    //DASHBOARD - REPORTING WIDGET
+    $('.reporting .project').click(function(e) {
+        e.preventDefault();
+
+        $(this).find('.project-progress').slideToggle(200);
+        $(this).find('.toggle-progress').toggleClass('opened');
+    });
 });

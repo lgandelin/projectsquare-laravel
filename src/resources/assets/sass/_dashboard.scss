@@ -197,21 +197,22 @@
     }
 
     .reporting {
-        overflow-x: auto;
-        white-space: nowrap;
         margin-bottom: 3rem;
         padding-bottom: 3rem;
 
         .project {
-            display: inline-block;
-            width: 18%;
-            margin-right: 2%;
             position: relative;
             vertical-align: middle;
+
+            padding-top: 2.8rem;
+            padding-bottom: 2.2rem;
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
 
             font-size: 1.5rem;
             font-family: $typo1;
             color: white;
+            cursor: pointer;
 
             border: 1px solid #bbc1bf;
 
@@ -219,23 +220,28 @@
                 margin-right: 0;
             }
 
-            a {
-                padding-top: 2.8rem;
-                padding-bottom: 2.2rem;
-                padding-left: 2.5rem;
-                padding-right: 2.5rem;
+            .toggle-progress {
+                display: inline-block;
+                margin-left: 1.5rem;
 
-                cursor: pointer;
-                display: block;
-                width: 100%;
-                height: 100%;
                 color: white;
+                cursor: pointer;
+                font-size: 1.3rem;
 
-                text-decoration: none;
+                @extend .glyphicon;
+                @extend .glyphicon-triangle-bottom;
+
+                &.opened {
+                    @extend .glyphicon-triangle-top;
+                }
             }
 
             &:hover {
                 opacity: 0.9;
+
+                .toggle-progress {
+                    color: $green;
+                }
             }
 
             .time-values {
@@ -247,6 +253,7 @@
                 position: absolute;
                 bottom: -1.5rem;
                 left: 1.25rem;
+                z-index: 6;
 
                 .avatar {
                     width: 3rem;
@@ -255,6 +262,19 @@
 
                     border: none;
                 }
+            }
+
+            .project-progress {
+                position: absolute;
+                left: 0;
+                top: 7.5rem;
+                z-index: 5;
+
+                background: white;
+            }
+
+            .slick-slide img {
+                display: inline-block;
             }
         }
     }

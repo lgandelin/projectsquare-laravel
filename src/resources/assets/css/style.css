@@ -4135,7 +4135,7 @@ th {
   src: url("../fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/bootstrap/glyphicons-halflings-regular.woff2") format("woff2"), url("../fonts/bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("../fonts/bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("../fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
 }
 /* line 269, ../sass/vendor/_bootstrap.scss */
-.glyphicon, .left-bar > ul .menu .toggle-childs, .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .management .icon, .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .administration .icon {
+.glyphicon, .left-bar > ul .menu .toggle-childs, .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .management .icon, .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .administration .icon, .dashboard-content .reporting .project .toggle-progress {
   position: relative;
   top: 1px;
   display: inline-block;
@@ -5414,12 +5414,12 @@ th {
 }
 
 /* line 1041, ../sass/vendor/_bootstrap.scss */
-.glyphicon-triangle-bottom:before, .left-bar > ul .menu.submenu-closed .toggle-childs:before {
+.glyphicon-triangle-bottom:before, .left-bar > ul .menu.submenu-closed .toggle-childs:before, .dashboard-content .reporting .project .toggle-progress:before {
   content: "\e252";
 }
 
 /* line 1044, ../sass/vendor/_bootstrap.scss */
-.glyphicon-triangle-top:before, .left-bar > ul .menu .toggle-childs:before {
+.glyphicon-triangle-top:before, .left-bar > ul .menu .toggle-childs:before, .dashboard-content .reporting .project .toggle-progress.opened:before {
   content: "\e253";
 }
 
@@ -16605,7 +16605,7 @@ a.fc-more:hover {
 }
 
 /* line 70, ../sass/includes/_buttons.scss */
-.btn .glyphicon, .btn .left-bar > ul .menu .toggle-childs, .left-bar > ul .menu .btn .toggle-childs, .btn .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .btn .icon, .btn .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .btn .icon, .btn .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .btn .icon, .btn .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .btn .icon, .btn .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .btn .icon {
+.btn .glyphicon, .btn .left-bar > ul .menu .toggle-childs, .left-bar > ul .menu .btn .toggle-childs, .btn .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .btn .icon, .btn .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .btn .icon, .btn .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .btn .icon, .btn .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .btn .icon, .btn .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .btn .icon, .btn .dashboard-content .reporting .project .toggle-progress, .dashboard-content .reporting .project .btn .toggle-progress {
   margin-right: 0.5rem;
 }
 
@@ -17871,7 +17871,7 @@ body {
 }
 
 /* line 18, ../sass/layout/_beta_form.scss */
-.beta-form:hover .glyphicon, .beta-form:hover .left-bar > ul .menu .toggle-childs, .left-bar > ul .menu .beta-form:hover .toggle-childs, .beta-form:hover .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .beta-form:hover .icon, .beta-form:hover .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .beta-form:hover .icon, .beta-form:hover .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .beta-form:hover .icon, .beta-form:hover .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .beta-form:hover .icon, .beta-form:hover .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .beta-form:hover .icon {
+.beta-form:hover .glyphicon, .beta-form:hover .left-bar > ul .menu .toggle-childs, .left-bar > ul .menu .beta-form:hover .toggle-childs, .beta-form:hover .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .beta-form:hover .icon, .beta-form:hover .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .beta-form:hover .icon, .beta-form:hover .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .beta-form:hover .icon, .beta-form:hover .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .beta-form:hover .icon, .beta-form:hover .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .beta-form:hover .icon, .beta-form:hover .dashboard-content .reporting .project .toggle-progress, .dashboard-content .reporting .project .beta-form:hover .toggle-progress {
   color: #c8dc1e;
 }
 
@@ -18160,61 +18160,73 @@ select.items_per_page {
 }
 /* line 199, ../sass/_dashboard.scss */
 .dashboard-content .reporting {
-  overflow-x: auto;
-  white-space: nowrap;
   margin-bottom: 3rem;
   padding-bottom: 3rem;
 }
-/* line 205, ../sass/_dashboard.scss */
+/* line 203, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project {
-  display: inline-block;
-  width: 18%;
-  margin-right: 2%;
   position: relative;
   vertical-align: middle;
-  font-size: 1.5rem;
-  font-family: "AvantGarde-Book";
-  color: white;
-  border: 1px solid #bbc1bf;
-}
-/* line 218, ../sass/_dashboard.scss */
-.dashboard-content .reporting .project:last-child {
-  margin-right: 0;
-}
-/* line 222, ../sass/_dashboard.scss */
-.dashboard-content .reporting .project a {
   padding-top: 2.8rem;
   padding-bottom: 2.2rem;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
-  cursor: pointer;
-  display: block;
-  width: 100%;
-  height: 100%;
+  font-size: 1.5rem;
+  font-family: "AvantGarde-Book";
   color: white;
-  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid #bbc1bf;
 }
-/* line 237, ../sass/_dashboard.scss */
+/* line 219, ../sass/_dashboard.scss */
+.dashboard-content .reporting .project:last-child {
+  margin-right: 0;
+}
+/* line 223, ../sass/_dashboard.scss */
+.dashboard-content .reporting .project .toggle-progress {
+  display: inline-block;
+  margin-left: 1.5rem;
+  color: white;
+  cursor: pointer;
+  font-size: 1.3rem;
+}
+/* line 239, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project:hover {
   opacity: 0.9;
 }
-/* line 241, ../sass/_dashboard.scss */
+/* line 242, ../sass/_dashboard.scss */
+.dashboard-content .reporting .project:hover .toggle-progress {
+  color: #c8dc1e;
+}
+/* line 247, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project .time-values {
   float: right;
   font-size: 1.7rem;
 }
-/* line 246, ../sass/_dashboard.scss */
+/* line 252, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project .project-team {
   position: absolute;
   bottom: -1.5rem;
   left: 1.25rem;
+  z-index: 6;
 }
-/* line 251, ../sass/_dashboard.scss */
+/* line 258, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project .project-team .avatar {
   width: 3rem;
   height: 3rem;
   margin-right: 0.5rem;
   border: none;
+}
+/* line 267, ../sass/_dashboard.scss */
+.dashboard-content .reporting .project .project-progress {
+  position: absolute;
+  left: 0;
+  top: 7.5rem;
+  z-index: 5;
+  background: white;
+}
+/* line 276, ../sass/_dashboard.scss */
+.dashboard-content .reporting .project .slick-slide img {
+  display: inline-block;
 }
 
 /* line 1, ../sass/_project.scss */
@@ -19709,7 +19721,7 @@ select.items_per_page {
     padding: 5px 10px;
   }
   /* line 118, ../sass/includes/_responsive.scss */
-  .table tr td .btn .glyphicon-remove, .table tr td .btn .glyphicon, .table tr td .btn .left-bar > ul .menu .toggle-childs, .left-bar > ul .menu .table tr td .btn .toggle-childs, .table tr td .btn .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .table tr td .btn .icon, .table .template-upload td .btn .glyphicon-remove, .table .template-upload td .btn .glyphicon, .table .template-upload td .btn .left-bar > ul .menu .toggle-childs, .left-bar > ul .menu .table .template-upload td .btn .toggle-childs, .table .template-upload td .btn .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .table .template-upload td .btn .icon {
+  .table tr td .btn .glyphicon-remove, .table tr td .btn .glyphicon, .table tr td .btn .left-bar > ul .menu .toggle-childs, .left-bar > ul .menu .table tr td .btn .toggle-childs, .table tr td .btn .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .table tr td .btn .icon, .table tr td .btn .dashboard-content .reporting .project .toggle-progress, .dashboard-content .reporting .project .table tr td .btn .toggle-progress, .table .template-upload td .btn .glyphicon-remove, .table .template-upload td .btn .glyphicon, .table .template-upload td .btn .left-bar > ul .menu .toggle-childs, .left-bar > ul .menu .table .template-upload td .btn .toggle-childs, .table .template-upload td .btn .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .table .template-upload td .btn .icon, .table .template-upload td .btn .dashboard-content .reporting .project .toggle-progress, .dashboard-content .reporting .project .table .template-upload td .btn .toggle-progress {
     margin-right: 0rem;
   }
   /* line 121, ../sass/includes/_responsive.scss */
