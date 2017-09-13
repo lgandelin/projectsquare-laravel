@@ -23,7 +23,7 @@
 
                     @if ($is_admin)
                         <li class="add-project">
-                            <a href="{{ route('projects_add') }}"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ trans('projectsquare::left_bar.add_project') }}</a>
+                            <a href="{{ route('projects_add') }}">{{ trans('projectsquare::left_bar.add_project') }} <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
                         </li>
                     @endif
 

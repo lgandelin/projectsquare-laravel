@@ -43,17 +43,28 @@
                     display: block;
                     padding: 2rem;
 
-                    background: $touareg;
-                    color: white;
+                    color: $touareg;
+
+                    background: white;
+
+                    i {
+                        float: right;
+                        vertical-align: middle;
+                        position: relative;
+                        top: -2px;
+
+                        font-size: 3rem;
+                        color: $touareg;
+                    }
 
                     &:hover {
                         text-decoration: none;
-                        opacity: 0.9;
-                    }
-
-                    i {
-                        margin-right: 1rem;
+                        background: $touareg;
                         color: white;
+
+                        i {
+                            color: white;
+                        }
                     }
                 }
             }
