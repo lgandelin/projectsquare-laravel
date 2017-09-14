@@ -13,7 +13,7 @@ class TicketUpdatedEmailNotification
         if (isset($event->ticketID) && $event->ticketID) {
             if ($ticket = Ticket::where('id', '=', $event->ticketID)->with('project', 'project.client', 'states', 'states.allocated_user', 'states.author_user', 'states.status')->first()) {
 
-                if (isset($ticket->states[0]->allocated_user)) {
+                if (isset($ticket->states[0]->allocated_user) && $event->requesterUserID != $ticket->states[0]->allocated_user->id) {
                     $setting = app()->make('SettingManager')->getSettingByKeyAndUser('EMAIL_NOTIFICATION_TICKET_UPDATED', $ticket->states[0]->allocated_user->id);
 
                     if ($setting && boolval($setting->value) === true) {

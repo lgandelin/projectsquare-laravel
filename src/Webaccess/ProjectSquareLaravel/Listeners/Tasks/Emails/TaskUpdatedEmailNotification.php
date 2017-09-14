@@ -13,7 +13,7 @@ class TaskUpdatedEmailNotification
         if (isset($event->taskID) && $event->taskID) {
             if ($task = Task::where('id', '=', $event->taskID)->with('project', 'project.client', 'allocated_user')->first()) {
 
-                if (isset($task->allocated_user)) {
+                if (isset($task->allocated_user) && $event->requesterUserID != $task->allocated_user->id) {
                     $setting = app()->make('SettingManager')->getSettingByKeyAndUser('EMAIL_NOTIFICATION_TASK_UPDATED', $task->allocated_user->id);
 
                     if ($setting && boolval($setting->value) === true) {
