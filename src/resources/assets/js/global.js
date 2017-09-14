@@ -106,6 +106,7 @@ $(document).ready(function() {
                 if (notifications_count == 0) {
                     $('.notifications .title').text('Aucune nouvelle notification');
                     $('.notifications-link').find('.badge').removeClass('new-notifications');
+                    $('.notifications-link').find('.badge').css('visibility', 'hidden');
                 }
             }
         });

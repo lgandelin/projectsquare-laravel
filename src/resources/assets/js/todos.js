@@ -86,9 +86,15 @@ function update_todos_count() {
 
     $('.todo .todos-number').text(count);
 
-    if ($('.todo li').length == 0) {
+    if ($('.todo').length == 0) {
         $('.no-todos').show();
     } else {
         $('.no-todos').hide();
+    }
+
+    if (count == 0) {
+        $('.todos-number').css('visibility', 'hidden');
+    } else {
+        $('.todos-number').css('visibility', 'visible');
     }
 }
