@@ -60,7 +60,7 @@ class ProjectController extends BaseController
             $response = app()->make('CreateProjectInteractor')->execute(new CreateProjectRequest([
                 'name' => Input::get('name'),
                 'clientID' => Input::get('client_id'),
-                'color' => Input::get('color'),
+                'color' => Input::get('color') ? Input::get('color') : '#004468',
                 'statusID' => Input::get('status_id'),
             ]));
 
