@@ -80,7 +80,7 @@ class TicketController extends BaseController
         return view('projectsquare::tools.tickets.add', [
             'projects' => app()->make('GetProjectsInteractor')->getCurrentProjects($this->getUser()->id),
             'ticket_types' => app()->make('TicketTypeManager')->getTicketTypes(),
-            'ticket_status' => app()->make('TicketStatusManager')->getTicketStatuses(),
+            'ticket_statuses' => app()->make('TicketStatusManager')->getTicketStatuses(),
             'users' => ($this->getCurrentProject()) ? app()->make('UserManager')->getUsersByProject($this->getCurrentProject()->id) : app()->make('UserManager')->getAgencyUsers(),
             'current_project_id' => ($this->getCurrentProject()) ? $this->getCurrentProject()->id : null,
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,

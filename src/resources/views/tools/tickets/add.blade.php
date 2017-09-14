@@ -86,15 +86,19 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="status_id">{{ trans('projectsquare::tickets.status') }}</label>
-                            @if (isset($ticket_status))
-                                <select class="form-control" name="status_id">
+                            @if (isset($ticket_statuses))
+                                <select class="form-control" name="status_id" @if ($is_client){{ 'disabled' }}@endif>
                                     <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
-                                    @foreach ($ticket_status as $ticket_status)
-                                        <option value="{{ $ticket_status->id }}" @if (isset($data['statusID']) && $data['statusID'] == $ticket_status->id) selected="selected" @endif>{{ $ticket_status->name }}</option>
+                                    @foreach ($ticket_statuses as $i => $ticket_status)
+                                        <option value="{{ $ticket_status->id }}" @if ((isset($data['statusID']) && $data['statusID'] == $ticket_status->id) || $is_client && $i == 0) selected="selected" @endif>{{ $ticket_status->name }}</option>
                                     @endforeach
                                 </select>
                             @else
                                 <div class="info bg-info">{{ trans('projectsquare::tickets.no_ticket_status_yet') }}</div>
+                            @endif
+
+                            @if ($is_client)
+                                <input type="hidden" name="status_id" value="{{ $ticket_statuses[0]->id }}" />
                             @endif
                         </div>
 
@@ -123,10 +127,13 @@
                     </div>
 
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="title">{{ trans('projectsquare::tickets.due_date') }}</label>
-                            <input class="form-control datepicker" type="text" placeholder="{{ trans('projectsquare::tickets.due_date_placeholder') }}" name="due_date" autocomplete="off" />
-                        </div>
+
+                        @if (!$is_client)
+                            <div class="form-group">
+                                <label for="title">{{ trans('projectsquare::tickets.due_date') }}</label>
+                                <input class="form-control datepicker" type="text" placeholder="{{ trans('projectsquare::tickets.due_date_placeholder') }}" name="due_date" autocomplete="off" />
+                            </div>
+                        @endif
 
                         <div class="form-group">
                             <label for="priority">{{ trans('projectsquare::tickets.priority') }}</label>
