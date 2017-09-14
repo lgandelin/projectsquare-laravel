@@ -1,4 +1,4 @@
-Un nouveau ticket vous a été assigné :<br/><br/><br/>
+Un nouveau ticket a été créé :<br/><br/><br/>
 
 <strong>Titre :</strong> {{ $ticket->title }}<br/><br/>
 
