@@ -15,7 +15,7 @@ use Webaccess\ProjectSquareLaravel\Http\Controllers\Tools\TaskController;
 
 class ProjectController extends BaseController
 {
-    public function index(Request $request)
+    public function cms(Request $request)
     {
         parent::__construct($request);
 

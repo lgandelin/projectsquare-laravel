@@ -18,6 +18,10 @@ class DashboardController extends BaseController
 
         $this->initWidgetsIfNecessary();
 
+        if ($this->isUserAClient()) {
+            return redirect()->route('project_tickets', $this->getCurrentProject()->id);
+        }
+
         return view('projectsquare::dashboard.index', [
             'widgets' => json_decode($_COOKIE['dashboard-widgets-' . $this->getUser()->id]),
             'tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList(

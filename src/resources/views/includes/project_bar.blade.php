@@ -2,10 +2,6 @@
     <div class="project-name" style="background: {{ $project->color }}">{{ $project->name }}</div>
     <nav>
         <ul class="tabs">
-            @if ($is_client)
-                <li @if ($active == 'dashboard')class="current"@endif><a href="{{ route('dashboard') }}">Tableau de bord</a></li>
-            @endif
-
             @if (!$is_client)
                 <li @if ($active == 'tasks')class="current"@endif><a href="{{ route('project_tasks', ['id' => $project->id]) }}">{{ trans('projectsquare::project.tasks') }}</a></li>
             @endif
