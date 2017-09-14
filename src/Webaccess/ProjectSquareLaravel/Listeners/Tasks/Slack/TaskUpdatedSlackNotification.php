@@ -25,7 +25,7 @@ class TaskUpdatedSlackNotification
                 $settingSlackChannel = app()->make('SettingManager')->getSettingByKeyAndProject('SLACK_CHANNEL', $task->project->id);
 
                 SlackTool::send(
-                    ((isset($task->project) && isset($task->project->client)) ? '<' . route('project_index', ['id' => $task->project->id]) . '|*['.$task->project->client->name.'] '.$task->project->name . '*>' : '') . ' *Une tâche a été mise à jour*',
+                    ((isset($task->project) && isset($task->project->client)) ? '<' . route('project_tasks', ['id' => $task->project->id]) . '|*['.$task->project->client->name.'] '.$task->project->name . '*>' : '') . ' *Une tâche a été mise à jour*',
                     implode("\n", $lines),
                     '',
                     route('tasks_edit', ['uuid' => $task->id]),

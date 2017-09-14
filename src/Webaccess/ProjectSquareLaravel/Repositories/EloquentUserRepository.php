@@ -16,9 +16,9 @@ class EloquentUserRepository implements UserRepository
         return User::find($userID);
     }
 
-    public function getAgencyUsersPaginatedList($limit)
+    public function getAgencyUsersPaginatedList($limit, $sortColumn = null, $sortOrder = null)
     {
-        return User::whereNull('client_id')->paginate($limit);
+        return User::whereNull('client_id')->orderBy($sortColumn ? $sortColumn : 'updated_at', $sortOrder ? $sortOrder : 'DESC')->paginate($limit);
     }
 
     public function getAgencyUsers()
@@ -63,32 +63,21 @@ class EloquentUserRepository implements UserRepository
 
     public function getUsersByRole($roleID)
     {
-        $users = [];
-        foreach (Project::all() as $project) {
-            foreach($project->users()->get() as $user) {
-                if ($user->pivot->role_id == $roleID || $roleID == null) {
-                    $users[$user->id] = $user;
-                }
-            }
-        }
-
-        usort($users, function($a, $b) {
-            return $a->last_name > $b->last_name;
-        });
-
-        return $users;
+        return ($roleID) ? User::where('role_id', '=', $roleID)->get() : $this->getAgencyUsers();
     }
 
-    public function createUser($firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $isAdministrator=false)
+    public function createUser($firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $roleID, $isAdministrator=false)
     {
         $user = new User();
         $userID = Uuid::uuid4()->toString();
         $user->id = $userID;
         $user->save();
-        self::updateUser($userID, $firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $isAdministrator);
+        self::updateUser($userID, $firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $roleID, $isAdministrator);
+
+        return $userID;
     }
 
-    public function updateUser($userID, $firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $isAdministrator=false)
+    public function updateUser($userID, $firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $roleID, $isAdministrator=false)
     {
         if ($user = self::getUserModel($userID)) {
             if ($firstName != null) {
@@ -115,9 +104,10 @@ class EloquentUserRepository implements UserRepository
             if ($clientRole != null) {
                 $user->client_role = $clientRole;
             }
-            if ($isAdministrator != null) {
-                $user->is_administrator = $isAdministrator;
+            if ($roleID != null) {
+                $user->role_id = $roleID;
             }
+            $user->is_administrator = $isAdministrator;
             $user->save();
         }
     }
@@ -162,6 +152,7 @@ class EloquentUserRepository implements UserRepository
         $user->phone = $userModel->phone;
         $user->clientID = $userModel->client_id;
         $user->clientRole = $userModel->client_role;
+        $user->roleID = $userModel->role_id;
         $user->isAdministrator = $userModel->is_administrator;
 
         return $user;

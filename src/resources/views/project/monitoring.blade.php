@@ -89,7 +89,7 @@
                     }
                 },
                 series: [{
-                    name: 'Webaccess',
+                    name: "{{ $project->name }}",
                     data: data
                 }],
                 credits: {

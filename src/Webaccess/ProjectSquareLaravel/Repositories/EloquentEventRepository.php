@@ -25,7 +25,7 @@ class EloquentEventRepository implements EventRepository
     public function getEvents($userID = null, $projectID = null, $ticketID = null, $taskID = null)
     {
         $events = [];
-        $eventsModel = Event::with('project');
+        $eventsModel = Event::with('project', 'project.client');
 
         if ($userID) {
             $eventsModel->where('user_id', '=', $userID);
@@ -43,6 +43,21 @@ class EloquentEventRepository implements EventRepository
             $event = $this->getEventEntity($eventModel);
             if ($eventModel->project) {
                 $event->color = $eventModel->project->color;
+                $event->projectName = $eventModel->project->name;
+                $event->projectClient = isset($eventModel->project->client) ? $eventModel->project->client->name : null;
+            }
+
+            //Event duration
+            $durationInMinutes = 8 * 60;
+            if ($event->endTime->format('Y-m-d') == $event->startTime->format('Y-m-d')) {
+                $startTimeOfDay = clone $event->endTime;
+                $startTimeOfDay->setTime(9, 0, 0);
+                $interval = $event->endTime->diff($event->startTime);
+                $durationInMinutes = ($interval->h * 60 + $interval->i);
+            }
+            $event->durationInHours = $durationInMinutes/60;
+            if ($event->durationInHours > 8) {
+                $event->durationInHours = 8;
             }
             $events[] = $event;
         }

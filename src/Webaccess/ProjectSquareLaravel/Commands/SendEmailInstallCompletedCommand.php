@@ -18,7 +18,6 @@ class SendEmailInstallCompletedCommand extends Command
         $ipAddress = $this->argument('ip_address');
         Mail::send('projectsquare::emails.install_completed', array('email' => $email, 'url' => $url, 'ip_address' => $ipAddress), function ($message) use ($email) {
             $message->to($email)
-                ->from('no-reply@projectsquare.io')
                 ->subject('[projectsquare] Votre plateforme a été installée avec succès !');
         });
 

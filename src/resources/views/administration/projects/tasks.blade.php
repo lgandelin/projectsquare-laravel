@@ -1,4 +1,17 @@
 <div class="project-tasks-template">
+
+    @if (isset($error))
+        <div class="info bg-danger">
+            {{ $error }}
+        </div>
+    @endif
+
+    @if (isset($confirmation))
+        <div class="info bg-success">
+            {{ $confirmation }}
+        </div>
+    @endif
+
     <div class="page-header">
         <h1>{{ trans('projectsquare::projects.tasks') }}</h1>
         <a href="{{ route('projects_index') }}" class="btn back"></a>
@@ -96,5 +109,5 @@ Tests et livraison; 0.5" rows="10"></textarea>
 
 @section('scripts')
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script src="{{ asset('js/project-tasks.js') }}"></script>
+    <script src="{{ asset('js/administration/project-tasks.js') }}"></script>
 @endsection

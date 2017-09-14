@@ -1,7 +1,7 @@
 .beta-form {
     position: fixed;
     bottom: 0px;
-    left: 0px;
+    right: 0px;
     z-index: 999;
 
     .icon {
@@ -9,7 +9,7 @@
         background: white;
         border: 1px solid #bdc0c1;
         border-bottom: none;
-        border-left: none;
+        border-right: none;
         cursor: pointer;
         color: $touareg;
     }

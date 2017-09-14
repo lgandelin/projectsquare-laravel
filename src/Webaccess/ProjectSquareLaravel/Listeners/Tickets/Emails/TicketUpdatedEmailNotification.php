@@ -21,7 +21,6 @@ class TicketUpdatedEmailNotification
 
                         Mail::send('projectsquare::emails.ticket_updated', array('ticket' => $ticket), function ($message) use ($email, $ticket) {
                             $message->to($email)
-                                ->from('no-reply@projectsquare.io')
                                 ->subject('[projectsquare] Modification du ticket : ' . $ticket->title);
                         });
                     }

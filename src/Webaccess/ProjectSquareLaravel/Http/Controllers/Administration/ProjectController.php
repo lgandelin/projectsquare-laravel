@@ -4,6 +4,7 @@ namespace Webaccess\ProjectSquareLaravel\Http\Controllers\Administration;
 
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquare\Entities\Task;
 use Webaccess\ProjectSquare\Requests\Phases\CreatePhaseRequest;
@@ -17,6 +18,7 @@ use Webaccess\ProjectSquare\Requests\Tasks\AllocateAndScheduleTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\CreateTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\DeleteTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\UpdateTaskRequest;
+use Webaccess\ProjectSquare\Requests\Users\AddUserToProjectRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 use Webaccess\ProjectSquare\Requests\Clients\GetClientsRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\Management\OccupationController;
@@ -29,8 +31,13 @@ class ProjectController extends BaseController
     {
         parent::__construct($request);
 
+        $itemsPerPage = $request->get('it') ? $request->get('it') : env('PROJECTS_PER_PAGE', 10);
+
         return view('projectsquare::administration.projects.index', [
-            'projects' => app()->make('ProjectManager')->getProjectsPaginatedList(),
+            'items_per_page' => $request->get('it') ? $request->get('it') : $itemsPerPage,
+            'sort_column' => $request->get('sc'),
+            'sort_order' => ($request->get('so') == 'asc') ? 'desc' : 'asc',
+            'projects' => app()->make('ProjectManager')->getProjectsPaginatedList($itemsPerPage, $request->get('sc'), $request->get('so')),
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
@@ -57,15 +64,16 @@ class ProjectController extends BaseController
                 'statusID' => Input::get('status_id'),
             ]));
 
-            app()->make('ProjectManager')->addUserToProject(
-                $response->project->id,
-                $this->getUser()->id,
-                Role::first()->id
-            );
+            app()->make('AddUserToProjectInteractor')->execute(new AddUserToProjectRequest([
+                'projectID' => $response->project->id,
+                'userID' => $this->getUser()->id,
+                'roleID' => Role::first()->id,
+                'requesterUserID' => $this->getUser()->id
+            ]));
 
             $request->session()->flash('confirmation', trans('projectsquare::projects.add_project_success'));
 
-            return redirect()->route('projects_edit', ['id' => $response->project->id]);
+            return redirect()->route('projects_edit_team', ['uuid' => $response->project->id])->withCookie(cookie('creating_project_' . $response->project->id, true, 10));
         } catch (\Exception $e) {
             $request->session()->flash('error', trans('projectsquare::projects.add_project_error'));
 
@@ -91,6 +99,8 @@ class ProjectController extends BaseController
             'tab' => 'infos',
             'project' => $project,
             'clients' => app()->make('GetClientsInteractor')->execute(new GetClientsRequest()),
+            'creating_project' => $request->cookie('creating_project_' . $project->id),
+
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
@@ -104,6 +114,12 @@ class ProjectController extends BaseController
 
         try {
             $project = app()->make('ProjectManager')->getProjectWithUsers($projectID);
+            $roles = app()->make('RoleManager')->getRoles();
+
+            $userIDs = [];
+            foreach ($project->users as $user) {
+                $userIDs[]= $user->id;
+            }
         } catch (\Exception $e) {
             $request->session()->flash('error', $e->getMessage());
 
@@ -112,9 +128,11 @@ class ProjectController extends BaseController
 
         return view('projectsquare::administration.projects.edit', [
             'tab' => 'team',
-            'users' => app()->make('UserManager')->getAgencyUsers(),
-            'roles' => app()->make('RoleManager')->getRoles(),
+            'users' => app()->make('UserManager')->getAgencyUsersGroupedByRoles($roles),
             'project' => $project,
+            'creating_project' => $request->cookie('creating_project_' . $project->id),
+            'userIDs' => $userIDs,
+
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
@@ -141,6 +159,8 @@ class ProjectController extends BaseController
             'tab' => 'tasks',
             'project' => $project,
             'phases' => $phases,
+            'creating_project' => $request->cookie('creating_project_' . $project->id),
+
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
@@ -173,6 +193,8 @@ class ProjectController extends BaseController
             'filters' => [
                 'role' => Input::get('filter_role'),
             ],
+            'creating_project' => $request->cookie('creating_project_' . $project->id),
+
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
@@ -227,7 +249,7 @@ class ProjectController extends BaseController
             $request->session()->flash('error', trans('projectsquare::projects.edit_project_error'));
         }
 
-        return redirect()->route('projects_edit', ['id' => Input::get('project_id')]);
+        return redirect()->route('projects_edit_team', ['uuid' => Input::get('project_id')]);
     }
 
     public function update_tasks(Request $request)
@@ -306,13 +328,14 @@ class ProjectController extends BaseController
                 }
             }
 
-            $request->session()->flash('confirmation', trans('projectsquare::projects.edit_project_success'));
+            $request->session()->flash('confirmation', trans('projectsquare::projects.edit_tasks_success'));
 
             return response()->json([
-                'message' => trans('projectsquare::projects.edit_project_success')
+                'message' => trans('projectsquare::projects.edit_project_success'),
+                'redirection_url' => route('projects_edit_attribution', ['uuid' => $request->project_id])
             ], 200);
         } catch (\Exception $e) {
-            $request->session()->flash('error', trans('projectsquare::projects.edit_project_error'));
+            $request->session()->flash('error', trans('projectsquare::projects.edit_tasks_error'));
 
             return response()->json([
                 'error' => $e->getMessage(),
@@ -338,12 +361,14 @@ class ProjectController extends BaseController
             $request->session()->flash('error', trans('projectsquare::projects.import_phases_and_tasks_from_text_error'));
         }
 
-        return redirect()->route('projects_edit_tasks', ['uuid' => $projectID]);
+        return redirect()->route('projects_edit_attribution', ['uuid' => $projectID]);
     }
 
     public function allocate_and_schedule_task(Request $request)
     {
         parent::__construct($request);
+
+        Cookie::queue(Cookie::forget('creating_project_' . Input::get('project_id')));
 
         try {
             $userID = Input::get('allocated_user_id') ? Input::get('allocated_user_id') : $this->getUser()->id;
@@ -419,7 +444,7 @@ class ProjectController extends BaseController
             $request->session()->flash('error', trans('projectsquare::projects.edit_project_error'));
         }
 
-        return redirect()->route('projects_edit_config', ['id' => Input::get('project_id')]);
+        return redirect()->route('projects_edit_config', ['uuid' => Input::get('project_id')]);
     }
 
     public function delete(Request $request)
@@ -438,45 +463,50 @@ class ProjectController extends BaseController
         return redirect()->route('projects_index');
     }
 
-    public function add_user(Request $request)
+    public function update_team(Request $request)
     {
         parent::__construct($request);
 
-        try {
-            $project = app()->make('ProjectManager')->getProject(Input::get('project_id'));
-            $user = app()->make('UserManager')->getUser(Input::get('user_id'));
-            $role = Input::get('role_id') ? app()->make('RoleManager')->getRole(Input::get('role_id')) : null;
-
-            app()->make('ProjectManager')->addUserToProject(
-                Input::get('project_id'),
-                Input::get('user_id'),
-                Input::get('role_id')
-            );
-            $request->session()->flash('confirmation', trans('projectsquare::projects.add_user_to_project_success'));
-        } catch (\Exception $e) {
-            $request->session()->flash('error', $e->getMessage());
-        }
-
-        return redirect()->route('projects_edit_team', ['id' => Input::get('project_id')]);
-    }
-
-    public function delete_user(Request $request)
-    {
-        parent::__construct($request);
-
-        $projectID = $request->uuid;
-        $userID = $request->user_id;
+        $projectID = $request->project_id;
+        $userIDs = json_decode($request->user_ids);
 
         try {
-            $project = app()->make('ProjectManager')->getProject($projectID);
-            $user = app()->make('UserManager')->getUser($userID);
+            $project = app()->make('ProjectManager')->getProjectWithUsers($projectID);
 
-            app()->make('ProjectManager')->removeUserFromProject($projectID, $userID, $this->getUser()->id);
-            $request->session()->flash('confirmation', trans('projectsquare::projects.delete_user_from_project_success'));
+            $projectUserIDs = [];
+            foreach ($project->users as $user) {
+                $projectUserIDs[]= $user->id;
+            }
+
+            foreach ($userIDs as $userID) {
+                if (!in_array($userID, $projectUserIDs)) {
+                    $user = app()->make('UserManager')->getUser($userID);
+
+                    app()->make('AddUserToProjectInteractor')->execute(new AddUserToProjectRequest([
+                        'projectID' => $projectID,
+                        'userID' => $userID,
+                        'roleID' => $user->roleID,
+                        'requesterUserID' => $this->getUser()->id
+                    ]));
+                }
+            }
+
+            $removedUserIDs = array_diff($projectUserIDs, $userIDs);
+            foreach ($removedUserIDs as $userID) {
+                app()->make('ProjectManager')->removeUserFromProject($projectID, $userID, $this->getUser()->id);
+            }
+
+            $request->session()->flash('confirmation', trans('projectsquare::projects.edit_team_success'));
+
         } catch (\Exception $e) {
-            $request->session()->flash('error', trans('projectsquare::projects.delete_user_from_project_error'));
+            $request->session()->flash('error', trans('projectsquare::projects.edit_team_error'));
+            return redirect()->route('projects_edit_team', ['uuid' => $projectID]);
         }
 
-        return redirect()->route('projects_edit_team', ['id' => $projectID]);
+        if ($request->cookie('creating_project_' . $project->id)) {
+            return redirect()->route('projects_edit_tasks', ['uuid' => $projectID]);
+        }
+
+        return redirect()->route('projects_edit_team', ['uuid' => $projectID]);
     }
 }

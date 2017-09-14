@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
 	font-family: $typo2;
 }
 
@@ -21,18 +21,17 @@ h1 {
 h2, h3 {
 	color: $light-blue;
 	font-family: $typo1;
-	font-size: 2rem;
-}
-
-h3 {
-	margin-top: 3rem;
-	//display: inline-block;
+	font-size: 1.7rem;
 }
 
 h4 {
 	color: $touareg;
 	font-family: $typo1;
-	font-size: 1.8rem;
+	font-size: 1.5rem;
+}
+
+hr {
+	margin-bottom: 3rem;
 }
 
 ul {
@@ -65,4 +64,23 @@ a:focus {
 		 url('../fonts/MyriadPro-Regular.svg'),
 		 url('../fonts/MyriadPro-Regular.eot'),
 		 url('../fonts/MyriadPro-Regular.ttf');
+}
+
+.templates {
+	background: white;
+	padding: 2.5rem;
+
+	.page-header {
+		font-size: 2.5rem;
+		margin-top: 0;
+		color: $touareg;
+		font-family: $typo1;
+
+		h1 {
+			font-size: 2.2rem;
+			color: $touareg;
+			font-family: $typo1;
+			display: inline-block;
+		}
+	}
 }

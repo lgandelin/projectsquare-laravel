@@ -13,10 +13,10 @@ return [
     'password_text' => 'Voici votre mot de passe :',
     'password' => 'Mot de passe :', 
 
-    'account_created' => 'Votre compte a bien été créé sur la plateforme Projectsquare.',
+    'hello' => 'Bonjour',
+    'account_created' => 'votre compte a été créé avec succès sur la plateforme Projectsquare.',
+    'account_created_2' => 'Vous trouverez ci-dessous les informations pour vous y connecter :',
     'email' => 'Adresse email :',
-    'first_name' => 'Prénom :',
-    'name' => 'Nom :',
 
     'install_project_1' => 'Félicitions ! Votre plateforme', 
     'install_project_2' => 'a été installée avec succès !',

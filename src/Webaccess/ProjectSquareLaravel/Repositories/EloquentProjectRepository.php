@@ -12,7 +12,7 @@ class EloquentProjectRepository implements ProjectRepository
 {
     public function getProjectModel($projectID)
     {
-        return Project::find($projectID);
+        return Project::with('client')->find($projectID);
     }
 
     public function getProject($projectID)
@@ -28,6 +28,7 @@ class EloquentProjectRepository implements ProjectRepository
             $project->websiteBackURL = $projectModel->website_back_url;
             $project->createdAt = $projectModel->created_at;
             $project->udpatedAt = $projectModel->updated_at;
+            $project->clientName = isset($projectModel->client) && isset($projectModel->client->name) ? $projectModel->client->name : "";
 
             return $project;
         }
@@ -56,9 +57,9 @@ class EloquentProjectRepository implements ProjectRepository
         return Project::where('client_id', '=', $clientID)->get();
     }
 
-    public function getProjectsPaginatedList($limit)
+    public function getProjectsPaginatedList($limit, $sortColumn = null, $sortOrder = null)
     {
-        return Project::with('client')->orderBy('updated_at', 'DESC')->paginate($limit);
+        return Project::with('client')->orderBy($sortColumn ? $sortColumn : 'updated_at', $sortOrder ? $sortOrder : 'DESC')->paginate($limit);
     }
 
     public function getCurrentProjects($userID)

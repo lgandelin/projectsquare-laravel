@@ -42,24 +42,43 @@
                     @foreach ($conversations as $conversation)
                         <tr>
                             <td style="border-left: 10px solid {{ $conversation->project->color }}"></td>
-                            <td class="entity_title"><a href="{{ route('conversations_view', ['id' => $conversation->id]) }}"><span class="text">{{ $conversation->title }}</span></a></td>
-                            <td>{{ date('d/m/Y H:i', strtotime($conversation->created_at)) }}</td>
-                            <td><span class="text">@if (isset($conversation->project) && isset($conversation->project->client)){{ $conversation->project->client->name }}@endif</span></td>
                             <td>
-                                @include('projectsquare::includes.avatar', [
-                                    'id' => $conversation->messages[sizeof($conversation->messages) - 1]->user->id,
-                                    'name' => $conversation->messages[sizeof($conversation->messages) - 1]->user->complete_name
-                                ])
+                                <a href="{{ route('conversations_view', ['id' => $conversation->id]) }}">
+                                    <span class="text">{{ $conversation->title }}</span>
+                                </a>
                             </td>
-                            <td align="right">
-                                <a href="{{ route('conversations_view', ['id' => $conversation->id]) }}" class="btn btn-primary see-more"></a>
+                            <td>
+                                <a href="{{ route('conversations_view', ['id' => $conversation->id]) }}">
+                                    {{ date('d/m/Y H:i', strtotime($conversation->created_at)) }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('conversations_view', ['id' => $conversation->id]) }}">
+                                    <span class="text">@if (isset($conversation->project) && isset($conversation->project->client)){{ $conversation->project->client->name }}@endif</span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('conversations_view', ['id' => $conversation->id]) }}">
+                                    @include('projectsquare::includes.avatar', [
+                                        'id' => $conversation->messages[sizeof($conversation->messages) - 1]->user->id,
+                                        'name' => $conversation->messages[sizeof($conversation->messages) - 1]->user->complete_name
+                                    ])
+                                </a>
+                            </td>
+                            <td width="10%" class="action" align="right">
+                                <a href="{{ route('conversations_view', ['id' => $conversation->id]) }}">
+                                    <i class="btn btn-primary see-more"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
                 </table>
             </div>
+
             <div class="text-center">
-                {!! $conversations->render() !!}
+                {!! $conversations->appends([
+                    'filter_project' => $filters['project'],
+                ])->links() !!}
             </div>
         </div>
     </div>

@@ -1,23 +1,23 @@
 <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <br/>
             <h4>{{ trans('projectsquare::tickets.file_list') }}</h4>
             <table class="table table-striped">
                 @foreach($files as $file)
                     <tr>
-                        <td width="250">
+                        <td>
                             <a href="{{ asset('uploads/tickets' . $file->path) }}" title="{{ $file->name }}" target="_blank">
                                 <img class="thumbnail" src="{{ asset('uploads/tickets' . $file->thumbnail_path) }}" alt="{{ $file->name }}" width="135" height="80" />
                             </a>
                         </td>
                         <td><a href="{{ asset('uploads/tickets' . $file->path) }}" title="{{ $file->name }}" target="_blank">{{ $file->name }}</a></td>
+                        <td>{{ date('d/m/Y H:i', strtotime($file->created_at)) }}</td>
                         <td width="150">{{ \Webaccess\ProjectSquareLaravel\Tools\FileTool::convertFileSize($file->size) }}</td>
-                        <td width="275">
-                            <a href="{{ asset('uploads/tickets' . $file->path) }}" class="btn button" download="{{ $file->name }}"><i class="glyphicon glyphicon-download"></i> {{ trans('projectsquare::generic.download') }}</a>
-                            <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn delete btn-delete">
-                                <i class="glyphicon glyphicon-remove picto-delete"></i>
-                                <span>{{ trans('projectsquare::generic.delete') }}</span>
+                        <td align="right">
+                            <a href="{{ asset('uploads/tickets' . $file->path) }}" download="{{ $file->name }}" title="{{ trans('projectsquare::generic.download') }}"><i class="fa fa-download"></i></a>
+                            <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn-delete" title="{{ trans('projectsquare::generic.delete') }}">
+                                <i class="btn cancel"></i>
                             </a>
                         </td>
                     </tr>
@@ -26,7 +26,7 @@
             <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
         </div>
 
-        <div class="col-md-6" style="margin-top: 2rem;">
+        <div class="col-md-12" style="margin-top: 2rem;">
             <h4>{{ trans('projectsquare::tickets.add_files') }}</h4>
             <div class="row fileupload-buttonbar">
                 <div class="col-lg-12">

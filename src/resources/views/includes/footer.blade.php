@@ -1,4 +1,4 @@
-    @include('projectsquare::includes.beta_form')
+    {{--@include('projectsquare::includes.beta_form')--}}
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/vendor/bootstrap-datepicker.min.js') }}"></script>
@@ -16,7 +16,6 @@
         var route_event_update = "{{ route('events_update') }}";
         var route_event_delete = "{{ route('events_delete') }}";
         var route_event_get_infos = "{{ route('events_get_infos') }}";
-        var route_get_notifications = "{{ route('get_notifications') }}";
         var route_read_notification = "{{ route('read_notification') }}";
         var route_step_create = "{{ route('steps_create') }}";
         var route_step_update = "{{ route('steps_update') }}";
@@ -31,6 +30,7 @@
         var route_project_users = "{{ route('project_users') }}";
         var route_udpate_tasks = "{{ route('projects_update_tasks') }}";
         var route_allocate_and_schedule_task = "{{ route('projects_allocate_and_schedule_task') }}";
+        var route_client_create = "{{ route('clients_add_ajax') }}";
     </script>
 
     <input type="hidden" id="csrf_token" value="{!! csrf_token() !!}" />

@@ -2,11 +2,12 @@
 
 return [
     'dashboard' => 'Tableau de bord',
-    'projects' => 'Projets', 
+    'my_projects' => 'Mes projets',
+    'projects' => 'Liste des projets',
     'tools' => 'Outils',
-    'tasks' => 'Tâches',
-    'tickets' => 'Tickets',
-    'messages' => 'Messages',
+    'tasks' => 'Toutes les tâches',
+    'tickets' => 'Tous les tickets',
+    'messages' => 'Tous les messages',
     'planning' => 'Planning',
     'monitoring_alerts' => 'Alertes monitoring',
     'management' => 'Pilotage',
@@ -20,4 +21,6 @@ return [
     'tickets_types' => 'Types de tickets', 
     'tickets_statuses' => 'Statuts de tickets',
     'settings' => 'Réglages',
+    'fold_left_bar' => 'Réduire le menu',
+    'add_project' => 'Ajouter un projet',
 ];

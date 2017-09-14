@@ -55,6 +55,6 @@ class EloquentFileRepository implements FileRepository
 
     public static function getFilesByProject($projectID)
     {
-        return File::where('project_id', '=', $projectID)->get();
+        return File::where('project_id', '=', $projectID)->orderBy('created_at', 'DESC')->get();
     }
 }

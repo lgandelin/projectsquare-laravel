@@ -1,17 +1,21 @@
 .left-bar {
     padding: 0rem 0 0rem 0;
-    width: 300px;
+    width: 26.5rem;
     position: absolute;
     top: 90px;
     left: 0;
+    bottom: 0;
     z-index: 99;
 
     background: #0a6a86;
 
     > ul {
-        list-style: none;
         padding-left: 0rem;
         margin-bottom: 0;
+
+        list-style: none;
+
+        background: #0a6a86;
 
         .menu {
             padding: 0rem;
@@ -37,11 +41,24 @@
                 text-decoration: none;
             }
 
+            .toggle-childs {
+                margin-top: 1.7rem;
+                margin-right: 1.5rem;
+
+                color: white;
+                float: right;
+                cursor: pointer;
+                font-size: 1.3rem;
+
+                @extend .glyphicon;
+                @extend .glyphicon-triangle-top;
+            }
+
             .border {
-                width: 68px;
-                height: 68px;
+                width: 50px;
+                height: 50px;
                 float: left;
-                margin-right: 2.9rem;
+                margin-right: 1.9rem;
                 border-right: 1px solid #9dc3cf;
             }
 
@@ -53,13 +70,13 @@
 
                 li {
                     border-left: 1px solid #9dc3cf;
-                    margin-left: 6.7rem;
+                    margin-left: 4.9rem;
 
                     a {
-                        padding-top: 1rem;
+                        padding-top: 1.3rem;
                         padding-bottom: 1rem;
                         font-family: $typo2;
-                        font-size: 1.6rem;
+                        font-size: 1.5rem;
                     }
                 }
 
@@ -101,24 +118,55 @@
             .filter-project {
                 cursor: default;
                 border: none;
+                position: relative;
 
-                padding-top: 18px !important;
-                padding-bottom: 18px;
+                padding-top: 1.8rem !important;
+                padding-bottom: 0.5rem;
+
+                &:before {
+                    position: absolute;
+                    display: block;
+                    color: #bbc9c9;
+                    top: 2.6rem;
+                    left: 3rem;
+
+                    @extend .fa;
+                    @extend .fa-filter;
+                }
 
                 input[type="text"] {
                     font-family: $typo2;
                     width: 84%;
                     margin-left: 2rem;
                     margin-right: 2rem;
+                    padding-left: 2.7rem;
+                }
+            }
+
+            .add-project {
+                color: white;
+                border-bottom: 1px solid #9dc3cf;
+
+                a {
+                    font-size: 1.3rem !important;
+                    font-family: $typo1 !important;
+                    
+                    i {
+                        float: right;
+                        margin-right: 1.5rem;
+                        vertical-align: middle;
+
+                        font-size: 2rem;
+                    }
                 }
             }
 
             .title {
                 float: left;
-                font-size: 2rem;
+                font-size: 1.7rem;
                 color: white;
-                letter-spacing: 0.1rem;
-                padding-top: 2.5rem;
+                //letter-spacing: 0.1rem;
+                padding-top: 1.8rem;
             }
 
             .title:hover {
@@ -128,12 +176,14 @@
             .line {
                 display: block;
                 overflow: hidden;
+
+                cursor: pointer;
             }
 
             .icon {
                 color: white;
-                font-size: 2.5rem;
-                margin: 20px 0 0 20px;
+                font-size: 1.8rem;
+                margin: 15px 0 0 15px;
                 display: block;
             }
 
@@ -141,8 +191,6 @@
                 .icon {
                     @extend .glyphicon;
                     @extend .glyphicon-th-large;
-                    font-size: 2.3rem;
-                    margin: 20px 0 0 22px;
                 }
             }
 
@@ -150,7 +198,6 @@
                 .icon {
                     @extend .glyphicon;
                     @extend .glyphicon-folder-open;
-                    font-size: 2.0rem;
                 }
             }
 
@@ -174,11 +221,27 @@
                     @extend .glyphicon-cog;
                 }
             }
+
+            &:hover {
+                .toggle-childs {
+                    color: $green;
+                }
+            }
+            
+            &.submenu-closed {
+                .toggle-childs {
+                    @extend .glyphicon-triangle-bottom;
+                }
+
+                ul {
+                    display: none;
+                }
+            }
         }
 
         .menu:nth-child(2) .sub-menu {
 
-            max-height: 252px;
+            max-height: 316px;
             overflow-y: auto;
             overflow-x: hidden;
 
@@ -202,6 +265,10 @@
 
         .menu.encours {
             .icon {
+                color: $green;
+            }
+
+            .toggle-childs {
                 color: $green;
             }
 
@@ -233,34 +300,36 @@
                 color: $green;
             }
         }
-
-        .toggle-left-bar {
-            height: 68px;
-            text-align: right;
-            margin-right: 1rem;
-            display: block;
-            color: white;
-            font-size: 2.2rem;
-            padding-top: 2rem;
-            cursor: pointer;
-        }
-
-        .toggle-left-bar:hover {
-            color: $green;
-        }
     }
 
     a:hover {
         text-decoration: none;
     }
+
+    .toggle-left-bar {
+        color: white;
+        font-family: $typo2;
+
+        .icon {
+            color: $green;
+        }
+    }
+
+    .toggle-left-bar:hover {
+        color: $green;
+    }
 }
 
 .left-bar-minified {
-    width: 68px;
+    width: 4.9rem;
     bottom: 0;
 
     > ul .menu {
         position: relative;
+
+        .toggle-childs {
+            display: none;
+        }
 
         .title {
             display: none;
@@ -270,19 +339,13 @@
             display: none;
             background: #222 !important;
             position: absolute;
-            left: 68px;
+            left: 4.9rem;
             top: 0;
             width: 185px;
 
             li {
                 margin-left: 0 !important;
             }
-        }
-
-        .toggle-left-bar {
-            text-align: center;
-            margin-right: 0;
-            border-right: 1px solid #9dc3cf;
         }
 
         li.archived-project-title,  li.archived-project {
@@ -301,10 +364,21 @@
             padding-top: 1rem !important;
             padding-bottom: 1rem !important;
 
+            &:before {
+                top: 1.8rem;
+                left: 2rem;
+            }
+
             input[type="text"] {
                 width: 88%;
                 margin-left: 1rem;
                 margin-bottom: 0;
+            }
+        }
+
+        &.current-menu {
+            .sub-menu {
+                display: block;
             }
         }
     }

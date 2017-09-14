@@ -21,7 +21,6 @@ class TaskUpdatedEmailNotification
 
                         Mail::send('projectsquare::emails.task_updated', array('task' => $task), function ($message) use ($email, $task) {
                             $message->to($email)
-                                ->from('no-reply@projectsquare.io')
                                 ->subject('[projectsquare] Modification de la tâche : ' . $task->title);
                         });
                     }

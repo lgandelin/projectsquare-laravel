@@ -27,6 +27,7 @@ $(document).ready(function() {
             success: function(data) {
                 task.find('.task-wrapper').removeClass('allocated');
                 task.find('.avatar').remove();
+                task.find('.default-avatar').show();
                 task.removeClass('dragged');
                 initTasksDragAndDrop();
                 task.find('.task-wrapper').draggable('enable');
@@ -132,6 +133,7 @@ function initTasksDragAndDrop() {
                     displayMonth(month_index);
 
                     //Update task in list
+                    task.find('.default-avatar').hide();
                     $('.task[data-id="' + task_id + '"]').removeClass('dragged').find('.task-wrapper').draggable('disable').addClass('allocated').prepend(data.avatar);
                 },
                 error: function(data) {

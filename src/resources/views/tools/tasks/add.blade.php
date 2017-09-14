@@ -49,6 +49,19 @@
                     </div>
 
                     <div class="col-md-6">
+
+                        @if (isset($phases) && sizeof($phases) > 0)
+                            <div class="form-group">
+                                <label for="phase_id">{{ trans('projectsquare::tasks.phase') }}</label>
+                                    <select class="form-control" name="phase_id" @if (isset($task) && $task->id) disabled @endif>
+                                        <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+                                        @foreach ($phases as $phase)
+                                            <option value="{{ $phase->id }}" @if (isset($data['phaseID']) && $data['phaseID'] == $phase->id)selected="selected"@endif>{{ $phase->name }}</option>
+                                        @endforeach
+                                    </select>
+                            </div>
+                        @endif
+
                         <div class="form-group">
                             <label for="status_id">{{ trans('projectsquare::tasks.status') }}</label>
                             @if (isset($task_statuses))
@@ -79,14 +92,14 @@
 
                         <div class="form-group">
                             <label for="estimated_time">{{ trans('projectsquare::tasks.estimated_time') }}</label><br>
-                            <input class="form-control" type="text" name="estimated_time_days" style="display: inline-block; width: 5rem; margin-right: 0.5rem;" value="{{{ $data['estimatedTimeDays'] }}}" /> {{ trans('projectsquare::generic.days') }}
-                            <input class="form-control" type="text" name="estimated_time_hours" style="display: inline-block; width: 5rem; margin-left: 1rem; margin-right: 0.5rem;" value="{{{ $data['estimatedTimeHours'] }}}" /> {{ trans('projectsquare::generic.hours') }}
+                            <input class="form-control" type="text" name="estimated_time_days" style="display: inline-block; width: 6rem; margin-right: 0.5rem;" value="{{{ $data['estimatedTimeDays'] }}}" /> {{ trans('projectsquare::generic.days') }}
+                            <input class="form-control" type="text" name="estimated_time_hours" style="display: inline-block; width: 6rem; margin-left: 1rem; margin-right: 0.5rem;" value="{{{ $data['estimatedTimeHours'] }}}" /> {{ trans('projectsquare::generic.hours') }}
                         </div>
 
                         <div class="form-group" style="display: none">
                             <label for="estimated_time">{{ trans('projectsquare::tasks.spent_time') }}</label><br>
-                            <input class="form-control" type="text" name="spent_time_days" style="display: inline-block; width: 5rem; margin-right: 0.5rem;" value="{{{ $data['spentTimeDays'] }}}" /> {{ trans('projectsquare::generic.days') }}
-                            <input class="form-control" type="text" name="spent_time_hours" style="display: inline-block; width: 5rem; margin-left: 1rem; margin-right: 0.5rem;" value="{{{ $data['spentTimeHours'] }}}" /> {{ trans('projectsquare::generic.hours') }}
+                            <input class="form-control" type="text" name="spent_time_days" style="display: inline-block; width: 6rem; margin-right: 0.5rem;" value="{{{ $data['spentTimeDays'] }}}" /> {{ trans('projectsquare::generic.days') }}
+                            <input class="form-control" type="text" name="spent_time_hours" style="display: inline-block; width: 6rem; margin-left: 1rem; margin-right: 0.5rem;" value="{{{ $data['spentTimeHours'] }}}" /> {{ trans('projectsquare::generic.hours') }}
                         </div>
                     </div>
                 </div>

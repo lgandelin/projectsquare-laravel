@@ -21,7 +21,6 @@ class TaskDeletedEmailNotification
 
                         Mail::send('projectsquare::emails.task_deleted', array('task' => $task), function ($message) use ($email, $task) {
                             $message->to($email)
-                                ->from('no-reply@projectsquare.io')
                                 ->subject('[projectsquare] Suppression de la tâche : ' . $task->title);
                         });
                     }

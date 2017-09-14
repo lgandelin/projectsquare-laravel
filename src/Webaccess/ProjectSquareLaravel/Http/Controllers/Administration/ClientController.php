@@ -19,8 +19,13 @@ class ClientController extends BaseController
     {
         parent::__construct($request);
 
+        $itemsPerPage = $request->get('it') ? $request->get('it') : env('CLIENTS_PER_PAGE', 10);
+
         return view('projectsquare::administration.clients.index', [
-            'clients' => app()->make('GetClientsInteractor')->getClientsPaginatedList(10, new GetClientsRequest()),
+            'items_per_page' => $request->get('it') ? $request->get('it') : $itemsPerPage,
+            'sort_column' => $request->get('sc'),
+            'sort_order' => ($request->get('so') == 'asc') ? 'desc' : 'asc',
+            'clients' => app()->make('GetClientsInteractor')->getClientsPaginatedList($itemsPerPage, $request->get('sc'), $request->get('so')),
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
@@ -50,6 +55,37 @@ class ClientController extends BaseController
             $request->session()->flash('error', trans('projectsquare::clients.add_client_error'));
             return redirect()->route('clients_index');
         }
+    }
+
+    public function store_ajax(Request $request)
+    {
+        parent::__construct($request);
+
+        $success = false;
+        $error = false;
+
+        try {
+            $response = app()->make('CreateClientInteractor')->execute(new CreateClientRequest([
+                'name' => Input::get('name'),
+                'address' => Input::get('address'),
+            ]));
+            $success = true;
+        } catch (\Exception $e) {
+            $success = false;
+            $error = trans('projectsquare::clients.add_client_error');
+        }
+
+        $parameters = [
+            'success' => $success,
+            'error' => $error
+        ];
+
+        if (isset($response->client) && $response->client) {
+            $parameters['client_id'] = $response->client->id;
+            $parameters['client_name'] = $response->client->name;
+        }
+
+        return response()->json($parameters);
     }
 
     public function edit(Request $request)
@@ -153,6 +189,7 @@ class ClientController extends BaseController
                     Input::get('phone'),
                     Input::get('client_id'),
                     Input::get('client_role'),
+                    null,
                     false
                 );
                 $request->session()->flash('confirmation', trans('projectsquare::users.add_user_success'));
@@ -213,6 +250,7 @@ class ClientController extends BaseController
                 Input::get('phone'),
                 Input::get('client_id'),
                 Input::get('client_role'),
+                null,
                 false
             );
             $request->session()->flash('confirmation', trans('projectsquare::users.edit_user_success'));

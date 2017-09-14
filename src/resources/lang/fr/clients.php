@@ -17,6 +17,7 @@ return [
     'client' => 'Client',
     'label' => 'Société',
     'name_placeholder' => 'Nom de la société',
+    'creation_date' => 'Date de création',
     'address' => 'Adresse',
     'information' =>'Informations',
 

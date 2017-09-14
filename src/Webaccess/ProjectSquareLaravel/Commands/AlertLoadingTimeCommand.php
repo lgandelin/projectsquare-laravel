@@ -15,26 +15,27 @@ class AlertLoadingTimeCommand extends Command
     public function handle()
     {
         foreach (app()->make('ProjectManager')->getProjects() as $project) {
-            $request = app()->make('RequestManager')->getLastRequestByProject($project->id);
+            if ($request = app()->make('RequestManager')->getLastRequestByProject($project->id)) {
 
-            $settingAcceptableLoadingTime = app()->make('SettingManager')->getSettingByKeyAndProject('ACCEPTABLE_LOADING_TIME', $project->id);
-            $settingAlertLoadingTimeEmail = app()->make('SettingManager')->getSettingByKeyAndProject('ALERT_LOADING_TIME_EMAIL', $project->id);
+                $settingAcceptableLoadingTime = app()->make('SettingManager')->getSettingByKeyAndProject('ACCEPTABLE_LOADING_TIME', $project->id);
+                $settingAlertLoadingTimeEmail = app()->make('SettingManager')->getSettingByKeyAndProject('ALERT_LOADING_TIME_EMAIL', $project->id);
 
-            if ($settingAcceptableLoadingTime && $settingAlertLoadingTimeEmail) {
-                $loadingTime = $settingAcceptableLoadingTime->value;
-                $email = $settingAlertLoadingTimeEmail->value;
+                if ($settingAcceptableLoadingTime && $settingAlertLoadingTimeEmail) {
+                    $loadingTime = $settingAcceptableLoadingTime->value;
+                    $email = $settingAlertLoadingTimeEmail->value;
 
-                if ($request->loading_time > (float) $loadingTime) {
-                    app()->make('AlertManager')->createAlert(
-                        'WEBSITE_LOADING_TIME',
-                        [
-                            'loading_time_setting' => $loadingTime,
-                            'loading_time' => $request->loading_time,
-                        ],
-                        $project->id
-                    );
+                    if ($request->loading_time > (float) $loadingTime) {
+                        app()->make('AlertManager')->createAlert(
+                            'WEBSITE_LOADING_TIME',
+                            [
+                                'loading_time_setting' => $loadingTime,
+                                'loading_time' => $request->loading_time,
+                            ],
+                            $project->id
+                        );
 
-                    Event::fire(new AlertWebsiteLoadingTimeEvent($request, $email, $loadingTime));
+                        Event::fire(new AlertWebsiteLoadingTimeEvent($request, $email, $loadingTime));
+                    }
                 }
             }
         }

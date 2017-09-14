@@ -51,9 +51,9 @@ class ProjectManager
         return $project;
     }
 
-    public function getProjectsPaginatedList()
+    public function getProjectsPaginatedList($itemsPerPage, $sortColumn, $sortOrder)
     {
-        return $this->repository->getProjectsPaginatedList(env('PROJECTS_PER_PAGE', 10));
+        return $this->repository->getProjectsPaginatedList($itemsPerPage, $sortColumn, $sortOrder);
     }
 
     public function deleteProject($projectID)
@@ -69,15 +69,6 @@ class ProjectManager
         foreach ($projects as $project) {
             $this->deleteProject($project->id);
         }
-    }
-
-    public function addUserToProject($projectID, $userID, $roleID)
-    {
-        if ($this->isUserInProject($projectID, $userID)) {
-            throw new \Exception(trans('projectsquare::projects.user_already_in_project'));
-        }
-
-        $this->repository->addUserToProject($projectID, $userID, $roleID);
     }
 
     public function isUserInProject($projectID, $userID)

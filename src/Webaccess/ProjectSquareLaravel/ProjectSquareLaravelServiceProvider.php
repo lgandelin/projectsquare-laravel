@@ -60,13 +60,16 @@ use Webaccess\ProjectSquare\Interactors\Tasks\CreateTaskInteractor;
 use Webaccess\ProjectSquare\Interactors\Tasks\UpdateTaskInteractor;
 use Webaccess\ProjectSquare\Interactors\Tasks\DeleteTaskInteractor;
 use Webaccess\ProjectSquare\Interactors\Tasks\AllocateAndScheduleTaskInteractor;
+use Webaccess\ProjectSquare\Interactors\Users\AddUserToProjectInteractor;
 use Webaccess\ProjectSquare\Interactors\Users\RemoveUserFromProjectInteractor;
 use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteLoadingTimeEvent;
 use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteStatusCodeEvent;
 use Webaccess\ProjectSquareLaravel\Exceptions\ProjectSquareLaravelExceptionHandler;
-use Webaccess\ProjectSquareLaravel\Http\Middleware\AfterConfig;
-use Webaccess\ProjectSquareLaravel\Http\Middleware\BeforeConfig;
-use Webaccess\ProjectSquareLaravel\Http\Middleware\ChangeCurrentProject;
+use Webaccess\ProjectSquareLaravel\Http\Middlewares\AdminMiddleware;
+use Webaccess\ProjectSquareLaravel\Http\Middlewares\AfterConfig;
+use Webaccess\ProjectSquareLaravel\Http\Middlewares\BeforeConfig;
+use Webaccess\ProjectSquareLaravel\Http\Middlewares\ChangeCurrentProject;
+use Webaccess\ProjectSquareLaravel\Http\Middlewares\UserMiddleware;
 use Webaccess\ProjectSquareLaravel\Listeners\Alerts\Slack\AlertWebsiteLoadingTimeSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\Alerts\Slack\AlertWebsiteStatusCodeSlackNotification;
 use Webaccess\ProjectSquareLaravel\Listeners\Messages\Emails\MessageCreatedEmailNotification;
@@ -112,6 +115,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
 
     public function boot(Router $router)
     {
+        setlocale(LC_TIME, 'fr_FR.utf8');
+
         Context::set('translator', new LaravelTranslator());
         Context::set('event_manager', new LaravelEventManager());
         Context::set('event_dispatcher', new EventDispatcher());
@@ -119,24 +124,29 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         Event::listen(AlertWebsiteLoadingTimeEvent::class, AlertWebsiteLoadingTimeSlackNotification::class);
         Event::listen(AlertWebsiteStatusCodeEvent::class, AlertWebsiteStatusCodeSlackNotification::class);
 
-        Context::get('event_dispatcher')->addListener(Events::CREATE_TICKET, array(new TicketCreatedSlackNotification(), 'handle'));
-        Context::get('event_dispatcher')->addListener(Events::UPDATE_TICKET, array(new TicketUpdatedSlackNotification(), 'handle'));
-        Context::get('event_dispatcher')->addListener(Events::DELETE_TICKET, array(new TicketDeletedSlackNotification(), 'handle'));
-
-        //Context::get('event_dispatcher')->addListener(Events::CREATE_TICKET, array(new TicketCreatedEmailNotification(), 'handle'));
-        //Context::get('event_dispatcher')->addListener(Events::UPDATE_TICKET, array(new TicketUpdatedEmailNotification(), 'handle'));
-        //Context::get('event_dispatcher')->addListener(Events::DELETE_TICKET, array(new TicketDeletedEmailNotification(), 'handle'));
+        //TASKS NOTIFICATIONS
 
         Context::get('event_dispatcher')->addListener(Events::CREATE_TASK, array(new TaskCreatedSlackNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::UPDATE_TASK, array(new TaskUpdatedSlackNotification(), 'handle'));
         Context::get('event_dispatcher')->addListener(Events::DELETE_TASK, array(new TaskDeletedSlackNotification(), 'handle'));
 
-        //Context::get('event_dispatcher')->addListener(Events::CREATE_TASK, array(new TaskCreatedEmailNotification(), 'handle'));
-        //Context::get('event_dispatcher')->addListener(Events::UPDATE_TASK, array(new TaskUpdatedEmailNotification(), 'handle'));
-        //Context::get('event_dispatcher')->addListener(Events::DELETE_TASK, array(new TaskDeletedEmailNotification(), 'handle'));
+        Context::get('event_dispatcher')->addListener(Events::CREATE_TASK, array(new TaskCreatedEmailNotification(), 'handle'));
+        Context::get('event_dispatcher')->addListener(Events::UPDATE_TASK, array(new TaskUpdatedEmailNotification(), 'handle'));
+        Context::get('event_dispatcher')->addListener(Events::DELETE_TASK, array(new TaskDeletedEmailNotification(), 'handle'));
 
+        //TICKETS NOTIFICATIONS
+        Context::get('event_dispatcher')->addListener(Events::CREATE_TICKET, array(new TicketCreatedSlackNotification(), 'handle'));
+        Context::get('event_dispatcher')->addListener(Events::UPDATE_TICKET, array(new TicketUpdatedSlackNotification(), 'handle'));
+        Context::get('event_dispatcher')->addListener(Events::DELETE_TICKET, array(new TicketDeletedSlackNotification(), 'handle'));
+
+        Context::get('event_dispatcher')->addListener(Events::CREATE_TICKET, array(new TicketCreatedEmailNotification(), 'handle'));
+        Context::get('event_dispatcher')->addListener(Events::UPDATE_TICKET, array(new TicketUpdatedEmailNotification(), 'handle'));
+        Context::get('event_dispatcher')->addListener(Events::DELETE_TICKET, array(new TicketDeletedEmailNotification(), 'handle'));
+
+        //MESSAGES NOTIFICATIONS
         Context::get('event_dispatcher')->addListener(Events::CREATE_MESSAGE, array(new MessageCreatedSlackNotification(), 'handle'));
-        //Context::get('event_dispatcher')->addListener(Events::CREATE_MESSAGE, array(new MessageCreatedEmailNotification(), 'handle'));
+
+        Context::get('event_dispatcher')->addListener(Events::CREATE_MESSAGE, array(new MessageCreatedEmailNotification(), 'handle'));
 
         //Patterns
         $basePath = __DIR__.'/../../';
@@ -144,6 +154,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         $router->aliasMiddleware('change_current_project', ChangeCurrentProject::class);
         $router->aliasMiddleware('before_config', BeforeConfig::class);
         $router->aliasMiddleware('after_config', AfterConfig::class);
+        $router->aliasMiddleware('admin', AdminMiddleware::class);
+        $router->aliasMiddleware('user', UserMiddleware::class);
 
         $this->loadRoutesFrom($basePath . 'routes/web.php');
         $this->loadRoutesFrom($basePath . 'routes/api.php');
@@ -306,7 +318,8 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
                 new EloquentNotificationRepository(),
                 new EloquentTicketRepository(),
                 new EloquentProjectRepository(),
-                new EloquentTasksRepository()
+                new EloquentTasksRepository(),
+                new EloquentUserRepository()
             );
         });
 
@@ -354,7 +367,9 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         App::bind('UpdateTicketInteractor', function () {
             return new UpdateTicketInteractor(
                 new EloquentTicketRepository(),
-                new EloquentProjectRepository()
+                new EloquentProjectRepository(),
+                new EloquentUserRepository(),
+                new EloquentNotificationRepository()
             );
         });
 
@@ -462,7 +477,9 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         App::bind('UpdateTaskInteractor', function () {
             return new UpdateTaskInteractor(
                 new EloquentTasksRepository(),
-                new EloquentProjectRepository()
+                new EloquentProjectRepository(),
+                new EloquentUserRepository(),
+                new EloquentNotificationRepository()
             );
         });
 
@@ -492,10 +509,10 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
                 new EloquentTasksRepository(),
                 new EloquentProjectRepository(),
                 new EloquentEventRepository(),
-                new EloquentNotificationRepository()
+                new EloquentNotificationRepository(),
+                new EloquentUserRepository()
             );
         });
-
 
         App::bind('GetPhaseInteractor', function () {
             return new GetPhaseInteractor(
@@ -547,6 +564,14 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         App::bind('GetProjectProgressInteractor', function () {
             return new GetProjectProgressInteractor(
                 new EloquentProjectRepository()
+            );
+        });
+
+        App::bind('AddUserToProjectInteractor', function () {
+            return new AddUserToProjectInteractor(
+                new EloquentUserRepository(),
+                new EloquentProjectRepository(),
+                new EloquentNotificationRepository()
             );
         });
 

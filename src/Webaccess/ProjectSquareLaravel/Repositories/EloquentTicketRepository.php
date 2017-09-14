@@ -21,9 +21,9 @@ class EloquentTicketRepository implements TicketRepository
         $this->projectRepository = new EloquentProjectRepository();
     }
 
-    public function getTicketsPaginatedList($userID, $limit, $projectID = null, $allocatedUserID = null, $statusID = null, $typeID = null)
+    public function getTicketsPaginatedList($userID, $limit, $projectID = null, $allocatedUserID = null, $statusID = null, $typeID = null, $sortColumn = null, $sortOrder = null)
     {
-        return $this->getTickets($userID, $projectID , $allocatedUserID, $statusID, $typeID)->paginate($limit);
+        return $this->getTickets($userID, $projectID , $allocatedUserID, $statusID, $typeID, $sortColumn, $sortOrder)->paginate($limit);
     }
 
     public function getTicketsList($userID, $projectID = null, $allocatedUserID = null, $statusID = null, $typeID = null)
@@ -31,24 +31,17 @@ class EloquentTicketRepository implements TicketRepository
         return $this->getTickets($userID, $projectID , $allocatedUserID, $statusID, $typeID)->get();
     }
 
-    private function getTickets($userID, $projectID = null, $allocatedUserID = null, $statusID = null, $typeID = null)
+    private function getTickets($userID, $projectID = null, $allocatedUserID = null, $statusID = null, $typeID = null, $sortColumn = null, $sortOrder = null)
     {
         //Ressource projects
         $projects = User::find($userID)->projects()->where('status_id', '=', ProjectEntity::IN_PROGRESS);
         $projectIDs = $projects->pluck('id')->toArray();
 
-        //Client project
-        $user = User::find($userID);
-        if (isset($user->client_id)) {
-            $project = Project::where('client_id', '=', $user->client_id)->where('status_id', '=', ProjectEntity::IN_PROGRESS)->orderBy('created_at', 'DESC')->first();
-            $projectIDs[]= $project->id;
+        if ($projectID) {
+            $projectIDs = [$projectID];
         }
 
         $tickets = Ticket::whereIn('project_id', $projectIDs)->with('type', 'last_state', 'states', 'states.author_user', 'states.status', 'last_state.author_user', 'last_state.allocated_user', 'last_state.status', 'project', 'project.client');
-
-        if ($projectID) {
-            $tickets->where('project_id', '=', $projectID);
-        }
 
         if ($typeID) {
             $tickets->where('type_id', '=', $typeID);
@@ -73,14 +66,21 @@ class EloquentTicketRepository implements TicketRepository
             $tickets->has('last_state.allocated_user', '=', 0);
         }
 
-        $tickets->orderBy('updated_at', 'DESC');
+        if ($sortColumn == 'client') {
+            $tickets->join('projects', 'projects.id', '=', 'tickets.project_id')
+                    ->join('clients', 'clients.id', '=', 'projects.client_id')->orderBy('clients.name', $sortOrder ? $sortOrder : 'DESC');
+        } elseif (in_array($sortColumn, ['priority', 'status_id', 'allocated_user_id'])) {
+            $tickets->join('ticket_states', 'ticket_states.id', '=', 'tickets.last_state_id')->orderBy('ticket_states.'.$sortColumn, $sortOrder ? $sortOrder : 'DESC');
+        } else {
+            $tickets->orderBy($sortColumn ? $sortColumn : 'updated_at', $sortOrder ? $sortOrder : 'DESC');
+        }
 
         return $tickets;
     }
 
     public function getTicket($ticketID, $userID = null)
     {
-        if (!$ticketModel = Ticket::find($ticketID)) {
+        if (!$ticketModel = Ticket::with('project')->with('last_state')->find($ticketID)) {
             throw new \Exception(trans('projectsquare::tickets.ticket_not_found'));
         }
 
@@ -92,9 +92,12 @@ class EloquentTicketRepository implements TicketRepository
         $ticket->id = $ticketModel->id;
         $ticket->title = $ticketModel->title;
         $ticket->description = $ticketModel->description;
+        $ticket->author_user = $ticketModel->author_user;
+        $ticket->project = $ticketModel->project;
         $ticket->projectID = $ticketModel->project_id;
         $ticket->typeID = $ticketModel->type_id;
         $ticket->lastStateID = $ticketModel->last_state_id;
+        $ticket->lastState = $ticketModel->last_state;
         $ticket->createdAt = $ticketModel->updated_at;
         $ticket->updatedAt = $ticketModel->updated_at;
 

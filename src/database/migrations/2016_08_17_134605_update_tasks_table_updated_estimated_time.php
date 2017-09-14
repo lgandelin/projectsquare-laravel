@@ -13,11 +13,11 @@ class UpdateTasksTableUpdatedEstimatedTime extends Migration
     public function up()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->float('estimated_time_days')->after('estimated_time')->nullable();
             $table->dropColumn('estimated_time');
-            $table->float('estimated_time_hours')->after('estimated_time_days')->nullable();
-            $table->float('spent_time_days')->after('estimated_time_hours')->nullable();
-            $table->float('spent_time_hours')->after('spent_time_days')->nullable();
+            $table->double('estimated_time_days', 8, 3)->after('estimated_time')->nullable();
+            $table->double('estimated_time_hours', 8, 3)->after('estimated_time_days')->nullable();
+            $table->double('spent_time_days', 8, 3)->after('estimated_time_hours')->nullable();
+            $table->double('spent_time_hours', 8, 3)->after('spent_time_days')->nullable();
         });
     }
 

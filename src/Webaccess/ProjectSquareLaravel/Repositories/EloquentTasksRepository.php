@@ -21,17 +21,17 @@ class EloquentTasksRepository implements TaskRepository
 
     public function getTaskModel($taskID)
     {
-        return Task::with('phase')->find($taskID);
+        return Task::with('phase', 'project', 'author_user')->find($taskID);
     }
 
     public function getTasks($userID, $projectID = null, $statusID = null, $allocatedUserID = null, $phaseID = null, $entities = false)
     {
-        $tasks = $this->getTasksList($userID, $projectID, $statusID, $allocatedUserID, $phaseID, $entities);
+        $tasks = $this->getTasksList($userID, $projectID, $statusID, $allocatedUserID, $phaseID, null, null, $entities);
 
         return $entities ? $tasks : $tasks->get();
     }
 
-    public function getTasksList($userID, $projectID = null, $statusID = null, $allocatedUserID = null, $phaseID = null, $entities = false)
+    public function getTasksList($userID, $projectID = null, $statusID = null, $allocatedUserID = null, $phaseID = null, $sortColumn = null, $sortOrder = null, $entities = false)
     {
         $projectIDs = [];
 
@@ -44,21 +44,22 @@ class EloquentTasksRepository implements TaskRepository
 
         //Client project
         if (isset($user->client_id)) {
-            $project = Project::where('client_id', '=', $user->client_id)->where('status_id', '=', ProjectEntity::IN_PROGRESS)->orderBy('created_at', 'DESC')->first();
-
-            $projectIDs[]= $project->id;
+            $projects = Project::where('client_id', '=', $user->client_id)->orderBy('created_at', 'DESC')->get();
+            foreach ($projects as $project) {
+                $projectIDs[]= $project->id;
+            }
         }
 
-        $tasks = Task::whereIn('project_id', $projectIDs)->with('project', 'project.client')->with('project.client')->with('phase');
+        $tasks = Task::whereIn('project_id', $projectIDs)->with('project', 'project.client', 'allocated_user')->with('project.client')->with('phase');
 
         if ($projectID) {
             $tasks->where('project_id', '=', $projectID);
         }
 
         if ($statusID) {
-            $tasks->where('status_id', '=', $statusID);
+            $tasks->where('tasks.status_id', '=', $statusID);
         } else {
-            $tasks->where('status_id', '!=', TaskEntity::COMPLETED);
+            $tasks->where('tasks.status_id', '!=', TaskEntity::COMPLETED);
         }
 
         if ($allocatedUserID > 0) {
@@ -69,11 +70,14 @@ class EloquentTasksRepository implements TaskRepository
             $tasks->where('allocated_user_id', '=', '');
         }
 
-        if ($phaseID) {
-            $tasks->where('phase_id', '=', $phaseID);
-        }
+        $tasks->where('phase_id', '=', $phaseID);
 
-        $tasks->orderBy('updated_at', 'DESC');
+        if ($sortColumn == 'client') {
+            $tasks->join('projects', 'projects.id', '=', 'tasks.project_id')
+                ->join('clients', 'clients.id', '=', 'projects.client_id')->orderBy('clients.name', $sortOrder ? $sortOrder : 'DESC');
+        } else {
+            $tasks->orderBy($sortColumn ? $sortColumn : 'updated_at', $sortOrder ? $sortOrder : 'DESC');
+        }
 
         if ($entities) {
             $tasksList = $tasks->get();
@@ -110,9 +114,9 @@ class EloquentTasksRepository implements TaskRepository
         return $result;
     }
 
-    public function getTasksPaginatedList($userID, $limit, $projectID = null, $statusID = null, $allocatedUserID = null, $phaseID = null)
+    public function getTasksPaginatedList($userID, $limit, $projectID = null, $statusID = null, $allocatedUserID = null, $phaseID = null, $sortColumn = null, $sortOrder = null)
     {
-        return $this->getTasksList($userID, $projectID, $statusID, $allocatedUserID, $phaseID)->paginate($limit);
+        return $this->getTasksList($userID, $projectID, $statusID, $allocatedUserID, $phaseID, $sortColumn, $sortOrder)->paginate($limit);
     }
 
     public function persistTask(TaskEntity $task)
@@ -167,10 +171,12 @@ class EloquentTasksRepository implements TaskRepository
         $task->estimatedTimeHours = $taskModel->estimated_time_hours;
         $task->spentTimeDays = $taskModel->spent_time_days;
         $task->spentTimeHours = $taskModel->spent_time_hours;
+        $task->project = $taskModel->project;
         $task->projectID = $taskModel->project_id;
         $task->phaseID = $taskModel->phase_id;
         $task->statusID = $taskModel->status_id;
         $task->allocatedUserID = $taskModel->allocated_user_id;
+        $task->author_user = $taskModel->author_user;
         $task->order = $taskModel->order;
 
         if ($taskModel->phase) {

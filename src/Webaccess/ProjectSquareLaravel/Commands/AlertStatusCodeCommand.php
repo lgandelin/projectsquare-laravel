@@ -15,24 +15,25 @@ class AlertStatusCodeCommand extends Command
     public function handle()
     {
         foreach (app()->make('ProjectManager')->getProjects() as $project) {
-            $request = app()->make('RequestManager')->getLastRequestByProject($project->id);
+            if ($request = app()->make('RequestManager')->getLastRequestByProject($project->id)) {
 
-            $settingAlertEmail = app()->make('SettingManager')->getSettingByKeyAndProject('ALERT_LOADING_TIME_EMAIL', $project->id);
-            $statusCode = $request->status_code;
+                $settingAlertEmail = app()->make('SettingManager')->getSettingByKeyAndProject('ALERT_LOADING_TIME_EMAIL', $project->id);
+                $statusCode = $request->status_code;
 
-            if ($settingAlertEmail) {
-                $email = $settingAlertEmail->value;
+                if ($settingAlertEmail) {
+                    $email = $settingAlertEmail->value;
 
-                if ($this->isStatusCodeAnError($statusCode)) {
-                    app()->make('AlertManager')->createAlert(
-                        'WEBSITE_STATUS_CODE',
-                        [
-                            'status_code' => $statusCode,
-                        ],
-                        $project->id
-                    );
+                    if ($this->isStatusCodeAnError($statusCode)) {
+                        app()->make('AlertManager')->createAlert(
+                            'WEBSITE_STATUS_CODE',
+                            [
+                                'status_code' => $statusCode,
+                            ],
+                            $project->id
+                        );
 
-                    Event::fire(new AlertWebsiteStatusCodeEvent($request, $email, $statusCode));
+                        Event::fire(new AlertWebsiteStatusCodeEvent($request, $email, $statusCode));
+                    }
                 }
             }
         }

@@ -38,6 +38,10 @@ class BaseController extends Controller
             view()->share('todos', $this->getTodos());
             view()->share('todos_count', $this->getUncompleteTodosCount());
             view()->share('left_bar', isset($_COOKIE['left-bar']) ? $_COOKIE['left-bar'] : 'opened');
+            view()->share('left_bar_projects', isset($_COOKIE['left-bar-projects']) ? $_COOKIE['left-bar-projects'] : 'opened');
+            view()->share('left_bar_tools', isset($_COOKIE['left-bar-tools']) ? $_COOKIE['left-bar-tools'] : 'opened');
+            view()->share('left_bar_management', isset($_COOKIE['left-bar-management']) ? $_COOKIE['left-bar-management'] : 'opened');
+            view()->share('left_bar_administration', isset($_COOKIE['left-bar-administration']) ? $_COOKIE['left-bar-administration'] : 'opened');
         }
     }
 
@@ -65,7 +69,8 @@ class BaseController extends Controller
     protected function getCurrentProject()
     {
         if ($this->isUserAClient()) {
-            if ($client = Client::find($this->getUser()->client_id)) {
+            $client = Client::find($this->getUser()->client_id);
+            if ($client && !$this->request->session()->has('current_project')) {
                 $project = Project::where('client_id', '=', $client->id)->where('status_id', '=', ProjectEntity::IN_PROGRESS)->orderBy('created_at', 'DESC')->first();
                 $this->request->session()->put('current_project', $project);
             }
@@ -100,7 +105,6 @@ class BaseController extends Controller
 
         Mail::send('projectsquare::emails.beta_form', array('title' => $title, 'content' => $content, 'user_id' => $userID), function ($message) {
             $message->to('lgandelin@web-access.fr')
-                ->from('no-reply@projectsquare.io')
                 ->subject('[projectsquare] Formulaire de contact');
         });
 
@@ -140,13 +144,24 @@ class BaseController extends Controller
         $projects = [];
         $archived_projects = [];
 
-        foreach (Project::orderBy('created_at', 'desc')->get() as $project) {
-            foreach($project->users as $user) {
-                if ($user->id == $this->getUser()->id) {
+        foreach (Project::with('users')->orderBy('created_at', 'desc')->get() as $project) {
+
+            if ($this->isUserAClient()) {
+                if ($project->client_id == $this->getUser()->client_id) {
                     if ($project->status_id == ProjectEntity::IN_PROGRESS) {
-                        $projects[]= $project;
+                        $projects[] = $project;
                     } else {
-                        $archived_projects[]= $project;
+                        $archived_projects[] = $project;
+                    }
+                }
+            } else {
+                foreach ($project->users as $user) {
+                    if ($user->id == $this->getUser()->id) {
+                        if ($project->status_id == ProjectEntity::IN_PROGRESS) {
+                            $projects[] = $project;
+                        } else {
+                            $archived_projects[] = $project;
+                        }
                     }
                 }
             }

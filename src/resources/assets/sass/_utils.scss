@@ -1,22 +1,3 @@
-.templates {
-    background: white;
-    padding: 2.5rem;
-
-    .page-header {
-        font-size: 2.5rem;
-        color: $touareg;
-        font-family: $typo1;
-        margin-top: 0rem;
-
-        h1 {
-            font-size: 25px;
-            color: $touareg;
-            font-family: $typo1;
-            display: inline-block;
-        }
-     }
-}
-
 .text-seo {
     color: $touareg;
     font-weight: 400;
@@ -84,5 +65,23 @@
         li {
             margin-bottom: 1rem;
         }
+    }
+}
+
+select.items_per_page {
+    margin-top: 20px;
+    width: 6rem;
+    padding: 0.7rem;
+}
+
+.sort-icon {
+    display: inline-block !important;
+    width: auto !important;
+    font-size: 1.3rem !important;
+    color: #8fafbc;
+    vertical-align: middle;
+    
+    * {
+        vertical-align: middle;
     }
 }

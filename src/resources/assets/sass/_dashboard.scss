@@ -1,7 +1,7 @@
 .block {
     padding: 0rem;
     padding-top: 2.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 
     background: white;
     border-radius: 0px;
@@ -21,9 +21,11 @@
 }
 
 .dashboard-content {
-    padding-top: 3rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    background: #e6f0f3;
 
     .ui-state-highlight {
         border: none !important;
@@ -33,8 +35,6 @@
     }
 
     .block {
-
-
         h3 {
             display: block;
             margin-bottom: 2rem;
@@ -42,7 +42,7 @@
             margin-top: 0;
 
             font-family: $typo1;
-            font-size: 2.6rem;
+            font-size: 2.1rem;
             color: $touareg;
         }
 
@@ -51,11 +51,11 @@
             height: 22px;
             margin-right: 2.4rem;
 
-            background: url(../img/dashboard/all.png)no-repeat;
-        }
+            background: url(../img/dashboard/all.png) no-repeat;
 
-        .all:hover {
-            background: url(../img/dashboard/all-hover.png)no-repeat;
+            &:hover {
+                background: url(../img/dashboard/all-hover.png) no-repeat;
+            }
         }
 
         .move-widget {
@@ -193,6 +193,69 @@
         .fc-head > tr > .fc-head-container {
             border-left: 0;
             border-right: 0;
+        }
+    }
+
+    .reporting {
+        overflow-x: auto;
+        white-space: nowrap;
+        margin-bottom: 3rem;
+        padding-bottom: 3rem;
+
+        .project {
+            display: inline-block;
+            width: 18%;
+            margin-right: 2%;
+            position: relative;
+            vertical-align: middle;
+
+            font-size: 1.5rem;
+            font-family: $typo1;
+            color: white;
+
+            border: 1px solid #bbc1bf;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            a {
+                padding-top: 2.8rem;
+                padding-bottom: 2.2rem;
+                padding-left: 2.5rem;
+                padding-right: 2.5rem;
+
+                cursor: pointer;
+                display: block;
+                width: 100%;
+                height: 100%;
+                color: white;
+
+                text-decoration: none;
+            }
+
+            &:hover {
+                opacity: 0.9;
+            }
+
+            .time-values {
+                float: right;
+                font-size: 1.7rem;
+            }
+
+            .project-team {
+                position: absolute;
+                bottom: -1.5rem;
+                left: 1.25rem;
+
+                .avatar {
+                    width: 3rem;
+                    height: 3rem;
+                    margin-right: 0.5rem;
+
+                    border: none;
+                }
+            }
         }
     }
 }

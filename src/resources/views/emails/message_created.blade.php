@@ -1,6 +1,6 @@
-Un nouveau message vient d'être envoyé sur la plateforme :<br/><br/>
+Un nouveau message vient d'être envoyé sur la plateforme :<br/><br/><br/>
 
-<strong>{{ $m->conversation->title }}</strong><br/><br/>
+<strong>Titre :</strong> {{ $m->conversation->title }}<br/><br/>
 
 @if (isset($m->conversation->project) && isset($m->conversation->project->client))<strong>Projet :</strong> [{{ $m->conversation->project->client->name }}] {{ $m->conversation->project->name }}@endif<br/><br/>
 @if (isset($m->user))<strong>Auteur :</strong> {{ $m->user->complete_name }}<br/><br/>@endif
