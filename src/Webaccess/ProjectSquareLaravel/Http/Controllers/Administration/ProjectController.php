@@ -503,7 +503,7 @@ class ProjectController extends BaseController
             return redirect()->route('projects_edit_team', ['uuid' => $projectID]);
         }
 
-        if ($request->cookie('creating_project_' . $project->id)) {
+        if ($request->cookie('creating_project_' . $projectID)) {
             return redirect()->route('projects_edit_tasks', ['uuid' => $projectID]);
         }
 
