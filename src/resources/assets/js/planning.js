@@ -282,4 +282,54 @@ $(document).ready(function() {
     $('#event-infos .btn-close').click(function() {
         $(this).parent().hide();
     });
+
+    initTicketDragAndDrop();
+    initTaskDragAndDrop();
 });
+
+function initTicketDragAndDrop() {
+    $('.tickets-list .ticket').each(function() {
+
+        // store data so the planning knows to render an event upon drop
+        $(this).data('event', {
+            title: $.trim($(this).text()), // use the element's text as the event title
+            stick: true // maintain when user navigates (see docs on the renderEvent method)
+        });
+
+        // make the event draggable using jQuery UI
+        $(this).draggable({
+            zIndex: 999,
+            revert: true,
+            revertDuration: 0,
+            helper: function() {
+                $copy = $(this).clone();
+                return $copy;
+            },
+            appendTo: 'body'
+        });
+    });
+}
+
+function initTaskDragAndDrop() {
+
+    $('.tasks-list .task').each(function() {
+
+        // store data so the planning knows to render an event upon drop
+        $(this).data('event', {
+            title: $.trim($(this).text()), // use the element's text as the event title
+            stick: true // maintain when user navigates (see docs on the renderEvent method)
+        });
+
+        // make the event draggable using jQuery UI
+        $(this).draggable({
+            zIndex: 999,
+            revert: true,
+            revertDuration: 0,
+            helper: function() {
+                $copy = $(this).clone();
+                return $copy;
+            },
+            appendTo: 'body'
+        });
+    });
+}

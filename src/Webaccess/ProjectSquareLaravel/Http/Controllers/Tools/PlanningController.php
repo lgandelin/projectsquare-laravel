@@ -36,6 +36,30 @@ class PlanningController extends BaseController
             'users' => app()->make('UserManager')->getAgencyUsers(),
             'userID' => $userID,
             'currentUserID' => $this->getUser()->id,
+
+            'tickets' => app()->make('GetTicketInteractor')->getTicketsList(
+                $userID,
+                Input::get('filter_project'),
+                $userID
+            )->merge(
+                app()->make('GetTicketInteractor')->getTicketsList(
+                    $userID,
+                    Input::get('filter_project'),
+                    0
+                )
+            ),
+
+            'tasks' => app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
+                'userID' => $this->getUser()->id,
+                'projectID' => Input::get('filter_project'),
+                'allocatedUserID' => $userID,
+            ]))->merge(
+                app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
+                    'userID' => $this->getUser()->id,
+                    'projectID' => Input::get('filter_project'),
+                    'allocatedUserID' => 0,
+                ]))
+            )
         ]);
     }
 

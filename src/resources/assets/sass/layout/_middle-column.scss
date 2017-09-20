@@ -96,58 +96,56 @@
                 border-radius: 50%;
             }
         }
+    }
+}
 
-        .childs {
-            .child {
-                border-bottom: 1px solid #eeeeee;
-                border-right: 3px solid transparent;
+.child {
+    border-bottom: 1px solid #eeeeee;
+    border-right: 3px solid transparent;
 
-                &.current {
-                    border-right: 3px solid $green;
-                }
+    &.current {
+        border-right: 3px solid $green;
+    }
 
-                &:hover {
-                    background: #fafafa;
-                }
+    &:hover {
+        background: #fafafa;
+    }
 
-                a {
-                    width: 100%;
-                    height: 100%;
-                    display: block;
+    a {
+        width: 100%;
+        height: 100%;
+        display: block;
 
-                    &:hover {
-                        text-decoration: none;
-                    }
-                }
+        &:hover {
+            text-decoration: none;
+        }
+    }
 
-                .child-wrapper {
-                    padding: 1rem 1.5rem;
+    .child-wrapper {
+        padding: 1rem 1.5rem;
 
-                    font-family: $typo1;
-                    font-size: 1.4rem;
-                    color: $touareg;
+        font-family: $typo1;
+        font-size: 1.4rem;
+        color: $touareg;
 
-                    .name {
-                        display: inline-block;
-                        max-width: 23rem;
-                        vertical-align: middle;
-                    }
+        .name {
+            display: inline-block;
+            max-width: 23rem;
+            vertical-align: middle;
+        }
 
-                    .avatar {
-                        width: 5rem;
-                        height: 5rem;
-                        margin-right: 1.75rem;
+        .avatar {
+            width: 5rem;
+            height: 5rem;
+            margin-right: 1.75rem;
 
-                        border: none;
-                    }
+            border: none;
+        }
 
-                    .priority {
-                        display: inline-block;
-                        margin-top: 1rem;
-                        float: right;
-                    }
-                }
-            }
+        .priority {
+            display: inline-block;
+            margin-top: 1rem;
+            float: right;
         }
     }
 }

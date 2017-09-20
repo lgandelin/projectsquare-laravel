@@ -1,16 +1,19 @@
 @extends('projectsquare::default')
 
 @section('content')
-    <div class="content-page">
-        <div class="templates planning-template">
-            <div class="page-header">
-                <h1>{{ trans('projectsquare::planning.planning') }}
-                    @include('projectsquare::includes.tooltip', [
-                        'text' => trans('projectsquare::tooltips.planning')
-                  ])
-                </h1>
-            </div>
+    <div class="templates planning-template">
 
+        <div class="page-header">
+            <h1>{{ trans('projectsquare::planning.planning') }}
+                @include('projectsquare::includes.tooltip', [
+                    'text' => trans('projectsquare::tooltips.planning')
+              ])
+            </h1>
+        </div>
+
+        @include('projectsquare::tools.planning.middle-column')
+
+        <div class="content-page">
             <form method="get">
                 <div class="row">
 
@@ -89,6 +92,7 @@
 @endsection
 
 @section('scripts')
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="{{ asset('js/vendor/fullcalendar/lib/moment.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/locale-all.js') }}"></script>
