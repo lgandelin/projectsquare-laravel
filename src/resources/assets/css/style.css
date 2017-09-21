@@ -18166,6 +18166,7 @@ select.items_per_page {
 /* line 203, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project {
   position: relative;
+  z-index: 99999;
   vertical-align: middle;
   padding-top: 2.8rem;
   padding-bottom: 2.2rem;
@@ -18177,11 +18178,11 @@ select.items_per_page {
   cursor: pointer;
   border: 1px solid #bbc1bf;
 }
-/* line 219, ../sass/_dashboard.scss */
+/* line 220, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project:last-child {
   margin-right: 0;
 }
-/* line 223, ../sass/_dashboard.scss */
+/* line 224, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project .toggle-progress {
   display: inline-block;
   margin-left: 1.5rem;
@@ -18189,34 +18190,34 @@ select.items_per_page {
   cursor: pointer;
   font-size: 1.3rem;
 }
-/* line 239, ../sass/_dashboard.scss */
+/* line 240, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project:hover {
   opacity: 0.9;
 }
-/* line 242, ../sass/_dashboard.scss */
+/* line 243, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project:hover .toggle-progress {
   color: #c8dc1e;
 }
-/* line 247, ../sass/_dashboard.scss */
+/* line 248, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project .time-values {
   float: right;
   font-size: 1.7rem;
 }
-/* line 252, ../sass/_dashboard.scss */
+/* line 253, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project .project-team {
   position: absolute;
   bottom: -1.5rem;
   left: 1.25rem;
   z-index: 6;
 }
-/* line 258, ../sass/_dashboard.scss */
+/* line 259, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project .project-team .avatar {
   width: 3rem;
   height: 3rem;
   margin-right: 0.5rem;
   border: none;
 }
-/* line 267, ../sass/_dashboard.scss */
+/* line 268, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project .project-progress {
   position: absolute;
   left: 0;
@@ -18224,9 +18225,14 @@ select.items_per_page {
   z-index: 5;
   background: white;
 }
-/* line 276, ../sass/_dashboard.scss */
-.dashboard-content .reporting .project .slick-slide img {
+/* line 278, ../sass/_dashboard.scss */
+.dashboard-content .reporting .slick-slide img {
   display: inline-block;
+}
+/* line 282, ../sass/_dashboard.scss */
+.dashboard-content .reporting .slick-list {
+  overflow: visible;
+  z-index: 999;
 }
 
 /* line 1, ../sass/_project.scss */
