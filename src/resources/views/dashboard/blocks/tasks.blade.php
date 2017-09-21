@@ -43,6 +43,8 @@
                                     'id' => $task->allocated_user->id,
                                     'name' => $task->allocated_user->complete_name
                                 ])
+                            @else
+                                <img class="default-avatar avatar" src="{{ asset('img/default-avatar.jpg') }}" />
                             @endif
                         </a>
                     </td>

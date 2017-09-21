@@ -61,6 +61,8 @@
                                     'id' => $ticket->last_state->allocated_user->id,
                                     'name' => $ticket->last_state->allocated_user->complete_name
                                 ])
+                            @else
+                                <img class="default-avatar avatar" src="{{ asset('img/default-avatar.jpg') }}" />
                             @endif
                         </a>
                     </td>
