@@ -18381,27 +18381,15 @@ select.items_per_page {
 }
 /* line 70, ../sass/_tickets.scss */
 .tickets-template .table-responsive {
-  max-height: 410px;
   clear: right;
 }
-/* line 75, ../sass/_tickets.scss */
-.tickets-template .ticket-dragndrop {
-  vertical-align: middle;
-  display: inline-block;
-  margin-top: 6px;
-}
-/* line 80, ../sass/_tickets.scss */
-.tickets-template .ticket-dragndrop .move-widget:hover {
-  text-decoration: none;
-  color: #c8dc1e;
-}
 
-/* line 89, ../sass/_tickets.scss */
+/* line 77, ../sass/_tickets.scss */
 .ticket-infos .form-group textarea.form-control {
   height: 185px;
 }
 
-/* line 97, ../sass/_tickets.scss */
+/* line 85, ../sass/_tickets.scss */
 .ticket-history table td {
   padding: 1rem !important;
 }
@@ -18412,19 +18400,7 @@ select.items_per_page {
 }
 /* line 6, ../sass/_tasks.scss */
 .tasks-template .table-responsive {
-  max-height: 410px;
   clear: right;
-}
-/* line 11, ../sass/_tasks.scss */
-.tasks-template .task-dragndrop {
-  vertical-align: middle;
-  display: inline-block;
-  margin-top: 6px;
-}
-/* line 16, ../sass/_tasks.scss */
-.tasks-template .task-dragndrop .move-widget:hover {
-  text-decoration: none;
-  color: #c8dc1e;
 }
 
 /* line 1, ../sass/_messages.scss */
@@ -18698,43 +18674,72 @@ select.items_per_page {
 .planning-template .middle-column {
   top: 16.6rem;
 }
-
-/* line 54, ../sass/_planning.scss */
-.child .child-wrapper, .child.ui-draggable-dragging .child-wrapper {
+/* line 53, ../sass/_planning.scss */
+.planning-template .middle-column .child .child-wrapper {
   padding: 0;
   padding-top: 1.5rem;
   cursor: move;
 }
-/* line 59, ../sass/_planning.scss */
-.child .child-wrapper:hover, .child.ui-draggable-dragging .child-wrapper:hover {
+/* line 58, ../sass/_planning.scss */
+.planning-template .middle-column .child .child-wrapper:hover {
   opacity: 0.9;
 }
-/* line 63, ../sass/_planning.scss */
-.child .child-wrapper .project, .child.ui-draggable-dragging .child-wrapper .project {
+/* line 62, ../sass/_planning.scss */
+.planning-template .middle-column .child .child-wrapper .project {
   color: white;
   display: inline-block;
   margin-bottom: 0.25rem;
   margin-left: 1.25rem;
   padding: 0.25rem 0.5rem;
 }
-/* line 71, ../sass/_planning.scss */
-.child .child-wrapper .name, .child.ui-draggable-dragging .child-wrapper .name {
+/* line 70, ../sass/_planning.scss */
+.planning-template .middle-column .child .child-wrapper .name {
   display: block;
   max-width: none;
   padding: 0.5rem 1rem 1rem;
   margin-left: 0.25rem;
 }
-/* line 78, ../sass/_planning.scss */
-.child .child-wrapper .priority, .child.ui-draggable-dragging .child-wrapper .priority {
+/* line 77, ../sass/_planning.scss */
+.planning-template .middle-column .child .child-wrapper .priority {
   margin-top: 1rem;
   margin-right: 1.25rem;
 }
 
-/* line 85, ../sass/_planning.scss */
+/* line 86, ../sass/_planning.scss */
 .ui-draggable-dragging {
   width: 40rem;
   background: white;
   z-index: 9999;
+}
+/* line 92, ../sass/_planning.scss */
+.ui-draggable-dragging .child-wrapper {
+  padding: 0;
+  padding-top: 1.5rem;
+  cursor: move;
+}
+/* line 97, ../sass/_planning.scss */
+.ui-draggable-dragging .child-wrapper:hover {
+  opacity: 0.9;
+}
+/* line 101, ../sass/_planning.scss */
+.ui-draggable-dragging .child-wrapper .project {
+  color: white;
+  display: inline-block;
+  margin-bottom: 0.25rem;
+  margin-left: 1.25rem;
+  padding: 0.25rem 0.5rem;
+}
+/* line 109, ../sass/_planning.scss */
+.ui-draggable-dragging .child-wrapper .name {
+  display: block;
+  max-width: none;
+  padding: 0.5rem 1rem 1rem;
+  margin-left: 0.25rem;
+}
+/* line 116, ../sass/_planning.scss */
+.ui-draggable-dragging .child-wrapper .priority {
+  margin-top: 1rem;
+  margin-right: 1.25rem;
 }
 
 /* line 3, ../sass/_my.scss */

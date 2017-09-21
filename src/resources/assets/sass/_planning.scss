@@ -48,9 +48,47 @@
 
     .middle-column {
         top: 16.6rem;
+
+        .child {
+            .child-wrapper {
+                padding: 0;
+                padding-top: 1.5rem;
+                cursor: move;
+
+                &:hover {
+                    opacity: 0.9;
+                }
+
+                .project {
+                    color: white;
+                    display: inline-block;
+                    margin-bottom: 0.25rem;
+                    margin-left: 1.25rem;
+                    padding: 0.25rem 0.5rem;
+                }
+
+                .name {
+                    display: block;
+                    max-width: none;
+                    padding: 0.5rem 1rem 1rem;
+                    margin-left: 0.25rem;
+                }
+
+                .priority {
+                    margin-top: 1rem;
+                    margin-right: 1.25rem;
+                }
+            }
+        }
     }
 }
-.child, .child.ui-draggable-dragging {
+
+.ui-draggable-dragging {
+    width: 40rem;
+
+    background: white;
+    z-index: 9999;
+
     .child-wrapper {
         padding: 0;
         padding-top: 1.5rem;
@@ -80,11 +118,4 @@
             margin-right: 1.25rem;
         }
     }
-}
-
-.ui-draggable-dragging {
-    width: 40rem;
-
-    background: white;
-    z-index: 9999;
 }
