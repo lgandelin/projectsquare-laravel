@@ -54,6 +54,7 @@
     border-radius: 0;
 
     .fc-content {
+        white-space: normal;
         padding: 5px;
     }
     
@@ -87,10 +88,6 @@
 .fc-day-grid-event {
     margin: 0;
 
-    .delete-event {
-        top: -20px;
-    }
-    
     .fc-time {
         margin-right: 1rem;
     }

@@ -18577,51 +18577,48 @@ select.items_per_page {
 }
 /* line 56, ../sass/_calendar.scss */
 .fc-event .fc-content {
+  white-space: normal;
   padding: 5px;
 }
-/* line 60, ../sass/_calendar.scss */
+/* line 61, ../sass/_calendar.scss */
 .fc-event .fc-bg {
   opacity: 0;
 }
-/* line 64, ../sass/_calendar.scss */
+/* line 65, ../sass/_calendar.scss */
 .fc-event .delete-event {
   position: absolute;
   top: 5px;
   right: 5px;
   z-index: 999;
 }
-/* line 71, ../sass/_calendar.scss */
+/* line 72, ../sass/_calendar.scss */
 .fc-event .delete-event:hover {
   color: #c8dc1e;
   opacity: 1;
 }
 
-/* line 77, ../sass/_calendar.scss */
+/* line 78, ../sass/_calendar.scss */
 .fc-time-grid-event .fc-title {
   padding-right: 2rem;
   display: block;
   min-height: 3rem;
 }
 
-/* line 83, ../sass/_calendar.scss */
+/* line 84, ../sass/_calendar.scss */
 .fc-time-grid-event .fc-time {
   display: none;
 }
 
-/* line 87, ../sass/_calendar.scss */
+/* line 88, ../sass/_calendar.scss */
 .fc-day-grid-event {
   margin: 0;
 }
-/* line 90, ../sass/_calendar.scss */
-.fc-day-grid-event .delete-event {
-  top: -20px;
-}
-/* line 94, ../sass/_calendar.scss */
+/* line 91, ../sass/_calendar.scss */
 .fc-day-grid-event .fc-time {
   margin-right: 1rem;
 }
 
-/* line 99, ../sass/_calendar.scss */
+/* line 96, ../sass/_calendar.scss */
 .fc-ltr .fc-time-grid .fc-event-container {
   margin: 0;
 }
