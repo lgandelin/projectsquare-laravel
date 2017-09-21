@@ -71,7 +71,7 @@ $(document).ready(function() {
                     $('#event-infos .wrapper').find('.end_time').datepicker('update');
                 },
                 error: function(data) {
-                    status = data.status
+                    status = data.status;
                     data = $.parseJSON(data.responseText);
                     revertFunc();
                     if (status == 301) {
@@ -190,6 +190,12 @@ $(document).ready(function() {
 
             $('#planning').fullCalendar('unselect');
         },
+        drop: function(date, jsEvent, ui, resourceId) {
+            $('.tickets-current-project').val($(this).data('project'));
+            $('.tickets-current-ticket').val($(this).data('ticket'));
+            $('.tasks-current-project').val($(this).data('project'));
+            $('.tasks-current-task').val($(this).data('task'));
+        },
         eventReceive: function(event, delta, revertFunc) {
 
             if (event.allDay) {
@@ -204,6 +210,7 @@ $(document).ready(function() {
                 name: event.title,
                 start_time: event.start.format(),
                 end_time: event.end.format(),
+                project_id: $('.tickets-current-project').val(),
                 ticket_id: event.ticket_id,
                 task_id: event.task_id,
                 user_id: $('#user_id').val(),
@@ -216,7 +223,10 @@ $(document).ready(function() {
                 data: data,
                 success: function(data) {
                     event._id = data.event.id;
-                    event.color = data.event.color;
+                    event.project_id = $('.tickets-current-project').val();
+                    event.ticket_id = $('.tickets-current-ticket').val();
+                    event.task_id = $('.tasks-current-task').val();
+
                     $('#planning').fullCalendar('updateEvent', event);
 
                     $('#event-infos .wrapper').find('.id').val(data.event.id);
@@ -253,23 +263,9 @@ $(document).ready(function() {
             success: function(data) {
                 var events = $('#planning').fullCalendar( 'clientEvents', data.event.id);
                 var event = events[0];
-
-                var title = '';
-                if (data.event.project_name) {
-                    title += '<span class="project-name">';
-                    if (data.event.project_client) {
-                        title += '[' + data.event.project_client + '] ';
-                    }
-                    title += data.event.project_name + '</span> ';
-                }
-
-                title += data.event.name;
-
-                event.title = title;
+                event.title = data.event.name;
                 event.start = data.event.start_time;
                 event.end = data.event.end_time;
-                event.project_client = data.event.project_client;
-                event.project_name = data.event.project_name;
                 event.color = data.event.color;
 
                 $('#planning').fullCalendar('updateEvent', event);
@@ -290,10 +286,10 @@ $(document).ready(function() {
 function initTicketDragAndDrop() {
     $('.tickets-list .ticket').each(function() {
 
-        // store data so the planning knows to render an event upon drop
         $(this).data('event', {
-            title: $.trim($(this).text()), // use the element's text as the event title
-            stick: true // maintain when user navigates (see docs on the renderEvent method)
+            title: $.trim('[' + $(this).find('.project').text() + '] <br/>' + $(this).find('.name').text()),
+            stick: true,
+            color: $(this).data('color')
         });
 
         // make the event draggable using jQuery UI
@@ -305,7 +301,8 @@ function initTicketDragAndDrop() {
                 $copy = $(this).clone();
                 return $copy;
             },
-            appendTo: 'body'
+            appendTo: 'body',
+            cursorAt: { left: 5, top: 5 }
         });
     });
 }
@@ -314,10 +311,10 @@ function initTaskDragAndDrop() {
 
     $('.tasks-list .task').each(function() {
 
-        // store data so the planning knows to render an event upon drop
         $(this).data('event', {
-            title: $.trim($(this).text()), // use the element's text as the event title
-            stick: true // maintain when user navigates (see docs on the renderEvent method)
+            title: $.trim('[' + $(this).find('.project').text() + '] <br/>' + $(this).find('.name').text()),
+            stick: true,
+            color: $(this).data('color')
         });
 
         // make the event draggable using jQuery UI
@@ -329,7 +326,8 @@ function initTaskDragAndDrop() {
                 $copy = $(this).clone();
                 return $copy;
             },
-            appendTo: 'body'
+            appendTo: 'body',
+            cursorAt: { left: 5, top: 5 }
         });
     });
 }

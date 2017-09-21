@@ -78,6 +78,25 @@
                     margin-top: 1rem;
                     margin-right: 1.25rem;
                 }
+
+                .duration {
+                    float: right;
+
+                    margin-top: 1rem;
+                    min-width: 2.6rem;
+                    height: 2.6rem;
+                    display: inline-block;
+                    margin-right: 1.0rem;
+                    padding-left: 0.5rem;
+                    padding-right: 0.5rem;
+                    padding-top: 0.7rem;
+                    text-align: center;
+                    font-size: 1.1rem;
+                    font-family: $typo1;
+
+                    background: #f4f8f9;
+                    border-radius: 50%;
+                }
             }
         }
     }
@@ -116,6 +135,25 @@
         .priority {
             margin-top: 1rem;
             margin-right: 1.25rem;
+        }
+
+        .duration {
+            float: right;
+
+            margin-top: 1rem;
+            min-width: 2.6rem;
+            height: 2.6rem;
+            display: inline-block;
+            margin-right: 1.0rem;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            padding-top: 0.7rem;
+            text-align: center;
+            font-size: 1.1rem;
+            font-family: $typo1;
+
+            background: #f4f8f9;
+            border-radius: 50%;
         }
     }
 }

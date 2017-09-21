@@ -18585,8 +18585,8 @@ select.items_per_page {
 }
 /* line 64, ../sass/_calendar.scss */
 .fc-event .delete-event {
-  float: right;
-  top: -25px;
+  position: absolute;
+  top: 5px;
   right: 5px;
   z-index: 999;
 }
@@ -18597,24 +18597,31 @@ select.items_per_page {
 }
 
 /* line 77, ../sass/_calendar.scss */
+.fc-time-grid-event .fc-title {
+  padding-right: 2rem;
+  display: block;
+  min-height: 3rem;
+}
+
+/* line 83, ../sass/_calendar.scss */
 .fc-time-grid-event .fc-time {
   display: none;
 }
 
-/* line 81, ../sass/_calendar.scss */
+/* line 87, ../sass/_calendar.scss */
 .fc-day-grid-event {
   margin: 0;
 }
-/* line 84, ../sass/_calendar.scss */
+/* line 90, ../sass/_calendar.scss */
 .fc-day-grid-event .delete-event {
   top: -20px;
 }
-/* line 88, ../sass/_calendar.scss */
+/* line 94, ../sass/_calendar.scss */
 .fc-day-grid-event .fc-time {
   margin-right: 1rem;
 }
 
-/* line 93, ../sass/_calendar.scss */
+/* line 99, ../sass/_calendar.scss */
 .fc-ltr .fc-time-grid .fc-event-container {
   margin: 0;
 }
@@ -18704,24 +18711,41 @@ select.items_per_page {
   margin-top: 1rem;
   margin-right: 1.25rem;
 }
+/* line 82, ../sass/_planning.scss */
+.planning-template .middle-column .child .child-wrapper .duration {
+  float: right;
+  margin-top: 1rem;
+  min-width: 2.6rem;
+  height: 2.6rem;
+  display: inline-block;
+  margin-right: 1.0rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.7rem;
+  text-align: center;
+  font-size: 1.1rem;
+  font-family: "AvantGarde-Book";
+  background: #f4f8f9;
+  border-radius: 50%;
+}
 
-/* line 86, ../sass/_planning.scss */
+/* line 105, ../sass/_planning.scss */
 .ui-draggable-dragging {
   width: 40rem;
   background: white;
   z-index: 9999;
 }
-/* line 92, ../sass/_planning.scss */
+/* line 111, ../sass/_planning.scss */
 .ui-draggable-dragging .child-wrapper {
   padding: 0;
   padding-top: 1.5rem;
   cursor: move;
 }
-/* line 97, ../sass/_planning.scss */
+/* line 116, ../sass/_planning.scss */
 .ui-draggable-dragging .child-wrapper:hover {
   opacity: 0.9;
 }
-/* line 101, ../sass/_planning.scss */
+/* line 120, ../sass/_planning.scss */
 .ui-draggable-dragging .child-wrapper .project {
   color: white;
   display: inline-block;
@@ -18729,17 +18753,34 @@ select.items_per_page {
   margin-left: 1.25rem;
   padding: 0.25rem 0.5rem;
 }
-/* line 109, ../sass/_planning.scss */
+/* line 128, ../sass/_planning.scss */
 .ui-draggable-dragging .child-wrapper .name {
   display: block;
   max-width: none;
   padding: 0.5rem 1rem 1rem;
   margin-left: 0.25rem;
 }
-/* line 116, ../sass/_planning.scss */
+/* line 135, ../sass/_planning.scss */
 .ui-draggable-dragging .child-wrapper .priority {
   margin-top: 1rem;
   margin-right: 1.25rem;
+}
+/* line 140, ../sass/_planning.scss */
+.ui-draggable-dragging .child-wrapper .duration {
+  float: right;
+  margin-top: 1rem;
+  min-width: 2.6rem;
+  height: 2.6rem;
+  display: inline-block;
+  margin-right: 1.0rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.7rem;
+  text-align: center;
+  font-size: 1.1rem;
+  font-family: "AvantGarde-Book";
+  background: #f4f8f9;
+  border-radius: 50%;
 }
 
 /* line 3, ../sass/_my.scss */

@@ -10,10 +10,16 @@
         @if (sizeof($tickets) > 0)
             <div class="childs tickets-list">
                 @foreach ($tickets as $ticket)
-                    <div class="child ticket" id="ticket-{{ $ticket->id }}" data-id="{{ $ticket->id }}" data-project="@if (isset($ticket->project)){{ $ticket->project->id }}@endif" data-ticket="{{ $ticket->id }}" data-color="@if (isset($ticket->project)){{ $ticket->project->color }}@endif" data-event='{"title":"{{ $ticket->title }}"}' data-duration="02:00">
+                    <div class="child ticket" id="ticket-{{ $ticket->id }}" data-id="{{ $ticket->id }}" data-project="@if (isset($ticket->project)){{ $ticket->project->id }}@endif" data-ticket="{{ $ticket->id }}" data-color="@if (isset($ticket->project)){{ $ticket->project->color }}@endif" data-event='{"title":"{{ $ticket->title }}"}' data-duration="{{ Webaccess\ProjectSquareLaravel\Tools\PlanningTool::convertHoursToFullCalendar($ticket->last_state->estimated_time_hours) }}">
                         <div class="child-wrapper">
                             @if (isset($ticket->project))
                                 <span class="project" style="background: {{ $ticket->project->color }}">{{ $ticket->project->name }}</span>
+                            @endif
+
+                            @if ($ticket->last_state->estimated_time_hours)
+                                    <span class="duration">{{ $ticket->last_state->estimated_time_hours }} h</span>
+                            @else
+                                <span class="duration">-</span>
                             @endif
 
                             @if (isset($ticket->last_state) && isset($ticket->last_state->priority))
@@ -38,11 +44,13 @@
         @if (sizeof($tasks) > 0)
             <div class="childs tasks-list">
                 @foreach ($tasks as $task)
-                    <div class="task child" id="task-{{ $task->id }}" data-id="{{ $task->id }}" data-project="@if (isset($task->project)){{ $task->project->id }}@endif" data-task="{{ $task->id }}" data-color="@if (isset($task->project)){{ $task->project->color }}@endif" data-event='{"title":"{{ $task->title }}"}' data-duration="02:00">
+                    <div class="task child" id="task-{{ $task->id }}" data-id="{{ $task->id }}" data-project="@if (isset($task->project)){{ $task->project->id }}@endif" data-task="{{ $task->id }}" data-color="@if (isset($task->project)){{ $task->project->color }}@endif" data-event='{"title":"{{ $task->title }}"}' data-duration="{{ Webaccess\ProjectSquareLaravel\Tools\PlanningTool::convertDaysToFullCalendar($task->estimated_time_days) }}">
                         <div class="child-wrapper">
-                            @if (isset($ticket->project))
-                                <span class="project" style="background: {{ $ticket->project->color }}">{{ $ticket->project->name }}</span>
+                            @if (isset($task->project))
+                                <span class="project" style="background: {{ $task->project->color }}">{{ $task->project->name }}</span>
                             @endif
+
+                            @if ($task->estimated_time_days)<span class="duration">{{ $task->estimated_time_days }} j</span>@endif
 
                             <span class="name">{{ $task->title }}</span>
                         </div>
