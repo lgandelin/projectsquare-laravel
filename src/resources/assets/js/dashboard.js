@@ -19,7 +19,11 @@
         maxTime: '19:00',
         droppable: false,
         events: events,
-        contentHeight: 'auto'
+        contentHeight: 'auto',
+
+        eventRender: function(event, element) {
+            element.find('.fc-title').html(element.find('.fc-title').text());
+        },
     });
 
     $('.block-content').removeClass('loading');
