@@ -62,8 +62,8 @@
     }
 
     .delete-event {
-        float: right;
-        top: -25px;
+        position: absolute;
+        top: 5px;
         right: 5px;
         z-index: 999;
     }
@@ -72,6 +72,12 @@
         color: $green;
         opacity: 1;
     }
+}
+
+.fc-time-grid-event .fc-title {
+    padding-right: 2rem;
+    display: block;
+    min-height: 3rem;
 }
 
 .fc-time-grid-event .fc-time {

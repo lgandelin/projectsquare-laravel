@@ -20,10 +20,6 @@
     }
 }
 
-.tickets-list {
-    margin-top: 5rem;
-}
-
 #planning {
     a[href]:hover {
         text-decoration: underline;
@@ -31,7 +27,133 @@
 }
 
 .planning-template {
+    padding: 0;
+
     h2 {
         margin-left: 1.5rem;
+    }
+
+    .page-header {
+        padding-left: 2.5rem;
+        padding-top: 2.5rem;
+    }
+
+    .content-page {
+        overflow: hidden;
+        padding: 0;
+        padding-left: 3rem;
+        padding-top: 1rem;
+        margin-left: 40.5rem;
+    }
+
+    .middle-column {
+        top: 16.6rem;
+
+        .child {
+            .child-wrapper {
+                padding: 0;
+                padding-top: 1.5rem;
+                cursor: move;
+
+                &:hover {
+                    opacity: 0.9;
+                }
+
+                .project {
+                    color: white;
+                    display: inline-block;
+                    margin-bottom: 0.25rem;
+                    margin-left: 1.25rem;
+                    padding: 0.25rem 0.5rem;
+                }
+
+                .name {
+                    display: block;
+                    max-width: none;
+                    padding: 0.5rem 1rem 1rem;
+                    margin-left: 0.25rem;
+                }
+
+                .priority {
+                    margin-top: 1rem;
+                    margin-right: 1.25rem;
+                }
+
+                .duration {
+                    float: right;
+
+                    margin-top: 1rem;
+                    min-width: 2.6rem;
+                    height: 2.6rem;
+                    display: inline-block;
+                    margin-right: 1.0rem;
+                    padding-left: 0.5rem;
+                    padding-right: 0.5rem;
+                    padding-top: 0.7rem;
+                    text-align: center;
+                    font-size: 1.1rem;
+                    font-family: $typo1;
+
+                    background: #f4f8f9;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+}
+
+.ui-draggable-dragging {
+    width: 40rem;
+
+    background: white;
+    z-index: 9999;
+
+    .child-wrapper {
+        padding: 0;
+        padding-top: 1.5rem;
+        cursor: move;
+
+        &:hover {
+            opacity: 0.9;
+        }
+
+        .project {
+            color: white;
+            display: inline-block;
+            margin-bottom: 0.25rem;
+            margin-left: 1.25rem;
+            padding: 0.25rem 0.5rem;
+        }
+
+        .name {
+            display: block;
+            max-width: none;
+            padding: 0.5rem 1rem 1rem;
+            margin-left: 0.25rem;
+        }
+
+        .priority {
+            margin-top: 1rem;
+            margin-right: 1.25rem;
+        }
+
+        .duration {
+            float: right;
+
+            margin-top: 1rem;
+            min-width: 2.6rem;
+            height: 2.6rem;
+            display: inline-block;
+            margin-right: 1.0rem;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            padding-top: 0.7rem;
+            text-align: center;
+            font-size: 1.1rem;
+            font-family: $typo1;
+
+            background: #f4f8f9;
+            border-radius: 50%;
+        }
     }
 }

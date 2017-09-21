@@ -3,7 +3,7 @@ $('input.datepicker').datepicker({
     autoclose: true,
     forceParse: false,
     format: 'dd/mm/yyyy',
-    todayHighlight: true
+    todayHighlight: true,
 });
 
 function loadTemplate(templateID, params) {
