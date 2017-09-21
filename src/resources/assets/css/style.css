@@ -16658,6 +16658,29 @@ a.fc-more:hover {
   background: url(../img/cancel.png) no-repeat;
 }
 
+/* line 117, ../sass/includes/_buttons.scss */
+.create-button {
+  width: 23rem;
+  display: block;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  font-family: "AvantGarde-Book";
+  font-size: 1.7rem;
+  color: white;
+  background: #096a85;
+}
+/* line 129, ../sass/includes/_buttons.scss */
+.create-button i {
+  font-size: 2.5rem;
+  float: right;
+}
+/* line 134, ../sass/includes/_buttons.scss */
+.create-button:hover, .create-button:focus, .create-button:active {
+  text-decoration: none;
+  color: white;
+  opacity: 0.9;
+}
+
 /* line 1, ../sass/includes/_typography.scss */
 html {
   font-size: 62.5%;
