@@ -59,7 +59,12 @@
                 </div>
             @endif
 
-            <a href="{{ route('tasks_add') }}" class="btn pull-right add create-task"></a>
+            <a href="{{ route('tasks_add') }}" class="create-button">
+                {{ trans('projectsquare::tasks.add_task') }}
+
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            </a>
+
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>

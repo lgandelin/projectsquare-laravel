@@ -113,3 +113,28 @@
     height: 16px;
     background: url(../img/cancel.png) no-repeat;
 }
+
+.create-button {
+    width: 23rem;
+    display: block;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+
+    font-family: $typo1;
+    font-size: 1.7rem;
+    color: white;
+
+    background: $touareg;
+
+    i {
+        font-size: 2.5rem;
+        float: right;
+    }
+
+    &:hover, &:focus, &:active {
+        text-decoration: none;
+        color: white;
+
+        opacity: 0.9;
+    }
+}
