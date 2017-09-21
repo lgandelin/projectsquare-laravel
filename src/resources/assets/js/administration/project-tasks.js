@@ -117,10 +117,12 @@ $(document).ready(function() {
             var tasks = [];
 
             $(this).find('.task').each(function() {
+                var duration_string = $(this).find('.input-task-duration').first().val();
+
                 var task = {
                     id: $(this).attr('data-id'),
                     name: $(this).find('.input-task-name').first().val(),
-                    duration: $(this).find('.input-task-duration').first().val(),
+                    duration: parseFloat(duration_string.replace(',', '.')),
                     is_new: $(this).attr('data-temp')
                 };
 
@@ -204,7 +206,8 @@ function update_phase_duration(phase_id) {
     var phase = $('.phase[data-id="' + phase_id + '"]');
     var phase_duration = 0;
     phase.find('.task').each(function() {
-        var task_duration = parseFloat($(this).find('.input-task-duration').val());
+        var duration_string = $(this).find('.input-task-duration').val();
+        var task_duration = parseFloat(duration_string.replace(',', '.'));
         if (!isNaN(task_duration))
             phase_duration += task_duration
     });
