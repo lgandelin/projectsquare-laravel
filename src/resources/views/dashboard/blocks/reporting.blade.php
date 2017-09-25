@@ -1,7 +1,7 @@
 @if ($current_projects_reporting)
-    <div class="reporting progress-template">
+    <div class="reporting progress-template owl-carousel owl-theme">
         @foreach ($current_projects_reporting as $project)
-            <div class="project" style="background: {{ $project->color }};">
+            <div class="project item" style="background: {{ $project->color }};">
                 {{ $project->name }}
 
                 <span class="toggle-progress"></span>
@@ -72,44 +72,26 @@
     </div>
 @endif
 
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.0/slick/slick.css"/>
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.0/slick/slick-theme.css"/>
-<script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.0/slick/slick.min.js"></script>
-
+<script src="{{ asset('js/vendor/owl.carousel.min.js') }}"></script>
 <script>
     $(document).ready(function() {
-        $('.reporting').slick({
-            dots: false,
-            arrows: true,
-            infinite: true,
-            speed: 300,
-            slidesToShow: 5,
-            slidesToScroll: 5,
-            responsive: [
-                {
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
-                        infinite: true,
-                        dots: true
-                    }
+
+        $('.reporting').owlCarousel({
+            loop:true,
+            margin:25,
+            nav:false,
+            slideBy: 'page',
+            responsive:{
+                400:{
+                    items:1
                 },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2
-                    }
+                600:{
+                    items:2
                 },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
+                1024:{
+                    items:3
                 }
-            ]
+            }
         });
     });
 </script>

@@ -140,10 +140,10 @@ $(document).ready(function() {
     }
 
     //DASHBOARD - REPORTING WIDGET
-    $('.reporting .project').click(function(e) {
+    $('.reporting .project .toggle-progress').click(function(e) {
         e.preventDefault();
 
-        $(this).find('.project-progress').slideToggle(200);
-        $(this).find('.toggle-progress').toggleClass('opened');
+        $(this).closest('.project').find('.project-progress').slideToggle(200);
+        $(this).toggleClass('opened');
     });
 });
