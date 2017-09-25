@@ -82,15 +82,15 @@
             nav:false,
             slideBy: 'page',
             responsive:{
-                400:{
-                    items:1
+                800:{
+                    items: 1
                 },
-                600:{
-                    items:2
+                1000:{
+                    items: 2
                 },
-                1024:{
+                1200:{
                     items:3
-                }
+                },
             }
         });
     });
