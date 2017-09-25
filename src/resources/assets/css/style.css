@@ -18469,38 +18469,38 @@ select.items_per_page {
   font-size: 1.5rem;
   font-family: "AvantGarde-Book";
   color: white;
-  cursor: pointer;
   border: 1px solid #bbc1bf;
 }
-/* line 222, ../sass/_dashboard.scss */
+/* line 221, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project:last-child {
   margin-right: 0;
 }
-/* line 226, ../sass/_dashboard.scss */
+/* line 225, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project .toggle-progress {
   display: inline-block;
   margin-left: 1.5rem;
   color: white;
   cursor: pointer;
   font-size: 1.3rem;
+  cursor: pointer;
 }
 /* line 241, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project .toggle-progress:hover {
   color: #c8dc1e;
 }
-/* line 245, ../sass/_dashboard.scss */
+/* line 246, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project .time-values {
   float: right;
   font-size: 1.7rem;
 }
-/* line 250, ../sass/_dashboard.scss */
+/* line 251, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project .project-team {
   position: absolute;
   bottom: -1.5rem;
   left: 1.25rem;
   z-index: 6;
 }
-/* line 256, ../sass/_dashboard.scss */
+/* line 257, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project .project-team .avatar {
   width: 3rem;
   height: 3rem;
@@ -18508,20 +18508,20 @@ select.items_per_page {
   display: inline-block;
   border: none;
 }
-/* line 266, ../sass/_dashboard.scss */
+/* line 267, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project .project-progress {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 7.5rem;
   z-index: 5;
+  left: -1px;
+  right: -1px;
+  top: 7.1rem;
   background: white;
 }
-/* line 277, ../sass/_dashboard.scss */
+/* line 278, ../sass/_dashboard.scss */
 .dashboard-content .reporting .slick-slide img {
   display: inline-block;
 }
-/* line 281, ../sass/_dashboard.scss */
+/* line 282, ../sass/_dashboard.scss */
 .dashboard-content .reporting .slick-list {
   overflow: visible;
   z-index: 999;

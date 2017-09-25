@@ -215,7 +215,6 @@
             font-size: 1.5rem;
             font-family: $typo1;
             color: white;
-            cursor: pointer;
 
             border: 1px solid #bbc1bf;
 
@@ -230,6 +229,7 @@
                 color: white;
                 cursor: pointer;
                 font-size: 1.3rem;
+                cursor: pointer;
 
                 @extend .glyphicon;
                 @extend .glyphicon-triangle-bottom;
@@ -242,6 +242,7 @@
                     color: $green;
                 }
             }
+
             .time-values {
                 float: right;
                 font-size: 1.7rem;
@@ -265,10 +266,10 @@
 
             .project-progress {
                 position: absolute;
-                left: 0;
-                right: 0;
-                top: 7.5rem;
                 z-index: 5;
+                left: -1px;
+                right: -1px;
+                top: 7.1rem;
 
                 background: white;
             }
