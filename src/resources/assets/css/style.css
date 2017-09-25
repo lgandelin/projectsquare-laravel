@@ -18302,16 +18302,17 @@ select.items_per_page {
   padding-top: 2rem;
   padding-left: 2rem;
   padding-right: 2rem;
+  overflow: hidden;
   background: #e6f0f3;
 }
-/* line 30, ../sass/_dashboard.scss */
+/* line 31, ../sass/_dashboard.scss */
 .dashboard-content .ui-state-highlight {
   border: none !important;
   background: #0c7594;
   overflow: hidden;
   margin-bottom: 3rem;
 }
-/* line 38, ../sass/_dashboard.scss */
+/* line 39, ../sass/_dashboard.scss */
 .dashboard-content .block h3 {
   display: block;
   margin-bottom: 2rem;
@@ -18321,112 +18322,112 @@ select.items_per_page {
   font-size: 2.1rem;
   color: #096a85;
 }
-/* line 49, ../sass/_dashboard.scss */
+/* line 50, ../sass/_dashboard.scss */
 .dashboard-content .block .all {
   width: 25px;
   height: 22px;
   margin-right: 2.4rem;
   background: url(../img/dashboard/all.png) no-repeat;
 }
-/* line 56, ../sass/_dashboard.scss */
+/* line 57, ../sass/_dashboard.scss */
 .dashboard-content .block .all:hover {
   background: url(../img/dashboard/all-hover.png) no-repeat;
 }
-/* line 61, ../sass/_dashboard.scss */
+/* line 62, ../sass/_dashboard.scss */
 .dashboard-content .block .move-widget {
   font-size: 2.5rem;
   margin-right: 1.5rem;
   color: #096a85;
 }
-/* line 67, ../sass/_dashboard.scss */
+/* line 68, ../sass/_dashboard.scss */
 .dashboard-content .block .move-widget:hover {
   color: #c8dc1e;
   text-decoration: none;
 }
-/* line 75, ../sass/_dashboard.scss */
+/* line 76, ../sass/_dashboard.scss */
 .dashboard-content .calendar .block-content, .dashboard-content .planning .block-content {
   padding-right: 1.6rem;
   padding-left: 1.6rem;
 }
-/* line 83, ../sass/_dashboard.scss */
+/* line 84, ../sass/_dashboard.scss */
 .dashboard-content .last-tickets table tr {
   border-bottom: 1px solid #daddde;
 }
-/* line 87, ../sass/_dashboard.scss */
+/* line 88, ../sass/_dashboard.scss */
 .dashboard-content .last-tickets table tr:last-child {
   border-bottom: none;
 }
-/* line 94, ../sass/_dashboard.scss */
+/* line 95, ../sass/_dashboard.scss */
 .dashboard-content .last-tickets .table thead th:last-child {
   padding-right: 1rem;
 }
-/* line 99, ../sass/_dashboard.scss */
+/* line 100, ../sass/_dashboard.scss */
 .dashboard-content .last-tickets .table .priorities {
   padding: 1.5rem 3rem;
 }
-/* line 103, ../sass/_dashboard.scss */
+/* line 104, ../sass/_dashboard.scss */
 .dashboard-content .last-tickets .table .action {
   text-align: right;
 }
-/* line 109, ../sass/_dashboard.scss */
+/* line 110, ../sass/_dashboard.scss */
 .dashboard-content .last-messages {
   overflow: hidden;
   /*.reply-message:hover {
       background: $green;
   }*/
 }
-/* line 112, ../sass/_dashboard.scss */
+/* line 113, ../sass/_dashboard.scss */
 .dashboard-content .last-messages .count {
   background: #e2c44b;
 }
-/* line 116, ../sass/_dashboard.scss */
+/* line 117, ../sass/_dashboard.scss */
 .dashboard-content .last-messages table td:first-child {
   padding-left: 2.5rem;
 }
-/* line 121, ../sass/_dashboard.scss */
+/* line 122, ../sass/_dashboard.scss */
 .dashboard-content .last-messages .conversation .users {
   margin-top: 1rem;
   margin-bottom: 1.5rem;
 }
-/* line 126, ../sass/_dashboard.scss */
+/* line 127, ../sass/_dashboard.scss */
 .dashboard-content .last-messages .conversation .message {
   overflow: hidden;
   margin-bottom: 1rem;
 }
-/* line 130, ../sass/_dashboard.scss */
+/* line 131, ../sass/_dashboard.scss */
 .dashboard-content .last-messages .conversation .message .glyphicon-user {
   margin-left: 1rem;
 }
-/* line 134, ../sass/_dashboard.scss */
+/* line 135, ../sass/_dashboard.scss */
 .dashboard-content .last-messages .conversation .message .user_name {
   font-weight: bold;
   color: #cc6057;
 }
-/* line 139, ../sass/_dashboard.scss */
+/* line 140, ../sass/_dashboard.scss */
 .dashboard-content .last-messages .conversation .message .content {
   margin-top: 1rem;
   margin-bottom: 1rem;
   background: white;
   padding: 1rem;
 }
-/* line 147, ../sass/_dashboard.scss */
+/* line 148, ../sass/_dashboard.scss */
 .dashboard-content .last-messages .conversation .message:last-child {
   margin-bottom: 0;
 }
-/* line 152, ../sass/_dashboard.scss */
+/* line 153, ../sass/_dashboard.scss */
 .dashboard-content .last-messages .button-message {
   margin-right: 2rem;
   margin-top: 2px;
 }
-/* line 161, ../sass/_dashboard.scss */
+/* line 162, ../sass/_dashboard.scss */
 .dashboard-content .last-messages .new-message {
   margin-bottom: 0;
 }
-/* line 167, ../sass/_dashboard.scss */
+/* line 168, ../sass/_dashboard.scss */
 .dashboard-content .conversation-modal .conversation {
   overflow: hidden;
 }
-/* line 170, ../sass/_dashboard.scss */
+/* line 171, ../sass/_dashboard.scss */
 .dashboard-content .conversation-modal .conversation .messages {
   overflow-y: auto;
   max-height: 600px;
@@ -18434,28 +18435,28 @@ select.items_per_page {
   padding-left: 2rem;
   margin-bottom: 5rem;
 }
-/* line 177, ../sass/_dashboard.scss */
+/* line 178, ../sass/_dashboard.scss */
 .dashboard-content .conversation-modal .conversation .messages textarea {
   padding: 0;
 }
-/* line 184, ../sass/_dashboard.scss */
+/* line 185, ../sass/_dashboard.scss */
 .dashboard-content .loading {
   background: rgba(255, 255, 255, 0.75) url("../img/loading.gif") center center no-repeat;
 }
-/* line 189, ../sass/_dashboard.scss */
+/* line 190, ../sass/_dashboard.scss */
 .dashboard-content .planning .fc-body > tr > .fc-widget-content {
   border: none !important;
 }
-/* line 193, ../sass/_dashboard.scss */
+/* line 194, ../sass/_dashboard.scss */
 .dashboard-content .planning .fc-head > tr > .fc-head-container {
   border-left: 0;
   border-right: 0;
 }
-/* line 199, ../sass/_dashboard.scss */
+/* line 200, ../sass/_dashboard.scss */
 .dashboard-content .reporting {
   margin-bottom: 3rem;
 }
-/* line 202, ../sass/_dashboard.scss */
+/* line 203, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project {
   position: relative;
   z-index: 99999;
@@ -18471,11 +18472,11 @@ select.items_per_page {
   cursor: pointer;
   border: 1px solid #bbc1bf;
 }
-/* line 221, ../sass/_dashboard.scss */
+/* line 222, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project:last-child {
   margin-right: 0;
 }
-/* line 225, ../sass/_dashboard.scss */
+/* line 226, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project .toggle-progress {
   display: inline-block;
   margin-left: 1.5rem;
@@ -18483,23 +18484,23 @@ select.items_per_page {
   cursor: pointer;
   font-size: 1.3rem;
 }
-/* line 240, ../sass/_dashboard.scss */
+/* line 241, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project .toggle-progress:hover {
   color: #c8dc1e;
 }
-/* line 244, ../sass/_dashboard.scss */
+/* line 245, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project .time-values {
   float: right;
   font-size: 1.7rem;
 }
-/* line 249, ../sass/_dashboard.scss */
+/* line 250, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project .project-team {
   position: absolute;
   bottom: -1.5rem;
   left: 1.25rem;
   z-index: 6;
 }
-/* line 255, ../sass/_dashboard.scss */
+/* line 256, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project .project-team .avatar {
   width: 3rem;
   height: 3rem;
@@ -18507,7 +18508,7 @@ select.items_per_page {
   display: inline-block;
   border: none;
 }
-/* line 265, ../sass/_dashboard.scss */
+/* line 266, ../sass/_dashboard.scss */
 .dashboard-content .reporting .project .project-progress {
   position: absolute;
   left: 0;
@@ -18516,11 +18517,11 @@ select.items_per_page {
   z-index: 5;
   background: white;
 }
-/* line 276, ../sass/_dashboard.scss */
+/* line 277, ../sass/_dashboard.scss */
 .dashboard-content .reporting .slick-slide img {
   display: inline-block;
 }
-/* line 280, ../sass/_dashboard.scss */
+/* line 281, ../sass/_dashboard.scss */
 .dashboard-content .reporting .slick-list {
   overflow: visible;
   z-index: 999;
