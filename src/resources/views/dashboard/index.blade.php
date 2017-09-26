@@ -41,7 +41,8 @@
                 start: "{{ $event->startTime->format(DATE_ISO8601) }}",
                 end: "{{ $event->endTime->format(DATE_ISO8601) }}",
                 color: "{{ isset($event->color) ? $event->color : null }}",
-                project_id: "{{ isset($event->project_id) ? $event->project_id : null }}",
+                project_id: "{{ isset($event->projectID) ? $event->projectID : null }}",
+                project_name: "{{ isset($event->projectName) ? $event->projectName : null }}",
                 @if (isset($event->ticketID) && $event->ticketID > 0)url: "{{ route('tickets_edit', ['id' => $event->ticketID]) }}",@endif
                 @if (isset($event->taskID) && $event->taskID > 0)url: "{{ route('tasks_edit', ['id' => $event->taskID]) }}",@endif
             },

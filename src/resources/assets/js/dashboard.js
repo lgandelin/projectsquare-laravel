@@ -22,7 +22,10 @@ $(document).ready(function() {
         contentHeight: 'auto',
 
         eventRender: function(event, element) {
-            element.find('.fc-title').html(element.find('.fc-title').text());
+            event_title = "";
+            if (event.project_name) event_title += '[' + event.project_name + '] <br/>';
+            event_title += element.find('.fc-title').text();
+            element.find('.fc-title').html(event_title);
         },
     });
 

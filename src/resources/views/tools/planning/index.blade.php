@@ -114,6 +114,7 @@
                     end: "{{ $event->endTime->format(DATE_ISO8601) }}",
                     color: "{{ isset($event->color) ? $event->color : null }}",
                     project_id: "{{ isset($event->project_id) ? $event->project_id : null }}",
+                    project_name: "{{ isset($event->projectName) ? $event->projectName : null }}",
                 },
             @endforeach
         ];
