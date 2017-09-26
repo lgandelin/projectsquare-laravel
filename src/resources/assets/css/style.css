@@ -16795,6 +16795,1102 @@ a.fc-more:hover {
   background: #096a85;
 }
 
+/*
+ * ************************************************************* *
+ * Name         :  Power Tour (SASS)                             *
+ * Description  :  CSS for the tour plugin.                      *
+ * Version      :  Version 3.1.0                                 *
+ * Author       :  CreativeMilk                                  *
+ * Author URI   :  www.creativemilk.net                          *
+ * Updated      :  2015-11-07 12:30:40 UTC+02:00                 *
+ * Copyright    :  (c) 2015 CreativeMilk                         *
+ * ************************************************************* *
+ */
+/* line 21, ../sass/vendor/_powertour.scss */
+.powertour-step {
+  padding: 0;
+  position: absolute;
+  visibility: hidden;
+  z-index: 0;
+  zoom: 1;
+}
+/* line 28, ../sass/vendor/_powertour.scss */
+.powertour-step > * {
+  position: relative;
+}
+/* line 32, ../sass/vendor/_powertour.scss */
+.powertour-step:after,
+.powertour-step > *:after {
+  clear: both;
+}
+/* line 36, ../sass/vendor/_powertour.scss */
+.powertour-step > *:after {
+  zoom: 1;
+}
+/* line 39, ../sass/vendor/_powertour.scss */
+.powertour-step:before, .powertour-step:after,
+.powertour-step > *:before,
+.powertour-step > *:after {
+  content: "";
+  display: table;
+}
+
+/* line 47, ../sass/vendor/_powertour.scss */
+.powertour-hook {
+  position: relative;
+}
+
+/* line 50, ../sass/vendor/_powertour.scss */
+.powertour-step.powertour-hide iframe {
+  visibility: hidden;
+  /* opera issue with yt video*/
+}
+
+/* line 53, ../sass/vendor/_powertour.scss */
+.powertour-step.powertour-show iframe {
+  display: block;
+  visibility: visible;
+}
+
+/* line 58, ../sass/vendor/_powertour.scss */
+.powertour-step.animated,
+.powertour-step.powertour-show {
+  z-index: 9000;
+  visibility: visible;
+}
+
+/* line 64, ../sass/vendor/_powertour.scss */
+#powertour-mask {
+  width: 100%;
+  height: 100%;
+  z-index: 9000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+/* line 73, ../sass/vendor/_powertour.scss */
+.powertour-step.animated,
+.powertour-tooltip:hover .powertour-step,
+.powertour-step.powertour-show {
+  visibility: visible;
+}
+
+/* line 78, ../sass/vendor/_powertour.scss */
+[data-powertour-position] {
+  position: fixed !important;
+}
+
+/* line 81, ../sass/vendor/_powertour.scss */
+.powertour-step.powertour-activestep,
+.powertour-step.powertour-keepvisible,
+.powertour-activehook.powertour-highlight,
+.powertour-tooltip:hover .powertour-step {
+  z-index: 9001 !important;
+}
+
+/* line 87, ../sass/vendor/_powertour.scss */
+body .powertour-step > * {
+  display: inherit;
+}
+
+/* 
+    NEW 3.0.0 
+	
+    Used FX IN/OUT classes for tiny version, 
+    you can modify these 2 classes. 
+*/
+/* line 98, ../sass/vendor/_powertour.scss */
+.powertour-fxin {
+  opacity: 1;
+  -moz-transition: 0.4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+/* line 106, ../sass/vendor/_powertour.scss */
+.powertour-fxout {
+  opacity: 0;
+  -moz-transition: 0.4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+/*
+ * ************************************************************* *
+ * Name         :  Power Tour style : clean (SASS)               *
+ * Description  :  CSS styling for the tour plugin.              *
+ * Version      :  Version 3.0.0                                 *
+ * Author       :  CreativeMilk                                  *
+ * Author URI   :  www.creativemilk.net                          *
+ * Updated      :  2014-11-22 14:13:58 UTC+02:00                 *
+ * Copyright    :  (c) 2014 CreativeMilk                         *
+ * ************************************************************* *
+ */
+/* line 137, ../sass/vendor/_powertour.scss */
+#powertour-mask {
+  background-color: #000;
+  filter: alpha(opacity=80);
+  -moz-opacity: 0.8;
+  -khtml-opacity: 0.8;
+  opacity: 0.8;
+}
+
+/* line 144, ../sass/vendor/_powertour.scss */
+.single-step {
+  position: relative;
+  display: none;
+  z-index: 9001;
+  padding: 20px;
+  background-color: #fff;
+  color: #333;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+/* line 154, ../sass/vendor/_powertour.scss */
+.single-step > header {
+  float: left;
+  height: 30px;
+  width: 100%;
+  margin: 5px 0 10px 0;
+  line-height: 30px;
+}
+/* line 161, ../sass/vendor/_powertour.scss */
+.single-step > header h3 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 22px;
+}
+/* line 168, ../sass/vendor/_powertour.scss */
+.single-step > footer {
+  float: left;
+  height: auto;
+  width: 100%;
+  margin: 20px 0 0 0;
+  line-height: 30px;
+}
+/* line 176, ../sass/vendor/_powertour.scss */
+.single-step .close-btn {
+  position: absolute;
+  top: -34px;
+  right: -1px;
+  height: 24px;
+  width: 24px;
+  background-color: #eee;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #999;
+  line-height: 18px;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid #ccc;
+}
+
+/* new 2.7.0 */
+/* line 196, ../sass/vendor/_powertour.scss */
+.powertour-active.powertour-highlight {
+  background-color: #fff;
+}
+
+/*
+ * ************************************************************* *
+ * Name         :  Power Tour connectors (SASS)                  *
+ * Description  :  CSS for the tour plugin.                      *
+ * Version      :  Version 2.1.0                                 *
+ * Author       :  CreativeMilk                                  *
+ * Author URI   :  www.creativemilk.net                          *
+ * Updated      :  2014-08-26 17:13:18 UTC+02:00                 *
+ * Copyright    :  (c) 2012 CreativeMilk                         *
+ * ************************************************************* *
+ */
+/*** DOTS ****************************************/
+/* TOP */
+/* line 282, ../sass/vendor/_powertour.scss */
+.connectordot-top {
+  top: -29px;
+  left: -69px;
+  position: absolute;
+  height: 2px;
+  width: 80px;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  background-color: #333;
+}
+/* line 288, ../sass/vendor/_powertour.scss */
+.connectordot-top:before {
+  top: -4px;
+  left: -5px;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  content: "";
+  background-color: #fff;
+  border: 2px solid #333;
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* line 295, ../sass/vendor/_powertour.scss */
+.connectordot-tl {
+  top: -80px;
+  left: 20px;
+  position: absolute;
+  height: 80px;
+  width: 2px;
+  background-color: #333;
+}
+/* line 300, ../sass/vendor/_powertour.scss */
+.connectordot-tl:before {
+  top: -5px;
+  right: -4px;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  content: "";
+  background-color: #fff;
+  border: 2px solid #333;
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* line 307, ../sass/vendor/_powertour.scss */
+.connectordot-tm {
+  margin-right: -1px;
+  top: -80px;
+  right: 50%;
+  position: absolute;
+  height: 80px;
+  width: 2px;
+  background-color: #333;
+}
+/* line 314, ../sass/vendor/_powertour.scss */
+.connectordot-tm:before {
+  top: -5px;
+  right: -4px;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  content: "";
+  background-color: #fff;
+  border: 2px solid #333;
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* line 321, ../sass/vendor/_powertour.scss */
+.connectordot-tr {
+  top: -80px;
+  right: 20px;
+  position: absolute;
+  height: 80px;
+  width: 2px;
+  background-color: #333;
+}
+/* line 326, ../sass/vendor/_powertour.scss */
+.connectordot-tr:before {
+  top: -5px;
+  right: -4px;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  content: "";
+  background-color: #fff;
+  border: 2px solid #333;
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* RIGHT */
+/* line 336, ../sass/vendor/_powertour.scss */
+.connectordot-right {
+  top: -29px;
+  right: -69px;
+  position: absolute;
+  height: 2px;
+  width: 80px;
+  transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  background-color: #333;
+}
+/* line 342, ../sass/vendor/_powertour.scss */
+.connectordot-right:before {
+  top: -5px;
+  right: -4px;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  content: "";
+  background-color: #fff;
+  border: 2px solid #333;
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* line 349, ../sass/vendor/_powertour.scss */
+.connectordot-rt {
+  top: 20px;
+  right: -80px;
+  position: absolute;
+  height: 2px;
+  width: 80px;
+  background-color: #333;
+}
+/* line 354, ../sass/vendor/_powertour.scss */
+.connectordot-rt:before {
+  top: -5px;
+  right: -4px;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  content: "";
+  background-color: #fff;
+  border: 2px solid #333;
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* line 361, ../sass/vendor/_powertour.scss */
+.connectordot-rm {
+  margin-top: -1px;
+  top: 50%;
+  right: -80px;
+  position: absolute;
+  height: 2px;
+  width: 80px;
+  background-color: #333;
+}
+/* line 368, ../sass/vendor/_powertour.scss */
+.connectordot-rm:before {
+  top: -4px;
+  right: -5px;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  content: "";
+  background-color: #fff;
+  border: 2px solid #333;
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* line 375, ../sass/vendor/_powertour.scss */
+.connectordot-rb {
+  bottom: 20px;
+  right: -80px;
+  position: absolute;
+  height: 2px;
+  width: 80px;
+  background-color: #333;
+}
+/* line 380, ../sass/vendor/_powertour.scss */
+.connectordot-rb:before {
+  top: -4px;
+  right: -5px;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  content: "";
+  background-color: #fff;
+  border: 2px solid #333;
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* BOTTOM */
+/* line 390, ../sass/vendor/_powertour.scss */
+.connectordot-bottom {
+  bottom: -29px;
+  right: -69px;
+  position: absolute;
+  height: 2px;
+  width: 80px;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  background-color: #333;
+}
+/* line 396, ../sass/vendor/_powertour.scss */
+.connectordot-bottom:before {
+  top: -4px;
+  right: -5px;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  content: "";
+  background-color: #fff;
+  border: 2px solid #333;
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* line 403, ../sass/vendor/_powertour.scss */
+.connectordot-bl {
+  bottom: -80px;
+  left: 20px;
+  position: absolute;
+  height: 80px;
+  width: 2px;
+  background-color: #333;
+}
+/* line 408, ../sass/vendor/_powertour.scss */
+.connectordot-bl:before {
+  bottom: -5px;
+  right: -4px;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  content: "";
+  background-color: #fff;
+  border: 2px solid #333;
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* line 416, ../sass/vendor/_powertour.scss */
+.connectordot-bm {
+  margin-right: -1px;
+  bottom: -80px;
+  right: 50%;
+  position: absolute;
+  height: 80px;
+  width: 2px;
+  background-color: #333;
+}
+/* line 423, ../sass/vendor/_powertour.scss */
+.connectordot-bm:before {
+  bottom: -5px;
+  right: -4px;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  content: "";
+  background-color: #fff;
+  border: 2px solid #333;
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* line 430, ../sass/vendor/_powertour.scss */
+.connectordot-br {
+  bottom: -80px;
+  right: 20px;
+  position: absolute;
+  height: 80px;
+  width: 2px;
+  background-color: #333;
+}
+/* line 435, ../sass/vendor/_powertour.scss */
+.connectordot-br:before {
+  bottom: -5px;
+  right: -4px;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  content: "";
+  background-color: #fff;
+  border: 2px solid #333;
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* LEFT */
+/* line 445, ../sass/vendor/_powertour.scss */
+.connectordot-left {
+  bottom: -29px;
+  left: -69px;
+  position: absolute;
+  height: 2px;
+  width: 80px;
+  transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  background-color: #333;
+}
+/* line 451, ../sass/vendor/_powertour.scss */
+.connectordot-left:before {
+  top: -4px;
+  left: -5px;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  content: "";
+  background-color: #fff;
+  border: 2px solid #333;
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* line 458, ../sass/vendor/_powertour.scss */
+.connectordot-lt {
+  top: 20px;
+  left: -80px;
+  position: absolute;
+  height: 2px;
+  width: 80px;
+  background-color: #333;
+}
+/* line 463, ../sass/vendor/_powertour.scss */
+.connectordot-lt:before {
+  top: -4px;
+  left: -5px;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  content: "";
+  background-color: #fff;
+  border: 2px solid #333;
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* line 470, ../sass/vendor/_powertour.scss */
+.connectordot-lm {
+  margin-top: -1px;
+  top: 50%;
+  left: -80px;
+  position: absolute;
+  height: 2px;
+  width: 80px;
+  background-color: #333;
+}
+/* line 477, ../sass/vendor/_powertour.scss */
+.connectordot-lm:before {
+  top: -4px;
+  left: -5px;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  content: "";
+  background-color: #fff;
+  border: 2px solid #333;
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* line 484, ../sass/vendor/_powertour.scss */
+.connectordot-lb {
+  bottom: 20px;
+  left: -80px;
+  position: absolute;
+  height: 2px;
+  width: 80px;
+  background-color: #333;
+}
+/* line 489, ../sass/vendor/_powertour.scss */
+.connectordot-lb:before {
+  top: -4px;
+  left: -5px;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  content: "";
+  background-color: #fff;
+  border: 2px solid #333;
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/*** ARROWS **************************************/
+/* TOP */
+/* line 501, ../sass/vendor/_powertour.scss */
+.connectorarrow-tle {
+  border-top: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #ccc;
+  border-left: 10px solid #ccc;
+  top: -20px;
+  left: -1px;
+  position: absolute;
+}
+/* line 506, ../sass/vendor/_powertour.scss */
+.connectorarrow-tle:before {
+  content: "";
+  border-top: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #fff;
+  border-left: 10px solid #fff;
+  top: -7px;
+  left: -9px;
+  position: absolute;
+}
+
+/* line 514, ../sass/vendor/_powertour.scss */
+.connectorarrow-tl {
+  border-top: none;
+  border-right: 12px solid transparent;
+  border-bottom: 12px solid #ccc;
+  border-left: 12px solid transparent;
+  top: -12px;
+  left: 20px;
+  position: absolute;
+}
+/* line 519, ../sass/vendor/_powertour.scss */
+.connectorarrow-tl:before {
+  content: "";
+  border-top: none;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #fff;
+  border-left: 10px solid transparent;
+  top: 2px;
+  left: -10px;
+  position: absolute;
+}
+
+/* line 527, ../sass/vendor/_powertour.scss */
+.connectorarrow-tm {
+  margin: 0 -12px 0 0;
+  border-top: none;
+  border-right: 12px solid transparent;
+  border-bottom: 12px solid #ccc;
+  border-left: 12px solid transparent;
+  top: -12px;
+  right: 50%;
+  position: absolute;
+}
+/* line 533, ../sass/vendor/_powertour.scss */
+.connectorarrow-tm:before {
+  content: "";
+  border-top: none;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #fff;
+  border-left: 10px solid transparent;
+  top: 2px;
+  right: -10px;
+  position: absolute;
+}
+
+/* line 541, ../sass/vendor/_powertour.scss */
+.connectorarrow-tr {
+  border-top: none;
+  border-right: 12px solid transparent;
+  border-bottom: 12px solid #ccc;
+  border-left: 12px solid transparent;
+  top: -12px;
+  right: 20px;
+  position: absolute;
+}
+/* line 546, ../sass/vendor/_powertour.scss */
+.connectorarrow-tr:before {
+  content: "";
+  border-top: none;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #fff;
+  border-left: 10px solid transparent;
+  top: 2px;
+  right: -10px;
+  position: absolute;
+}
+
+/* line 554, ../sass/vendor/_powertour.scss */
+.connectorarrow-tre {
+  border-top: 10px solid transparent;
+  border-right: 10px solid #ccc;
+  border-bottom: 10px solid #ccc;
+  border-left: 10px solid transparent;
+  top: -20px;
+  right: -1px;
+  position: absolute;
+}
+/* line 559, ../sass/vendor/_powertour.scss */
+.connectorarrow-tre:before {
+  content: "";
+  border-top: 10px solid transparent;
+  border-right: 10px solid #fff;
+  border-bottom: 10px solid #fff;
+  border-left: 10px solid transparent;
+  top: -7px;
+  left: -11px;
+  position: absolute;
+}
+
+/* RIGHT */
+/* line 570, ../sass/vendor/_powertour.scss */
+.connectorarrow-rte {
+  border-top: 10px solid #ccc;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #ccc;
+  top: -1px;
+  right: -21px;
+  position: absolute;
+}
+/* line 575, ../sass/vendor/_powertour.scss */
+.connectorarrow-rte:before {
+  content: "";
+  border-top: 10px solid #fff;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #fff;
+  top: -9px;
+  right: -8px;
+  position: absolute;
+}
+
+/* line 583, ../sass/vendor/_powertour.scss */
+.connectorarrow-rt {
+  border-top: 12px solid transparent;
+  border-right: none;
+  border-bottom: 12px solid transparent;
+  border-left: 12px solid #ccc;
+  top: 20px;
+  right: -12px;
+  position: absolute;
+}
+/* line 588, ../sass/vendor/_powertour.scss */
+.connectorarrow-rt:before {
+  content: "";
+  border-top: 10px solid transparent;
+  border-right: none;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #fff;
+  top: -10px;
+  right: 2px;
+  position: absolute;
+}
+
+/* line 596, ../sass/vendor/_powertour.scss */
+.connectorarrow-rm {
+  margin: -12px 0 0 0;
+  border-top: 12px solid transparent;
+  border-right: none;
+  border-bottom: 12px solid transparent;
+  border-left: 12px solid #ccc;
+  top: 50%;
+  right: -12px;
+  position: absolute;
+}
+/* line 602, ../sass/vendor/_powertour.scss */
+.connectorarrow-rm:before {
+  content: "";
+  border-top: 10px solid transparent;
+  border-right: none;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #fff;
+  top: -10px;
+  right: 2px;
+  position: absolute;
+}
+
+/* line 610, ../sass/vendor/_powertour.scss */
+.connectorarrow-rb {
+  border-top: 12px solid transparent;
+  border-right: none;
+  border-bottom: 12px solid transparent;
+  border-left: 12px solid #ccc;
+  bottom: 20px;
+  right: -12px;
+  position: absolute;
+}
+/* line 615, ../sass/vendor/_powertour.scss */
+.connectorarrow-rb:before {
+  content: "";
+  border-top: 10px solid transparent;
+  border-right: none;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #fff;
+  top: -10px;
+  right: 2px;
+  position: absolute;
+}
+
+/* line 623, ../sass/vendor/_powertour.scss */
+.connectorarrow-rbe {
+  border-top: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #ccc;
+  border-left: 10px solid #ccc;
+  bottom: -1px;
+  right: -21px;
+  position: absolute;
+}
+/* line 628, ../sass/vendor/_powertour.scss */
+.connectorarrow-rbe:before {
+  content: "";
+  border-top: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #fff;
+  border-left: 10px solid #fff;
+  bottom: -9px;
+  right: -8px;
+  position: absolute;
+}
+
+/* BOTTOM */
+/* line 639, ../sass/vendor/_powertour.scss */
+.connectorarrow-ble {
+  border-top: 10px solid #ccc;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #ccc;
+  bottom: -20px;
+  left: -1px;
+  position: absolute;
+}
+/* line 644, ../sass/vendor/_powertour.scss */
+.connectorarrow-ble:before {
+  content: "";
+  border-top: 10px solid #fff;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #fff;
+  bottom: -7px;
+  left: -9px;
+  position: absolute;
+}
+
+/* line 652, ../sass/vendor/_powertour.scss */
+.connectorarrow-bl {
+  border-top: 12px solid #ccc;
+  border-right: 12px solid transparent;
+  border-bottom: none;
+  border-left: 12px solid transparent;
+  bottom: -12px;
+  left: 20px;
+  position: absolute;
+}
+/* line 657, ../sass/vendor/_powertour.scss */
+.connectorarrow-bl:before {
+  content: "";
+  border-top: 10px solid #fff;
+  border-right: 10px solid transparent;
+  border-bottom: none;
+  border-left: 10px solid transparent;
+  bottom: 2px;
+  left: -10px;
+  position: absolute;
+}
+
+/* line 665, ../sass/vendor/_powertour.scss */
+.connectorarrow-bm {
+  margin: 0 -12px 0 0;
+  border-top: 12px solid #ccc;
+  border-right: 12px solid transparent;
+  border-bottom: none;
+  border-left: 12px solid transparent;
+  bottom: -12px;
+  right: 50%;
+  position: absolute;
+}
+/* line 671, ../sass/vendor/_powertour.scss */
+.connectorarrow-bm:before {
+  content: "";
+  border-top: 10px solid #fff;
+  border-right: 10px solid transparent;
+  border-bottom: none;
+  border-left: 10px solid transparent;
+  bottom: 2px;
+  right: -10px;
+  position: absolute;
+}
+
+/* line 679, ../sass/vendor/_powertour.scss */
+.connectorarrow-br {
+  border-top: 12px solid #ccc;
+  border-right: 12px solid transparent;
+  border-bottom: none;
+  border-left: 12px solid transparent;
+  bottom: -12px;
+  right: 20px;
+  position: absolute;
+}
+/* line 684, ../sass/vendor/_powertour.scss */
+.connectorarrow-br:before {
+  content: "";
+  border-top: 10px solid #fff;
+  border-right: 10px solid transparent;
+  border-bottom: none;
+  border-left: 10px solid transparent;
+  bottom: 2px;
+  right: -10px;
+  position: absolute;
+}
+
+/* line 692, ../sass/vendor/_powertour.scss */
+.connectorarrow-bre {
+  border-top: 10px solid #ccc;
+  border-right: 10px solid #ccc;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid transparent;
+  bottom: -20px;
+  right: -1px;
+  position: absolute;
+}
+/* line 697, ../sass/vendor/_powertour.scss */
+.connectorarrow-bre:before {
+  content: "";
+  border-top: 10px solid #fff;
+  border-right: 10px solid #fff;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid transparent;
+  bottom: -7px;
+  right: -9px;
+  position: absolute;
+}
+
+/* LEFT */
+/* line 708, ../sass/vendor/_powertour.scss */
+.connectorarrow-lte {
+  border-top: 10px solid #ccc;
+  border-right: 10px solid #ccc;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid transparent;
+  top: -1px;
+  left: -21px;
+  position: absolute;
+}
+/* line 713, ../sass/vendor/_powertour.scss */
+.connectorarrow-lte:before {
+  content: "";
+  border-top: 10px solid #fff;
+  border-right: 10px solid #fff;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid transparent;
+  top: -9px;
+  left: -8px;
+  position: absolute;
+}
+
+/* line 721, ../sass/vendor/_powertour.scss */
+.connectorarrow-lt {
+  border-top: 12px solid transparent;
+  border-right: 12px solid #ccc;
+  border-bottom: 12px solid transparent;
+  border-left: none;
+  top: 20px;
+  left: -12px;
+  position: absolute;
+}
+/* line 726, ../sass/vendor/_powertour.scss */
+.connectorarrow-lt:before {
+  content: "";
+  border-top: 10px solid transparent;
+  border-right: 10px solid #fff;
+  border-bottom: 10px solid transparent;
+  border-left: none;
+  top: -10px;
+  right: -12px;
+  position: absolute;
+}
+
+/* line 734, ../sass/vendor/_powertour.scss */
+.connectorarrow-lm {
+  margin: -12px 0 0 0;
+  border-top: 12px solid transparent;
+  border-right: 12px solid #ccc;
+  border-bottom: 12px solid transparent;
+  border-left: none;
+  top: 50%;
+  left: -12px;
+  position: absolute;
+}
+/* line 740, ../sass/vendor/_powertour.scss */
+.connectorarrow-lm:before {
+  content: "";
+  border-top: 10px solid transparent;
+  border-right: 10px solid #fff;
+  border-bottom: 10px solid transparent;
+  border-left: none;
+  top: -10px;
+  right: -12px;
+  position: absolute;
+}
+
+/* line 748, ../sass/vendor/_powertour.scss */
+.connectorarrow-lb {
+  border-top: 12px solid transparent;
+  border-right: 12px solid #ccc;
+  border-bottom: 12px solid transparent;
+  border-left: none;
+  bottom: 20px;
+  left: -12px;
+  position: absolute;
+}
+/* line 753, ../sass/vendor/_powertour.scss */
+.connectorarrow-lb:before {
+  content: "";
+  border-top: 10px solid transparent;
+  border-right: 10px solid #fff;
+  border-bottom: 10px solid transparent;
+  border-left: none;
+  top: -10px;
+  right: -12px;
+  position: absolute;
+}
+
+/* line 761, ../sass/vendor/_powertour.scss */
+.connectorarrow-lbe {
+  border-top: 10px solid transparent;
+  border-right: 10px solid #ccc;
+  border-bottom: 10px solid #ccc;
+  border-left: 10px solid transparent;
+  bottom: -1px;
+  left: -21px;
+  position: absolute;
+}
+/* line 766, ../sass/vendor/_powertour.scss */
+.connectorarrow-lbe:before {
+  content: "";
+  border-top: 10px solid transparent;
+  border-right: 10px solid #fff;
+  border-bottom: 10px solid #fff;
+  border-left: 10px solid transparent;
+  bottom: -9px;
+  left: -8px;
+  position: absolute;
+}
+
 /* line 1, ../sass/includes/_modals.scss */
 .modal-content {
   border-radius: 0 !important;
