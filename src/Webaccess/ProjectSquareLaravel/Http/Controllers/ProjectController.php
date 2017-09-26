@@ -274,7 +274,7 @@ class ProjectController extends BaseController
                 $this->request->session()->put('current_project', $project);
             }
         } catch(\Exception $e) {
-
+            return redirect()->route('dashboard');
         }
 
         return redirect()->route($request->get('route') ? $request->get('route') : 'dashboard', ['uuid' => $projectID]);

@@ -56,8 +56,14 @@ class MessageController extends BaseController
 
         $conversationID = $request->id;
 
+        try {
+            $conversation = app()->make('ConversationManager')->getConversationModel($conversationID);
+        } catch (\Exception $e) {
+            return redirect()->route('project_messages', ['uuid' => $this->getCurrentProject()->id]);
+        }
+
         return view('projectsquare::tools.messages.view', [
-            'conversation' => app()->make('ConversationManager')->getConversationModel($conversationID),
+            'conversation' => $conversation,
             'back_link' => ($request->session()->get('messages_interface') === 'project') ? route('project_messages', ['uuid' => $this->getCurrentProject()->id]) : route('conversations_index')
         ]);
     }
