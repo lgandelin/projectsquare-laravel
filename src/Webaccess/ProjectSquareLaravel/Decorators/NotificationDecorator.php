@@ -17,17 +17,6 @@ class NotificationDecorator
         if (is_array($notifications) && sizeof($notifications) > 0) {
             foreach ($notifications as $i => $notification) {
                 $notification->relative_date = self::getRelativeDate($notification->createdAt);
-                /*if ($notification->type == 'EVENT_CREATED') {
-                    try {
-                        $event = app()->make('GetEventInteractor')->execute(new GetEventRequest([
-                            'eventID' => $notification->entityID,
-                        ]));
-                        $notification->event_name = $event ? $event->name : '';
-                        $notification->link = $event ? route('planning') : '';
-                    } catch (\Exception $e) {
-                        unset($notifications[$i]);
-                    }
-                }*/
                 if ($notification->type == 'MESSAGE_CREATED') {
                     try {
                         $message = (new EloquentMessageRepository())->getMessage($notification->entityID);
