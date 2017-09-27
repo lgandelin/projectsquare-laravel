@@ -44,9 +44,11 @@ class TaskUpdatedEmailJob implements ShouldQueue
                     if ($setting && boolval($setting->value) === true) {
                         $email = $task->allocated_user->email;
 
-                        Mail::send('projectsquare::emails.task_updated', array('task' => $task), function ($message) use ($email, $task) {
+                        $subject = ($task->allocated_user->id != $this->event->oldAllocatedUserID) ? 'Attribution d\'une tâche' : 'Modification de la tâche';
+
+                        Mail::send('projectsquare::emails.task_updated', array('task' => $task), function ($message) use ($email, $task, $subject) {
                             $message->to($email)
-                                ->subject('[projectsquare] Modification de la tâche : ' . $task->title);
+                                ->subject('[projectsquare] ' . $subject . ' : ' . $task->title);
                         });
                     }
                 }
