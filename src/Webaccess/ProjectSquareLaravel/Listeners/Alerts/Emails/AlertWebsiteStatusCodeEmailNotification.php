@@ -3,11 +3,11 @@
 namespace Webaccess\ProjectSquareLaravel\Listeners\Alerts\Emails;
 
 use Illuminate\Support\Facades\Mail;
-use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteLoadingTimeEvent;
+use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteStatusCodeEvent;
 
-class AlertWebsiteLoadingTimeEmailNotification
+class AlertWebsiteStatusCodeEmailNotification
 {
-    public function handle(AlertWebsiteLoadingTimeEvent $event)
+    public function handle(AlertWebsiteStatusCodeEvent $event)
     {
         $request = $event->request;
         $email = $event->email;

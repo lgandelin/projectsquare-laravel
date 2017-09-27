@@ -3,8 +3,9 @@
 namespace Webaccess\ProjectSquareLaravel\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Event;
-use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteStatusCodeEvent;
+use Webaccess\ProjectSquare\Context;
+use Webaccess\ProjectSquare\Events\AlertWebsiteStatusCodeEvent;
+use Webaccess\ProjectSquare\Events\Events;
 
 class AlertStatusCodeCommand extends Command
 {
@@ -32,7 +33,10 @@ class AlertStatusCodeCommand extends Command
                             $project->id
                         );
 
-                        Event::fire(new AlertWebsiteStatusCodeEvent($request, $email, $statusCode));
+                        Context::get('event_dispatcher')->dispatch(
+                            Events::ALERT_STATUS_CODE,
+                            new AlertWebsiteStatusCodeEvent($request, $email, $statusCode)
+                        );
                     }
                 }
             }

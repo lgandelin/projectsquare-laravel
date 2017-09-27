@@ -3,8 +3,9 @@
 namespace Webaccess\ProjectSquareLaravel\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Event;
-use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteLoadingTimeEvent;
+use Webaccess\ProjectSquare\Context;
+use Webaccess\ProjectSquare\Events\AlertWebsiteLoadingTimeEvent;
+use Webaccess\ProjectSquare\Events\Events;
 
 class AlertLoadingTimeCommand extends Command
 {
@@ -34,7 +35,10 @@ class AlertLoadingTimeCommand extends Command
                             $project->id
                         );
 
-                        Event::fire(new AlertWebsiteLoadingTimeEvent($request, $email, $loadingTime));
+                        Context::get('event_dispatcher')->dispatch(
+                            Events::ALERT_LOADING_TIME,
+                            new AlertWebsiteLoadingTimeEvent($request, $email, $loadingTime)
+                        );
                     }
                 }
             }
