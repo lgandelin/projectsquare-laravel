@@ -36,6 +36,7 @@
     table {
         a {
             margin-right: 1rem;
+            vertical-align: middle;
             display: inline-block;
             width: auto;
             height: auto;
@@ -49,11 +50,11 @@
             &:hover * {
                 color: $green;
             }
+        }
 
-            &.btn-delete {
-                position: relative;
-                top: -2px;
-            }
+        td {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
         }
     }
 }

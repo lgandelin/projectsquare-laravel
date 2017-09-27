@@ -18681,56 +18681,57 @@ select.items_per_page {
 /* line 37, ../sass/_tickets.scss */
 #fileupload table a {
   margin-right: 1rem;
+  vertical-align: middle;
   display: inline-block;
   width: auto;
   height: auto;
   padding: 0.5rem;
 }
-/* line 44, ../sass/_tickets.scss */
+/* line 45, ../sass/_tickets.scss */
 #fileupload table a i {
   font-size: 2rem;
   vertical-align: middle;
 }
-/* line 49, ../sass/_tickets.scss */
+/* line 50, ../sass/_tickets.scss */
 #fileupload table a:hover * {
   color: #c8dc1e;
 }
-/* line 53, ../sass/_tickets.scss */
-#fileupload table a.btn-delete {
-  position: relative;
-  top: -2px;
+/* line 55, ../sass/_tickets.scss */
+#fileupload table td {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
-/* line 61, ../sass/_tickets.scss */
+/* line 62, ../sass/_tickets.scss */
 .label {
   font-weight: 400;
 }
 
-/* line 66, ../sass/_tickets.scss */
+/* line 67, ../sass/_tickets.scss */
 .tickets-template h2 {
   margin-left: 1.5rem;
 }
-/* line 70, ../sass/_tickets.scss */
+/* line 71, ../sass/_tickets.scss */
 .tickets-template .table-responsive {
   clear: right;
 }
 
-/* line 77, ../sass/_tickets.scss */
+/* line 78, ../sass/_tickets.scss */
 .ticket-infos .form-group textarea.form-control {
   height: 185px;
 }
 
-/* line 85, ../sass/_tickets.scss */
+/* line 86, ../sass/_tickets.scss */
 .ticket-history table td {
   padding: 1rem !important;
 }
 
-/* line 92, ../sass/_tickets.scss */
+/* line 93, ../sass/_tickets.scss */
 .tickets-template .notice-notification, .project-tickets-template .notice-notification {
   font-size: 1.4rem;
   margin-top: 1rem;
 }
-/* line 97, ../sass/_tickets.scss */
+/* line 98, ../sass/_tickets.scss */
 .tickets-template .btn-cancel, .project-tickets-template .btn-cancel {
   margin-left: 1.5rem;
 }
