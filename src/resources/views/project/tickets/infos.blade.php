@@ -1,13 +1,13 @@
 <form action="{{ route('tickets_update_infos') }}" method="post">
     <div class="row ticket-infos">
-        <div class="col-md-6">
+        <div class="col-lg-6 col-md-12">
             <div class="form-group">
                 <h3 for="description">{{ trans('projectsquare::tickets.description') }}</h3>
                 <textarea disabled class="form-control" rows="4" placeholder="{{ trans('projectsquare::tickets.description') }}" name="description">@if (isset($ticket->description)){{ $ticket->description }}@endif</textarea>
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-lg-6 col-md-12">
             <h3>{{ trans('projectsquare::tickets.ticket_data') }}</h3>
             <div class="form-group">
                 <label for="title">{{ trans('projectsquare::tickets.title') }}</label>
@@ -53,27 +53,4 @@
     {!! csrf_field() !!}
 </form>
 
-<script>
-    $(document).ready(function() {
-
-        $('.ticket-infos-valid .update').click(function(e) {
-            e.preventDefault();
-
-            $(this).hide();
-            $('.ticket-infos-valid .valid').show();
-            $('.ticket-infos-valid .notice-notification').show();
-            $('.ticket-infos-valid .btn-cancel').show();
-            $('.ticket-infos select, .ticket-infos input, .ticket-infos textarea').prop('disabled', false);
-        });
-
-        $('.ticket-infos-valid .btn-cancel').click(function(e) {
-            e.preventDefault();
-
-            $(this).hide();
-            $('.ticket-infos-valid .valid').hide();
-            $('.ticket-infos-valid .notice-notification').hide();
-            $('.ticket-infos-valid .update').show();
-            $('.ticket-infos select, .ticket-infos input, .ticket-infos textarea').prop('disabled', true);
-        });
-    });
-</script>
+<script src="{{ asset('js/tickets.js') }}"></script>

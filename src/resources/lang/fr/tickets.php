@@ -62,5 +62,5 @@ return [
 
     'delete_ticket' => 'Supprimer le ticket',
 
-    'infos_update_no_notification' => 'Toute modification effectuée dans cet encadré (description, titre, ou type du ticket) n\'entrainera pas de notification aux autres membres du projet.',
+    'infos_update_no_notification' => 'Toute modification effectuée dans cet encadré (description, titre, ou type du ticket) ne sera pas enregistrée dans l\'historique du ticket et n\'entrainera pas de notification aux autres membres du projet.',
 ];
