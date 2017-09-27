@@ -6,13 +6,14 @@ use Illuminate\Console\Command;
 
 class PurgeRequestsCommand extends Command
 {
-    protected $signature = 'projectsquare:purge-requests';
+    protected $signature = 'projectsquare:purge';
 
-    protected $description = 'Supprime les anciennes requêtes (> 1 semaine)';
+    protected $description = 'Supprime les anciennes requêtes et alertes (> 1 semaine)';
 
     public function handle()
     {
         app()->make('RequestManager')->deleteOldRequests();
-        $this->info('Requêtes obsolètes purgées avec succès');
+        app()->make('AlertManager')->deleteOldAlerts();
+        $this->info('Données obsolètes purgées avec succès');
     }
 }
