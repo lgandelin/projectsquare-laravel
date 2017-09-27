@@ -7,6 +7,7 @@ return [
     'edit' => 'Editer',
     'delete' => 'Supprimer',
     'valid' => 'Valider',
+    'modify' => 'Modifier',
     'cancel' => 'Annuler',
     'download' => 'Télécharger',
     'choose_value' => 'Choisissez une valeur',

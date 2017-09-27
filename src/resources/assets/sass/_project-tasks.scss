@@ -26,5 +26,14 @@
         overflow: hidden;
         padding: 3rem;
         margin-left: 40.5rem;
+
+        .notice-notification {
+            font-size: 1.4rem;
+            margin-top: 1rem;
+        }
+
+        .btn-cancel {
+            margin-left: 1.5rem;
+        }
     }
 }
