@@ -2,10 +2,8 @@
 
 namespace Webaccess\ProjectSquareLaravel\Listeners\Tickets\Emails;
 
-use Illuminate\Support\Facades\Mail;
 use Webaccess\ProjectSquare\Events\Tickets\DeleteTicketEvent;
-use Webaccess\ProjectSquareLaravel\Jobs\TicketDeletedEmailJob;
-use Webaccess\ProjectSquareLaravel\Models\Ticket;
+use Webaccess\ProjectSquareLaravel\Jobs\Tickets\TicketDeletedEmailJob;
 
 class TicketDeletedEmailNotification
 {

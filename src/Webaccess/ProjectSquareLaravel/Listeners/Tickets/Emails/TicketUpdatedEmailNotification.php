@@ -2,10 +2,8 @@
 
 namespace Webaccess\ProjectSquareLaravel\Listeners\Tickets\Emails;
 
-use Illuminate\Support\Facades\Mail;
 use Webaccess\ProjectSquare\Events\Tickets\UpdateTicketEvent;
-use Webaccess\ProjectSquareLaravel\Jobs\TicketUpdatedEmailJob;
-use Webaccess\ProjectSquareLaravel\Models\Ticket;
+use Webaccess\ProjectSquareLaravel\Jobs\Tickets\TicketUpdatedEmailJob;
 
 class TicketUpdatedEmailNotification
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Webaccess\ProjectSquareLaravel\Jobs;
+namespace Webaccess\ProjectSquareLaravel\Jobs\Tasks;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -9,7 +9,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Mail;
 use Webaccess\ProjectSquare\Events\Tasks\CreateTaskEvent;
-use Webaccess\ProjectSquareLaravel\Models\Message;
 use Webaccess\ProjectSquareLaravel\Models\Task;
 
 class TaskCreatedEmailJob implements ShouldQueue

@@ -1,6 +1,6 @@
 <?php
 
-namespace Webaccess\ProjectSquareLaravel\Jobs;
+namespace Webaccess\ProjectSquareLaravel\Jobs\Tickets;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -9,8 +9,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Mail;
 use Webaccess\ProjectSquare\Events\Tickets\CreateTicketEvent;
-use Webaccess\ProjectSquareLaravel\Models\Message;
-use Webaccess\ProjectSquareLaravel\Models\Task;
 use Webaccess\ProjectSquareLaravel\Models\Ticket;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentUserRepository;
 

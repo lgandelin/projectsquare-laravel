@@ -2,10 +2,8 @@
 
 namespace Webaccess\ProjectSquareLaravel\Listeners\Tasks\Emails;
 
-use Illuminate\Support\Facades\Mail;
 use Webaccess\ProjectSquare\Events\Tasks\UpdateTaskEvent;
-use Webaccess\ProjectSquareLaravel\Jobs\TaskUpdatedEmailJob;
-use Webaccess\ProjectSquareLaravel\Models\Task;
+use Webaccess\ProjectSquareLaravel\Jobs\Tasks\TaskUpdatedEmailJob;
 
 class TaskUpdatedEmailNotification
 {

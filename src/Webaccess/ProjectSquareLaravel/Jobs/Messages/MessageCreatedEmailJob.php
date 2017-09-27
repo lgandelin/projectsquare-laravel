@@ -1,6 +1,6 @@
 <?php
 
-namespace Webaccess\ProjectSquareLaravel\Jobs;
+namespace Webaccess\ProjectSquareLaravel\Jobs\Messages;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;

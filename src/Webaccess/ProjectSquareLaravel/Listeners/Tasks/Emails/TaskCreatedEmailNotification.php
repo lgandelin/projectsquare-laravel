@@ -2,10 +2,8 @@
 
 namespace Webaccess\ProjectSquareLaravel\Listeners\Tasks\Emails;
 
-use Illuminate\Support\Facades\Mail;
 use Webaccess\ProjectSquare\Events\Tasks\CreateTaskEvent;
-use Webaccess\ProjectSquareLaravel\Jobs\TaskCreatedEmailJob;
-use Webaccess\ProjectSquareLaravel\Models\Task;
+use Webaccess\ProjectSquareLaravel\Jobs\Tasks\TaskCreatedEmailJob;
 
 class TaskCreatedEmailNotification
 {
