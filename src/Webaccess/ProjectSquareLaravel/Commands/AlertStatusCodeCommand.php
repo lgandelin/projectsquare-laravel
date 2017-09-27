@@ -4,7 +4,7 @@ namespace Webaccess\ProjectSquareLaravel\Commands;
 
 use Illuminate\Console\Command;
 use Webaccess\ProjectSquare\Context;
-use Webaccess\ProjectSquare\Events\AlertWebsiteStatusCodeEvent;
+use Webaccess\ProjectSquare\Events\Alerts\AlertWebsiteStatusCodeEvent;
 use Webaccess\ProjectSquare\Events\Events;
 
 class AlertStatusCodeCommand extends Command

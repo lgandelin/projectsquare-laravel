@@ -4,7 +4,7 @@ namespace Webaccess\ProjectSquareLaravel\Commands;
 
 use Illuminate\Console\Command;
 use Webaccess\ProjectSquare\Context;
-use Webaccess\ProjectSquare\Events\AlertWebsiteLoadingTimeEvent;
+use Webaccess\ProjectSquare\Events\Alerts\AlertWebsiteLoadingTimeEvent;
 use Webaccess\ProjectSquare\Events\Events;
 
 class AlertLoadingTimeCommand extends Command

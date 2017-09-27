@@ -2,7 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Listeners\Alerts\Slack;
 
-use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteLoadingTimeEvent;
+use Webaccess\ProjectSquare\Events\Alerts\AlertWebsiteLoadingTimeEvent;
 use Webaccess\ProjectSquareLaravel\Tools\SlackTool;
 
 class AlertWebsiteLoadingTimeSlackNotification
@@ -10,7 +10,7 @@ class AlertWebsiteLoadingTimeSlackNotification
     public function handle(AlertWebsiteLoadingTimeEvent $event)
     {
         $request = $event->request;
-        $loadingTime = $event->loading_time;
+        $loadingTime = $event->loadingTime;
 
         $lines = [
             'Le site internet a mis plus de '.$loadingTime.'s a charger  ('.$request->loading_time.'s)',

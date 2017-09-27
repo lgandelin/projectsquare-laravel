@@ -3,6 +3,7 @@
 return [
     'project' => 'Projet :',
     'loading_time' => 'Temps de chargement :',
+    'status_code' => 'Code erreur :',
     'date' => 'Date :',
 
     'new_request' => 'Une nouvelle demande a été envoyée depuis le formulaire de la plateforme :',
