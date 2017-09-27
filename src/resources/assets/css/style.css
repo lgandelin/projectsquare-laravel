@@ -19309,6 +19309,15 @@ select.items_per_page {
   padding: 3rem;
   margin-left: 40.5rem;
 }
+/* line 30, ../sass/_project-tasks.scss */
+.project-tickets-template .content-page .notice-notification {
+  font-size: 1.4rem;
+  margin-top: 1rem;
+}
+/* line 35, ../sass/_project-tasks.scss */
+.project-tickets-template .content-page .btn-cancel {
+  margin-left: 1.5rem;
+}
 
 /* line 2, ../sass/administration/_project-tasks.scss */
 .project-tasks-template .project-tasks {
