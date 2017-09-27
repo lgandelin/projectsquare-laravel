@@ -78,8 +78,6 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
         Route::post('/tools/tasks_unallocate', array('as' => 'tasks_unallocate', 'uses' => 'Tools\TaskController@unallocate'));
         Route::get('/tools/delete_task/{uuid}', array('as' => 'tasks_delete', 'uses' => 'Tools\TaskController@delete'));
 
-        Route::get('/tools/monitoring', array('as' => 'monitoring_index', 'uses' => 'Tools\MonitoringController@index'));
-
         Route::get('/tools/planning', array('as' => 'planning', 'uses' => 'Tools\PlanningController@index'));
         Route::get('/tools/planning/get_event', array('as' => 'events_get_infos', 'uses' => 'Tools\PlanningController@get_event'));
         Route::post('/tools/planning/create', array('as' => 'events_create', 'uses' => 'Tools\PlanningController@create'));
