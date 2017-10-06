@@ -41,11 +41,6 @@ class EloquentEventRepository implements EventRepository
         }
         foreach ($eventsModel->get() as $eventModel) {
             $event = $this->getEventEntity($eventModel);
-            if ($eventModel->project) {
-                $event->color = $eventModel->project->color;
-                $event->projectName = $eventModel->project->name;
-                $event->projectClient = isset($eventModel->project->client) ? $eventModel->project->client->name : null;
-            }
 
             //Event duration
             $durationInMinutes = 8 * 60;
@@ -100,6 +95,12 @@ class EloquentEventRepository implements EventRepository
         $event->ticketID = $eventModel->ticket_id;
         $event->taskID = $eventModel->task_id;
         $event->projectID = $eventModel->project_id;
+
+        if ($eventModel->project) {
+            $event->color = $eventModel->project->color;
+            $event->projectName = $eventModel->project->name;
+            $event->projectClient = isset($eventModel->project->client) ? $eventModel->project->client->name : null;
+        }
 
         return $event;
     }

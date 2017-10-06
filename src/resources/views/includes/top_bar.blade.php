@@ -60,9 +60,28 @@
 
                         <div class="content-tab" data-content="1">
                             @foreach ($notifications as $notification)
-                                @if (in_array($notification->type, ['TICKET_CREATED', 'TICKET_UPDATED', 'TASK_CREATED', 'TASK_UPDATED', 'ASSIGNED_TO_PROJECT', 'FILE_UPLOADED']))
+                                @if (in_array($notification->type, ['TICKET_CREATED', 'TICKET_UPDATED', 'TASK_CREATED', 'TASK_UPDATED', 'ASSIGNED_TO_PROJECT', 'FILE_UPLOADED', 'EVENT_CREATED']))
                                     <div class="notification" data-id="{{ $notification->id }}">
-                                        @if ($notification->type == 'ASSIGNED_TO_PROJECT')
+                                        @if ($notification->type == 'EVENT_CREATED')
+                                            @if ($notification->event)
+                                                @if ($notification->event->projectName)
+                                                    <span class="project" style="background: {{ $notification->event->color }}">
+                                                        {{ $notification->event->projectName }}
+                                                        <span class="glyphicon glyphicon-remove pull-right notification-status not-read"></span>
+                                                    </span>
+                                                @endif
+
+                                                @if (isset($notification->link))<a class="link" href="{{ $notification->link }}">@endif
+                                                    <span class="title">Nouvel évenement planning</span>
+                                                    <span class="status">
+                                                        L'évenement <strong>{{ $notification->event->name }}</strong> a été créé dans votre planning du
+                                                        {{ $notification->event->startTime->format('d/m/y H\hi') }} au {{ $notification->event->endTime->format('d/m/y H\hi') }}.
+                                                    </span>
+                                                    @if ($notification->relative_date)<span class="relative-date">{{ $notification->relative_date }}</span>@endif
+                                                @if (isset($notification->link))</a>@endif
+                                            @endif
+
+                                        @elseif ($notification->type == 'ASSIGNED_TO_PROJECT')
                                             @if ($notification->project)
                                                 <span class="project" style="background: {{ $notification->project->color }}">
                                                     {{ $notification->project->name }}
