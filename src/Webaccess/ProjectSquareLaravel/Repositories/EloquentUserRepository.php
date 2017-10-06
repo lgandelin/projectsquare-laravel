@@ -77,7 +77,7 @@ class EloquentUserRepository implements UserRepository
         return $userID;
     }
 
-    public function updateUser($userID, $firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $roleID, $isAdministrator=false)
+    public function updateUser($userID, $firstName, $lastName, $email, $password, $mobile, $phone, $clientID, $clientRole, $roleID, $isAdministrator=null)
     {
         if ($user = self::getUserModel($userID)) {
             if ($firstName != null) {
@@ -107,7 +107,9 @@ class EloquentUserRepository implements UserRepository
             if ($roleID != null) {
                 $user->role_id = $roleID;
             }
-            $user->is_administrator = $isAdministrator;
+            if ($roleID !== null) {
+                $user->is_administrator = $isAdministrator;
+            }
             $user->save();
         }
     }
