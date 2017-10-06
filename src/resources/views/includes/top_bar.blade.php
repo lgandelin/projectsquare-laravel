@@ -65,12 +65,14 @@
                                     <div class="notification" data-id="{{ $notification->id }}">
                                         @if ($notification->type == 'EVENT_CREATED')
                                             @if ($notification->event)
-                                                @if ($notification->event->projectName)
-                                                    <span class="project" style="background: {{ $notification->event->color }}">
+                                                <span class="project" style="background: @if (isset($notification->event->color)){{ $notification->event->color }}@else{{'#0a6a86'}}@endif">
+                                                    @if (isset($notification->event->projectName) && $notification->event->projectName)
                                                         {{ $notification->event->projectName }}
-                                                        <span class="glyphicon glyphicon-remove pull-right notification-status not-read"></span>
-                                                    </span>
-                                                @endif
+                                                    @else
+                                                        {{ 'Divers' }}
+                                                    @endif
+                                                    <span class="glyphicon glyphicon-remove pull-right notification-status not-read"></span>
+                                                </span>
 
                                                 @if (isset($notification->link))<a class="link" href="{{ $notification->link }}">@endif
                                                     <span class="title">Nouvel évenement planning</span>
