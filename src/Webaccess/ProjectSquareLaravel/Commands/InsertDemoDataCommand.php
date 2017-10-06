@@ -26,13 +26,13 @@ class InsertDemoDataCommand extends Command
         //DB::table('ticket_statuses')->insert(['name' => 'En production', 'include_in_planning' => true]);
         //DB::table('ticket_statuses')->insert(['name' => 'Archivé', 'include_in_planning' => false]);
 
-        ////Ticket types
+        //Ticket types
         //DB::table('ticket_types')->insert(['name' => 'Bug']);
         //DB::table('ticket_types')->insert(['name' => 'Evolution']);
         //DB::table('ticket_types')->insert(['name' => 'Orthographe']);
         //DB::table('ticket_types')->insert(['name' => 'Question']);
 
-        ////Roles
+        //Roles
         //DB::table('roles')->insert(['name' => 'Chef de projet']);
         //DB::table('roles')->insert(['name' => 'Chef de projet technique']);
         //DB::table('roles')->insert(['name' => 'Développeur']);
@@ -52,7 +52,7 @@ class InsertDemoDataCommand extends Command
         $project3ID = Uuid::uuid4()->toString();
         $project4ID = Uuid::uuid4()->toString();
         DB::table('projects')->insert(['id' => $project1ID, 'name' => 'Projet 1', 'client_id' => $client1ID, 'color' => '#BFD962', 'status_id' => Project::IN_PROGRESS]);
-        DB::table('projects')->insert(['id' => $project2ID, 'name' => 'Projet 2', 'client_id' => $client1ID, 'color' => '#1CA5B8', 'status_id' => Project::ARCHIVED]);
+        DB::table('projects')->insert(['id' => $project2ID, 'name' => 'Projet 2', 'client_id' => $client1ID, 'color' => '#1CA5B8', 'status_id' => Project::IN_PROGRESS]);
         DB::table('projects')->insert(['id' => $project3ID, 'name' => 'Projet 3', 'client_id' => $client2ID, 'color' => '#FDEEA7', 'status_id' => Project::IN_PROGRESS]);
         DB::table('projects')->insert(['id' => $project4ID, 'name' => 'Projet 4', 'client_id' => $client3ID, 'color' => '#FFD464', 'status_id' => Project::IN_PROGRESS]);
 
@@ -75,7 +75,7 @@ class InsertDemoDataCommand extends Command
             $directory = public_path() . '/uploads/users/' . $userID;
             if (!is_dir($directory)) mkdir($directory);
             try {
-                $image = Image::make('http://lorempixel.com/100/100/people/')->save($directory . '/avatar.jpg');
+                $image = Image::make('http://lorempixel.com/100/100/')->save($directory . '/avatar.jpg');
             } catch (\Exception $e) {
 
             }
@@ -109,7 +109,7 @@ class InsertDemoDataCommand extends Command
                 'title' => 'Ticket 1',
                 'projectID' => $project1ID,
                 'typeID' => 1,
-                'description' => '<p>Lorem ipsum dolor sit amet</p>',
+                'description' => 'Lorem ipsum dolor sit amet',
                 'statusID' => 1,
                 'authorUserID' => $user1ID,
                 'allocatedUserID' => $user2ID,
@@ -126,8 +126,8 @@ class InsertDemoDataCommand extends Command
                 'title' => 'Ticket 2',
                 'projectID' => $project1ID,
                 'typeID' => 2,
-                'description' => '<p>Lorem ipsum dolor sit amet</p>',
-                'statusID' => 1,
+                'description' => 'Lorem ipsum dolor sit amet',
+                'statusID' => 2,
                 'authorUserID' => $user1ID,
                 'allocatedUserID' => $user3ID,
                 'priority' => 2,
@@ -140,21 +140,140 @@ class InsertDemoDataCommand extends Command
                 'requesterUserID' => $user1ID,
             ],
             [
-                'title' => 'Ticket 2',
+                'title' => 'Ticket 3',
                 'projectID' => $project1ID,
-                'typeID' => 2,
-                'description' => '<p>Lorem ipsum dolor sit amet</p>',
-                'statusID' => 1,
+                'typeID' => 4,
+                'description' => 'Lorem ipsum dolor sit amet',
+                'statusID' => 3,
                 'authorUserID' => $user1ID,
-                'allocatedUserID' => $user3ID,
-                'priority' => 2,
+                'allocatedUserID' => $user1ID,
+                'priority' => 3,
                 'dueDate' => null,
                 'estimatedTimeDays' => 0.0,
-                'estimatedTimeHours' => 1.5,
+                'estimatedTimeHours' => 5.0,
                 'spentTimeDays' => 0,
                 'spentTimeHours' => 0,
                 'comments' => '',
                 'requesterUserID' => $user1ID,
+            ],
+            [
+                'title' => 'Ticket 4',
+                'projectID' => $project2ID,
+                'typeID' => 1,
+                'description' => 'Lorem ipsum dolor sit amet',
+                'statusID' => 2,
+                'authorUserID' => $user4ID,
+                'allocatedUserID' => $user3ID,
+                'priority' => 1,
+                'dueDate' => null,
+                'estimatedTimeDays' => 0.0,
+                'estimatedTimeHours' => 5.0,
+                'spentTimeDays' => 0,
+                'spentTimeHours' => 0,
+                'comments' => '',
+                'requesterUserID' => $user4ID,
+            ],
+            [
+                'title' => 'Ticket 5',
+                'projectID' => $project2ID,
+                'typeID' => 4,
+                'description' => 'Lorem ipsum dolor sit amet',
+                'statusID' => 3,
+                'authorUserID' => $user6ID,
+                'allocatedUserID' => $user4ID,
+                'priority' => 1,
+                'dueDate' => null,
+                'estimatedTimeDays' => 0.0,
+                'estimatedTimeHours' => 5.0,
+                'spentTimeDays' => 0,
+                'spentTimeHours' => 0,
+                'comments' => '',
+                'requesterUserID' => $user6ID,
+            ],
+            [
+                'title' => 'Ticket 6',
+                'projectID' => $project3ID,
+                'typeID' => 2,
+                'description' => 'Lorem ipsum dolor sit amet',
+                'statusID' => 3,
+                'authorUserID' => $user1ID,
+                'allocatedUserID' => $user5ID,
+                'priority' => 1,
+                'dueDate' => null,
+                'estimatedTimeDays' => 0.0,
+                'estimatedTimeHours' => 1.0,
+                'spentTimeDays' => 0,
+                'spentTimeHours' => 0,
+                'comments' => '',
+                'requesterUserID' => $user1ID,
+            ],
+            [
+                'title' => 'Ticket 6',
+                'projectID' => $project3ID,
+                'typeID' => 2,
+                'description' => 'Lorem ipsum dolor sit amet',
+                'statusID' => 3,
+                'authorUserID' => $user1ID,
+                'allocatedUserID' => $user5ID,
+                'priority' => 3,
+                'dueDate' => null,
+                'estimatedTimeDays' => 0.0,
+                'estimatedTimeHours' => 3.0,
+                'spentTimeDays' => 0,
+                'spentTimeHours' => 0,
+                'comments' => '',
+                'requesterUserID' => $user1ID,
+            ],
+            [
+                'title' => 'Ticket 7',
+                'projectID' => $project4ID,
+                'typeID' => 1,
+                'description' => 'Lorem ipsum dolor sit amet',
+                'statusID' => 2,
+                'authorUserID' => $user2ID,
+                'allocatedUserID' => $user6ID,
+                'priority' => 2,
+                'dueDate' => null,
+                'estimatedTimeDays' => 0.0,
+                'estimatedTimeHours' => 3.0,
+                'spentTimeDays' => 0,
+                'spentTimeHours' => 0,
+                'comments' => '',
+                'requesterUserID' => $user2ID,
+            ],
+            [
+                'title' => 'Ticket 8',
+                'projectID' => $project4ID,
+                'typeID' => 3,
+                'description' => 'Lorem ipsum dolor sit amet',
+                'statusID' => 4,
+                'authorUserID' => $user2ID,
+                'allocatedUserID' => $user6ID,
+                'priority' => 2,
+                'dueDate' => null,
+                'estimatedTimeDays' => 0.0,
+                'estimatedTimeHours' => 2.5,
+                'spentTimeDays' => 0,
+                'spentTimeHours' => 0,
+                'comments' => '',
+                'requesterUserID' => $user2ID,
+            ],
+            [
+                'title' => 'Ticket 9',
+                'projectID' => $project4ID,
+                'typeID' => 3,
+                'description' => 'Lorem ipsum dolor sit amet',
+                'statusID' => 2,
+                'authorUserID' => $user6ID,
+                'allocatedUserID' => $user3ID,
+                'priority' => 2,
+                'dueDate' => null,
+                'estimatedTimeDays' => 0.0,
+                'estimatedTimeHours' => 0.5,
+                'spentTimeDays' => 0,
+                'spentTimeHours' => 0,
+                'comments' => '',
+                'requesterUserID' => $user6ID,
             ]
         ];
 
