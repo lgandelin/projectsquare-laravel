@@ -18,6 +18,7 @@
 
     <nav class="pull-right">
         <ul class="top-right-menu">
+
             @if (isset($todos))
                 <li class="todo">
                      <a href="#" class="todos-link">

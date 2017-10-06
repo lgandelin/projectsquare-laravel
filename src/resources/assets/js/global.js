@@ -37,7 +37,7 @@ $(document).ready(function() {
     $('.info').delay(15000).fadeOut();
 
     //BETA FORM
-    $('body').on('click', '.beta-form .toggle', function() {
+    $('body').on('click', '.beta-form', function() {
         $('#beta-form-modal').modal('show');
     });
 

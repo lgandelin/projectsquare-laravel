@@ -121,6 +121,14 @@
                 </li>
             @endif
 
+
+            <li class="menu">
+                <span class="line beta-form">
+                    <span class="border"><span class="icon"></span></span>
+                    <h3 class="title">Contacter le support</h3>
+                </span>
+            </li>
+
             <li class="menu">
                 <span class="line toggle-left-bar" title="{{ trans('projectsquare::left_bar.fold_left_bar') }}">
                     <span class="border">

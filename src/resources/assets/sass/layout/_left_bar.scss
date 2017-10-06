@@ -222,6 +222,16 @@
                 }
             }
 
+            .beta-form {
+                .icon {
+                    position: relative;
+                    top: 2px;
+
+                    @extend .fa;
+                    @extend .fa-envelope;
+                }
+            }
+
             &:hover {
                 .toggle-childs {
                     color: $green;
