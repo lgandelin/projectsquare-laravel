@@ -50,9 +50,8 @@ class ProjectController extends BaseController
             ],
             'other_tasks' => app()->make('GetTasksInteractor')->getTasksPaginatedList($this->getUser()->id, 999, null, null, new GetTasksRequest([
                 'projectID' => $projectID,
-                'statusID' => Session::get('project_tasks_filter_status') === "na" ? null : Session::get('project_tasks_filter_status'),
+                'statusID' => null,
                 'phaseID' => null,
-                'allocatedUserID' => Session::get('project_tasks_filter_allocated_user') === "na" ? null : Session::get('project_tasks_filter_allocated_user'),
             ])),
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
