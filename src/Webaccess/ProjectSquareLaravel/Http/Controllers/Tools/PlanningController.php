@@ -52,11 +52,13 @@ class PlanningController extends BaseController
             'tasks' => app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
                 'userID' => $this->getUser()->id,
                 'projectID' => Input::get('filter_project'),
+                'phaseID' => false,
                 'allocatedUserID' => $userID,
             ]))->merge(
                 app()->make('GetTasksInteractor')->execute(new GetTasksRequest([
                     'userID' => $this->getUser()->id,
                     'projectID' => Input::get('filter_project'),
+                    'phaseID' => false,
                     'allocatedUserID' => 0,
                 ]))
             )

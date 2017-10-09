@@ -31,7 +31,7 @@ class EloquentTasksRepository implements TaskRepository
         return $entities ? $tasks : $tasks->get();
     }
 
-    public function getTasksList($userID, $projectID = null, $statusID = null, $allocatedUserID = null, $phaseID = null, $sortColumn = null, $sortOrder = null, $entities = false)
+    public function getTasksList($userID, $projectID = null, $statusID = null, $allocatedUserID = null, $phaseID = false, $sortColumn = null, $sortOrder = null, $entities = false)
     {
         $projectIDs = [];
 
@@ -70,7 +70,7 @@ class EloquentTasksRepository implements TaskRepository
             $tasks->where('allocated_user_id', '=', '');
         }
 
-        if ($phaseID) {
+        if ($phaseID !== false) {
             $tasks->where('phase_id', '=', $phaseID);
         }
 

@@ -24,24 +24,24 @@ class InsertDemoDataCommand extends Command
         $faker = Factory::create();
 
         //Ticket statuses
-        //DB::table('ticket_statuses')->insert(['name' => 'A faire', 'include_in_planning' => true]);
-        //DB::table('ticket_statuses')->insert(['name' => 'En cours', 'include_in_planning' => true]);
-        //DB::table('ticket_statuses')->insert(['name' => 'A recetter', 'include_in_planning' => true]);
-        //DB::table('ticket_statuses')->insert(['name' => 'A livrer en prod', 'include_in_planning' => true]);
-        //DB::table('ticket_statuses')->insert(['name' => 'En production', 'include_in_planning' => true]);
-        //DB::table('ticket_statuses')->insert(['name' => 'Archivé', 'include_in_planning' => false]);
+        DB::table('ticket_statuses')->insert(['name' => 'A faire', 'include_in_planning' => true]);
+        DB::table('ticket_statuses')->insert(['name' => 'En cours', 'include_in_planning' => true]);
+        DB::table('ticket_statuses')->insert(['name' => 'A recetter', 'include_in_planning' => true]);
+        DB::table('ticket_statuses')->insert(['name' => 'A livrer en prod', 'include_in_planning' => true]);
+        DB::table('ticket_statuses')->insert(['name' => 'En production', 'include_in_planning' => true]);
+        DB::table('ticket_statuses')->insert(['name' => 'Archivé', 'include_in_planning' => false]);
 
         //Ticket types
-        //DB::table('ticket_types')->insert(['name' => 'Bug']);
-        //DB::table('ticket_types')->insert(['name' => 'Evolution']);
-        //DB::table('ticket_types')->insert(['name' => 'Orthographe']);
-        //DB::table('ticket_types')->insert(['name' => 'Question']);
+        DB::table('ticket_types')->insert(['name' => 'Bug']);
+        DB::table('ticket_types')->insert(['name' => 'Evolution']);
+        DB::table('ticket_types')->insert(['name' => 'Orthographe']);
+        DB::table('ticket_types')->insert(['name' => 'Question']);
 
         //Roles
-        //DB::table('roles')->insert(['name' => 'Chef de projet']);
-        //DB::table('roles')->insert(['name' => 'Chef de projet technique']);
-        //DB::table('roles')->insert(['name' => 'Développeur']);
-        //DB::table('roles')->insert(['name' => 'Web designer']);
+        DB::table('roles')->insert(['name' => 'Chef de projet']);
+        DB::table('roles')->insert(['name' => 'Chef de projet technique']);
+        DB::table('roles')->insert(['name' => 'Développeur']);
+        DB::table('roles')->insert(['name' => 'Web designer']);
 
         //Clients
         $client1ID = Uuid::uuid4()->toString();
@@ -102,8 +102,6 @@ class InsertDemoDataCommand extends Command
         DB::table('user_projects')->insert(['user_id' => $user6ID, 'project_id' => $project1ID]);
         DB::table('user_projects')->insert(['user_id' => $user6ID, 'project_id' => $project2ID]);
         DB::table('user_projects')->insert(['user_id' => $user6ID, 'project_id' => $project4ID]);
-
-        //Events
 
         //Phases
         $phasesData = [
@@ -314,7 +312,6 @@ class InsertDemoDataCommand extends Command
             app()->make('CreateTaskInteractor')->execute(new CreateTaskRequest($taskData));
         }
 
-
         //Tickets + ticket states
         $ticketsData = [
             [
@@ -483,9 +480,5 @@ class InsertDemoDataCommand extends Command
         foreach ($ticketsData as $ticketData) {
             app()->make('CreateTicketInteractor')->execute(new CreateTicketRequest($ticketData));
         }
-
-        //Notifications
-
-        //Conversations
     }
 }
