@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'tasks' => "Les tâches représentent les différentes actions à effectuer pendant la réalisation d'un nouveau projet. Exemple : configurer Google Analytics.",
+    'tasks' => "Les tâches représentent les différentes actions à effectuer pendant la réalisation d'un nouveau projet. Exemple : Réaliser la maquette du site, Installer le module de paiement, etc...",
     'tickets' => "Les tickets représentes les éventuelles actions à effectuer après la livraison d'un projet, lors de sa phase de maintenance. Exemple : un bug rencontré, une évolution souhaitée, etc...",
     'clients_list' => "Les clients sont les entités (sociétés, instutions, associations, etc...) pour qui vous allez réaliser un projet.",
     'projects_list' => "Les projets sont liés à un client, et représentent la création d'un site web ou d'une application mobile par exemple.",
