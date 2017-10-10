@@ -30,7 +30,8 @@ class DashboardController extends BaseController
                 null,
                 null,
                 new GetTasksRequest([
-                    'allocatedUserID' => $this->getUser()->id
+                    'allocatedUserID' => $this->getUser()->id,
+                    'phaseID' => false
                 ])
             ),
             'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(

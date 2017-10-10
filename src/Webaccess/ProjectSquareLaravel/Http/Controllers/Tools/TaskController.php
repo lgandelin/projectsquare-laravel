@@ -37,6 +37,7 @@ class TaskController extends BaseController
             'projectID' => Session::get('tasks_filter_project') === "na" ? null : Session::get('tasks_filter_project'),
             'statusID' => Session::get('tasks_filter_status') === "na" ? null : Session::get('tasks_filter_status'),
             'allocatedUserID' => Session::get('tasks_filter_allocated_user') === "na" ? null : Session::get('tasks_filter_allocated_user'),
+            'phaseID' => false,
         ]));
 
         return view('projectsquare::tools.tasks.index', [
