@@ -53,9 +53,9 @@
     <script src="{{ asset('js/powertour.js') }}"></script>
     <script>
         @if ($first_connection)
-            $(document).ready(function() {
+            /*$(document).ready(function() {
                 $.powerTour('run', 1);
-            });
+            });*/
         @endif
     </script>
 @endsection

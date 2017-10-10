@@ -149,4 +149,6 @@ $(document).ready(function() {
         $(this).closest('.project').find('.project-progress').slideToggle(200);
         $(this).toggleClass('opened');
     });
+
+    createCookie('already_connected', true);
 });

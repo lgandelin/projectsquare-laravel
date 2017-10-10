@@ -205,9 +205,6 @@ $(document).ready(function() {
         $(this).closest('.parent').find('.toggle-childs').toggleClass('glyphicon-triangle-bottom').toggleClass('glyphicon-triangle-top');
         $(this).closest('.parent').find('.childs').slideToggle();
     });
-
-
-    createCookie('already_connected', true);
 });
 
 function filter_projects_list() {
