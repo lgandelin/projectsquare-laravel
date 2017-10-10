@@ -14,7 +14,7 @@ use Webaccess\ProjectSquare\Requests\Calendar\GetStepsRequest;
 
 class DashboardController extends BaseController
 {
-    public function index(CookieJar $cookieJar, Request $request)
+    public function index(Request $request)
     {
         parent::__construct($request);
 
@@ -23,7 +23,6 @@ class DashboardController extends BaseController
         if ($this->isUserAClient()) {
             return redirect()->route('project_tickets', $this->getCurrentProject()->id);
         }
-        $cookieJar->queue(cookie('already_connected', true));
 
         return view('projectsquare::dashboard.index', [
             'widgets' => json_decode($_COOKIE['dashboard-widgets-' . $this->getUser()->id]),
@@ -53,7 +52,7 @@ class DashboardController extends BaseController
                 'projectID' => $this->getCurrentProject()->id,
             ])) : [],
             'current_projects_reporting' => $this->isUserAnAdmin() ? $this->getCurrentProjectReporting() : [],
-            'first_connection' => !Cookie::has('already_connected')
+            'first_connection' => !isset($_COOKIE['already_connected'])
         ]);
     }
 

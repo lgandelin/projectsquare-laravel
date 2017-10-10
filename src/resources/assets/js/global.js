@@ -206,6 +206,8 @@ $(document).ready(function() {
         $(this).closest('.parent').find('.childs').slideToggle();
     });
 
+
+    createCookie('already_connected', true);
 });
 
 function filter_projects_list() {
