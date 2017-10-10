@@ -47,4 +47,6 @@ return [
     'slack' => 'Pour connecter Projectsquare avec vos channels Slack, créez un webhook depuis votre interface Slack et copier l\'URL dans ce champ. Pour plus de détails, consulter la documentation.',
 
     'import_phases_and_tasks' => 'Importez rapidement vos phases et tâches à partir d\'une liste au format texte',
+
+    'reset_platform' => 'Réinitialiser la plateforme entraînera la suppression totale de tous les comptes utilisateurs (sauf le vôtre), des clients, projets, phases, tâches, tickets, notifications et messages.',
 ];

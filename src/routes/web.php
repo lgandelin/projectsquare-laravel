@@ -156,5 +156,6 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
 
         Route::get('/administration/settings', array('as' => 'settings_index', 'uses' => 'Administration\SettingsController@index'));
         Route::post('/administration/settings', array('as' => 'settings_update', 'uses' => 'Administration\SettingsController@update'));
+        Route::get('/administration/settings/reset_platform', array('as' => 'reset_platform', 'uses' => 'Administration\SettingsController@reset_platform'));
     });
 });
