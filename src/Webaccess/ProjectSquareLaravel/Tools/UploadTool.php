@@ -109,7 +109,7 @@ class UploadTool
     private static function createThumbnail($destinationPath, $uploadedFile, $mimeType)
     {
         $thumbnailName = null;
-        if (preg_match('/image/', $mimeType)) {
+        if (preg_match('/image\/jpeg/', $mimeType) || preg_match('/image\/png/', $mimeType) || preg_match('/image\/gif/', $mimeType)) {
             $thumbnailName = 'thumbnail.'.$uploadedFile->getFilename();
             Image::make($destinationPath.$uploadedFile->getFilename())
                 ->fit(135, 80)

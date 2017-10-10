@@ -39,8 +39,6 @@ class ConfigController extends Controller
             true
         );
 
-        $this->insertSeedsInDB();
-
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             return redirect()->route('dashboard');
         }
@@ -51,28 +49,5 @@ class ConfigController extends Controller
     public function confirmation()
     {
         return view('projectsquare::config.confirmation', []);
-    }
-
-    private function insertSeedsInDB()
-    {
-        //Ticket statuses
-        DB::table('ticket_statuses')->insert(['name' => 'A faire', 'include_in_planning' => true]);
-        DB::table('ticket_statuses')->insert(['name' => 'En cours', 'include_in_planning' => true]);
-        DB::table('ticket_statuses')->insert(['name' => 'A recetter', 'include_in_planning' => true]);
-        DB::table('ticket_statuses')->insert(['name' => 'A livrer en prod', 'include_in_planning' => true]);
-        DB::table('ticket_statuses')->insert(['name' => 'En production', 'include_in_planning' => true]);
-        DB::table('ticket_statuses')->insert(['name' => 'Archivé', 'include_in_planning' => false]);
-
-        //Ticket types
-        DB::table('ticket_types')->insert(['name' => 'Bug']);
-        DB::table('ticket_types')->insert(['name' => 'Evolution']);
-        DB::table('ticket_types')->insert(['name' => 'Orthographe']);
-        DB::table('ticket_types')->insert(['name' => 'Question']);
-
-        //Roles
-        DB::table('roles')->insert(['name' => 'Chef de projet']);
-        DB::table('roles')->insert(['name' => 'Chef de projet technique']);
-        DB::table('roles')->insert(['name' => 'Développeur']);
-        DB::table('roles')->insert(['name' => 'Web designer']);
     }
 }

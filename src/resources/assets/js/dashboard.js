@@ -1,4 +1,4 @@
-    $(document).ready(function() {
+$(document).ready(function() {
 
     //PLANNING
     $('#planning').fullCalendar({
@@ -19,21 +19,17 @@
         maxTime: '19:00',
         droppable: false,
         events: events,
-        contentHeight: 'auto'
+        contentHeight: 'auto',
+
+        eventRender: function(event, element) {
+            event_title = "";
+            if (event.project_name) event_title += '[' + event.project_name + '] <br/>';
+            event_title += element.find('.fc-title').text();
+            element.find('.fc-title').html(event_title);
+        },
     });
 
     $('.block-content').removeClass('loading');
-
-    /*//DASHBOARD - REPLY MESSAGE
-    $('.conversation').on('click', '.reply-message', function() {
-        var conversation_id = $(this).closest('.conversation').attr('data-id');
-        $('#conversation-' + conversation_id + '-modal').modal('show');
-    });*/
-
-    //MESSAGE NOTIFICATIONS
-    $('.top-bar .notifications .notification.message-notification').on('click', '', function() {
-        
-    });
 
     //DASHBOARD - CANCEL MESSAGE
     $('.conversation').on('click', '.cancel-message', function() {
@@ -145,4 +141,12 @@
             createCookie('dashboard-widgets-' + $('#current-user-id').val(), JSON.stringify(widgets));
         }
     }
+
+    //DASHBOARD - REPORTING WIDGET
+    $('.reporting .project .toggle-progress').click(function(e) {
+        e.preventDefault();
+
+        $(this).closest('.project').find('.project-progress').slideToggle(200);
+        $(this).toggleClass('opened');
+    });
 });

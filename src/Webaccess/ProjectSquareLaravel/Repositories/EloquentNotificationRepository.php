@@ -5,6 +5,7 @@ namespace Webaccess\ProjectSquareLaravel\Repositories;
 use DateTime;
 use Webaccess\ProjectSquare\Entities\Notification as NotificationEntity;
 use Webaccess\ProjectSquare\Repositories\NotificationRepository;
+use Webaccess\ProjectSquareLaravel\Decorators\NotificationDecorator;
 use Webaccess\ProjectSquareLaravel\Models\Notification;
 
 class EloquentNotificationRepository implements NotificationRepository
@@ -34,10 +35,23 @@ class EloquentNotificationRepository implements NotificationRepository
 
     public function getUnreadNotifications($userID)
     {
-        $notifications = [];
+        //Fetch all unread notifications
+        $notificationEntities = [];
         $notificationsModel = Notification::where('user_id', '=', $userID)->orderBy('created_at', 'desc')->where('read', '=', 0);
         foreach ($notificationsModel->get() as $notificationModel) {
-            $notifications[] = $this->getNotificationEntity($notificationModel);
+            $notificationEntities[]= $this->getNotificationEntity($notificationModel);
+        }
+        $notificationEntities = (new NotificationDecorator())->decorate($notificationEntities);
+
+        //Group notifications by entity
+        $notifications = [];
+        foreach ($notificationEntities as $notification) {
+            if ($notification->type == 'MESSAGE_CREATED') {
+                $message = (new EloquentMessageRepository())->getMessage($notification->entityID);
+                $notifications[$message->conversationID] = $notification;
+            } else {
+                $notifications[$notification->entityID] = $notification;
+            }
         }
 
         return $notifications;

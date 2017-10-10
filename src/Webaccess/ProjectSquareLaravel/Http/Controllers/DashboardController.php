@@ -3,6 +3,8 @@
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Cookie\CookieJar;
 use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
 use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Projects\GetProjectProgressRequest;
@@ -30,7 +32,8 @@ class DashboardController extends BaseController
                 null,
                 null,
                 new GetTasksRequest([
-                    'allocatedUserID' => $this->getUser()->id
+                    'allocatedUserID' => $this->getUser()->id,
+                    'phaseID' => false
                 ])
             ),
             'tickets' => app()->make('GetTicketInteractor')->getTicketsPaginatedList(
@@ -49,6 +52,7 @@ class DashboardController extends BaseController
                 'projectID' => $this->getCurrentProject()->id,
             ])) : [],
             'current_projects_reporting' => $this->isUserAnAdmin() ? $this->getCurrentProjectReporting() : [],
+            'first_connection' => !isset($_COOKIE['already_connected'])
         ]);
     }
 

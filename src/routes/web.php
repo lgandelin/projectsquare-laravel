@@ -78,8 +78,6 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
         Route::post('/tools/tasks_unallocate', array('as' => 'tasks_unallocate', 'uses' => 'Tools\TaskController@unallocate'));
         Route::get('/tools/delete_task/{uuid}', array('as' => 'tasks_delete', 'uses' => 'Tools\TaskController@delete'));
 
-        Route::get('/tools/monitoring', array('as' => 'monitoring_index', 'uses' => 'Tools\MonitoringController@index'));
-
         Route::get('/tools/planning', array('as' => 'planning', 'uses' => 'Tools\PlanningController@index'));
         Route::get('/tools/planning/get_event', array('as' => 'events_get_infos', 'uses' => 'Tools\PlanningController@get_event'));
         Route::post('/tools/planning/create', array('as' => 'events_create', 'uses' => 'Tools\PlanningController@create'));
@@ -158,5 +156,6 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
 
         Route::get('/administration/settings', array('as' => 'settings_index', 'uses' => 'Administration\SettingsController@index'));
         Route::post('/administration/settings', array('as' => 'settings_update', 'uses' => 'Administration\SettingsController@update'));
+        Route::get('/administration/settings/reset_platform', array('as' => 'reset_platform', 'uses' => 'Administration\SettingsController@reset_platform'));
     });
 });

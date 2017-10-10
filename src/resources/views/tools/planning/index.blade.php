@@ -1,16 +1,19 @@
 @extends('projectsquare::default')
 
 @section('content')
-    <div class="content-page">
-        <div class="templates planning-template">
-            <div class="page-header">
-                <h1>{{ trans('projectsquare::planning.planning') }}
-                    @include('projectsquare::includes.tooltip', [
-                        'text' => trans('projectsquare::tooltips.planning')
-                  ])
-                </h1>
-            </div>
+    <div class="templates planning-template">
 
+        <div class="page-header">
+            <h1>{{ trans('projectsquare::planning.planning') }}
+                @include('projectsquare::includes.tooltip', [
+                    'text' => trans('projectsquare::tooltips.planning')
+              ])
+            </h1>
+        </div>
+
+        @include('projectsquare::tools.planning.middle-column')
+
+        <div class="content-page">
             <form method="get">
                 <div class="row">
 
@@ -86,9 +89,16 @@
             </div>
         </div>
     </div>
+
+    <input type="hidden" class="tickets-current-project" />
+    <input type="hidden" class="tickets-current-ticket" />
+
+    <input type="hidden" class="tasks-current-project" />
+    <input type="hidden" class="tasks-current-task" />
 @endsection
 
 @section('scripts')
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="{{ asset('js/vendor/fullcalendar/lib/moment.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('js/vendor/fullcalendar/locale-all.js') }}"></script>
@@ -99,13 +109,12 @@
             @foreach ($events as $event)
                 {
                     id: "{{ $event->id }}",
-                    title: "<span class=\"project-name\">@if (isset($event->projectClient))[{!! $event->projectClient !!}]@endif @if (isset($event->projectName)){!! $event->projectName !!}</span>@endif <span class=\"event-name\">{!! $event->name !!}</span>",
+                    title: "{!! $event->name !!}",
                     start: "{{ $event->startTime->format(DATE_ISO8601) }}",
                     end: "{{ $event->endTime->format(DATE_ISO8601) }}",
                     color: "{{ isset($event->color) ? $event->color : null }}",
                     project_id: "{{ isset($event->project_id) ? $event->project_id : null }}",
-                    project_client: "{{ isset($event->projectClient) ?$event->projectClient : null }}",
-                    project_name: "{{ isset($event->projectName) ? $event->projectName : null }}"
+                    project_name: "{{ isset($event->projectName) ? $event->projectName : null }}",
                 },
             @endforeach
         ];

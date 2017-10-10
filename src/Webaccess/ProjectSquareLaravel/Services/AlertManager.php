@@ -6,11 +6,6 @@ use Webaccess\ProjectSquareLaravel\Repositories\EloquentAlertRepository;
 
 class AlertManager
 {
-    public static function getAlertsPaginatedList()
-    {
-        return EloquentAlertRepository::getAlertsPaginatedList(10);
-    }
-
     public static function createAlert($type, $variables, $projectID)
     {
         EloquentAlertRepository::createAlert($type, $variables, $projectID);
@@ -19,5 +14,10 @@ class AlertManager
     public function deleteAlertByProjectID($projectID)
     {
         EloquentAlertRepository::deleteAlertByProjectID($projectID);
+    }
+
+    public static function deleteOldAlerts()
+    {
+        EloquentAlertRepository::deleteOldAlerts();
     }
 }

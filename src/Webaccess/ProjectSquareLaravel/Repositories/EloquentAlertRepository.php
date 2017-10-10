@@ -7,11 +7,6 @@ use Webaccess\ProjectSquare\Repositories\AlertRepository;
 
 class EloquentAlertRepository implements AlertRepository
 {
-    public static function getAlertsPaginatedList($limit=null)
-    {
-        return Alert::orderBy('updated_at', 'DESC')->paginate($limit);
-    }
-
     public static function createAlert($type, $variables, $projectID)
     {
         $alert = new Alert();
@@ -24,5 +19,13 @@ class EloquentAlertRepository implements AlertRepository
     public static function deleteAlertByProjectID($projectID)
     {
         Alert::where('project_id', '=', $projectID)->delete();
+    }
+
+    public static function deleteOldAlerts()
+    {
+        $lastWeek = new \DateTime();
+        $lastWeek->sub(new \DateInterval('P7D'));
+
+        Alert::where('created_at', '<=', $lastWeek)->delete();
     }
 }

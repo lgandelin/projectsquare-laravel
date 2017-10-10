@@ -24,6 +24,7 @@
     padding-top: 2rem;
     padding-left: 2rem;
     padding-right: 2rem;
+    overflow: hidden;
 
     background: #e6f0f3;
 
@@ -197,17 +198,19 @@
     }
 
     .reporting {
-        overflow-x: auto;
-        white-space: nowrap;
         margin-bottom: 3rem;
-        padding-bottom: 3rem;
 
         .project {
-            display: inline-block;
-            width: 18%;
-            margin-right: 2%;
             position: relative;
+            z-index: 99999;
             vertical-align: middle;
+
+            padding-top: 2.8rem;
+            padding-bottom: 2.2rem;
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+
+            margin-bottom: 2rem;
 
             font-size: 1.5rem;
             font-family: $typo1;
@@ -219,23 +222,25 @@
                 margin-right: 0;
             }
 
-            a {
-                padding-top: 2.8rem;
-                padding-bottom: 2.2rem;
-                padding-left: 2.5rem;
-                padding-right: 2.5rem;
+            .toggle-progress {
+                display: inline-block;
+                margin-left: 1.5rem;
 
-                cursor: pointer;
-                display: block;
-                width: 100%;
-                height: 100%;
                 color: white;
+                cursor: pointer;
+                font-size: 1.3rem;
+                cursor: pointer;
 
-                text-decoration: none;
-            }
+                @extend .glyphicon;
+                @extend .glyphicon-triangle-bottom;
 
-            &:hover {
-                opacity: 0.9;
+                &.opened {
+                    @extend .glyphicon-triangle-top;
+                }
+
+                &:hover {
+                    color: $green;
+                }
             }
 
             .time-values {
@@ -247,15 +252,36 @@
                 position: absolute;
                 bottom: -1.5rem;
                 left: 1.25rem;
+                z-index: 6;
 
                 .avatar {
                     width: 3rem;
                     height: 3rem;
                     margin-right: 0.5rem;
+                    display: inline-block;
 
                     border: none;
                 }
             }
+
+            .project-progress {
+                position: absolute;
+                z-index: 5;
+                left: -1px;
+                right: -1px;
+                top: 7.1rem;
+
+                background: white;
+            }
+        }
+
+        .slick-slide img {
+            display: inline-block;
+        }
+
+        .slick-list {
+            overflow: visible;
+            z-index: 999;
         }
     }
 }

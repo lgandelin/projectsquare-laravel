@@ -9,7 +9,7 @@
                 <li @if ($tab == 'team')class="current"@endif><a href="{{ route('projects_edit_team', ['uuid' => $project->id]) }}">Equipe</a></li>
                 <li @if ($tab == 'tasks')class="current"@endif><a href="{{ route('projects_edit_tasks', ['uuid' => $project->id]) }}">Phases / Tâches</a></li>
                 <li @if ($tab == 'attribution')class="current"@endif><a href="{{ route('projects_edit_attribution', ['uuid' => $project->id]) }}">Attribution</a></li>
-                @if (!isset($creating_project) || !$creating_project)<li @if ($tab == 'config')class="current"@endif><a href="{{ route('projects_edit_config', ['uuid' => $project->id]) }}">Configuration</a></li>@endif
+                <li @if ($tab == 'config')class="current"@endif><a href="{{ route('projects_edit_config', ['uuid' => $project->id]) }}">Configuration</a></li>
                 <li class="border-bottom"></li>
             </ul>
 

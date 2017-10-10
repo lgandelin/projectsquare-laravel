@@ -3,7 +3,7 @@ $('input.datepicker').datepicker({
     autoclose: true,
     forceParse: false,
     format: 'dd/mm/yyyy',
-    todayHighlight: true
+    todayHighlight: true,
 });
 
 function loadTemplate(templateID, params) {
@@ -37,7 +37,7 @@ $(document).ready(function() {
     $('.info').delay(15000).fadeOut();
 
     //BETA FORM
-    $('body').on('click', '.beta-form .toggle', function() {
+    $('body').on('click', '.beta-form', function() {
         $('#beta-form-modal').modal('show');
     });
 
@@ -104,7 +104,6 @@ $(document).ready(function() {
                 $('.notifications-link').find('.new-notifications').text(notifications_count);
 
                 if (notifications_count == 0) {
-                    $('.notifications .title').text('Aucune nouvelle notification');
                     $('.notifications-link').find('.badge').removeClass('new-notifications');
                     $('.notifications-link').find('.badge').css('visibility', 'hidden');
                 }
@@ -207,6 +206,8 @@ $(document).ready(function() {
         $(this).closest('.parent').find('.childs').slideToggle();
     });
 
+
+    createCookie('already_connected', true);
 });
 
 function filter_projects_list() {

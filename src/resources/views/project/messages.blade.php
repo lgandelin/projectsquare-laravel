@@ -49,6 +49,8 @@
                                             'id' => $conversation->messages[sizeof($conversation->messages) - 1]->user->id,
                                             'name' => $conversation->messages[sizeof($conversation->messages) - 1]->user->complete_name
                                         ])
+                                    @else
+                                        <img class="default-avatar avatar" src="{{ asset('img/default-avatar.jpg') }}" />
                                     @endif
                                 </a>
                             </td>

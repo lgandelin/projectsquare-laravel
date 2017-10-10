@@ -1,4 +1,4 @@
-<nav class="left-bar @if ($left_bar == 'closed') left-bar-minified @endif">
+<nav class="left-bar @if ($left_bar == 'closed') left-bar-minified @endif" id="left-bar">
     <ul>
         <li class="menu @if ($current_route == 'dashboard') encours @endif">
             <span class="line dashboard" title="{{ trans('projectsquare::left_bar.dashboard') }}">
@@ -56,8 +56,7 @@
             <li class="menu @if (preg_match('/^tasks_/', $current_route) ||
             preg_match('/^tickets_/', $current_route) ||
             preg_match('/^conversations_/', $current_route) ||
-            preg_match('/^planning/', $current_route) ||
-            preg_match('/^monitoring_/', $current_route)) {{ 'encours' }} @endif @if ($left_bar_tools == 'closed') {{ 'submenu-closed' }} @endif">
+            preg_match('/^planning/', $current_route)) {{ 'encours' }} @endif @if ($left_bar_tools == 'closed') {{ 'submenu-closed' }} @endif">
                 <span class="line tools" title="{{ trans('projectsquare::left_bar.tools') }}" data-id="tools">
                     <span class="border"><span class="icon"></span></span>
                     <h3 class="title">{{ trans('projectsquare::left_bar.tools') }}</h3>
@@ -77,10 +76,6 @@
                     </li>
 
                     <li class="@if (preg_match('/planning/', $current_route)) {{ 'encours' }} @endif"><a href="{{ route('planning') }}">{{ trans('projectsquare::left_bar.planning') }}</a></li>
-
-                    <li class="@if (preg_match('/monitoring_/', $current_route)) {{ 'encours' }} @endif">
-                        <a href="{{ route('monitoring_index') }}">{{ trans('projectsquare::left_bar.monitoring_alerts') }}</a>
-                    </li>
                 </ul>
             </li>
 
@@ -125,6 +120,14 @@
                     </ul>
                 </li>
             @endif
+
+
+            <li class="menu">
+                <span class="line beta-form">
+                    <span class="border"><span class="icon"></span></span>
+                    <h3 class="title">Contacter le support</h3>
+                </span>
+            </li>
 
             <li class="menu">
                 <span class="line toggle-left-bar" title="{{ trans('projectsquare::left_bar.fold_left_bar') }}">

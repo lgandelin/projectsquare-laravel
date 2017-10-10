@@ -2,7 +2,7 @@
 
 namespace Webaccess\ProjectSquareLaravel\Listeners\Alerts\Slack;
 
-use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteStatusCodeEvent;
+use Webaccess\ProjectSquare\Events\Alerts\AlertWebsiteStatusCodeEvent;
 use Webaccess\ProjectSquareLaravel\Tools\SlackTool;
 
 class AlertWebsiteStatusCodeSlackNotification
@@ -10,7 +10,7 @@ class AlertWebsiteStatusCodeSlackNotification
     public function handle(AlertWebsiteStatusCodeEvent $event)
     {
         $request = $event->request;
-        $statusCode = $event->status_code;
+        $statusCode = $event->statusCode;
 
         $lines = [
             'Le site internet a retourné une erreur (code : '.$statusCode.')',

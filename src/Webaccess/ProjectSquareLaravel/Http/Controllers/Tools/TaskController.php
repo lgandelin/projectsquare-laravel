@@ -37,6 +37,7 @@ class TaskController extends BaseController
             'projectID' => Session::get('tasks_filter_project') === "na" ? null : Session::get('tasks_filter_project'),
             'statusID' => Session::get('tasks_filter_status') === "na" ? null : Session::get('tasks_filter_status'),
             'allocatedUserID' => Session::get('tasks_filter_allocated_user') === "na" ? null : Session::get('tasks_filter_allocated_user'),
+            'phaseID' => false,
         ]));
 
         return view('projectsquare::tools.tasks.index', [
@@ -54,18 +55,6 @@ class TaskController extends BaseController
             'sort_order' => ($request->get('so') == 'asc') ? 'desc' : 'asc',
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
-
-            //planning variables
-            'events' => app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
-                'userID' => (Input::get('filter_planning_user')) ? Input::get('filter_planning_user') : $this->getUser()->id,
-                'projectID' => Input::get('filter_project'),
-            ])),
-            'filters_planning' => [
-                'project' => Input::get('filter_planning_project'),
-                'user' => Input::get('filter_planning_user'),
-            ],
-            'userID' => (Input::get('filter_planning_user')) ? Input::get('filter_planning_user') : $this->getUser()->id,
-            'currentUserID' => $this->getUser()->id,
         ]);
     }
 

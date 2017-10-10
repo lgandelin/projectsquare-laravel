@@ -84,9 +84,8 @@
 
                 .notifications {
                     position: absolute;
-                    z-index: 999;
+                    z-index: 9999;
                     top: 9.1rem;
-                    //top: 0;
                     right: 0;
                     bottom: 0;
                     width: 15%;
@@ -268,7 +267,7 @@
 
                     top: 56px;
                     left: -100px;
-                    z-index: 999;
+                    z-index: 9999;
                     background: white;
                     border: 1px solid #a0a6a9;
                     padding: 1.5rem;
@@ -362,7 +361,6 @@
 
             .avatar {
                 border-radius: 50%;
-                border: 1px solid $green;
                 width: 50px;
                 height: auto;
             }

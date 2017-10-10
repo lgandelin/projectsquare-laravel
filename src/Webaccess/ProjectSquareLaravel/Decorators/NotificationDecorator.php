@@ -4,6 +4,7 @@ namespace Webaccess\ProjectSquareLaravel\Decorators;
 
 use DateTime;
 use Webaccess\ProjectSquare\Requests\Planning\GetEventRequest;
+use Webaccess\ProjectSquareLaravel\Repositories\EloquentEventRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentFileRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentMessageRepository;
 use Webaccess\ProjectSquareLaravel\Repositories\EloquentProjectRepository;
@@ -17,18 +18,15 @@ class NotificationDecorator
         if (is_array($notifications) && sizeof($notifications) > 0) {
             foreach ($notifications as $i => $notification) {
                 $notification->relative_date = self::getRelativeDate($notification->createdAt);
-                /*if ($notification->type == 'EVENT_CREATED') {
+                if ($notification->type == 'EVENT_CREATED') {
                     try {
-                        $event = app()->make('GetEventInteractor')->execute(new GetEventRequest([
-                            'eventID' => $notification->entityID,
-                        ]));
-                        $notification->event_name = $event ? $event->name : '';
-                        $notification->link = $event ? route('planning') : '';
+                        $event = (new EloquentEventRepository())->getEvent($notification->entityID);
+                        $notification->event = $event;
+                        $notification->link = route('planning');
                     } catch (\Exception $e) {
                         unset($notifications[$i]);
                     }
-                }*/
-                if ($notification->type == 'MESSAGE_CREATED') {
+                } elseif ($notification->type == 'MESSAGE_CREATED') {
                     try {
                         $message = (new EloquentMessageRepository())->getMessage($notification->entityID);
                         $user = app()->make('UserManager')->getUser($message->userID);

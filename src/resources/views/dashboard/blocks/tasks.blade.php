@@ -1,4 +1,4 @@
-<div class="block last-tasks">
+<div class="block last-tasks" id="tasks-widget">
     <div class="block-content table-responsive">
         <h3>{{ trans('projectsquare::dashboard.last_tasks') }}
 
@@ -43,6 +43,8 @@
                                     'id' => $task->allocated_user->id,
                                     'name' => $task->allocated_user->complete_name
                                 ])
+                            @else
+                                <img class="default-avatar avatar" src="{{ asset('img/default-avatar.jpg') }}" />
                             @endif
                         </a>
                     </td>

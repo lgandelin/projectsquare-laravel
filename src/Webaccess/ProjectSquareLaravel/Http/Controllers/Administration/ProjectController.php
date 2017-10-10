@@ -60,7 +60,7 @@ class ProjectController extends BaseController
             $response = app()->make('CreateProjectInteractor')->execute(new CreateProjectRequest([
                 'name' => Input::get('name'),
                 'clientID' => Input::get('client_id'),
-                'color' => Input::get('color'),
+                'color' => Input::get('color') ? Input::get('color') : '#004468',
                 'statusID' => Input::get('status_id'),
             ]));
 
@@ -503,7 +503,7 @@ class ProjectController extends BaseController
             return redirect()->route('projects_edit_team', ['uuid' => $projectID]);
         }
 
-        if ($request->cookie('creating_project_' . $project->id)) {
+        if ($request->cookie('creating_project_' . $projectID)) {
             return redirect()->route('projects_edit_tasks', ['uuid' => $projectID]);
         }
 

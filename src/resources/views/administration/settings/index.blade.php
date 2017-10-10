@@ -41,6 +41,16 @@
                 {!! csrf_field() !!}
             </form>
 
+            <div class="form-group">
+                <label for="value" style="display: block;">
+                    {{ trans('projectsquare::settings.reset_platform') }}
+                    @include('projectsquare::includes.tooltip', [
+                        'text' => trans('projectsquare::tooltips.reset_platform')
+                    ])
+                </label>
+                <a class="btn delete btn-delete" href="{{ route('reset_platform') }}"><i class="glyphicon glyphicon-remove picto-delete"></i> {{ trans('projectsquare::settings.reset') }}</a>
+            </div>
+
         </div>
     </div>
 @endsection
