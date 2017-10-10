@@ -28,21 +28,21 @@ $(document).ready(function() {
                         highlight       : true,
                     },
                     {
-                        hookTo          : '#left-bar',
-                        content         : '#step-left-bar',
-                        width           : 370,
-                        position        : 'rt',
-                        offsetX         : 25,
-                        offsetY         : 250,
-                        highlight       : true,
-                    },
-                    {
                         hookTo          : '#top-bar',
                         content         : '#step-top-bar',
                         width           : 470,
                         position        : 'br',
                         offsetY         : 25,
                         offsetX         : 25,
+                        highlight       : true,
+                    },
+                    {
+                        hookTo          : '#left-bar',
+                        content         : '#step-left-bar',
+                        width           : 370,
+                        position        : 'rt',
+                        offsetX         : 25,
+                        offsetY         : 250,
                         highlight       : true,
                     },
                     {
@@ -97,6 +97,4 @@ $(document).ready(function() {
             }
         ]
     });
-
-    $.powerTour('run',1);
 });
