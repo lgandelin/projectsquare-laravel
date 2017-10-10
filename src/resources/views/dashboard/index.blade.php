@@ -50,4 +50,12 @@
         ];
     </script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
+    <script src="{{ asset('js/powertour.js') }}"></script>
+    <script>
+        @if ($first_connection)
+            $(document).ready(function() {
+                $.powerTour('run', 1);
+            });
+        @endif
+    </script>
 @endsection

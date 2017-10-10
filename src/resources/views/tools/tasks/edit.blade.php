@@ -53,12 +53,6 @@
                             <label for="description">{{ trans('projectsquare::tasks.description') }}</label>
                             <textarea class="form-control" rows="12" placeholder="{{ trans('projectsquare::tasks.description') }}" name="description">@if (isset($task->description)){{ $task->description }}@endif</textarea>
                         </div>
-
-                        <div class="form-group">
-                            <button type="submit" class="btn valid">
-                                <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
-                            </button>
-                        </div>
                     </div>
 
                     <div class="col-md-6">
@@ -102,6 +96,12 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn valid">
+                        <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
+                    </button>
                 </div>
 
                 @if (isset($logged_in_user))

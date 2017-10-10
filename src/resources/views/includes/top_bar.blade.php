@@ -1,4 +1,4 @@
-<div class="top-bar">
+<div class="top-bar" id="top-bar">
     <div class="pull-left">
         <h1 class="logo"><a href="{{ route('dashboard') }}"><img src="{{asset('img/top-bar/logo.png')}}"></a></h1>
     </div>

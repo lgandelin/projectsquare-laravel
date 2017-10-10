@@ -1,4 +1,4 @@
-<nav class="left-bar @if ($left_bar == 'closed') left-bar-minified @endif">
+<nav class="left-bar @if ($left_bar == 'closed') left-bar-minified @endif" id="left-bar">
     <ul>
         <li class="menu @if ($current_route == 'dashboard') encours @endif">
             <span class="line dashboard" title="{{ trans('projectsquare::left_bar.dashboard') }}">
