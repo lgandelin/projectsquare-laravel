@@ -7,7 +7,7 @@
                 <h1>{{ trans('projectsquare::progress.project_progress') }}</h1>
             </div>
 
-            <div class="row">
+            <div class="flex-grid">
                 @foreach ($projects as $i => $project)
                     @include('projectsquare::management.progress.includes.project_progress', ['project' => $project])
                 @endforeach

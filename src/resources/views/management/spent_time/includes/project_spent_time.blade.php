@@ -1,5 +1,5 @@
 @if (sizeof($project->phases) > 0)
-    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+    <div class="col">
         <div class="project">
             @if (!isset($project_interface))<div class="header" style="background:{{ $project->color }}">{{ $project->name }}</div>@endif
             <table class="table table-bordered">

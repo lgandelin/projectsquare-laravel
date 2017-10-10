@@ -19819,11 +19819,30 @@ select.items_per_page {
   margin-left: 1.5rem;
 }
 /* line 9, ../sass/_progress.scss */
+.progress-template .flex-grid,
+.spent-time-template .flex-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+/* line 15, ../sass/_progress.scss */
+.progress-template .flex-grid .col,
+.spent-time-template .flex-grid .col {
+  width: 32.5%;
+  flex: 0 0 auto;
+}
+/* line 21, ../sass/_progress.scss */
+.progress-template .col,
+.spent-time-template .col {
+  max-width: 1000px;
+}
+/* line 25, ../sass/_progress.scss */
 .progress-template .project,
 .spent-time-template .project {
   margin-bottom: 3rem;
 }
-/* line 12, ../sass/_progress.scss */
+/* line 28, ../sass/_progress.scss */
 .progress-template .project .header,
 .spent-time-template .project .header {
   color: white;
@@ -19831,18 +19850,18 @@ select.items_per_page {
   font-size: 2.0rem;
   padding: 1.5rem 3rem;
 }
-/* line 19, ../sass/_progress.scss */
+/* line 35, ../sass/_progress.scss */
 .progress-template .project td,
 .spent-time-template .project td {
   padding: 1.5rem;
 }
-/* line 23, ../sass/_progress.scss */
+/* line 39, ../sass/_progress.scss */
 .progress-template .project .phase-value,
 .spent-time-template .project .phase-value {
   font-size: 2.7rem;
   text-align: center;
 }
-/* line 28, ../sass/_progress.scss */
+/* line 44, ../sass/_progress.scss */
 .progress-template .project .total,
 .spent-time-template .project .total {
   padding: 1.5rem;
@@ -19850,20 +19869,20 @@ select.items_per_page {
   text-align: center;
   color: white;
 }
-/* line 36, ../sass/_progress.scss */
+/* line 52, ../sass/_progress.scss */
 .progress-template .project .phase .name,
 .spent-time-template .project .phase .name {
   display: block;
   margin-bottom: 1rem;
 }
-/* line 40, ../sass/_progress.scss */
+/* line 56, ../sass/_progress.scss */
 .progress-template .project .phase .name .duration,
 .spent-time-template .project .phase .name .duration {
   margin-top: 0.75rem;
   float: right;
   font-size: 1.3rem;
 }
-/* line 49, ../sass/_progress.scss */
+/* line 65, ../sass/_progress.scss */
 .progress-template .project .phase .tasks .task,
 .spent-time-template .project .phase .tasks .task {
   float: left;
@@ -19874,7 +19893,7 @@ select.items_per_page {
   margin-bottom: 1px;
   position: relative;
 }
-/* line 58, ../sass/_progress.scss */
+/* line 74, ../sass/_progress.scss */
 .progress-template .project .phase .tasks .task .description,
 .spent-time-template .project .phase .tasks .task .description {
   position: absolute;
@@ -19889,7 +19908,7 @@ select.items_per_page {
   text-align: left;
   padding: 0.75rem 1.25rem;
 }
-/* line 71, ../sass/_progress.scss */
+/* line 87, ../sass/_progress.scss */
 .progress-template .project .phase .tasks .task .description .name,
 .spent-time-template .project .phase .tasks .task .description .name {
   display: block;
@@ -19897,26 +19916,26 @@ select.items_per_page {
   font-size: 1.6rem;
   margin-bottom: 5px;
 }
-/* line 78, ../sass/_progress.scss */
+/* line 94, ../sass/_progress.scss */
 .progress-template .project .phase .tasks .task .description .duration,
 .spent-time-template .project .phase .tasks .task .description .duration {
   color: #333;
 }
-/* line 82, ../sass/_progress.scss */
+/* line 98, ../sass/_progress.scss */
 .progress-template .project .phase .tasks .task .description .avatar,
 .spent-time-template .project .phase .tasks .task .description .avatar {
   float: right;
   width: 30px;
   height: 30px;
 }
-/* line 91, ../sass/_progress.scss */
+/* line 107, ../sass/_progress.scss */
 .progress-template .project .phase .tasks .task:hover .description,
 .spent-time-template .project .phase .tasks .task:hover .description {
   font-size: 13px;
   display: block;
 }
 
-/* line 101, ../sass/_progress.scss */
+/* line 117, ../sass/_progress.scss */
 .progress-template .total {
   background: #5497aa;
 }
@@ -19935,25 +19954,32 @@ select.items_per_page {
   display: inline-block;
 }
 
+@media only screen and (min-width: 1800px) {
+  /* line 4, ../sass/includes/_responsive.scss */
+  .progress-template .flex-grid .col,
+  .spent-time-template .flex-grid .col {
+    width: 24.5%;
+  }
+}
 @media only screen and (max-width: 1450px) and (min-width: 1200px) {
-  /* line 5, ../sass/includes/_responsive.scss */
+  /* line 14, ../sass/includes/_responsive.scss */
   .tabs li a {
     padding-left: 1.3rem;
     padding-right: 1.3rem;
     font-size: 1.6rem;
   }
-  /* line 12, ../sass/includes/_responsive.scss */
+  /* line 21, ../sass/includes/_responsive.scss */
   .tabs .border-bottom {
     height: 56px;
   }
 
-  /* line 22, ../sass/includes/_responsive.scss */
+  /* line 31, ../sass/includes/_responsive.scss */
   .last-messages .table .conversation .text-conversation {
     min-width: 250px;
   }
 }
 @media only screen and (max-width: 1200px) and (min-width: 1000px) {
-  /* line 34, ../sass/includes/_responsive.scss */
+  /* line 43, ../sass/includes/_responsive.scss */
   .tabs li a {
     padding-left: 0.6rem;
     padding-right: 0.6rem;
@@ -19961,55 +19987,74 @@ select.items_per_page {
     padding-bottom: 1rem;
     font-size: 1.4rem;
   }
-  /* line 43, ../sass/includes/_responsive.scss */
+  /* line 52, ../sass/includes/_responsive.scss */
   .tabs .border-bottom {
     height: 41px;
   }
+
+  /* line 59, ../sass/includes/_responsive.scss */
+  .progress-template .flex-grid .col,
+  .spent-time-template .flex-grid .col {
+    width: 49%;
+  }
 }
 @media only screen and (max-width: 1000px) {
-  /* line 56, ../sass/includes/_responsive.scss */
+  /* line 72, ../sass/includes/_responsive.scss */
   .planning .fc-toolbar .fc-left, .planning-template .fc-toolbar .fc-left, .settings-template .fc-toolbar .fc-left {
     margin-bottom: 2rem;
   }
-  /* line 60, ../sass/includes/_responsive.scss */
+  /* line 76, ../sass/includes/_responsive.scss */
   .planning .fc-toolbar .fc-right, .planning-template .fc-toolbar .fc-right, .settings-template .fc-toolbar .fc-right {
     float: left;
     margin-bottom: 2rem;
   }
 
-  /* line 70, ../sass/includes/_responsive.scss */
+  /* line 86, ../sass/includes/_responsive.scss */
   .left-bar ul .menu .toggle-left-bar {
     display: none;
   }
 
-  /* line 79, ../sass/includes/_responsive.scss */
+  /* line 95, ../sass/includes/_responsive.scss */
   .tabs li {
     border-bottom: 5px solid white;
   }
-  /* line 83, ../sass/includes/_responsive.scss */
+  /* line 99, ../sass/includes/_responsive.scss */
   .tabs .border-bottom {
     display: none;
   }
 
-  /* line 91, ../sass/includes/_responsive.scss */
+  /* line 107, ../sass/includes/_responsive.scss */
   .table tr td .btn, .table .template-upload td .btn {
     margin-right: 1rem;
     padding: 5px 10px;
   }
-  /* line 94, ../sass/includes/_responsive.scss */
+  /* line 110, ../sass/includes/_responsive.scss */
   .table tr td .btn .glyphicon-remove, .table tr td .btn .glyphicon, .table tr td .btn .left-bar > ul .menu .toggle-childs, .left-bar > ul .menu .table tr td .btn .toggle-childs, .table tr td .btn .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .table tr td .btn .icon, .table tr td .btn .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .table tr td .btn .icon, .table tr td .btn .dashboard-content .reporting .project .toggle-progress, .dashboard-content .reporting .project .table tr td .btn .toggle-progress, .table .template-upload td .btn .glyphicon-remove, .table .template-upload td .btn .glyphicon, .table .template-upload td .btn .left-bar > ul .menu .toggle-childs, .left-bar > ul .menu .table .template-upload td .btn .toggle-childs, .table .template-upload td .btn .left-bar > ul .menu .dashboard .icon, .left-bar > ul .menu .dashboard .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .projects .icon, .left-bar > ul .menu .projects .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .management .icon, .left-bar > ul .menu .management .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .tools .icon, .left-bar > ul .menu .tools .table .template-upload td .btn .icon, .table .template-upload td .btn .left-bar > ul .menu .administration .icon, .left-bar > ul .menu .administration .table .template-upload td .btn .icon, .table .template-upload td .btn .dashboard-content .reporting .project .toggle-progress, .dashboard-content .reporting .project .table .template-upload td .btn .toggle-progress {
     margin-right: 0rem;
   }
-  /* line 97, ../sass/includes/_responsive.scss */
+  /* line 113, ../sass/includes/_responsive.scss */
   .table tr td .btn .value, .table .template-upload td .btn .value {
     display: none;
   }
-  /* line 102, ../sass/includes/_responsive.scss */
+  /* line 118, ../sass/includes/_responsive.scss */
   .table tr td .delete, .table .template-upload td .delete {
     float: right;
   }
-  /* line 107, ../sass/includes/_responsive.scss */
+  /* line 123, ../sass/includes/_responsive.scss */
   .table tr .file_button, .table .template-upload .file_button {
     width: 115px;
+  }
+
+  /* line 131, ../sass/includes/_responsive.scss */
+  .progress-template .flex-grid .col,
+  .spent-time-template .flex-grid .col {
+    width: 49%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  /* line 141, ../sass/includes/_responsive.scss */
+  .progress-template .flex-grid .col,
+  .spent-time-template .flex-grid .col {
+    width: 100%;
   }
 }
