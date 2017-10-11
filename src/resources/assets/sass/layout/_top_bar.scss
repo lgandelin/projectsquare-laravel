@@ -63,23 +63,17 @@
                     .badge {
                         margin-left: 1.5rem;
                         margin-top: -2.9rem;
-                        padding: 8px 11px;
+                        padding-top: 7px;
+                        padding-left: 0;
+                        padding-right: 0;
+                        text-align: center;
+                        width: 27px;
+                        height: 27px;
                         border-radius: 17px;
                         font-size: 15px;
                         background: $green;
                         color: $touareg;
                     }
-                }
-
-                .notifications-link:hover, .todos-link:hover {
-                    .badge {
-                        background: $touareg;
-                        color: $green;
-                    }
-                }
-
-                .new-notifications {
-                    background: #DF5A49;
                 }
 
                 .notifications {
@@ -292,7 +286,7 @@
                         display: block;         
                         padding-left: 2rem;
                         cursor: pointer;
-                        background: url(../img/top-bar/todo-uncheck.png) no-repeat left 5px;
+                        background: url(../img/top-bar/todo-uncheck.png) no-repeat left 4px;
 
 
                         .name {
@@ -328,7 +322,7 @@
                     }
 
                     .todo-status-completed {
-                        background: url(../img/top-bar/todo-check2.png) no-repeat left 2px;
+                        background: url(../img/top-bar/todo-check2.png) no-repeat left 1px;
                         .name {
                             text-decoration: line-through;                            
                         }

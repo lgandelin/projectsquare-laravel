@@ -206,7 +206,9 @@ $(document).ready(function() {
         $(this).closest('.parent').find('.childs').slideToggle();
     });
 
-    notify('Louis Gandelin', 'Tu as cliqué sur le bouton, non ?', 'http://www.gravatar.com/avatar/029e2460333ecc745b37c2886d09c175?s=76', 'http://192.168.99.100/projects/0bdc554a-af69-452a-afc5-c2cb4cd504e9/tasks/37691c89-a41a-44b6-a9e3-8da07e5271f9');
+    setTimeout(function() {
+        setInterval(reloadNotificationsPanel, 15000);
+    }, 5000);
 });
 
 function filter_projects_list() {
@@ -262,4 +264,42 @@ function notify(author, body, icon, link)
             }
         });
     }
+}
+
+function reloadNotificationsPanel() {
+    var data = {
+        _token: $('#csrf_token').val()
+    };
+
+    $.ajax({
+        type: "GET",
+        url: route_get_notifications,
+        data: data,
+        success: function(data) {
+            //$('.notifications-link').find('.badge').text(data.notifications.length);
+
+            var notification_ids = [];
+            $('.notifications .notification').each(function() {
+                notification_ids.push(parseInt($(this).data('id')))
+            });
+
+            for (i in data.notifications) {
+                var notification = data.notifications[i];
+                if (!array_contains(notification_ids, notification.id)) {
+                    notify('Louis Gandelin', 'Tu as cliqué sur le bouton, non ?', 'http://www.gravatar.com/avatar/029e2460333ecc745b37c2886d09c175?s=76', 'http://192.168.99.100/projects/0bdc554a-af69-452a-afc5-c2cb4cd504e9/tasks/37691c89-a41a-44b6-a9e3-8da07e5271f9');
+                }
+            }
+
+            $('.notifications .no-new-notifications').hide();
+        }
+    });
+}
+
+function array_contains(array, obj) {
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] === obj) {
+            return true;
+        }
+    }
+    return false;
 }

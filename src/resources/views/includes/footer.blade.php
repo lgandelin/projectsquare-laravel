@@ -10,7 +10,7 @@
     <script src="{{ asset('js/vendor/tooltipster.bundle.min.js') }}"></script>
     <script src="{{ asset('js/vendor/powertour.3.2.0.min.js') }}"></script>
     <script src="{{ asset('js/todos.js') }}"></script>
-    <script src="{{ asset('js/global.js') }}?v={{ env('ASSETS_VERSION', '20170901') }}"></script>
+    <script src="{{ asset('js/global.js') }}{{--?v={{ env('ASSETS_VERSION', '20170901') }}--}}"></script>
 
     <script>
         var route_message_reply = "{{ route('conversations_reply') }}";
@@ -34,6 +34,7 @@
         var route_udpate_tasks = "{{ route('projects_update_tasks') }}";
         var route_allocate_and_schedule_task = "{{ route('projects_allocate_and_schedule_task') }}";
         var route_client_create = "{{ route('clients_add_ajax') }}";
+        var route_get_notifications = "{{ route('get_notifications') }}";
     </script>
 
     <input type="hidden" id="csrf_token" value="{!! csrf_token() !!}" />
