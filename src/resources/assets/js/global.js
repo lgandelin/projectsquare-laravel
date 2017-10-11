@@ -205,6 +205,8 @@ $(document).ready(function() {
         $(this).closest('.parent').find('.toggle-childs').toggleClass('glyphicon-triangle-bottom').toggleClass('glyphicon-triangle-top');
         $(this).closest('.parent').find('.childs').slideToggle();
     });
+
+    notify('Louis Gandelin', 'Tu as cliqué sur le bouton, non ?', 'http://www.gravatar.com/avatar/029e2460333ecc745b37c2886d09c175?s=76', 'http://192.168.99.100/projects/0bdc554a-af69-452a-afc5-c2cb4cd504e9/tasks/37691c89-a41a-44b6-a9e3-8da07e5271f9');
 });
 
 function filter_projects_list() {
@@ -239,4 +241,25 @@ function createCookie(name,value) {
     date.setTime(date.getTime()+(365*24*60*60*1000));
     var expires = "; expires="+date.toGMTString();
     document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function notify(author, body, icon, link)
+{
+    if('Notification' in window) {
+        Notification.requestPermission(function(permission) {
+            if (permission === 'granted') {
+                var notification = new Notification(author, {
+                    body: body,
+                    icon: icon,
+                    link: link
+                });
+
+                if (link) {
+                    notification.onclick = function () {
+                        window.open(link);
+                    };
+                }
+            }
+        });
+    }
 }
