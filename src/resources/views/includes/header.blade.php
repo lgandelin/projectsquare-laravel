@@ -7,7 +7,7 @@
     <meta name="robots" content="noindex, nofollow">
     <title>{{ trans('projectsquare::generic.platform_title') }}</title>
     <link rel="icon" type="image/png" href="{{ asset('img/favicon.ico') }}" />
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}?v={{ env('ASSETS_VERSION', '20170901') }}" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
     @yield('stylesheets')
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
