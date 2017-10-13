@@ -127,5 +127,3 @@
         </ul>
     </nav>
 </div>
-
-@include ('projectsquare::templates.new-todo')
