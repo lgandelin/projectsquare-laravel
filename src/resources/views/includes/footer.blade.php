@@ -10,7 +10,8 @@
     <script src="{{ asset('js/vendor/tooltipster.bundle.min.js') }}"></script>
     <script src="{{ asset('js/vendor/powertour.3.2.0.min.js') }}"></script>
     <script src="{{ asset('js/todos.js') }}"></script>
-    <script src="{{ asset('js/global.js') }}{{--?v={{ env('ASSETS_VERSION', '20170901') }}--}}"></script>
+    <script src="{{ asset('js/notifications.js') }}?v={{ env('ASSETS_VERSION', '20170901') }}"></script>
+    <script src="{{ asset('js/global.js') }}?v={{ env('ASSETS_VERSION', '20170901') }}"></script>
 
     @include('projectsquare::templates.new-notification')
 
