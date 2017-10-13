@@ -12,6 +12,8 @@
     <script src="{{ asset('js/todos.js') }}"></script>
     <script src="{{ asset('js/global.js') }}{{--?v={{ env('ASSETS_VERSION', '20170901') }}--}}"></script>
 
+    @include('projectsquare::templates.new-notification')
+
     <script>
         var route_message_reply = "{{ route('conversations_reply') }}";
         var route_add_conversation = "{{ route('add_conversation') }}";

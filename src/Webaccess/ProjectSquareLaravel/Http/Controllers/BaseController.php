@@ -54,13 +54,15 @@ class BaseController extends Controller
 
     protected function getUnreadNotifications()
     {
+        $notifications = [];
+
         if (Auth::user()) {
-            return app()->make('GetNotificationsInteractor')->getUnreadNotifications(new GetUnreadNotificationsRequest([
+            $notifications = app()->make('GetNotificationsInteractor')->getUnreadNotifications(new GetUnreadNotificationsRequest([
                 'userID' => Auth::user()->id,
             ]))->notifications;
         }
 
-        return [];
+        return $notifications;
     }
 
     protected function getCurrentProject()

@@ -23,7 +23,7 @@ class EloquentMessageRepository implements MessageRepository
         $message->userID = $messageModel->user_id;
         $message->conversationID = $messageModel->conversation_id;
         $message->conversation = $messageModel->conversation;
-        if ($messageModel->conversation->project) {
+        if ($messageModel->conversation && $messageModel->conversation->project) {
             $message->project = $messageModel->conversation->project;
         }
 

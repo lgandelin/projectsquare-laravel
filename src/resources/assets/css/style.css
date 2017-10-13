@@ -22030,7 +22030,7 @@ body {
   color: #2b2b2b;
 }
 /* line 196, ../sass/layout/_top_bar.scss */
-.top-bar-container .top-bar .top-right-menu li .notifications .content-tab .notification .status {
+.top-bar-container .top-bar .top-right-menu li .notifications .content-tab .notification .description {
   display: block;
   padding-left: 0.1rem;
   font-size: 1.2rem;

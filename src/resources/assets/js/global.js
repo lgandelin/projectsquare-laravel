@@ -99,12 +99,11 @@ $(document).ready(function() {
             data: data,
             success: function(data) {
                 notification.delay(750).slideUp(200).remove();
-                var notifications_count = parseInt($('.notifications-link').find('.new-notifications').text());
+                var notifications_count = parseInt($('.notifications-link').find('.badge').text());
                 notifications_count--;
-                $('.notifications-link').find('.new-notifications').text(notifications_count);
+                $('.notifications-link').find('.badge').text(notifications_count);
 
                 if (notifications_count == 0) {
-                    $('.notifications-link').find('.badge').removeClass('new-notifications');
                     $('.notifications-link').find('.badge').css('visibility', 'hidden');
                 }
             }
@@ -208,7 +207,7 @@ $(document).ready(function() {
 
     setTimeout(function() {
         setInterval(reloadNotificationsPanel, 15000);
-    }, 5000);
+    }, 15000);
 });
 
 function filter_projects_list() {
@@ -276,21 +275,31 @@ function reloadNotificationsPanel() {
         url: route_get_notifications,
         data: data,
         success: function(data) {
-            //$('.notifications-link').find('.badge').text(data.notifications.length);
-
             var notification_ids = [];
-            $('.notifications .notification').each(function() {
+            $('#top-bar .notifications .notification').each(function() {
                 notification_ids.push(parseInt($(this).data('id')))
             });
 
+            var count = 0;
             for (i in data.notifications) {
                 var notification = data.notifications[i];
+                count++;
+
                 if (!array_contains(notification_ids, notification.id)) {
-                    notify('Louis Gandelin', 'Tu as cliqué sur le bouton, non ?', 'http://www.gravatar.com/avatar/029e2460333ecc745b37c2886d09c175?s=76', 'http://192.168.99.100/projects/0bdc554a-af69-452a-afc5-c2cb4cd504e9/tasks/37691c89-a41a-44b6-a9e3-8da07e5271f9');
+                    var html = loadTemplate('notification-template', notification);
+                    if (notification.type == 'MESSAGE_CREATED') {
+                        $('#top-bar .notifications .content-tab[data-content="2"]').prepend(html);
+                    } else {
+                        $('#top-bar .notifications .content-tab[data-content="1"]').prepend(html);
+                    }
+
+                    notify(notification.authorCompleteName, notification.title, notification.authorAvatar, notification.link);
                 }
             }
 
-            $('.notifications .no-new-notifications').hide();
+            if (count > 0) {
+                $('.notifications-link').find('.badge').text(count).css('visibility', 'visible');
+            }
         }
     });
 }
