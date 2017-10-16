@@ -23,6 +23,7 @@
 
     @include('projectsquare::dashboard.new-message')
     @include('projectsquare::dashboard.create-conversation-modal')
+    @include('projectsquare::includes.tutorial.dashboard')
 @endsection
 
 @section('scripts')
@@ -51,10 +52,10 @@
     <script src="{{ asset('js/dashboard.js') }}"></script>
     <script src="{{ asset('js/powertour.js') }}"></script>
     <script>
-        @if ($first_connection)
-            /*$(document).ready(function() {
+        @if ($first_connection&& !$is_client)
+            $(document).ready(function() {
                 $.powerTour('run', 1);
-            });*/
+            });
         @endif
     </script>
 @endsection
