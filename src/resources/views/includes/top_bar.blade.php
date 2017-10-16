@@ -19,6 +19,7 @@
         @if (isset($todos))
             <li class="todo">
                  <a href="#" class="todos-link">
+                     <i></i>
                     <span class="badge todos-number" @if(!isset($todos_count) || $todos_count == 0)style="visibility: hidden;"@endif>@if(isset($todos_count)){{ $todos_count }}@else 0 @endif</span>
                  </a>
 
@@ -48,7 +49,10 @@
 
         @if (isset($notifications))
             <li>
-                <a href="#" class="notifications-link"> <span class="badge" @if(sizeof($notifications) == 0)style="visibility: hidden;"@endif>{{ sizeof($notifications) }}</span></a>
+                <a href="#" class="notifications-link">
+                    <i></i>
+                    <span class="badge" @if(sizeof($notifications) == 0)style="visibility: hidden;"@endif>{{ sizeof($notifications) }}</span>
+                </a>
 
                 <div class="notifications" style="display: none;">
                     <ul class="tabs">

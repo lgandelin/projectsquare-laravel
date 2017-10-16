@@ -4,7 +4,7 @@
         <i class="hamburger"></i>
     </div>
     <nav>
-        <ul class="tabs" style="display: none;">
+        <ul class="tabs">
             @if (!$is_client)
                 <li @if ($active == 'tasks')class="current"@endif><a href="{{ route('project_tasks', ['id' => $project->id]) }}">{{ trans('projectsquare::project.tasks') }}</a></li>
             @endif

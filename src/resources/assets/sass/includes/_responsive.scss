@@ -9,20 +9,6 @@
 
 @media only screen and (max-width:1450px) and (min-width: 1200px) {
 
-	.tabs {
-		li {
-			a {
-				padding-left: 1.3rem;
-				padding-right: 1.3rem;
-				font-size: 1.6rem;
-			}
-		}
-
-		.border-bottom {
-			height: 56px;
-		}
-	}
-
 	.last-messages {
 		.table {
 
@@ -38,26 +24,26 @@
 
 @media only screen and (max-width:1200px) and (min-width: 1000px) {
 
-	.tabs {
-		li {
-			a {
-				padding-left: 0.6rem;
-				padding-right: 0.6rem;
-				padding-top: 1rem;
-				padding-bottom: 1rem;
-				font-size: 1.4rem;
-			}
-		}
-
-		.border-bottom {
-			height: 41px;
-		}
-	}
-
 	.progress-template .flex-grid,
 	.spent-time-template .flex-grid {
 		.col {
 			width: 49%;
+		}
+	}
+}
+
+@media only screen and (max-width:1200px) {
+	.tabs {
+		li {
+			a {
+				padding-left: 1.3rem;
+				padding-right: 1.3rem;
+				font-size: 1.6rem;
+			}
+		}
+
+		.border-bottom {
+			height: 4.4rem;
 		}
 	}
 }
@@ -87,17 +73,6 @@
 					display: none;
 				}
 			}
-		}
-	}
-
-	.tabs {
-
-		li {
-			border-bottom: 5px solid white;
-		}
-
-		.border-bottom {
-			display: none;
 		}
 	}
 
@@ -132,9 +107,6 @@
 			width: 49%;
 		}
 	}
-}
-
-@media only screen and (max-width:768px) {
 
 	.progress-template .flex-grid,
 	.spent-time-template .flex-grid {
@@ -148,9 +120,7 @@
 		border-left: none;
 		border-right: none;
 	}
-}
 
-@media only screen and (max-width: 480px) {
 	.top-bar-container {
 
 		.top-bar {
@@ -168,7 +138,7 @@
 				float: none;
 
 				li {
-					margin-right: 0.5rem;
+					margin-right: 1rem;
 
 					&.todo {
 						position: static;
@@ -183,13 +153,21 @@
 					}
 
 					.todos-link, .notifications-link {
-						font-size: 2.5rem;
-						position: relative;
-						top: 3px;
-					}
 
-					.todos-link{
-						top: 5px;
+						i {
+							font-size: 2.5rem;
+							position: relative;
+							top: 3px;
+						}
+
+						.badge {
+							font-size: 13px;
+							width: 24px;
+							height: 24px;
+							margin-left: 0;
+							left: 16px;
+							top: -13px;
+						}
 					}
 
 					.avatar {
@@ -233,6 +211,7 @@
 
 		li {
 			border-right: none;
+			border-bottom: 5px solid white;
 
 			float: none;
 			text-align: center;
@@ -256,6 +235,7 @@
 
 	.project-bar {
 		.tabs {
+			display: none;
 			position: absolute;
 			z-index: 999;
 			left: 5rem;
@@ -267,5 +247,17 @@
 
 	.content .templates:last-child {
 		min-height: 0;
+	}
+
+	.occupation-template {
+
+		.month {
+			overflow-x: scroll;
+			overflow-y: hidden;
+
+			table {
+				width: 1500px;
+			}
+		}
 	}
 }
