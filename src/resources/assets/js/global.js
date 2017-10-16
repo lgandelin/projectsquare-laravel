@@ -64,57 +64,6 @@ $(document).ready(function() {
         $('.notifications').hide(200);
     });
 
-    //NOTIFICATIONS BOX
-    $('.notifications-link').click(function() {
-        $('.notifications').toggle(200);
-
-        if ($('.top-right-menu .notifications .content-tab[data-content="1"]').children('.notification').length == 0 && $('.top-right-menu .notifications .content-tab[data-content="2"]').children('.notification').length > 0) {
-            $('.top-right-menu .notifications .tabs li[data-tab="2"]').trigger('click');
-        }
-
-        $('.todos').hide(200);
-    });
-
-    $('.top-right-menu .notifications .tabs li').click(function() {
-        $('.top-right-menu .notifications .content-tab').hide();
-        $('.top-right-menu .notifications .tabs li').removeClass('current');
-
-        var tab = $(this).data('tab');
-        $('.top-right-menu .notifications .tabs li[data-tab="' + tab + '"]').addClass('current');
-        $('.top-right-menu .notifications .content-tab[data-content="' + tab + '"]').show();
-    });
-
-    $('.notifications').on('click', '.notification .notification-status', function() {
-        $(this).toggleClass('read', 'not-read');
-
-        var notification = $(this).closest('.notification');
-        var data = {
-            id: notification.data('id'),
-            _token: $('#csrf_token').val()
-        };
-
-        $.ajax({
-            type: "POST",
-            url: route_read_notification,
-            data: data,
-            success: function(data) {
-                notification.delay(750).slideUp(200).remove();
-                var notifications_count = parseInt($('.notifications-link').find('.new-notifications').text());
-                notifications_count--;
-                $('.notifications-link').find('.new-notifications').text(notifications_count);
-
-                if (notifications_count == 0) {
-                    $('.notifications-link').find('.badge').removeClass('new-notifications');
-                    $('.notifications-link').find('.badge').css('visibility', 'hidden');
-                }
-            }
-        });
-    });
-
-    $('.notifications .close').click(function() {
-        $('.notifications').hide(200);
-    });
-
     //DELETE BUTTONS
     $(document).on('click', '.btn-delete', function() {
         if (!confirm('Etes-vous sûrs de vouloir supprimer cet élément ?')) {

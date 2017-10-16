@@ -19,6 +19,7 @@ Route::group(['middleware' => 'web', 'namespace' => 'Webaccess\ProjectSquareLara
 
     //NOTIFICATIONS
     Route::post('/read_notification', array('as' => 'read_notification', 'uses' => 'NotificationController@read'));
+    Route::get('/get_notifications', array('as' => 'get_notifications', 'uses' => 'NotificationController@get_notifications'));
 
     //MY PROFILE
     Route::get('/my', array('as' => 'my', 'uses' => 'MyController@index'));
