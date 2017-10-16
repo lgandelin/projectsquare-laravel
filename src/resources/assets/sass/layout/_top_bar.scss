@@ -9,6 +9,7 @@
         background: white;
 
         .logo {
+            float: left;
             font-size: 3rem;
 
             a {
@@ -41,29 +42,39 @@
         }
 
         .top-right-menu {
+            float: right;
+
             li {
                 display: inline-block;
                 margin-right: 2.2rem;
+                vertical-align: middle;
 
                 .notifications-link {
                     display: block;
-                    width: 32px;
-                    height: 34px;
+                    width: 3rem;
+                    height: 3rem;
                     position: relative;
-                    top: -2px;
-                    left: -2px;
 
-                    background: url(../img/top-bar/notification.png) no-repeat;
+                    i {
+                        content: "";
+                        font-size: 3.2rem;
+                        color: $touareg;
 
-                    &:hover {
-                        background: url(../img/top-bar/notification-hover.png) no-repeat;
+                        @extend .fa;
+                        @extend .fa-bell-o;
+
+                        &:hover {
+                            color: $green;
+                            text-decoration: none;
+                        }
                     }
                 }
 
                 .notifications-link, .todos-link {
+                    position: relative;
+
                     .badge {
                         margin-left: 1.5rem;
-                        margin-top: -2.9rem;
                         padding-top: 7px;
                         padding-left: 0;
                         padding-right: 0;
@@ -74,6 +85,10 @@
                         font-size: 15px;
                         background: $green;
                         color: $touareg;
+                        z-index: 999;
+
+                        top: -18px;
+                        position: absolute;
                     }
                 }
 
@@ -242,29 +257,35 @@
                 }
 
                 .todos-link {
-                    background: url(../img/top-bar/todo.png) no-repeat;
-                    width: 38px;
-                    height: 33px;
+
+                    i {
+                        @extend .fa;
+                        @extend .fa-check-square-o;
+                        content: "";
+                        font-size: 3.5rem;
+
+                        &:hover {
+                            color: $green;
+                            text-decoration: none;
+                        }
+                    }
+
+                    width: 3rem;
+                    height: 3rem;
                     display: block;
+                    color: $touareg;
 
-                    &:hover {
-                        background: url(../img/top-bar/todo-hover.png) no-repeat;
-                    }
-
-                    .badge {
-                        margin-top: -3.5rem;
-                    }
                 }
 
                 .todos {
-                    width: 268px;
+                    width: 260px;
                     position: absolute;
 
-                    top: 56px;
+                    top: 6rem;
                     left: -100px;
                     z-index: 9999;
                     background: white;
-                    border: 1px solid #a0a6a9;
+                    border: 1px solid #ddd;
                     padding: 1.5rem;
 
                     .title {

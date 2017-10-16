@@ -82,6 +82,9 @@
             nav:false,
             slideBy: 'page',
             responsive:{
+                1:{
+                    items: 1
+                },
                 800:{
                     items: 1
                 },

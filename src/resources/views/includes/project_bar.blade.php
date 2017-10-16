@@ -1,5 +1,8 @@
 <div class="project-bar">
-    <div class="project-name" style="background: {{ $project->color }}">{{ $project->name }}</div>
+    <div class="project-name" style="background: {{ $project->color }}">
+        {{ $project->name }}
+        <i class="hamburger"></i>
+    </div>
     <nav>
         <ul class="tabs">
             @if (!$is_client)
