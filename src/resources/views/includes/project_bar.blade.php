@@ -1,7 +1,10 @@
 <div class="project-bar">
-    <div class="project-name" style="background: {{ $project->color }}">{{ $project->name }}</div>
+    <div class="project-name" style="background: {{ $project->color }}">
+        {{ $project->name }}
+        <i class="hamburger"></i>
+    </div>
     <nav>
-        <ul class="tabs">
+        <ul class="tabs" style="display: none;">
             @if (!$is_client)
                 <li @if ($active == 'tasks')class="current"@endif><a href="{{ route('project_tasks', ['id' => $project->id]) }}">{{ trans('projectsquare::project.tasks') }}</a></li>
             @endif

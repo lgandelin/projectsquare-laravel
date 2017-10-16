@@ -114,6 +114,12 @@ $(document).ready(function() {
         $('.left-bar .toggle-left-bar').trigger('click');
     }
 
+    $(window).resize(function(e) {
+        if (!$('.left-bar').hasClass('left-bar-minified') && ($(window).width() <= 1000)) {
+            $('.left-bar .toggle-left-bar').trigger('click');
+        }
+    });
+
     //LEFT BAR SEARCH
     $('.left-bar .filter-project input[type="text"]').on('keyup', function() {
         filter_projects_list();
@@ -153,6 +159,12 @@ $(document).ready(function() {
     $('.middle-column').on('click', '.parent-wrapper', function() {
         $(this).closest('.parent').find('.toggle-childs').toggleClass('glyphicon-triangle-bottom').toggleClass('glyphicon-triangle-top');
         $(this).closest('.parent').find('.childs').slideToggle();
+    });
+
+    //RESPONSIVE : Project navigation
+    $('.project-bar .hamburger').click(function(e) {
+        e.preventDefault();
+        $('.project-bar .tabs').slideToggle();
     });
 });
 

@@ -111,3 +111,23 @@
         }
     }
 }
+
+.hamburger {
+    display: none;
+    width: 3rem;
+    height: 3rem;
+    content:"";
+    float: right;
+
+    @extend .fa;
+    @extend .fa-bars;
+
+    color: white;
+
+    cursor: pointer;
+    font-size:2.5rem;
+
+    &:hover {
+        opacity: 0.9;
+    }
+}
