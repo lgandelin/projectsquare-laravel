@@ -23,7 +23,6 @@ use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 use Webaccess\ProjectSquare\Requests\Clients\GetClientsRequest;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\Management\OccupationController;
 use Webaccess\ProjectSquareLaravel\Models\Role;
-use Webaccess\ProjectSquareLaravel\Tools\StringTool;
 
 class ProjectController extends BaseController
 {

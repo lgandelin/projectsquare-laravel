@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Webaccess\ProjectSquareLaravel\Http\Controllers\BaseController;
 use Webaccess\ProjectSquare\Requests\Clients\GetClientRequest;
-use Webaccess\ProjectSquare\Requests\Clients\GetClientsRequest;
 use Webaccess\ProjectSquare\Requests\Clients\CreateClientRequest;
 use Webaccess\ProjectSquare\Requests\Clients\UpdateClientRequest;
 use Webaccess\ProjectSquare\Requests\Clients\DeleteClientRequest;

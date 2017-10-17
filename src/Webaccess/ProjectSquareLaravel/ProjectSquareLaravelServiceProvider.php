@@ -62,8 +62,6 @@ use Webaccess\ProjectSquare\Interactors\Tasks\DeleteTaskInteractor;
 use Webaccess\ProjectSquare\Interactors\Tasks\AllocateAndScheduleTaskInteractor;
 use Webaccess\ProjectSquare\Interactors\Users\AddUserToProjectInteractor;
 use Webaccess\ProjectSquare\Interactors\Users\RemoveUserFromProjectInteractor;
-use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteLoadingTimeEvent;
-use Webaccess\ProjectSquareLaravel\Events\AlertWebsiteStatusCodeEvent;
 use Webaccess\ProjectSquareLaravel\Exceptions\ProjectSquareLaravelExceptionHandler;
 use Webaccess\ProjectSquareLaravel\Http\Middlewares\AdminMiddleware;
 use Webaccess\ProjectSquareLaravel\Http\Middlewares\AfterConfig;
