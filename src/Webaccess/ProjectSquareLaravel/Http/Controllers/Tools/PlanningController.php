@@ -59,7 +59,7 @@ class PlanningController extends BaseController
                     'userID' => $this->getUser()->id,
                     'projectID' => Input::get('filter_project'),
                     'phaseID' => false,
-                    'allocatedUserID' => 0,
+                    'allocatedUserID' => null,
                 ]))
             )
         ]);
