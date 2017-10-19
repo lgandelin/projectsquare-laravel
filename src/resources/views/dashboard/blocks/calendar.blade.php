@@ -8,7 +8,7 @@
     </h3>
     <div class="block-content ">
         <div id="calendar"></div>
-     
+
     </div>
 </div>
 

@@ -25,7 +25,9 @@ class BaseController extends Controller
         $this->middleware('auth');
 
         if (Auth::user()) {
+            list($todos, $uncompleteTodos) = $this->getTodos();
             list($projects, $archived_projects) = $this->getProjects();
+
             view()->share('logged_in_user', $this->getUser());
             view()->share('in_progress_projects', $projects);
             view()->share('archived_projects', $archived_projects);
@@ -34,8 +36,8 @@ class BaseController extends Controller
             view()->share('notifications', $this->getUnreadNotifications());
             view()->share('is_client', $this->isUserAClient());
             view()->share('is_admin', $this->isUserAnAdmin());
-            view()->share('todos', $this->getTodos());
-            view()->share('todos_count', $this->getUncompleteTodosCount());
+            view()->share('todos', $todos);
+            view()->share('todos_count', $uncompleteTodos);
             view()->share('left_bar', isset($_COOKIE['left-bar']) ? $_COOKIE['left-bar'] : 'opened');
             view()->share('left_bar_projects', isset($_COOKIE['left-bar-projects']) ? $_COOKIE['left-bar-projects'] : 'opened');
             view()->share('left_bar_tools', isset($_COOKIE['left-bar-tools']) ? $_COOKIE['left-bar-tools'] : 'opened');
@@ -114,28 +116,24 @@ class BaseController extends Controller
 
     protected function getTodos()
     {
+        $todos = [];
+        $uncompleteTodos = 0;
+
         if ($this->getUser()) {
-            return app()->make('GetTodosInteractor')->execute(new GetTodosRequest([
+            $todos = app()->make('GetTodosInteractor')->execute(new GetTodosRequest([
                 'userID' => $this->getUser()->id
             ]));
-        }
 
-        return []; 
-    }
-
-    private function getUncompleteTodosCount()
-    {
-        $result = 0;
-        $todos = $this->getTodos();
-        if (is_array($todos) && sizeof($todos) > 0) {
-            foreach ($todos as $todo) {
-                if (!$todo->status) {
-                    $result++;
+            if (is_array($todos) && sizeof($todos) > 0) {
+                foreach ($todos as $todo) {
+                    if (!$todo->status) {
+                        $uncompleteTodos++;
+                    }
                 }
             }
         }
 
-        return $result;
+        return [$todos, $uncompleteTodos];
     }
 
     protected function getProjects()
@@ -143,7 +141,7 @@ class BaseController extends Controller
         $projects = [];
         $archived_projects = [];
 
-        foreach (Project::with('users')->orderBy('created_at', 'desc')->get() as $project) {
+        foreach (Project::with('users', 'client')->orderBy('created_at', 'desc')->get() as $project) {
 
             if ($this->isUserAClient()) {
                 if ($project->client_id == $this->getUser()->client_id) {
