@@ -16,7 +16,7 @@
                         <tr class="weeks-row">
                             <th style="border:none">&nbsp;</th>
                             @foreach ($month->weeks as $weekNumber)
-                                <th colspan="5" class="week">Semaine {{ $weekNumber }}</th>
+                                <th colspan="5" class="week">{{ __('projectsquare::occupation.week') }} {{ $weekNumber }}</th>
                             @endforeach
                         </tr>
                         <tr>

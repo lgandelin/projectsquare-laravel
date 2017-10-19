@@ -23,4 +23,6 @@ return [
     'settings' => 'Réglages',
     'fold_left_bar' => 'Réduire le menu',
     'add_project' => 'Ajouter un projet',
+    'archives' => 'Archives',
+    'contact_support' => 'Contacter le support',
 ];

@@ -38,7 +38,7 @@
                     @endforeach
 
                     @if (sizeof($archived_projects) > 0)
-                        <li class="archived-project archived-project-title filter-disabled"><i class="glyphicon glyphicon-folder-open"></i> Archives</li>
+                        <li class="archived-project archived-project-title filter-disabled"><i class="glyphicon glyphicon-folder-open"></i> {{ __('projectsquare::left-bar.archives') }}</li>
                     @endif
 
                     @foreach ($archived_projects as $project)
@@ -125,7 +125,7 @@
             <li class="menu">
                 <span class="line beta-form">
                     <span class="border"><span class="icon"></span></span>
-                    <h3 class="title">Contacter le support</h3>
+                    <h3 class="title">{{ __('projectsquare::left_bar.contact_support') }}</h3>
                 </span>
             </li>
 

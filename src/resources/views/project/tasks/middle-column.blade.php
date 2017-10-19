@@ -43,7 +43,7 @@
     @endif
     <div class="parent">
         <div class="parent-wrapper">
-            <span class="name">Autres</span>
+            <span class="name">{{ __('projectsquare::project.others') }}</span>
             <span class="childs-number">{{ sizeof($other_tasks) }}</span>
             <span class="glyphicon glyphicon-triangle-top toggle-childs"></span>
         </div>

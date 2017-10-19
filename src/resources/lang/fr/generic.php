@@ -12,6 +12,7 @@ return [
     'download' => 'Télécharger',
     'search' => 'Rechercher',
     'import' => 'Importer',
+    'browse' => 'Parcourir',
     'choose_value' => 'Choisissez une valeur',
     'creation_date' => 'Date de création',
     'see' => 'Voir',

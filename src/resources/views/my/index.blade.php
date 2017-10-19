@@ -22,7 +22,7 @@
 
             <div class="my-profile-template row">
                 <div class="col-lg-8">
-                    <h2>Informations personnelles</h2>
+                    <h2>{{ __('projectsquare::my.personal_info') }}</h2>
 
                     <form action="{{ route('my_profile_update') }}" method="post">
                         <div class="form-group">
@@ -76,7 +76,7 @@
                     <form id="fileupload" action="{{ route('my_profile_upload_avatar') }}" method="POST" enctype="multipart/form-data">
                         <span class="btn valid fileinput-button">
                             <i class="glyphicon glyphicon-picture"></i>
-                            <span>Parcourir</span>
+                            <span>{{ __('projectsquare::generic.browse') }}</span>
                             <!-- The file input field used as target for the file upload widget -->
                             <input id="fileupload" type="file" name="files[]" data-url="{{ route('my_profile_upload_avatar') }}">
                         </span>
@@ -89,50 +89,50 @@
                     <form action="{{ route('my_profile_update_notifications') }}" method="post">
                         <div class="form-group col-lg-4">
 
-                            <strong>Tâches</strong><br/>
+                            <strong>{{ __('projectsquare::my.tasks') }}</strong><br/>
 
                             <label class="inline">
-                                <input type="checkbox" name="email_notification_task_created" @if ($email_notification_task_created && $email_notification_task_created->value == "1")checked="checked"@endif /> A la création d'une tâche
+                                <input type="checkbox" name="email_notification_task_created" @if ($email_notification_task_created && $email_notification_task_created->value == "1")checked="checked"@endif /> {{ __('projectsquare::my.task_created') }}
                             </label>
 
                             <br/>
 
                             <label class="inline">
-                                <input type="checkbox" name="email_notification_task_updated" @if ($email_notification_task_updated && $email_notification_task_updated->value == "1")checked="checked"@endif /> A la modification d'une tâche
+                                <input type="checkbox" name="email_notification_task_updated" @if ($email_notification_task_updated && $email_notification_task_updated->value == "1")checked="checked"@endif /> {{ __('projectsquare::my.task_updated') }}
                             </label>
 
                             <br/>
 
                             <label class="inline">
-                                <input type="checkbox" name="email_notification_task_deleted" @if ($email_notification_task_deleted && $email_notification_task_deleted->value == "1")checked="checked"@endif /> A la suppression d'une tâche
+                                <input type="checkbox" name="email_notification_task_deleted" @if ($email_notification_task_deleted && $email_notification_task_deleted->value == "1")checked="checked"@endif /> {{ __('projectsquare::my.task_deleted') }}
                             </label>
                         </div>
                         <div class="form-group col-lg-4">
-                            <strong>Tickets</strong><br/>
+                            <strong>{{ __('projectsquare::my.tickets') }}</strong><br/>
 
                             <label class="inline">
-                                <input type="checkbox" name="email_notification_ticket_created" @if ($email_notification_ticket_created && $email_notification_ticket_created->value == "1")checked="checked"@endif /> A la création d'un ticket
+                                <input type="checkbox" name="email_notification_ticket_created" @if ($email_notification_ticket_created && $email_notification_ticket_created->value == "1")checked="checked"@endif /> {{ __('projectsquare::my.ticket_created') }}
                             </label>
 
                             <br/>
 
                             <label class="inline">
-                                <input type="checkbox" name="email_notification_ticket_updated" @if ($email_notification_ticket_updated && $email_notification_ticket_updated->value == "1")checked="checked"@endif /> A la modification d'un ticket
+                                <input type="checkbox" name="email_notification_ticket_updated" @if ($email_notification_ticket_updated && $email_notification_ticket_updated->value == "1")checked="checked"@endif /> {{ __('projectsquare::my.ticket_updated') }}
                             </label>
 
                             <br/>
 
                             <label class="inline">
-                                <input type="checkbox" name="email_notification_ticket_deleted" @if ($email_notification_ticket_deleted && $email_notification_ticket_deleted->value == "1")checked="checked"@endif /> A la suppression d'un ticket
+                                <input type="checkbox" name="email_notification_ticket_deleted" @if ($email_notification_ticket_deleted && $email_notification_ticket_deleted->value == "1")checked="checked"@endif /> {{ __('projectsquare::my.ticket_deleted') }}
                             </label>
 
                             {!! csrf_field() !!}
                         </div>
                         <div class="form-group col-lg-4">
-                            <strong>Messages</strong><br/>
+                            <strong>{{ __('projectsquare::my.messages') }}</strong><br/>
 
                             <label class="inline">
-                                <input type="checkbox" name="email_notification_message_created" @if ($email_notification_message_created && $email_notification_message_created->value == "1")checked="checked"@endif /> A la création d'un message
+                                <input type="checkbox" name="email_notification_message_created" @if ($email_notification_message_created && $email_notification_message_created->value == "1")checked="checked"@endif /> {{ __('projectsquare::my.message_created') }}
                             </label>
 
                             {!! csrf_field() !!}
