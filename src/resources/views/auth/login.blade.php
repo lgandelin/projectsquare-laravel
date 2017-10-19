@@ -22,7 +22,7 @@
                         {!! csrf_field() !!}
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">{{ trans('projectsquare::login.email') }}</label>
+                            <label class="col-md-4 control-label">{{ __('projectsquare::login.email') }}</label>
 
                             <div class="col-md-6">
                                 <input type="email" class="form-control" name="email" />
@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">{{ trans('projectsquare::login.password') }}</label>
+                            <label class="col-md-4 control-label">{{ __('projectsquare::login.password') }}</label>
 
                             <div class="col-md-6">
                                 <input type="password" class="form-control" name="password" autocomplete="off" />
@@ -41,7 +41,7 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember_token" />{{ trans('projectsquare::login.remember') }}
+                                        <input type="checkbox" name="remember_token" />{{ __('projectsquare::login.remember') }}
                                     </label>
                                 </div>
                             </div>
@@ -50,10 +50,10 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn valid">
-                                    {{ trans('projectsquare::login.login') }} <i class="fa fa-btn fa-sign-in" style="margin-left: 1rem;"></i></span>
+                                    {{ __('projectsquare::login.login') }} <i class="fa fa-btn fa-sign-in" style="margin-left: 1rem;"></i></span>
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('forgotten_password') }}">{{ trans('projectsquare::login.forgotten_password') }}</a>
+                                <a class="btn btn-link" href="{{ route('forgotten_password') }}">{{ __('projectsquare::login.forgotten_password') }}</a>
                             </div>
                         </div>
                     </form>

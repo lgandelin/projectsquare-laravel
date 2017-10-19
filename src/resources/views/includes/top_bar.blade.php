@@ -3,7 +3,7 @@
 
     @if (isset($is_client) && $is_client && sizeof($in_progress_projects) > 1)
         <form action="{{ route('projects_client_switch') }}" method="post" id="project-switcher-form" class="project-switcher">
-            <label for="project_id">{{ trans('projectsquare::dashboard.project') }} :</label>
+            <label for="project_id">{{ __('projectsquare::dashboard.project') }} :</label>
             <select class="form-control" name="project_id" onchange="$('#project-switcher-form').submit()">
                 @foreach ($in_progress_projects as $project)
                     <option value="{{ $project->id }}" @if ($current_project && $current_project->id == $project->id)selected="selected"@endif>{{ $project->name }}</option>
@@ -26,10 +26,10 @@
                 <div class="todos" style="display: none;">
 
                     <span class="title">
-                        {{ trans('projectsquare::top_bar.lists_of_tasks') }}
+                        {{ __('projectsquare::top_bar.lists_of_tasks') }}
                     </span>
 
-                    <span class="no-todos" @if (sizeof($todos) == 0)style="display: block"@else style="display:none"@endif>{{ trans('projectsquare::top_bar.no_current_task') }}</span>
+                    <span class="no-todos" @if (sizeof($todos) == 0)style="display: block"@else style="display:none"@endif>{{ __('projectsquare::top_bar.no_current_task') }}</span>
 
                     <ul>
                         @foreach ($todos as $todo)
@@ -39,7 +39,7 @@
 
                     <div class="form-inline">
                         <div class="form-group">
-                            <input type="text" class="form-control new-todo" placeholder="{{ trans('projectsquare::top_bar.new_todo') }}" name="name" id="name" required autocomplete="off" />
+                            <input type="text" class="form-control new-todo" placeholder="{{ __('projectsquare::top_bar.new_todo') }}" name="name" id="name" required autocomplete="off" />
                             <button type="submit" class="btn add btn-valid-create-todo"></button>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
 
         @if (isset($logged_in_user))
             <li>
-                <a href="{{ route('my') }}" title="{{ trans('projectsquare::my.panel_title') }}">
+                <a href="{{ route('my') }}" title="{{ __('projectsquare::my.panel_title') }}">
                     @include('projectsquare::includes.avatar', [
                         'id' => $logged_in_user->id,
                         'name' => $logged_in_user->complete_name

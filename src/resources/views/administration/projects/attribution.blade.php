@@ -50,11 +50,11 @@
         <div class="occupation-template">
             <form method="get">
                 <div class="row">
-                    <h2>{{ trans('projectsquare::tasks.filters.filters') }}</h2>
+                    <h2>{{ __('projectsquare::tasks.filters.filters') }}</h2>
 
                     <div class="form-group col-md-2">
                         <select class="form-control" name="filter_role" id="filter_role">
-                            <option value="">{{ trans('projectsquare::occupation.filters.by_role') }}</option>
+                            <option value="">{{ __('projectsquare::occupation.filters.by_role') }}</option>
                             @foreach ($roles as $role)
                                 <option value="{{ $role->id }}" @if ($filters['role'] == $role->id)selected="selected" @endif>{{ $role->name }}</option>
                             @endforeach
@@ -70,13 +70,13 @@
             </div>
 
             <div class="notice">
-                <span class="title">{{ trans('projectsquare::project_attribution.instructions.title') }}</span>
+                <span class="title">{{ __('projectsquare::project_attribution.instructions.title') }}</span>
                 <ul>
-                    <li>{{ trans('projectsquare::project_attribution.instructions.1') }}</li>
-                    <li>{{ trans('projectsquare::project_attribution.instructions.2') }}</li>
-                    <li>{{ trans('projectsquare::project_attribution.instructions.3') }} <i class="fa fa-refresh" style="margin-left: 0.75rem;
+                    <li>{{ __('projectsquare::project_attribution.instructions.1') }}</li>
+                    <li>{{ __('projectsquare::project_attribution.instructions.2') }}</li>
+                    <li>{{ __('projectsquare::project_attribution.instructions.3') }} <i class="fa fa-refresh" style="margin-left: 0.75rem;
                     "></i></li>
-                    <li>{{ trans('projectsquare::project_attribution.instructions.4') }}/li>
+                    <li>{{ __('projectsquare::project_attribution.instructions.4') }}/li>
                 </ul>
             </div>
         </div>

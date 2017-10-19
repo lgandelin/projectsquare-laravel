@@ -4,7 +4,7 @@
     <div class="content-page">
         <div class="templates">
             <div class="page-header">
-                <h1>{{ trans('projectsquare::users.add_user') }}</h1>
+                <h1>{{ __('projectsquare::users.add_user') }}</h1>
                  <a href="{{ route('users_index') }}" class="btn back"></a>
             </div>
 

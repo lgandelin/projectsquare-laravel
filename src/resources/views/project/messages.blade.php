@@ -4,9 +4,9 @@
     @include('projectsquare::includes.project_bar', ['active' => 'messages'])
     <div class="content-page">
         <div class="templates messages-list-template">
-            <h1 class="page-header">{{ trans('projectsquare::project.messages') }}
+            <h1 class="page-header">{{ __('projectsquare::project.messages') }}
                  @include('projectsquare::includes.tooltip', [
-                        'text' => trans('projectsquare::tooltips.messages')
+                        'text' => __('projectsquare::tooltips.messages')
                   ])
             </h1>
 
@@ -26,11 +26,11 @@
                     <thead>
                     <tr>
                         <th></th>
-                        <th>{{ trans('projectsquare::messages.date') }}</th>
-                        <th>{{ trans('projectsquare::messages.author') }}</th>
-                        <th>{{ trans('projectsquare::messages.title') }}</th>
-                        <th>{{ trans('projectsquare::messages.last_message') }}</th>
-                        <th>{{ trans('projectsquare::generic.action') }}</th>
+                        <th>{{ __('projectsquare::messages.date') }}</th>
+                        <th>{{ __('projectsquare::messages.author') }}</th>
+                        <th>{{ __('projectsquare::messages.title') }}</th>
+                        <th>{{ __('projectsquare::messages.last_message') }}</th>
+                        <th>{{ __('projectsquare::generic.action') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -76,7 +76,7 @@
             </div>
 
             @if ($is_client)
-                <button class="btn valid create-conversation"><span class="glyphicon glyphicon-plus"></span> {{ trans('projectsquare::messages.add_conversation') }}</button>
+                <button class="btn valid create-conversation"><span class="glyphicon glyphicon-plus"></span> {{ __('projectsquare::messages.add_conversation') }}</button>
             @endif
         </div>
     </div>

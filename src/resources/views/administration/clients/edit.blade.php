@@ -4,7 +4,7 @@
     <div class="content-page">
         <div class="templates client-template-edit">
             <div class="page-header">
-                <h1>{{ trans('projectsquare::clients.edit_client') }}</h1>
+                <h1>{{ __('projectsquare::clients.edit_client') }}</h1>
                   <a href="{{ route('clients_index') }}" class="btn back"></a>
             </div>
 
@@ -31,19 +31,19 @@
             <br>
 
             <h2>
-                {{ trans('projectsquare::clients.client_accounts') }}
+                {{ __('projectsquare::clients.client_accounts') }}
                 @include('projectsquare::includes.tooltip', [
-                    'text' => trans('projectsquare::tooltips.client_accounts')
+                    'text' => __('projectsquare::tooltips.client_accounts')
                 ])
             </h2>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>{{ trans('projectsquare::users.name') }}</th>
-                        <th>{{ trans('projectsquare::users.email') }}</th>
-                        <th>{{ trans('projectsquare::users.role') }}</th>
-                        <th>{{ trans('projectsquare::generic.action') }}</th>
+                        <th>{{ __('projectsquare::users.name') }}</th>
+                        <th>{{ __('projectsquare::users.email') }}</th>
+                        <th>{{ __('projectsquare::users.role') }}</th>
+                        <th>{{ __('projectsquare::generic.action') }}</th>
                     </tr>
                     </thead>
 
@@ -54,10 +54,10 @@
                             <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                             <td>{{ $user->client_role }}</td>
                             <td align="right">
-                                <a href="{{ route('clients_edit_user', ['client_id' => $client->id, 'user_id' => $user->id]) }}" class="btn btn-edit" title="{{ trans('projectsquare::generic.edit') }}">
+                                <a href="{{ route('clients_edit_user', ['client_id' => $client->id, 'user_id' => $user->id]) }}" class="btn btn-edit" title="{{ __('projectsquare::generic.edit') }}">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </a>
-                                <a href="{{ route('clients_delete_user', ['client_id' => $client->id, 'user_id' => $user->id]) }}" class="btn btn-delete" title="{{ trans('projectsquare::generic.delete') }}">
+                                <a href="{{ route('clients_delete_user', ['client_id' => $client->id, 'user_id' => $user->id]) }}" class="btn btn-delete" title="{{ __('projectsquare::generic.delete') }}">
                                     <i class="btn cancel"></i>
                                 </a>
                             </td>
@@ -67,7 +67,7 @@
                 </table>
             </div>
 
-            <a href="{{ route('clients_add_user', ['id' => $client->id]) }}" class="btn valid users"><i class="glyphicon glyphicon-plus"></i> {{ trans('projectsquare::clients.add_user') }}</a>
+            <a href="{{ route('clients_add_user', ['id' => $client->id]) }}" class="btn valid users"><i class="glyphicon glyphicon-plus"></i> {{ __('projectsquare::clients.add_user') }}</a>
         </div>
     </div>
 @endsection

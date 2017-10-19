@@ -23,26 +23,26 @@
 
             <hr/>
 
-            <h3>{{ trans('projectsquare::tickets.ticket_state') }}</h3>
+            <h3>{{ __('projectsquare::tickets.ticket_state') }}</h3>
             @include('projectsquare::project.tickets.state')
 
             <hr/>
 
-            <h3>{{ trans('projectsquare::tickets.files') }} <span class="badge badge-primary" style="margin-left: 1rem; margin-bottom: 2px;">{{ count($files) }}</span></h3>
+            <h3>{{ __('projectsquare::tickets.files') }} <span class="badge badge-primary" style="margin-left: 1rem; margin-bottom: 2px;">{{ count($files) }}</span></h3>
             @include('projectsquare::tools.tickets.ticket_files')
 
             <hr/>
 
-            <h3>{{ trans('projectsquare::tickets.ticket_history') }} <span class="badge badge-primary" style="margin-left: 1rem; margin-bottom: 2px;">{{ count($ticket->states) }}</span></h3>
+            <h3>{{ __('projectsquare::tickets.ticket_history') }} <span class="badge badge-primary" style="margin-left: 1rem; margin-bottom: 2px;">{{ count($ticket->states) }}</span></h3>
             @include('projectsquare::tools.tickets.ticket_history')
 
             <hr/>
 
-            <h3>{{ trans('projectsquare::tickets.delete_ticket') }}</h3>
+            <h3>{{ __('projectsquare::tickets.delete_ticket') }}</h3>
 
             <a href="{{ route('tickets_delete', ['id' => $ticket->id]) }}" class="btn delete btn-delete">
                 <i class="glyphicon glyphicon-remove picto-delete"></i>
-                <span>{{ trans('projectsquare::generic.delete') }}</span>
+                <span>{{ __('projectsquare::generic.delete') }}</span>
             </a>
         </div>
     </div>

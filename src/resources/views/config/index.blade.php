@@ -11,16 +11,16 @@
             <div class="page-header row">
                 <div class="col-md-12 top-bar">
                     <div class="pull-left">
-                        <h1 class="logo">{{ trans('projectsquare::config.configuration') }}</h1>
+                        <h1 class="logo">{{ __('projectsquare::config.configuration') }}</h1>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12 col-md-12">
-                    <h3 style="margin-top: 1rem;">{{ trans('projectsquare::config.welcome_title') }}</h3>
+                    <h3 style="margin-top: 1rem;">{{ __('projectsquare::config.welcome_title') }}</h3>
 
                     <p>
-                        {{ trans('projectsquare::config.welcome_text') }}
+                        {{ __('projectsquare::config.welcome_text') }}
                     </p>
                 </div>
             </div>
@@ -29,29 +29,29 @@
                     <form action="{{ route('config_handler') }}" method="post">
 
                         <div class="form-group">
-                            <label for="first_name">{{ trans('projectsquare::users.first_name') }}</label>
-                            <input class="form-control" type="text" placeholder="{{ trans('projectsquare::users.first_name') }}" name="first_name" />
+                            <label for="first_name">{{ __('projectsquare::users.first_name') }}</label>
+                            <input class="form-control" type="text" placeholder="{{ __('projectsquare::users.first_name') }}" name="first_name" />
                         </div>
 
                         <div class="form-group">
-                            <label for="last_name">{{ trans('projectsquare::users.last_name') }}</label>
-                            <input class="form-control" type="text" placeholder="{{ trans('projectsquare::users.last_name') }}" name="last_name" />
+                            <label for="last_name">{{ __('projectsquare::users.last_name') }}</label>
+                            <input class="form-control" type="text" placeholder="{{ __('projectsquare::users.last_name') }}" name="last_name" />
                         </div>
 
                         <div class="form-group">
-                            <label for="email">{{ trans('projectsquare::users.email') }}</label>
-                            <input class="form-control" type="text" placeholder="{{ trans('projectsquare::users.email') }}" name="email" />
+                            <label for="email">{{ __('projectsquare::users.email') }}</label>
+                            <input class="form-control" type="text" placeholder="{{ __('projectsquare::users.email') }}" name="email" />
                         </div>
 
                         <div class="form-group">
-                            <label for="last_name">{{ trans('projectsquare::users.password') }}</label>
-                            <input class="form-control" type="password" placeholder="{{ trans('projectsquare::users.password') }}" name="password" />
+                            <label for="last_name">{{ __('projectsquare::users.password') }}</label>
+                            <input class="form-control" type="password" placeholder="{{ __('projectsquare::users.password') }}" name="password" />
                         </div>
 
                         <div class="form-group">
                             <button type="submit" class="btn valid pull-right">
                                 <i class="glyphicon glyphicon-ok"></i>
-                                {{ trans('projectsquare::generic.valid') }}
+                                {{ __('projectsquare::generic.valid') }}
                             </button>
                         </div>
 

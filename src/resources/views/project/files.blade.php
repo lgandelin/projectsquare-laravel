@@ -5,9 +5,9 @@
     <div class="content-page">
         <div class="col-lg-12 col-md-12 templates files-template">
             <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
-                <h1 class="page-header">{{ trans('projectsquare::project.files') }}
+                <h1 class="page-header">{{ __('projectsquare::project.files') }}
                      @include('projectsquare::includes.tooltip', [
-                        'text' => trans('projectsquare::tooltips.files')
+                        'text' => __('projectsquare::tooltips.files')
                   ])
                 </h1>
 
@@ -23,8 +23,8 @@
                             <td>{{ date('d/m/Y H:i', strtotime($file->created_at)) }}</td>
                             <td width="150">{{ \Webaccess\ProjectSquareLaravel\Tools\FileTool::convertFileSize($file->size) }}</td>
                             <td class="file_button" width="275">
-                                <a href="{{ asset('uploads/projects' . $file->path) }}" class="btn button" download="{{ $file->name }}"><i class="glyphicon glyphicon-download"></i> <span class="value">{{ trans('projectsquare::generic.download') }}</span></a>
-                                <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn btn-danger delete btn-delete"><i class="glyphicon glyphicon-remove"></i> <span class="value">{{ trans('projectsquare::generic.delete') }}</span></a>
+                                <a href="{{ asset('uploads/projects' . $file->path) }}" class="btn button" download="{{ $file->name }}"><i class="glyphicon glyphicon-download"></i> <span class="value">{{ __('projectsquare::generic.download') }}</span></a>
+                                <a href="{{ route('tickets_edit_delete_file', ['id' => $file->id]) }}" class="btn btn-danger delete btn-delete"><i class="glyphicon glyphicon-remove"></i> <span class="value">{{ __('projectsquare::generic.delete') }}</span></a>
                             </td>
                         </tr>
                     @endforeach
@@ -32,17 +32,17 @@
                 <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
 
                 <div class="col-md-6" style="margin-top: 4rem">
-                    <h4>{{ trans('projectsquare::tickets.add_files') }}</h4>
+                    <h4>{{ __('projectsquare::tickets.add_files') }}</h4>
                     <div class="row fileupload-buttonbar">
                         <div class="col-lg-12 col-md-12 file">
                         <span class="btn valid fileinput-button">
                             <i class="glyphicon glyphicon-plus"></i>
-                            <span>{{ trans('projectsquare::generic.add') }}</span>
+                            <span>{{ __('projectsquare::generic.add') }}</span>
                             <input type="file" name="files[]" multiple>
                         </span>
                             <button type="submit" class="btn btn-primary button start">
                                 <i class="glyphicon glyphicon-upload"></i>
-                                <span>{{ trans('projectsquare::tickets.start_file_upload') }}</span>
+                                <span>{{ __('projectsquare::tickets.start_file_upload') }}</span>
                             </button>
                             <!--<button type="reset" class="btn delete">
                                 <i class="glyphicon glyphicon-remove"></i>

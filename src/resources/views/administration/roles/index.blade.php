@@ -4,9 +4,9 @@
     <div class="content-page">
         <div class="templates">
             <div class="page-header">
-                <h1>{{ trans('projectsquare::roles.roles_list') }}
+                <h1>{{ __('projectsquare::roles.roles_list') }}
                     @include('projectsquare::includes.tooltip', [
-                        'text' => trans('projectsquare::tooltips.roles_list')
+                        'text' => __('projectsquare::tooltips.roles_list')
                   ])
                 </h1>
             </div>
@@ -27,8 +27,8 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>{{ trans('projectsquare::roles.role') }}</th>
-                        <th>{{ trans('projectsquare::generic.action') }}</th>
+                        <th>{{ __('projectsquare::roles.role') }}</th>
+                        <th>{{ __('projectsquare::generic.action') }}</th>
                     </tr>
                 </thead>
 

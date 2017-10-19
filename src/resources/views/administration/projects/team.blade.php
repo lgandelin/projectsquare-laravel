@@ -1,6 +1,6 @@
 <div class="middle-column">
     <div class="filter-user">
-        <input autocomplete="off" class="search-input" type="text" placeholder="{{ trans('projectsquare::generic.search') }} ..." />
+        <input autocomplete="off" class="search-input" type="text" placeholder="{{ __('projectsquare::generic.search') }} ..." />
         <i class="glyphicon glyphicon-search search-icon"></i>
     </div>
 
@@ -34,7 +34,7 @@
 <div class="project-team-content">
 
     <div class="page-header">
-        <h1>{{ trans('projectsquare::projects.team') }}</h1>
+        <h1>{{ __('projectsquare::projects.team') }}</h1>
         <a href="{{ route('projects_index') }}" class="btn back"></a>
     </div>
 
@@ -51,17 +51,17 @@
     @endif
 
     <div class="project-team">
-        <h3>{{ trans('projectsquare::projects.project_resources') }}
+        <h3>{{ __('projectsquare::projects.project_resources') }}
             @include('projectsquare::includes.tooltip', [
-                'text' => trans('projectsquare::tooltips.project.ressources')
+                'text' => __('projectsquare::tooltips.project.ressources')
             ])
         </h3>
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ trans('projectsquare::users.user') }}</th>
-                <th>{{ trans('projectsquare::roles.role') }}</th>
-                <th>{{ trans('projectsquare::generic.action') }}</th>
+                <th>{{ __('projectsquare::users.user') }}</th>
+                <th>{{ __('projectsquare::roles.role') }}</th>
+                <th>{{ __('projectsquare::generic.action') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -79,7 +79,7 @@
 
         <form action="{{ route('projects_update_team') }}" method="post">
             <button type="submit" class="btn valid-team">
-                <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
+                <i class="glyphicon glyphicon-ok"></i> {{ __('projectsquare::generic.valid') }}
             </button>
             <input type="hidden" id="user_ids" name="user_ids" value="{{ json_encode($userIDs) }}" />
             <input type="hidden" name="project_id" value="{{ $project->id }}" />

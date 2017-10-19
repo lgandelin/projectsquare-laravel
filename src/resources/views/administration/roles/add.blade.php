@@ -4,7 +4,7 @@
     <div class="content-page">
         <div class="templates">
             <div class="page-header">
-                <h1>{{ trans('projectsquare::roles.add_role') }}</h1>
+                <h1>{{ __('projectsquare::roles.add_role') }}</h1>
                 <a href="{{ route('roles_index') }}" class="btn back"></a>
             </div>
 

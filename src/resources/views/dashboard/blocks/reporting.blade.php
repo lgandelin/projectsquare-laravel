@@ -26,8 +26,8 @@
                 <div class="project-progress" style="display: none;">
                     <table class="table table-bordered">
                         <tr>
-                            <td>{{ trans('projectsquare::progress.phases_tasks') }}</td>
-                            <td>{{ trans('projectsquare::progress.progress') }}</td>
+                            <td>{{ __('projectsquare::progress.phases_tasks') }}</td>
+                            <td>{{ __('projectsquare::progress.progress') }}</td>
                         </tr>
 
                         @foreach ($project->phases as $phase)
@@ -50,7 +50,7 @@
                                                     @endif
 
                                                     <span class="name">{{ $task->title }}</span>
-                                                    @if ($task->estimatedTimeDays > 0)<span class="duration"> <strong>{{ trans('projectsquare::dashboard.estimated_time') }}</strong> {{ $task->estimatedTimeDays }} {{ trans('projectsquare::generic.days') }}</span> @endif
+                                                    @if ($task->estimatedTimeDays > 0)<span class="duration"> <strong>{{ __('projectsquare::dashboard.estimated_time') }}</strong> {{ $task->estimatedTimeDays }} {{ __('projectsquare::generic.days') }}</span> @endif
                                                 </div>
                                             </div>
                                         @endforeach
@@ -62,7 +62,7 @@
                             </tr>
                         @endforeach
                         <tr>
-                            <td style="text-align: right;">{{ trans('projectsquare::generic.total') }}</td>
+                            <td style="text-align: right;">{{ __('projectsquare::generic.total') }}</td>
                             <td width="20%" class="total">@if ($project->progress !== null && $project->progress !== ""){{ $project->progress }} %@endif</td>
                         </tr>
                     </table>

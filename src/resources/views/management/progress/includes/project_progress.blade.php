@@ -4,8 +4,8 @@
             @if (!isset($project_interface))<div class="header" style="background:{{ $project->color }}">{{ $project->name }}</div>@endif
             <table class="table table-bordered">
                 <tr>
-                    <td>{{ trans('projectsquare::progress.phases_tasks') }}</td>
-                    <td>{{ trans('projectsquare::progress.progress') }}</td>
+                    <td>{{ __('projectsquare::progress.phases_tasks') }}</td>
+                    <td>{{ __('projectsquare::progress.progress') }}</td>
                 </tr>
 
                 @foreach ($project->phases as $phase)

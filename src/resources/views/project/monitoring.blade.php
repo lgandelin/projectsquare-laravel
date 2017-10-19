@@ -4,34 +4,34 @@
     @include('projectsquare::includes.project_bar', ['active' => 'monitoring'])
     <div class="content-page">
         <div class="templates monitoring-template">
-            <h1 class="page-header">{{ trans('projectsquare::project.monitoring') }}
+            <h1 class="page-header">{{ __('projectsquare::project.monitoring') }}
                 @include('projectsquare::includes.tooltip', [
-                    'text' => trans('projectsquare::tooltips.monitoring_title')
+                    'text' => __('projectsquare::tooltips.monitoring_title')
                 ])
             </h1>
 
             <div class="row" style="margin-top: 5rem">
                 <div id="loading_time" class="col-md-8"></div>
                 <div id="key_numbers" class="col-md-2 col-md-offset-1">
-                    <span>{{ trans('projectsquare::monitoring.synthesis') }}</span>
+                    <span>{{ __('projectsquare::monitoring.synthesis') }}</span>
 
                     <div class="content">
                         <ul>
-                            <li>{{ trans('projectsquare::monitoring.availability_percentage') }} : 
+                            <li>{{ __('projectsquare::monitoring.availability_percentage') }} :
                                 @include('projectsquare::includes.tooltip', [
-                                    'text' => trans('projectsquare::tooltips.monitoring.disponibility')
+                                    'text' => __('projectsquare::tooltips.monitoring.disponibility')
                                 ])
                                 <span class="number" style="color: #57c17b">{{ number_format($availability_percentage, 2) }}%</span>
                             </li>
-                            <li>{{ trans('projectsquare::monitoring.average_loading_time') }} : 
+                            <li>{{ __('projectsquare::monitoring.average_loading_time') }} :
                                  @include('projectsquare::includes.tooltip', [
-                                    'text' => trans('projectsquare::tooltips.monitoring.average_loading_time')
+                                    'text' => __('projectsquare::tooltips.monitoring.average_loading_time')
                                 ])
                                 <span class="number" style="color: #57c17b">{{ number_format($average_loading_time, 2) }}s</span>
                             </li>
-                            <li>{{ trans('projectsquare::monitoring.longest_loading_time') }} : 
+                            <li>{{ __('projectsquare::monitoring.longest_loading_time') }} :
                                  <!--@include('projectsquare::includes.tooltip', [
-                                    'text' => trans('projectsquare::tooltips.monitoring.max_loading_time')
+                                    'text' => __('projectsquare::tooltips.monitoring.max_loading_time')
                                 ])-->
                                 <span class="number" style="color: #fc9a24">{{ number_format($max_loading_time, 2) }}s</span>
                             </li>
@@ -65,15 +65,15 @@
                     zoomType: 'x'
                 },
                 title: {
-                    text: "{!! trans('projectsquare::monitoring.website_loading_time') !!} {{ $project->websiteFrontURL }}"
+                    text: "{!! __('projectsquare::monitoring.website_loading_time') !!} {{ $project->websiteFrontURL }}"
                 },
                 subtitle: {
-                    text: "{!! trans('projectsquare::monitoring.last_24h') !!}"
+                    text: "{!! __('projectsquare::monitoring.last_24h') !!}"
                 },
                 xAxis: { type: 'datetime' },
                 yAxis: {
                     title: {
-                        text: "{!! trans('projectsquare::monitoring.loading_time_in_seconds') !!}"
+                        text: "{!! __('projectsquare::monitoring.loading_time_in_seconds') !!}"
                     },
                     min: 0
                 },
@@ -107,7 +107,7 @@
                     type: 'pie'
                 },
                 title: {
-                    text: "{!! trans('projectsquare::monitoring.statuses_codes') !!}"
+                    text: "{!! __('projectsquare::monitoring.statuses_codes') !!}"
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -155,7 +155,7 @@
                     type: 'pie'
                 },
                 title: {
-                    text: "{!! trans('projectsquare::monitoring.website_loading_time') !!}"
+                    text: "{!! __('projectsquare::monitoring.website_loading_time') !!}"
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -175,7 +175,7 @@
                     }
                 },
                 series: [{
-                    name: "{!! trans('projectsquare::monitoring.loading_time_in_seconds') !!}",
+                    name: "{!! __('projectsquare::monitoring.loading_time_in_seconds') !!}",
                     colorByPoint: true,
                     data: [{
                         name: 'Moins de 1s',

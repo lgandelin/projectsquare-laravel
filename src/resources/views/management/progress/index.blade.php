@@ -4,7 +4,7 @@
     <div class="content-page">
         <div class="templates progress-template">
             <div class="page-header">
-                <h1>{{ trans('projectsquare::progress.project_progress') }}</h1>
+                <h1>{{ __('projectsquare::progress.project_progress') }}</h1>
             </div>
 
             <div class="flex-grid">

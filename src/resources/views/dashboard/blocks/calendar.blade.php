@@ -1,10 +1,10 @@
 <div class="block calendar">
-    <h3>{{ trans('projectsquare::project.calendar') }}
+    <h3>{{ __('projectsquare::project.calendar') }}
         @include('projectsquare::includes.tooltip', [
-            'text' => trans('projectsquare::tooltips.calendar_title')
+            'text' => __('projectsquare::tooltips.calendar_title')
         ])
-        <a href="{{ route('project_calendar',['id' => $current_project->id]) }}" class="all pull-right" title="{{ trans('projectsquare::dashboard.see_calendar') }}"></a>
-        <a href="#" class="glyphicon glyphicon-move move-widget pull-right" title="{{ trans('projectsquare::dashboard.move_widget') }}"></a>
+        <a href="{{ route('project_calendar',['id' => $current_project->id]) }}" class="all pull-right" title="{{ __('projectsquare::dashboard.see_calendar') }}"></a>
+        <a href="#" class="glyphicon glyphicon-move move-widget pull-right" title="{{ __('projectsquare::dashboard.move_widget') }}"></a>
     </h3>
     <div class="block-content ">
         <div id="calendar"></div>

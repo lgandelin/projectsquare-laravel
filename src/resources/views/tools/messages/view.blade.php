@@ -35,12 +35,12 @@
                         <span class="border-new-message" style="border-top: 1px solid{{ $conversation->project->color }}"></span>
                         <!--<a class="img-new-message img-join" href=""></a>
                         <a class="img-new-message img-emoji" href=""></a>-->
-                        <button class="btn button pull-right cancel-message" data-id="{{ $conversation->id }}" style="margin-top:1.5rem"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.cancel') }}</button>
-                        <button class="btn valid pull-right valid-message" data-id="{{ $conversation->id }}" style="margin-top:1.5rem; margin-right: 1rem"><span class="glyphicon glyphicon-ok"></span> {{ trans('projectsquare::generic.valid') }}</button>
+                        <button class="btn button pull-right cancel-message" data-id="{{ $conversation->id }}" style="margin-top:1.5rem"><span class="glyphicon glyphicon-arrow-left"></span> {{ __('projectsquare::generic.cancel') }}</button>
+                        <button class="btn valid pull-right valid-message" data-id="{{ $conversation->id }}" style="margin-top:1.5rem; margin-right: 1rem"><span class="glyphicon glyphicon-ok"></span> {{ __('projectsquare::generic.valid') }}</button>
                     </div>
 
                     <div class="submit">
-                        <button class="btn button pull-right reply-message" data-id="{{ $message->id }}" style="margin-right: 1rem;"><span class="glyphicon glyphicon-comment"></span> {{ trans('projectsquare::messages.reply_message') }}</button>
+                        <button class="btn button pull-right reply-message" data-id="{{ $message->id }}" style="margin-right: 1rem;"><span class="glyphicon glyphicon-comment"></span> {{ __('projectsquare::messages.reply_message') }}</button>
                     </div>
                 </div>
             </div>

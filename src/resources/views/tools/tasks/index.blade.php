@@ -4,9 +4,9 @@
     <div class="content-page">
         <div class="templates tasks-template">
             <div class="page-header">
-                <h1>{{ trans('projectsquare::tasks.tasks_list') }}
+                <h1>{{ __('projectsquare::tasks.tasks_list') }}
                      @include('projectsquare::includes.tooltip', [
-                        'text' => trans('projectsquare::tooltips.tasks')
+                        'text' => __('projectsquare::tooltips.tasks')
                      ])
                 </h1>
             </div>
@@ -14,11 +14,11 @@
             <form method="get">
                 <div class="row">
 
-                    <h2>{{ trans('projectsquare::tasks.filters.filters') }}</h2>
+                    <h2>{{ __('projectsquare::tasks.filters.filters') }}</h2>
 
                     <div class="form-group col-md-2">
                         <select class="form-control" name="filter_project" id="filter_project">
-                            <option value="na">{{ trans('projectsquare::tasks.filters.by_project') }}</option>
+                            <option value="na">{{ __('projectsquare::tasks.filters.by_project') }}</option>
                             @foreach ($projects as $project)
                                 <option value="{{ $project->id }}" @if ($filters['project'] == $project->id)selected="selected" @endif>@if (isset($project->client)){{ $project->client->name }} -@endif {{ $project->name }}</option>
                             @endforeach
@@ -27,7 +27,7 @@
 
                     <div class="form-group col-md-2">
                         <select class="form-control" name="filter_allocated_user" id="filter_allocated_user">
-                            <option value="na">{{ trans('projectsquare::tasks.filters.by_allocated_user') }}</option>
+                            <option value="na">{{ __('projectsquare::tasks.filters.by_allocated_user') }}</option>
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}" @if ($filters['allocated_user'] == $user->id)selected="selected" @endif>{{ $user->complete_name }}</option>
                             @endforeach
@@ -36,7 +36,7 @@
 
                     <div class="form-group col-md-2">
                         <select class="form-control" name="filter_status" id="filter_status">
-                            <option value="na">{{ trans('projectsquare::tasks.filters.by_status') }}</option>
+                            <option value="na">{{ __('projectsquare::tasks.filters.by_status') }}</option>
                             @foreach ($task_statuses as $task_status)
                                 <option value="{{ $task_status->id }}" @if ($filters['status'] == $task_status->id)selected="selected" @endif>{{ $task_status->name }}</option>
                             @endforeach
@@ -60,7 +60,7 @@
             @endif
 
             <a href="{{ route('tasks_add') }}" class="create-button">
-                {{ trans('projectsquare::tasks.add_task') }}
+                {{ __('projectsquare::tasks.add_task') }}
 
                 <i class="fa fa-plus-circle" aria-hidden="true"></i>
             </a>
@@ -70,14 +70,14 @@
                     <thead>
                     <tr>
                         <th></th>
-                        <th>{{ trans('projectsquare::tasks.task') }}<a href="{{ route('tasks_index', ['sc' => 'title', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-alpha-{{ $sort_order }}"></i></a></th>
-                        <th>{{ trans('projectsquare::tasks.phase') }}<a href="{{ route('tasks_index', ['sc' => 'phase_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
-                        <th>{{ trans('projectsquare::tasks.client') }}<a href="{{ route('tasks_index', ['sc' => 'client', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
-                        <th>{{ trans('projectsquare::tasks.allocated_user') }}<a href="{{ route('tasks_index', ['sc' => 'allocated_user_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
-                        <th>{{ trans('projectsquare::tasks.status') }}<a href="{{ route('tasks_index', ['sc' => 'status_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
-                        <th>{{ trans('projectsquare::tasks.estimated_time') }}</th>
-                        <th>{{ trans('projectsquare::tasks.spent_time') }}</th>
-                        <th>{{ trans('projectsquare::generic.action') }}</th>
+                        <th>{{ __('projectsquare::tasks.task') }}<a href="{{ route('tasks_index', ['sc' => 'title', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-alpha-{{ $sort_order }}"></i></a></th>
+                        <th>{{ __('projectsquare::tasks.phase') }}<a href="{{ route('tasks_index', ['sc' => 'phase_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
+                        <th>{{ __('projectsquare::tasks.client') }}<a href="{{ route('tasks_index', ['sc' => 'client', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
+                        <th>{{ __('projectsquare::tasks.allocated_user') }}<a href="{{ route('tasks_index', ['sc' => 'allocated_user_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
+                        <th>{{ __('projectsquare::tasks.status') }}<a href="{{ route('tasks_index', ['sc' => 'status_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
+                        <th>{{ __('projectsquare::tasks.estimated_time') }}</th>
+                        <th>{{ __('projectsquare::tasks.spent_time') }}</th>
+                        <th>{{ __('projectsquare::generic.action') }}</th>
                     </tr>
                     </thead>
 
@@ -122,12 +122,12 @@
                             </td>
                             <td>
                                 <a href="{{ route('tasks_edit', ['id' => $task->id]) }}">
-                                    @if ($task->estimated_time_days > 0){{ $task->estimated_time_days }} {{ trans('projectsquare::generic.days_abbr') }}@endif @if ($task->estimated_time_hours > 0){{ $task->estimated_time_hours }} {{ trans('projectsquare::generic.hours_abbr') }}@endif
+                                    @if ($task->estimated_time_days > 0){{ $task->estimated_time_days }} {{ __('projectsquare::generic.days_abbr') }}@endif @if ($task->estimated_time_hours > 0){{ $task->estimated_time_hours }} {{ __('projectsquare::generic.hours_abbr') }}@endif
                                 </a>
                             </td>
                             <td>
                                 <a href="{{ route('tasks_edit', ['id' => $task->id]) }}">
-                                    @if ($task->spent_time_days > 0){{ $task->spent_time_days }} {{ trans('projectsquare::generic.days_abbr') }}@endif @if ($task->spent_time_hours > 0){{ $task->spent_time_hours }} {{ trans('projectsquare::generic.hours_abbr') }}@endif
+                                    @if ($task->spent_time_days > 0){{ $task->spent_time_days }} {{ __('projectsquare::generic.days_abbr') }}@endif @if ($task->spent_time_hours > 0){{ $task->spent_time_hours }} {{ __('projectsquare::generic.hours_abbr') }}@endif
                                 </a>
                             </td>
                             <td width="10%" class="action" align="right">
