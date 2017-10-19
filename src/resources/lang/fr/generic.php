@@ -10,6 +10,8 @@ return [
     'modify' => 'Modifier',
     'cancel' => 'Annuler',
     'download' => 'Télécharger',
+    'search' => 'Rechercher',
+    'import' => 'Importer',
     'choose_value' => 'Choisissez une valeur',
     'creation_date' => 'Date de création',
     'see' => 'Voir',
@@ -21,6 +23,7 @@ return [
     'days_abbr' => 'j',
     'hours' => 'heure(s)',
     'hours_abbr' => 'h',
+    'total' => 'Total',
 
     'priority-1' => 'Haute',
     'priority-2' => 'Normale',

@@ -5,11 +5,11 @@
         <div class="agency-projects-template">
 
             <ul class="tabs">
-                <li class="current"><a href="{{ route('projects_store') }}">Infos</a></li>
-                <li><a>Equipe</a></li>
-                <li><a>Tâches</a></li>
-                <li><a>Attribution</a></li>
-                <li><a>Configuration</a></li>
+                <li class="current"><a href="{{ route('projects_store') }}">{{ trans('projectsquare::project_infos.tabs.infos') }}</a></li>
+                <li><a>{{ trans('projectsquare::project_infos.tabs.team') }}</a></li>
+                <li><a>{{ trans('projectsquare::project_infos.tabs.tasks') }}</a></li>
+                <li><a>{{ trans('projectsquare::project_infos.tabs.attribution') }}</a></li>
+                <li><a>{{ trans('projectsquare::project_infos.tabs.configuration') }}</a></li>
                 <li class="border-bottom"></li>
             </ul>
 

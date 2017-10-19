@@ -31,11 +31,11 @@
             @endforeach
         </select>
         <div class="create-client-inline">
-            <div class="step-1">Votre client ne fait pas encore partie de la liste ? <a href="#" id="create-client-btn">Créer un client</a></div>
+            <div class="step-1">{{ trans('projectsquare::project_infos.client_not_in_list') }}<a href="#" id="create-client-btn">{{ trans('projectsquare::project_infos.create_client') }}</a></div>
             <div class="step-2">
                 <input type="text" class="form-control" placeholder="Nom de la société" id="new-client-name" />
-                <button class="btn valid" id="valid-new-client"><i class="glyphicon glyphicon-ok"></i> Valider</button>
-                <a href="#" id="cancel-new-client">Annuler</a>
+                <button class="btn valid" id="valid-new-client"><i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}</button>
+                <a href="#" id="cancel-new-client">{{ trans('projectsquare::generic.cancel') }}</a>
             </div>
         </div>
     </div>

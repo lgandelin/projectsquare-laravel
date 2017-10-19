@@ -29,4 +29,5 @@ return [
     'tasks' => 'Tâches',
     'project' => 'Projet',
     'move_widget' => 'Déplacer ce widget',
+    'estimated_time' => 'Temps estimé :',
 ];

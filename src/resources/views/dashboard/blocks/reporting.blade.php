@@ -50,7 +50,7 @@
                                                     @endif
 
                                                     <span class="name">{{ $task->title }}</span>
-                                                    @if ($task->estimatedTimeDays > 0)<span class="duration"> <strong>Temps estimé :</strong> {{ $task->estimatedTimeDays }} jour(s)</span> @endif
+                                                    @if ($task->estimatedTimeDays > 0)<span class="duration"> <strong>{{ trans('projectsquare::dashboard.estimated_time') }}</strong> {{ $task->estimatedTimeDays }} {{ trans('projectsquare::generic.days') }}</span> @endif
                                                 </div>
                                             </div>
                                         @endforeach
@@ -62,7 +62,7 @@
                             </tr>
                         @endforeach
                         <tr>
-                            <td style="text-align: right;">Total</td>
+                            <td style="text-align: right;">{{ trans('projectsquare::generic.total') }}</td>
                             <td width="20%" class="total">@if ($project->progress !== null && $project->progress !== ""){{ $project->progress }} %@endif</td>
                         </tr>
                     </table>

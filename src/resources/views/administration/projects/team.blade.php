@@ -1,6 +1,6 @@
 <div class="middle-column">
     <div class="filter-user">
-        <input autocomplete="off" class="search-input" type="text" placeholder="Recherchez..." />
+        <input autocomplete="off" class="search-input" type="text" placeholder="{{ trans('projectsquare::generic.search') }} ..." />
         <i class="glyphicon glyphicon-search search-icon"></i>
     </div>
 
