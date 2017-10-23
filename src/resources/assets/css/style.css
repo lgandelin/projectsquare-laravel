@@ -24154,49 +24154,54 @@ select.items_per_page {
     width: 115px;
   }
 
-  /* line 106, ../sass/includes/_responsive.scss */
+  /* line 104, ../sass/includes/_responsive.scss */
+  .content {
+    min-height: calc(100vh + 14rem);
+  }
+
+  /* line 110, ../sass/includes/_responsive.scss */
   .progress-template .flex-grid .col,
   .spent-time-template .flex-grid .col {
     width: 49%;
   }
 
-  /* line 113, ../sass/includes/_responsive.scss */
+  /* line 117, ../sass/includes/_responsive.scss */
   .progress-template .flex-grid .col,
   .spent-time-template .flex-grid .col {
     width: 100%;
   }
 
-  /* line 118, ../sass/includes/_responsive.scss */
+  /* line 122, ../sass/includes/_responsive.scss */
   .table-responsive {
     border-top: none;
     border-left: none;
     border-right: none;
   }
 
-  /* line 126, ../sass/includes/_responsive.scss */
+  /* line 130, ../sass/includes/_responsive.scss */
   .top-bar-container .top-bar {
     height: auto;
     padding-left: 0;
     padding-top: 1.5rem;
     text-align: center;
   }
-  /* line 133, ../sass/includes/_responsive.scss */
+  /* line 137, ../sass/includes/_responsive.scss */
   .top-bar-container .top-bar .logo {
     float: none;
   }
-  /* line 137, ../sass/includes/_responsive.scss */
+  /* line 141, ../sass/includes/_responsive.scss */
   .top-bar-container .top-bar .top-right-menu {
     float: none;
   }
-  /* line 140, ../sass/includes/_responsive.scss */
+  /* line 144, ../sass/includes/_responsive.scss */
   .top-bar-container .top-bar .top-right-menu li {
     margin-right: 1rem;
   }
-  /* line 143, ../sass/includes/_responsive.scss */
+  /* line 147, ../sass/includes/_responsive.scss */
   .top-bar-container .top-bar .top-right-menu li.todo {
     position: static;
   }
-  /* line 147, ../sass/includes/_responsive.scss */
+  /* line 151, ../sass/includes/_responsive.scss */
   .top-bar-container .top-bar .top-right-menu li .notifications {
     box-shadow: none;
     top: 12.4rem;
@@ -24204,13 +24209,13 @@ select.items_per_page {
     min-width: 0;
     width: auto;
   }
-  /* line 157, ../sass/includes/_responsive.scss */
+  /* line 161, ../sass/includes/_responsive.scss */
   .top-bar-container .top-bar .top-right-menu li .todos-link i, .top-bar-container .top-bar .top-right-menu li .notifications-link i {
     font-size: 2.5rem;
     position: relative;
     top: 3px;
   }
-  /* line 163, ../sass/includes/_responsive.scss */
+  /* line 167, ../sass/includes/_responsive.scss */
   .top-bar-container .top-bar .top-right-menu li .todos-link .badge, .top-bar-container .top-bar .top-right-menu li .notifications-link .badge {
     font-size: 13px;
     width: 24px;
@@ -24219,13 +24224,13 @@ select.items_per_page {
     left: 16px;
     top: -13px;
   }
-  /* line 173, ../sass/includes/_responsive.scss */
+  /* line 177, ../sass/includes/_responsive.scss */
   .top-bar-container .top-bar .top-right-menu li .avatar {
     width: 3.5rem;
     height: auto;
     margin-right: 0.5rem;
   }
-  /* line 179, ../sass/includes/_responsive.scss */
+  /* line 183, ../sass/includes/_responsive.scss */
   .top-bar-container .top-bar .top-right-menu li .todos {
     left: 4.9rem;
     width: auto;
@@ -24233,32 +24238,32 @@ select.items_per_page {
     background: white;
     top: 12.3rem;
   }
-  /* line 186, ../sass/includes/_responsive.scss */
+  /* line 190, ../sass/includes/_responsive.scss */
   .top-bar-container .top-bar .top-right-menu li .todos .new-todo, .top-bar-container .top-bar .top-right-menu li .todos .add {
     display: inline-block;
   }
 
-  /* line 195, ../sass/includes/_responsive.scss */
+  /* line 199, ../sass/includes/_responsive.scss */
   .left-bar-minified {
     top: 12.4rem;
   }
 
-  /* line 199, ../sass/includes/_responsive.scss */
+  /* line 203, ../sass/includes/_responsive.scss */
   .dashboard-content {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     padding-top: 1.5rem;
   }
-  /* line 204, ../sass/includes/_responsive.scss */
+  /* line 208, ../sass/includes/_responsive.scss */
   .dashboard-content .reporting {
     margin-bottom: 1rem;
   }
 
-  /* line 209, ../sass/includes/_responsive.scss */
+  /* line 213, ../sass/includes/_responsive.scss */
   .tabs {
     border-bottom: none;
   }
-  /* line 212, ../sass/includes/_responsive.scss */
+  /* line 216, ../sass/includes/_responsive.scss */
   .tabs li {
     border-right: none;
     border-bottom: 5px solid white;
@@ -24266,7 +24271,7 @@ select.items_per_page {
     text-align: center;
   }
 
-  /* line 221, ../sass/includes/_responsive.scss */
+  /* line 225, ../sass/includes/_responsive.scss */
   .middle-column {
     width: auto;
     margin-top: 2rem;
@@ -24274,17 +24279,17 @@ select.items_per_page {
     border-right: none;
   }
 
-  /* line 228, ../sass/includes/_responsive.scss */
+  /* line 232, ../sass/includes/_responsive.scss */
   .content-page {
     margin-left: 0 !important;
   }
 
-  /* line 232, ../sass/includes/_responsive.scss */
+  /* line 236, ../sass/includes/_responsive.scss */
   .hamburger {
     display: block;
   }
 
-  /* line 237, ../sass/includes/_responsive.scss */
+  /* line 241, ../sass/includes/_responsive.scss */
   .project-bar .tabs {
     display: none;
     position: absolute;
@@ -24295,17 +24300,17 @@ select.items_per_page {
     bottom: 0;
   }
 
-  /* line 248, ../sass/includes/_responsive.scss */
+  /* line 252, ../sass/includes/_responsive.scss */
   .content .templates:last-child {
     min-height: 0;
   }
 
-  /* line 254, ../sass/includes/_responsive.scss */
+  /* line 258, ../sass/includes/_responsive.scss */
   .occupation-template .month {
     overflow-x: scroll;
     overflow-y: hidden;
   }
-  /* line 258, ../sass/includes/_responsive.scss */
+  /* line 262, ../sass/includes/_responsive.scss */
   .occupation-template .month table {
     width: 1500px;
   }

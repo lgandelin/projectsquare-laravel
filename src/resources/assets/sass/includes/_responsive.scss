@@ -101,6 +101,10 @@
 		}
 	}
 
+	.content {
+		min-height: calc(100vh + 14rem);
+	}
+
 	.progress-template .flex-grid,
 	.spent-time-template .flex-grid {
 		.col {
