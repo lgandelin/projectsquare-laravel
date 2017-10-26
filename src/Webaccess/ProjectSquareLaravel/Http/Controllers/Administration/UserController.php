@@ -142,7 +142,7 @@ class UserController extends BaseController
         parent::__construct($request);
 
         $userID = $request->uuid;
-        
+
         try {
             app()->make('UserManager')->deleteUser($userID);
             $request->session()->flash('confirmation', trans('projectsquare::users.delete_user_success'));

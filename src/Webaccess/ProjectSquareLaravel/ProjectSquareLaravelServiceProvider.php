@@ -161,7 +161,6 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         $router->aliasMiddleware('user', UserMiddleware::class);
 
         $this->loadRoutesFrom($basePath . 'routes/web.php');
-        $this->loadRoutesFrom($basePath . 'routes/api.php');
 
         $this->loadViewsFrom($basePath.'resources/views/', 'projectsquare');
         $this->loadTranslationsFrom($basePath.'resources/lang/', 'projectsquare');
