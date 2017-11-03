@@ -40,18 +40,20 @@
                                     <div class="tasks">
                                         @foreach ($phase->tasks as $task)
                                             <div class="task" style="@if ($task->statusID == Webaccess\ProjectSquare\Entities\Task::COMPLETED)background-color: #5497aa; @endif">
-                                                <div class="description">
+                                                <a href="{{ route('project_tasks_edit', ['uuid' => $project->id, 'task_uuid' => $task->id]) }}">
+                                                    <div class="description">
 
-                                                    @if (isset($task->allocatedUser))
-                                                        @include('projectsquare::includes.avatar', [
-                                                            'id' => $task->allocatedUser->id,
-                                                            'name' => $task->allocatedUser->firstName . ' ' . $task->allocatedUser->lastName
-                                                        ])
-                                                    @endif
+                                                        @if (isset($task->allocatedUser))
+                                                            @include('projectsquare::includes.avatar', [
+                                                                'id' => $task->allocatedUser->id,
+                                                                'name' => $task->allocatedUser->firstName . ' ' . $task->allocatedUser->lastName
+                                                            ])
+                                                        @endif
 
-                                                    <span class="name">{{ $task->title }}</span>
-                                                    @if ($task->estimatedTimeDays > 0)<span class="duration"> <strong>{{ __('projectsquare::dashboard.estimated_time') }}</strong> {{ $task->estimatedTimeDays }} {{ __('projectsquare::generic.days') }}</span> @endif
-                                                </div>
+                                                        <span class="name">{{ $task->title }}</span>
+                                                        @if ($task->estimatedTimeDays > 0)<span class="duration"> <strong>{{ __('projectsquare::dashboard.estimated_time') }}</strong> {{ $task->estimatedTimeDays }} {{ __('projectsquare::generic.days') }}</span> @endif
+                                                    </div>
+                                                </a>
                                             </div>
                                         @endforeach
                                     </div>

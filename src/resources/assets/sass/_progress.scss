@@ -71,6 +71,10 @@
                     margin-bottom: 1px;
                     position: relative;
 
+                    &:hover {
+                        border-color: $green;
+                    }
+
                     .description {
                         position: absolute;
                         display: none;
