@@ -38,7 +38,7 @@
                     @endforeach
 
                     @if (sizeof($archived_projects) > 0)
-                        <li class="archived-project archived-project-title filter-disabled"><i class="glyphicon glyphicon-folder-open"></i> {{ __('projectsquare::left-bar.archives') }}</li>
+                        <li class="archived-project archived-project-title filter-disabled"><i class="glyphicon glyphicon-folder-open"></i> {{ __('projectsquare::left_bar.archives') }}</li>
                     @endif
 
                     @foreach ($archived_projects as $project)
