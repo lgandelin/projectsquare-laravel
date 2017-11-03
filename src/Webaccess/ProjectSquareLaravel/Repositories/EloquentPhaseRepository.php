@@ -4,7 +4,6 @@ namespace Webaccess\ProjectSquareLaravel\Repositories;
 
 use DateTime;
 use Ramsey\Uuid\Uuid;
-use Illuminate\Support\Facades\Cache;
 use Webaccess\ProjectSquare\Entities\Phase as PhaseEntity;
 use Webaccess\ProjectSquare\Repositories\PhaseRepository;
 use Webaccess\ProjectSquareLaravel\Models\Phase;
@@ -28,12 +27,9 @@ class EloquentPhaseRepository implements PhaseRepository
     public function getPhases($projectID)
     {
         $phases = [];
+        $phasesModel = Phase::where('project_id', '=', $projectID)->orderBy('order', 'asc');
 
-        $phasesModel = Cache::remember('phases#' . $projectID, 5, function() use ($projectID) {
-            return Phase::where('project_id', '=', $projectID)->orderBy('order', 'asc')->get();
-        });
-
-        foreach ($phasesModel as $phaseModel) {
+        foreach ($phasesModel->get() as $phaseModel) {
             $phase = $this->getPhaseEntity($phaseModel);
             $phases[] = $phase;
         }

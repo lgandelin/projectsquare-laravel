@@ -76,7 +76,7 @@
                     <li>{{ __('projectsquare::project_attribution.instructions.2') }}</li>
                     <li>{{ __('projectsquare::project_attribution.instructions.3') }} <i class="fa fa-refresh" style="margin-left: 0.75rem;
                     "></i></li>
-                    <li>{{ __('projectsquare::project_attribution.instructions.4') }}/li>
+                    <li>{{ __('projectsquare::project_attribution.instructions.4') }}</li>
                 </ul>
             </div>
         </div>
