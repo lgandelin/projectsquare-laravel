@@ -78,7 +78,7 @@
 
             <div class="text-center">
                 @include('projectsquare::administration.includes.items_per_page')
-                {{ $projects->appends(['it' => $items_per_page, 'sc' => $sort_column, 'so' => $sort_order])->links() }}
+                {{ $projects->appends(['it' => $items_per_page, 'sc' => $sort_column, 'so' => $current_sort_order])->links() }}
             </div>
         </div>
     </div>

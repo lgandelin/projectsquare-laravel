@@ -21,6 +21,7 @@ class TicketController extends BaseController
         parent::__construct($request);
 
         $itemsPerPage = $request->get('it') ? $request->get('it') : env('TICKETS_PER_PAGE', 10);
+        $current_sort_order = $request->get('so');
 
         $request->session()->put('tickets_interface', 'tickets');
 
@@ -55,6 +56,7 @@ class TicketController extends BaseController
             'items_per_page' => $request->get('it') ? $request->get('it') : $itemsPerPage,
             'sort_column' => $request->get('sc'),
             'sort_order' => ($request->get('so') == 'asc') ? 'desc' : 'asc',
+            'current_sort_order' => $current_sort_order,
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);

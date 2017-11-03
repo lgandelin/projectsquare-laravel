@@ -152,7 +152,7 @@
                     'filter_status' => $filters['status'],
                     'it' => $items_per_page,
                     'sc' => $sort_column,
-                    'so' => $sort_order
+                    'so' => $current_sort_order
                 ])->links() !!}
             </div>
         </div>
