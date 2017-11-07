@@ -142,13 +142,5 @@ $(document).ready(function() {
         }
     }
 
-    //DASHBOARD - REPORTING WIDGET
-    $('.reporting .project .toggle-progress').click(function(e) {
-        e.preventDefault();
-
-        $(this).closest('.project').find('.project-progress').slideToggle(200);
-        $(this).toggleClass('opened');
-    });
-
     createCookie('already_connected', true);
 });

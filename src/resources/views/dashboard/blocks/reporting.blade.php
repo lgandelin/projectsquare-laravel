@@ -40,7 +40,7 @@
                                     <div class="tasks">
                                         @foreach ($phase->tasks as $task)
                                             <div class="task" style="@if ($task->statusID == Webaccess\ProjectSquare\Entities\Task::COMPLETED)background-color: #5497aa; @endif">
-                                                <a href="{{ route('project_tasks_edit', ['uuid' => $project->id, 'task_uuid' => $task->id]) }}">
+                                                <a href="{{ route('project_tasks_edit', ['uuid' => $project->id, 'task_uuid' => $task->id]) }}" title="Voir la tâche">
                                                     <div class="description">
 
                                                         @if (isset($task->allocatedUser))
@@ -96,6 +96,28 @@
                 1200:{
                     items:3
                 },
+            }
+        });
+
+        //DASHBOARD - REPORTING WIDGET
+        $('.reporting .project .toggle-progress').click(function(e) {
+            e.preventDefault();
+
+            $(this).closest('.project').find('.project-progress').slideToggle(200);
+            $(this).toggleClass('opened');
+        });
+
+        $(document).mouseup(function(e)
+        {
+            var container = $(".reporting");
+
+            if (!container.is(e.target) && container.has(e.target).length === 0) {
+                $('.project-progress').each(function() {
+                    var toggle_icon = $(this).closest('.project').find('.toggle-progress');
+                    if (toggle_icon.hasClass('opened')) {
+                        toggle_icon.trigger('click');
+                    }
+                });
             }
         });
     });

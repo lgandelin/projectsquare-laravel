@@ -23,8 +23,7 @@ class TicketTypeController extends BaseController
     {
         parent::__construct($request);
 
-        return view('projectsquare::administration.ticket_types.add', [
-        ]);
+        return view('projectsquare::administration.ticket_types.add', []);
     }
 
     public function store(Request $request)
