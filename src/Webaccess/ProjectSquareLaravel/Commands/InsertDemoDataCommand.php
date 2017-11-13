@@ -44,7 +44,7 @@ class InsertDemoDataCommand extends Command
         DB::table('roles')->insert(['name' => 'Web designer']);
 
         //Clients
-        $client1ID = Uuid::uuid4()->toString();
+        /*$client1ID = Uuid::uuid4()->toString();
         $client2ID = Uuid::uuid4()->toString();
         $client3ID = Uuid::uuid4()->toString();
         DB::table('clients')->insert(['id' => $client1ID, 'name' => $faker->company, 'address' => $faker->streetAddress . "\n" .  $faker->city]);
@@ -479,6 +479,6 @@ class InsertDemoDataCommand extends Command
 
         foreach ($ticketsData as $ticketData) {
             app()->make('CreateTicketInteractor')->execute(new CreateTicketRequest($ticketData));
-        }
+        }*/
     }
 }
