@@ -9,20 +9,6 @@
 
 @media only screen and (max-width:1450px) and (min-width: 1200px) {
 
-	.tabs {
-		li {
-			a {
-				padding-left: 1.3rem;
-				padding-right: 1.3rem;
-				font-size: 1.6rem;
-			}
-		}
-
-		.border-bottom {
-			height: 56px;
-		}
-	}
-
 	.last-messages {
 		.table {
 
@@ -38,26 +24,26 @@
 
 @media only screen and (max-width:1200px) and (min-width: 1000px) {
 
-	.tabs {
-		li {
-			a {
-				padding-left: 0.6rem;
-				padding-right: 0.6rem;
-				padding-top: 1rem;
-				padding-bottom: 1rem;
-				font-size: 1.4rem;
-			}
-		}
-
-		.border-bottom {
-			height: 41px;
-		}
-	}
-
 	.progress-template .flex-grid,
 	.spent-time-template .flex-grid {
 		.col {
 			width: 49%;
+		}
+	}
+}
+
+@media only screen and (max-width:1200px) {
+	.tabs {
+		li {
+			a {
+				padding-left: 1.3rem;
+				padding-right: 1.3rem;
+				font-size: 1.6rem;
+			}
+		}
+
+		.border-bottom {
+			height: 4.4rem;
 		}
 	}
 }
@@ -90,17 +76,6 @@
 		}
 	}
 
-	.tabs {
-
-		li {
-			border-bottom: 5px solid white;
-		}
-
-		.border-bottom {
-			display: none;
-		}
-	}
-
 	.table {
 		tr, .template-upload {
 			td {
@@ -126,20 +101,167 @@
 		}
 	}
 
+	.content {
+		min-height: calc(100vh + 14rem);
+	}
+
 	.progress-template .flex-grid,
 	.spent-time-template .flex-grid {
 		.col {
 			width: 49%;
 		}
 	}
-}
-
-@media only screen and (max-width:768px) {
 
 	.progress-template .flex-grid,
 	.spent-time-template .flex-grid {
 		.col {
 			width: 100%;
+		}
+	}
+
+	.table-responsive {
+		border-top: none;
+		border-left: none;
+		border-right: none;
+	}
+
+	.top-bar-container {
+
+		.top-bar {
+			height: auto;
+			padding-left: 0;
+			padding-top: 1.5rem;
+
+			text-align: center;
+
+			.logo {
+				float: none;
+			}
+
+			.top-right-menu {
+				float: none;
+
+				li {
+					margin-right: 1rem;
+
+					&.todo {
+						position: static;
+					}
+
+					.notifications {
+						box-shadow: none;
+						top: 12.4rem;
+						left: 5rem;
+						min-width: 0;
+						width: auto;
+					}
+
+					.todos-link, .notifications-link {
+
+						i {
+							font-size: 2.5rem;
+							position: relative;
+							top: 3px;
+						}
+
+						.badge {
+							font-size: 13px;
+							width: 24px;
+							height: 24px;
+							margin-left: 0;
+							left: 16px;
+							top: -13px;
+						}
+					}
+
+					.avatar {
+						width: 3.5rem;
+						height: auto;
+						margin-right: 0.5rem;
+					}
+
+					.todos {
+						left: 4.9rem;
+						width: auto;
+						right: 0;
+						background: white;
+						top: 12.3rem;
+						
+						.new-todo, .add {
+							display: inline-block;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.left-bar-minified {
+		top: 12.4rem;
+	}
+
+	.dashboard-content {
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
+		padding-top: 1.5rem;
+
+		.reporting {
+			margin-bottom: 1rem;
+		}
+	}
+	
+	.tabs {
+		border-bottom: none;
+
+		li {
+			border-right: none;
+			border-bottom: 5px solid white;
+
+			float: none;
+			text-align: center;
+		}
+	}
+
+	.middle-column {
+		width: auto;
+		margin-top: 2rem;
+		position: static;
+		border-right: none;
+	}
+	
+	.content-page {
+		margin-left: 0 !important;
+	}
+	
+	.hamburger {
+		display: block;
+	}
+
+	.project-bar {
+		.tabs {
+			display: none;
+			position: absolute;
+			z-index: 999;
+			left: 5rem;
+			right: 0;
+			top: 17.2rem;
+			bottom: 0;
+		}
+	}
+
+	.content .templates:last-child {
+		min-height: 0;
+	}
+
+	.occupation-template {
+
+		.month {
+			overflow-x: scroll;
+			overflow-y: hidden;
+
+			table {
+				width: 1500px;
+			}
 		}
 	}
 }

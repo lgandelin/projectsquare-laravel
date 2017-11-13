@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Webaccess\ProjectSquare\Requests\Notifications\ReadNotificationRequest;
 use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
-use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\CreateTaskRequest;
@@ -26,6 +25,7 @@ class TaskController extends BaseController
         parent::__construct($request);
 
         $itemsPerPage = $request->get('it') ? $request->get('it') : env('TASKS_PER_PAGE', 10);
+        $current_sort_order = $request->get('so');
 
         $request->session()->put('tasks_interface', 'tasks');
 
@@ -52,7 +52,8 @@ class TaskController extends BaseController
             ],
             'items_per_page' => $request->get('it') ? $request->get('it') : $itemsPerPage,
             'sort_column' => $request->get('sc'),
-            'sort_order' => ($request->get('so') == 'asc') ? 'desc' : 'asc',
+            'sort_order' => ($current_sort_order == 'asc') ? 'desc' : 'asc',
+            'current_sort_order' => $current_sort_order,
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);

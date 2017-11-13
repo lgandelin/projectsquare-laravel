@@ -4,8 +4,8 @@
             @if (!isset($project_interface))<div class="header" style="background:{{ $project->color }}">{{ $project->name }}</div>@endif
             <table class="table table-bordered">
                 <tr>
-                    <td>{{ trans('projectsquare::spent_time.phases_tasks') }}</td>
-                    <td>{{ trans('projectsquare::spent_time.spent_time') }}</td>
+                    <td>{{ __('projectsquare::spent_time.phases_tasks') }}</td>
+                    <td>{{ __('projectsquare::spent_time.spent_time') }}</td>
                 </tr>
 
                 @foreach ($project->phases as $phase)
@@ -29,8 +29,8 @@
                                             @endif
 
                                             <span class="name">{{ $task->title }}</span>
-                                            @if ($task->estimatedTimeDays > 0)<span class="duration"> <strong>Temps estimé :</strong> {{ $task->estimatedTimeDays }} jour(s)</span> @endif
-                                            @if ($task->spentTimeDays > 0)<br/><span class="duration"> <strong>Temps passé :</strong> {{ $task->spentTimeDays }} jour(s)</span> @endif
+                                            @if ($task->estimatedTimeDays > 0)<span class="duration"> <strong>{{ __('projectsquare::spent_time.estimated_time') }} :</strong> {{ $task->estimatedTimeDays }} {{ __('projectsquare::generic.days') }}</span> @endif
+                                            @if ($task->spentTimeDays > 0)<br/><span class="duration"> <strong>{{ __('projectsquare::spent_time.spent_time') }} :</strong> {{ $task->spentTimeDays }} {{ __('projectsquare::generic.days') }}</span> @endif
                                         </div>
                                     </div>
                                 @endforeach
@@ -45,7 +45,7 @@
                     </tr>
                 @endforeach
                 <tr>
-                    <td style="text-align: right;">Total</td>
+                    <td style="text-align: right;">{{ __('projectsquare::generic.total') }}</td>
                     <td width="20%" class="total" style="color: white; @if ($project->differenceSpentEstimated > 0) background-color: #f25f65;
                     @elseif ($project->differenceSpentEstimated < 0) background-color: #b0d878; @endif">
                         @if ($project->differenceSpentEstimated > 0)+{{ $project->differenceSpentEstimated }}j
@@ -57,5 +57,5 @@
         </div>
     </div>
 @elseif (isset($project_interface))
-    <div class="no-entry">Aucune phase associée au projet.</div>
+    <div class="no-entry">{{ __('projectsquare::sepnt_time.no_phase') }}</div>
 @endif

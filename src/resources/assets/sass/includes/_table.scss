@@ -60,7 +60,8 @@
         font-size: 1.8rem;
 
         th {
-             font-weight: 400;
+            font-weight: 400;
+            border-bottom-width: 1px !important;
 
             &:first-child {
                 padding-left: 1rem;

@@ -13,11 +13,11 @@
     @endif
 
     <div class="page-header">
-        <h1>{{ trans('projectsquare::projects.tasks') }}</h1>
+        <h1>{{ __('projectsquare::projects.tasks') }}</h1>
         <a href="{{ route('projects_index') }}" class="btn back"></a>
-        <span class="button-import-phases-tasks">Importer <i class="glyphicon glyphicon-save"></i>
+        <span class="button-import-phases-tasks">{{ __('projectsquare::generic.import') }} <i class="glyphicon glyphicon-save"></i>
             @include('projectsquare::includes.tooltip', [
-                'text' => trans('projectsquare::tooltips.import_phases_and_tasks')
+                'text' => __('projectsquare::tooltips.import_phases_and_tasks')
             ])
         </span>
     </div>
@@ -30,7 +30,7 @@
                         <input type="text" class="input-phase-name" value="{{ $phase->name }}" />
                         <a tabindex="-1" href="#" class="btn cancel btn-delete delete-phase"></a>
                         <span class="glyphicon glyphicon-triangle-top toggle-tasks"></span>
-                        <span class="phase-duration"><span class="value">{{ $phase->estimatedDuration }}</span> jour(s)</span>
+                        <span class="phase-duration"><span class="value">{{ $phase->estimatedDuration }}</span> {{ __('projectsquare::generic.days') }}</span>
                     </div>
 
                     <div class="tasks">
@@ -39,20 +39,20 @@
                                 <div class="task-wrapper">
                                     <input type="text" class="input-task-name" value="{{ $task->title }}" />
                                     <a tabindex="-1" href="#" class="btn cancel delete-task"></a>
-                                    <input class="input-task-duration" type="text" placeholder="durée en j." value="{{ $task->estimatedTimeDays }}" />
+                                    <input class="input-task-duration" type="text" placeholder="{{ __('projectsquare::project_tasks.duration_in_days') }}" value="{{ $task->estimatedTimeDays }}" />
                                 </div>
                             </div>
                         @endforeach
 
-                        <div class="placeholder add-task">Ajouter une tâche</div>
+                        <div class="placeholder add-task">{{ __('projectsquare::project_tasks.add_task') }}</div>
                     </div>
                 </div>
             @endforeach
         </div>
-        <div class="placeholder add-phase">Ajouter une phase</div>
+        <div class="placeholder add-phase">{{ __('projectsquare::project_tasks.add_phase') }}</div>
 
-        <span class="loading" style="display: none">Sauvegarde ...</span>
-        <button class="btn valid-phases"><i class="glyphicon glyphicon-ok"></i> Valider</button>
+        <span class="loading" style="display: none">{{ __('projectsquare::project_tasks.saving') }}</span>
+        <button class="btn valid-phases"><i class="glyphicon glyphicon-ok"></i> {{ __('projectsquare::generic.valid') }}</button>
     </div>
 
     <input type="hidden" id="phase_ids_to_delete" value="" />
@@ -68,29 +68,21 @@
                 <form action="{{ route('projects_import_phases_and_tasks_from_text') }}" method="post">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Importez vos phases et tâches</h4>
+                        <h4 class="modal-title">{{ __('projectsquare::project_tasks.import_tasks_and_phases') }}</h4>
                     </div>
                     <div class="modal-body">
                         <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="notice">
-                                <span class="title">Collez votre liste ici</span>
+                                <span class="title">{{ __('projectsquare::project_tasks.paste_your_list_here') }}</span>
                                 <ul>
-                                    <li>les phases doivent être préfixées par un "<span class="highlight">#</span>"</li>
-                                    <li>les phases et tâches doivent être sur une seule ligne</li>
-                                    <li>il est possible de spécifier une durée estimée aux tâches en rajoutant un "<span class="highlight">;</span>" suivi de la durée (en chiffres)</li>
+                                    <li>{{ __('projectsquare::project_tasks.import_instructions.1') }} "<span class="highlight">#</span>"</li>
+                                    <li>{{ __('projectsquare::project_tasks.import_instructions.2') }}</li>
+                                    <li>{{ __('projectsquare::project_tasks.import_instructions.3') }} "<span class="highlight">;</span>" {{ __('projectsquare::project_tasks.import_instructions.4') }}</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-12">
-                            <textarea name="text" data-placeholder="# Webdesign
-Création des mockups; 1
-Ergonomie; 1
-Déclinaisons webdesign; 3.5
-
-# Développement
-Création de la structure du site et des pages; 1.5
-Intégration; 3.5
-Tests et livraison; 0.5" rows="10"></textarea>
+                            <textarea name="text" data-placeholder="{{ __('projectsquare::project_tasks.import_textarea_placeholder') }}" rows="10"></textarea>
                         </div>
 
                         <input type="hidden" name="project_id" value="{{ $project_id }}" />
@@ -98,8 +90,8 @@ Tests et livraison; 0.5" rows="10"></textarea>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn valid"><i class="glyphicon glyphicon-save"></i> Importer</button>
-                        <button type="button" class="btn button" data-dismiss="modal"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.cancel') }}</button>
+                        <button type="submit" class="btn valid"><i class="glyphicon glyphicon-save"></i> {{ __('projectsquare::generic.import') }}</button>
+                        <button type="button" class="btn button" data-dismiss="modal"><span class="glyphicon glyphicon-arrow-left"></span> {{ __('projectsquare::generic.cancel') }}</button>
                     </div>
                 </form>
             </div>

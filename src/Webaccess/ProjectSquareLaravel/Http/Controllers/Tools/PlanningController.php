@@ -59,7 +59,7 @@ class PlanningController extends BaseController
                     'userID' => $this->getUser()->id,
                     'projectID' => Input::get('filter_project'),
                     'phaseID' => false,
-                    'allocatedUserID' => 0,
+                    'allocatedUserID' => null,
                 ]))
             )
         ]);
@@ -87,7 +87,7 @@ class PlanningController extends BaseController
     {
         try {
             $response = app()->make('CreateEventInteractor')->execute(new CreateEventRequest([
-                'name' => Input::get('name'),
+                'name' => rtrim(Input::get('name')),
                 'userID' => Input::get('user_id') ? Input::get('user_id') : $this->getUser()->id,
                 'startTime' => new \DateTime(Input::get('start_time')),
                 'endTime' => new \DateTime(Input::get('end_time')),
@@ -113,7 +113,7 @@ class PlanningController extends BaseController
         try {
             $response = app()->make('UpdateEventInteractor')->execute(new UpdateEventRequest([
                 'eventID' => Input::get('event_id'),
-                'name' => Input::get('name'),
+                'name' => rtrim(Input::get('name')),
                 'startTime' => new \DateTime(Input::get('start_time')),
                 'endTime' => new \DateTime(Input::get('end_time')),
                 'projectID' => Input::get('project_id'),

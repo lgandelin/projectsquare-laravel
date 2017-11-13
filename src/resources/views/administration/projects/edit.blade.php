@@ -5,11 +5,11 @@
         <div class="agency-projects-template {{ $tab }}-project-template">
 
             <ul class="tabs">
-                <li @if ($tab == 'infos')class="current"@endif><a href="{{ route('projects_edit', ['uuid' => $project->id]) }}">Infos</a></li>
-                <li @if ($tab == 'team')class="current"@endif><a href="{{ route('projects_edit_team', ['uuid' => $project->id]) }}">Equipe</a></li>
-                <li @if ($tab == 'tasks')class="current"@endif><a href="{{ route('projects_edit_tasks', ['uuid' => $project->id]) }}">Phases / Tâches</a></li>
-                <li @if ($tab == 'attribution')class="current"@endif><a href="{{ route('projects_edit_attribution', ['uuid' => $project->id]) }}">Attribution</a></li>
-                <li @if ($tab == 'config')class="current"@endif><a href="{{ route('projects_edit_config', ['uuid' => $project->id]) }}">Configuration</a></li>
+                <li @if ($tab == 'infos')class="current"@endif><a href="{{ route('projects_edit', ['uuid' => $project->id]) }}">{{ __('projectsquare::project_infos.tabs.infos') }}</a></li>
+                <li @if ($tab == 'team')class="current"@endif><a href="{{ route('projects_edit_team', ['uuid' => $project->id]) }}">{{ __('projectsquare::project_infos.tabs.team') }}</a></li>
+                <li @if ($tab == 'tasks')class="current"@endif><a href="{{ route('projects_edit_tasks', ['uuid' => $project->id]) }}">{{ __('projectsquare::project_infos.tabs.tasks') }}</a></li>
+                <li @if ($tab == 'attribution')class="current"@endif><a href="{{ route('projects_edit_attribution', ['uuid' => $project->id]) }}">{{ __('projectsquare::project_infos.tabs.attribution') }}</a></li>
+                <li @if ($tab == 'config')class="current"@endif><a href="{{ route('projects_edit_config', ['uuid' => $project->id]) }}">{{ __('projectsquare::project_infos.tabs.configuration') }}</a></li>
                 <li class="border-bottom"></li>
             </ul>
 

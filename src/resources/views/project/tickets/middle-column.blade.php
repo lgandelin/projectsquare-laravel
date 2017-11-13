@@ -2,7 +2,7 @@
 
     <div class="parent">
         <div class="parent-wrapper create">
-            <a href="{{ route('tickets_add') }}"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ trans('projectsquare::tickets.add_ticket') }}</a>
+            <a href="{{ route('tickets_add') }}"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ __('projectsquare::tickets.add_ticket') }}</a>
         </div>
     </div>
 
@@ -33,7 +33,7 @@
                                         <span class="name">{{ $ticket->title }}</span>
 
                                         @if (isset($ticket->last_state) && isset($ticket->last_state->priority))
-                                            <span class="priority priority-{{ $ticket->last_state->priority }}" title="{{ trans('projectsquare::generic.priority-' . $ticket->last_state->priority) }}"></span>
+                                            <span class="priority priority-{{ $ticket->last_state->priority }}" title="{{ __('projectsquare::generic.priority-' . $ticket->last_state->priority) }}"></span>
                                         @endif
                                     </a>
                                 </div>

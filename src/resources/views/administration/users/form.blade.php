@@ -1,47 +1,47 @@
 <form action="{{ $form_action }}" method="post">
     <div class="form-group">
-        <label for="first_name">{{ trans('projectsquare::users.first_name') }}</label>
-        <input class="form-control" type="text" placeholder="{{ trans('projectsquare::users.first_name') }}" name="first_name" @if (isset($user_first_name))value="{{ $user_first_name }}"@endif />
+        <label for="first_name">{{ __('projectsquare::users.first_name') }}</label>
+        <input class="form-control" type="text" placeholder="{{ __('projectsquare::users.first_name') }}" name="first_name" @if (isset($user_first_name))value="{{ $user_first_name }}"@endif />
     </div>
 
     <div class="form-group">
-        <label for="last_name">{{ trans('projectsquare::users.last_name') }}</label>
-        <input class="form-control" type="text" placeholder="{{ trans('projectsquare::users.last_name') }}" name="last_name" @if (isset($user_last_name))value="{{ $user_last_name }}"@endif />
+        <label for="last_name">{{ __('projectsquare::users.last_name') }}</label>
+        <input class="form-control" type="text" placeholder="{{ __('projectsquare::users.last_name') }}" name="last_name" @if (isset($user_last_name))value="{{ $user_last_name }}"@endif />
     </div>
 
     <div class="form-group">
-        <label for="email">{{ trans('projectsquare::users.email') }}</label>
-        <input class="form-control" type="text" placeholder="{{ trans('projectsquare::users.email') }}" name="email" @if (isset($user_email))value="{{ $user_email }}"@endif autocomplete="off" />
+        <label for="email">{{ __('projectsquare::users.email') }}</label>
+        <input class="form-control" type="text" placeholder="{{ __('projectsquare::users.email') }}" name="email" @if (isset($user_email))value="{{ $user_email }}"@endif autocomplete="off" />
     </div>
 
     @if ($password_field)
         <div class="form-group">
-            <label for="password">{{ trans('projectsquare::users.password') }}</label><br/>
-            <input class="form-control" type="password" placeholder="{{ trans('projectsquare::users.password') }}" name="password" autocomplete="off" />
+            <label for="password">{{ __('projectsquare::users.password') }}</label><br/>
+            <input class="form-control" type="password" placeholder="{{ __('projectsquare::users.password') }}" name="password" autocomplete="off" />
         </div>
 
         <div class="form-group">
-            <label for="password_confirmation">{{ trans('projectsquare::my.password_confirmation') }}</label><br/>
-            <input class="form-control" type="password" placeholder="{{ trans('projectsquare::my.password_confirmation') }}" name="password_confirmation" autocomplete="off" />
+            <label for="password_confirmation">{{ __('projectsquare::my.password_confirmation') }}</label><br/>
+            <input class="form-control" type="password" placeholder="{{ __('projectsquare::my.password_confirmation') }}" name="password_confirmation" autocomplete="off" />
         </div>
     @else
         <div class="form-group">
             <a href="{{ route('users_generate_password', ['id' => $user_id]) }}">
                 <span class="btn btn-primary button">
                     <span class="glyphicon glyphicon-repeat"></span>
-                    {{ trans('projectsquare::users.generate_password') }}
+                    {{ __('projectsquare::users.generate_password') }}
                 </span></a>
 
             @include('projectsquare::includes.tooltip', [
-                'text' => trans('projectsquare::users.generate_password_notice')
+                'text' => __('projectsquare::users.generate_password_notice')
             ])
         </div>
     @endif
 
     <div class="form-group">
-        <label for="role">{{ trans('projectsquare::users.profile') }}</label><br/>
+        <label for="role">{{ __('projectsquare::users.profile') }}</label><br/>
         <select class="form-control" name="role_id" id="role_id" required>
-            <option value="">{{ trans('projectsquare::generic.choose_value') }}</option>
+            <option value="">{{ __('projectsquare::generic.choose_value') }}</option>
             @foreach ($roles as $role)
                 <option value="{{ $role->id }}" @if (isset($user_role_id) && $user_role_id == $role->id)selected="selected" @endif>{{ $role->name }}</option>
             @endforeach
@@ -49,14 +49,14 @@
     </div>
 
     <div class="form-group">
-        <label for="is_administrator">{{ trans('projectsquare::users.is_administrator') }}</label><br/>
-        Oui <input type="radio" placeholder="{{ trans('projectsquare::users.is_administrator') }}" name="is_administrator" value="y" @if (isset($is_administrator) && $is_administrator) checked @endif autocomplete="off" />
-        Non <input type="radio" placeholder="{{ trans('projectsquare::users.is_administrator') }}" name="is_administrator" value="n" @if (isset($is_administrator) && !$is_administrator) checked @endif @if (!isset($is_administrator)) checked @endif autocomplete="off" />
+        <label for="is_administrator">{{ __('projectsquare::users.is_administrator') }}</label><br/>
+        Oui <input type="radio" placeholder="{{ __('projectsquare::users.is_administrator') }}" name="is_administrator" value="y" @if (isset($is_administrator) && $is_administrator) checked @endif autocomplete="off" />
+        Non <input type="radio" placeholder="{{ __('projectsquare::users.is_administrator') }}" name="is_administrator" value="n" @if (isset($is_administrator) && !$is_administrator) checked @endif @if (!isset($is_administrator)) checked @endif autocomplete="off" />
     </div>
 
     <div class="form-group">
         <button type="submit" class="btn valid">
-            <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
+            <i class="glyphicon glyphicon-ok"></i> {{ __('projectsquare::generic.valid') }}
         </button>
     </div>
 

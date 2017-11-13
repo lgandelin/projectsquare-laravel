@@ -1,32 +1,32 @@
 <div class="block last-tickets">
     <div class="block-content table-responsive">
-        <h3>{{ trans('projectsquare::dashboard.last_tickets') }}
+        <h3>{{ __('projectsquare::dashboard.last_tickets') }}
 
             @include('projectsquare::includes.tooltip', [
-                'text' => trans('projectsquare::tooltips.tickets')
+                'text' => __('projectsquare::tooltips.tickets')
             ])
 
             @if ($is_client)
-                <a href="{{ route('project_tickets', ['id' => $current_project->id]) }}" class="all pull-right" title="{{ trans('projectsquare::dashboard.tickets_list') }}"></a>
+                <a href="{{ route('project_tickets', ['id' => $current_project->id]) }}" class="all pull-right" title="{{ __('projectsquare::dashboard.tickets_list') }}"></a>
             @else
-                <a href="{{ route('tickets_index') }}" class="all pull-right" title="{{ trans('projectsquare::dashboard.tickets_list') }}"></a>
+                <a href="{{ route('tickets_index') }}" class="all pull-right" title="{{ __('projectsquare::dashboard.tickets_list') }}"></a>
             @endif
 
-            <a href="{{ route('tickets_add') }}" class="add pull-right" title="{{ trans('projectsquare::dashboard.add_ticket') }}"></a>
-            <a href="#" class="glyphicon glyphicon-move move-widget pull-right" title="{{ trans('projectsquare::dashboard.move_widget') }}"></a>
+            <a href="{{ route('tickets_add') }}" class="add pull-right" title="{{ __('projectsquare::dashboard.add_ticket') }}"></a>
+            <a href="#" class="glyphicon glyphicon-move move-widget pull-right" title="{{ __('projectsquare::dashboard.move_widget') }}"></a>
         </h3>
 
         <table class="table table-striped">
             <thead>
             <tr>
                 <th></th>
-                <th>{{ trans('projectsquare::tickets.ticket') }}</th>
-                <th style="text-align: center;">{{ trans('projectsquare::tickets.priority') }}</th>
-                <th>{{ trans('projectsquare::tickets.type') }}</th>
-                <th>{{ trans('projectsquare::tickets.status') }}</th>
-                <th>{{ trans('projectsquare::tickets.allocated_user') }}</th>
+                <th>{{ __('projectsquare::tickets.ticket') }}</th>
+                <th style="text-align: center;">{{ __('projectsquare::tickets.priority') }}</th>
+                <th>{{ __('projectsquare::tickets.type') }}</th>
+                <th>{{ __('projectsquare::tickets.status') }}</th>
+                <th>{{ __('projectsquare::tickets.allocated_user') }}</th>
 
-                <th>{{ trans('projectsquare::generic.action') }}</th>
+                <th>{{ __('projectsquare::generic.action') }}</th>
             </tr>
             </thead>
 
@@ -41,7 +41,7 @@
                     </td>
                     <td align="center">
                         <a href="{{ route('project_tickets_edit', ['uuid' => $ticket->project_id, 'ticket_uuid' => $ticket->id]) }}">
-                            @if (isset($ticket->last_state))<span class="priority priority-{{ $ticket->last_state->priority }}" title="{{ trans('projectsquare::generic.priority-' . $ticket->last_state->priority) }}"></span>@endif
+                            @if (isset($ticket->last_state))<span class="priority priority-{{ $ticket->last_state->priority }}" title="{{ __('projectsquare::generic.priority-' . $ticket->last_state->priority) }}"></span>@endif
                         </a>
                     </td>
                     <td>
@@ -67,7 +67,7 @@
                         </a>
                     </td>
                     <td align="right">
-                        <a href="{{ route('project_tickets_edit', ['uuid' => $ticket->project_id, 'ticket_uuid' => $ticket->id]) }}" title="{{ trans('projectsquare::dashboard.see_ticket') }}">
+                        <a href="{{ route('project_tickets_edit', ['uuid' => $ticket->project_id, 'ticket_uuid' => $ticket->id]) }}" title="{{ __('projectsquare::dashboard.see_ticket') }}">
                             <i class="btn btn-sm btn-primary see-more"></i>
                         </a>
                     </td>

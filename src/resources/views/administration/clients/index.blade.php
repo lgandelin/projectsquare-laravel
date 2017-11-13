@@ -4,9 +4,9 @@
     <div class="content-page">
         <div class="templates">
             <div class="page-header">
-                <h1>{{ trans('projectsquare::clients.clients_list') }}
+                <h1>{{ __('projectsquare::clients.clients_list') }}
                     @include('projectsquare::includes.tooltip', [
-                        'text' => trans('projectsquare::tooltips.clients_list')
+                        'text' => __('projectsquare::tooltips.clients_list')
                   ])
                 </h1>
             </div>
@@ -27,9 +27,9 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>{{ trans('projectsquare::clients.client') }}<a href="{{ route('clients_index', ['sc' => 'name', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-alpha-{{ $sort_order }}"></i></a></th>
-                    <th>{{ trans('projectsquare::clients.creation_date') }}<a href="{{ route('clients_index', ['sc' => 'created_at', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-{{ $sort_order }}"></i></a></th>
-                    <th align="right">{{ trans('projectsquare::generic.action') }}</th>
+                    <th>{{ __('projectsquare::clients.client') }}<a href="{{ route('clients_index', ['sc' => 'name', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-alpha-{{ $sort_order }}"></i></a></th>
+                    <th>{{ __('projectsquare::clients.creation_date') }}<a href="{{ route('clients_index', ['sc' => 'created_at', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-{{ $sort_order }}"></i></a></th>
+                    <th align="right">{{ __('projectsquare::generic.action') }}</th>
                 </tr>
                 </thead>
 
@@ -63,7 +63,7 @@
 
             <div class="text-center">
                 @include('projectsquare::administration.includes.items_per_page')
-                {{ $clients->appends(['it' => $items_per_page, 'sc' => $sort_column, 'so' => $sort_order])->links() }}
+                {{ $clients->appends(['it' => $items_per_page, 'sc' => $sort_column, 'so' => $current_sort_order])->links() }}
             </div>
         </div>
     </div>

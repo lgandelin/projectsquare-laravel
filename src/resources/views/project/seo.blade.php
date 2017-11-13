@@ -4,9 +4,9 @@
     @include('projectsquare::includes.project_bar', ['active' => 'seo'])
     <div class="content-page">
         <div class="templates seo-template">
-            <h1 class="page-header">{{ trans('projectsquare::project.seo') }}
+            <h1 class="page-header">{{ __('projectsquare::project.seo') }}
                  @include('projectsquare::includes.tooltip', [
-                        'text' => trans('projectsquare::tooltips.seo_title')
+                        'text' => __('projectsquare::tooltips.seo_title')
                   ])
             </h1>
 
@@ -15,36 +15,36 @@
 
                 <div class="row">
                     <div class="col-lg-9">
-                        <h3>{{ trans('projectsquare::seo.indicator') }}</h3>
+                        <h3>{{ __('projectsquare::seo.indicator') }}</h3>
                         <br>
 
                         <div class="col-lg-4">
-                            <p class="text-seo">{{ trans('projectsquare::seo.sessions') }} <span id="sessions-count" class="number"></span></p>
-                            <p class="text-seo">{{ trans('projectsquare::seo.users') }} <span id="users-count" class="number"></span></p>
-                            <p class="text-seo">{{ trans('projectsquare::seo.pages_per_visit') }} <span id="pages-per-visit" class="number"></span></p>
+                            <p class="text-seo">{{ __('projectsquare::seo.sessions') }} <span id="sessions-count" class="number"></span></p>
+                            <p class="text-seo">{{ __('projectsquare::seo.users') }} <span id="users-count" class="number"></span></p>
+                            <p class="text-seo">{{ __('projectsquare::seo.pages_per_visit') }} <span id="pages-per-visit" class="number"></span></p>
                         </div>
 
                         <div class="col-lg-4">
-                            <p class="text-seo">{{ trans('projectsquare::seo.pages_views') }} <span id="page-views-count" class="number"></span></p>
-                            <p class="text-seo">{{ trans('projectsquare::seo.during_session') }} <span id="avg-session-duration" class="number"></span></p>
+                            <p class="text-seo">{{ __('projectsquare::seo.pages_views') }} <span id="page-views-count" class="number"></span></p>
+                            <p class="text-seo">{{ __('projectsquare::seo.during_session') }} <span id="avg-session-duration" class="number"></span></p>
                         </div>
 
                         <div class="col-lg-4">
-                            <p class="text-seo">{{ trans('projectsquare::seo.rebound_rate') }} <span id="bounce-rate" class="number"></span></p>
-                            <p class="text-seo">{{ trans('projectsquare::seo.news_visits') }} <span id="new-visits-pct" class="number"></span></p>
+                            <p class="text-seo">{{ __('projectsquare::seo.rebound_rate') }} <span id="bounce-rate" class="number"></span></p>
+                            <p class="text-seo">{{ __('projectsquare::seo.news_visits') }} <span id="new-visits-pct" class="number"></span></p>
                         </div>
                     </div>
 
                 <div class="col-lg-3">
-                    <h3>{{ trans('projectsquare::seo.period') }}</h3>
+                    <h3>{{ __('projectsquare::seo.period') }}</h3>
                     <br>
                     <div class="form-group col-lg-6">
-                        <label for="title" class="text-seo">{{ trans('projectsquare::seo.start_date') }}</label>
+                        <label for="title" class="text-seo">{{ __('projectsquare::seo.start_date') }}</label>
                         <input class="form-control datepicker button" type="text" placeholder="" id="start_date" autocomplete="off" value="{{ $startDate }}" style="width:175px" />
                     </div>
 
                     <div class="form-group col-lg-6">
-                        <label for="title" class="text-seo">{{ trans('projectsquare::seo.end_date') }}</label>
+                        <label for="title" class="text-seo">{{ __('projectsquare::seo.end_date') }}</label>
                         <input class="form-control datepicker button" type="text" placeholder="" id="end_date" autocomplete="off" value="{{ $endDate }}" style="width:175px" />
                     </div>
                     <div id="date-range-selector-1-container"></div>
@@ -54,7 +54,7 @@
             <div class="row" style="margin-top: 5rem">
 
                 <div class="col-lg-12">
-                    <h3>{{ trans('projectsquare::seo.sessions') }}</h3>
+                    <h3>{{ __('projectsquare::seo.sessions') }}</h3>
                     <div id="chart-container" class="loading" style="min-height: 250px"></div>
                 </div>
             </div>
@@ -62,22 +62,22 @@
             <div class="row" style="margin-top: 5rem">
 
                 <div class="col-lg-4">
-                    <h3>{{ trans('projectsquare::seo.browsers') }}</h3>
+                    <h3>{{ __('projectsquare::seo.browsers') }}</h3>
                     <div id="chart-3-container" class="loading" style="min-height: 250px"></div>
                 </div>
 
                 <div class="col-lg-4">
-                    <h3>{{ trans('projectsquare::seo.platform') }}</h3>
+                    <h3>{{ __('projectsquare::seo.platform') }}</h3>
                     <div id="chart-4-container" class="loading" style="min-height: 250px"></div>
                 </div>
 
                 <div class="col-lg-4">
-                    <h3>{{ trans('projectsquare::seo.countries') }}</h3>
+                    <h3>{{ __('projectsquare::seo.countries') }}</h3>
                     <div id="chart-2-container" class="loading" style="min-height: 250px"></div>
                 </div>
             </div>
         @else
-            {{ trans('projectsquare::seo.id') }}
+            {{ __('projectsquare::seo.id') }}
         @endif
     </div>
 

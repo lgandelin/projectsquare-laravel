@@ -41,7 +41,8 @@ class EloquentEventRepository implements EventRepository
         }
         foreach ($eventsModel->get() as $eventModel) {
             $event = $this->getEventEntity($eventModel);
-
+            $event->name = rtrim($event->name);
+            
             //Event duration
             $durationInMinutes = 8 * 60;
             if ($event->endTime->format('Y-m-d') == $event->startTime->format('Y-m-d')) {

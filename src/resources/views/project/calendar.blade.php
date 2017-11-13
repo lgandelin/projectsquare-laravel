@@ -4,9 +4,9 @@
     @include('projectsquare::includes.project_bar', ['active' => 'calendar'])
     <div class="content-page">
         <div class="templates settings-template">
-            <h1 class="page-header">{{ trans('projectsquare::project.calendar') }}
+            <h1 class="page-header">{{ __('projectsquare::project.calendar') }}
                 @include('projectsquare::includes.tooltip', [
-                    'text' => trans('projectsquare::tooltips.calendar_title')
+                    'text' => __('projectsquare::tooltips.calendar_title')
                 ])
             </h1>
 
@@ -25,34 +25,34 @@
             <div class="row">
                 <div id="calendar" class="col-md-9"></div>
                 <div id="step-infos" class="col-md-3">
-                    <h3>{{ trans('projectsquare::calendar.informations') }}</h3>
+                    <h3>{{ __('projectsquare::calendar.informations') }}</h3>
 
                     <div class="wrapper" style="display: none">
                         <div class="loading" style="display: none"></div>
 
                         <div class="form-group">
-                            <label for="name">{{ trans('projectsquare::calendar.name') }}</label>
-                            <input type="text" class="form-control name" placeholder="{{ trans('projectsquare::calendar.name') }}" value="" />
+                            <label for="name">{{ __('projectsquare::calendar.name') }}</label>
+                            <input type="text" class="form-control name" placeholder="{{ __('projectsquare::calendar.name') }}" value="" />
                         </div>
 
                         <div class="form-group">
-                            <label for="name">{{ trans('projectsquare::calendar.start_time') }}</label><br/>
+                            <label for="name">{{ __('projectsquare::calendar.start_time') }}</label><br/>
                             <input type="text" class="form-control start_time datepicker" placeholder="dd/mm/YYYY" value="" style="width: 200px; display: inline-block" />
                         </div>
 
                         <div class="form-group">
-                            <label for="name">{{ trans('projectsquare::calendar.end_time') }}</label><br/>
+                            <label for="name">{{ __('projectsquare::calendar.end_time') }}</label><br/>
                             <input type="text" class="form-control end_time datepicker" placeholder="dd/mm/YYYY" value="" style="width: 200px; display: inline-block" />
                         </div>
 
                         <div class="form-group">
-                            <label for="name">{{ trans('projectsquare::calendar.color') }}</label>
-                            <input type="text" name="color" class="form-control colorpicker" data-control="saturation" placeholder="{{ trans('projectsquare::calendar.color') }}" value="" size="7">
+                            <label for="name">{{ __('projectsquare::calendar.color') }}</label>
+                            <input type="text" name="color" class="form-control colorpicker" data-control="saturation" placeholder="{{ __('projectsquare::calendar.color') }}" value="" size="7">
                         </div>
 
                         <input type="hidden" class="id" value="" />
-                        <button class="btn valid btn-valid"><i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}</button>
-                        <button class="btn back btn-close"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.close') }}</button>
+                        <button class="btn valid btn-valid"><i class="glyphicon glyphicon-ok"></i> {{ __('projectsquare::generic.valid') }}</button>
+                        <button class="btn back btn-close"><span class="glyphicon glyphicon-arrow-left"></span> {{ __('projectsquare::generic.close') }}</button>
                     </div>
                 </div>
 

@@ -23,7 +23,7 @@
                             @endif
 
                             @if (isset($ticket->last_state) && isset($ticket->last_state->priority))
-                                <span class="priority priority-{{ $ticket->last_state->priority }}" title="{{ trans('projectsquare::generic.priority-' . $ticket->last_state->priority) }}"></span>
+                                <span class="priority priority-{{ $ticket->last_state->priority }}" title="{{ __('projectsquare::generic.priority-' . $ticket->last_state->priority) }}"></span>
                             @endif
 
                             <span class="name">{{ $ticket->title }}</span>

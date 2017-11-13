@@ -2,10 +2,8 @@
 
 namespace Webaccess\ProjectSquareLaravel\Listeners\Messages\Emails;
 
-use Illuminate\Support\Facades\Mail;
 use Webaccess\ProjectSquare\Events\Messages\CreateMessageEvent;
-use Webaccess\ProjectSquareLaravel\Jobs\MessageCreatedEmailJob;
-use Webaccess\ProjectSquareLaravel\Models\Message;
+use Webaccess\ProjectSquareLaravel\Jobs\Messages\MessageCreatedEmailJob;
 
 class MessageCreatedEmailNotification
 {

@@ -4,9 +4,9 @@
     <div class="content-page">
         <div class="templates">
             <div class="page-header">
-                <h1>{{ trans('projectsquare::ticket_statuses.ticket_statuses_list') }}
+                <h1>{{ __('projectsquare::ticket_statuses.ticket_statuses_list') }}
                     @include('projectsquare::includes.tooltip', [
-                        'text' => trans('projectsquare::tooltips.tickets_statuses_list')
+                        'text' => __('projectsquare::tooltips.tickets_statuses_list')
                   ])
                 </h1>
             </div>
@@ -28,8 +28,8 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>{{ trans('projectsquare::ticket_statuses.ticket_status') }}</th>
-                        <th>{{ trans('projectsquare::generic.action') }}</th>
+                        <th>{{ __('projectsquare::ticket_statuses.ticket_status') }}</th>
+                        <th>{{ __('projectsquare::generic.action') }}</th>
                     </tr>
                 </thead>
 

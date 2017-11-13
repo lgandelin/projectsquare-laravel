@@ -4,7 +4,7 @@
     <div class="content-page">
         <div class="templates spent-time-template">
             <div class="page-header">
-                <h1>{{ trans('projectsquare::spent_time.spent_time') }}</h1>
+                <h1>{{ __('projectsquare::spent_time.spent_time') }}</h1>
             </div>
 
             <div class="flex-grid">

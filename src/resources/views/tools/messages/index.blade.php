@@ -4,9 +4,9 @@
     <div class="content-page">
         <div class="templates messages-template">
             <div class="page-header">
-                <h1>{{ trans('projectsquare::messages.messages') }}
+                <h1>{{ __('projectsquare::messages.messages') }}
                     @include('projectsquare::includes.tooltip', [
-                        'text' => trans('projectsquare::tooltips.messages')
+                        'text' => __('projectsquare::tooltips.messages')
                     ])
                 </h1>
             </div>
@@ -14,11 +14,11 @@
             <form method="get">
                 <div class="row">
 
-                    <h2>{{ trans('projectsquare::messages.filters') }}</h2>
+                    <h2>{{ __('projectsquare::messages.filters') }}</h2>
 
                     <div class="form-group col-md-2">
                         <select class="form-control" name="filter_project" id="filter_project">
-                            <option value="">{{ trans('projectsquare::tickets.filters.by_project') }}</option>
+                            <option value="">{{ __('projectsquare::tickets.filters.by_project') }}</option>
                             @foreach ($projects as $project)
                                 <option value="{{ $project->id }}" @if ($filters['project'] == $project->id)selected="selected" @endif>@if (isset($project->client)){{ $project->client->name }} -@endif {{ $project->name }}</option>
                             @endforeach
@@ -32,11 +32,11 @@
                     <thead>
                     <tr>
                         <th></th>
-                        <th>{{ trans('projectsquare::messages.title') }}</th>
-                        <th>{{ trans('projectsquare::messages.date') }}</th>
-                        <th>{{ trans('projectsquare::messages.client') }}</th>
-                        <th>{{ trans('projectsquare::messages.author') }}</th>
-                        <th>{{ trans('projectsquare::messages.action') }}</th>
+                        <th>{{ __('projectsquare::messages.title') }}</th>
+                        <th>{{ __('projectsquare::messages.date') }}</th>
+                        <th>{{ __('projectsquare::messages.client') }}</th>
+                        <th>{{ __('projectsquare::messages.author') }}</th>
+                        <th>{{ __('projectsquare::messages.action') }}</th>
                     </tr>
                     </thead>
                     @foreach ($conversations as $conversation)

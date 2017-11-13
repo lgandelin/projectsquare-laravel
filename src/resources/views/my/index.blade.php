@@ -4,7 +4,7 @@
     <div class="content-page">
         <div class="templates">
             <div class="page-header">
-                <h1>{{ trans('projectsquare::my.panel_title') }}</h1>
+                <h1>{{ __('projectsquare::my.panel_title') }}</h1>
                 <a href="{{ route('dashboard') }}" class=" back"></a>
             </div>
 
@@ -22,38 +22,38 @@
 
             <div class="my-profile-template row">
                 <div class="col-lg-8">
-                    <h2>Informations personnelles</h2>
+                    <h2>{{ __('projectsquare::my.personal_info') }}</h2>
 
                     <form action="{{ route('my_profile_update') }}" method="post">
                         <div class="form-group">
-                            <label for="first_name">{{ trans('projectsquare::users.first_name') }}</label>
-                            <input class="form-control" type="text" placeholder="{{ trans('projectsquare::users.first_name') }}" name="first_name" @if (isset($user->first_name))value="{{ $user->first_name }}"@endif />
+                            <label for="first_name">{{ __('projectsquare::users.first_name') }}</label>
+                            <input class="form-control" type="text" placeholder="{{ __('projectsquare::users.first_name') }}" name="first_name" @if (isset($user->first_name))value="{{ $user->first_name }}"@endif />
                         </div>
 
                         <div class="form-group">
-                            <label for="last_name">{{ trans('projectsquare::users.last_name') }}</label>
-                            <input class="form-control" type="text" placeholder="{{ trans('projectsquare::users.last_name') }}" name="last_name" @if (isset($user->last_name))value="{{ $user->last_name }}"@endif />
+                            <label for="last_name">{{ __('projectsquare::users.last_name') }}</label>
+                            <input class="form-control" type="text" placeholder="{{ __('projectsquare::users.last_name') }}" name="last_name" @if (isset($user->last_name))value="{{ $user->last_name }}"@endif />
                         </div>
 
                         <div class="form-group">
-                            <label for="email">{{ trans('projectsquare::users.email') }}</label>
-                            <input class="form-control" type="text" placeholder="{{ trans('projectsquare::users.email') }}" name="email" @if (isset($user->email))value="{{ $user->email }}"@endif autocomplete="off" />
+                            <label for="email">{{ __('projectsquare::users.email') }}</label>
+                            <input class="form-control" type="text" placeholder="{{ __('projectsquare::users.email') }}" name="email" @if (isset($user->email))value="{{ $user->email }}"@endif autocomplete="off" />
                         </div>
 
                         <div class="form-group">
-                            <label for="password">{{ trans('projectsquare::users.password') }}</label><br/>
-                            <input class="form-control" type="password" placeholder="@if (isset($user->id)){{ trans('projectsquare::users.password_leave_empty') }}@else{{ trans('projectsquare::users.password') }}@endif" name="password" autocomplete="off" />
+                            <label for="password">{{ __('projectsquare::users.password') }}</label><br/>
+                            <input class="form-control" type="password" placeholder="@if (isset($user->id)){{ __('projectsquare::users.password_leave_empty') }}@else{{ __('projectsquare::users.password') }}@endif" name="password" autocomplete="off" />
                         </div>
 
                         <div class="form-group">
-                            <label for="password_confirmation">{{ trans('projectsquare::my.password_confirmation') }}</label><br/>
-                            <input class="form-control" type="password" placeholder="@if (isset($user->id)){{ trans('projectsquare::users.password_leave_empty') }}@else{{ trans('projectsquare::my.password_confirmation') }}@endif" name="password_confirmation" autocomplete="off" />
+                            <label for="password_confirmation">{{ __('projectsquare::my.password_confirmation') }}</label><br/>
+                            <input class="form-control" type="password" placeholder="@if (isset($user->id)){{ __('projectsquare::users.password_leave_empty') }}@else{{ __('projectsquare::my.password_confirmation') }}@endif" name="password_confirmation" autocomplete="off" />
                         </div>
 
 
                         <div class="form-group">
                             <button type="submit" class="btn valid">
-                                <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
+                                <i class="glyphicon glyphicon-ok"></i> {{ __('projectsquare::generic.valid') }}
                             </button>
                            
                         </div>
@@ -63,9 +63,9 @@
                 </div>
                 <div class="col-lg-offset-1 col-lg-3">
                     <div class="form-group">
-                        <label for="avatar">{{ trans('projectsquare::my.avatar') }}
+                        <label for="avatar">{{ __('projectsquare::my.avatar') }}
                             @include('projectsquare::includes.tooltip', [
-                                'text' => trans('projectsquare::tooltips.avatar')
+                                'text' => __('projectsquare::tooltips.avatar')
                             ])
                         </label><br/>
                         @include('projectsquare::includes.avatar', [
@@ -76,7 +76,7 @@
                     <form id="fileupload" action="{{ route('my_profile_upload_avatar') }}" method="POST" enctype="multipart/form-data">
                         <span class="btn valid fileinput-button">
                             <i class="glyphicon glyphicon-picture"></i>
-                            <span>Parcourir</span>
+                            <span>{{ __('projectsquare::generic.browse') }}</span>
                             <!-- The file input field used as target for the file upload widget -->
                             <input id="fileupload" type="file" name="files[]" data-url="{{ route('my_profile_upload_avatar') }}">
                         </span>
@@ -84,55 +84,55 @@
                 </div>
 
                 <div class="col-lg-12" style="margin-top: 3rem;">
-                    <h2>{{ trans('projectsquare::my.email_notifications') }}</h2>
+                    <h2>{{ __('projectsquare::my.email_notifications') }}</h2>
 
                     <form action="{{ route('my_profile_update_notifications') }}" method="post">
                         <div class="form-group col-lg-4">
 
-                            <strong>Tâches</strong><br/>
+                            <strong>{{ __('projectsquare::my.tasks') }}</strong><br/>
 
                             <label class="inline">
-                                <input type="checkbox" name="email_notification_task_created" @if ($email_notification_task_created && $email_notification_task_created->value == "1")checked="checked"@endif /> A la création d'une tâche
+                                <input type="checkbox" name="email_notification_task_created" @if ($email_notification_task_created && $email_notification_task_created->value == "1")checked="checked"@endif /> {{ __('projectsquare::my.task_created') }}
                             </label>
 
                             <br/>
 
                             <label class="inline">
-                                <input type="checkbox" name="email_notification_task_updated" @if ($email_notification_task_updated && $email_notification_task_updated->value == "1")checked="checked"@endif /> A la modification d'une tâche
+                                <input type="checkbox" name="email_notification_task_updated" @if ($email_notification_task_updated && $email_notification_task_updated->value == "1")checked="checked"@endif /> {{ __('projectsquare::my.task_updated') }}
                             </label>
 
                             <br/>
 
                             <label class="inline">
-                                <input type="checkbox" name="email_notification_task_deleted" @if ($email_notification_task_deleted && $email_notification_task_deleted->value == "1")checked="checked"@endif /> A la suppression d'une tâche
+                                <input type="checkbox" name="email_notification_task_deleted" @if ($email_notification_task_deleted && $email_notification_task_deleted->value == "1")checked="checked"@endif /> {{ __('projectsquare::my.task_deleted') }}
                             </label>
                         </div>
                         <div class="form-group col-lg-4">
-                            <strong>Tickets</strong><br/>
+                            <strong>{{ __('projectsquare::my.tickets') }}</strong><br/>
 
                             <label class="inline">
-                                <input type="checkbox" name="email_notification_ticket_created" @if ($email_notification_ticket_created && $email_notification_ticket_created->value == "1")checked="checked"@endif /> A la création d'un ticket
+                                <input type="checkbox" name="email_notification_ticket_created" @if ($email_notification_ticket_created && $email_notification_ticket_created->value == "1")checked="checked"@endif /> {{ __('projectsquare::my.ticket_created') }}
                             </label>
 
                             <br/>
 
                             <label class="inline">
-                                <input type="checkbox" name="email_notification_ticket_updated" @if ($email_notification_ticket_updated && $email_notification_ticket_updated->value == "1")checked="checked"@endif /> A la modification d'un ticket
+                                <input type="checkbox" name="email_notification_ticket_updated" @if ($email_notification_ticket_updated && $email_notification_ticket_updated->value == "1")checked="checked"@endif /> {{ __('projectsquare::my.ticket_updated') }}
                             </label>
 
                             <br/>
 
                             <label class="inline">
-                                <input type="checkbox" name="email_notification_ticket_deleted" @if ($email_notification_ticket_deleted && $email_notification_ticket_deleted->value == "1")checked="checked"@endif /> A la suppression d'un ticket
+                                <input type="checkbox" name="email_notification_ticket_deleted" @if ($email_notification_ticket_deleted && $email_notification_ticket_deleted->value == "1")checked="checked"@endif /> {{ __('projectsquare::my.ticket_deleted') }}
                             </label>
 
                             {!! csrf_field() !!}
                         </div>
                         <div class="form-group col-lg-4">
-                            <strong>Messages</strong><br/>
+                            <strong>{{ __('projectsquare::my.messages') }}</strong><br/>
 
                             <label class="inline">
-                                <input type="checkbox" name="email_notification_message_created" @if ($email_notification_message_created && $email_notification_message_created->value == "1")checked="checked"@endif /> A la création d'un message
+                                <input type="checkbox" name="email_notification_message_created" @if ($email_notification_message_created && $email_notification_message_created->value == "1")checked="checked"@endif /> {{ __('projectsquare::my.message_created') }}
                             </label>
 
                             {!! csrf_field() !!}
@@ -140,7 +140,7 @@
 
                         <div class="form-group" style="clear:both">
                             <button type="submit" class="btn valid">
-                                <i class="glyphicon glyphicon-ok"></i> {{ trans('projectsquare::generic.valid') }}
+                                <i class="glyphicon glyphicon-ok"></i> {{ __('projectsquare::generic.valid') }}
                             </button>
                         </div>
                     </form>

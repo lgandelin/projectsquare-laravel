@@ -4,9 +4,9 @@
     @include('projectsquare::includes.project_bar', ['active' => 'progress'])
     <div class="content-page">
         <div class="templates progress-template">
-            <h1 class="page-header">{{ trans('projectsquare::project.progress') }}
+            <h1 class="page-header">{{ __('projectsquare::project.progress') }}
                 {{--@include('projectsquare::includes.tooltip', [
-                    'text' => trans('projectsquare::tooltips.progress_title')
+                    'text' => __('projectsquare::tooltips.progress_title')
                 ])--}}
             </h1>
 

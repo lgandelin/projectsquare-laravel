@@ -26,8 +26,8 @@
                 <div class="project-progress" style="display: none;">
                     <table class="table table-bordered">
                         <tr>
-                            <td>{{ trans('projectsquare::progress.phases_tasks') }}</td>
-                            <td>{{ trans('projectsquare::progress.progress') }}</td>
+                            <td>{{ __('projectsquare::progress.phases_tasks') }}</td>
+                            <td>{{ __('projectsquare::progress.progress') }}</td>
                         </tr>
 
                         @foreach ($project->phases as $phase)
@@ -40,18 +40,20 @@
                                     <div class="tasks">
                                         @foreach ($phase->tasks as $task)
                                             <div class="task" style="@if ($task->statusID == Webaccess\ProjectSquare\Entities\Task::COMPLETED)background-color: #5497aa; @endif">
-                                                <div class="description">
+                                                <a href="{{ route('project_tasks_edit', ['uuid' => $project->id, 'task_uuid' => $task->id]) }}" title="Voir la tâche">
+                                                    <div class="description">
 
-                                                    @if (isset($task->allocatedUser))
-                                                        @include('projectsquare::includes.avatar', [
-                                                            'id' => $task->allocatedUser->id,
-                                                            'name' => $task->allocatedUser->firstName . ' ' . $task->allocatedUser->lastName
-                                                        ])
-                                                    @endif
+                                                        @if (isset($task->allocatedUser))
+                                                            @include('projectsquare::includes.avatar', [
+                                                                'id' => $task->allocatedUser->id,
+                                                                'name' => $task->allocatedUser->firstName . ' ' . $task->allocatedUser->lastName
+                                                            ])
+                                                        @endif
 
-                                                    <span class="name">{{ $task->title }}</span>
-                                                    @if ($task->estimatedTimeDays > 0)<span class="duration"> <strong>Temps estimé :</strong> {{ $task->estimatedTimeDays }} jour(s)</span> @endif
-                                                </div>
+                                                        <span class="name">{{ $task->title }}</span>
+                                                        @if ($task->estimatedTimeDays > 0)<span class="duration"> <strong>{{ __('projectsquare::dashboard.estimated_time') }}</strong> {{ $task->estimatedTimeDays }} {{ __('projectsquare::generic.days') }}</span> @endif
+                                                    </div>
+                                                </a>
                                             </div>
                                         @endforeach
                                     </div>
@@ -62,7 +64,7 @@
                             </tr>
                         @endforeach
                         <tr>
-                            <td style="text-align: right;">Total</td>
+                            <td style="text-align: right;">{{ __('projectsquare::generic.total') }}</td>
                             <td width="20%" class="total">@if ($project->progress !== null && $project->progress !== ""){{ $project->progress }} %@endif</td>
                         </tr>
                     </table>
@@ -82,6 +84,9 @@
             nav:false,
             slideBy: 'page',
             responsive:{
+                1:{
+                    items: 1
+                },
                 800:{
                     items: 1
                 },
@@ -91,6 +96,28 @@
                 1200:{
                     items:3
                 },
+            }
+        });
+
+        //DASHBOARD - REPORTING WIDGET
+        $('.reporting .project .toggle-progress').click(function(e) {
+            e.preventDefault();
+
+            $(this).closest('.project').find('.project-progress').slideToggle(200);
+            $(this).toggleClass('opened');
+        });
+
+        $(document).mouseup(function(e)
+        {
+            var container = $(".reporting");
+
+            if (!container.is(e.target) && container.has(e.target).length === 0) {
+                $('.project-progress').each(function() {
+                    var toggle_icon = $(this).closest('.project').find('.toggle-progress');
+                    if (toggle_icon.hasClass('opened')) {
+                        toggle_icon.trigger('click');
+                    }
+                });
             }
         });
     });

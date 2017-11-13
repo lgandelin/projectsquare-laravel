@@ -75,10 +75,6 @@ class UserManager
 
         if ($platform = Platform::first()) {
 
-            if (isset($platform->users_limit) && sizeof($this->getAgencyUsers()) >= $platform->users_limit) {
-                throw new \Exception(trans('projectsquare::users.users_limit_reached'));
-            }
-
             $userID = $this->repository->createUser($firstName, $lastName, $email, Hash::make($password), $mobile, $phone, $clientID, $clientRole, $roleID, $isAdministrator);
 
             //Insert notification settings
@@ -105,6 +101,10 @@ class UserManager
                 $message->to($email)
                     ->subject('[projectsquare] Votre compte a été créé avec succès');
             });
+
+            //Update users number for payment
+            $slug = str_replace('.projectsquare.io', '', $platform->url);
+            GuzzlePaymentAPIService::updateUsersCount($slug, sizeof(app()->make('UserManager')->getAgencyUsers()));
         }
     }
 
@@ -121,6 +121,12 @@ class UserManager
     public function deleteUser($userID)
     {
         $this->repository->deleteUser($userID);
+
+        //Update users number for payment
+        if ($platform = Platform::first()) {
+            $slug = str_replace('.projectsquare.io', '', $platform->url);
+            GuzzlePaymentAPIService::updateUsersCount($slug, sizeof(app()->make('UserManager')->getAgencyUsers()));
+        }
     }
 
     public function generateNewPassword($userID)

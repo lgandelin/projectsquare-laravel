@@ -4,9 +4,9 @@
     <div class="content-page">
         <div class="templates">
             <div class="page-header">
-                <h1>{{ trans('projectsquare::users.users_list') }}</h1>
+                <h1>{{ __('projectsquare::users.users_list') }}</h1>
                 @include('projectsquare::includes.tooltip', [
-                 'text' => trans('projectsquare::tooltips.contributors_list')
+                 'text' => __('projectsquare::tooltips.contributors_list')
                 ])
             </div>
               <a href="{{ route('users_add') }}" class="btn pull-right add"></a>
@@ -26,11 +26,11 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>{{ trans('projectsquare::users.name') }}<a href="{{ route('users_index', ['sc' => 'first_name', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-alpha-{{ $sort_order }}"></i></a></th>
-                    <th>{{ trans('projectsquare::users.avatar') }}</th>
-                    <th>{{ trans('projectsquare::users.email') }}</th>
-                    <th>{{ trans('projectsquare::users.profile') }}<a href="{{ route('users_index', ['sc' => 'role_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
-                    <th>{{ trans('projectsquare::generic.action') }}</th>
+                    <th>{{ __('projectsquare::users.name') }}<a href="{{ route('users_index', ['sc' => 'first_name', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort-alpha-{{ $sort_order }}"></i></a></th>
+                    <th>{{ __('projectsquare::users.avatar') }}</th>
+                    <th>{{ __('projectsquare::users.email') }}</th>
+                    <th>{{ __('projectsquare::users.profile') }}<a href="{{ route('users_index', ['sc' => 'role_id', 'so' => $sort_order, 'it' => $items_per_page]) }}" class="sort-icon"><i class="fa fa-sort"></i></a></th>
+                    <th>{{ __('projectsquare::generic.action') }}</th>
                 </tr>
                 </thead>
 
@@ -75,7 +75,7 @@
 
             <div class="text-center">
                 @include('projectsquare::administration.includes.items_per_page')
-                {{ $users->appends(['it' => $items_per_page, 'sc' => $sort_column, 'so' => $sort_order])->links() }}
+                {{ $users->appends(['it' => $items_per_page, 'sc' => $sort_column, 'so' => $current_sort_order])->links() }}
             </div>
         </div>
     </div>

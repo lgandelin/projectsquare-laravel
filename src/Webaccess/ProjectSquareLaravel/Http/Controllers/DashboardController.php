@@ -3,8 +3,6 @@
 namespace Webaccess\ProjectSquareLaravel\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
-use Illuminate\Cookie\CookieJar;
 use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
 use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Projects\GetProjectProgressRequest;
@@ -45,13 +43,12 @@ class DashboardController extends BaseController
             'events' => app()->make('GetEventsInteractor')->execute(new GetEventsRequest([
                 'userID' => $this->getUser()->id,
             ])),
-            'todos' => app()->make('GetTodosInteractor')->execute(new GetTodosRequest([
-                'userID' => $this->getUser()->id,
-            ])),
-            'steps' => ($this->getCurrentProject()) ? app()->make('GetStepsInteractor')->execute(new GetStepsRequest([
+            /*'steps' => ($this->getCurrentProject()) ? app()->make('GetStepsInteractor')->execute(new GetStepsRequest([
                 'projectID' => $this->getCurrentProject()->id,
-            ])) : [],
+            ])) : [],*/
+            'steps' => [],
             'current_projects_reporting' => $this->isUserAnAdmin() ? $this->getCurrentProjectReporting() : [],
+            //'current_projects_reporting' => [],
             'first_connection' => !isset($_COOKIE['already_connected'])
         ]);
     }

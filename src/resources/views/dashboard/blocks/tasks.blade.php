@@ -1,29 +1,29 @@
 <div class="block last-tasks" id="tasks-widget">
     <div class="block-content table-responsive">
-        <h3>{{ trans('projectsquare::dashboard.last_tasks') }}
+        <h3>{{ __('projectsquare::dashboard.last_tasks') }}
 
             @include('projectsquare::includes.tooltip', [
-                'text' => trans('projectsquare::tooltips.tasks')
+                'text' => __('projectsquare::tooltips.tasks')
             ])
 
             @if ($is_client)
-                <a href="{{ route('project_tasks', ['id' => $current_project->id]) }}" class="all pull-right" title="{{ trans('projectsquare::dashboard.tasks_list') }}"></a>
+                <a href="{{ route('project_tasks', ['id' => $current_project->id]) }}" class="all pull-right" title="{{ __('projectsquare::dashboard.tasks_list') }}"></a>
             @else
-                <a href="{{ route('tasks_index') }}" class="all pull-right" title="{{ trans('projectsquare::dashboard.tasks_list') }}"></a>
+                <a href="{{ route('tasks_index') }}" class="all pull-right" title="{{ __('projectsquare::dashboard.tasks_list') }}"></a>
             @endif
 
-            <a href="{{ route('tasks_add') }}" class="add pull-right" title="{{ trans('projectsquare::dashboard.add_task') }}"></a>
-            <a href="#" class="glyphicon glyphicon-move move-widget pull-right" title="{{ trans('projectsquare::dashboard.move_widget') }}"></a>
+            <a href="{{ route('tasks_add') }}" class="add pull-right" title="{{ __('projectsquare::dashboard.add_task') }}"></a>
+            <a href="#" class="glyphicon glyphicon-move move-widget pull-right" title="{{ __('projectsquare::dashboard.move_widget') }}"></a>
         </h3>
 
         <table class="table table-striped">
             <thead>
             <tr>
                 <th></th>
-                <th>{{ trans('projectsquare::tasks.title') }}</th>
-                <th>{{ trans('projectsquare::tasks.allocated_user') }}</th>
-                <th>{{ trans('projectsquare::tasks.status') }}</th>
-                <th>{{ trans('projectsquare::generic.action') }}</th>
+                <th>{{ __('projectsquare::tasks.title') }}</th>
+                <th>{{ __('projectsquare::tasks.allocated_user') }}</th>
+                <th>{{ __('projectsquare::tasks.status') }}</th>
+                <th>{{ __('projectsquare::generic.action') }}</th>
             </tr>
             </thead>
 
@@ -50,14 +50,14 @@
                     </td>
                     <td>
                         <a href="{{ route('project_tasks_edit', ['uuid' => $task->project_id, 'task_uuid' => $task->id]) }}">
-                            @if ($task->status_id == 1){{ trans('projectsquare::tasks.to_do') }}
-                            @elseif ($task->status_id == 2){{ trans('projectsquare::tasks.in_progress') }}
-                            @elseif ($task->status_id == 3){{ trans('projectsquare::tasks.done') }}
+                            @if ($task->status_id == 1){{ __('projectsquare::tasks.to_do') }}
+                            @elseif ($task->status_id == 2){{ __('projectsquare::tasks.in_progress') }}
+                            @elseif ($task->status_id == 3){{ __('projectsquare::tasks.done') }}
                             @endif
                         </a>
                     </td>
                     <td align="right">
-                        <a href="{{ route('project_tasks_edit', ['uuid' => $task->project_id, 'task_uuid' => $task->id]) }}" title="{{ trans('projectsquare::dashboard.see_task') }}">
+                        <a href="{{ route('project_tasks_edit', ['uuid' => $task->project_id, 'task_uuid' => $task->id]) }}" title="{{ __('projectsquare::dashboard.see_task') }}">
                             <i class="btn btn-sm btn-primary see-more"></i>
                         </a>
                     </td>

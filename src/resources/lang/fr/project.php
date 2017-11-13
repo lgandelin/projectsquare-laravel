@@ -27,4 +27,6 @@ return [
     'slack_channel_placeholder' => 'ex: #projet',
     'ga_view_id' => 'ID profil Google Analytics',
     'ga_view_id_placeholder' => 'ex: 110039884',
+
+    'others' => 'Autres',
 ];

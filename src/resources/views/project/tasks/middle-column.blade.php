@@ -2,7 +2,7 @@
 
     <div class="parent">
         <div class="parent-wrapper create">
-            <a href="{{ route('tasks_add') }}"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ trans('projectsquare::tasks.add_task') }}</a>
+            <a href="{{ route('tasks_add') }}"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ __('projectsquare::tasks.add_task') }}</a>
         </div>
     </div>
 
@@ -43,7 +43,7 @@
     @endif
     <div class="parent">
         <div class="parent-wrapper">
-            <span class="name">Autres</span>
+            <span class="name">{{ __('projectsquare::project.others') }}</span>
             <span class="childs-number">{{ sizeof($other_tasks) }}</span>
             <span class="glyphicon glyphicon-triangle-top toggle-childs"></span>
         </div>

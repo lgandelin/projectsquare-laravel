@@ -4,7 +4,7 @@
             <form action="">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">{{ trans('projectsquare::messages.messages') }} > {{ $conversation->title }}</h4>
+                    <h4 class="modal-title">{{ __('projectsquare::messages.messages') }} > {{ $conversation->title }}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="conversation" data-id="{{ $conversation->id }}">
@@ -28,8 +28,8 @@
                         <div class=" col-lg-8 col-md-8 col-sm-12 col-xs-12 pull-right message new-message">
                             <textarea class="form-control" placeholder="Votre message" rows="5" autocomplete="off"></textarea>
                             <span class="border-new-message" style="border-top: 1px solid{{ $conversation->project->color }}"></span>
-                            <button class="btn button pull-right cancel-message" data-id="{{ $conversation->id }}" style="margin-top:1.5rem"><span class="glyphicon glyphicon-arrow-left"></span> {{ trans('projectsquare::generic.cancel') }}</button>
-                            <button class="btn valid pull-right valid-message" data-id="{{ $conversation->id }}" style="margin-top:1.5rem; margin-right: 1rem"><span class="glyphicon glyphicon-ok"></span> {{ trans('projectsquare::generic.valid') }}</button>
+                            <button class="btn button pull-right cancel-message" data-id="{{ $conversation->id }}" style="margin-top:1.5rem"><span class="glyphicon glyphicon-arrow-left"></span> {{ __('projectsquare::generic.cancel') }}</button>
+                            <button class="btn valid pull-right valid-message" data-id="{{ $conversation->id }}" style="margin-top:1.5rem; margin-right: 1rem"><span class="glyphicon glyphicon-ok"></span> {{ __('projectsquare::generic.valid') }}</button>
                         </div>
                     </div>
                 </div>

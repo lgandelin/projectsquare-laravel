@@ -7,5 +7,18 @@ return [
     'avatar' => 'Avatar',
     'password_confirmation' => 'Confirmation du mot de passe',
     'email_notifications' => 'Notifications par email',
+    'personal_info' => 'Informations personnelles',
+    'tasks' => 'Tâches',
+    'tickets' => 'Tickets',
+    'messages' => 'Messages',
+
+    'task_created' => 'A la création d\'une tâche',
+    'task_updated' => 'A la modification d\'une tâche',
+    'task_deleted' => 'A la suppression d\'une tâche',
+    'ticket_created' => 'A la création d\'un ticket',
+    'ticket_updated' => 'A la modification d\'un ticket',
+    'ticket_deleted' => 'A la suppression d\'un ticket',
+    'message_created' => ' A la création d\'un message',
+
 ];
 

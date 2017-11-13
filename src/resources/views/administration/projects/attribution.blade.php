@@ -50,11 +50,11 @@
         <div class="occupation-template">
             <form method="get">
                 <div class="row">
-                    <h2>{{ trans('projectsquare::tasks.filters.filters') }}</h2>
+                    <h2>{{ __('projectsquare::tasks.filters.filters') }}</h2>
 
                     <div class="form-group col-md-2">
                         <select class="form-control" name="filter_role" id="filter_role">
-                            <option value="">{{ trans('projectsquare::occupation.filters.by_role') }}</option>
+                            <option value="">{{ __('projectsquare::occupation.filters.by_role') }}</option>
                             @foreach ($roles as $role)
                                 <option value="{{ $role->id }}" @if ($filters['role'] == $role->id)selected="selected" @endif>{{ $role->name }}</option>
                             @endforeach
@@ -70,13 +70,13 @@
             </div>
 
             <div class="notice">
-                <span class="title">Attribuez des tâches à vos collaborateurs</span>
+                <span class="title">{{ __('projectsquare::project_attribution.instructions.title') }}</span>
                 <ul>
-                    <li>pour attribuer une tâche à un collaborateur, faites un "glisser-déposer" de la tâche directement dans le calendrier ci-dessous</li>
-                    <li>les tâches planifiées de cette manière sont automatiquement ajoutées aux plannings des collaborateurs</li>
-                    <li>une fois la tâche attribuée, il est possible de la désattribuer en cliquant sur l'icône <i class="fa fa-refresh" style="margin-left: 0.75rem;
+                    <li>{{ __('projectsquare::project_attribution.instructions.1') }}</li>
+                    <li>{{ __('projectsquare::project_attribution.instructions.2') }}</li>
+                    <li>{{ __('projectsquare::project_attribution.instructions.3') }} <i class="fa fa-refresh" style="margin-left: 0.75rem;
                     "></i></li>
-                    <li>si vous souhaitez replanifier une tâche (par exemple après une erreur ou une modification de durée), vous devrez la désattribuer puis la refaire glisser dans le planning du collaborateur</li>
+                    <li>{{ __('projectsquare::project_attribution.instructions.4') }}</li>
                 </ul>
             </div>
         </div>
