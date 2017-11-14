@@ -58,7 +58,11 @@ class EloquentUserRepository implements UserRepository
 
     public function getUsersByProject($projectID)
     {
-        return Project::find($projectID)->users;
+        if ($project = Project::find($projectID)) {
+            return $project->users;
+        }
+
+        return [];
     }
 
     public function getUsersByRole($roleID)

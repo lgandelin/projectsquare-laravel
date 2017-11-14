@@ -65,9 +65,9 @@ class TaskController extends BaseController
 
         return view('projectsquare::tools.tasks.add', [
             'projects' => app()->make('GetProjectsInteractor')->getProjects($this->getUser()->id),
-            'phases' => app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
+            'phases' => ($this->getCurrentProject()) ? app()->make('GetPhasesInteractor')->execute(new GetPhasesRequest([
                 'projectID' => $this->getCurrentProject()->id,
-            ])),
+            ])) : [],
             'users' => ($this->getCurrentProject()) ? app()->make('UserManager')->getUsersByProject($this->getCurrentProject()->id) : app()->make('UserManager')->getAgencyUsers(),
             'current_project_id' => ($this->getCurrentProject()) ? $this->getCurrentProject()->id : null,
             'task_statuses' => self::getTasksStatuses(),
