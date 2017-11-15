@@ -605,6 +605,7 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
             'Webaccess\ProjectSquareLaravel\Commands\SendEmailInstallCompletedCommand',
             'Webaccess\ProjectSquareLaravel\Commands\SavePlatformInfosCommand',
             'Webaccess\ProjectSquareLaravel\Commands\InsertDemoDataCommand',
+            'Webaccess\ProjectSquareLaravel\Commands\InsertAdministratorAccountCommand',
         ]);
     }
 }
