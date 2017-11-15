@@ -7,12 +7,10 @@ use Webaccess\ProjectSquare\Requests\Phases\GetPhasesRequest;
 use Webaccess\ProjectSquare\Requests\Planning\GetEventsRequest;
 use Webaccess\ProjectSquare\Requests\Projects\GetProjectProgressRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\GetTasksRequest;
-use Webaccess\ProjectSquare\Requests\Todos\GetTodosRequest;
-use Webaccess\ProjectSquare\Requests\Calendar\GetStepsRequest;
 
 class DashboardController extends BaseController
 {
-    public function index(Request $request)
+    public function index(Request $request, $tutorial = null)
     {
         parent::__construct($request);
 
@@ -48,8 +46,7 @@ class DashboardController extends BaseController
             ])) : [],*/
             'steps' => [],
             'current_projects_reporting' => $this->isUserAnAdmin() ? $this->getCurrentProjectReporting() : [],
-            //'current_projects_reporting' => [],
-            'first_connection' => !isset($_COOKIE['already_connected'])
+            'tutorial' => ($request->get('tutorial') !== null) ? true : false
         ]);
     }
 

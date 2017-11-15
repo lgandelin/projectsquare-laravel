@@ -192,12 +192,6 @@ $(document).ready(function() {
 
             $('#planning').fullCalendar('unselect');
         },
-        drop: function(date, jsEvent, ui, resourceId) {
-            $('.tickets-current-project').val($(this).data('project'));
-            $('.tickets-current-ticket').val($(this).data('ticket'));
-            $('.tasks-current-project').val($(this).data('project'));
-            $('.tasks-current-task').val($(this).data('task'));
-        },
         eventReceive: function(event, delta, revertFunc) {
 
             if (event.allDay) {
@@ -212,7 +206,7 @@ $(document).ready(function() {
                 name: event.title,
                 start_time: event.start.format(),
                 end_time: event.end.format(),
-                project_id: $('.tickets-current-project').val(),
+                project_id: event.project_id,
                 ticket_id: event.ticket_id,
                 task_id: event.task_id,
                 user_id: $('#user_id').val(),
@@ -225,10 +219,6 @@ $(document).ready(function() {
                 data: data,
                 success: function(data) {
                     event._id = data.event.id;
-                    event.project_id = $('.tickets-current-project').val();
-                    event.project_name = data.event.project_name;
-                    event.ticket_id = $('.tickets-current-ticket').val();
-                    event.task_id = $('.tasks-current-task').val();
 
                     $('#planning').fullCalendar('updateEvent', event);
 
@@ -292,7 +282,9 @@ function initTicketDragAndDrop() {
 
         $(this).data('event', {
             title: $.trim($(this).find('.name').text()),
+            project_id: $(this).attr('data-project'),
             project_name: $.trim($(this).find('.project').text()),
+            ticket_id: $(this).attr('data-ticket'),
             stick: true,
             color: $(this).data('color')
         });
@@ -318,7 +310,9 @@ function initTaskDragAndDrop() {
 
         $(this).data('event', {
             title: $.trim($(this).find('.name').text()),
+            project_id: $(this).attr('data-project'),
             project_name: $.trim($(this).find('.project').text()),
+            task_id: $(this).attr('data-task'),
             stick: true,
             color: $(this).data('color')
         });

@@ -12,6 +12,7 @@ use Webaccess\ProjectSquare\Entities\Project;
 use Webaccess\ProjectSquare\Requests\Phases\CreatePhaseRequest;
 use Webaccess\ProjectSquare\Requests\Tasks\CreateTaskRequest;
 use Webaccess\ProjectSquare\Requests\Tickets\CreateTicketRequest;
+use Webaccess\ProjectSquareLaravel\Models\User;
 
 class InsertDemoDataCommand extends Command
 {
@@ -22,6 +23,8 @@ class InsertDemoDataCommand extends Command
     public function handle()
     {
         $faker = Factory::create();
+
+        $adminUserID = User::first()->id;
 
         //Ticket statuses
         DB::table('ticket_statuses')->insert(['name' => 'A faire', 'include_in_planning' => true]);
@@ -44,7 +47,7 @@ class InsertDemoDataCommand extends Command
         DB::table('roles')->insert(['name' => 'Web designer']);
 
         //Clients
-        /*$client1ID = Uuid::uuid4()->toString();
+        $client1ID = Uuid::uuid4()->toString();
         $client2ID = Uuid::uuid4()->toString();
         $client3ID = Uuid::uuid4()->toString();
         DB::table('clients')->insert(['id' => $client1ID, 'name' => $faker->company, 'address' => $faker->streetAddress . "\n" .  $faker->city]);
@@ -102,6 +105,10 @@ class InsertDemoDataCommand extends Command
         DB::table('user_projects')->insert(['user_id' => $user6ID, 'project_id' => $project1ID]);
         DB::table('user_projects')->insert(['user_id' => $user6ID, 'project_id' => $project2ID]);
         DB::table('user_projects')->insert(['user_id' => $user6ID, 'project_id' => $project4ID]);
+        DB::table('user_projects')->insert(['user_id' => $adminUserID, 'project_id' => $project1ID]);
+        DB::table('user_projects')->insert(['user_id' => $adminUserID, 'project_id' => $project2ID]);
+        DB::table('user_projects')->insert(['user_id' => $adminUserID, 'project_id' => $project3ID]);
+        DB::table('user_projects')->insert(['user_id' => $adminUserID, 'project_id' => $project4ID]);
 
         //Phases
         $phasesData = [
@@ -479,6 +486,6 @@ class InsertDemoDataCommand extends Command
 
         foreach ($ticketsData as $ticketData) {
             app()->make('CreateTicketInteractor')->execute(new CreateTicketRequest($ticketData));
-        }*/
+        }
     }
 }

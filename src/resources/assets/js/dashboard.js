@@ -141,6 +141,4 @@ $(document).ready(function() {
             createCookie('dashboard-widgets-' + $('#current-user-id').val(), JSON.stringify(widgets));
         }
     }
-
-    createCookie('already_connected', true);
 });

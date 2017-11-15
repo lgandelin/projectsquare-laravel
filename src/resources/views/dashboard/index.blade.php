@@ -52,7 +52,7 @@
     <script src="{{ asset('js/dashboard.js') }}"></script>
     <script src="{{ asset('js/powertour.js') }}"></script>
     <script>
-        @if ($first_connection&& !$is_client)
+        @if ($tutorial && !$is_client)
             $(document).ready(function() {
                 $.powerTour('run', 1);
             });
