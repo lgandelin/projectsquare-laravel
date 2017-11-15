@@ -58,12 +58,12 @@ class EloquentTicketRepository implements TicketRepository
             });
         }
 
-        if ($allocatedUserID != null && $allocatedUserID !== 0) {
+        if ($allocatedUserID === 0) {
+            $tickets->whereDoesntHave('last_state.allocated_user');
+        } elseif ($allocatedUserID !== null) {
             $tickets->whereHas('last_state.allocated_user', function ($query) use ($allocatedUserID) {
                 $query->where('id', '=', $allocatedUserID);
             });
-        } else if ($allocatedUserID === 0) {
-            $tickets->has('last_state.allocated_user', '=', null);
         }
 
         if ($sortColumn == 'client') {

@@ -24,7 +24,7 @@ class EloquentTasksRepository implements TaskRepository
         return Task::with('phase', 'project', 'author_user')->find($taskID);
     }
 
-    public function getTasks($userID, $projectID = null, $statusID = null, $allocatedUserID = null, $phaseID = null, $entities = false)
+    public function getTasks($userID, $projectID = null, $statusID = null, $allocatedUserID = null, $phaseID = false, $entities = false)
     {
         $tasks = $this->getTasksList($userID, $projectID, $statusID, $allocatedUserID, $phaseID, null, null, $entities);
 
@@ -62,12 +62,10 @@ class EloquentTasksRepository implements TaskRepository
             $tasks->where('tasks.status_id', '!=', TaskEntity::COMPLETED);
         }
 
-        if ($allocatedUserID > 0) {
-            $tasks->where('allocated_user_id', '=', $allocatedUserID);
-        }
-
         if ($allocatedUserID === 0) {
-            $tasks->where('allocated_user_id', '=', '');
+            $tasks->where('allocated_user_id', '=', null);
+        } elseif ($allocatedUserID !== null) {
+            $tasks->where('allocated_user_id', '=', $allocatedUserID);
         }
 
         if ($phaseID !== false) {
@@ -116,7 +114,7 @@ class EloquentTasksRepository implements TaskRepository
         return $result;
     }
 
-    public function getTasksPaginatedList($userID, $limit, $projectID = null, $statusID = null, $allocatedUserID = null, $phaseID = null, $sortColumn = null, $sortOrder = null)
+    public function getTasksPaginatedList($userID, $limit, $projectID = null, $statusID = null, $allocatedUserID = null, $phaseID = false, $sortColumn = null, $sortOrder = null)
     {
         return $this->getTasksList($userID, $projectID, $statusID, $allocatedUserID, $phaseID, $sortColumn, $sortOrder)->paginate($limit);
     }

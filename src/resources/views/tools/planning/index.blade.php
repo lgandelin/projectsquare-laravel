@@ -89,12 +89,6 @@
             </div>
         </div>
     </div>
-
-    <input type="hidden" class="tickets-current-project" />
-    <input type="hidden" class="tickets-current-ticket" />
-
-    <input type="hidden" class="tasks-current-project" />
-    <input type="hidden" class="tasks-current-task" />
 @endsection
 
 @section('scripts')
