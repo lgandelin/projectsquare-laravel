@@ -3,7 +3,9 @@
 namespace Webaccess\ProjectSquareLaravel\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Input\InputArgument;
+use Webaccess\ProjectSquareLaravel\Models\Project;
 
 class InsertAdministratorAccountCommand extends Command
 {
@@ -14,7 +16,7 @@ class InsertAdministratorAccountCommand extends Command
     public function handle()
     {
         try {
-            app()->make('UserManager')->createUser(
+            $userID = app()->make('UserManager')->createUser(
                 '',
                 '',
                 $this->argument('admin_email'),
@@ -26,10 +28,19 @@ class InsertAdministratorAccountCommand extends Command
                 1,
                 true
             );
-            $this->info('Compte administrateur créé avec succès');
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
+
+        try {
+            foreach (Project::all() as $project) {
+                DB::table('user_projects')->insert(['user_id' => $userID, 'project_id' => $project->id]);
+            }
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
+        }
+
+        $this->info('Compte administrateur créé avec succès');
     }
 
     protected function getArguments()

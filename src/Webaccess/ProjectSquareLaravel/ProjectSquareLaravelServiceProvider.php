@@ -64,8 +64,6 @@ use Webaccess\ProjectSquare\Interactors\Users\AddUserToProjectInteractor;
 use Webaccess\ProjectSquare\Interactors\Users\RemoveUserFromProjectInteractor;
 use Webaccess\ProjectSquareLaravel\Exceptions\ProjectSquareLaravelExceptionHandler;
 use Webaccess\ProjectSquareLaravel\Http\Middlewares\AdminMiddleware;
-use Webaccess\ProjectSquareLaravel\Http\Middlewares\AfterConfig;
-use Webaccess\ProjectSquareLaravel\Http\Middlewares\BeforeConfig;
 use Webaccess\ProjectSquareLaravel\Http\Middlewares\ChangeCurrentProject;
 use Webaccess\ProjectSquareLaravel\Http\Middlewares\UserMiddleware;
 use Webaccess\ProjectSquareLaravel\Listeners\Alerts\Emails\AlertWebsiteLoadingTimeEmailNotification;
@@ -155,8 +153,6 @@ class ProjectSquareLaravelServiceProvider extends ServiceProvider
         $basePath = __DIR__.'/../../';
 
         $router->aliasMiddleware('change_current_project', ChangeCurrentProject::class);
-        $router->aliasMiddleware('before_config', BeforeConfig::class);
-        $router->aliasMiddleware('after_config', AfterConfig::class);
         $router->aliasMiddleware('admin', AdminMiddleware::class);
         $router->aliasMiddleware('user', UserMiddleware::class);
 

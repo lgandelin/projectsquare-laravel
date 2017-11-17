@@ -105,7 +105,11 @@ class UserManager
             //Update users number for payment
             $slug = str_replace('.projectsquare.io', '', $platform->url);
             GuzzlePaymentAPIService::updateUsersCount($slug, sizeof(app()->make('UserManager')->getAgencyUsers()));
+
+            return $userID;
         }
+
+        return false;
     }
 
     public function updateUser($userID, $firstName, $lastName, $email, $password=null, $mobile=null, $phone=null, $clientID=null, $clientRole=null, $roleID=null, $isAdministrator=false)

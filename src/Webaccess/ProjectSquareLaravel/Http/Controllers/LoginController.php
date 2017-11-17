@@ -16,7 +16,6 @@ class LoginController extends Controller
     public function __construct(Request $request)
     {
         $this->request = $request;
-        $this->middleware('before_config');
     }
 
     public function login()

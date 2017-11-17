@@ -24,8 +24,6 @@ class InsertDemoDataCommand extends Command
     {
         $faker = Factory::create();
 
-        $adminUserID = User::first()->id;
-
         //Ticket statuses
         DB::table('ticket_statuses')->insert(['name' => 'A faire', 'include_in_planning' => true]);
         DB::table('ticket_statuses')->insert(['name' => 'En cours', 'include_in_planning' => true]);
@@ -105,10 +103,6 @@ class InsertDemoDataCommand extends Command
         DB::table('user_projects')->insert(['user_id' => $user6ID, 'project_id' => $project1ID]);
         DB::table('user_projects')->insert(['user_id' => $user6ID, 'project_id' => $project2ID]);
         DB::table('user_projects')->insert(['user_id' => $user6ID, 'project_id' => $project4ID]);
-        DB::table('user_projects')->insert(['user_id' => $adminUserID, 'project_id' => $project1ID]);
-        DB::table('user_projects')->insert(['user_id' => $adminUserID, 'project_id' => $project2ID]);
-        DB::table('user_projects')->insert(['user_id' => $adminUserID, 'project_id' => $project3ID]);
-        DB::table('user_projects')->insert(['user_id' => $adminUserID, 'project_id' => $project4ID]);
 
         //Phases
         $phasesData = [
