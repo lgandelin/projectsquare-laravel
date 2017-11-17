@@ -19,7 +19,7 @@ class TicketUpdatedSlackNotification
 
                 $modificationMade = false;
 
-                if ($ticket->states[0]->status->id != $ticket->states[1]->status->id) {
+                if (isset($ticket->states[0]->status) && isset($ticket->states[1]->status) && $ticket->states[0]->status->id != $ticket->states[1]->status->id) {
                     $lines[] = '*Statut :* ~'.$ticket->states[1]->status->name.'~ '.$ticket->states[0]->status->name;
                     $modificationMade = true;
                 }

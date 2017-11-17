@@ -57,7 +57,8 @@ return [
     'start_file_upload' => 'Démarrer l\'upload',
     'cancel_file_upload' => 'Annuler l\'upload',
 
-    'title_required' => 'Vous devez renseignez un titre pour ce ticket',
+    'title_required' => 'Vous devez renseigner un titre pour ce ticket',
+    'status_required' => 'Vous devez renseigner un statut pour ce ticket',
     'due_date_already_passed' => 'L\'échéance de ce ticket est déjà passée',
 
     'delete_ticket' => 'Supprimer le ticket',
