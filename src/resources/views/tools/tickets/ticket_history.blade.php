@@ -40,7 +40,7 @@
                 <td>@if ($ticket_state->spent_time_days > 0){{ $ticket_state->spent_time_days }} {{ __('projectsquare::generic.days') }}@endif @if ($ticket_state->spent_time_hours > 0){{ $ticket_state->spent_time_hours }} {{ __('projectsquare::generic.hours') }}@endif</td>
                 <td><span class="priority priority-{{ $ticket_state->priority }}"></span></td>
                 <td>@if ($ticket_state->status)<span class="status status-{{ $ticket_state->status->id }}">{{ $ticket_state->status->name }}</span>@endif</td>
-                <td>{{ $ticket_state->comments }}</td>
+                <td>{!! nl2br($ticket_state->comments) !!}</td>
             </tr>
             @endforeach
         </tbody>
