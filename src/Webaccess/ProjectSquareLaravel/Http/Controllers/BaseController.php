@@ -11,6 +11,7 @@ use Webaccess\ProjectSquare\Entities\Project as ProjectEntity;
 use Webaccess\ProjectSquare\Requests\Notifications\GetUnreadNotificationsRequest;
 use Webaccess\ProjectSquare\Requests\Todos\GetTodosRequest;
 use Webaccess\ProjectSquareLaravel\Models\Client;
+use Webaccess\ProjectSquareLaravel\Models\Platform;
 use Webaccess\ProjectSquareLaravel\Models\Project;
 
 class BaseController extends Controller
@@ -100,11 +101,11 @@ class BaseController extends Controller
 
     protected function betaForm()
     {
-        $userID = $this->getUser()->id;
         $title = Input::get('title');
         $content = nl2br(Input::get('message'));
+        $platform = Platform::first();
 
-        Mail::send('projectsquare::emails.beta_form', array('title' => $title, 'content' => $content, 'user_id' => $userID), function ($message) {
+        Mail::send('projectsquare::emails.beta_form', array('title' => $title, 'content' => $content, 'user_last_name' => $this->getUser()->last_name, 'user_first_name' => $this->getUser()->first_name, 'platform_url' => $platform->url), function ($message) {
             $message->to('lgandelin@web-access.fr')
                 ->subject('[projectsquare] Formulaire de contact');
         });
