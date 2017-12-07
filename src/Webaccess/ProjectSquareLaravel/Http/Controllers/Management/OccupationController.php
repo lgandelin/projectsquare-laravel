@@ -56,6 +56,12 @@ class OccupationController extends BaseController
                 foreach ($calendar->getMonths() as $monthObject) {
                     foreach ($monthObject->getDays() as $i => $day) {
                         $dateTime = $day->getDateTime();
+
+                        $day->duration = 0;
+                        foreach ($day->getEvents() as $event) {
+                            $day->duration += $event->durationInHours;
+                        }
+
                         if ($dateTime->format('w') != Day::SATURDAY && $dateTime->format('w') != Day::SUNDAY) {
                             if (!in_array($dateTime->format('W'), $month->weeks)) {
                                 $month->weeks[] = $dateTime->format('W');
