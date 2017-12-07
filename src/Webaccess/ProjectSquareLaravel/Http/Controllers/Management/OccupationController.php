@@ -49,7 +49,14 @@ class OccupationController extends BaseController
             foreach ($users as $user) {
                 $calendar = new Calendar(1, Day::MONDAY, date('m') + $m - 2, date('Y'));
 
-                $calendar->setEvents($events[$user->id]);
+                //Sort events by starting time
+                $e = $events[$user->id];
+                if (is_array($e) && sizeof($e) > 0) {
+                    usort($e, function ($a, $b) {
+                        return $a->startTime > $b->startTime;
+                    });
+                }
+                $calendar->setEvents($e);
                 $calendar->calculateMonths();
                 $calendar->user = $user;
 
