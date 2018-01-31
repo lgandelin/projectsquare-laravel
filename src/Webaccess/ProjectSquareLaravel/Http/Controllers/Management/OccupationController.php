@@ -47,7 +47,7 @@ class OccupationController extends BaseController
             $month->weeks = [];
 
             foreach ($users as $user) {
-                $calendar = new Calendar(1, Day::MONDAY, date('m') + $m - 2, date('Y'));
+                $calendar = new Calendar(1, Day::MONDAY, date('m') + $m - 1, date('Y'));
 
                 //Sort events by starting time
                 $e = $events[$user->id];
@@ -56,11 +56,13 @@ class OccupationController extends BaseController
                         return $a->startTime > $b->startTime;
                     });
                 }
+
                 $calendar->setEvents($e);
                 $calendar->calculateMonths();
                 $calendar->user = $user;
 
                 foreach ($calendar->getMonths() as $monthObject) {
+
                     foreach ($monthObject->getDays() as $i => $day) {
                         $dateTime = $day->getDateTime();
 
@@ -69,6 +71,8 @@ class OccupationController extends BaseController
                             $day->duration += $event->durationInHours;
                         }
 
+                        $calendar->user->monthDuration += $day->duration;
+
                         if ($dateTime->format('w') != Day::SATURDAY && $dateTime->format('w') != Day::SUNDAY) {
                             if (!in_array($dateTime->format('W'), $month->weeks)) {
                                 $month->weeks[] = $dateTime->format('W');
@@ -76,6 +80,7 @@ class OccupationController extends BaseController
                         }
                     }
                 }
+                $calendar->user->monthDuration = floor($calendar->user->monthDuration);
                 $month->calendars[] = $calendar;
             }
             $calendars[] = $month;

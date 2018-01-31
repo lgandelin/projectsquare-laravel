@@ -66,6 +66,9 @@
                                         </td>
                                     @endif
                                 @endforeach
+                                <td>
+                                    {{ $calendar->user->monthDuration }}h
+                                </td>
                             </tr>
                         @endforeach
                     </table>
